@@ -187,6 +187,11 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		//PrintString("OnActivate DayZPlayerCameraBase");
 		PlayerBase.Cast(m_pPlayer).OnCameraChanged(this);
 		SetCameraPPDelay(pPrevCamera);
+		
+		if (DayZPlayerCameraBase.Cast(pPrevCamera) && DayZPlayerCameraBase.Cast(pPrevCamera).IsCameraNV())
+		{
+			PPEffects.SetNVValueEV(0); //sets EV value immediately to avoid bright flashes at night
+		}
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(SetCameraPP,m_CameraPPDelay*1000,false,true,this); // this takes care of weapon/optics postprocessing
 	}
 	
@@ -202,6 +207,16 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 	
 	void SetCameraPPDelay(DayZPlayerCamera pPrevCamera)
 	{
+	}
+	
+	void SetCameraNV(bool nightvision)
+	{
+		m_IsNightvision = nightvision;
+	}
+	
+	bool IsCameraNV()
+	{
+		return m_IsNightvision;
 	}
 	
 	//! by default sets camera PP to zero, regardless of parameter. Override if needed.
@@ -230,4 +245,5 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 	protected float 				m_CameraPPDelay;
 	protected float 				m_CurrentCameraPitch;
 	protected HumanCommandWeapons	m_CommandWeapons;
+	protected bool 					m_IsNightvision;
 }

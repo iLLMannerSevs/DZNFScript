@@ -371,7 +371,7 @@ class FireplaceIndoor extends FireplaceBase
 	
 	override bool CanBeIgnitedBy( EntityAI igniter = NULL )
 	{
-		if ( HasAnyKindling() )
+		if ( HasAnyKindling() && !GetHierarchyParent() )
 		{
 			return true;
 		}

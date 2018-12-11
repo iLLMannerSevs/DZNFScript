@@ -30,11 +30,6 @@ class Spotlight extends ItemBase
 		RegisterNetSyncVariableBool("m_IsSoundSynchRemote");
 	}
 	
-	/*override bool IsTwoHandedBehaviour()
-	{
-		return true;
-	}*/
-	
 	override void OnWorkStart()
 	{
 		SetPilotLight(true);
@@ -191,6 +186,10 @@ class Spotlight extends ItemBase
 	{
 		return m_IsFolded;
 	}
+	
+	//================================================================
+	// ADVANCED PLACEMENT
+	//================================================================
 		
 	override void OnPlacementStarted( Man player )
 	{
@@ -208,11 +207,7 @@ class Spotlight extends ItemBase
 			player_PB.GetHologramLocal().SetSelectionToRefresh( array_of_selections );
 		}
 	}
-	
-	//================================================================
-	// ADVANCED PLACEMENT
-	//================================================================
-			
+		
 	override void OnPlacementComplete( Man player )
 	{
 		super.OnPlacementComplete( player );

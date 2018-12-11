@@ -384,7 +384,7 @@ class BarrelHoles_ColorBase extends FireplaceBase
 	
 	override bool CanBeIgnitedBy( EntityAI igniter = NULL )
 	{
-		if ( HasAnyKindling() && !IsBurning() && IsOpened() )
+		if ( HasAnyKindling() && !IsBurning() && IsOpened() && !GetHierarchyParent() )
 		{
 			return true;
 		}

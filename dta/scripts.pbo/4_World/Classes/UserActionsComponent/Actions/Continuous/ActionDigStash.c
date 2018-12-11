@@ -135,6 +135,7 @@ class ActionDigStash: ActionContinuousBase
 			return;
 		}
 		
+		// Dig out of stash
 		if ( Class.CastTo(target_stash, targetEntity) )
 		{
 			ItemBase chest = target_stash.GetStashedItem();
@@ -148,6 +149,7 @@ class ActionDigStash: ActionContinuousBase
 				g_Game.ObjectDelete( target_stash );
 		}
 		else
+		// Dig under ground
 		{
 			ItemBase stashed_item;
 			UndergroundStash stash;

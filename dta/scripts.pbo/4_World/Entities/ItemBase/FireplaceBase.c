@@ -2079,6 +2079,18 @@ class FireplaceBase extends ItemBase
 	{		
 		super.OnPlacementComplete( player );
 			
+		PlayerBase player_base = PlayerBase.Cast( player );
+		vector position = player_base.GetLocalProjectionPosition();
+		vector orientation = player_base.GetLocalProjectionOrientation();
+		
+		if ( GetGame().IsMultiplayer()  &&  GetGame().IsServer() || !GetGame().IsMultiplayer() )
+		{
+			//remove grass
+			Object cc_object = GetGame().CreateObject ( OBJECT_CLUTTER_CUTTER , position );
+			cc_object.SetOrientation ( orientation );
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( GetGame().ObjectDelete, 1000, false, cc_object );
+		}
+		
 		SetIsPlaceSound( true );
 	}
 	

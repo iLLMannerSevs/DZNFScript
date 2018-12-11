@@ -39,30 +39,14 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		#ifdef PLATFORM_CONSOLE
 			layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/xbox/server_browser.layout" );
-		#else
-		#ifdef PLATFORM_WINDOWS
-			layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser.layout" );
-		#endif
-		#endif
-		
-		#ifdef SERVER_BROWSER_PAGES
-			m_OfficialTab	= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
-		#else
 			m_OfficialTab	= new ServerBrowserTab( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
+		#else
+			layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser.layout" );
+			m_OfficialTab	= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
+			m_CommunityTab	= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
+			m_LANTab		= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_2" ), this, TabType.LAN );
 		#endif
-		
-		#ifndef PLATFORM_CONSOLE
 			
-			#ifdef SERVER_BROWSER_PAGES
-				m_CommunityTab	= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
-				m_LANTab		= new ServerBrowserTabPage( layoutRoot.FindAnyWidget( "Tab_2" ), this, TabType.LAN );
-			#else
-				m_CommunityTab	= new ServerBrowserTab( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
-				m_LANTab		= new ServerBrowserTab( layoutRoot.FindAnyWidget( "Tab_2" ), this, TabType.LAN );
-			#endif
-		
-		#endif
-		
 		layoutRoot.FindAnyWidget( "Tabber" ).GetScript( m_Tabber );
 		
 		m_Play					= layoutRoot.FindAnyWidget( "play" );
@@ -411,7 +395,19 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		if( m_SelectedServer )
 		{
-			g_Game.ConnectFromServerBrowser( m_SelectedServer.GetIP(), m_SelectedServer.GetPort(), "" );
+			string ip = m_SelectedServer.GetIP();
+			int port = m_SelectedServer.GetPort();
+			
+			#ifdef PLATFORM_WINDOWS			
+				// Hack - In new Serverborwser on PC has bad IP adress but ID is OK
+				array<string> ip_port = new array<string>();
+				m_SelectedServer.GetServerID().Split( ":", ip_port);
+				ip = ip_port[0];
+				port = ip_port[1].ToInt();
+			#endif
+			
+			//g_Game.ConnectFromServerBrowser( m_SelectedServer.GetIP(), m_SelectedServer.GetPort(), "" );
+			g_Game.ConnectFromServerBrowser( ip, port, "" );
 		}
 	}
 	

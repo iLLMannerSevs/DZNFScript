@@ -25604,78 +25604,6 @@ class RscDisplayMainMap
 			inBack=1;
 			enableZoom=1;
 			zoomDuration=0.5;
-			class Areas
-			{
-				class Papir
-				{
-					selection="papir";
-					class controls
-					{
-						class RscRadioText: RscActiveText
-						{
-							idc=-1;
-							sizeEx="0.12 * 1.359";
-							color[]={0,0,0,1};
-							colorActive[]={0.30000001,0.30000001,0.30000001,1};
-							style=0;
-							x=0.050000001;
-							y="0.02 * 1.359";
-							w=0.94999999;
-							h="0.08 * 1.359";
-						};
-						class RadioAlpha: RscRadioText
-						{
-							idc=63;
-							y="0.02 * 1.359";
-						};
-						class RadioBravo: RscRadioText
-						{
-							idc=64;
-							y="0.12 * 1.359";
-						};
-						class RadioCharlie: RscRadioText
-						{
-							idc=65;
-							y="0.22 * 1.359";
-						};
-						class RadioDelta: RscRadioText
-						{
-							idc=66;
-							y="0.32 * 1.359";
-						};
-						class RadioEcho: RscRadioText
-						{
-							idc=67;
-							y="0.42 * 1.359";
-						};
-						class RadioFoxtrot: RscRadioText
-						{
-							idc=68;
-							y="0.52 * 1.359";
-						};
-						class RadioGolf: RscRadioText
-						{
-							idc=69;
-							y="0.62 * 1.359";
-						};
-						class RadioHotel: RscRadioText
-						{
-							idc=70;
-							y="0.72 * 1.359";
-						};
-						class RadioIndia: RscRadioText
-						{
-							idc=71;
-							y="0.82 * 1.359";
-						};
-						class RadioJuliet: RscRadioText
-						{
-							idc=72;
-							y="0.92 * 1.359";
-						};
-					};
-				};
-			};
 		};
 		class Notepad: RscObject
 		{
@@ -25963,10 +25891,6 @@ class RscDisplaySingleMission: RscStandardDisplay
 	package="#(argb,8,8,3)color(1,1,1,1)";
 	class controls
 	{
-		class Title: RscTitle
-		{
-			text="$STR_DISP_SINGLE_TITLE";
-		};
 		class Missions: RscListBox
 		{
 			idc=101;
@@ -29492,10 +29416,6 @@ class RscDisplayXWizardTemplate: RscStandardDisplay
 	civl="#(argb,8,8,3)color(1,1,1,1)";
 	class controls
 	{
-		class Title: RscTitle
-		{
-			text="$STR_SINGLE_NEW_MISSION_TITLE";
-		};
 		class TemplateText: RscText
 		{
 			x=0.025;
@@ -32637,39 +32557,6 @@ class RscDisplayProfileController: RscStandardDisplay
 			w=0.5;
 		};
 	};
-	class KeyHints
-	{
-		class A
-		{
-			key="0x00050000 + 0";
-			hint="$STR_DISP_XBOX_HINT_ACCEPT";
-		};
-		class B
-		{
-			key="0x00050000 + 1";
-			hint="$STR_DISP_XBOX_HINT_CANCEL";
-		};
-		class KeyRightBumper
-		{
-			key="0x00050000 + 11";
-			hint="$STR_YAXIS_REVERTED";
-		};
-		class KeyLeftBumper
-		{
-			key="0x00050000 + 10";
-			hint="$STR_FOREFDB_DISABLED";
-		};
-		class Y
-		{
-			key="0x00050000 + 3";
-			hint="$STR_DISP_XBOX_HINT_PREV_SCHEME";
-		};
-		class X
-		{
-			key="0x00050000 + 2";
-			hint="$STR_DISP_XBOX_HINT_NEXT_SCHEME";
-		};
-	};
 };
 class RscDisplayProfileControllerWheel: RscStandardDisplay
 {
@@ -32928,39 +32815,6 @@ class RscDisplayProfileControllerWheel: RscStandardDisplay
 			x=0.70999998;
 			y=0.88;
 			w=0.5;
-		};
-	};
-	class KeyHints
-	{
-		class A
-		{
-			key="0x00050000 + 0";
-			hint="$STR_DISP_XBOX_HINT_ACCEPT";
-		};
-		class B
-		{
-			key="0x00050000 + 1";
-			hint="$STR_DISP_XBOX_HINT_CANCEL";
-		};
-		class KeyRightBumper
-		{
-			key="0x00050000 + 11";
-			hint="$STR_YAXIS_REVERTED";
-		};
-		class KeyLeftBumper
-		{
-			key="0x00050000 + 10";
-			hint="$STR_FOREFDB_DISABLED";
-		};
-		class Y
-		{
-			key="0x00050000 + 3";
-			hint="$STR_DISP_XBOX_HINT_PREV_SCHEME";
-		};
-		class X
-		{
-			key="0x00050000 + 2";
-			hint="$STR_DISP_XBOX_HINT_NEXT_SCHEME";
 		};
 	};
 };
@@ -33305,39 +33159,6 @@ class RscDisplayProfileControllerJoystick: RscStandardDisplay
 			x=0.70999998;
 			y=0.88;
 			w=0.5;
-		};
-	};
-	class KeyHints
-	{
-		class A
-		{
-			key="0x00050000 + 0";
-			hint="$STR_DISP_XBOX_HINT_ACCEPT";
-		};
-		class B
-		{
-			key="0x00050000 + 1";
-			hint="$STR_DISP_XBOX_HINT_CANCEL";
-		};
-		class KeyRightBumper
-		{
-			key="0x00050000 + 11";
-			hint="$STR_YAXIS_REVERTED";
-		};
-		class KeyLeftBumper
-		{
-			key="0x00050000 + 10";
-			hint="$STR_FOREFDB_DISABLED";
-		};
-		class Y
-		{
-			key="0x00050000 + 3";
-			hint="$STR_DISP_XBOX_HINT_PREV_SCHEME";
-		};
-		class X
-		{
-			key="0x00050000 + 2";
-			hint="$STR_DISP_XBOX_HINT_NEXT_SCHEME";
 		};
 	};
 };
@@ -33810,24 +33631,6 @@ class RscDisplayMPType: RscStandardDisplay
 			x=0.47;
 			y=0.935;
 			w=0.30000001;
-		};
-	};
-	class KeyHints
-	{
-		class A
-		{
-			key="0x00050000 + 0";
-			hint="$STR_DISP_XBOX_HINT_SELECT";
-		};
-		class B
-		{
-			key="0x00050000 + 1";
-			hint="$STR_DISP_XBOX_HINT_MAIN";
-		};
-		class Y
-		{
-			key="0x00050000 + 3";
-			hint="$STR_XBOX_HINT_DEDICATED_HOST";
 		};
 	};
 };
@@ -34960,14 +34763,6 @@ class RscGroupRootMenu
 			enable="NotEmpty";
 			speechId=0;
 		};
-		class Team
-		{
-			title="$STR_TEAM";
-			shortcuts[]={0};
-			menu="RscTeam";
-			show="IsLeader * (1 - PlayableSelected)";
-			speechId=0;
-		};
 		class Empty10: Empty1
 		{
 			title="$STR_rscmenu.hpprscgrouprootmenu_items_empty0";
@@ -35079,14 +34874,6 @@ class RscMainMenu
 			title="$STR_FORMATION";
 			shortcuts[]={9};
 			menu="RscFormations";
-			show="IsLeader";
-			speechId=0;
-		};
-		class Team
-		{
-			title="$STR_TEAM";
-			shortcuts[]={10};
-			menu="RscTeam";
 			show="IsLeader";
 			speechId=0;
 		};
@@ -35414,13 +35201,6 @@ class RscReply: RscSubmenu
 		title="$STR_RADIO_CUSTOM";
 		shortcuts[]={10};
 		menu="#CUSTOM_RADIO";
-	};
-	class Radio
-	{
-		title="$STR_RADIO";
-		shortcuts[]={11};
-		menu="RscRadio";
-		enable="HasRadio";
 	};
 };
 class RscCallSupport: RscSubmenu
@@ -36049,217 +35829,6 @@ class RscCombatMode: RscSubmenu
 		speechId=0;
 	};
 };
-class RscTeam: RscSubmenu
-{
-	title="$STR_ASSIGN";
-	vocabulary="";
-	items[]=
-	{
-		"AssignRed",
-		"AssignGreen",
-		"AssignBlue",
-		"AssignYellow",
-		"AssignMain",
-		"Separator",
-		"SelectTeam",
-		"Back"
-	};
-	class AssignRed
-	{
-		title="$STR_ASSIGN_RED";
-		shortcuts[]={2};
-		command="CMD_ASSIGN_RED";
-		show="IsLeader";
-		enable="NotEmpty";
-		speechId=0;
-	};
-	class AssignGreen
-	{
-		title="$STR_ASSIGN_GREEN";
-		shortcuts[]={3};
-		command="CMD_ASSIGN_GREEN";
-		show="IsLeader";
-		enable="NotEmpty";
-		speechId=0;
-	};
-	class AssignBlue
-	{
-		title="$STR_ASSIGN_BLUE";
-		shortcuts[]={4};
-		command="CMD_ASSIGN_BLUE";
-		show="IsLeader";
-		enable="NotEmpty";
-		speechId=0;
-	};
-	class AssignYellow
-	{
-		title="$STR_ASSIGN_YELLOW";
-		shortcuts[]={5};
-		command="CMD_ASSIGN_YELLOW";
-		show="IsLeader";
-		enable="NotEmpty";
-		speechId=0;
-	};
-	class AssignMain
-	{
-		title="$STR_ASSIGN_MAIN";
-		shortcuts[]={6};
-		command="CMD_ASSIGN_MAIN";
-		show="IsLeader";
-		enable="NotEmpty";
-		speechId=0;
-	};
-	class SelectTeam
-	{
-		title="$STR_TEAM";
-		shortcuts[]={10};
-		menu="RscSelectTeam";
-		show="IsLeader";
-	};
-};
-class RscSelectTeam: RscSubmenu
-{
-	title="$STR_TEAM";
-	vocabulary="";
-	items[]=
-	{
-		"TeamRed",
-		"TeamGreen",
-		"TeamBlue",
-		"TeamYellow",
-		"TeamMain",
-		"Back"
-	};
-	class TeamRed
-	{
-		title="$STR_TEAM_RED";
-		shortcuts[]={2};
-		command="CMD_TEAM_RED";
-		show="IsLeader";
-		enable="NotEmptyRedTeam";
-	};
-	class TeamGreen
-	{
-		title="$STR_TEAM_GREEN";
-		shortcuts[]={3};
-		command="CMD_TEAM_GREEN";
-		show="IsLeader";
-		enable="NotEmptyGreenTeam";
-	};
-	class TeamBlue
-	{
-		title="$STR_TEAM_BLUE";
-		shortcuts[]={4};
-		command="CMD_TEAM_BLUE";
-		show="IsLeader";
-		enable="NotEmptyBlueTeam";
-	};
-	class TeamYellow
-	{
-		title="$STR_TEAM_YELLOW";
-		shortcuts[]={5};
-		command="CMD_TEAM_YELLOW";
-		show="IsLeader";
-		enable="NotEmptyYellowTeam";
-	};
-	class TeamMain
-	{
-		title="$STR_TEAM_MAIN";
-		shortcuts[]={6};
-		command="CMD_TEAM_MAIN";
-		show="IsLeader";
-		enable="NotEmptyMainTeam";
-	};
-};
-class RscRadio: RscSubmenu
-{
-	title="$STR_RADIO";
-	vocabulary="";
-	items[]=
-	{
-		"Alpha",
-		"Bravo",
-		"Charlie",
-		"Delta",
-		"Echo",
-		"Foxtrot",
-		"Golf",
-		"Hotel",
-		"India",
-		"Juliet",
-		"Back"
-	};
-	class Alpha
-	{
-		title="$STR_RADIO_ALPHA";
-		shortcuts[]={2};
-		command="CMD_RADIO_ALPHA";
-		speechId=0;
-	};
-	class Bravo
-	{
-		title="$STR_RADIO_BRAVO";
-		shortcuts[]={3};
-		command="CMD_RADIO_BRAVO";
-		speechId=0;
-	};
-	class Charlie
-	{
-		title="$STR_RADIO_CHARLIE";
-		shortcuts[]={4};
-		command="CMD_RADIO_CHARLIE";
-		speechId=0;
-	};
-	class Delta
-	{
-		title="$STR_RADIO_DELTA";
-		shortcuts[]={5};
-		command="CMD_RADIO_DELTA";
-		speechId=0;
-	};
-	class Echo
-	{
-		title="$STR_RADIO_ECHO";
-		shortcuts[]={6};
-		command="CMD_RADIO_ECHO";
-		speechId=0;
-	};
-	class Foxtrot
-	{
-		title="$STR_RADIO_FOXTROT";
-		shortcuts[]={7};
-		command="CMD_RADIO_FOXTROT";
-		speechId=0;
-	};
-	class Golf
-	{
-		title="$STR_RADIO_GOLF";
-		shortcuts[]={8};
-		command="CMD_RADIO_GOLF";
-		speechId=0;
-	};
-	class Hotel
-	{
-		title="$STR_RADIO_HOTEL";
-		shortcuts[]={9};
-		command="CMD_RADIO_HOTEL";
-		speechId=0;
-	};
-	class India
-	{
-		title="$STR_RADIO_INDIA";
-		shortcuts[]={10};
-		command="CMD_RADIO_INDIA";
-		speechId=0;
-	};
-	class Juliet
-	{
-		title="$STR_RADIO_JULIET";
-		shortcuts[]={11};
-		command="CMD_RADIO_JULIET";
-		speechId=0;
-	};
-};
 class RscMenuBasicLevel
 {
 	access=0;
@@ -36308,9 +35877,6 @@ class PreloadConfig
 	RscMoveDist="*";
 	RscFormations="*";
 	RscCombatMode="*";
-	RscTeam="*";
-	RscSelectTeam="*";
-	RscRadio="*";
 	CfgHQIdentities="*";
 	RscButtonImages="*";
 	class RscInGameUI

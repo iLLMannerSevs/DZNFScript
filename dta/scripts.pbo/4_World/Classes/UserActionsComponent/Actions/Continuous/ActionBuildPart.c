@@ -64,7 +64,7 @@ class ActionBuildPart: ActionContinuousBase
 			
 			string main_part_name = targetObject.GetActionComponentName( target.GetComponentIndex() );
 			
-			if ( !GetGame().IsMultiplayer() || GetGame().IsServer() )
+			if ( GetGame().IsMultiplayer() || GetGame().IsServer() )
 			{
 				construction_action_data.RefreshPartsToBuild( main_part_name, item );
 			}

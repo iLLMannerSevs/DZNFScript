@@ -471,11 +471,7 @@ class MainMenu extends UIScriptedMenu
 			m_ScenePC.GetIntroCharacter().SaveCharName();
 		}
 		
-		#ifdef NEW_UI
-			EnterScriptedMenu(MENU_SERVER_BROWSER);
-		#else
-			g_Game.GetUIManager().EnterServerBrowser(this);
-		#endif
+		EnterScriptedMenu(MENU_SERVER_BROWSER);
 		
 		//saves demounit for further use
 		if (m_ScenePC && m_ScenePC.GetIntroCharacter() && m_ScenePC.GetIntroCharacter().GetCharacterObj().GetInventory().FindAttachment(InventorySlots.BODY) && m_ScenePC.GetIntroCharacter().GetCharacterID() == -1)
@@ -597,15 +593,7 @@ class MainMenu extends UIScriptedMenu
 		}
 		else
 		{
-			#ifdef NEW_UI
-				EnterScriptedMenu(MENU_SERVER_BROWSER);
-			#else
-				#ifdef PLATFORM_CONSOLE
-					EnterScriptedMenu(MENU_SERVER_BROWSER);
-				#else
-					g_Game.GetUIManager().EnterServerBrowser(this);
-				#endif
-			#endif
+			EnterScriptedMenu(MENU_SERVER_BROWSER);
 		}
 	}
 	

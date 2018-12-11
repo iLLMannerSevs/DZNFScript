@@ -423,12 +423,17 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 				// optics NV mode
 				if (m_opticsUsed.IsNVOptic())
 				{
-					/*if (m_opticsUsed.HasEnergyManager() && m_opticsUsed.GetCompEM().CanWork())
-					{*/
+					if (m_opticsUsed.HasEnergyManager() && m_opticsUsed.GetCompEM().CanWork())
+					{
+						SetCameraNV(true);
 						PPEffects.SetNVValueEV(7);
 						PPEffects.SetColorizationNV(0.0, 1.0, 0.0);
 						PPEffects.SetFilmgrainNV(2.25, 1.0);
-					//}
+					}
+					else
+					{
+						PPEffects.SetNVValueEV(-7);
+					}
 				}
 			}
 			

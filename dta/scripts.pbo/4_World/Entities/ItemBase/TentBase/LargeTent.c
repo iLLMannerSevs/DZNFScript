@@ -53,6 +53,11 @@ class LargeTent extends TentBase
 	{
 		return "LargeTent_Window_Close_SoundSet";
 	}
+		
+	override string GetClutterCutter()
+	{
+		return "LargeTentClutterCutter";
+	}
 	
 	//================================================================
 	// ADVANCED PLACEMENT
@@ -66,14 +71,12 @@ class LargeTent extends TentBase
 		
 		if ( GetGame().IsServer() )
 		{
-			m_ClutterCutter = GetGame().CreateObject( "LargeTentClutterCutter", pb.GetLocalProjectionPosition(), false );
-			m_ClutterCutter.SetOrientation( pb.GetLocalProjectionOrientation() );	
+			if ( !m_ClutterCutter )
+			{
+				m_ClutterCutter = GetGame().CreateObject( "LargeTentClutterCutter", pb.GetLocalProjectionPosition(), false );
+				m_ClutterCutter.SetOrientation( pb.GetLocalProjectionOrientation() );	
+			}
 		}	
-	}
-	
-	override bool IsTwoHandedBehaviour()
-	{
-		return true;
 	}
 	
 	override string GetDeploySoundset()

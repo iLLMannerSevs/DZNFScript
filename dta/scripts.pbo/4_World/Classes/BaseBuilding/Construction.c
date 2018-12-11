@@ -493,7 +493,8 @@ class Construction
 	//receive materials when dismantling
 	protected void ReceiveMaterials( string part_name )
 	{
-		string main_part_name = GetConstructionPart( part_name ).GetMainPartName();
+		ConstructionPart construction_part = GetConstructionPart( part_name );
+		string main_part_name = construction_part.GetMainPartName();
 		string cfg_path = "cfgVehicles" + " " + GetParent().GetType() + " "+ "Construction" + " " + main_part_name + " " + part_name + " " + "Materials";
 		
 		if ( GetGame().ConfigIsExisting( cfg_path ) )
@@ -534,10 +535,13 @@ class Construction
 						attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
 						GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
 						
-						//detach
-						GetParent().GetInventory().DropEntity( InventoryMode.LOCAL, GetParent(), attachment );
-						// restore network for dropped attachment (@NOTE: won't be restored by 2. as it's not in hierarchy anymore) 
-						GetGame().RemoteObjectTreeCreate(attachment);
+						//detach if base
+						if ( construction_part.IsBase() )
+						{
+							GetParent().GetInventory().DropEntity( InventoryMode.LOCAL, GetParent(), attachment );
+							// restore network for dropped attachment (@NOTE: won't be restored by 2. as it's not in hierarchy anymore) 
+							GetGame().RemoteObjectTreeCreate(attachment);
+						}
 					}
 				}
 				else

@@ -13,11 +13,6 @@ class BearTrap extends TrapBase
 		m_AnimationPhaseTriggered = "placing";
 	}
 	
-	/*override bool IsTwoHandedBehaviour()
-	{
-		return true;
-	}*/
-	
 	override void OnSteppedOn(EntityAI victim)
 	{
 		vector 	contact_pos;

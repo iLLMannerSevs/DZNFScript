@@ -129,30 +129,25 @@ class Hologram
 
 	string ProjectionBasedOnParent()
 	{
-		const int GARDEN_TOOLS_COUNT = 4;
-		string garden_plot_tools[5] = { "Shovel", "FieldShovel", "FarmingHoe", "Iceaxe", "Pickaxe" };
-		EntityAI entity_in_hands = m_Player.GetHumanInventory().GetEntityInHands();
+		ItemBase item_in_hands = ItemBase.Cast( m_Player.GetHumanInventory().GetEntityInHands() );
 
-		for( int i = 0; i <= GARDEN_TOOLS_COUNT; i++ )
+		if ( item_in_hands.CanMakeGardenplot() )
 		{
-			if ( entity_in_hands.IsKindOf( garden_plot_tools[i] ) )
-			{
-				return "GardenPlot";
-			}
+			return "GardenPlot";
 		}
 		
 		//Camping & Base building
-		if ( entity_in_hands.IsInherited( TentBase ) || entity_in_hands.IsInherited( FenceKit ) || entity_in_hands.IsInherited( WatchtowerKit ) )
+		if ( item_in_hands.IsInherited( TentBase ) || item_in_hands.IsInherited( FenceKit ) || item_in_hands.IsInherited( WatchtowerKit ) )
 		{
-			return entity_in_hands.GetType() + "Placing";
+			return item_in_hands.GetType() + "Placing";
 		}
 		
-		return entity_in_hands.GetType();
+		return item_in_hands.GetType();
 	}
 		
 	// update loop for visuals and collisions of the hologram
 	void UpdateHologram()
-	{
+	{		
 		if ( !m_Parent )
 		{
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(m_Player.TogglePlacingLocal);
@@ -674,7 +669,7 @@ class Hologram
 		}				
 	}
 		
-	void PlaceEntity( EntityAI entity_for_placing, vector placing_position, vector placing_orientation )
+	EntityAI PlaceEntity( EntityAI entity_for_placing )
 	{	
 		if( !GetProjectionEntity().IsKindOf( m_Parent.GetType() ))
 		{
@@ -687,6 +682,8 @@ class Hologram
 			
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().UpdatePathgraphRegionByObject, 100, false, entity_for_placing);
 		}
+		
+		return entity_for_placing;
 	}		
 		
 	protected vector GetCollisionBoxSize( vector min_max[2] )

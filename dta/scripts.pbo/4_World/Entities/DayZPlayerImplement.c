@@ -1480,7 +1480,8 @@ class DayZPlayerImplement extends DayZPlayer
 				//top
 				if (Clothing.CastTo(clothes,FindAttachmentBySlotName("Body")))
 				{
-					clothes.SetInvisible(true);
+					if(!GetInventory().IsPlaceholderEntity(clothes))
+						clothes.SetInvisible(true);
 				}
 			}
 			
@@ -2512,6 +2513,11 @@ class DayZPlayerImplement extends DayZPlayer
 	void SetSuicide(bool state)
 	{
 		m_Suicide = state;
+	}
+	
+	bool CommitedSuicide()
+	{
+		return m_Suicide;
 	}
 	
 	void SetReturnToOptics(bool state)

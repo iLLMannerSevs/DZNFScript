@@ -1273,6 +1273,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l1_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L1W1_WoodenPlanks
 	{
@@ -1280,6 +1281,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l1w1_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L1W2_WoodenPlanks
 	{
@@ -1287,6 +1289,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l1w2_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L1W3_WoodenPlanks
 	{
@@ -1294,6 +1297,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l1w3_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L1W1_MetalSheets
 	{
@@ -1301,6 +1305,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l1w1_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L1W2_MetalSheets
 	{
@@ -1308,6 +1313,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l1w2_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L1W3_MetalSheets
 	{
@@ -1315,6 +1321,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l1w3_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L2_WoodenLogs
 	{
@@ -1358,6 +1365,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l2_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L2W1_WoodenPlanks
 	{
@@ -1365,6 +1373,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l2w1_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L2W2_WoodenPlanks
 	{
@@ -1372,6 +1381,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l2w2_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L2W3_WoodenPlanks
 	{
@@ -1379,6 +1389,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="material_l2w3_woodenplanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L2W1_MetalSheets
 	{
@@ -1386,6 +1397,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l2w1_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L2W2_MetalSheets
 	{
@@ -1393,6 +1405,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l2w2_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L2W3_MetalSheets
 	{
@@ -1400,6 +1413,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="material_l2w3_metalsheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L3_WoodenLogs
 	{
@@ -1415,6 +1429,14 @@ class CfgSlots
 		displayName="Nails";
 		selection="Material_L3_Nails";
 		ghostIcon="nails";
+	};
+	class Slot_Material_L3_MetalSheets
+	{
+		name="Material_L3_MetalSheets";
+		displayName="Metal sheets";
+		selection="Material_L3_MetalSheets";
+		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L3W1_Nails
 	{
@@ -1443,6 +1465,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="Material_L3_WoodenPlanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L3W1_WoodenPlanks
 	{
@@ -1450,6 +1473,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="Material_L3W1_WoodenPlanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L3W2_WoodenPlanks
 	{
@@ -1457,6 +1481,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="Material_L3W2_WoodenPlanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L3W3_WoodenPlanks
 	{
@@ -1464,6 +1489,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="Material_L3W3_WoodenPlanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_L3W1_MetalSheets
 	{
@@ -1471,6 +1497,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="Material_L3W1_MetalSheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L3W2_MetalSheets
 	{
@@ -1478,6 +1505,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="Material_L3W2_MetalSheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_L3W3_MetalSheets
 	{
@@ -1485,6 +1513,7 @@ class CfgSlots
 		displayName="Metal sheets";
 		selection="Material_L3W3_MetalSheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_Nails
 	{
@@ -1499,6 +1528,7 @@ class CfgSlots
 		displayName="Nails";
 		selection="Material_WoodenPlanks";
 		ghostIcon="planks";
+		stackMax=20;
 	};
 	class Slot_Material_MetalSheets
 	{
@@ -1506,6 +1536,7 @@ class CfgSlots
 		displayName="Wooden planks";
 		selection="Material_MetalSheets";
 		ghostIcon="plates";
+		stackMax=20;
 	};
 	class Slot_Material_WoodenLogs
 	{

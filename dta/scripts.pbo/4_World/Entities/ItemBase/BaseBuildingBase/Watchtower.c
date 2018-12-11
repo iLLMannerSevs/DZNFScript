@@ -3,6 +3,8 @@ class Watchtower extends BaseBuildingBase
 	typename ATTACHMENT_BARBED_WIRE			= BarbedWire;
 	typename ATTACHMENT_CAMONET 			= CamoNet;
 	
+	const float MAX_FLOOR_VERTICAL_DISTANCE = 0.5;
+	
 	void Watchtower()
 	{
 	}
@@ -28,33 +30,55 @@ class Watchtower extends BaseBuildingBase
 			return HasBase();
 		}		
 		
+		//wall attachments
 		//level 1
-		if ( slot_name.Contains( "material_l1w" ) || slot_name.Contains( "level_1_wall" ) )
+		if ( slot_name.Contains( "material_l1" ) || slot_name.Contains( "level_1_" ) )
 		{
-			return GetConstruction().IsPartConstructed( "level_1_base" ) && CheckVerticalDistance( 0.5, "level_1" );
+			if ( slot_name.Contains( "woodenlogs" ) )
+			{
+				return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
+			}
+			else
+			{
+				return GetConstruction().IsPartConstructed( "level_1_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
+			}
 		}
 		//level 2
 		if ( slot_name.Contains( "material_l2" ) || slot_name.Contains( "level_2_" ) )
 		{
 			if ( slot_name.Contains( "material_l2w" ) || slot_name.Contains( "level_2_wall" ) )
 			{
-				return GetConstruction().IsPartConstructed( "level_2_base" ) && CheckVerticalDistance( 0.5, "level_2" );
+				return GetConstruction().IsPartConstructed( "level_2_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
 			}
 			else
 			{
-				return GetConstruction().IsPartConstructed( "level_1_roof" ) && CheckVerticalDistance( 0.5, "level_2" );
+				if ( slot_name.Contains( "woodenlogs" ) )
+				{
+					return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
+				}
+				else
+				{
+					return GetConstruction().IsPartConstructed( "level_1_roof" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
+				}
 			}
 		}
 		//level 3
-		else if ( slot_name.Contains( "material_l3" ) || slot_name.Contains( "level_3" ) )
+		if ( slot_name.Contains( "material_l3" ) || slot_name.Contains( "level_3_" ) )
 		{
 			if ( slot_name.Contains( "material_l3w" ) || slot_name.Contains( "level_3_wall" ) )
 			{
-				return GetConstruction().IsPartConstructed( "level_3_base" ) && CheckVerticalDistance( 0.5, "level_3" );
+				return GetConstruction().IsPartConstructed( "level_3_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
 			}
 			else
 			{
-				return GetConstruction().IsPartConstructed( "level_2_roof" ) && CheckVerticalDistance( 0.5, "level_3" );
+				if ( slot_name.Contains( "woodenlogs" ) )
+				{
+					return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
+				}
+				else
+				{
+					return GetConstruction().IsPartConstructed( "level_2_roof" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
+				}
 			}
 		}		
 	
@@ -75,6 +99,43 @@ class Watchtower extends BaseBuildingBase
 		return false;
 		//
 		
+		slot_name.ToLower();
+
+		//base attachments
+		if ( slot_name.Contains( "material_l1" ) || slot_name.Contains( "level_1_" ) )
+		{
+			if ( slot_name.Contains( "woodenlogs" ) )
+			{
+				return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
+			}
+			else
+			{
+				return GetConstruction().IsPartConstructed( "level_1_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
+			}
+		}
+		else if ( slot_name.Contains( "material_l2" ) || slot_name.Contains( "level_2_" ) )
+		{
+			if ( slot_name.Contains( "woodenlogs" ) )
+			{
+				return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
+			}
+			else
+			{
+				return GetConstruction().IsPartConstructed( "level_2_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
+			}
+		}
+		else if ( slot_name.Contains( "material_l3" ) || slot_name.Contains( "level_3_" ) )
+		{
+			if ( slot_name.Contains( "woodenlogs" ) )
+			{
+				return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
+			}
+			else
+			{
+				return GetConstruction().IsPartConstructed( "level_3_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
+			}
+		}
+				
 		return true;
 	}
 
@@ -92,11 +153,11 @@ class Watchtower extends BaseBuildingBase
 		{
 			if ( category_name.Contains( "level_1_" ) )
 			{
-				return GetConstruction().IsPartConstructed( "level_1_base" ) && CheckVerticalDistance( 0.5, "level_1" );
+				return GetConstruction().IsPartConstructed( "level_1_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
 			}
 			else
 			{
-				return CheckVerticalDistance( 0.5, "level_1" );
+				return CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_1" );
 			}
 		}
 		//level 2
@@ -104,11 +165,11 @@ class Watchtower extends BaseBuildingBase
 		{
 			if ( category_name.Contains( "level_2_" ) )
 			{
-				return GetConstruction().IsPartConstructed( "level_2_base" ) && CheckVerticalDistance( 0.5, "level_2" );
+				return GetConstruction().IsPartConstructed( "level_2_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
 			}
 			else
 			{
-				return GetConstruction().IsPartConstructed( "level_1_roof" ) && CheckVerticalDistance( 0.5, "level_2" );
+				return GetConstruction().IsPartConstructed( "level_1_roof" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_2" );
 			}
 		}
 		//level 3
@@ -116,11 +177,11 @@ class Watchtower extends BaseBuildingBase
 		{
 			if ( category_name.Contains( "level_3_" ) )
 			{
-				return GetConstruction().IsPartConstructed( "level_3_base" ) && CheckVerticalDistance( 0.5, "level_3" );
+				return GetConstruction().IsPartConstructed( "level_3_base" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
 			}
 			else
 			{
-				return GetConstruction().IsPartConstructed( "level_2_roof" ) && CheckVerticalDistance( 0.5, "level_3" );
+				return GetConstruction().IsPartConstructed( "level_2_roof" ) && CheckVerticalDistance( MAX_FLOOR_VERTICAL_DISTANCE, "level_3" );
 			}
 		}
 		

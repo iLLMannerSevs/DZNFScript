@@ -338,6 +338,20 @@ class BatteryCharger extends ItemBase
 		ShowSelection(SEL_CLIPS_FOLDED);
 	}
 	
+	override void OnVariablesSynchronized()
+	{
+		super.OnVariablesSynchronized();
+				
+		if ( IsPlaceSound() )
+		{
+			PlayPlaceSound();
+		}
+	}
+		
+	//================================================================
+	// ADVANCED PLACEMENT
+	//================================================================
+	
 	override void OnPlacementStarted( Man player )
 	{	
 		super.OnPlacementStarted( player );
@@ -362,20 +376,6 @@ class BatteryCharger extends ItemBase
 			player_PB.GetHologramLocal().SetSelectionToRefresh( array_of_selections );
 		}
 	}
-	
-	override void OnVariablesSynchronized()
-	{
-		super.OnVariablesSynchronized();
-				
-		if ( IsPlaceSound() )
-		{
-			PlayPlaceSound();
-		}
-	}
-		
-	//================================================================
-	// ADVANCED PLACEMENT
-	//================================================================
 	
 	override void OnPlacementComplete( Man player )
 	{		

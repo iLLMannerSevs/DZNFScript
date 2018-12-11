@@ -34,12 +34,13 @@ class ActionAttachToConstruction: ActionSingleUseBase
 		if ( target_entity && target_entity.CanUseConstruction() )
 		{
 			string selection = target_entity.GetActionComponentName( target.GetComponentIndex() );
-			int slot_id  = GetAttachmentSlotFromSelection( target_entity, item, selection );
 			ConstructionActionData construction_action_data = player.GetConstructionActionData();
+			int slot_id  = construction_action_data.GetAttachmentSlotFromSelection( target_entity, item, selection );
+			
 			
 			if ( slot_id != -1 )
 			{
-				if( target_entity.GetInventory().CanAddAttachmentEx( item, slot_id ) )	
+				if( target_entity.GetInventory().CanAddAttachmentEx( item, slot_id ) && target_entity.CanReceiveAttachment( item, slot_id ) )	
 				{
 					construction_action_data.SetSlotId( slot_id );
 					return true;
@@ -74,7 +75,7 @@ class ActionAttachToConstruction: ActionSingleUseBase
 			if ( attachment )
 			{
 				//combine
-				CombineItems( attachment, item );
+				construction_action_data.CombineItems( attachment, item );
 			}
 			else
 			{
@@ -91,59 +92,5 @@ class ActionAttachToConstruction: ActionSingleUseBase
 		}
 	}
 	
-	protected int GetAttachmentSlotFromSelection( EntityAI target, ItemBase item_to_attach, string selection )
-	{
-		string cfg_path = "cfgVehicles" + " " + target.GetType() + " "+ "GUIInventoryAttachmentsProps";
-		
-		if ( GetGame().ConfigIsExisting( cfg_path ) )
-		{
-			int	child_count = GetGame().ConfigGetChildrenCount( cfg_path );
-			
-			for ( int i = 0; i < child_count; i++ )
-			{
-				string child_name;
-				GetGame().ConfigGetChildName( cfg_path, i, child_name );
-				
-				string child_selection;
-				GetGame().ConfigGetText( cfg_path + " " + child_name + " " + "selection", child_selection );
-				
-				if ( selection == child_selection )
-				{
-					ref array<string> attachment_slots = new array<string>;
-					GetGame().ConfigGetTextArray( cfg_path + " " + child_name + " " + "attachmentSlots", attachment_slots );
-					
-					for ( int j = 0; j < attachment_slots.Count(); ++j )
-					{
-						int target_slot_id = InventorySlots.GetSlotIdFromString( attachment_slots.Get( j ) );
-						int item_slot_count = item_to_attach.GetInventory().GetSlotIdCount();
-						
-						for ( int k = 0; k < item_slot_count; ++k )
-						{
-							int item_slot_id = item_to_attach.GetInventory().GetSlotId( k );
-							
-							if ( target_slot_id == item_slot_id )
-							{
-								return item_slot_id;
-							}
-						}
-					}
-				}
-			}
-		}
-		
-		return -1;
-	}
-	
-	protected void CombineItems( ItemBase target, ItemBase item )
-	{
-		if ( target.ConfigGetBool( "canBeSplit" ) && item && !target.IsFullQuantity() )
-		{
-			int quantity_used = target.ComputeQuantityUsed( item, true );
-			if( quantity_used != 0 )
-			{
-				target.AddQuantity( quantity_used );
-				item.AddQuantity( -quantity_used );
-			}
-		}
-	}
+
 }

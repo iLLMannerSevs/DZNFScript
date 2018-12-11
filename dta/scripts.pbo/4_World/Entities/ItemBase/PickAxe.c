@@ -1,7 +1,7 @@
-class Shovel extends ItemBase
+class PickAxe extends ItemBase
 {
 	override bool CanMakeGardenplot()
 	{
 		return true;
 	}
-}
+}	

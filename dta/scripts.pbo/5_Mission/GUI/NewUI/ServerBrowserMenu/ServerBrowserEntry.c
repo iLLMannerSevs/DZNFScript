@@ -36,13 +36,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		#ifdef PLATFORM_CONSOLE
 			m_Root				= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/xbox/server_browser_list_entry.layout", parent );
 		#else
-			#ifdef PLATFORM_WINDOWS
-				#ifdef SERVER_BROWSER_PAGES
-					m_Root				= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser_list_entry_pages.layout", parent );
-				#else
-					m_Root				= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser_list_entry.layout", parent );
-				#endif
-			#endif
+			m_Root				= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser_list_entry_pages.layout", parent );
 		#endif
 		//m_Root.SetSort( index );
 		m_Root.Enable( true );

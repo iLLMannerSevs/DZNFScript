@@ -4,9 +4,8 @@ class Fence extends BaseBuildingBase
 	protected bool m_IsOpened 		= false;
 	protected bool m_IsOpenedClient	= false;
 	
-	typename ATTACHMENT_BARBED_WIRE			= BarbedWire;
-	typename ATTACHMENT_CAMONET 			= CamoNet;
-	typename ATTACHMENT_COMBINATION_LOCK 	= CombinationLock;
+	typename ATTACHMENT_WOODEN_LOG			= WoodenLog;
+	typename ATTACHMENT_COMBINATION_LOCK	= CombinationLock;
 	
 	const string ATTACHMENT_SLOT_COMBINATION_LOCK = "Att_CombinationLock";
 	
@@ -104,6 +103,7 @@ class Fence extends BaseBuildingBase
 				return false;
 			}			
 		}
+		
 		return true;
 	}	
 	// ---
@@ -212,7 +212,7 @@ class Fence extends BaseBuildingBase
 	//--- ATTACHMENT & CONDITIONS
 	override bool CanReceiveAttachment( EntityAI attachment, int slotId )
 	{
-		if ( attachment.Type() == ATTACHMENT_BARBED_WIRE || attachment.Type() == ATTACHMENT_CAMONET )
+		if ( attachment.Type() != ATTACHMENT_WOODEN_LOG )
 		{
 			if ( !HasBase() )
 			{
@@ -222,7 +222,7 @@ class Fence extends BaseBuildingBase
 		
 		if ( attachment.Type() == ATTACHMENT_COMBINATION_LOCK )
 		{
-			if ( !HasGate() && IsOpened() )
+			if ( !HasGate() || IsOpened() )
 			{
 				return false;
 			}

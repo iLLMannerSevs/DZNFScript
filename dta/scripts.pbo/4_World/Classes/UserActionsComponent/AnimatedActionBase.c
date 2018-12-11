@@ -290,15 +290,14 @@ class AnimatedActionBase : ActionBase
 	
 	override void Interrupt( ActionData action_data )
 	{
-		/*if( GetGame().IsServer() )
+		if ( action_data.m_Callback )
 		{
-			OnInterruptServer(action_data);
+			action_data.m_Callback.Cancel();
 		}
 		else
 		{
-			OnInterruptClient(action_data);
-		}*/
-		action_data.m_Callback.Cancel();
+			End( action_data );
+		}
 	}
 	
 	void OnJumpStart()

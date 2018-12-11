@@ -42,11 +42,6 @@ class ActionConsume: ActionContinuousBase
 		return false;
 	}
 
-	override bool Consumable()
-	{
-		return true;
-	}
-
 	override string GetText()
 	{
 		return "#eat";

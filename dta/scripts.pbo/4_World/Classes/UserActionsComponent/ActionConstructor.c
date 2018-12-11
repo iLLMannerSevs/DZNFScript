@@ -68,7 +68,8 @@ class ActionConstructor
 		actions.Insert(new ActionTurnOffWeaponFlashlight);
 		actions.Insert(new ActionNextCombinationLockDial);
 		actions.Insert(new ActionAttachToConstruction);
-
+		actions.Insert(new ActionTakeMaterialToHandsSwitch);
+		
 		//actions.Insert(new ActionLoadMagazineToWeapon);
 		//actions.Insert(new ActionLoadBulletToWeapon);
 		actions.Insert(new ActionClapBearTrapWithThisItem);
@@ -149,6 +150,7 @@ class ActionConstructor
 		actions.Insert(new ActionTuneFrequency);
 		actions.Insert(new ActionTuneRadioStation);
 		actions.Insert(new ActionIgniteFireplaceByAir);
+		actions.Insert(new ActionLightItemOnFire);
 		actions.Insert(new ActionExtinguishFireplaceByLiquid);
 		actions.Insert(new ActionExtinguishFireplaceByExtinguisher);
 		actions.Insert(new ActionBurnSewSelf);
@@ -264,6 +266,7 @@ class ActionConstructor
 		actions.Insert(new ActionOpenFence);
 		actions.Insert(new ActionCloseFence);
 		actions.Insert(new ActionNextCombinationLockDialOnTarget);
+		actions.Insert(new ActionTakeMaterialToHands);
 		
 		//vehicle actions
 		actions.Insert(new ActionSwitchLights);

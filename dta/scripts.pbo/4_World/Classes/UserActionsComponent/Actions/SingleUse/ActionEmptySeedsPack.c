@@ -42,6 +42,17 @@ class ActionEmptySeedsPack: ActionSingleUseBase
 	override void OnExecuteServer( ActionData action_data )
 	{
 		SeedPackBase item_SPB = SeedPackBase.Cast( action_data.m_MainItem );
-		item_SPB.EmptySeedPack( action_data.m_Player );
+		
+		// The following careful script fixes an issue with VME with unknown repro.
+		
+		if (item_SPB)
+		{
+			PlayerBase player;
+			
+			if (action_data)
+				player = action_data.m_Player;
+			
+			item_SPB.EmptySeedPack( player );
+		}
 	}
 };

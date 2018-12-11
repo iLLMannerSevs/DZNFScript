@@ -782,6 +782,7 @@ class PlayerBase extends ManBase
 		actions.Insert(AT_WORLD_LIQUID_ACTION_SWITCH);
 		actions.Insert(AT_VEH_ENGINE_STOP);
 		actions.Insert(AT_VEH_SWITCH_SEATS);
+		actions.Insert(AT_TAKE_MATERIAL_TO_HANDS_SWITCH);
 	}
 	
 	override void GetContinuousActions(out TIntArray actions)
@@ -794,6 +795,7 @@ class PlayerBase extends ManBase
 		//actions.Insert(AT_DRINK_POND); //<-- moved to interact (will be reused for continuous in future)
 		//actions.Insert(AT_DRINK_WELL); //<-- moved to interact (will be reused for continuous in future)
 		actions.Insert(AT_IGNITE_FIREPLACE_BY_AIR);
+		actions.Insert(AT_LIGHT_ITEM_ON_FIRE);
 		//actions.Insert(AT_WASH_HANDS_WELL); //<-- moved to interact (will be reused for continuous in future)
 		//actions.Insert(AT_WASH_HANDS_WATER); //<-- moved to interact (will be reused for continuous in future)
 		actions.Insert(AT_BUILD_OVEN);
@@ -825,6 +827,7 @@ class PlayerBase extends ManBase
 		actions.Insert(AT_VEH_SWITCH_LIGHTS);
 		actions.Insert(AT_FENCE_OPEN);
 		actions.Insert(AT_FENCE_CLOSE);
+		actions.Insert(AT_TAKE_MATERIAL_TO_HANDS);
 	}
 	
 	int GetCurrentRecipe()

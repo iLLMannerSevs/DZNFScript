@@ -350,13 +350,13 @@ class EntityAI extends Entity
 	
 	void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
 	{
-		if ( source )
+		if ( source ) 
 		{
 			Man killer = source.GetHierarchyRootPlayer();
 			
 			if( killer && killer.IsPlayer() )
 			{
-				if ( damageResult.GetDamage( "", "health" ) <= 0 )
+				if ( damageResult && damageResult.GetDamage( "", "health" ) <= 0 )
 				{
 					bool is_headshot = false;
 				

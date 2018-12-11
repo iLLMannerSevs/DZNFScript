@@ -28,7 +28,7 @@ class ActionPlantSeed: ActionSingleUseBase
 
 	override bool HasTarget()
 	{
-		return false;
+		return true;
 	}
 
 	override string GetText()

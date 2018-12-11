@@ -552,6 +552,11 @@ class ItemBase extends InventoryItem
 		return m_IsHologram;
 	}
 	
+	bool CanMakeGardenplot()
+	{
+		return false;
+	}
+	
 	void SetIsHologram( bool is_hologram )
 	{
 		m_IsHologram = is_hologram;
@@ -2853,21 +2858,30 @@ class ItemBase extends InventoryItem
 	override bool IsHeavyBehaviour()
 	{
 		if (m_ItemBehaviour == 0)
+		{	
 			return true;
+		}
+		
 		return false;
 	}
 	
 	override bool IsOneHandedBehaviour()
 	{
 		if (m_ItemBehaviour == 1)
-			return true;
+		{
+			return true;	
+		}
+		
 		return false;
 	}
 	
 	override bool IsTwoHandedBehaviour()
 	{
 		if (m_ItemBehaviour == 2)
+		{
 			return true;
+		}
+			
 		return false;
 	}
 	

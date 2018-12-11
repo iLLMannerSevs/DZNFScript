@@ -50,6 +50,15 @@ class TentBase extends ItemBase
 		if ( GetState() == PITCHED )
 		{
 			Pitch();
+						
+			if ( GetGame().IsServer() )
+			{
+				if (!m_ClutterCutter)
+				{		
+					m_ClutterCutter = GetGame().CreateObject( GetClutterCutter(), GetPosition(), false );
+					m_ClutterCutter.SetOrientation( GetOrientation() );
+				}
+			}
 		}
 		else
 		{
@@ -497,25 +506,13 @@ class TentBase extends ItemBase
 		SoundSynchRemote();
 	}
 	
-	string GetSoundOpen()
-	{
-		return "";
-	}
+	string GetSoundOpen() {};
 	
-	string GetSoundClose()
-	{
-		return "";
-	}
+	string GetSoundClose() {};
 	
-	string GetSoundOpenWindow()
-	{
-		return "";
-	}
+	string GetSoundOpenWindow() {};
 	
-	string GetSoundCloseWindow()
-	{
-		return "";
-	}
+	string GetSoundCloseWindow() {};
 	
 	void SoundTentOpenPlay()
 	{
@@ -547,6 +544,8 @@ class TentBase extends ItemBase
 		
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().UpdatePathgraphRegionByObject, 100, false, this);
 	}
+	
+	string GetClutterCutter() {};
 	
 	void DestroyClutterCutter()
 	{

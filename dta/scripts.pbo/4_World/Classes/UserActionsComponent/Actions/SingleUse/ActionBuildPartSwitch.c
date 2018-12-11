@@ -46,9 +46,7 @@ class ActionBuildPartSwitch: ActionSingleUseBase
 		super.Start( action_data );
 		
 		//set next index
-		BaseBuildingBase base_building = BaseBuildingBase.Cast( action_data.m_Target.GetObject() );
 		ConstructionActionData construction_action_data = action_data.m_Player.GetConstructionActionData();
-		
 		construction_action_data.SetNextIndex();
 	}	
 		

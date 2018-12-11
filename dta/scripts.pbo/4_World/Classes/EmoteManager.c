@@ -979,6 +979,18 @@ class EmoteManager
 		{
 			m_Player.SetHealth(0);
 		}
+		
+		EntityAI itemInHands = m_Player.GetHumanInventory().GetEntityInHands();
+		if( itemInHands )
+		{
+			if( m_Player.CanDropEntity(itemInHands) )
+			{
+				vector transform[4];
+				itemInHands.GetTransform(transform);
+				m_Player.PredictiveDropEntity(itemInHands);
+				itemInHands.SetTransform(transform);
+			}
+		}
 	}
 	
 	void LogSuicide()

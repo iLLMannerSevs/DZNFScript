@@ -737,7 +737,6 @@ enum WeaponEvents
 	HAMMER_UNCOCKED,
 	HAMMER_COCKED
 	CHANGE_HIDE,
-	LOADING_LOOP_START,
 };
 
 
@@ -794,7 +793,6 @@ class HumanCommandWeapons
 		RegisterEvent("Weapon_Hammer_Uncocked", WeaponEvents.HAMMER_UNCOCKED);
 		RegisterEvent("Weapon_Hammer_Cocked", WeaponEvents.HAMMER_COCKED);
 		RegisterEvent("Weapon_Change_Hide", WeaponEvents.CHANGE_HIDE);
-		RegisterEvent("LoopStart", WeaponEvents.LOADING_LOOP_START);
 	}
 
 	//----------------------------------------------------

@@ -65,10 +65,12 @@ class ActionGetOutTransport: ActionInteractBase
 					if ( speed <= 8 )
 					{
 						vehCommand.GetOutVehicle();
+						action_data.m_Player.GetItemAccessor().HideItemInHands(false);
 					}
 					else
 					{
 						vehCommand.JumpOutVehicle();
+						action_data.m_Player.GetItemAccessor().HideItemInHands(false);
 					}
 				}
 			}

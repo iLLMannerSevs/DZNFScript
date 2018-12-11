@@ -469,7 +469,7 @@ class VicinityContainer: CollapsibleContainer
 		for( i = 0; i < objects.Count(); i++ )
 		{
 			Object obj = objects.Get( i );
-			bool showable_item = !objects.Get( i ).IsAnyInherited( { ScriptedEntity, Building, Camera, PlantSuper, PASReceiver, DayZAnimal/*, UndergroundStash, GardenBase*/ } );
+			bool showable_item = !objects.Get( i ).IsAnyInherited( { ScriptedEntity, Building, Camera, PlantSuper, PASReceiver, DayZAnimal, UndergroundStash } );
 			if ( player.GetInventory().IsPlaceholderEntity(obj) )
 				continue; // noproxy: ignore body placeholder
 			if ( obj.GetParent() || ( EntityAI.Cast( obj ) && EntityAI.Cast( obj ).GetHierarchyParent() ) )

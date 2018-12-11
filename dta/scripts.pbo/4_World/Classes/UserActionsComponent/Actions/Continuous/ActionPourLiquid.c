@@ -92,12 +92,6 @@ class ActionPourLiquid: ActionContinuousBase
 		return AT_POUR_LIQUID;
 	}
 	
-	//?
-	override bool Consumable()
-	{
-		return true;
-	}
-	
 	override string GetText()
 	{
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );

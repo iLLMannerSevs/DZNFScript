@@ -67,7 +67,7 @@ class ActiondeployObjectCB : ActionContinuousBaseCB
 	void DropDuringPlacing()
 	{
 		EntityAI entity_for_placing = EntityAI.Cast( m_ActionData.m_MainItem );	
-		vector orientation = m_ActionData.m_Player.GetLocalProjectionOrientation();
+		vector orientation = m_ActionData.m_Player.GetOrientation();
 		vector 	position = m_ActionData.m_Player.GetPosition() + m_ActionData.m_Player.GetDirection();
 		vector rotation_matrix[3];
 		float direction[4];
@@ -231,7 +231,7 @@ class ActionDeployObject: ActionContinuousBase
 				
 		if ( GetGame().IsMultiplayer() )
 		{
-			action_data.m_Player.GetHologramServer().PlaceEntity( entity_for_placing, action_data.m_Player.GetLocalProjectionPosition(), action_data.m_Player.GetLocalProjectionOrientation() );
+			action_data.m_Player.GetHologramServer().PlaceEntity( entity_for_placing );
 			action_data.m_Player.GetHologramServer().CheckPowerSource();
 			action_data.m_Player.PlacingCompleteServer();	
 			
@@ -244,7 +244,7 @@ class ActionDeployObject: ActionContinuousBase
 			
 			MoveEntityToFinalPosition( action_data, position, orientation );
 			
-			action_data.m_Player.GetHologramLocal().PlaceEntity( entity_for_placing, action_data.m_Player.GetHologramLocal().GetProjectionPosition(), action_data.m_Player.GetHologramLocal().GetProjectionOrientation() );
+			action_data.m_Player.GetHologramLocal().PlaceEntity( entity_for_placing );
 			action_data.m_Player.PlacingCompleteLocal();
 			
 			entity_for_placing.OnPlacementComplete( action_data.m_Player );
@@ -294,7 +294,7 @@ class ActionDeployObject: ActionContinuousBase
 		}
 		else
 		{
-			//TODO: make on END placement event and move there
+			//TODO: make OnEND placement event and move there
 			if ( action_data.m_MainItem.IsKindOf( "FenceKit" ) || action_data.m_MainItem.IsKindOf( "WatchtowerKit" ) )
 			{
 				GetGame().ObjectDelete(  action_data.m_MainItem );

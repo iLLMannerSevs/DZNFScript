@@ -30,6 +30,11 @@ class MediumTent extends TentBase
 		return "MediumTent_Door_Close_SoundSet";
 	}
 	
+	override string GetClutterCutter()
+	{
+		return "MediumTentClutterCutter";
+	}
+	
 	//================================================================
 	// ADVANCED PLACEMENT
 	//================================================================
@@ -42,14 +47,12 @@ class MediumTent extends TentBase
 				
 		if ( GetGame().IsServer() )
 		{
-			m_ClutterCutter = GetGame().CreateObject( "MediumTentClutterCutter", pb.GetLocalProjectionPosition(), false );	
-			m_ClutterCutter.SetOrientation( pb.GetLocalProjectionOrientation() );
+			if ( !m_ClutterCutter )
+			{
+				m_ClutterCutter = GetGame().CreateObject( "MediumTentClutterCutter", pb.GetLocalProjectionPosition(), false );	
+				m_ClutterCutter.SetOrientation( pb.GetLocalProjectionOrientation() );
+			}
 		}	
-	}
-		
-	override bool IsTwoHandedBehaviour()
-	{
-		return true;
 	}
 		
 	override string GetDeploySoundset()

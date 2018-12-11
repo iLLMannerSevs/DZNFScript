@@ -9,8 +9,9 @@ class BaseBuildingBase extends ItemBase
 	
 	bool 				m_HasBase = false;
 	//variables for synchronization of base building parts (2x31 is the current limit)
-	int 				m_SyncParts01;								//synchronization for already built parts (31)
-	int 				m_SyncParts02;								//synchronization for already built parts (62)
+	int 				m_SyncParts01;								//synchronization for already built parts (31 parts)
+	int 				m_SyncParts02;								//synchronization for already built parts (+31 parts)
+	int 				m_SyncParts03;								//synchronization for already built parts (+31 parts)
 	int 				m_InteractedPartId;							//construction part id that an action was performed on
 	int					m_PerformedActionId;						//action id that was performed on a construction part
 	
@@ -40,6 +41,7 @@ class BaseBuildingBase extends ItemBase
 		//synchronized variables
 		RegisterNetSyncVariableInt( "m_SyncParts01" );
 		RegisterNetSyncVariableInt( "m_SyncParts02" );
+		RegisterNetSyncVariableInt( "m_SyncParts03" );
 		RegisterNetSyncVariableInt( "m_InteractedPartId" );
 		RegisterNetSyncVariableInt( "m_PerformedActionId" );
 		RegisterNetSyncVariableBool( "m_HasBase" );
@@ -83,87 +85,99 @@ class BaseBuildingBase extends ItemBase
 	//parts synchronization
 	void RegisterPartForSync( int part_id )
 	{
-		if ( part_id >= 1 )		//part_id must starts from index = 1
+		//part_id must starts from index = 1
+		int offset;
+		int mask;
+		
+		if ( part_id >= 1 && part_id <= 31 )		//<1,31> (31 parts)
 		{
-			int offset;
-			int mask;
+			offset = part_id - 1;
+			mask = 1 << offset;
 			
-			m_SyncParts01 = m_SyncParts01 | mask;
+			m_SyncParts01 = m_SyncParts01 | mask;				
+		}
+		else if ( part_id >= 32 && part_id <= 62  )	//<32,62> (31 parts)
+		{
+			offset = ( part_id % 32 );
+			mask = 1 << offset;
 			
-			if ( part_id > 31 )
-			{
-				offset = ( part_id % 31 ) - 1;
-				mask = 1 << offset;
-				
-				m_SyncParts02 = m_SyncParts02 | mask;
-			}
-			else
-			{
-				offset = part_id - 1;
-				mask = 1 << offset;
-				
-				m_SyncParts01 = m_SyncParts01 | mask;
-			}
+			m_SyncParts02 = m_SyncParts02 | mask;				
+		}
+		else if ( part_id >= 63 && part_id <= 93  )	//<63,93> (31 parts)
+		{
+			offset = ( part_id % 63 );
+			mask = 1 << offset;
+			
+			m_SyncParts03 = m_SyncParts03 | mask;				
 		}
 	}
 	
 	void UnregisterPartForSync( int part_id )
 	{
-		if ( part_id >= 1 )		//part_id must starts from index = 1
+		//part_id must starts from index = 1
+		int offset;
+		int mask;
+		
+		if ( part_id >= 1 && part_id <= 31 )		//<1,31> (31 parts)
 		{
-			int offset;
-			int mask;
+			offset = part_id - 1;
+			mask = 1 << offset;
 			
-			m_SyncParts01 = m_SyncParts01 | mask;
+			m_SyncParts01 = m_SyncParts01 & ~mask;			
+		}
+		else if ( part_id >= 32 && part_id <= 62  )	//<32,62> (31 parts)
+		{
+			offset = ( part_id % 32 );
+			mask = 1 << offset;
 			
-			if ( part_id > 31 )
-			{
-				offset = ( part_id % 31 ) - 1;
-				mask = 1 << offset;
-				
-				m_SyncParts02 = m_SyncParts02 & ~mask;
-			}
-			else
-			{
-				offset = part_id - 1;
-				mask = 1 << offset;
-				
-				m_SyncParts01 = m_SyncParts01 & ~mask;
-			}
-		}		
+			m_SyncParts02 = m_SyncParts02 & ~mask;			
+		}
+		else if ( part_id >= 63 && part_id <= 93  )	//<63,93> (31 parts)
+		{
+			offset = ( part_id % 63 );
+			mask = 1 << offset;
+			
+			m_SyncParts03 = m_SyncParts03 & ~mask;			
+		}
 	}	
 	
 	bool IsPartBuildInSyncData( int part_id )
 	{
-		if ( part_id >= 1 )		//part_id must starts from index = 1
-		{
-			int offset;
-			int mask;
-			
-			m_SyncParts01 = m_SyncParts01 | mask;
-			
-			if ( part_id > 31 )
-			{
-				offset = ( part_id % 31 ) - 1;
-				mask = 1 << offset;
-				
-				if ( ( m_SyncParts02 & mask ) > 0 )
-				{
-					return true;
-				}
-			}
-			else
-			{
-				offset = part_id - 1;
-				mask = 1 << offset;
-				
-				if ( ( m_SyncParts01 & mask ) > 0 )
-				{
-					return true;
-				}
-			}
-		}			
+		//part_id must starts from index = 1
+		int offset;
+		int mask;
 		
+		if ( part_id >= 1 && part_id <= 31 )		//<1,31> (31 parts)
+		{
+			offset = part_id - 1;
+			mask = 1 << offset;
+			
+			if ( ( m_SyncParts01 & mask ) > 0 )
+			{
+				return true;
+			}
+		}
+		else if ( part_id >= 32 && part_id <= 62  )	//<32,62> (31 parts)
+		{
+			offset = ( part_id % 32 );
+			mask = 1 << offset;
+			
+			if ( ( m_SyncParts02 & mask ) > 0 )
+			{
+				return true;
+			}
+		}
+		else if ( part_id >= 63 && part_id <= 93  )	//<63,93> (31 parts)
+		{
+			offset = ( part_id % 63 );
+			mask = 1 << offset;
+			
+			if ( ( m_SyncParts03 & mask ) > 0 )
+			{
+				return true;
+			}
+		}				
+	
 		return false;
 	}
 
@@ -311,6 +325,7 @@ class BaseBuildingBase extends ItemBase
 		//sync parts 01
 		ctx.Write( m_SyncParts01 );
 		ctx.Write( m_SyncParts02 );
+		ctx.Write( m_SyncParts03 );
 		
 		//has base 
 		ctx.Write( m_HasBase );
@@ -324,6 +339,7 @@ class BaseBuildingBase extends ItemBase
 		//sync parts 01
 		ctx.Read( m_SyncParts01 );
 		ctx.Read( m_SyncParts02 );
+		ctx.Read( m_SyncParts03 );
 		
 		//has base
 		ctx.Read( m_HasBase );

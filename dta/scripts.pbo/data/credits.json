@@ -481,7 +481,8 @@
 				{
                     "SectionName": "#brand_and_pr_manager",
                     "SectionLines": [
-                        "Martin Čulák"
+                        "Martin Čulák",
+                        "Dustin Hucks"
                     ]
                 }
             ]
@@ -492,7 +493,6 @@
 				{
                     "SectionName": "#brand_and_pr_management_team",
                     "SectionLines": [
-                        "Dustin Hucks",
                         "Matěj Smrček",
                         "Michael Christensen",
                         "Tim Pulsmeier",
@@ -526,6 +526,7 @@
                         "Jan Libich",
                         "Matt Lightfoot",
                         "Nikolas Rašín",
+                        "Ota Vrťátko",
                         "Petr Hovanec",
                         "Vanessa Itriago Ramos"
                     ]
@@ -555,6 +556,7 @@
                         "David Livingstone",
                         "Dmitry Kornyukhov",
                         "Felix Tappe",
+                        "Fernando Moreiras",
                         "Goulven Le Goff",
                         "Igor Savenkov",
                         "Marco Piccinnu",

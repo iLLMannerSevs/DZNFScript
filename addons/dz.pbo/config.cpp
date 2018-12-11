@@ -226,6 +226,18 @@ class CfgAddons
 class CfgWorlds
 {
 	initWorld="ChernarusPlus";
+	class DefaultLighting
+	{
+		access=0;
+		groundReflection[]={0.085000001,0.068000004,0.034000002};
+		moonObjectColorFull[]={0.89999998,0.89999998,1,0.2};
+		moonHaloObjectColorFull[]={0.89999998,0.89999998,1,0.0099999998};
+		moonsetObjectColor[]={0.89999998,0.75,0.40000001};
+		moonsetHaloObjectColor[]={0.89999998,0.5,0.2};
+		nightAngle=5;
+		sunSunset=20;
+		endSunset=10;
+	};
 	class DefaultWorld
 	{
 		class Weather
@@ -1420,9 +1432,8 @@ class CfgWorlds
 			class VolFog
 			{
 				CameraFog=0;
-				Item1[]={200,0.5,0.93000001,0.69999999,1};
-				Item2[]={900,0.029999999,0.89999998,0.059999999,1};
-				Item3[]={1300,0.0099999998,0.89999998,0.029999999,1};
+				Item1[]={800,0.16,0.93000001,0.37,1};
+				Item2[]={1300,0.02,0.89999998,0.079999998,1};
 			};
 			class Overcast: Overcast
 			{
@@ -1561,7 +1572,7 @@ class CfgWorlds
 		sunObject="DZ\Data\data\sun.p3d";
 		rainbowObject="DZ\Data\data\rainbow.p3d";
 		moonObject="DZ\Data\data\moon.p3d";
-		starsIntensity=0.011;
+		starsIntensity=0.141;
 		hazeDistCoef=0;
 		hazeFogCoef=1;
 		satelliteNormalBlendStart=100;

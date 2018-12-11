@@ -1,6 +1,6 @@
 class GardenPlot extends GardenBase
 {
-	ClutterCutter6x6 	m_ClutterCutter;
+	Object 	m_ClutterCutter;
 	const string COMPATIBLE_SURFACES[] = {"cp_dirt", "cp_broadleaf_dense1", "cp_broadleaf_dense2", "cp_broadleaf_sparse1", "cp_broadleaf_sparse2", "cp_conifer_common1", "cp_conifer_common2", "cp_conifer_moss1", "cp_conifer_moss2", "cp_grass", "cp_grass_tall", "cp_gravel", "cp_rock", "textile_carpet_int"};
 	static const int COMPATIBLE_SURFACES_COUNT = 14; // Count if elements of COMPATIBLE_SURFACES array
 	
@@ -10,17 +10,18 @@ class GardenPlot extends GardenBase
 	}
 	
 	override void EEInit()
-	{
+	{	
 		super.EEInit();
-		
-		if( GetGame().IsMultiplayer()  &&  GetGame().IsServer() )
-		{
-			if (!m_ClutterCutter)
-			{
-				m_ClutterCutter = ClutterCutter6x6.Cast( GetGame().CreateObject( "ClutterCutter6x6", GetPosition(), false ) );
-			}			
-		}	
 	}	
+	
+	override void OnStoreLoad( ParamsReadContext ctx )
+	{				
+		if ( !m_ClutterCutter )
+		{		
+			m_ClutterCutter = GetGame().CreateObject( "ClutterCutter6x6", GetPosition(), false );
+			m_ClutterCutter.SetOrientation( GetOrientation() );
+		}
+	}
 	
 	override void EEDelete(EntityAI parent)
 	{
@@ -36,16 +37,6 @@ class GardenPlot extends GardenBase
 	override int GetGardenSlotsCount()
 	{
 		return 9;
-	}
-
-	override void OnPlacementStarted( Man player )
-	{
-		RefreshSlots();
-	}
-	
-	override void OnHologramBeingPlaced( Man player )
-	{
-		RefreshSlots();
 	}
 
 	void RefreshSlots()
@@ -65,11 +56,25 @@ class GardenPlot extends GardenBase
 	// ADVANCED PLACEMENT
 	//================================================================
 	
+	override void OnPlacementStarted( Man player )
+	{
+		RefreshSlots();
+	}
+	
+	override void OnHologramBeingPlaced( Man player )
+	{
+		RefreshSlots();
+	}
+	
 	override void OnPlacementComplete( Man player )
-	{		
+	{				
 		super.OnPlacementComplete( player );
-		
-		if ( GetGame().IsServer() )
+				
+		PlayerBase player_base = PlayerBase.Cast( player );
+		vector position = player_base.GetLocalProjectionPosition();
+		vector orientation = player_base.GetLocalProjectionOrientation();
+			
+		if ( GetGame().IsMultiplayer()  &&  GetGame().IsServer() || !GetGame().IsMultiplayer() )
 		{
 			// To properly move the clutter cutter from spawn position, it must be deleted and created again.
 			if (m_ClutterCutter)
@@ -79,8 +84,9 @@ class GardenPlot extends GardenBase
 			}
 			
 			if (!m_ClutterCutter)
-			{
-				m_ClutterCutter = ClutterCutter6x6.Cast( GetGame().CreateObject( "ClutterCutter6x6", GetPosition(), false ) );
+			{		
+				m_ClutterCutter = GetGame().CreateObject( "ClutterCutter6x6", GetPosition(), false );
+				m_ClutterCutter.SetOrientation( orientation );
 			}
 		}
 	}
