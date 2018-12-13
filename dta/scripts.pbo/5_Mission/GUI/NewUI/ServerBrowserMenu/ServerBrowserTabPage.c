@@ -105,6 +105,8 @@ class ServerBrowserTabPage extends ServerBrowserTab
 	
 	override void RefreshList()
 	{
+		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
+		
 		m_ServerResultsFiltred.Clear();
 		m_Entries.Clear();
 		
@@ -206,7 +208,16 @@ class ServerBrowserTabPage extends ServerBrowserTab
 			}
 			else
 			{
-				return OnClickPage( w );
+				bool click = OnClickPage( w );
+				
+				if ( click )
+				{
+					OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
+					
+					return true;
+				}
+				
+				return false;
 			}
 		}
 		return false;

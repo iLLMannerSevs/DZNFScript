@@ -169,7 +169,7 @@ class ActionManagerServer: ActionManagerBase
 					//{
 					//	accepted = false;
 					//}
-					/*else*/ if( !Building.Cast(targetEntity))
+					if( !AdvancedCommunication.Cast(targetEntity) && !Building.Cast(targetEntity) )
 					{
 						//Lock target
 						if( !GetGame().AddActionJuncture(m_Player,targetEntity,10000) )

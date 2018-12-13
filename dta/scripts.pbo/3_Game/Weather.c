@@ -140,7 +140,6 @@ class WeatherPhenomenon
 			case EWeatherPhenomenon.OVERCAST:
 				Print( "COMPUTING NEW OVERCAST" );
 
-
 				float rangeMin = 0.15;
 				float rangeHigh = 0.85;
 			
@@ -153,8 +152,8 @@ class WeatherPhenomenon
 				float overcastMid = 0.5;
 				float overcastRange = 0.1;
 
-				float rand = Math.RandomFloatInclusive( 0.8, 1.0 );
-				Print( rand );
+				float rand = Math.RandomFloatInclusive( 0.0, 1.0 );
+
 				if ( rand > rangeMin && rand < rangeHigh )
 				{
 					overcastMid = 0.5;
@@ -233,13 +232,19 @@ class WeatherPhenomenon
 				Print( "-----------------------------------------------------------" );
 				
 				float fogMin = 0.0;
-				float fogMax = 0.25;
+				float fogMax = 0.15;
 				float fogTime = 1800.0;
-				
-				if ( (g_Game.GetDayTime() > 4 && g_Game.GetDayTime() < 8 ) || overcastActual > 0.75 )
+
+				float fogyMorning = Math.RandomFloatInclusive( 0.0, 1.0 );
+
+				if (  fogyMorning > 0.85 )
 				{
-					fogMin = 0.15;
-					fogMax = 0.35;
+					if ( (g_Game.GetDayTime() > 4 && g_Game.GetDayTime() < 7 ) )
+					{
+						fogMin = 0.10;
+						fogMax = 0.35;
+						fogTime = 300;
+					}
 				}
 
 				if ( overcastActual < 0.3 )
@@ -250,7 +255,7 @@ class WeatherPhenomenon
 				}
 
 				Set( Math.RandomFloatInclusive( fogMin, fogMax ), fogTime, 0);
-				break;
+				return true;
 			
 			case EWeatherPhenomenon.RAIN:
 				Print( "COMPUTING NEW RAIN" );

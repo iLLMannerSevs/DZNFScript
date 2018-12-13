@@ -96,6 +96,9 @@ class Construction
 
 			//receive materials
 			ReceiveMaterials( part_name );
+			
+			//drop non-usable materials
+			DropNonUsableMaterials( part_name );
 		}
 		
 		//call event
@@ -112,6 +115,9 @@ class Construction
 			
 			//destroy attached materials (if locked)
 			DestroyMaterials( part_name );
+			
+			//drop non-usable materials
+			DropNonUsableMaterials( part_name );			
 		}
 		
 		//call event
@@ -540,7 +546,7 @@ class Construction
 						{
 							GetParent().GetInventory().DropEntity( InventoryMode.LOCAL, GetParent(), attachment );
 							// restore network for dropped attachment (@NOTE: won't be restored by 2. as it's not in hierarchy anymore) 
-							GetGame().RemoteObjectTreeCreate(attachment);
+							GetGame().RemoteObjectTreeCreate( attachment );
 						}
 					}
 				}
@@ -582,7 +588,7 @@ class Construction
 						InventoryLocation attLoc = new InventoryLocation;
 						attLoc.SetAttachment(GetParent(), null, slot_id);
 						attachment = ItemBase.Cast( GetParent().GetInventory().LocationCreateLocalEntity( attLoc, type ) ); // @NOTE: cannot create non-local vehicle here, this would collide with RemoteObjectTreeDel/Cre
-						if ( quantity > 0 ) 					//object was deleted or the quantity is ignored
+						if ( attachment && quantity > 0 ) 					//object was deleted or the quantity is ignored
 						{
 							attachment.SetQuantity( quantity );
 						}
@@ -591,7 +597,7 @@ class Construction
 			}
 			
 			//2. client update
-			GetGame().RemoteObjectTreeCreate(GetParent());	
+			GetGame().RemoteObjectTreeCreate( GetParent() );	
 		}
 	}
 	
@@ -645,6 +651,69 @@ class Construction
 			
 			//2. client update
 			GetGame().RemoteObjectTreeCreate(GetParent());	
+		}
+	}
+	
+	//drop materials when dismantling part that will prevent other parts to be built
+	protected void DropNonUsableMaterials( string part_name )
+	{
+		ConstructionPart construction_part = GetConstructionPart( part_name );
+		
+		string cfg_path = "cfgVehicles" + " " + GetParent().GetType() + " " + "Construction" + " " + construction_part.GetMainPartName() + " " + construction_part.GetPartName() + " " + "platform_support";
+		string platform_support;
+		
+		if ( GetGame().ConfigIsExisting( cfg_path ) )
+		{		
+			GetGame().ConfigGetText( cfg_path, platform_support );
+		}
+		
+		if ( platform_support.Length() > 0 )
+		{
+			//1. client update
+			GetGame().RemoteObjectTreeDelete( GetParent() );
+
+			string at_cfg_path = "cfgVehicles" + " " + GetParent().GetType() + " "+ "GUIInventoryAttachmentsProps";
+			
+			if ( GetGame().ConfigIsExisting( at_cfg_path ) )
+			{
+				int	child_count = GetGame().ConfigGetChildrenCount( at_cfg_path );
+				
+				for ( int i = 0; i < child_count; i++ )
+				{
+					string child_name;
+					GetGame().ConfigGetChildName( at_cfg_path, i, child_name );
+					child_name.ToLower();
+					
+					if ( child_name.Contains( platform_support ) )
+					{
+						ref array<string> attachment_slots = new array<string>;
+						GetGame().ConfigGetTextArray( at_cfg_path + " " + child_name + " " + "attachmentSlots", attachment_slots );
+						
+						for ( int j = 0; j < attachment_slots.Count(); ++j )
+						{
+							//get material
+							ItemBase attachment = ItemBase.Cast( GetParent().FindAttachmentBySlotName( attachment_slots.Get( j ) ) );
+							
+							//material still attached
+							if ( attachment )
+							{
+								InventoryLocation inventory_location = new InventoryLocation;
+								attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
+								GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
+								
+								//detach if base
+								GetParent().GetInventory().DropEntity( InventoryMode.LOCAL, GetParent(), attachment );
+								
+								//restore network for dropped attachment (@NOTE: won't be restored by 2. as it's not in hierarchy anymore) 
+								GetGame().RemoteObjectTreeCreate( attachment );
+							}
+						}
+					}
+				}
+			}
+
+			//2. client update
+			GetGame().RemoteObjectTreeCreate( GetParent() );
 		}
 	}
 	

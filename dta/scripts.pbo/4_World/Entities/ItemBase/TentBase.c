@@ -53,7 +53,7 @@ class TentBase extends ItemBase
 						
 			if ( GetGame().IsServer() )
 			{
-				if (!m_ClutterCutter)
+				if ( !m_ClutterCutter && HasClutterCutter() )
 				{		
 					m_ClutterCutter = GetGame().CreateObject( GetClutterCutter(), GetPosition(), false );
 					m_ClutterCutter.SetOrientation( GetOrientation() );
@@ -544,7 +544,8 @@ class TentBase extends ItemBase
 		
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(GetGame().UpdatePathgraphRegionByObject, 100, false, this);
 	}
-	
+
+	bool HasClutterCutter() {};	
 	string GetClutterCutter() {};
 	
 	void DestroyClutterCutter()

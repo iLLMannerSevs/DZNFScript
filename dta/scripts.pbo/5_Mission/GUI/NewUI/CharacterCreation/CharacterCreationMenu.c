@@ -11,10 +11,10 @@ class CharacterCreationMenu extends UIScriptedMenu
 	protected TextWidget					m_Version;
 	
 	protected ref OptionSelectorMultistate	m_GenderSelector;
-	protected ref OptionSelectorMultistate	m_SkinSelector;
-	protected ref OptionSelectorMultistate	m_TopSelector;
-	protected ref OptionSelectorMultistate	m_BottomSelector;
-	protected ref OptionSelectorMultistate	m_ShoesSelector;
+	protected ref OptionSelectorMultistateCharacterMenu	m_SkinSelector;
+	protected ref OptionSelectorMultistateCharacterMenu	m_TopSelector;
+	protected ref OptionSelectorMultistateCharacterMenu	m_BottomSelector;
+	protected ref OptionSelectorMultistateCharacterMenu	m_ShoesSelector;
 	
 	void CharacterCreationMenu()
 	{
@@ -50,18 +50,18 @@ class CharacterCreationMenu extends UIScriptedMenu
 		m_GenderSelector = new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_gender_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharGenderList() );
 		if ( m_Scene.GetIntroCharacter().IsCharacterFemale() )
 		{
-			m_GenderSelector.SetValue( "Female" );
-			m_SkinSelector = new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_head_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharList( ECharGender.Female ) );
+			m_GenderSelector.SetValue( "#str_cfgvehicles_survivorF0" );
+			m_SkinSelector = new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_head_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharList( ECharGender.Female ) );
 		}
 		else
 		{
-			m_GenderSelector.SetValue( "Male" );
-			m_SkinSelector = new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_head_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharList( ECharGender.Male ) );
+			m_GenderSelector.SetValue( "#str_cfgvehicles_survivorM0" );
+			m_SkinSelector = new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_head_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharList( ECharGender.Male ) );
 		}
 		
-		m_TopSelector		= new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_top_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharShirtsList() );
-		m_BottomSelector	= new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_bottom_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharPantsList() );
-		m_ShoesSelector		= new OptionSelectorMultistate( layoutRoot.FindAnyWidget( "character_shoes_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharShoesList() );
+		m_TopSelector		= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_top_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharShirtsList() );
+		m_BottomSelector	= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_bottom_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharPantsList() );
+		m_ShoesSelector		= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_shoes_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharShoesList() );
 		
 		if( m_Scene && m_Scene.GetIntroCharacter() )
 		{

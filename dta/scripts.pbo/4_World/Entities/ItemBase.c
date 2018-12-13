@@ -482,6 +482,32 @@ class ItemBase extends InventoryItem
 		}
 	}
 	
+	//! Locks this item in it's current attachment slot of its parent. This makes the "locked" icon visible in inventory over this item.
+	void LockToParent()
+	{
+		EntityAI parent = GetHierarchyParent();
+		
+		if (parent)
+		{
+			InventoryLocation inventory_location_to_lock = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( inventory_location_to_lock );
+			parent.GetInventory().SetSlotLock( inventory_location_to_lock.GetSlot(), true );
+		}
+	}
+	
+	//! Unlocks this item from its attachment slot of its parent.
+	void UnlockFromParent()
+	{
+		EntityAI parent = GetHierarchyParent();
+		
+		if (parent)
+		{
+			InventoryLocation inventory_location_to_unlock = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( inventory_location_to_unlock );
+			parent.GetInventory().SetSlotLock( inventory_location_to_unlock.GetSlot(), false );
+		}
+	}
+	
 	void CombineItemsClient(ItemBase entity2, bool use_stack_max = false )
 	{
 		/*

@@ -65,6 +65,11 @@ class ActionRestrainTarget: ActionContinuousBase
 				return false;
 			}
 		}
+		if( GetGame().IsServer() )
+		{
+			return !GetGame().GetMission().IsPlayerDisconnecting(target_player);
+			
+		}
 		return true;
 	}
 		
@@ -87,6 +92,12 @@ class ActionRestrainTarget: ActionContinuousBase
 			SurrenderDataRestrain sdr = new SurrenderDataRestrain;
 			target_player.EndSurrenderRequest(sdr);
 		}
+		/*
+		if( target_player.IsMapOpen() )
+		{
+			target_player.CloseMap();
+		}
+		*/
 	}
 
 	override void OnFinishProgressServer( ActionData action_data )

@@ -14,7 +14,7 @@ class GardenBase extends Building
 	static const string SLOT_MATERIAL_COMPOST_DRY			= "dz\\gear\\cultivation\\data\\soil_cultivated_compost.rvmat";
 	
 	// slot names
-	private static const string SLOT_SELECTION_DIGGED_PREFIX 	= "slotDigged_";
+	private static const string SLOT_SELECTION_DIGGED_PREFIX 	= "seedbase_";
 	private static const string SLOT_SELECTION_COVERED_PREFIX 	= "slotCovered_";
 	private static const string SLOT_MEMORY_POINT_PREFIX 		= "slot_";
 	private static const string SLOT_SEEDBASE_PREFIX 			= "seedbase_";
@@ -24,7 +24,7 @@ class GardenBase extends Building
 	
 	protected ref array<ref Slot> m_Slots;
 	protected float m_DefaultFertility = 1;
-	protected float m_BaseFertility = 1;
+	protected float m_BaseFertility = 1; // Obsolete value, but it is necesarry to have so that old storage_** data works. 
 	ref Timer 		m_CheckRainTimer;
 	
 	private static ref map<string,string> m_map_slots; // For the 'attachment slot -> plant slot' conversion. It is possible that this will be removed later.
@@ -334,10 +334,7 @@ class GardenBase extends Building
 		GetInventory().TakeEntityAsAttachmentEx( InventoryMode.LOCAL, plant, slot.GetSlotId() );
 		GetGame().RemoteObjectTreeCreate( plant );
 		
-		//lock plant
-		InventoryLocation inventory_location = new InventoryLocation;
-		plant.GetInventory().GetCurrentInventoryLocation( inventory_location );
-		GetInventory().SetSlotLock( inventory_location.GetSlot(), true );
+		plant.LockToParent();
 	}
 		
 	void Fertilize( PlayerBase player, ItemBase item, float consumed_quantity, string selection_component )
@@ -432,8 +429,11 @@ class GardenBase extends Building
 		
 		if ( slot.IsDigged()  ||  slot.IsPlanted() )
 		{
-			HideSelection( SLOT_SELECTION_COVERED_PREFIX + (slot_index + 1).ToStringLen(2) );
-			ShowSelection( SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(2) );
+			string str_hide = SLOT_SELECTION_COVERED_PREFIX + (slot_index + 1).ToStringLen(2);
+			string str_show = SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(1);
+			
+			HideSelection( str_hide );
+			ShowSelection( str_show );
 		}		
 		
 		if ( slot.m_FertilizerType != "" )
@@ -449,7 +449,10 @@ class GardenBase extends Building
 	void SetSlotTextureDigged( int slot_index )
 	{
 		TStringArray textures = GetHiddenSelectionsTextures();
-		ShowSelection( SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(2) );
+		
+		string str_digged = SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(1);
+		
+		ShowSelection( str_digged );
 		string texture = textures.Get(0);
 		SetObjectTexture( slot_index, texture );
 		
@@ -472,7 +475,10 @@ class GardenBase extends Building
 		TStringArray textures = GetHiddenSelectionsTextures();
 		
 		int tex_id = GetGame().ConfigGetInt( "cfgVehicles " + item_type + " Horticulture TexId" );
-		ShowSelection( SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(2) );
+		
+		string str_show = SLOT_SELECTION_DIGGED_PREFIX + (slot_index + 1).ToStringLen(2);
+		
+		ShowSelection( str_show );
 		SetObjectTexture( slot_index, textures.Get(tex_id) );
 		
 		Slot slot = m_Slots.Get( slot_index );
@@ -518,7 +524,6 @@ class GardenBase extends Building
 			}
 			
 			slot.Init( GetBaseFertility() );
-			//slot.GiveWater( NULL, -9999 );
 			
 			HideSelection( SLOT_SELECTION_COVERED_PREFIX + (index + 1).ToStringLen(2) );
 			UpdateSlotTexture( index );

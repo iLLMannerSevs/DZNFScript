@@ -475,12 +475,34 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 			if (w)
 				zeroing	= string.Format("%1 m", w.GetCurrentZeroing());
 
-			txtModeWidget.SetText(m_Player.GetCurrentWeaponMode());
+			txtModeWidget.SetText(WeaponModeTextTemp());
 			txtZeroingWidget.SetText(zeroing);
 			widget.Show(true);
 		}
 		else
 			widget.Show(false);
+	}
+	
+	//temporary solution, to be solved via config parameter
+	protected string WeaponModeTextTemp()
+	{
+		string mode = m_Player.GetCurrentWeaponMode();
+		switch (mode)
+		{
+			case "Single" :
+				return "#STR_Single";
+			
+			case "SemiAuto" :
+				return "#STR_SemiAuto";
+			
+			case "FullAuto" :
+				return "#STR_FullAuto";
+			
+			//currently only doubleshot shotguns
+			case "Burst" :
+				return "#STR_Double";//"#STR_Burst";
+		}
+		return mode;
 	}
 	
 	protected void SetRadioFrequency(string freq, string itemWidget, string upWidget, string downWidget, bool enabled)

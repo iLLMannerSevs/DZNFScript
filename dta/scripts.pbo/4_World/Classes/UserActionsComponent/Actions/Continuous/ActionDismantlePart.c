@@ -60,12 +60,6 @@ class ActionDismantlePart: ActionContinuousBase
 			
 			if ( construction_part && base_building.IsFacingBack( player, construction_part.GetPartName() ) )
 			{
-				//if part is base but more attachments are present
-				if ( construction_part.IsBase() && base_building.HasAttachmentsBesidesBase() )
-				{
-					return false;
-				}
-				
 				ConstructionActionData construction_action_data = player.GetConstructionActionData();
 				construction_action_data.SetTargetPart( construction_part );
 				

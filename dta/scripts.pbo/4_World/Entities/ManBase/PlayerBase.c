@@ -86,6 +86,7 @@ class PlayerBase extends ManBase
 	int 							m_HealthLevel;
 	int 							m_MixedSoundStates;
 	bool							m_IsVehicleSeatDriver;
+	float							m_UnconsciousEndTime;
 	
 
 	ref protected RandomGeneratorSyncManager m_RGSManager;
@@ -477,7 +478,7 @@ class PlayerBase extends ManBase
 		if ( damageResult != null && GetBleedingManagerServer() )
 		{
 			float dmg = damageResult.GetDamage(dmgZone, "Blood");
-			GetBleedingManagerServer().ProcessHit(dmg, component, dmgZone, ammo, modelPos);
+			GetBleedingManagerServer().ProcessHit(dmg, source, component, dmgZone, ammo, modelPos);
 		}
 		//Print(damageResult.GetDamage(dmgZone,"Health"));
 		//---------------------------------------
@@ -905,7 +906,7 @@ class PlayerBase extends ManBase
 	
 	bool CanBeRestrained()
 	{
-		if( IsRaised() || IsSwimming() || IsClimbingLadder() || IsRestrained() || !GetWeaponManager() || GetWeaponManager().IsRunning() || !GetActionManager() || GetActionManager().GetRunningAction() != null )
+		if( IsPlayingEmote() || IsRaised() || IsSwimming() || IsClimbingLadder() || IsRestrained() || !GetWeaponManager() || GetWeaponManager().IsRunning() || !GetActionManager() || GetActionManager().GetRunningAction() != null || IsMapOpen() )
 		{
 			return false;
 		}
@@ -1960,6 +1961,11 @@ class PlayerBase extends ManBase
 			}
 			m_MapOpen = false;
 		}
+	}
+	
+	bool IsMapOpen()
+	{
+		return m_MapOpen;
 	}
 	
 	

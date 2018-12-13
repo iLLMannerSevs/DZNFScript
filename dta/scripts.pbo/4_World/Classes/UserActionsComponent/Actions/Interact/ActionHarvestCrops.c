@@ -26,6 +26,13 @@ class ActionHarvestCrops: ActionInteractBase
 		return "#harvest";
 	}
 
+	override void CreateConditionComponents()  
+	{	
+		
+		m_ConditionTarget = new CCTNone;
+		m_ConditionItem = new CCINone;
+	}
+	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		Object targetObject = target.GetObject();

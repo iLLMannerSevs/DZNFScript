@@ -158,20 +158,20 @@ class Car extends Transport
 		\param[in] oldGear previous gear level before gear shift
 		\return new gear level that will be applied.
 	*/
-	int OnBeforeGearChange( int newGear, int oldGear )
-	{
-		// by default, you can't switch between reverse
-		// and positive gears and vice versa while the vehicle is moving
-		if ( GetSpeedometer() > 0.1 )
-		{
-			bool newG = ( newGear < CarGear.NEUTRAL );
-			bool oldG = ( oldGear < CarGear.NEUTRAL );
-			if ( newG != oldG )
-				return oldGear;
-		}
-
-		return newGear;
-	}
+	//int OnBeforeGearChange( int newGear, int oldGear )
+	//{
+	//	// by default, you can't switch between reverse
+	//	// and positive gears and vice versa while the vehicle is moving
+	//	if ( GetSpeedometer() > 0.1 )
+	//	{
+	//		bool newG = ( newGear < CarGear.NEUTRAL );
+	//		bool oldG = ( oldGear < CarGear.NEUTRAL );
+	//		if ( newG != oldG )
+	//			return oldGear;
+	//	}
+	//
+	//	return newGear;
+	//}
 //-----------------------------------------------------------------------------
 
 

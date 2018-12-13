@@ -570,6 +570,8 @@ class Mission
 		return NULL;
 	}
 	
+	bool IsPlayerDisconnecting(Man player);
+	
 	UIScriptedMenu	CreateScriptedMenu( int id ) 
 	{ 
 		return NULL;

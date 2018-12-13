@@ -30,6 +30,11 @@ class MediumTent extends TentBase
 		return "MediumTent_Door_Close_SoundSet";
 	}
 	
+	override bool HasClutterCutter()
+	{
+		return true;
+	}
+	
 	override string GetClutterCutter()
 	{
 		return "MediumTentClutterCutter";

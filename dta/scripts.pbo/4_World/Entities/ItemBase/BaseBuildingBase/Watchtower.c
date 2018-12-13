@@ -24,12 +24,6 @@ class Watchtower extends BaseBuildingBase
 		InventorySlots.GetSelectionForSlotId( slotId , slot_name );
 		slot_name.ToLower();
 		
-		//attachments
-		if ( attachment.Type() == ATTACHMENT_BARBED_WIRE || attachment.Type() == ATTACHMENT_CAMONET )
-		{
-			return HasBase();
-		}		
-		
 		//wall attachments
 		//level 1
 		if ( slot_name.Contains( "material_l1" ) || slot_name.Contains( "level_1_" ) )

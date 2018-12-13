@@ -30,6 +30,11 @@ class CarTent extends TentBase
 		return "CarTent_Door_Close_SoundSet";
 	}
 	
+	override bool HasClutterCutter()
+	{
+		return false;
+	}
+	
 	//================================================================
 	// ADVANCED PLACEMENT
 	//================================================================

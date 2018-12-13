@@ -631,7 +631,7 @@ class CfgSlots
 	{
 		name="SeedBase_1";
 		displayName="SeedBase_1";
-		selection="slotDigged_01";
+		selection="SeedBase_1";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -639,7 +639,7 @@ class CfgSlots
 	{
 		name="SeedBase_2";
 		displayName="SeedBase_2";
-		selection="slotDigged_02";
+		selection="SeedBase_2";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -647,7 +647,7 @@ class CfgSlots
 	{
 		name="SeedBase_3";
 		displayName="SeedBase_3";
-		selection="slotDigged_03";
+		selection="SeedBase_3";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -655,7 +655,7 @@ class CfgSlots
 	{
 		name="SeedBase_4";
 		displayName="SeedBase_4";
-		selection="slotDigged_04";
+		selection="SeedBase_4";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -663,7 +663,7 @@ class CfgSlots
 	{
 		name="SeedBase_5";
 		displayName="SeedBase_5";
-		selection="slotDigged_05";
+		selection="SeedBase_5";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -671,7 +671,7 @@ class CfgSlots
 	{
 		name="SeedBase_6";
 		displayName="SeedBase_6";
-		selection="slotDigged_06";
+		selection="SeedBase_6";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -679,7 +679,7 @@ class CfgSlots
 	{
 		name="SeedBase_7";
 		displayName="SeedBase_7";
-		selection="slotDigged_07";
+		selection="SeedBase_7";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -687,7 +687,7 @@ class CfgSlots
 	{
 		name="SeedBase_8";
 		displayName="SeedBase_8";
-		selection="slotDigged_08";
+		selection="SeedBase_8";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};
@@ -695,7 +695,7 @@ class CfgSlots
 	{
 		name="SeedBase_9";
 		displayName="SeedBase_9";
-		selection="slotDigged_09";
+		selection="SeedBase_9";
 		ghostIcon="seedbase";
 		stackMax=1;
 	};

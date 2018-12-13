@@ -22,6 +22,13 @@ class ActionRemovePlant: ActionInteractBase
 	{
 		return "#remove_plant";
 	}
+	
+	override void CreateConditionComponents()  
+	{	
+		
+		m_ConditionTarget = new CCTNone;
+		m_ConditionItem = new CCINone;
+	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{

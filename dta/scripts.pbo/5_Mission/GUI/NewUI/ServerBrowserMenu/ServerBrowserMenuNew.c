@@ -149,6 +149,9 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	void SetRefreshing( bool refreshing )
 	{
 		m_IsRefreshing = refreshing;
+		
+		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
+		OnlineServices.m_ServersAsyncInvoker.Insert( OnLoadServersAsync );
 	}
 
 	TabType IsRefreshing()
@@ -380,8 +383,13 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	void SelectServer( ServerBrowserEntry server )
 	{
 		if( m_SelectedServer )
+		{
 			m_SelectedServer.Deselect();
+		}
+		
 		m_SelectedServer = server;
+		
+		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
 	}
 	
 	void Connect( ServerBrowserEntry server )

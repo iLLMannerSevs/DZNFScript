@@ -522,7 +522,7 @@ class PPEffects
 	{
 		Material matHDR = GetGame().GetWorld().GetMaterial("Graphics/Materials/postprocess/filmgrain");
 		matHDR.SetParam("GrainSize",   1.75);
-		matHDR.SetParam("IntensityX0", 0.017);
+		matHDR.SetParam("IntensityX0", 0.0013);
 	}
 	
 	// EV check for NV optics

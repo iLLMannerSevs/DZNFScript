@@ -173,7 +173,7 @@ class ZombieContainer: CollapsibleContainer
 	void SetHeaderName()
 	{
 		Header h = Header.Cast( m_Body.Get( 0 ) );
-		h.SetName( "ZOMBIE CONTAINER" );
+		h.SetName( "#container_inventory"/*"ZOMBIE CONTAINER"*/ );
 	}
 
 	override void UpdateInterval()

@@ -573,7 +573,7 @@ const float PROJECTED_CURSOR_DISTANCE = 5;//how long is the raycast from the wea
 const float DZPLAYER_CAMERA_FOV_EYEZOOM		= 0.3926;	// 45deg
 const float DZPLAYER_CAMERA_FOV_IRONSIGHTS	= 0.5236;	// 60deg
 
-const string DEFAULT_CHARACTER_NAME = "Survivor";
+const string DEFAULT_CHARACTER_NAME = "#str_cfgvehicles_survivor0"; //experiment, used to be "Survivor"
 
 
 /**

@@ -54,6 +54,11 @@ class LargeTent extends TentBase
 		return "LargeTent_Window_Close_SoundSet";
 	}
 		
+	override bool HasClutterCutter()
+	{
+		return true;
+	}
+	
 	override string GetClutterCutter()
 	{
 		return "LargeTentClutterCutter";

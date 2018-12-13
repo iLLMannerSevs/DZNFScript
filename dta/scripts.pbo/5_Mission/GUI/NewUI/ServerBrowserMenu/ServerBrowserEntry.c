@@ -68,7 +68,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		float alpha = 0.1;
 		if( m_Index % 2 )
 		{
-			alpha = 0.2;
+			alpha = 0.3;
 		}
 		m_Root.SetAlpha( alpha );
 		m_Root.SetHandler( this );
@@ -128,8 +128,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 				ToggleExpand();
 				return true;
 			}
-			else
-			if( w == m_Root )
+			else if( w == m_Root )
 			{
 				Select();
 				return true;
@@ -464,7 +463,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 			}
 			m_Selected = true;
 			#ifdef PLATFROM_XBOX
-				m_Root.SetColor( 1, 0.3, 0.3, 0.3 ) );
+				m_Root.SetColor( ARGB( 1, 50, 50, 50 ) );
 			#endif
 		}
 	}
@@ -474,7 +473,13 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		if( m_Selected )
 		{
 			m_Selected = false;
-			m_Root.SetColor( ARGB( 0, 0, 0, 0 ) );
+			float alpha = 0.1;
+			if( m_Index % 2 )
+			{
+				alpha = 0.3;
+			}
+			m_Root.SetColor( ARGB( alpha, 50, 50, 50 ) );
+			
 			Lighten( m_Root, null, 0, 0 );
 		}
 	}

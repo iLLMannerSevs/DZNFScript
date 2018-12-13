@@ -41,8 +41,10 @@ class Roadflare : ItemBase
 	static protected int 		PARTICLE_FINAL_SMOKE 	= ParticleList.ROADFLARE_BURNING_SMOKE;
 	
 	// Sounds
-	protected SoundOnVehicle		m_LoopSoundEntity;
-	static protected const string	BURNING_SOUND 		= "roadflareLoop";
+	protected EffectSound 			m_BurningSound;
+	protected EffectSound 			m_IgniteSound;
+	static protected const string	BURNING_SOUND 		= "roadflareLoop_SoundSet";
+	static protected const string	IGNITE_SOUND 		= "roadflareTurnOn_SoundSet";
 	static protected const int		BURNING_NOISE_RANGE = 30;
 	
 	// Timers
@@ -88,9 +90,9 @@ class Roadflare : ItemBase
 		
 		if ( GetGame() )
 		{
-			if ( m_LoopSoundEntity != NULL )
+			if ( m_BurningSound )
 			{
-				GetGame().ObjectDelete( m_LoopSoundEntity );
+				StopSoundSet( m_BurningSound );
 			}
 			
 			delete m_FinalSmokeTimer;
@@ -178,7 +180,10 @@ class Roadflare : ItemBase
 		SwitchLight(true);
 		
 		if ( !GetGame().IsServer()  ||  !GetGame().IsMultiplayer())
-			m_LoopSoundEntity = PlaySoundLoop(BURNING_SOUND, BURNING_NOISE_RANGE);
+		{
+			PlaySoundSetLoop( m_BurningSound, BURNING_SOUND, 0.5, 0 );
+			PlaySoundSet( m_IgniteSound, IGNITE_SOUND, 0, 0 );
+		}
 		
 		SetBurningState(RoadflareBurningState.INITIAL_BURN);
 		SetModelState( RoadflareModelStates.UNCAPPED_IGNITED );
@@ -263,9 +268,9 @@ class Roadflare : ItemBase
 		}
 		
 		
-		if ( m_LoopSoundEntity != NULL && GetGame() != NULL )
+		if ( m_BurningSound )
 		{
-			GetGame().ObjectDelete( m_LoopSoundEntity );
+			StopSoundSet( m_BurningSound );
 		}
 		
 		SetModelState( RoadflareModelStates.UNCAPPED_BURNED_OUT );

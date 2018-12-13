@@ -6,7 +6,7 @@ class GardenPlot extends GardenBase
 	
 	void GardenPlot()
 	{
-		SetBaseFertility(0.75);
+		SetBaseFertility(1); // TO DO: Change to ~0.75
 	}
 	
 	override void EEInit()
@@ -41,15 +41,15 @@ class GardenPlot extends GardenBase
 
 	void RefreshSlots()
 	{
-		HideSelection("slotDigged_01");
-		HideSelection("slotDigged_02");
-		HideSelection("slotDigged_03");
-		HideSelection("slotDigged_04");
-		HideSelection("slotDigged_05");
-		HideSelection("slotDigged_06");
-		HideSelection("slotDigged_07");
-		HideSelection("slotDigged_08");
-		HideSelection("slotDigged_09");
+		HideSelection("SeedBase_1");
+		HideSelection("SeedBase_2");
+		HideSelection("SeedBase_3");
+		HideSelection("SeedBase_4");
+		HideSelection("SeedBase_5");
+		HideSelection("SeedBase_6");
+		HideSelection("SeedBase_7");
+		HideSelection("SeedBase_8");
+		HideSelection("SeedBase_9");
 	}
 	
 	//================================================================

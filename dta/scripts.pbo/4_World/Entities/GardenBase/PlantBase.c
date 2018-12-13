@@ -48,7 +48,7 @@ class PlantBase extends ItemBase
 		m_DeleteDryPlantTime = (60 * 10) + Math.RandomInt(0, 60 * 2);
 		m_SpoiledRemoveTime = (60 * 20) + Math.RandomInt(0, 60 * 5);
 		
-		m_InfestationChance = 0.5;
+		m_InfestationChance = 0.0; // Temporarily disabled until its fixed. Infestation is not visualy persistent over server restarts and m_SpoiledRemoveTimer crashes when it's meant to delete the plant.
 		
 		string plant_type = this.GetType();
 		m_GrowthStagesCount = GetGame().ConfigGetInt( "cfgVehicles " + plant_type + " Horticulture GrowthStagesCount" );
@@ -76,11 +76,12 @@ class PlantBase extends ItemBase
 	{
 		m_GardenBase = garden_base;
 		
-		float divided = (float) ((60 * 5) + Math.RandomInt(0, 60 * 1)) / fertility;
+		float divided = (float) ((60 * 27) + Math.RandomInt(0, 60 * 6)) / fertility;
+		Print(divided);
 		m_FullMaturityTime = divided;
 		
-		divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
-		m_SpoilAfterFullMaturityTime = divided;
+		//divided = (float)((60 * 30) + Math.RandomInt(0, 60 * 30)) * fertility;
+		m_SpoilAfterFullMaturityTime = divided*5;
 
 		divided = (float)((float)m_FullMaturityTime / ((float)m_GrowthStagesCount - 2.0));
 		m_StateChangeTime = divided;
@@ -264,7 +265,9 @@ class PlantBase extends ItemBase
 		{
 			if (GetGame().IsServer())
 			{
-				m_SpoiledRemoveTimer = new Timer( CALL_CATEGORY_SYSTEM );
+				if (!m_SpoiledRemoveTimer)
+					m_SpoiledRemoveTimer = new Timer( CALL_CATEGORY_SYSTEM );
+				
 				m_SpoiledRemoveTimer.Run( loadFloat, this, "SpoiledRemoveTimerTick", NULL, false );
 			}
 		}
@@ -522,7 +525,7 @@ class PlantBase extends ItemBase
 			m_GrowthTimer.Stop();
 		}
 		
-		//RemoveSlot();
+		RemoveSlot();
 	}
 	
 	void DeleteDryPlantTick()
@@ -544,8 +547,11 @@ class PlantBase extends ItemBase
 			
 			if (GetGame().IsServer())
 			{
-				m_SpoiledRemoveTimer = new Timer( CALL_CATEGORY_SYSTEM );
-				m_SpoiledRemoveTimer.Run( m_SpoiledRemoveTime, this, "SpoiledRemoveTimerTick", NULL, false );
+				if (!m_SpoiledRemoveTimer)
+					m_SpoiledRemoveTimer = new Timer( CALL_CATEGORY_SYSTEM );
+				
+				if (!m_SpoiledRemoveTimer.IsRunning())
+					m_SpoiledRemoveTimer.Run( m_SpoiledRemoveTime, this, "SpoiledRemoveTimerTick", NULL, false );
 			}
 		}
 	}
@@ -598,13 +604,7 @@ class PlantBase extends ItemBase
 	{
 		if ( GetGame()  &&  GetGame().IsServer() )
 		{
-			if (m_GardenBase)
-			{
-				// Unlock plant
-				InventoryLocation inventory_location = new InventoryLocation;
-				GetInventory().GetCurrentInventoryLocation( inventory_location );
-				m_GardenBase.GetInventory().SetSlotLock( inventory_location.GetSlot(), false );
-			}
+			UnlockFromParent();
 			
 			if ( m_CurrentPlantMaterialQuantity > 0.0 )
 			{
@@ -713,6 +713,12 @@ class PlantBase extends ItemBase
 	{
 		if ( m_GardenBase )
 		{
+			if (m_SpoiledRemoveTimer)
+			{
+				m_SpoiledRemoveTimer.Stop();
+				m_SpoiledRemoveTimer = NULL;
+			}
+			
 			m_GardenBase.RemoveSlotPlant( this );
 		}
 	}
