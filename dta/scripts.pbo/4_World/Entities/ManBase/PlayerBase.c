@@ -779,7 +779,6 @@ class PlayerBase extends ManBase
 	override void GetSingleUseActions(out TIntArray actions)
 	{
 		//actions.Insert(AT_WORLD_CRAFT_CANCEL); 
-		actions.Insert(AT_WORLD_CRAFT_SWITCH);
 		actions.Insert(AT_WORLD_LIQUID_ACTION_SWITCH);
 		actions.Insert(AT_VEH_ENGINE_STOP);
 		actions.Insert(AT_VEH_SWITCH_SEATS);
@@ -792,7 +791,6 @@ class PlayerBase extends ManBase
 		actions.Insert(AT_UNCOVER_HEAD_S);
 		actions.Insert(AT_UNCOVER_HEAD_T);
 		actions.Insert(AT_ATTACHED);
-		actions.Insert(AT_WORLD_CRAFT);
 		//actions.Insert(AT_DRINK_POND); //<-- moved to interact (will be reused for continuous in future)
 		//actions.Insert(AT_DRINK_WELL); //<-- moved to interact (will be reused for continuous in future)
 		actions.Insert(AT_IGNITE_FIREPLACE_BY_AIR);
@@ -916,21 +914,47 @@ class PlayerBase extends ManBase
 	void SetRestrained(bool	is_restrained)
 	{
 		m_IsRestrained = is_restrained;
-		
-		if( is_restrained )
-		{
-			GetInventory().LockInventory(LOCK_FROM_SCRIPT);
-		}
-		else
-		{
-			GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
-		}
 		SetSynchDirty();
 	}
 	
 	override bool IsRestrained()
 	{
 		return m_IsRestrained;
+	}
+	
+	bool CanManipulateInventory()
+	{
+		return ( !IsControlledPlayer() || !IsRestrained() );
+	}
+	
+	override bool CanReleaseAttachment (EntityAI attachment)
+	{
+		return CanManipulateInventory() && super.CanReleaseAttachment(attachment);
+	}
+	
+	override bool CanReleaseCargo (EntityAI cargo)
+	{
+		return CanManipulateInventory() && super.CanReleaseCargo(cargo);
+	}
+	
+	override bool CanReceiveItemIntoCargo (EntityAI cargo)
+	{
+		return CanManipulateInventory() && super.CanReceiveItemIntoCargo(cargo);
+	}
+	
+	override bool CanReceiveAttachment (EntityAI attachment, int slotId)
+	{
+		return CanManipulateInventory() && super.CanReceiveAttachment(attachment, slotId);
+	}
+	
+	override bool CanReceiveItemIntoHands (EntityAI item_to_hands)
+	{
+		return CanManipulateInventory() && super.CanReceiveItemIntoHands(item_to_hands);
+	}
+	
+	override bool CanReleaseFromHands (EntityAI handheld)
+	{
+		return CanManipulateInventory() && super.CanReleaseFromHands(handheld);
 	}
 	
 	int GetCraftingRecipeID()
@@ -2127,6 +2151,12 @@ class PlayerBase extends ManBase
 		AddHealth("","Shock",shock);
 	}
 	
+	
+	void OnRestrainStart()
+	{
+		CloseInventoryMenu();
+		GetGame().GetMission().PlayerControlEnable();
+	}
 	
 	void ShockRefill(float pDt)
 	{
@@ -3897,25 +3927,25 @@ class PlayerBase extends ManBase
 		}
 	}
 
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		m_aQuickBarLoad = new array<ref Param2<EntityAI,int>>;
 
 		ctx.Read( m_StoreLoadVersion );
-		super.OnStoreLoad( ctx );
+		super.OnStoreLoad( ctx, version );
 
-		GetHumanInventory().OnStoreLoad(ctx); // FSM of hands
+		GetHumanInventory().OnStoreLoad(ctx, version); // FSM of hands
 		OnStoreLoadLifespan( ctx );
 
 		if ( GetDayZGame().IsServer() && GetDayZGame().IsMultiplayer() )
 		{
 			// TODO vratajin :: this is potentionally dangerous
 			//                  you have no info about what was written and what's not
-			if( GetPlayerStats() ) GetPlayerStats().LoadStats(ctx); // load stats
-			if( m_ModifiersManager ) m_ModifiersManager.OnStoreLoad(ctx);// load modifiers
-			if( m_AgentPool ) m_AgentPool.OnStoreLoad(ctx);//load agents
-			if( GetSymptomManager() ) GetSymptomManager().OnStoreLoad(ctx);//save states
-			if( GetBleedingManagerServer() ) GetBleedingManagerServer().OnStoreLoad(ctx);//save bleeding sources
+			if( GetPlayerStats() ) GetPlayerStats().LoadStats(ctx, version); // load stats
+			if( m_ModifiersManager ) m_ModifiersManager.OnStoreLoad(ctx, version);// load modifiers
+			if( m_AgentPool ) m_AgentPool.OnStoreLoad(ctx, version);//load agents
+			if( GetSymptomManager() ) GetSymptomManager().OnStoreLoad(ctx, version);//save states
+			if( GetBleedingManagerServer() ) GetBleedingManagerServer().OnStoreLoad(ctx, version);//save bleeding sources
 		}
 	}
 

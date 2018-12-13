@@ -2029,13 +2029,16 @@ class CfgVehicles
 								0.5,
 								
 								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"
 								}
 							},
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"
+								}
 							},
 							
 							{
@@ -2200,13 +2203,16 @@ class CfgVehicles
 								0.5,
 								
 								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"
 								}
 							},
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"
+								}
 							},
 							
 							{
@@ -2440,6 +2446,24 @@ class CfgVehicles
 				initPhase=0;
 				animPeriod=0.80000001;
 			};
+			class damper_1_1
+			{
+				source="user";
+				initPhase=0.48570001;
+				animPeriod=1;
+			};
+			class damper_2_1: damper_1_1
+			{
+			};
+			class damper_1_2
+			{
+				source="user";
+				initPhase=0.40020001;
+				animPeriod=1;
+			};
+			class damper_2_2: damper_1_2
+			{
+			};
 		};
 		class DamageSystem
 		{
@@ -2558,8 +2582,102 @@ class CfgVehicles
 						"dmgZone_front"
 					};
 					fatalInjuryCoef=-1;
+					inventorySlotsCoefs[]={0.30000001,0.30000001};
 					inventorySlots[]=
 					{
+						"NivaHood",
+						"CarRadiator"
+					};
+				};
+				class Reflector_1_1
+				{
+					class Health
+					{
+						hitpoints=10;
+						transferToGlobalCoef=0;
+						healthLevels[]=
+						{
+							
+							{
+								1,
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\headlights_glass.rvmat"
+								}
+							},
+							
+							{
+								0.69999999,
+								{}
+							},
+							
+							{
+								0.5,
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\glass_i_damage.rvmat"
+								}
+							},
+							
+							{
+								0.30000001,
+								{}
+							},
+							
+							{
+								0,
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\glass_i_destruct.rvmat"
+								}
+							}
+						};
+					};
+					transferToZonesNames[]=
+					{
+						"Front",
+						"Fender_1_1",
+						"Engine"
+					};
+					transferToZonesCoefs[]={1,1,1};
+					memoryPoints[]=
+					{
+						"dmgZone_lights_1_1"
+					};
+					componentNames[]=
+					{
+						"dmgZone_lights_1_1"
+					};
+					fatalInjuryCoef=-1;
+					inventorySlotsCoefs[]={1,0.30000001,0.30000001};
+					inventorySlots[]=
+					{
+						"Reflector_1_1",
+						"NivaHood",
+						"CarRadiator"
+					};
+				};
+				class Reflector_2_1: Reflector_1_1
+				{
+					transferToZonesNames[]=
+					{
+						"Front",
+						"Fender_2_1",
+						"Engine"
+					};
+					transferToZonesCoefs[]={1,1,1};
+					memoryPoints[]=
+					{
+						"dmgZone_lights_2_1"
+					};
+					componentNames[]=
+					{
+						"dmgZone_lights_2_1"
+					};
+					inventorySlotsCoefs[]={1,0.30000001,0.30000001};
+					inventorySlots[]=
+					{
+						"Reflector_1_1",
 						"NivaHood",
 						"CarRadiator"
 					};
@@ -2747,6 +2865,7 @@ class CfgVehicles
 						"dmgZone_fender_1_1"
 					};
 					fatalInjuryCoef=-1;
+					inventorySlotsCoefs[]={0.30000001,0.30000001,0.30000001};
 					inventorySlots[]=
 					{
 						"NivaHood",
@@ -2772,6 +2891,7 @@ class CfgVehicles
 					{
 						"dmgZone_fender_1_2"
 					};
+					inventorySlotsCoefs[]={0.30000001,0.1};
 					inventorySlots[]=
 					{
 						"NivaTrunk",
@@ -2798,6 +2918,7 @@ class CfgVehicles
 					{
 						"dmgZone_fender_2_1"
 					};
+					inventorySlotsCoefs[]={0.30000001,0.2,31};
 					inventorySlots[]=
 					{
 						"NivaHood",
@@ -2823,6 +2944,7 @@ class CfgVehicles
 					{
 						"dmgZone_fender_2_2"
 					};
+					inventorySlotsCoefs[]={0.30000001,0.1};
 					inventorySlots[]=
 					{
 						"NivaTrunk",
@@ -2855,13 +2977,16 @@ class CfgVehicles
 								0.5,
 								
 								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"
 								}
 							},
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"
+								}
 							},
 							
 							{
@@ -2907,13 +3032,16 @@ class CfgVehicles
 								0.5,
 								
 								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"
 								}
 							},
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"
+								}
 							},
 							
 							{
@@ -2997,6 +3125,7 @@ class CfgVehicles
 						"dmgZone_engine"
 					};
 					fatalInjuryCoef=0.001;
+					inventorySlotsCoefs[]={0.2,0.2,0.0099999998,0.40000001};
 					inventorySlots[]=
 					{
 						"CarBattery",
@@ -3046,93 +3175,6 @@ class CfgVehicles
 					};
 					fatalInjuryCoef=-1;
 					inventorySlots[]={};
-				};
-				class Reflector_1_1
-				{
-					class Health
-					{
-						hitpoints=50;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\headlights_glass.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\glass_i_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\data\glass_i_destruct.rvmat"
-								}
-							}
-						};
-					};
-					transferToZonesNames[]=
-					{
-						"Front",
-						"Fender_1_1",
-						"Engine"
-					};
-					transferToZonesCoefs[]={1,1,1};
-					memoryPoints[]=
-					{
-						"dmgZone_lights_1_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_lights_1_1"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]=
-					{
-						"Reflector_1_1"
-					};
-				};
-				class Reflector_2_1: Reflector_1_1
-				{
-					transferToZonesNames[]=
-					{
-						"Front",
-						"Fender_2_1",
-						"Engine"
-					};
-					transferToZonesCoefs[]={1,1,1};
-					memoryPoints[]=
-					{
-						"dmgZone_lights_2_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_lights_2_1"
-					};
-					inventorySlots[]=
-					{
-						"Reflector_2_1"
-					};
 				};
 			};
 		};

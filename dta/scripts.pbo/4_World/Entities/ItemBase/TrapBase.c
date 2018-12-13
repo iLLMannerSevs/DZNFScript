@@ -114,9 +114,9 @@ class TrapBase extends ItemBase
 	}
 	
 	//----------------------------------------------------------------
-	override void OnStoreLoad(ParamsReadContext ctx)
+	override void OnStoreLoad(ParamsReadContext ctx, int version)
 	{   
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 		
 		bool b_is_active = false;
 		ctx.Read( b_is_active );

@@ -14,7 +14,7 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		int i;
 		if( m_Entity )
 		{
-			EntityAI e;
+			EntityAI e;/*
 			array<EntityAI> cargo_attachments = m_Entity.GetAttachmentsWithCargo();
 			if( cargo_attachments && m_AttachmentCargoContainers )
 			{
@@ -94,7 +94,7 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 					}
 				}
 			}
-			
+			*/
 			if( m_Entity.GetInventory().IsInventoryLockedForLockType( HIDE_INV_FROM_SCRIPT ) || m_Closed )
 			{
 				HideContent();

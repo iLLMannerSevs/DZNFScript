@@ -512,7 +512,7 @@ class GameInventory
 	void Init () { }
 
 	/// db load hooks
-	void OnStoreLoad (ParamsReadContext ctx) { }
+	void OnStoreLoad (ParamsReadContext ctx, int version) { }
 	void OnAfterStoreLoad () { }
 	/// db store hook
 	void OnStoreSave (ParamsWriteContext ctx) { }

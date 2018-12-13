@@ -108,9 +108,9 @@ class Roadflare : ItemBase
 		ctx.Write( m_ModelState );
 	}
 	
-	override void OnStoreLoad(ParamsReadContext ctx)
+	override void OnStoreLoad(ParamsReadContext ctx, int version)
 	{
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 		
 		int state;
 		ctx.Read(state);

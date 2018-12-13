@@ -1480,7 +1480,7 @@ class DayZPlayerImplement extends DayZPlayer
 				//top
 				if (Clothing.CastTo(clothes,FindAttachmentBySlotName("Body")))
 				{
-					if(!GetInventory().IsPlaceholderEntity(clothes))
+					if(optic.GetCurrentStepFOV() < DZPLAYER_CAMERA_FOV_IRONSIGHTS/*0.5*/ )
 						clothes.SetInvisible(true);
 				}
 			}

@@ -332,6 +332,7 @@ class ActionManagerClient: ActionManagerBase
 		ref TIntArray primary_action_ids = new TIntArray;
 		ActionBase picked_action;
 		
+		primary_action_ids.Insert(AT_WORLD_CRAFT);
 		if ( item )
 		{
 			item.GetContinuousActions(primary_action_ids);
@@ -365,6 +366,7 @@ class ActionManagerClient: ActionManagerBase
 		ref TIntArray secondary_action_ids = new TIntArray;
 		ActionBase picked_action;
 
+		secondary_action_ids.Insert(AT_WORLD_CRAFT_SWITCH);
 		// Adding actions of item
 		if ( item )
 		{

@@ -382,11 +382,11 @@ class ItemManager
 			{
 				if ( item && item.IsInherited( ItemBase ) )
 				{
-					int color = ColorManager.GetInstance().GetItemColor( ItemBase.Cast( item ) ); // !!!!!
+					int color = ColorManager.GetInstance().GetItemColor( ItemBase.Cast( item ) );
 
 					if ( color )
 					{
-						Widget color_widget = item_w.FindAnyWidget("Color");
+						Widget color_widget = item_w.FindAnyWidget( "Color" );
 						if( color != -1 )
 						{
 							color_widget.SetColor( color );

@@ -453,11 +453,17 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 		m_FiltersChanged.Show( true );
 	}
 	
+	void ResetFilters()
+	{
+		m_Filters.ResetFilters();
+		ApplyFilters();
+	}
+	
 	void ApplyFilters()
 	{
 		m_Filters.SaveFilters();
 		m_FiltersChanged.Show( false );
-		m_CurrentFilterInput = m_Filters.GetFilterOptions();
+		m_CurrentFilterInput = m_Filters.GetFilterOptions();		
 		RefreshList();
 	}
 	
@@ -1107,18 +1113,25 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			button.SetTextColor( ARGB( 255, 255, 0, 0 ) );
 		}
 		
-		TextWidget text		= TextWidget.Cast(w.FindWidget( w.GetName() + "_text" ) );
-		TextWidget text2	= TextWidget.Cast(w.FindWidget( w.GetName() + "_text_1" ) );
-		ImageWidget image	= ImageWidget.Cast( w.FindWidget( w.GetName() + "_image" ) );
+		TextWidget text1	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
+		TextWidget text2	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_label" ) );
+		TextWidget text3	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text_1" ) );
+		ImageWidget image	= ImageWidget.Cast( w.FindAnyWidget( w.GetName() + "_image" ) );
 		
-		if( text )
+		if( text1 )
 		{
-			text.SetColor( ARGB( 255, 255, 0, 0 ) );
+			text1.SetColor( ARGB( 255, 255, 0, 0 ) );
 		}
 		
 		if( text2 )
 		{
 			text2.SetColor( ARGB( 255, 255, 0, 0 ) );
+		}
+		
+		if( text3 )
+		{
+			text3.SetColor( ARGB( 255, 255, 0, 0 ) );
+			w.SetAlpha(1);
 		}
 		
 		if( image )
@@ -1135,18 +1148,25 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
 		}
 		
-		TextWidget text		= TextWidget.Cast(w.FindWidget( w.GetName() + "_text" ) );
-		TextWidget text2	= TextWidget.Cast(w.FindWidget( w.GetName() + "_text_1" ) );
-		ImageWidget image	= ImageWidget.Cast( w.FindWidget( w.GetName() + "_image" ) );
+		TextWidget text1	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
+		TextWidget text2	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text_1" ) );
+		TextWidget text3	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_label" ) );
+		ImageWidget image	= ImageWidget.Cast( w.FindAnyWidget( w.GetName() + "_image" ) );
 		
-		if( text )
+		if( text1 )
 		{
-			text.SetColor( ARGB( 255, 255, 255, 255 ) );
+			text1.SetColor( ARGB( 255, 255, 255, 255 ) );
 		}
 		
 		if( text2 )
 		{
 			text2.SetColor( ARGB( 255, 255, 255, 255 ) );
+		}
+		
+		if( text3 )
+		{
+			text3.SetColor( ARGB( 255, 255, 255, 255 ) );
+			w.SetAlpha(0);
 		}
 		
 		if( image )

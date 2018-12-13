@@ -1,5 +1,6 @@
 class InGameMenuXbox extends UIScriptedMenu
 {
+#ifdef PLATFORM_CONSOLE
 	protected ref PlayerListScriptedWidget	m_ServerInfoPanel;
 	
 	protected Widget						m_OnlineMenu;
@@ -640,4 +641,5 @@ class InGameMenuXbox extends UIScriptedMenu
 			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
 		}
 	}
+#endif
 }

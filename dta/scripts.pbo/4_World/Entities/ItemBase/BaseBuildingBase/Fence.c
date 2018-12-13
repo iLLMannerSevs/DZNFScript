@@ -120,9 +120,9 @@ class Fence extends BaseBuildingBase
 		ctx.Write( m_IsOpened );
 	}
 	
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad( ctx );
+		super.OnStoreLoad( ctx, version );
 		
 		//has gate
 		ctx.Read( m_HasGate );			

@@ -246,9 +246,9 @@ class FireplaceBase extends ItemBase
 		ctx.Write( IsBurning() );
 	}
 	
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 
 		//Load ashes state
 		bool has_ashes = false;

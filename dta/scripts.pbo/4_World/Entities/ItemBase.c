@@ -2087,9 +2087,9 @@ class ItemBase extends InventoryItem
 
 
 	//----------------------------------------------------------------
-	override void OnStoreLoad(ParamsReadContext ctx)
+	override void OnStoreLoad(ParamsReadContext ctx, int version)
 	{   
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 		PlayerBase player;
 		if( Class.CastTo(player, GetHierarchyRootPlayer()) )
 		{

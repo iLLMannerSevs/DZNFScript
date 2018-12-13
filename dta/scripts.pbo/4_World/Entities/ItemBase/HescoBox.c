@@ -230,9 +230,9 @@ class HescoBox extends Inventory_Base
 		ctx.Write( m_State );
 	}
 
-	override void OnStoreLoad(ParamsReadContext ctx)
+	override void OnStoreLoad(ParamsReadContext ctx, int version)
 	{   
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 		
 		// Load folded/unfolded state
 		int state = FOLDED;

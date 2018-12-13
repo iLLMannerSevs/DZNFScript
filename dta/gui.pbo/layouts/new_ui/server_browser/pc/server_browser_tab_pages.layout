@@ -9,7 +9,7 @@ FrameWidgetClass server_browser_tab_root {
  {
   GridSpacerWidgetClass server_list_root {
    ignorepointer 1
-   color 0 0 0 0.8627
+   color 0 0 0 0.651
    position 80 0
    size 0.6 1
    hexactpos 1
@@ -805,7 +805,7 @@ FrameWidgetClass server_browser_tab_root {
   }
   GridSpacerWidgetClass filters_root {
    ignorepointer 1
-   color 0 0 0 0.8627
+   color 0 0 0 0.651
    position 80 0
    size 0.26 1
    halign right_ref
@@ -825,7 +825,7 @@ FrameWidgetClass server_browser_tab_root {
    {
     PanelWidgetClass filters_header {
      ignorepointer 1
-     color 0 0 0 0.8627
+     color 0 0 0 0.8039
      position 0 0
      size 1 40
      hexactpos 1
@@ -2064,6 +2064,19 @@ FrameWidgetClass server_browser_tab_root {
      vexactsize 1
      style Empty
      text "#STR_server_browser_tab_root_filters_root_filters_content_apply_filter_button0"
+     text_proportion 0.55
+     font "gui/fonts/sdf_MetronLight24"
+    }
+    ButtonWidgetClass reset_filter_button {
+     ignorepointer 0
+     position 0 0
+     size 1 30
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Empty
+     text "#server_browser_filter_reset"
      text_proportion 0.55
      font "gui/fonts/sdf_MetronLight24"
     }

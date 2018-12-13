@@ -409,7 +409,7 @@ class MissionGameplay extends MissionBase
 		
 			if( input.GetActionDown(UAGear, false ) )
 			{
-				if( !inventory )
+				if( !inventory && playerPB.CanManipulateInventory() )
 				{
 					ShowInventory();
 				}

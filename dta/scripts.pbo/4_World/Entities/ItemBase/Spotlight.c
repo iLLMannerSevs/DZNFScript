@@ -147,9 +147,9 @@ class Spotlight extends ItemBase
 		ctx.Write( m_IsFolded );
 	}
 
-	override void OnStoreLoad(ParamsReadContext ctx)
+	override void OnStoreLoad(ParamsReadContext ctx, int version)
 	{   
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 		
 		// Load folded/unfolded state
 		bool b_is_folded = false;

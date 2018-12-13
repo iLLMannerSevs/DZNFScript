@@ -93,7 +93,7 @@ class BleedingSourcesManagerServer extends BleedingSourcesManagerBase
 		
 	}
 
-	void OnStoreLoad( ParamsReadContext ctx )
+	void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		int active_bits;
 		ctx.Read(active_bits);

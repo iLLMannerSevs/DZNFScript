@@ -640,11 +640,17 @@ class MenuData: Managed
 	proto native int 	GetLastPlayedCharacter();
 	proto native Man 	CreateCharacterPerson(int index);
 	
+	proto void 			GetLastServerAddress(int index, out string address);
+	proto native int 	GetLastServerPort(int index);
+	
 	proto void 			GetCharacterName(int index, out string name);
 	proto native void 	SetCharacterName(int index, string newName);
+	// save character is set as last played character 
+	proto native void 	SaveCharacter(bool localPlayer, bool verified);
+	proto native void 	SaveDefaultCharacter(Man character);
 	
-	proto native void 	SaveCharacters();
-	proto native void 	LoadCharacters();
+	proto native void 	SaveCharactersLocal();
+	proto native void 	LoadCharactersLocal();
 	proto native void 	ClearCharacters();
 	
 	//proto native void	GetCharacterStringList(int characterID, string name, out TStringArray values);

@@ -54,6 +54,8 @@ class GetServersResultRow
   	int m_Disable3rdPerson;  //1 for disabled, ie. hardcore
 	//! time multiplier of environment
 	float m_EnvironmentTimeMul;
+	string m_ShardId;
+	bool		m_AllowedFilePatching;
 
 };
 
@@ -297,6 +299,12 @@ class GetServersInput
 	void SetAcceleratedTime( bool show )
 	{
 		m_SortBy += "A";
+		AddShow( show );
+	}
+
+	void SetAllowedFilePatching( bool show )
+	{
+		m_SortBy += "7";
 		AddShow( show );
 	}
 	

@@ -575,6 +575,7 @@ const float DZPLAYER_CAMERA_FOV_IRONSIGHTS	= 0.5236;	// 60deg
 
 const string DEFAULT_CHARACTER_NAME = "#str_cfgvehicles_survivor0"; //experiment, used to be "Survivor"
 
+const int DEFAULT_CHARACTER_MENU_ID = -1;
 
 /**
   * \ misc

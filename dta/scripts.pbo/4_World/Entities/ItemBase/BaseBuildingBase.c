@@ -331,9 +331,9 @@ class BaseBuildingBase extends ItemBase
 		ctx.Write( m_HasBase );
 	}
 	
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad( ctx );
+		super.OnStoreLoad( ctx, version );
 		
 		//Restore synced parts data
 		//sync parts 01

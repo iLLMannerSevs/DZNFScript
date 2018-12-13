@@ -106,9 +106,9 @@ class GardenBase extends Building
 		}
 	}
 
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad( ctx );
+		super.OnStoreLoad( ctx, version );
 		Print("OnStoreLoad GARDEN BASE");
 		ctx.Read( m_BaseFertility );
 		

@@ -17,6 +17,7 @@ class ContainerWithElectricManager: ClosableContainer
 		if( m_Entity )
 		{
 			int i;
+			/*
 			array<EntityAI> cargo_attachments = m_Entity.GetAttachmentsWithCargo();
 			if( cargo_attachments && m_AttachmentCargoGrids )
 			{
@@ -56,7 +57,7 @@ class ContainerWithElectricManager: ClosableContainer
 					}
 				}
 			}
-			
+			*/
 			m_Atts.RefreshAtt();
 			RefreshSocketIcons();
 			ElectricityIcon();

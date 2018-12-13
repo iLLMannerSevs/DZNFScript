@@ -1167,12 +1167,12 @@ FrameWidgetClass main_menu_root {
    visible 1
    ignorepointer 1
    position 0.05 130
-   size 0.2 400
+   size 400 400
    halign right_ref
    valign bottom_ref
    hexactpos 0
    vexactpos 1
-   hexactsize 0
+   hexactsize 1
    vexactsize 1
    priority 3
    Padding 10
@@ -1227,7 +1227,7 @@ FrameWidgetClass main_menu_root {
     }
     WrapSpacerWidgetClass top {
      ignorepointer 1
-     color 0 0 0 0.7843
+     color 0 0 0 0.4314
      position 0 0
      size 1 48
      hexactpos 1
@@ -1505,12 +1505,13 @@ FrameWidgetClass main_menu_root {
      visible 1
      color 1 1 1 0
      position 0.5 0
-     size 0.25 0.25
+     size 45 33
      halign right_ref
+     valign center_ref
      hexactpos 0
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
+     hexactsize 1
+     vexactsize 1
      fixaspect inside
      style Empty
      "no focus" 1
@@ -1521,14 +1522,14 @@ FrameWidgetClass main_menu_root {
      {
       ImageWidgetClass message_button_image {
        ignorepointer 1
-       size 0.9 0.9
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       image0 "set:dayz_gui image:icon_feedback"
+       image0 "set:dayz_gui image:credits"
        mode blend
        "src alpha" 1
       }
@@ -1537,12 +1538,13 @@ FrameWidgetClass main_menu_root {
     ButtonWidgetClass settings_button {
      color 1 1 1 0
      position 0.25 0
-     size 0.25 0.25
+     size 37 37
      halign right_ref
+     valign center_ref
      hexactpos 0
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
+     hexactsize 1
+     vexactsize 1
      fixaspect inside
      style Empty
      "no focus" 0
@@ -1555,14 +1557,14 @@ FrameWidgetClass main_menu_root {
      {
       ImageWidgetClass settings_button_image {
        ignorepointer 1
-       size 1.5 1.5
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       image0 "set:ccgui_enforce image:HudRepair"
+       image0 "set:dayz_gui image:settings"
        mode blend
        "src alpha" 1
       }
@@ -1570,12 +1572,13 @@ FrameWidgetClass main_menu_root {
     }
     ButtonWidgetClass exit_button {
      color 1 1 1 0
-     size 0.25 0.25
+     size 37 37
      halign right_ref
+     valign center_ref
      hexactpos 0
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
+     hexactsize 1
+     vexactsize 1
      fixaspect inside
      style Empty
      "no focus" 0
@@ -1595,10 +1598,9 @@ FrameWidgetClass main_menu_root {
        vexactpos 1
        hexactsize 0
        vexactsize 0
-       image0 "set:ccgui_enforce image:IconHealth"
+       image0 "set:dayz_gui image:exit"
        mode blend
        "src alpha" 1
-       rotation 0 0 45
       }
      }
     }

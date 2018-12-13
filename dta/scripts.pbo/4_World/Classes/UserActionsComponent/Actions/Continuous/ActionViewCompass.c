@@ -43,7 +43,7 @@ class ActionViewCompass : ActionContinuousBase
 		
 	override string GetText()
 	{
-		return "#use_compass";
+		return "#use_compas";
 	}
 	
 	override bool HasProgress()

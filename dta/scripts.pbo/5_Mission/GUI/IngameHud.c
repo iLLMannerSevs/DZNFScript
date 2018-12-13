@@ -42,7 +42,8 @@ class IngameHud extends Hud
 	protected CarScript							m_CurrentVehicle;
 	
 	protected Widget							m_Notifiers;
-	protected ImageWidget						m_BloodType;
+	protected TextWidget						m_BloodType;
+	protected TextWidget						m_BloodPosType;
 	protected Widget							m_BadgeNotifierDivider;
 	protected Widget							m_Badges;
 	protected ref Timer							m_HideTimer;
@@ -184,7 +185,8 @@ class IngameHud extends Hud
 		m_Badges						= hud_panel_widget.FindAnyWidget("BadgesPanel");
 		m_Notifiers						= m_HudPanelWidget.FindAnyWidget("NotifiersPanel");
 		m_BadgeNotifierDivider			= m_HudPanelWidget.FindAnyWidget("BadgeNotifierDivider");
-		m_BloodType						= ImageWidget.Cast( m_HudPanelWidget.FindAnyWidget("IconBlood") );
+		m_BloodType						= TextWidget.Cast( m_HudPanelWidget.FindAnyWidget("BloodType") );
+		m_BloodPosType					= TextWidget.Cast( m_HudPanelWidget.FindAnyWidget("BloodPosType") );
 		
 		m_VehiclePanel					= m_HudPanelWidget.FindAnyWidget("VehiclePanel");
 		
@@ -247,6 +249,11 @@ class IngameHud extends Hud
 				Class.CastTo(w,  m_Notifiers.FindAnyWidget( String( "Icon" + widget_name ) ) );
 				m_StatesWidgets.Set( key, w );
 				w.Show( true );
+				for ( int y = 0; y < 5; y++ )
+				{
+					Print( "Loading: " +  "set:dayz_gui image:icon" + widget_name + y );
+					w.LoadImageFile( y, "set:dayz_gui image:icon" + widget_name + y );
+				}
 				// clear all arrows
 				for ( int x = 1; x < 4; x++ )
 				{
@@ -255,6 +262,8 @@ class IngameHud extends Hud
 					Class.CastTo(w,  m_Notifiers.FindAnyWidget( String( widget_name + "ArrowDown" + x.ToString() ) ) );
 					w.Show( false );
 				}
+			
+				
 			}
 
 			// badges
@@ -441,59 +450,14 @@ class IngameHud extends Hud
 	{
 		ImageWidget w;
 		Class.CastTo(w,  m_Notifiers.FindAnyWidget( String( "Icon" + m_StatesWidgetNames.Get( key ) ) ) );
-		w.Show( true );
-
-		// --- tendency status
-		//1 - white (fine) - also default
-		//2 - yellow (attention)
-		//3 - red (alert)
-		//4 - red blinking (critical)
-		//5 - turquoise
-		//6 - blue
-		//7 - blue blinking (critical)
-		float alpha = w.GetAlpha();
-
-		switch( status )
+		if( key == NTFKEY_FEVERISH )
 		{
-			case 1:
-				w.SetColor( ARGB( alpha * 255, 220, 220, 220 ) );	//white
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
-			case 2:
-				w.SetColor( ARGB( alpha * 255, 220, 220, 0 ) );		//yellow
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
-			case 3:
-				w.SetColor( ARGB( alpha * 255, 220, 0, 0 ) );		//red
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
-			case 4:
-				if ( !m_TendencyStatusCritical.Contains( w ) )
-				{
-					m_TendencyStatusCritical.Insert( w, ARGB( alpha * 255, 220, 0, 0 ) );	//add to blinking group
-				}
-				break;
-			case 5:
-				w.SetColor( ARGB( alpha * 255, 0, 206, 209 ) );		//turquoise
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
-			case 6:
-				w.SetColor( ARGB( alpha * 255, 30, 144, 220 ) );	//blue
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
-			case 7:													//blue blinking
-				if ( !m_TendencyStatusCritical.Contains( w ) )
-				{
-					m_TendencyStatusCritical.Insert( w, ARGB( alpha * 255, 30, 144, 220 ) );	//add to blinking group
-				}
-				break;				
-			default:
-				w.SetColor( ARGB( alpha * 255, 220, 220, 220 ) );	//white
-				m_TendencyStatusCritical.Remove( w );		//remove from blinking group
-				break;
+			DisplayTendencyTemp( key, tendency, status );
 		}
-		// ---
-		
+		else
+		{
+			DisplayTendencyNormal( key, tendency, status );
+		}
 		// tendency arrows
 		string arrow_name = "ArrowUp";
 		if ( tendency < 0 )
@@ -515,6 +479,85 @@ class IngameHud extends Hud
 			string widget_name = m_StatesWidgetNames.Get( key ) + arrow_name + Math.Clamp( tendency, 1, 3 );
 			Class.CastTo(w,  m_Notifiers.FindAnyWidget( widget_name ) );
 			w.Show( true );
+		}
+	}
+	
+	void DisplayTendencyNormal( int key, int tendency, int status )
+	{
+		ImageWidget w;
+		Class.CastTo(w,  m_Notifiers.FindAnyWidget( String( "Icon" + m_StatesWidgetNames.Get( key ) ) ) );
+		w.SetImage( Math.Clamp( status - 1, 0, 4 ) );
+		float alpha = w.GetAlpha();
+		
+		switch( status )
+		{
+			case 3:
+				w.SetColor( ARGB( alpha * 255, 220, 220, 0 ) );		//yellow
+				m_TendencyStatusCritical.Remove( w );				//remove from blinking group
+				break;
+			case 4:
+				w.SetColor( ARGB( alpha * 255, 220, 0, 0 ) );		//red
+				m_TendencyStatusCritical.Remove( w );				//remove from blinking group
+				break;
+			case 5:
+				if ( !m_TendencyStatusCritical.Contains( w ) )
+				{
+					m_TendencyStatusCritical.Insert( w, ARGB( alpha * 255, 220, 0, 0 ) );	//add to blinking group
+				}
+				break;
+			default:
+				w.SetColor( ARGB( alpha * 255, 220, 220, 220 ) );	//white
+				m_TendencyStatusCritical.Remove( w );				//remove from blinking group
+				break;
+		}
+	}
+	
+	void DisplayTendencyTemp( int key, int tendency, int status )
+	{
+		ImageWidget w;
+		Class.CastTo(w,  m_Notifiers.FindAnyWidget( String( "Icon" + m_StatesWidgetNames.Get( key ) ) ) );
+		float alpha = w.GetAlpha();
+		switch( status )
+		{
+			case 2:
+				w.SetColor( ARGB( alpha * 255, 220, 220, 0 ) );		//WARNING_PLUS
+				m_TendencyStatusCritical.Remove( w );
+				w.SetImage( 1 );
+				break;
+			case 3:
+				w.SetColor( ARGB( alpha * 255, 220, 0, 0 ) );		//CRITICAL_PLUS
+				m_TendencyStatusCritical.Remove( w );
+				w.SetImage( 0 );
+				break;
+			case 4:
+				if ( !m_TendencyStatusCritical.Contains( w ) )		//BLINKING_PLUS
+				{
+					m_TendencyStatusCritical.Insert( w, ARGB( alpha * 255, 220, 0, 0 ) );
+				}
+				w.SetImage( 0 );
+				break;
+			case 5:
+				w.SetColor( ARGB( alpha * 255, 0, 206, 209 ) );		//WARNING_MINUS
+				m_TendencyStatusCritical.Remove( w );
+				w.SetImage( 3 );
+				break;
+			case 6:
+				w.SetColor( ARGB( alpha * 255, 30, 144, 220 ) );	//CRITICAL_MINUS
+				m_TendencyStatusCritical.Remove( w );
+				w.SetImage( 4 );
+				break;
+			case 7:													//BLINKING_MINUS
+				if ( !m_TendencyStatusCritical.Contains( w ) )
+				{
+					m_TendencyStatusCritical.Insert( w, ARGB( alpha * 255, 30, 144, 220 ) );
+				}
+				w.SetImage( 4 );
+				break;				
+			default:
+				w.SetColor( ARGB( alpha * 255, 220, 220, 220 ) );	//DEFAULT
+				m_TendencyStatusCritical.Remove( w );
+				w.SetImage( 2 );
+				break;
 		}
 	}
 	
@@ -1132,10 +1175,24 @@ class IngameHud extends Hud
 		
 		if( player )
 		{
-			string blood_name = BloodTypes.GetBloodTypeName( player.GetBloodType() );
+			string blood_name;
+			bool positive;
+			BloodTypes.GetBloodTypeName( player.GetBloodType(), blood_name, positive );
 			bool blood_type_visible = player.HasBloodTypeVisible();
 			
-			m_BloodType.LoadImageFile( 0, "set:dayz_gui image:iconBlood" + blood_name );
+			if( blood_type_visible )
+			{
+				m_BloodType.SetText( blood_name );
+				if( positive )
+					m_BloodPosType.SetText( "+" );
+				else
+					m_BloodPosType.SetText( "-" );
+			}
+			else
+			{
+				m_BloodType.SetText( "" );
+				m_BloodPosType.SetText( "" );
+			}
 		}
 	}
 

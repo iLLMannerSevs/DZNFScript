@@ -227,7 +227,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		SetTime( server_info.m_TimeOfDay, server_info.m_EnvironmentTimeMul );
 		#ifdef PLATFORM_WINDOWS
 		#ifndef PLATFORM_CONSOLE
-			SetShard( server_info.m_Official );
+			SetShard( server_info.m_ShardId.ToInt() );
 			SetCharacterAlive( server_info.m_CharactersAlive );
 			SetFriends( server_info.m_SteamFriends );
 			SetMode( server_info.m_Disable3rdPerson );

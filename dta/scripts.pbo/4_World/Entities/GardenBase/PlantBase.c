@@ -114,9 +114,9 @@ class PlantBase extends ItemBase
 	}
 
 	
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad( ctx );
+		super.OnStoreLoad( ctx, version );
 		
 		Print("Plant - OnStoreLoad - ");
 		

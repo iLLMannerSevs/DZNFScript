@@ -127,7 +127,15 @@ class OptionSelectorMultistateCharacterMenu extends OptionSelectorMultistate
 		//class_name = value;
 		path = "cfgVehicles " + class_name + " displayName";
 		GetGame().ConfigGetText(path, displayname);
-		if (appendix != "")
+		if (value == "Male")
+		{
+			m_SelectedOption.SetText("#str_cfgvehicles_survivorM0");
+		}
+		else if (value == "Female")
+		{
+			m_SelectedOption.SetText("#str_cfgvehicles_survivorF0");
+		}
+		else if (appendix != "")
 		{
 			m_SelectedOption.SetText("" + value + " " + appendix); //characters
 		}
@@ -139,6 +147,12 @@ class OptionSelectorMultistateCharacterMenu extends OptionSelectorMultistate
 	
 	void SetTextSmart(string value)
 	{
+		if (value == "Male" || value == "Female")
+		{
+			SetDisplayNameText(value,"");
+			return;
+		}
+		
 		class_name = value;
 		if ( InheritsFrom(class_name, "Clothing_Base") )
 		{

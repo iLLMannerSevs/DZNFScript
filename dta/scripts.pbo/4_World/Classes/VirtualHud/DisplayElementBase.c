@@ -72,6 +72,8 @@ class DisplayElementBase extends MessageReceiverBase
 			return 3;
 		if( level == DSLevels.BLINKING )
 			return 4;
+		if( level == DSLevels.EXTRA )
+			return 5;
 		return 1;
 	}
 }

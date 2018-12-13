@@ -39,14 +39,14 @@ class CreditsDepartmentElement extends CreditsElement
 class CreditsDepartmentSection extends CreditsElement
 {
 	protected TextWidget			m_SectionTitle;
-	protected GridSpacerWidget		m_SectionSections;
+	protected WrapSpacerWidget		m_SectionSections;
 	protected ref array<Widget>		m_SectionEntries = new array<Widget>;
 	
 	void CreditsDepartmentSection( int index, Widget parent, JsonDataCreditsSection section_data )
 	{
 		m_Root				= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/credits/department_element/department_section.layout", parent );
 		m_SectionTitle		= TextWidget.Cast( m_Root.FindAnyWidget( "section_title" ) );
-		m_SectionSections	= GridSpacerWidget.Cast( m_Root.FindAnyWidget( "section_elements" ) );
+		m_SectionSections	= WrapSpacerWidget.Cast( m_Root.FindAnyWidget( "section_elements" ) );
 		
 		if( section_data.SectionName != "" )
 		{
@@ -66,8 +66,9 @@ class CreditsDepartmentSection extends CreditsElement
 	{
 		for( int i = 1; i <= section_data.Count(); i++ )
 		{
-			RichTextWidget w = RichTextWidget.Cast( GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/credits/department_element/department_section_element.layout", m_SectionSections ) );
-			w.SetText( section_data.Get( i - 1 ) );
+			TextWidget w = TextWidget.Cast( GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/credits/department_element/department_section_element.layout", m_SectionSections ) );
+			w.SetText( section_data.Get( i - 1 ) + " \n" );
+			w.Update();
 			m_Root.SetSort( i );
 			m_SectionEntries.Insert( w );
 		}

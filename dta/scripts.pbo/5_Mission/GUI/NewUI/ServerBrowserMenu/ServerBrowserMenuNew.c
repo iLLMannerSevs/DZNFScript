@@ -55,6 +55,10 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		m_PlayerName			= TextWidget.Cast( layoutRoot.FindAnyWidget( "character_name_text" ) );
 		m_Version				= TextWidget.Cast( layoutRoot.FindAnyWidget( "version" ) );
 		
+		// TODO: Temporary Hide for 1.0
+		layoutRoot.FindAnyWidget( "customize_character" ).Show( false );
+		layoutRoot.FindAnyWidget( "character" ).Show( false );
+				
 		Refresh();
 		
 		string version;
@@ -388,8 +392,6 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		}
 		
 		m_SelectedServer = server;
-		
-		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
 	}
 	
 	void Connect( ServerBrowserEntry server )

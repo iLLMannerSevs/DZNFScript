@@ -34,18 +34,44 @@ class ActionLightItemOnFire: ActionContinuousBase
 		return "#ignite";
 	}
 
+	override bool CanBePerformedFromQuickbar()
+	{
+		return true;
+	}
+	
+	override bool CanBePerformedFromInventory()
+	{
+		return true;
+	}
+	// Check if ignite candidate is in cargo of something or not.
+	bool IsItemInCargoOfSomething(ItemBase item)
+	{
+		if ( item.GetInventory() )
+		{
+			InventoryLocation loc = new InventoryLocation;
+			item.GetInventory().GetCurrentInventoryLocation(loc);
+			
+			if ( loc.GetIdx() > -1 )
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{	
 		ItemBase target_item = ItemBase.Cast( target.GetObject() );
 		
 		if ( target_item && item )
 		{
-			if ( item.CanIgniteItem( target_item ) && target_item.CanBeIgnitedBy( item ) )
+			if ( !target_item.IsIgnited()  &&  !IsItemInCargoOfSomething(target_item)  &&  item.CanIgniteItem( target_item )  &&  target_item.CanBeIgnitedBy( item ) )
 			{
 				return true;
 			}
 			
-			else if ( item.CanBeIgnitedBy( target_item ) && target_item.CanIgniteItem( item ) )
+			else if ( !item.IsIgnited()  &&  !IsItemInCargoOfSomething(item)  &&  target_item.CanIgniteItem( item )  &&  item.CanBeIgnitedBy( target_item ) )
 			{
 				return true;		
 			}
@@ -65,13 +91,13 @@ class ActionLightItemOnFire: ActionContinuousBase
 		
 		if ( item.CanIgniteItem( target_item ) )
 		{
-			is_ignition_successful = item.IsTargetIgnitionSuccessful( target_item );
+			is_ignition_successful = target_item.IsTargetIgnitionSuccessful( item );
 			ignited_item = target_item;
 			fire_source_item = item;
 		}
 		else if ( item.CanBeIgnitedBy( target_item ) )
 		{
-			is_ignition_successful = target_item.IsThisIgnitionSuccessful( item );
+			is_ignition_successful = item.IsThisIgnitionSuccessful( target_item );
 			ignited_item = item;
 			fire_source_item = target_item;			
 		}

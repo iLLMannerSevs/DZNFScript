@@ -19,6 +19,11 @@ class ServerBrowserTabPage extends ServerBrowserTab
 	protected ButtonWidget							m_BtnPagePrev;
 	protected ButtonWidget							m_BtnPageNext;
 	
+	protected Widget								m_FilterSearchText;
+	protected Widget								m_FilterSearchIP;
+	
+	protected ButtonWidget							m_BtnFilterReset;
+	
 	protected ref array<ButtonWidget>				m_BtnPages;
 	protected ref array<ref ServerBrowserEntry>		m_ServerListEntiers;
 	
@@ -50,11 +55,19 @@ class ServerBrowserTabPage extends ServerBrowserTab
 		m_PopulationSort		= m_Root.FindAnyWidget( "server_list_content_header_population" );
 		m_SlotsSort				= m_Root.FindAnyWidget( "server_list_content_header_slots" );
 		m_PingSort				= m_Root.FindAnyWidget( "server_list_content_header_ping" );
+		
+		m_FilterSearchText		= m_Root.FindAnyWidget( "search_name_setting" );
+		m_FilterSearchIP		= m_Root.FindAnyWidget( "search_ip_setting" );
+		
 		m_LoadingText			= TextWidget.Cast( m_Root.FindAnyWidget( "loading_servers_info" ) );
 		
 		if( type == TabType.LAN )
 		{
+			m_Root.FindAnyWidget( "filters_header" ).Show( false );
 			m_Root.FindAnyWidget( "filters_content" ).Show( false );
+			m_Root.FindAnyWidget( "spacer" ).Show( false );
+			m_Root.FindAnyWidget( "apply_filter_button" ).Show( false );
+			m_Root.FindAnyWidget( "reset_filter_button" ).Show( false );
 		}
 		
 		m_Filters				= new ServerBrowserFilterContainer( m_Root.FindAnyWidget( "filters_content" ), this );
@@ -86,6 +99,8 @@ class ServerBrowserTabPage extends ServerBrowserTab
 			page_button_num++;
 			page_button = ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_page"+ page_button_num ) );
 		}		
+		
+		m_BtnFilterReset		= ButtonWidget.Cast( m_Root.FindAnyWidget( "reset_filter_button" ) ) ;
 		
 		m_PnlPagesPanel			= m_Root.FindAnyWidget( "servers_navigation_spacer" );
 		m_BtnPagePrev			= ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_prev" ) ) ;
@@ -140,14 +155,14 @@ class ServerBrowserTabPage extends ServerBrowserTab
 			}
 			else
 			{
-				m_LoadingText.SetText( "Finished loading " + m_EntryWidgets.Count() + " " + "#server_browser_servers_desc" );
+				m_LoadingText.SetText( "#servers_count "+ m_Entries.Count() );
 				m_Menu.SetRefreshing( TabType.NONE );
 			}
 
 		}
 		else
 		{
-			m_LoadingText.SetText( "Finished loading " + m_EntryWidgets.Count() + " " + "#server_browser_servers_desc" );
+			m_LoadingText.SetText( "#servers_count "+ m_Entries.Count() );
 			m_Menu.SetRefreshing( TabType.NONE );
 		}
 		
@@ -166,7 +181,6 @@ class ServerBrowserTabPage extends ServerBrowserTab
 	void OnLoadServersAsyncPCFinished()
 	{
 		m_LoadingFinished = true;
-		
 		
 		ShowServerList();
 	}
@@ -190,7 +204,11 @@ class ServerBrowserTabPage extends ServerBrowserTab
 		
 		if( button == MouseState.LEFT )
 		{
-			if ( w == m_BtnPagePrev )
+			if ( w == m_BtnFilterReset )
+			{
+				ResetFilters();
+			}
+			else if ( w == m_BtnPagePrev )
 			{
 				OnClickPagePrev();
 			}
@@ -212,8 +230,6 @@ class ServerBrowserTabPage extends ServerBrowserTab
 				
 				if ( click )
 				{
-					OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
-					
 					return true;
 				}
 				
@@ -472,14 +488,14 @@ class ServerBrowserTabPage extends ServerBrowserTab
 				
 				if ( m_LoadingFinished )
 				{
-					m_LoadingText.SetText( "#server_browser_tab_loaded" + " " + m_TotalServersCount + " " + "#server_browser_servers_desc" );
+					m_LoadingText.SetText( "#servers_found: "+ m_Entries.Count() );
 				}
 				else
 				{
 					if ( m_ServersEstimateCount > 0 )
 					{
 						int loading_percentage = Math.Round((m_TotalServersCount / m_ServersEstimateCount) * 100);
-						m_LoadingText.SetText( "("+ loading_percentage +"%) "+ m_TotalServersCount +"/"+ m_ServersEstimateCount +" #server_browser_tab_loaded" );
+						m_LoadingText.SetText( "#server_browser_tab_loaded "+ loading_percentage.ToString() +"%" );
 					}
 					else
 					{
@@ -528,5 +544,19 @@ class ServerBrowserTabPage extends ServerBrowserTab
 		m_EntryWidgets.Insert( server_id, entry );
 		
 		return entry;
+	}
+	
+	override bool IsFocusable( Widget w )
+	{
+		if( w )
+		{			
+			if ( w == m_ApplyFilter || w == m_RefreshList || w == m_BtnFilterReset || w == m_FilterSearchText || w == m_FilterSearchIP )
+			{				
+				return true;
+			}
+			
+			return false;
+		}
+		return false;
 	}
 }

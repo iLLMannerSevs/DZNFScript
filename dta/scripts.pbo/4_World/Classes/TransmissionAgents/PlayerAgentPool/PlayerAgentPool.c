@@ -52,7 +52,7 @@ class PlayerAgentPool
 		}
 	}
 	
-	void OnStoreLoad(ParamsReadContext ctx)
+	void OnStoreLoad(ParamsReadContext ctx, int version)
 	{
 		//Debug.Log("PlayerAgentPool OnStoreLoad called", "Agents");
 		int count;

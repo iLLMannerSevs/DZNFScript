@@ -14,15 +14,17 @@ class GardenPlot extends GardenBase
 		super.EEInit();
 	}	
 	
-	override void OnStoreLoad( ParamsReadContext ctx )
+	override void OnStoreLoad( ParamsReadContext ctx, int version )
 	{				
+		super.OnStoreLoad(ctx, version);
+
 		if ( !m_ClutterCutter )
 		{		
 			m_ClutterCutter = GetGame().CreateObject( "ClutterCutter6x6", GetPosition(), false );
 			m_ClutterCutter.SetOrientation( GetOrientation() );
 		}
 	}
-	
+
 	override void EEDelete(EntityAI parent)
 	{
 		super.EEDelete(parent);

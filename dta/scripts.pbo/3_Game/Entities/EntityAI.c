@@ -1121,10 +1121,10 @@ class EntityAI extends Entity
 	/**
 	\brief Called when data is loaded from game database (on server side).
 	@code
-	void OnStoreLoad(ParamsReadContext ctx)
+	void OnStoreLoad(ParamsReadContext ctx, int version)
 	{
 		// dont forget to propagate this call trough class hierarchy!
-		super.OnStoreLoad(ctx);
+		super.OnStoreLoad(ctx, version);
 
 		// read data loaded from game database (format and order of reading must be the same as writing!)
 		Param4<bool, int, float, string> p1 = new Param4<bool, int, float, string>(false, 0, 0, "");
@@ -1155,7 +1155,7 @@ class EntityAI extends Entity
 	}
 	@endcode
 	*/
-	void OnStoreLoad (ParamsReadContext ctx)
+	void OnStoreLoad (ParamsReadContext ctx, int version)
 	{
 		// Restoring of energy related states
 		if ( HasEnergyManager() )

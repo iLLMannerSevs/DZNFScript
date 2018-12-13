@@ -645,7 +645,7 @@ class SymptomManager
 		ctx.Write( m_SaveQueue );
 	}
 
-	void OnStoreLoad( ParamsReadContext ctx )
+	void OnStoreLoad( ParamsReadContext ctx, int version )
 	{
 		ref array<int> m_SaveQueue;
 		

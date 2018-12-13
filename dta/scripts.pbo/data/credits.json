@@ -526,7 +526,7 @@
                         "Jan Libich",
                         "Matt Lightfoot",
                         "Nikolas Rašín",
-                        "Ota Vrťátko",
+						"Ota Vrťátko",
                         "Petr Hovanec",
                         "Vanessa Itriago Ramos"
                     ]
@@ -610,6 +610,7 @@
                         "Doubravka Ježková",
                         "Egor Ploskov",
                         "Emil Zima",
+                        "Filip Čort",
                         "Filip Faschingbauer",
                         "Filip Knotek",
                         "František Bláha",
@@ -735,7 +736,6 @@
                         "Jan Vrba",
                         "Jervant Malakjan",
                         "Jindřiška Musilová",
-                        "Jindřiška Musilová",
                         "Jiří Halama",
                         "Jiří Lemberger",
                         "Jiří Raška",
@@ -760,7 +760,6 @@
                         "Mikuláš Cséfalvay",
                         "Miloslav Cinko",
                         "Monika Růžičková",
-                        "Naděžda Foglarová",
                         "Naděžda Foglarová",
                         "Nela Wojaczková",
                         "Nikola Bornová",
@@ -837,6 +836,88 @@
                         "Petr Rak",
                         "Quirin Eberle",
                         "Roman Roba"
+                    ]
+                }
+            ]
+        },
+		{
+            "DepartmentName": "#legal_notices",
+            "Sections": [
+				{
+                    "SectionName": "NVIDIA GameWorks",
+                    "SectionLines": [
+                        "© 2007- 2016 NVIDIA Corporation. All rights reserved."
+                    ]
+                },
+				{
+                    "SectionName": "Ogg Vorbis",
+                    "SectionLines": [
+                        "Copyright (c) 2002-2008 Xiph.org Foundation",
+                        "TrueSky",
+                        "Portions of this software utilize True Sky technology (© 2015 Simul Software Ltd, all rights reserved.)"
+                    ]
+                },
+				{
+                    "SectionName": "libcurl",
+                    "SectionLines": [
+                        "Copyright (c) 1996 - 2018, Daniel Stenberg"
+                    ]
+                },
+				{
+                    "SectionName": "OpenSSL",
+                    "SectionLines": [
+                        "Copyright (c) 1998-2018 The OpenSSL Project.  All rights reserved.",
+						"Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)"
+                    ]
+                },
+				{
+                    "SectionName": "rapidjson",
+                    "SectionLines": [
+                        "Copyright (C) 2015 THL A29 Limited, a Tencent company, and Milo Yip.  All rights reserved.",
+                        "json.org, Copyright (c) 2002 JSON.org, All Rights Reserved.",
+                        "JSON_checker, Copyright (c) 2002 JSON.org, All Rights Reserved."
+                    ]
+                },
+				{
+                    "SectionName": "Speex",
+                    "SectionLines": [
+                        "© 2002-2003, Jean-Marc Valin/Xiph.Org Foundation"
+                    ]
+                },
+				{
+                    "SectionName": "hashlib++",
+                    "SectionLines": [
+                        "Copyright (c) 2007-2011 Benjamin Grüdelbach"
+                    ]
+                },
+				{
+                    "SectionName": "Bullet Physics Library",
+                    "SectionLines": [
+                        ""
+                    ]
+                },
+				{
+                    "SectionName": "zLib",
+                    "SectionLines": [
+                        "Copyright (C) 1995-2017 Jean-loup Gailly and Mark Adler"
+                    ]
+                },
+				{
+                    "SectionName": "Recast & Detour",
+                    "SectionLines": [
+                        "Copyright (c) 2009 Mikko Mononen memon@inside.org"
+                    ]
+                },
+				{
+                    "SectionName": "AGS",
+                    "SectionLines": [
+                        "Copyright (c) 2017 Advanced Micro Devices, Inc. All rights reserved."
+                    ]
+                },
+				{
+                    "SectionName": "Data compression by oberhumer.com",
+                    "SectionLines": [
+                        ""
                     ]
                 }
             ]
