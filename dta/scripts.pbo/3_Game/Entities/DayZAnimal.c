@@ -290,6 +290,10 @@ class DayZAnimal extends DayZCreatureAI
 	
 		if (HandleDamageHit(currentCommandID))
 		{
+			if (currentCommandID  == DayZAnimalConstants.COMMANDID_ATTACK)
+			{
+				SignalAIAttackEnded();
+			}
 			return;
 		}
 	
