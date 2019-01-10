@@ -980,6 +980,15 @@ class DayZPlayerImplement extends DayZPlayer
 		StartCommand_Fall(3.5);
 	}
 	
+	void CheckAndFinishJump()
+	{
+		if( m_bIsJumpInProgress )
+		{
+			m_bIsJumpInProgress = false;
+			OnJumpEnd();
+		}
+	}
+	
 	void OnJumpStart()
 	{
 	}
@@ -1234,6 +1243,7 @@ class DayZPlayerImplement extends DayZPlayer
 		// swimming handling
 		if (m_Swimming.HandleSwimming(pCurrentCommandID, hcm, m_MovementState))
 		{
+			CheckAndFinishJump();
 			return;			
 		}
 		
@@ -1294,11 +1304,7 @@ class DayZPlayerImplement extends DayZPlayer
 				}
 				
 				m_FallDamage.HandleFallDamage(m_FallYDiff);
-				if( m_bIsJumpInProgress )
-				{
-					m_bIsJumpInProgress = false;
-					OnJumpEnd();
-				}
+				CheckAndFinishJump();
 				
 			}
 
