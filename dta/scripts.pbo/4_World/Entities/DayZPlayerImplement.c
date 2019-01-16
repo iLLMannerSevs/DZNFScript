@@ -46,6 +46,7 @@ class DayZPlayerImplement extends DayZPlayer
 	protected float										m_SprintedTime;
 	protected bool										m_SprintFull;
 	protected bool										m_IsFireWeaponRaised;
+	protected bool										m_ShouldReload;
 	protected bool										m_Camera3rdPerson;
 	protected bool										m_CameraEyeZoom;
 	protected bool										m_CameraIronsighs;
@@ -89,7 +90,7 @@ class DayZPlayerImplement extends DayZPlayer
 		m_IsShootingFromCamera = true;
 		m_ProcessFirearmMeleeHit = false;
 		#ifdef PLATFORM_CONSOLE
-		m_Camera3rdPerson = true;
+		m_Camera3rdPerson = !GetGame().GetWorld().Is3rdPersonDisabled();
 		#endif
 		m_LastSurfaceUnderHash = ("cp_gravel").Hash();
 	}
@@ -571,6 +572,32 @@ class DayZPlayerImplement extends DayZPlayer
 			}
 		}
 		
+		#ifdef PLATFORM_CONSOLE
+		if( GetGame().GetInput().GetActionUp( UAFire, false ) || m_ShouldReload )
+		{
+			if( !weapon.IsWaitingForActionFinish() )
+			{
+				int muzzle_index = weapon.GetCurrentMuzzle();
+			
+				if ( weapon.IsChamberFiredOut( muzzle_index ) )
+				{
+					if ( weapon.CanProcessWeaponEvents() )
+					{
+						if ( GetWeaponManager().CanEjectBullet(weapon) )
+						{
+							GetWeaponManager().EjectBullet();
+							pExitIronSights = true;
+							m_ShouldReload = false;
+						}
+					}
+				}
+			}
+			else
+			{
+				m_ShouldReload = true;
+			}
+		}
+		#endif
 		#ifdef PLATFORM_CONSOLE
 			}
 		#endif
