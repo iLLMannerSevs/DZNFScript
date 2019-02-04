@@ -1,19 +1,18 @@
 class HandsArea: LayoutHolder
 {
-	ref HandsContainer		m_HandsContainer;
-	ref AutoHeightSpacer	m_Spacer;
+	protected ScrollWidget			m_Scroller;
+	protected ref HandsContainer	m_HandsContainer;
+	protected ref SizeToChild		m_HandsResizer;
 
 	void HandsArea( LayoutHolder parent )
 	{
-		Widget root_panel = m_MainWidget;
+		m_HandsContainer	= new HandsContainer( this );
 		
-		m_MainWidget = m_MainWidget.FindAnyWidget( "Content" );
-
-		m_HandsContainer = new HandsContainer( this );
-		
-		m_MainWidget.GetScript( m_Spacer );
 		m_MainWidget.Update();
-		m_Spacer.Update();
+		
+		m_ParentWidget.GetScript( m_HandsResizer );
+		m_Scroller = ScrollWidget.Cast( m_ParentWidget );
+		m_HandsResizer.ResizeParentToChild();
 	}
 
 	override void SetActive( bool active )
@@ -123,13 +122,11 @@ class HandsArea: LayoutHolder
 
 	override void UpdateInterval()
 	{
-		float x, y;
-		GetMainWidget().GetSize( x, y );
-		if( y > 500 )
-		{
-			y = 500;
-		}
-		GetMainWidget().GetParent().SetSize( x, y );
+		if( m_HandsResizer.ResizeParentToChild( InventoryMenu.GetHeight() * 0.5 ) )
+			m_Scroller.SetAlpha( 0.3921 );
+		else
+			m_Scroller.SetAlpha( 0 );
+		m_Scroller.VScrollToPos01( m_Scroller.GetVScrollPos01() );
 		m_HandsContainer.UpdateInterval();
 	}
 
@@ -152,7 +149,6 @@ class HandsArea: LayoutHolder
 	{
 		super.OnShow();
 		m_HandsContainer.OnShow();
-		m_Spacer.Update();
 	}
 
 	override void Refresh()
@@ -160,7 +156,6 @@ class HandsArea: LayoutHolder
 		super.Refresh();
 		m_HandsContainer.Refresh();
 		m_MainWidget.Update();
-		m_Spacer.Update();
 	}
 	
 	void DraggingOverHandsPanel( Widget w, int x, int y, Widget receiver )

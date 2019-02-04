@@ -1,8 +1,13 @@
 class SambucusBerry extends Edible_Base
 {
-	void SambucusBerry()
+	override bool CanBeCooked()
 	{
-		
+		return true;
+	}		
+	
+	override bool CanBeCookedOnStick()
+	{
+		return false;
 	}
 	
 	override bool IsFruit()
@@ -42,4 +47,3 @@ class SambucusBerry extends Edible_Base
 		return true;
 	}
 }
-

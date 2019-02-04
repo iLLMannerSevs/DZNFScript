@@ -60,6 +60,9 @@ class ActionGagSelf: ActionContinuousBase
 		action_data.m_MainItem.TransferModifiers(action_data.m_Player);
 		action_data.m_MainItem.Delete();
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+		
+		// disable speaking using VoN
+		GetGame().EnableVoN(action_data.m_Player, false);
 	}
 
 	bool IsWearingMask( PlayerBase player)

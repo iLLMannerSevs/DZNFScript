@@ -51,6 +51,15 @@ class BarbedWire extends ItemBase
 	{
 		m_IsMounted = is_mounted;
 		
+		//lock slot
+		BaseBuildingBase base_building = BaseBuildingBase.Cast( GetHierarchyParent() );
+		if ( base_building )
+		{
+			InventoryLocation inventory_location = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( inventory_location );			
+			base_building.GetInventory().SetSlotLock( inventory_location.GetSlot(), m_IsMounted );
+		}
+		
 		Synchronize();
 	}
 
@@ -138,14 +147,22 @@ class BarbedWire extends ItemBase
 		ctx.Write( m_IsMounted );
 	}
 	
-	override void OnStoreLoad( ParamsReadContext ctx, int version )
+	override bool OnStoreLoad( ParamsReadContext ctx, int version )
 	{
-		super.OnStoreLoad( ctx, version );
+		if ( !super.OnStoreLoad( ctx, version ) )
+			return false;
 		
+		//--- Barbed wire data ---
 		//Restore synced parts data
 		bool mounted_state;
-		ctx.Read( mounted_state );
+		if ( !ctx.Read( mounted_state ) )
+		{
+			mounted_state = false;		//set default
+		}
 		SetMountedState( mounted_state );
+		//---
+		
+		return true;
 	}
 	
 	// ---
@@ -257,7 +274,7 @@ class BarbedWire extends ItemBase
 	{
 		int random_index = Math.RandomInt(0, SOUNDS_CUT_COUNT);
 		string sound_type = m_SoundsCut[random_index];
-		//PlaySound(sound_type, 50); // Removed as a quick fix
+		PlaySound(sound_type, 50);
 	}
 
 	// Plays sound
@@ -265,7 +282,7 @@ class BarbedWire extends ItemBase
 	{
 		int random_index = Math.RandomInt(0, SOUNDS_SPARK_COUNT);
 		string sound_type = m_SoundsSpark[random_index];
-		//PlaySound(sound_type, 50); // Removed as a quick fix
+		PlaySound(sound_type, 50);
 	}
 
 	// Plays sound
@@ -273,7 +290,7 @@ class BarbedWire extends ItemBase
 	{
 		if (!m_BuzzSoundLoop)
 		{
-			// m_BuzzSoundLoop = PlaySoundLoop(m_SoundBuzzLoop, 50); // Removed as a quick fix
+			m_BuzzSoundLoop = PlaySoundLoop(m_SoundBuzzLoop, 50);
 		}
 	}
 
@@ -292,7 +309,7 @@ class BarbedWire extends ItemBase
 	{
 		int random_index = Math.RandomInt(0, SOUNDS_SHOCK_COUNT);
 		string sound_type = m_SoundsShock[random_index];
-		//PlaySound(sound_type, 50); // Removed as a quick fix
+		PlaySound(sound_type, 50);
 	}
 	
 	// Plays a collision sound

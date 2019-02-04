@@ -51,6 +51,9 @@ class ActionUngagSelf: ActionContinuousBase
 			action_data.m_Player.DropItem(ItemBase.Cast(attachment));
 		}
 		//action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+		
+		// enable speaking using VoN
+		GetGame().EnableVoN(action_data.m_Player, true);
 	}
 
 	bool IsWearingGag( PlayerBase player )

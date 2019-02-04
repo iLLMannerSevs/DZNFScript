@@ -1,8 +1,13 @@
 class CaninaBerry extends Edible_Base
 {
-	void CaninaBerry()
+	override bool CanBeCooked()
 	{
-		
+		return true;
+	}		
+	
+	override bool CanBeCookedOnStick()
+	{
+		return false;
 	}
 	
 	override bool IsFruit()
@@ -42,4 +47,3 @@ class CaninaBerry extends Edible_Base
 		return true;
 	}
 }
-

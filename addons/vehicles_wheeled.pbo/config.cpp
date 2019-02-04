@@ -219,8 +219,6 @@ class CfgVehicles
 		selectionDashboard="light_dashboard";
 		selectionLightFrontL="light_left";
 		selectionLightFrontR="light_right";
-		selectionShowDamage="poskozeni";
-		selectionBackLights="light_back";
 		selectionBrakeLights="light_break";
 		class Crew
 		{
@@ -445,1451 +443,6 @@ class CfgVehicles
 			};
 		};
 	};
-	class V3SWheel: CarWheel
-	{
-		scope=2;
-		displayName="$STR_V3SWheel0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_wheel.p3d";
-		weight=30000;
-		itemSize[]={10,10};
-		itemBehaviour=0;
-		inventorySlot[]=
-		{
-			"V3SWheel_1_1",
-			"V3SWheel_2_1",
-			"V3SWheel_Spare_1",
-			"V3SWheel_Spare_2"
-		};
-		rotationFlags=12;
-		physLayer="item_large";
-		radiusByDamage[]={0,0.465,0.30000001,0.38,0.99980003,0.34999999,0.99989998,0.28};
-		radius=0.465;
-		width=0.2;
-		tyre="TYRE_OFFROAD_TRUCK";
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=200;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire_damage.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire_destruct.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-	};
-	class V3SWheel_Ruined: CarWheel
-	{
-		scope=2;
-		displayName="$STR_V3SWheel0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_new_burst.p3d";
-		itemSize[]={10,10};
-		weight=25000;
-		itemBehaviour=0;
-		physLayer="item_large";
-		inventorySlot[]=
-		{
-			"V3SWheel_1_1",
-			"V3SWheel_2_1",
-			"V3SWheel_Spare_1",
-			"V3SWheel_Spare_2"
-		};
-		rotationFlags=12;
-		radius=0.30000001;
-		width=0.2;
-		tyre="TYRE_DESTROYED";
-	};
-	class V3SWheelDouble: V3SWheel
-	{
-		displayName="$STR_V3SWheelDouble0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_double.p3d";
-		itemBehaviour=0;
-		inventorySlot[]=
-		{
-			"V3SWheel_1_2",
-			"V3SWheel_1_3",
-			"V3SWheel_2_2",
-			"V3SWheel_2_3"
-		};
-		width=0.40000001;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=400;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire_damage.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							
-							{
-								"DZ\vehicles\wheeled\V3S\data\v3s_tire_destruct.rvmat",
-								"DZ\vehicles\wheeled\V3S\data\v3s_rim_destruct.rvmat"
-							}
-						}
-					};
-				};
-			};
-		};
-	};
-	class V3SWheelDouble_Ruined: V3SWheel_Ruined
-	{
-		displayName="$STR_V3SWheelDouble0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_burst_double.p3d";
-		itemBehaviour=0;
-		inventorySlot[]=
-		{
-			"V3SWheel_1_2",
-			"V3SWheel_1_3",
-			"V3SWheel_2_2",
-			"V3SWheel_2_3"
-		};
-		width=0.40000001;
-	};
-	class V3SDoors_Driver: CarDoor
-	{
-		scope=2;
-		displayName="$STR_V3SDoors_Driver0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_doors_Driver.p3d";
-		weight=15000;
-		itemSize[]={10,10};
-		itemBehaviour=0;
-		inventorySlot="V3SDriverDoors";
-		rotationFlags=8;
-		physLayer="item_large";
-		hiddenSelections[]=
-		{
-			"camo_Door"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_co.paa"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=500;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
-			class DamageZones
-			{
-				class Window
-				{
-					class Health
-					{
-						hitpoints=50;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\v3s_glass.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									""
-								}
-							}
-						};
-					};
-					componentNames[]=
-					{
-						"dmgZone_window"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Doors
-				{
-					class Health
-					{
-						hitpoints=500;
-						transferToGlobalCoef=1;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\v3s_door.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\v3s_door_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\v3s_door_destruct.rvmat"
-								}
-							}
-						};
-					};
-					componentNames[]=
-					{
-						"dmgZone_doors"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-			};
-		};
-	};
-	class V3SDoors_CoDriver: V3SDoors_Driver
-	{
-		displayName="$STR_V3SDoors_CoDriver0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_doors_coDriver.p3d";
-		itemBehaviour=0;
-		inventorySlot="V3SCoDriverDoors";
-		rotationFlags=4;
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_co.paa"
-		};
-	};
-	class V3SDoors_Driver_Orange: V3SDoors_Driver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_co.paa"
-		};
-	};
-	class V3SDoors_CoDriver_Orange: V3SDoors_CoDriver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_co.paa"
-		};
-	};
-	class V3SDoors_Driver_Blue: V3SDoors_Driver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_co.paa"
-		};
-	};
-	class V3SDoors_CoDriver_Blue: V3SDoors_CoDriver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_co.paa"
-		};
-	};
-	class V3SDoors_Driver_Grey: V3SDoors_Driver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_co.paa"
-		};
-	};
-	class V3SDoors_CoDriver_Grey: V3SDoors_CoDriver
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_co.paa"
-		};
-	};
-	class V3SHood: CarDoor
-	{
-		scope=2;
-		displayName="$STR_V3SHood0";
-		model="\DZ\vehicles\wheeled\V3S\proxy\v3s_hood.p3d";
-		weight=15000;
-		itemSize[]={10,10};
-		itemBehaviour=0;
-		inventorySlot="V3SHood";
-		rotationFlags=2;
-		physLayer="item_large";
-		hiddenSelections[]=
-		{
-			"camo_Door"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_green_co.paa"
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=500;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							
-							{
-								"dz\vehicles\wheeled\V3S\data\v3s_hood_green.rvmat"
-							}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							
-							{
-								"dz\vehicles\wheeled\V3S\data\v3s_hood_green_damage.rvmat"
-							}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							
-							{
-								"dz\vehicles\wheeled\V3S\data\v3s_hood_green_destruct.rvmat"
-							}
-						}
-					};
-				};
-				componentNames[]=
-				{
-					"dmgZone_doors"
-				};
-			};
-		};
-	};
-	class V3SHood_Orange: V3SHood
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_orange_co.paa"
-		};
-	};
-	class V3SHood_Blue: V3SHood
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_Blue_co.paa"
-		};
-	};
-	class V3SHood_Grey: V3SHood
-	{
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_Grey_co.paa"
-		};
-	};
-	class V3S_Chassis: CarScript
-	{
-		scope=2;
-		displayName="$STR_v3s_chassis0";
-		model="\dz\vehicles\wheeled\V3S\V3S_chassis.p3d";
-		InteractActions[]={1047,1035};
-		attachments[]=
-		{
-			"TruckBattery",
-			"LightBulb",
-			"V3SDriverDoors",
-			"V3SCoDriverDoors",
-			"V3SHood",
-			"V3SWheel_1_1",
-			"V3SWheel_1_2",
-			"V3SWheel_1_3",
-			"V3SWheel_2_1",
-			"V3SWheel_2_2",
-			"V3SWheel_2_3",
-			"V3SWheel_Spare_1",
-			"V3SWheel_Spare_2"
-		};
-		extCameraPosition[]={0,1.5,-8.5};
-		dashboardMatOn="dz\vehicles\wheeled\v3s\data\v3s_dashboard_light.rvmat";
-		dashboardMatOff="dz\vehicles\wheeled\v3s\data\v3s_dashboard.rvmat";
-		frontReflectorMatOn="dz\vehicles\wheeled\v3s\data\v3s_cab_lights.rvmat";
-		frontReflectorMatOff="dz\vehicles\wheeled\v3s\data\v3s_cab_chrome.rvmat";
-		frontReflectorMatDamaged="dz\vehicles\wheeled\v3s\data\v3s_cab_damage.rvmat";
-		frontReflectorMatRuined="dz\vehicles\wheeled\v3s\data\v3s_cab_destruct.rvmat";
-		fuelCapacity=120;
-		fuelConsumption=30;
-		class SimulationModule: SimulationModule
-		{
-			drive="DRIVE_642";
-			airDragCoefficient=0.50999999;
-			class Steering
-			{
-				increaseSpeed[]={0,25,50,15};
-				decreaseSpeed[]={0,50,50,40};
-				centeringSpeed[]={0,25,50,15};
-			};
-			class Throttle
-			{
-				reactionTime=1;
-				defaultThrust=0.85000002;
-				gentleThrust=0.69999999;
-				turboCoef=3;
-				gentleCoef=0.5;
-			};
-			class Engine
-			{
-				inertia=1.5;
-				powerMax=72;
-				powerRpm=2100;
-				torqueMax=360;
-				torqueRpm=1400;
-				rpmIdle=600;
-				rpmMin=650;
-				rpmClutch=700;
-				rpmRedline=2600;
-				rpmMax=3000;
-			};
-			class Gearbox
-			{
-				reverse=6.2800002;
-				ratios[]={6.1900001,3.1300001,1.75,1};
-				timeToUncoupleClutch=0.40000001;
-				timeToCoupleClutch=0.2;
-				maxClutchTorque=400;
-			};
-			class Axles: Axles
-			{
-				class Front: Front
-				{
-					maxSteeringAngle=35;
-					finalRatio=6.8400002;
-					brakeBias=0.5;
-					brakeForce=8000;
-					wheelHubMass=25;
-					wheelHubRadius=0.30000001;
-					wheelHubRatio=2.1400001;
-					class Suspension
-					{
-						stiffness=65000;
-						compression=6000;
-						damping=11500;
-						travelMaxUp=0.25;
-						travelMaxDown=0.15000001;
-					};
-					class Wheels: Wheels
-					{
-						class Left: Left
-						{
-							inventorySlot="V3SWheel_1_1";
-						};
-						class Right: Right
-						{
-							inventorySlot="V3SWheel_2_1";
-						};
-					};
-				};
-				class Middle: Rear
-				{
-					maxSteeringAngle=0;
-					finalRatio=6.8400002;
-					brakeBias=0.25;
-					brakeForce=7500;
-					wheelHubMass=45;
-					wheelHubRadius=0.30000001;
-					wheelHubRatio=2.1400001;
-					class Suspension
-					{
-						stiffness=60000;
-						compression=7000;
-						damping=12000;
-						travelMaxUp=0.25;
-						travelMaxDown=0.15000001;
-					};
-					class Wheels: Wheels
-					{
-						class Left
-						{
-							inventorySlot="V3SWheel_1_2";
-							animTurn="turnmiddleleft";
-							animRotation="wheelmiddleleft";
-							animDamper="dampermiddleleft";
-							wheelHub="wheel_1_2_damper_land";
-						};
-						class Right
-						{
-							inventorySlot="V3SWheel_2_2";
-							animTurn="turnmiddletright";
-							animRotation="wheelmiddleright";
-							animDamper="dampermiddleright";
-							wheelHub="wheel_2_2_damper_land";
-						};
-					};
-				};
-				class Rear: Rear
-				{
-					maxSteeringAngle=0;
-					finalRatio=6.8400002;
-					brakeBias=0.25;
-					brakeForce=7500;
-					wheelHubMass=45;
-					wheelHubRadius=0.30000001;
-					wheelHubRatio=2.1400001;
-					class Suspension
-					{
-						stiffness=60000;
-						compression=7000;
-						damping=12000;
-						travelMaxUp=0.25;
-						travelMaxDown=0.15000001;
-					};
-					class Wheels: Wheels
-					{
-						class Left: Left
-						{
-							inventorySlot="V3SWheel_1_3";
-							wheelHub="wheel_1_3_damper_land";
-						};
-						class Right: Right
-						{
-							inventorySlot="V3SWheel_2_3";
-							wheelHub="wheel_2_3_damper_land";
-						};
-					};
-				};
-			};
-		};
-		class Cargo
-		{
-			itemsCargoSize[]={10,30};
-			allowOwnedCargoManipulation=1;
-			openable=0;
-		};
-		class AnimationSources: AnimationSources
-		{
-			class WheelSidePlate1
-			{
-				source="user";
-				initPhase=0;
-				animPeriod=1.3;
-			};
-			class WheelSidePlate2: WheelSidePlate1
-			{
-			};
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints=1000;
-					healthLevels[]=
-					{
-						
-						{
-							1,
-							{}
-						},
-						
-						{
-							0.69999999,
-							{}
-						},
-						
-						{
-							0.5,
-							{}
-						},
-						
-						{
-							0.30000001,
-							{}
-						},
-						
-						{
-							0,
-							{}
-						}
-					};
-				};
-			};
-			class DamageZones
-			{
-				class Chassis
-				{
-					class Health
-					{
-						hitpoints=3000;
-						transferToGlobalCoef=1;
-					};
-					componentNames[]=
-					{
-						"dmgZone_chassis"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Front
-				{
-					class Health
-					{
-						hitpoints=2500;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab_destruct.rvmat"
-								}
-							}
-						};
-					};
-					transferToZonesNames[]=
-					{
-						"Fender_1_1",
-						"Fender_2_1",
-						"Engine"
-					};
-					transferToZonesThreshold[]={0.2,0.2,0};
-					transferToZonesCoefs[]={0.60000002,0.60000002,0.80000001};
-					memoryPoints[]=
-					{
-						"dmgZone_front"
-					};
-					componentNames[]=
-					{
-						"dmgZone_front"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]=
-					{
-						"NivaHood"
-					};
-				};
-				class Back
-				{
-					class Health
-					{
-						hitpoints=3000;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\v3s\data\v3s_cargo.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_destruct.rvmat"
-								}
-							}
-						};
-					};
-					transferToZonesNames[]=
-					{
-						"Fender_1_2",
-						"Fender_2_2",
-						"WindowLR",
-						"WindowRR"
-					};
-					transferToZonesCoefs[]={0.30000001,0.30000001,0.2,0.2};
-					memoryPoints[]=
-					{
-						"dmgZone_back"
-					};
-					componentNames[]=
-					{
-						"dmgZone_back"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Roof
-				{
-					class Health
-					{
-						hitpoints=500;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cabin_a.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cabin_a_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cabin_a_destruct.rvmat"
-								}
-							}
-						};
-					};
-					memoryPoints[]=
-					{
-						"dmgZone_roof"
-					};
-					componentNames[]=
-					{
-						"dmgZone_roof"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Fender_1_1
-				{
-					class Health
-					{
-						hitpoints=800;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\offroadhatchback\data\v3s_cab_destruct.rvmat"
-								}
-							}
-						};
-					};
-					transferToZonesNames[]=
-					{
-						"Front",
-						"Engine",
-						"Lights"
-					};
-					transferToZonesThreshold[]={0.5,0.25,1};
-					transferToZonesCoefs[]={0.30000001,0.60000002,0.80000001};
-					memoryPoints[]=
-					{
-						"dmgZone_fender_1_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_fender_1_1"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]=
-					{
-						"V3SWheel_1_1"
-					};
-				};
-				class Fender_2_1: Fender_1_1
-				{
-					memoryPoints[]=
-					{
-						"dmgZone_fender_2_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_fender_2_1"
-					};
-					inventorySlots[]=
-					{
-						"V3SWheel_2_1"
-					};
-				};
-				class WindowFrontLeft
-				{
-					class Health
-					{
-						hitpoints=50;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_glass.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\data\auta_skla_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									""
-								}
-							}
-						};
-					};
-					memoryPoints[]=
-					{
-						"dmgZone_windowFrontLeft"
-					};
-					componentNames[]=
-					{
-						"dmgZone_windowFrontLeft"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class WindowFrontRight: WindowFrontLeft
-				{
-					memoryPoints[]=
-					{
-						"dmgZone_windowFrontRight"
-					};
-					componentNames[]=
-					{
-						"dmgZone_windowFrontRight"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Engine
-				{
-					class Health
-					{
-						hitpoints=1000;
-						transferToGlobalCoef=1;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\v3s\data\v3s_chassis.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_destruct.rvmat"
-								}
-							}
-						};
-					};
-					memoryPoints[]=
-					{
-						"dmgZone_engine"
-					};
-					componentNames[]=
-					{
-						"dmgZone_engine"
-					};
-					fatalInjuryCoef=0.001;
-					inventorySlots[]={};
-				};
-				class FuelTank
-				{
-					class Health
-					{
-						hitpoints=300;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								
-								{
-									"dz\vehicles\wheeled\v3s\data\v3s_chassis.rvmat"
-								}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_damage.rvmat"
-								}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								
-								{
-									"dz\vehicles\wheeled\V3S\data\V3S_destruct.rvmat"
-								}
-							}
-						};
-					};
-					componentNames[]=
-					{
-						"dmgZone_fuelTank"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]={};
-				};
-				class Reflector_1_1
-				{
-					class Health
-					{
-						hitpoints=50;
-						transferToGlobalCoef=0;
-						healthLevels[]=
-						{
-							
-							{
-								1,
-								{}
-							},
-							
-							{
-								0.69999999,
-								{}
-							},
-							
-							{
-								0.5,
-								{}
-							},
-							
-							{
-								0.30000001,
-								{}
-							},
-							
-							{
-								0,
-								{}
-							}
-						};
-					};
-					transferToZonesNames[]=
-					{
-						"Front",
-						"Fender_1_1"
-					};
-					transferToZonesCoefs[]={1,1};
-					memoryPoints[]=
-					{
-						"dmgZone_lights_1_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_lights_1_1"
-					};
-					fatalInjuryCoef=-1;
-					inventorySlots[]=
-					{
-						"Reflector_1_1"
-					};
-				};
-				class Reflector_2_1: Reflector_1_1
-				{
-					transferToZonesNames[]=
-					{
-						"Front",
-						"Fender_2_1"
-					};
-					transferToZonesCoefs[]={1,1};
-					memoryPoints[]=
-					{
-						"dmgZone_lights_2_1"
-					};
-					componentNames[]=
-					{
-						"dmgZone_lights_2_1"
-					};
-					inventorySlots[]=
-					{
-						"Reflector_2_1"
-					};
-				};
-			};
-		};
-		class ObstacleGenerator
-		{
-			carve=1;
-			timeToStationary=5;
-			moveThreshold=0.5;
-			class Shapes
-			{
-				class Cylindric
-				{
-					class Cyl1
-					{
-						radius=1;
-						height=1.5;
-						center[]={0,0,1.5};
-					};
-					class Cyl2
-					{
-						radius=1;
-						height=1.5;
-						center[]={0,0,0};
-					};
-					class Cyl3
-					{
-						radius=1;
-						height=1.5;
-						center[]={0,0,-1.5};
-					};
-				};
-			};
-		};
-		class GUIInventoryAttachmentsProps
-		{
-			class Engine
-			{
-				name="$STR_attachment_Engine0";
-				description="";
-				attachmentSlots[]=
-				{
-					"TruckBattery",
-					"EngineBelt"
-				};
-				icon="missing";
-			};
-			class Body
-			{
-				name="$STR_attachment_Body0";
-				description="";
-				attachmentSlots[]=
-				{
-					"LightBulb",
-					"V3SDriverDoors",
-					"V3SCoDriverDoors",
-					"V3SHood"
-				};
-				icon="missing";
-			};
-			class Chassis
-			{
-				name="$STR_attachment_Chassis0";
-				description="";
-				attachmentSlots[]=
-				{
-					"V3SWheel_1_1",
-					"V3SWheel_1_2",
-					"V3SWheel_1_3",
-					"V3SWheel_2_1",
-					"V3SWheel_2_2",
-					"V3SWheel_2_3",
-					"V3SWheel_Spare_1",
-					"V3SWheel_Spare_2"
-				};
-				icon="missing";
-			};
-		};
-	};
-	class V3S_Chassis_Blue: V3S_Chassis
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_CO.paa"
-		};
-	};
-	class V3S_Chassis_Orange: V3S_Chassis
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"spare_wheels",
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"",
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_CO.paa"
-		};
-	};
-	class V3S_Chassis_Grey: V3S_Chassis
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_CO.paa"
-		};
-	};
-	class V3S_Cargo: V3S_Chassis
-	{
-		displayName="$STR_v3s_cargo0";
-		model="\dz\vehicles\wheeled\V3S\V3S_cargo.p3d";
-		transportSoldier=9;
-		class Cargo
-		{
-			itemsCargoSize[]={10,60};
-			allowOwnedCargoManipulation=1;
-			openable=0;
-		};
-		class AnimationSources: AnimationSources
-		{
-			class DoorsTrunk
-			{
-				source="user";
-				initPhase=0;
-				animPeriod=0.5;
-			};
-		};
-	};
-	class V3S_Cargo_Blue: V3S_Cargo
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_blue_CO.paa"
-		};
-	};
-	class V3S_Cargo_Orange: V3S_Cargo
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_orange_CO.paa"
-		};
-	};
-	class V3S_Cargo_Grey: V3S_Cargo
-	{
-		scope=2;
-		hiddenSelections[]=
-		{
-			"hood",
-			"cabin",
-			"doors_Driver",
-			"doors_coDriver"
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"\dz\vehicles\wheeled\V3S\data\v3s_hood_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_cab_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_CO.paa",
-			"\dz\vehicles\wheeled\V3S\data\v3s_door_grey_CO.paa"
-		};
-	};
 	class HatchbackWheel: CarWheel
 	{
 		scope=2;
@@ -1934,7 +487,10 @@ class CfgVehicles
 						
 						{
 							0.69999999,
-							{}
+							
+							{
+								"DZ\vehicles\wheeled\OffroadHatchback\data\niva_wheel.rvmat"
+							}
 						},
 						
 						{
@@ -1947,7 +503,10 @@ class CfgVehicles
 						
 						{
 							0.30000001,
-							{}
+							
+							{
+								"DZ\vehicles\wheeled\OffroadHatchback\data\niva_wheel_damage.rvmat"
+							}
 						},
 						
 						{
@@ -2282,10 +841,10 @@ class CfgVehicles
 			"Reflector_2_1",
 			"CarRadiator",
 			"SparkPlug",
-			"NivaHood",
-			"NivaTrunk",
 			"NivaDriverDoors",
 			"NivaCoDriverDoors",
+			"NivaHood",
+			"NivaTrunk",
 			"NivaWheel_1_1",
 			"NivaWheel_1_2",
 			"NivaWheel_2_1",
@@ -2373,7 +932,7 @@ class CfgVehicles
 					class Suspension
 					{
 						swayBar=1700;
-						stiffness=42000;
+						stiffness=40000;
 						compression=2100;
 						damping=7500;
 						travelMaxUp=0.088200003;
@@ -2404,9 +963,9 @@ class CfgVehicles
 					class Suspension
 					{
 						swayBar=1800;
-						stiffness=43000;
-						compression=2300;
-						damping=7900;
+						stiffness=40000;
+						compression=2200;
+						damping=7600;
 						travelMaxUp=0.1587;
 						travelMaxDown=0.1059;
 					};
@@ -2537,7 +1096,10 @@ class CfgVehicles
 							
 							{
 								0.69999999,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"
+								}
 							},
 							
 							{
@@ -2550,7 +1112,10 @@ class CfgVehicles
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"
+								}
 							},
 							
 							{
@@ -2701,7 +1266,10 @@ class CfgVehicles
 							
 							{
 								0.69999999,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"
+								}
 							},
 							
 							{
@@ -2714,7 +1282,10 @@ class CfgVehicles
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"
+								}
 							},
 							
 							{
@@ -2767,7 +1338,10 @@ class CfgVehicles
 							
 							{
 								0.69999999,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"
+								}
 							},
 							
 							{
@@ -2780,7 +1354,10 @@ class CfgVehicles
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"
+								}
 							},
 							
 							{
@@ -2822,7 +1399,10 @@ class CfgVehicles
 							
 							{
 								0.69999999,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"
+								}
 							},
 							
 							{
@@ -2835,7 +1415,10 @@ class CfgVehicles
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"
+								}
 							},
 							
 							{
@@ -3091,7 +1674,10 @@ class CfgVehicles
 							
 							{
 								0.69999999,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\engine_niva.rvmat"
+								}
 							},
 							
 							{
@@ -3104,7 +1690,10 @@ class CfgVehicles
 							
 							{
 								0.30000001,
-								{}
+								
+								{
+									"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_damage.rvmat"
+								}
 							},
 							
 							{
@@ -3208,18 +1797,19 @@ class CfgVehicles
 			{
 				name="$STR_attachment_Engine0";
 				description="";
+				icon="cat_vehicle_engine";
 				attachmentSlots[]=
 				{
 					"CarBattery",
 					"CarRadiator",
 					"SparkPlug"
 				};
-				icon="missing";
 			};
 			class Body
 			{
 				name="$STR_attachment_Body0";
 				description="";
+				icon="cat_vehicle_body";
 				attachmentSlots[]=
 				{
 					"Reflector_1_1",
@@ -3230,12 +1820,12 @@ class CfgVehicles
 					"NivaCoDriverDoors",
 					"NivaWheel_Spare_1"
 				};
-				icon="missing";
 			};
 			class Chassis
 			{
 				name="$STR_attachment_Chassis0";
 				description="";
+				icon="cat_vehicle_chassis";
 				attachmentSlots[]=
 				{
 					"NivaWheel_1_1",
@@ -3243,7 +1833,6 @@ class CfgVehicles
 					"NivaWheel_2_1",
 					"NivaWheel_2_2"
 				};
-				icon="missing";
 			};
 		};
 	};
@@ -3303,117 +1892,6 @@ class CfgNonAIVehicles
 		shadow=1;
 		reversed=0;
 	};
-	class Proxyv3s_wheel: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_wheel.p3d";
-		inventorySlot[]=
-		{
-			"V3SWheel_1_1",
-			"V3SWheel_2_1",
-			"V3SWheel_Spare_1",
-			"V3SWheel_Spare_2"
-		};
-	};
-	class Proxyv3s_wheel_new_burst: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_new_burst.p3d";
-		inventorySlot[]=
-		{
-			"V3SWheel_1_1",
-			"V3SWheel_2_1",
-			"V3SWheel_Spare_1",
-			"V3SWheel_Spare_2"
-		};
-	};
-	class Proxyv3s_wheel_double: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_double.p3d";
-		inventorySlot[]=
-		{
-			"V3SWheel_1_2",
-			"V3SWheel_1_3",
-			"V3SWheel_2_2",
-			"V3SWheel_2_3"
-		};
-	};
-	class Proxyv3s_wheel_burst_double: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_wheel_burst_double.p3d";
-		inventorySlot[]=
-		{
-			"V3SWheel_1_2",
-			"V3SWheel_1_3",
-			"V3SWheel_2_2",
-			"V3SWheel_2_3"
-		};
-	};
-	class Proxyv3s_doors_Driver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_doors_Driver.p3d";
-		inventorySlot="V3SDriverDoors";
-	};
-	class Proxyv3s_doors_coDriver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_doors_coDriver.p3d";
-		inventorySlot="V3SCoDriverDoors";
-	};
-	class Proxyv3s_hood: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\V3S\proxy\v3s_hood.p3d";
-		inventorySlot="V3Shood";
-	};
-	class ProxySedanWheel: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\civiliansedan\proxy\sedanWheel.p3d";
-		inventorySlot[]=
-		{
-			"CivSedanWheel_1_1",
-			"CivSedanWheel_1_2",
-			"CivSedanWheel_2_1",
-			"CivSedanWheel_2_2"
-		};
-	};
-	class ProxySedanWheel_destroyed: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\civiliansedan\proxy\sedanWheel_destroyed.p3d";
-		inventorySlot[]=
-		{
-			"CivSedanWheel_1_1",
-			"CivSedanWheel_1_2",
-			"CivSedanWheel_2_1",
-			"CivSedanWheel_2_2"
-		};
-	};
-	class ProxySedanHood: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanhood.p3d";
-		inventorySlot="CivSedanHood";
-	};
-	class ProxySedanTrunk: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanTrunk.p3d";
-		inventorySlot="CivSedanTrunk";
-	};
-	class ProxysedanDoors_Driver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanDoors_Driver.p3d";
-		inventorySlot="CivSedanDriverDoors";
-	};
-	class ProxysedanDoors_coDriver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanDoors_coDriver.p3d";
-		inventorySlot="CivSedanCoDriverDoors";
-	};
-	class ProxysedanDoors_cargo1: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanDoors_cargo1.p3d";
-		inventorySlot="CivSedanCargo1Doors";
-	};
-	class ProxysedanDoors_cargo2: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianSedan\proxy\sedanDoors_cargo2.p3d";
-		inventorySlot="CivSedanCargo2Doors";
-	};
 	class ProxyNivaWheel: ProxyVehiclePart
 	{
 		model="DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaWheel.p3d";
@@ -3457,113 +1935,5 @@ class CfgNonAIVehicles
 	{
 		model="DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaDoors_coDriver.p3d";
 		inventorySlot="NivaCoDriverDoors";
-	};
-	class ProxyIkarusWheel: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\IkarusWheel.p3d";
-		inventorySlot[]=
-		{
-			"BusWheel_1_1",
-			"BusWheel_2_1"
-		};
-	};
-	class ProxyIkarusWheel_destroyed: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\ikarusWheel_destroyed.p3d";
-		inventorySlot[]=
-		{
-			"BusWheel_1_1",
-			"BusWheel_2_1"
-		};
-	};
-	class ProxyIkarusWheel_rear: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\ikarusWheel_rear.p3d";
-		inventorySlot[]=
-		{
-			"BusWheel_1_2",
-			"BusWheel_2_2"
-		};
-	};
-	class ProxyIkarusWheel_rear_destroyed: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\ikarusWheel_rear_destroyed.p3d";
-		inventorySlot[]=
-		{
-			"BusWheel_1_2",
-			"BusWheel_2_2"
-		};
-	};
-	class ProxyikarusHood: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\ikarusHood.p3d";
-		inventorySlot="BusHood";
-	};
-	class ProxyIkarusDoors_Left: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\IkarusDoors_Left.p3d";
-		inventorySlot[]=
-		{
-			"BusLeftDoors_1",
-			"BusLeftDoors_2",
-			"BusLeftDoors_3"
-		};
-	};
-	class ProxyIkarusDoors_Right: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\TransitBus\proxy\IkarusDoors_Right.p3d";
-		inventorySlot[]=
-		{
-			"BusRightDoors_1",
-			"BusRightDoors_2",
-			"BusRightDoors_3"
-		};
-	};
-	class ProxyCivilianVan_wheel: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVan_wheel.p3d";
-		inventorySlot[]=
-		{
-			"CivVanWheel_1_1",
-			"CivVanWheel_1_2",
-			"CivVanWheel_2_1",
-			"CivVanWheel_2_2"
-		};
-	};
-	class ProxyCivilianVan_wheel_dam: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVan_wheel_dam.p3d";
-		inventorySlot[]=
-		{
-			"CivVanWheel_1_1",
-			"CivVanWheel_1_2",
-			"CivVanWheel_2_1",
-			"CivVanWheel_2_2"
-		};
-	};
-	class ProxyCivilianVanDoors_Driver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVanDoors_Driver.p3d";
-		inventorySlot="CivVanDriverDoors";
-	};
-	class ProxyCivilianVanDoors_CoDriver: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVanDoors_CoDriver.p3d";
-		inventorySlot="CivVanCoDriverDoors";
-	};
-	class ProxyCivilianVanDoors_Cargo1: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVanDoors_Cargo1.p3d";
-		inventorySlot="CivVanCargo1Doors";
-	};
-	class ProxyCivilianVanDoors_Cargo2: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVanDoors_Cargo2.p3d";
-		inventorySlot="CivVanTrunkDown";
-	};
-	class ProxyCivilianVanDoors_Cargo3: ProxyVehiclePart
-	{
-		model="DZ\vehicles\wheeled\CivilianVan\proxy\CivilianVanDoors_Cargo3.p3d";
-		inventorySlot="CivVanTrunkUp";
 	};
 };
