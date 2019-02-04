@@ -1575,10 +1575,13 @@ class CfgWorlds
 		starsIntensity=0.141;
 		hazeDistCoef=0;
 		hazeFogCoef=1;
+		rainMaterial="{AD76A616D0EF1ABC}Graphics/Materials/postprocess/rain.emat";
 		satelliteNormalBlendStart=100;
 		satelliteNormalBlendEnd=500;
 		flareMinDistance=2;
 		flareMinDistanceLerp=1;
+		farLightSpotMul=2;
+		farLightPointMul=2;
 	};
 };
 class CfgMaterials
@@ -2454,33 +2457,13 @@ class AirplaneHUD
 		};
 	};
 };
-class CfgDamageAround
-{
-	class DamageAroundPole
-	{
-		radiusRatio="10";
-		indirectHit="900";
-	};
-};
-class CfgDestructPos
-{
-	class DelayedDestruction
-	{
-		timeBeforeHiding="0.2";
-		hideDuration="0.65+lifeTime*0.05";
-	};
-};
 class CfgVehicles
 {
 	class All
 	{
-		camouflage=0;
-		audible=0;
 		clothingType="";
 		itemsCargoSize[]={};
 		HeadAimDown=0;
-		driverCanEject=0;
-		cargoCanEject=0;
 		author="dayz";
 		maxCargo=0;
 	};
@@ -2498,8 +2481,6 @@ class CfgVehicles
 	};
 	class Man: AllVehicles
 	{
-		camouflage=2;
-		sensitivityEar=0.5;
 		minFireTime=5;
 		extCameraPosition[]={0.15000001,0,-2};
 	};
@@ -2690,6 +2671,10 @@ class CfgVehicles
 				};
 			};
 		};
+		class Protection
+		{
+			biological=0;
+		};
 		class MeleeModes
 		{
 			class Default
@@ -2714,32 +2699,6 @@ class CfgVehicles
 		scope=2;
 		model="\DZ\data\lightpoint.p3d";
 		ammoType="Explosion_NonLethal";
-	};
-	class Light: Inventory_Base
-	{
-		scope=2;
-		carveNavmesh=0;
-		model="\DZ\data\lightpoint.p3d";
-		overrideDrawArea="500.0";
-		class PointLights
-		{
-			class PointLight
-			{
-				color[]={0.75999999,0.68000001,0.31,1};
-				brightness=1;
-				radius=5;
-				dayLight=1;
-				position="light";
-				hitpoint="bulb";
-				selection="bulb";
-				heatHazeRadius=0.1;
-				heatHazePower=0.0099999998;
-				fireEffect=1;
-				fireEffectOctaves=4;
-				fireEffectPersistence=0.99000001;
-				fireEffectFract=0.33000001;
-			};
-		};
 	};
 	class Container_Base: Inventory_Base
 	{
@@ -2781,22 +2740,6 @@ class CfgVehicles
 			}
 		};
 	};
-	class EnergyItem_Base: Inventory_Base
-	{
-		armAction="Disarm";
-		lootCategory="Tools";
-		quantity="[_this,'power'] call fnc_generateRscQuantity;";
-		varEnergyInit=0;
-		varEnergyMin=0;
-		varEnergyMax=1;
-		varIsLightedInit=0;
-		varIsLightedMin=0;
-		varIsLightedMax=1;
-		class Resources
-		{
-			power=0;
-		};
-	};
 	class Edible_Base: Inventory_Base
 	{
 		armAction="Disarm";
@@ -2815,9 +2758,9 @@ class CfgVehicles
 	};
 	class Trap_Base: Inventory_Base
 	{
-		armAction="Disarm";
 		itemSize[]={2,2};
 		lootCategory="Tools";
+		isMeleeWeapon=0;
 	};
 	class Grenade_Base: Inventory_Base
 	{
@@ -3092,18 +3035,6 @@ class CfgNonAIVehicles
 	};
 	class ProxyCargo04: ProxyCargo
 	{
-	};
-};
-class CfgRecipes
-{
-	class Default
-	{
-		name="";
-		material[]={};
-		tools[]={};
-		results[]={};
-		condition="";
-		action="";
 	};
 };
 class cfgRecoils
@@ -4140,9 +4071,17 @@ class cfgAmmo
 		{
 			name="Bullet_556x45";
 		};
+		class AType_Bullet_556x45Tracer
+		{
+			name="Bullet_556x45Tracer";
+		};
 		class AType_Bullet_762x39
 		{
 			name="Bullet_762x39";
+		};
+		class AType_Bullet_762x39Tracer
+		{
+			name="Bullet_762x39Tracer";
 		};
 		class AType_Bullet_762x54
 		{
@@ -4370,6 +4309,9 @@ class cfgWeapons
 		{
 			ChanceToJam[]={0,0.001,0.0049999999,0.050000001,1};
 		};
+	};
+	class BoltRifle_Base: Rifle_Base
+	{
 	};
 	class Shotgun_Base: Rifle_Base
 	{

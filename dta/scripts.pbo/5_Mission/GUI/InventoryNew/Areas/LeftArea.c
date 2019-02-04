@@ -1,14 +1,22 @@
 class LeftArea: Container
 {
+	protected Widget					m_UpIcon;
+	protected Widget					m_DownIcon;
 	protected ref VicinityContainer		m_VicinityContainer;
 	protected ScrollWidget				m_ScrollWidget;
+	protected ref SizeToChild			m_ContentResize;
 	
 	void LeftArea( LayoutHolder parent )
 	{
 		m_MainWidget.Show( true );
+		m_MainWidget.FindAnyWidget( "ContentParent" ).GetScript( m_ContentResize );
+		
 		m_ScrollWidget	= ScrollWidget.Cast( m_MainWidget.FindAnyWidget( "Scroller" ) );
 		m_MainWidget	= m_MainWidget.FindAnyWidget( "Content" );
-
+		
+		m_UpIcon		= m_RootWidget.FindAnyWidget( "Up" );
+		m_DownIcon		= m_RootWidget.FindAnyWidget( "Down" );
+		
 		m_VicinityContainer = new VicinityContainer( this );
 		m_Body.Insert( m_VicinityContainer );
 		m_ActiveIndex = 0;
@@ -50,6 +58,11 @@ class LeftArea: Container
 			amount = active_container.GetFocusedContainerYScreenPos() - y;
 			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount - 2 );
 		}
+	}
+	
+	override void TransferItemToVicinity()
+	{
+		m_VicinityContainer.TransferItemToVicinity();
 	}
 	
 	override void SelectItem()
@@ -115,6 +128,7 @@ class LeftArea: Container
 	
 	override void SetActive( bool active )
 	{
+		m_IsActive = active;
 		if( m_Body.Count() <= m_ActiveIndex )
 		{
 			m_ActiveIndex = 0;
@@ -127,8 +141,10 @@ class LeftArea: Container
 			if( active_container.IsInherited( CollapsibleContainer ) )
 			{
 				CollapsibleContainer.Cast( active_container ).SetFirstActive();
-			}	
+			}
+			SetFocusedContainer( active_container );
 		}
+		UpdateSelectionIcons();
 	}
 	
 	override void SetNextActive()
@@ -151,6 +167,7 @@ class LeftArea: Container
 			active_container.SetActive( false );
 			active_container = Container.Cast( m_Body.Get( m_ActiveIndex ) );
 			active_container.SetActive( true );
+			SetFocusedContainer( active_container );
 			if( active_container.IsInherited( CollapsibleContainer ) )
 			{
 				CollapsibleContainer.Cast( active_container ).SetFirstActive();
@@ -170,6 +187,8 @@ class LeftArea: Container
 		{
 			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + active_container.GetFocusedContainerHeight() + 2 );
 		}
+		
+		UpdateSelectionIcons();
 	}
 	
 	override void SetPreviousActive()
@@ -192,6 +211,7 @@ class LeftArea: Container
 			active_container.SetActive( false );
 			active_container = Container.Cast( m_Body.Get( m_ActiveIndex ) );
 			active_container.SetActive( true );
+			SetFocusedContainer( active_container );
 			if( active_container.IsInherited( CollapsibleContainer ) )
 			{
 				CollapsibleContainer.Cast( active_container ).SetLastActive();
@@ -209,11 +229,64 @@ class LeftArea: Container
 			float amount = active_container.GetFocusedContainerYScreenPos() - y;
 			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount - 2 );
 		}
+		
+		UpdateSelectionIcons();
+	}
+	
+	void UpdateSelectionIcons()
+	{
+		m_UpIcon.Show( m_IsActive );
+		m_DownIcon.Show( m_IsActive );
+		if( m_IsActive )
+		{
+			float x, y;
+			float x2, y2;
+			m_UpIcon.GetScreenSize( x, y );
+			m_DownIcon.GetScreenSize( x2, y2 );
+			
+			float top_y		= GetCurrentContainerTopY();
+			float bottom_y	= GetCurrentContainerBottomY() - y2;
+			
+			float diff		= bottom_y - ( top_y + y );
+			if( diff < 0 )
+			{
+				top_y += diff / 2;
+				bottom_y -= diff / 2;
+			}
+			
+			m_UpIcon.SetPos( 0, top_y );
+			m_DownIcon.SetPos( 0, bottom_y );
+		}
+	}
+	
+	float GetCurrentContainerTopY()
+	{
+		float x, y;
+		m_MainWidget.GetScreenPos( x, y );
+		float cont_screen_pos = Container.Cast( m_Body.Get( m_ActiveIndex ) ).GetFocusedContainerYScreenPos();
+		
+		return cont_screen_pos - y;
+	}
+	
+	float GetCurrentContainerBottomY()
+	{
+		float x, y;
+		m_MainWidget.GetScreenPos( x, y );
+		
+		float cont_screen_pos = Container.Cast( m_Body.Get( m_ActiveIndex ) ).GetFocusedContainerYScreenPos();
+		float cont_screen_height = Container.Cast( m_Body.Get( m_ActiveIndex ) ).GetFocusedContainerHeight();
+		return cont_screen_pos - y + cont_screen_height;
 	}
 	
 	void ExpandCollapseContainer()
 	{
 		m_VicinityContainer.ExpandCollapseContainer();
+		
+		m_MainWidget.Update();
+		m_RootWidget.Update();
+		m_ScrollWidget.Update();
+		
+		CheckScrollbarVisibility();
 	}
 	
 	void OnLeftPanelDropReceived( Widget w, int x, int y, Widget receiver )
@@ -221,9 +294,36 @@ class LeftArea: Container
 		m_VicinityContainer.OnLeftPanelDropReceived( w, x, y, receiver );
 	}
 	
+	override void DraggingOverHeader( Widget w, int x, int y, Widget receiver )
+	{
+		m_VicinityContainer.DraggingOverHeader( w, x, y, receiver );
+	}
+	
 	override void SetLayoutName()
 	{
-		m_LayoutName = WidgetLayoutName.LeftArea;
+		#ifdef PLATFORM_CONSOLE
+			m_LayoutName = WidgetLayoutName.LeftAreaXbox;
+		#else
+			switch( InventoryMenu.GetWidthType() )
+			{
+				case ScreenWidthType.NARROW:
+				{
+					m_LayoutName = WidgetLayoutName.LeftAreaNarrow;
+					break;
+				}
+				case ScreenWidthType.MEDIUM:
+				{
+					m_LayoutName = WidgetLayoutName.LeftAreaMedium;
+					break;
+				}
+				case ScreenWidthType.WIDE:
+				{
+					m_LayoutName = WidgetLayoutName.LeftAreaWide;
+					break;
+				}
+			}
+		#endif
+			
 	}
 	
 	VicinityContainer GetVicinityContainer()
@@ -242,19 +342,41 @@ class LeftArea: Container
 		Refresh();
 	}
 	
-	override bool OnChildRemove( Widget w, Widget child )
+	override void Refresh()
 	{
+		super.Refresh();
+		
 		m_MainWidget.Update();
 		m_RootWidget.Update();
-		Print( m_ScrollWidget.GetVScrollPos01() );
+		m_ScrollWidget.Update();
+		
+		UpdateSelectionIcons();
+		CheckScrollbarVisibility();
+		m_ContentResize.ResizeParentToChild();
+	}
+	
+	void CheckScrollbarVisibility()
+	{
+		float x, y;
+		float x2, y2;
+		
+		m_MainWidget.GetScreenSize( x, y );
+		m_ScrollWidget.GetScreenSize( x2, y2 );
+		m_ScrollWidget.SetAlpha( ( y > y2 ) );
+	}
+	
+	override bool OnChildRemove( Widget w, Widget child )
+	{
+		Refresh();
+		
 		m_ScrollWidget.VScrollToPos01( m_ScrollWidget.GetVScrollPos01() );
 		return true;
 	}
 	
 	override bool OnChildAdd( Widget w, Widget child )
 	{
-		m_MainWidget.Update();
-		m_RootWidget.Update();
+		Refresh();
+		
 		m_ScrollWidget.VScrollToPos01( m_ScrollWidget.GetVScrollPos01() );
 		return true;
 	}

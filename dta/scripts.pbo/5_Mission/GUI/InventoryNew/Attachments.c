@@ -1,23 +1,36 @@
+const int ITEMS_IN_ROW = 8;
+
 class Attachments
 {
-	Container m_Parent;
-	EntityAI m_Entity;
-	ref AttachmentsWrapper m_AttachmentsContainer;
-	ref array<ref SlotsContainer> m_Ics;
-	int m_FocusedRow, m_FocusedColumn, m_RowIndex;
+	protected Container							m_Parent;
+	protected EntityAI							m_Entity;
+	protected ref AttachmentsWrapper			m_AttachmentsContainer;
+	protected ref array<ref SlotsContainer>		m_Ics;
+	protected ref array<string>					m_AttachmentSlots;
+	
+	protected int m_FocusedRow, m_FocusedColumn, m_RowIndex;
 
 	void Attachments( Container parent, EntityAI entity )
 	{
-		m_Parent = parent;
-		m_Entity = entity;
-		m_Ics = new array<ref SlotsContainer>();
+		m_Parent			= parent;
+		m_Entity			= entity;
+		m_Ics				= new array<ref SlotsContainer>;
+		m_AttachmentSlots	= GetItemSlots( entity );
+	}
+	
+	void ~Attachments()
+	{
+		delete m_AttachmentsContainer;
+	}
+	
+	AttachmentsWrapper GetWrapper()
+	{
+		return m_AttachmentsContainer;
 	}
 	
 	bool IsEmpty()
 	{
-		ref array<string> attachments_slots = GetItemSlots( m_Entity );
-		int count = attachments_slots.Count();
-		return count == 0;
+		return m_AttachmentSlots.Count() == 0;
 	}
 	
 	bool IsItemActive()
@@ -44,7 +57,7 @@ class Attachments
 	{
 		for ( int i = 0; i < m_Ics.Count(); i++ )
 		{
-			for ( int j = 0; j < 7; j++ )
+			for ( int j = 0; j < ITEMS_IN_ROW; j++ )
 			{
 				m_Ics.Get( i ).GetMainWidget().FindAnyWidget( "Cursor" + j ).Show( false );
 			}
@@ -73,12 +86,13 @@ class Attachments
 		if( active )
 		{
 			SetDefaultFocus();
-			alpha = 1;
+			alpha = 0.4;
 		}
 		else
 		{
 			alpha = 0;
 		}
+		m_AttachmentsContainer.SetActive( active );
 		m_Parent.GetMainWidget().FindAnyWidget("AttachmentsWrapper").SetAlpha( alpha );
 		m_Parent.GetMainWidget().FindAnyWidget("AttachmentsWrapper").Update();
 	}
@@ -196,19 +210,11 @@ class Attachments
 	{
 		EntityAI entity = ItemBase.Cast( GetFocusedEntity() );
 		InventoryLocation il = new InventoryLocation;
-		if( entity.IsInherited( Magazine ) )
+		if( !entity || entity.IsInherited( Magazine ) )
 		{
 			return false;
 		}
-		bool found = GetGame().GetPlayer().GetInventory().FindFreeLocationFor(entity,FindInventoryLocationType.ATTACHMENT,il);
-		if (found)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return GetGame().GetPlayer().GetInventory().FindFreeLocationFor( entity, FindInventoryLocationType.ATTACHMENT, il );
 	}
 	
 	void EquipItem()
@@ -259,7 +265,7 @@ class Attachments
 			if( m_FocusedRow < 0 )
 			{
 				m_FocusedRow  = m_Ics.Count() - 1;
-				Container cnt = Container.Cast( m_Parent.GetParent().GetParent() );
+				Container cnt = Container.Cast( m_Parent );
 				if( cnt )
 					{
 						cnt.SetPreviousActive();
@@ -285,7 +291,7 @@ class Attachments
 			if( m_FocusedRow >= m_Ics.Count() )
 			{
 				m_FocusedRow = 0 ;
-				cnt = Container.Cast( m_Parent.GetParent().GetParent() );
+				cnt = Container.Cast( m_Parent );
 				if( cnt )
 				{
 					cnt.SetNextActive();
@@ -348,11 +354,11 @@ class Attachments
 	{
 		for( int i = 0; i < m_Ics.Count(); i++ )
 		{
-			m_Parent.Remove( m_Ics.Get( i ) );
+			m_AttachmentsContainer.Remove( m_Ics.Get( i ) );
 			delete m_Ics.Get( i ).GetMainWidget();
 		}
+		
 		m_Ics.Clear();
-
 		m_Parent.Refresh();
 	}
 	
@@ -368,11 +374,7 @@ class Attachments
 			return;
 		}
 
-		ref array<string> attachments_slots = GetItemSlots( m_Entity );
-		array<string> slots = attachments_slots;
-		int count =  attachments_slots.Count();
-
-		Att( count, slots );
+		Att( m_AttachmentSlots.Count(), m_AttachmentSlots );
 	}
 
 	void Att( int count, array<string> slots )
@@ -391,25 +393,20 @@ class Attachments
 				if( slots.Count() > i )
 					slot_name = slots.Get( i );
 				else
-					return;
+					continue;
 			}
 			
 			string path = "CfgSlots" + " Slot_" + slot_name;
 			string icon_name2;
 			GetGame().ConfigGetText( path + " ghostIcon", icon_name2 );
-			//icon_name2 = "missing";
-			
-			ImageWidget ghost_icon;
-			if ( ghost_icon )
-			{
-				ghost_icon.LoadImageFile( 0, "set:dayz_inventory image:" + icon_name2 );
-			}
 
 			GetGame().ConfigGetText( path + " name", slot_name );
 			slot_id = InventorySlots.GetSlotIdFromString( slot_name );
 
-			ItemPreviewWidget item_preview2 = ItemPreviewWidget.Cast( m_Parent.Get( ( i / 7 ) + m_RowIndex ).GetMainWidget().FindAnyWidget( "Icon" + i % 7 ).FindAnyWidget( "Render" + i % 7 ) );
-			ImageWidget image_widget2 = ImageWidget.Cast( item_preview2.GetParent().GetParent().FindAnyWidget( "GhostSlot" + i % 7 ) );
+			Widget row = m_AttachmentsContainer.Get( ( i / ITEMS_IN_ROW ) ).GetMainWidget();
+			row.FindAnyWidget( "Icon" + i % ITEMS_IN_ROW ).Show( true );
+			ItemPreviewWidget item_preview2 = ItemPreviewWidget.Cast( row.FindAnyWidget( "Render" + i % ITEMS_IN_ROW ) );
+			ImageWidget image_widget2 = ImageWidget.Cast( row.FindAnyWidget( "GhostSlot" + i % ITEMS_IN_ROW ) );
 			if( image_widget2 && m_Entity.GetInventory().FindAttachment( slot_id ) == NULL )
 			{
 				image_widget2.Show( true );
@@ -420,30 +417,14 @@ class Attachments
 			}
 
 			item_preview2.GetParent().Show( true );
-
+			item_preview2.SetUserID( slot_id );
+			
 			if( icon_name2 != "" )
 				image_widget2.LoadImageFile( 0, "set:dayz_inventory image:" + icon_name2 );
 			item_preview2.SetItem( m_Entity.GetInventory().FindAttachment( slot_id ) );
 			item_preview2.SetModelOrientation( Vector( 0, 0, 0 ) );
 			item_preview2.SetView( m_Entity.GetViewIndex() );
 			
-			int size_x, size_y;
-			GetGame().GetInventoryItemSize( InventoryItem.Cast(m_Entity.GetInventory().FindAttachment( slot_id )) , size_x, size_y );
-			int capacity = size_x * size_y;
-			TextWidget tw = TextWidget.Cast( item_preview2.GetParent().GetParent().FindAnyWidget( "ItemSize" + i % 7 ) );
-			
-			#ifdef PLATFORM_CONSOLE
-			tw.Show( true );
-			#endif
-			if(capacity == 0)
-			{
-				tw.SetText( "" );
-			}
-			else
-			{
-				tw.SetText( capacity.ToString() );
-			}
-
 			if( !ItemManager.GetInstance().IsDragging() )
 			{
 				ItemManager.GetInstance().SetTemperature( m_Entity.GetInventory().FindAttachment( slot_id ), item_preview2 );
@@ -453,26 +434,26 @@ class Attachments
 			EntityAI item = m_Entity.GetInventory().FindAttachment( slot_id );
 			if( item == NULL )
 			{
-				item_w.FindAnyWidget( "QuantityPanel" + i % 7 ).Show( false );
-				item_w.GetParent().FindAnyWidget( "OutOfReach" + i % 7 ).Show( false );
+				item_w.FindAnyWidget( "QuantityPanel" + i % ITEMS_IN_ROW ).Show( false );
+				item_w.GetParent().FindAnyWidget( "OutOfReach" + i % ITEMS_IN_ROW ).Show( false );
 			}
 
-			item_w.FindAnyWidget( "Mounted" + i % 7 ).Show( false );
+			item_w.FindAnyWidget( "Mounted" + i % ITEMS_IN_ROW ).Show( false );
 
 			if ( item_w && item )
 			{
 				if( m_Entity.GetInventory().GetSlotLock( slot_id ) && ItemManager.GetInstance().GetDraggedItem() != item )
 				{
-					item_w.FindAnyWidget( "Mounted" + i % 7 ).Show( true );
+					item_w.FindAnyWidget( "Mounted" + i % ITEMS_IN_ROW ).Show( true );
 					draggable = false;
 				}
 
 				int has_quantity	= QuantityConversions.HasItemQuantity( item );
 				int stack_max		= InventorySlots.GetStackMaxForSlotId( slot_id );
-				Widget quantity_panel = item_w.FindAnyWidget( "QuantityPanel" + i % 7 );
-				TextWidget item_quantity = TextWidget.Cast( item_w.FindAnyWidget( "Quantity" + i % 7 ) );
-				ProgressBarWidget quantity_progress = ProgressBarWidget.Cast( item_w.FindAnyWidget( "QuantityBar" + i % 7 ) );
-				Widget quantity_stack = item_w.FindAnyWidget( "QuantityStackPanel" + i % 7 );
+				Widget quantity_panel = item_w.FindAnyWidget( "QuantityPanel" + i % ITEMS_IN_ROW );
+				TextWidget item_quantity = TextWidget.Cast( item_w.FindAnyWidget( "Quantity" + i % ITEMS_IN_ROW ) );
+				ProgressBarWidget quantity_progress = ProgressBarWidget.Cast( item_w.FindAnyWidget( "QuantityBar" + i % ITEMS_IN_ROW ) );
+				Widget quantity_stack = item_w.FindAnyWidget( "QuantityStackPanel" + i % ITEMS_IN_ROW );
 				if ( has_quantity == QUANTITY_HIDDEN )
 				{
 					quantity_panel.Show( false );
@@ -510,7 +491,7 @@ class Attachments
 
 			if( item )
 			{
-				ImageWidget image_widget3 = ImageWidget.Cast( item_preview2.GetParent().FindAnyWidget( "OutOfReach" + i % 7 ) );
+				ImageWidget image_widget3 = ImageWidget.Cast( item_preview2.GetParent().FindAnyWidget( "OutOfReach" + i % ITEMS_IN_ROW ) );
 				PlayerBase p = PlayerBase.Cast( GetGame().GetPlayer() );
 				bool in_hands_condition		= m_Entity.GetHierarchyRoot() && item.GetInventory().CanRemoveEntity();
 				bool in_vicinity_condition	= !m_Entity.GetHierarchyRoot() && AttachmentsOutOfReach.IsAttachmentReachable( m_Entity, slot_name );
@@ -524,7 +505,7 @@ class Attachments
 					draggable = false;
 				}
 			}
-					
+
 			if( draggable )
 			{
 				item_preview2.GetParent().SetFlags( WidgetFlags.DRAGGABLE );
@@ -539,35 +520,34 @@ class Attachments
 	void InitAttachmentGrid( int att_row_index )
 	{
 		m_RowIndex = att_row_index;
-		ref array<string> attachments_slots = GetItemSlots( m_Entity );
 
-		array<string> slots = attachments_slots;
-		int count = attachments_slots.Count();
-
-		int number_of_rows = ( count / 7 );
-		if( count % 7 == 0 )
+		int number_of_rows = ( m_AttachmentSlots.Count() / ITEMS_IN_ROW );
+		if( m_AttachmentSlots.Count() % ITEMS_IN_ROW == 0 )
 		{
 			number_of_rows--;
 		}
+		
 		m_AttachmentsContainer = new AttachmentsWrapper( m_Parent );
+		m_AttachmentsContainer.SetParent( this );
 		m_AttachmentsContainer.GetRootWidget().SetSort( att_row_index );
+		m_Parent.Insert( m_AttachmentsContainer, att_row_index );
+		
 		for ( int i = 0; i < number_of_rows + 1; i++ )
 		{
 			SlotsContainer ic = new SlotsContainer( m_AttachmentsContainer );
 			m_AttachmentsContainer.Insert( ic );
 
-			if( i == number_of_rows && count % 7 != 0 )
+			if( i == number_of_rows && m_AttachmentSlots.Count() % ITEMS_IN_ROW != 0 )
 			{
-				ic.SetColumnCount( count % 7 );
+				ic.SetColumnCount( m_AttachmentSlots.Count() % ITEMS_IN_ROW );
 			}
 			else
 			{
-				ic.SetColumnCount( 7 );
+				ic.SetColumnCount( ITEMS_IN_ROW );
 			}
 
 			m_Ics.Insert( ic );
-			m_Parent.Insert( ic );
-			for( int j = 0; j < 7; j++ )
+			for( int j = 0; j < ITEMS_IN_ROW; j++ )
 			{
 				WidgetEventHandler.GetInstance().RegisterOnDropReceived( ic.GetMainWidget().FindAnyWidget( "Icon" + j ), m_Parent, "OnDropReceivedFromHeader2" );
 				WidgetEventHandler.GetInstance().RegisterOnDropReceived( ic.GetMainWidget().FindAnyWidget( "GhostSlot" + j ), m_Parent, "OnDropReceivedFromHeader2" );
@@ -582,15 +562,29 @@ class Attachments
 				WidgetEventHandler.GetInstance().RegisterOnMouseButtonDown( ic.GetMainWidget().FindAnyWidget( "PanelWidget" + j ), m_Parent, "MouseClick2" );
 			}
 		}
+		
+		Att( m_AttachmentSlots.Count(), m_AttachmentSlots );
 
-		Att( count, slots );
-
-		for ( i = 0; i < count; i++ )
+		for ( i = 0; i < m_AttachmentSlots.Count(); i++ )
 		{
-			ItemPreviewWidget item_preview2 = ItemPreviewWidget.Cast( m_Parent.Get( ( i / 7 ) + 1 ).GetMainWidget().FindAnyWidget( "Icon" + i % 7 ).FindAnyWidget( "Render" + i % 7 ) );
+			ItemPreviewWidget item_preview2 = ItemPreviewWidget.Cast( m_AttachmentsContainer.Get( ( i / ITEMS_IN_ROW ) ).GetMainWidget().FindAnyWidget( "Render" + i % ITEMS_IN_ROW ) );
 			WidgetEventHandler.GetInstance().RegisterOnDrag( item_preview2.GetParent(), m_Parent, "OnIconDrag" );
 			WidgetEventHandler.GetInstance().RegisterOnDrop( item_preview2.GetParent(), m_Parent, "OnIconDrop" );
 			WidgetEventHandler.GetInstance().RegisterOnDoubleClick( item_preview2.GetParent(), m_Parent, "DoubleClick" );
+		}
+		
+		if( m_AttachmentSlots.Count() > 0 )
+		{
+			Widget row_last = m_AttachmentsContainer.Get( ( m_AttachmentSlots.Count() / ITEMS_IN_ROW ) ).GetMainWidget();
+			if( row_last )
+			{
+				for( int k = m_AttachmentSlots.Count() % ITEMS_IN_ROW; k < ITEMS_IN_ROW; k++ )
+				{
+					row_last.FindAnyWidget( "Icon" + k ).Show( false );
+				}
+				row_last.Update();
+				row_last.GetParent().Update();
+			}
 		}
 	}
 

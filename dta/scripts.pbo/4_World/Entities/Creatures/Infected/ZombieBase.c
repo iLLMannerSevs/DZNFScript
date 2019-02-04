@@ -115,7 +115,7 @@ class ZombieBase extends DayZInfected
 	
 	protected vector SetDefaultHitPosition(string pSelection)
 	{
-		return GetSelectionPosition(pSelection);
+		return GetSelectionPositionMS(pSelection);
 	}
 
 	//-------------------------------------------------------------

@@ -1,6 +1,7 @@
 class RightArea: Container
 {
 	ref PlayerContainer m_PlayerContainer;
+	
 	void RightArea( LayoutHolder parent )
 	{
 		m_MainWidget.Show( true );
@@ -30,6 +31,11 @@ class RightArea: Container
 	PlayerContainer GetPlayerContainer()
 	{
 		return m_PlayerContainer;
+	}
+	
+	override void DraggingOverHeader( Widget w, int x, int y, Widget receiver )
+	{
+		m_PlayerContainer.DraggingOverHeader( w, x, y, receiver );
 	}
 	
 	override void MoveGridCursor( int direction )
@@ -62,7 +68,7 @@ class RightArea: Container
 		m_PlayerContainer.TransferItem();
 	}
 	
-	void TransferItemToVicinity()
+	override void TransferItemToVicinity()
 	{
 		m_PlayerContainer.TransferItemToVicinity();
 	}
@@ -118,7 +124,29 @@ class RightArea: Container
 
 	override void SetLayoutName()
 	{
-		m_LayoutName = WidgetLayoutName.LeftArea;
+		#ifdef PLATFORM_CONSOLE
+			m_LayoutName = WidgetLayoutName.RightAreaXbox;
+		#else
+			switch( InventoryMenu.GetWidthType() )
+			{
+				case ScreenWidthType.NARROW:
+				{
+					m_LayoutName = WidgetLayoutName.RightAreaNarrow;
+					break;
+				}
+				case ScreenWidthType.MEDIUM:
+				{
+					m_LayoutName = WidgetLayoutName.RightAreaMedium;
+					break;
+				}
+				case ScreenWidthType.WIDE:
+				{
+					m_LayoutName = WidgetLayoutName.RightAreaWide;
+					break;
+				}
+			}
+		#endif
+			
 	}
 	
 	override void RefreshQuantity( EntityAI item_to_refresh )

@@ -95,7 +95,7 @@ class CreditsMenu extends UIScriptedMenu
 		
 		m_CurrentTime += timeslice;
 		
-		if( GetGame().GetInput().GetActionUp( UAUIBack ) )
+		if( GetGame().GetInput().GetActionUp("UAUIBack") )
 		{
 			Close();
 		}

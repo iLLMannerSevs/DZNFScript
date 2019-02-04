@@ -6,12 +6,20 @@ class Container extends LayoutHolder
 	protected bool							m_LastIndex;
 	protected ref Container 				m_FocusedContainer;
 	
-	const int ITEMS_IN_ROW = 7;
+	const int ITEMS_IN_ROW = 8;
 	
 	int										m_FocusedRow = 0;
 	int										m_FocusedColumn = 0;
 	bool									m_ForcedHide;
 
+	void MoveGridCursor( int direction );
+	void OnDropReceivedFromHeader( Widget w, int x, int y, Widget receiver );
+	void DraggingOver( Widget w, int x, int y, Widget receiver );
+	void DraggingOverHeader( Widget w, int x, int y, Widget receiver );
+	void RefreshQuantity( EntityAI item_to_refresh );
+	void RefreshItemPosition( EntityAI item_to_refresh );
+	void UpdateSpacer();
+	
 	void Container( LayoutHolder parent )
 	{
 		m_Body = new array<ref LayoutHolder>;
@@ -32,9 +40,9 @@ class Container extends LayoutHolder
 	{
 		float x, y;
 		if( GetFocusedContainer() )
-			GetFocusedContainer().GetMainWidget().GetScreenSize( x, y );
+			GetFocusedContainer().GetRootWidget().GetScreenSize( x, y );
 		else
-			GetMainWidget().GetScreenSize( x, y );
+			GetRootWidget().GetScreenSize( x, y );
 		return y;
 	}
 	
@@ -42,9 +50,9 @@ class Container extends LayoutHolder
 	{
 		float x, y;
 		if( GetFocusedContainer() )
-			GetFocusedContainer().GetMainWidget().GetPos( x, y );
+			GetFocusedContainer().GetRootWidget().GetPos( x, y );
 		else
-			GetMainWidget().GetPos( x, y );
+			GetRootWidget().GetPos( x, y );
 		return y;
 	}
 	
@@ -52,9 +60,9 @@ class Container extends LayoutHolder
 	{
 		float x, y;
 		if( GetFocusedContainer() )
-			GetFocusedContainer().GetMainWidget().GetScreenPos( x, y );
+			GetFocusedContainer().GetRootWidget().GetScreenPos( x, y );
 		else
-			GetMainWidget().GetScreenPos( x, y );
+			GetRootWidget().GetScreenPos( x, y );
 		return y;
 	}
 
@@ -63,33 +71,27 @@ class Container extends LayoutHolder
 		return m_Body.Count();
 	}
 	
-	void MoveGridCursor( int direction )
+	void SelectItem()
 	{
-		
+		GetFocusedContainer().SelectItem();
 	}
 	
 	void Select()
 	{
-		if( GetFocusedContainer() )
-		{
-			GetFocusedContainer().Select();
-		}
-	}
-	
-	void SelectItem()
-	{
-		
+		GetFocusedContainer().Select();
 	}
 	
 	void Combine()
 	{
-		if( GetFocusedContainer() )
-		{
-			GetFocusedContainer().Combine();
-		}
+		GetFocusedContainer().Combine();
 	}
 	
-	void TransferItem( )
+	void TransferItemToVicinity()
+	{
+		GetFocusedContainer().TransferItemToVicinity();
+	}
+	
+	void TransferItem()
 	{
 		GetFocusedContainer().TransferItem();
 	}
@@ -98,21 +100,53 @@ class Container extends LayoutHolder
 	{
 		GetFocusedContainer().EquipItem();
 	}
+	
+	bool CanEquip()
+	{
+		return GetFocusedContainer().CanEquip();
+	}
+	
+	bool CanCombine()
+	{
+		return GetFocusedContainer().CanCombine();
+	}
+	
+	bool CanCombineAmmo()
+	{
+		return GetFocusedContainer().CanCombineAmmo();
+	}
+	
+	bool IsEmpty()
+	{
+		return GetFocusedContainer().IsEmpty();
+	}
+	
+	bool IsItemActive()
+	{
+		return GetFocusedContainer().IsItemActive();
+	}
 
-	void OnDropReceivedFromHeader( Widget w, int x, int y, Widget receiver ) {}
-
-	void DraggingOver( Widget w, int x, int y, Widget receiver ) {}
-
-	void DraggingOverHeader( Widget w, int x, int y, Widget receiver ) {}
-
+	bool IsItemWithQuantityActive()
+	{
+		return GetFocusedContainer().IsItemWithQuantityActive();
+	}
+	
+	EntityAI GetFocusedEntity()
+	{
+		return GetFocusedContainer().GetFocusedEntity();
+	}
+	
 	override void UpdateInterval()
 	{
 		for ( int i = 0; i < m_Body.Count(); i++ )
 		{
-			m_Body.Get( i ).UpdateInterval();
+			if( m_Body.Get( i ) )
+				m_Body.Get( i ).UpdateInterval();
 		}
 	}
 
+	float m_PrevAlpha;
+	
 	override void SetActive( bool active )
 	{
 		m_IsActive = active;
@@ -123,13 +157,14 @@ class Container extends LayoutHolder
 		}
 		else
 		{
+			m_PrevAlpha = m_MainWidget.GetAlpha();
 			if( active )
 			{
-				m_MainWidget.SetColor( ARGB( 255, 160, 160, 160 ) );
+				m_MainWidget.SetAlpha( m_PrevAlpha + 0.2 );
 			}
 			else
 			{
-				m_MainWidget.SetColor( ARGB( 255, 115, 115, 115 ) );
+				m_MainWidget.SetAlpha( m_PrevAlpha - 0.2 );
 			}
 		}
 		
@@ -307,6 +342,7 @@ class Container extends LayoutHolder
 		{
 			ItemManager.GetInstance().SetItemMoving( true );
 		}
+		
 		Container active = Container.Cast( m_Body[m_ActiveIndex] );
 		if( !active.IsActive() )
 		{
@@ -333,6 +369,7 @@ class Container extends LayoutHolder
 					m_LastIndex = false;
 				}
 			}
+			
 			while( next && !next.GetMainWidget().IsVisible() )
 			{
 				++m_ActiveIndex;
@@ -340,7 +377,12 @@ class Container extends LayoutHolder
 				{
 					next = Container.Cast( m_OpenedContainers[m_ActiveIndex] );
 				}
+				else
+				{
+					next = null;
+				}
 			}
+			
 			if( next )
 			{
 				active.SetActive( false );
@@ -367,12 +409,15 @@ class Container extends LayoutHolder
 		{
 			ItemManager.GetInstance().SetItemMoving( true );
 		}
+		
 		Container active = Container.Cast( m_OpenedContainers[m_ActiveIndex] );
 		if( !active.IsActive() )
 		{
 			return;
 		}
+		
 		Container prev;
+		
 		if( --m_ActiveIndex > 0 )
 		{
 			prev = Container.Cast( m_OpenedContainers[m_ActiveIndex] );
@@ -385,14 +430,20 @@ class Container extends LayoutHolder
 				m_LastIndex = false;
 			}
 		}
+		
 		while( prev && !prev.GetMainWidget().IsVisible() )
 		{
 			if( --m_ActiveIndex > 0 )
 			{
 				prev = Container.Cast( m_OpenedContainers[m_ActiveIndex] );
 			}
+			else
+			{
+				prev = null;
+			}
 		}
-		if(prev)
+		
+		if( prev )
 		{
 			active.SetActive( false );
 			prev.SetActive( true );
@@ -428,30 +479,25 @@ class Container extends LayoutHolder
 
 	override void SetLayoutName()
 	{
-		m_LayoutName = WidgetLayoutName.ClosableContainer;
+		m_LayoutName = WidgetLayoutName.Container;
 	}
 
-	void Insert( LayoutHolder container )
+	void Insert( LayoutHolder container, int pos = -1 )
 	{
-		m_Body.Insert( container );
+		if( pos > -1 && pos < m_Body.Count() )
+			m_Body.InsertAt( container, pos );
+		else
+			m_Body.Insert( container );
 	}
 
 	void Remove( LayoutHolder container )
 	{
 		if( m_Body )
 		{
-			m_Body.RemoveOrdered( m_Body.Find( container ) );
+			m_Body.RemoveItem( container );
 		}
 	}
-
-	/*void Remove( int x )
-	{
-		if( m_Body )
-		{
-			m_Body.Remove( x );
-		}
-	}*/
-
+	
 	LayoutHolder Get( int x )
 	{
 		return m_Body.Get( x );
@@ -461,20 +507,9 @@ class Container extends LayoutHolder
 	{
 		for ( int i = 0; i < m_Body.Count(); i++ )
 		{
-			m_Body.Get( i ).Refresh();
+			if( m_Body.Get( i ) )
+				m_Body.Get( i ).Refresh();
 		}
-	}
-
-	void RefreshQuantity( EntityAI item_to_refresh )
-	{
-	}
-	
-	void RefreshItemPosition( EntityAI item_to_refresh )
-	{
-	}
-
-	void UpdateSpacer()
-	{
 	}
 
 	void UpdateBodySpacers()
@@ -512,7 +547,7 @@ class Container extends LayoutHolder
 			for( int i = 1; i < m_Body.Count(); i++ )
 			{
 				if( m_Body.Get( i ) )
-					m_Body.Get( i ).OnShow();
+				m_Body.Get( i ).OnShow();
 			}
 		}
 	}
