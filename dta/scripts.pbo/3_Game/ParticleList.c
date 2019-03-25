@@ -17,6 +17,7 @@ class ParticleList
 	
 	static const int INVALID						= -1;
 	static const int PARTICLE_TEST					= RegisterParticle("_test_orientation");
+	static const int DEBUG_DOT						= RegisterParticle("debug_dot");
 	
 	// FIREPLACE
 	// Normal fireplace

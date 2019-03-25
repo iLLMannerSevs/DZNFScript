@@ -306,7 +306,7 @@ class PluginDeveloper extends PluginBase
 					}
 					else
 					{
-						EntityAI eai = GetGame().SpawnEntity(item_name, il);
+						EntityAI eai = GetGame().SpawnEntity(item_name, il, ECE_IN_INVENTORY, RF_DEFAULT);
 						if ( eai && eai.IsInherited(ItemBase) )
 						{
 							ItemBase i = ItemBase.Cast( eai );

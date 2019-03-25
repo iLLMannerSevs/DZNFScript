@@ -1,6 +1,6 @@
 class InGameMenuXbox extends UIScriptedMenu
 {
-#ifdef PLATFORM_CONSOLE
+//#ifdef PLATFORM_CONSOLE
 	protected ref PlayerListScriptedWidget	m_ServerInfoPanel;
 	
 	protected Widget						m_OnlineMenu;
@@ -92,6 +92,8 @@ class InGameMenuXbox extends UIScriptedMenu
 			if( info )
 			{
 				header_text = info.m_Name + " - " + info.m_HostIp + ":" + info.m_HostPort;
+				TextWidget w_text = TextWidget.Cast(m_OnlineMenu.FindAnyWidget("OnlineTextWidget"));
+				w_text.SetText(info.m_Name);
 			}
 			else
 			{
@@ -239,7 +241,7 @@ class InGameMenuXbox extends UIScriptedMenu
 			{
 				m_OnlineMenu.Show( true );
 				layoutRoot.FindAnyWidget( "play_panel_root" ).Show( false );
-				layoutRoot.FindAnyWidget( "dayz_logo" ).Show( false );
+				//layoutRoot.FindAnyWidget( "dayz_logo" ).Show( false );
 				layoutRoot.FindAnyWidget( "Select" ).Show( false );
 				m_ServerInfoPanel.FocusFirst();
 				return true;
@@ -345,7 +347,7 @@ class InGameMenuXbox extends UIScriptedMenu
 		if( GetGame().IsMultiplayer() && layoutRoot.FindAnyWidget( "OnlineInfo" ).IsVisible() )
 		{
 			TextWidget mute_text = TextWidget.Cast( layoutRoot.FindAnyWidget( "Mute" ).FindAnyWidget( "MuteText" ) );
-			if( GetGame().GetInput().GetActionDown( "UAUIUp", false ) )
+			if( GetGame().GetInput().LocalPress( "UAUIUp", false ) )
 			{
 				if( m_ServerInfoPanel )
 				{
@@ -379,7 +381,7 @@ class InGameMenuXbox extends UIScriptedMenu
 					}
 				}
 			}
-			if( GetGame().GetInput().GetActionDown( "UAUIDown", false ) )
+			if( GetGame().GetInput().LocalPress( "UAUIDown", false ) )
 			{
 				if( m_ServerInfoPanel )
 				{
@@ -414,7 +416,7 @@ class InGameMenuXbox extends UIScriptedMenu
 				}
 			}
 			
-			if( GetGame().GetInput().GetActionDown( "UAUICtrlX", false ) )
+			if( GetGame().GetInput().LocalPress( "UAUICtrlX", false ) )
 			{
 				bool muted;
 				ScriptInputUserData ctx;
@@ -448,7 +450,7 @@ class InGameMenuXbox extends UIScriptedMenu
 				}
 			}
 			
-			if( GetGame().GetInput().GetActionDown( "UAUICtrlY", false ) )
+			if( GetGame().GetInput().LocalPress( "UAUICtrlY", false ) )
 			{
 				if( m_ServerInfoPanel )
 				{
@@ -460,7 +462,20 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		}
 	}
+	
+	bool IsOnlineOpen()
+	{
+		return m_OnlineMenu.IsVisible();
+	}
 
+	void CloseOnline()
+	{
+		m_OnlineMenu.Show( false );
+		layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
+		layoutRoot.FindAnyWidget( "dayz_logo" ).Show( true );
+		layoutRoot.FindAnyWidget( "Select" ).Show( true );
+	}
+	
 	void SelectServer()
 	{
 		layoutRoot.FindAnyWidget( "Mute" ).Show( true );
@@ -559,7 +574,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		if( IsFocusable( w ) )
 		{
-			ColorRed( w );
+			ColorHighlight( w );
 			return true;
 		}
 		return false;
@@ -569,7 +584,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		if( IsFocusable( w ) )
 		{
-			ColorWhite( w, enterW );
+			ColorNormal( w );
 			return true;
 		}
 		return false;
@@ -579,7 +594,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		if( IsFocusable( w ) )
 		{
-			ColorRed( w );
+			ColorHighlight( w );
 			return true;
 		}
 		return false;
@@ -589,7 +604,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		if( IsFocusable( w ) )
 		{
-			ColorWhite( w, null );
+			ColorNormal( w );
 			return true;
 		}
 		return false;
@@ -616,20 +631,22 @@ class InGameMenuXbox extends UIScriptedMenu
 		#endif
 		m_Version.SetText( version );
 	}
-	
+	/*
 	//Coloring functions (Until WidgetStyles are useful)
-	void ColorRed( Widget w )
+	void ColorHighlight( Widget w )
 	{
 		SetFocus( w );
 		
 		ButtonWidget button = ButtonWidget.Cast( w );
 		if( button && button != m_ContinueButton )
 		{
-			button.SetTextColor( ARGB( 255, 200, 0, 0 ) );
+			button.SetTextColor( ARGB( 255, 255, 0, 0 ) );
 		}
+		
+		
 	}
 	
-	void ColorWhite( Widget w, Widget enterW )
+	void ColorNormal( Widget w )
 	{
 		#ifdef PLATFORM_WINDOWS
 		SetFocus( null );
@@ -641,5 +658,103 @@ class InGameMenuXbox extends UIScriptedMenu
 			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
 		}
 	}
-#endif
+	*/
+	void ColorDisable( Widget w )
+	{
+		#ifdef PLATFORM_WINDOWS
+		SetFocus( null );
+		#endif
+		
+		ButtonWidget button = ButtonWidget.Cast( w );
+		if( button && button != m_ContinueButton )
+		{
+			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
+		}
+		ButtonSetColor( w, ARGB(0, 0, 0, 0) );
+		ButtonSetTextColor(w,  ARGB(60, 0, 0, 0) );
+	}
+	
+	void ColorHighlight( Widget w )
+	{
+		if( !w )
+			return;
+		
+		//SetFocus( w );
+		
+		int color_pnl = ARGB(255, 0, 0, 0);
+		int color_lbl = ARGB(255, 255, 0, 0);
+		
+		#ifdef PLATFORM_CONSOLE
+			color_pnl = ARGB(255, 200, 0, 0);
+			color_lbl = ARGB(255, 255, 255, 255);
+		#endif
+		
+		ButtonSetColor(w, color_pnl);
+		ButtonSetTextColor(w, color_lbl);
+	}
+	
+	void ColorNormal( Widget w )
+	{
+		if( !w )
+			return;
+		
+		int color_pnl = ARGB(0, 0, 0, 0);
+		int color_lbl = ARGB(255, 255, 255, 255);
+		
+		ButtonSetColor(w, color_pnl);
+		ButtonSetTextColor(w, color_lbl);
+	}
+	
+	void ButtonSetText( Widget w, string text )
+	{
+		if( !w )
+			return;
+				
+		TextWidget label = TextWidget.Cast(w.FindWidget( w.GetName() + "_label" ) );
+		
+		if( label )
+		{
+			label.SetText( text );
+		}
+		
+	}
+	
+	void ButtonSetColor( Widget w, int color )
+	{
+		if( !w )
+			return;
+		
+		Widget panel = w.FindWidget( w.GetName() + "_panel" );
+		
+		if( panel )
+		{
+			panel.SetColor( color );
+		}
+	}
+	
+	void ButtonSetTextColor( Widget w, int color )
+	{
+		if( !w )
+			return;
+
+		TextWidget label	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_label" ) );
+		TextWidget text		= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );
+		TextWidget text2	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text_1" ) );
+				
+		if( label )
+		{
+			label.SetColor( color );
+		}
+		
+		if( text )
+		{
+			text.SetColor( color );
+		}
+		
+		if( text2 )
+		{
+			text2.SetColor( color );
+		}
+	}
+//#endif
 }

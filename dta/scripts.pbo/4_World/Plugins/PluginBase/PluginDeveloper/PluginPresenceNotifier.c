@@ -1,16 +1,116 @@
+enum EPresenceNotifierNoiseEventType
+{
+	LAND_LIGHT,
+	LAND_HEAVY,
+}
+
+class PresenceNotifierNoiseEvent
+{
+	protected float m_TimerLength;
+	protected int m_Value;
+	
+	void PresenceNotifierNoiseEvent(float pValue, float pLength)
+	{
+		m_Value = pValue;
+		m_TimerLength = pLength;
+	}
+
+	float GetTimerLength()
+	{
+		return m_TimerLength;
+	}
+	
+	int GetValue()
+	{
+		return m_Value;
+	}
+}
+
+class PresenceNotifierNoiseEvents
+{
+	protected int m_Value;
+
+	protected static ref map<EPresenceNotifierNoiseEventType, ref PresenceNotifierNoiseEvent> 	m_PresenceNotifierNotifierEvents;
+	protected ref Timer	m_CooldownTimer;
+	
+	void PresenceNotifierNoiseEvents()
+	{
+		m_Value = 0;
+		m_CooldownTimer = new Timer(CALL_CATEGORY_SYSTEM);
+		m_PresenceNotifierNotifierEvents = new ref map<EPresenceNotifierNoiseEventType, ref PresenceNotifierNoiseEvent>;
+	}
+
+	void RegisterEvent(EPresenceNotifierNoiseEventType pEventType, int pValue, float pLength)
+	{
+		PresenceNotifierNoiseEvent pnne = new PresenceNotifierNoiseEvent(pValue, pLength);
+		m_PresenceNotifierNotifierEvents.Insert(pEventType, pnne);
+	}
+	
+	void ProcessEvent(EPresenceNotifierNoiseEventType pEventType)
+	{
+		PresenceNotifierNoiseEvent pnne;
+		
+		pnne = m_PresenceNotifierNotifierEvents.Get(pEventType);
+		
+		if (m_CooldownTimer.IsRunning())
+		{
+			m_CooldownTimer.Stop();
+		}
+
+		m_Value = pnne.GetValue();		
+		m_CooldownTimer.Run(pnne.GetTimerLength(), this, "ResetEvent", null);
+	}
+	
+	int GetValue()
+	{
+		return m_Value;
+	}
+
+	protected void ResetEvent()
+	{
+		m_Value = 0;
+	}
+}
+
+
 class PluginPresenceNotifier extends PluginBase
 {
+	//! dbgUI settings
 	const int windowPosX = 0;
 	const int windowPosY = 10;
 	const int mainPanelSizeX = 200;
 	const int mainPanelSizeY = 1;
 	const int margin = 10;
 	
-	protected static float 		m_LandNoise;
+	
+	//! noise limits
+	const int NOISE_LEVEL_MIN			= 0;
+	const int NOISE_LEVEL_MAX			= 5;
+	
+	//! noise component from surfaces
+	const int SURFACE_NOISE_LVL0		= 0;
+	const int SURFACE_NOISE_LVL1		= 1;
+	const int SURFACE_NOISE_LVL2		= 2;
+	
+	const float SURFACE_LVL2_THRESHOLD 	= 1.0;
+	const float SURFACE_LVL1_THRESHOLD 	= 0.5;
+	
+	//! land noise
+	const int LAND_NOISE_LVL1			= 2;
+	const int LAND_NOISE_LVL2			= 3;
+	
+	//! --------------------------------------
 	
 	protected PlayerBase 		m_pPlayer;
+	
+	protected ref PresenceNotifierNoiseEvents	m_PresenceNotifierNoiseEvents;
 
-	void PluginPresenceNotifier() {}
+	void PluginPresenceNotifier()
+	{
+		m_PresenceNotifierNoiseEvents = new PresenceNotifierNoiseEvents();
+		m_PresenceNotifierNoiseEvents.RegisterEvent(EPresenceNotifierNoiseEventType.LAND_LIGHT, LAND_NOISE_LVL1, 0.25);
+		m_PresenceNotifierNoiseEvents.RegisterEvent(EPresenceNotifierNoiseEventType.LAND_HEAVY, LAND_NOISE_LVL2, 0.25);
+	}
 	
 	void ~PluginPresenceNotifier() {}
 
@@ -25,6 +125,9 @@ class PluginPresenceNotifier extends PluginBase
 	{
 		ref HumanMovementState	hms = new HumanMovementState();
 		m_pPlayer.GetMovementState(hms);
+		
+		string visualAlertLevel;
+		string noiseAlertLevel;
 
 		DbgUI.BeginCleanupScope();
 
@@ -41,34 +144,29 @@ class PluginPresenceNotifier extends PluginBase
 		
 			DbgUI.Panel("-- Noises", mainPanelSizeX, 2);
 			DbgUI.Text("Noises: ");
-			DbgUI.Text("Speed:  " + GetMovementSpeedNoiseCoef());
-			DbgUI.Text("Boots: " + GetBootsNoiseCoef());
-			DbgUI.Text("Surface: " + GetSurfaceNoiseCoef());
+			DbgUI.Text("Speed:  " + GetMovementSpeedNoiseComponent());
+			DbgUI.Text("Boots: " + GetBootsNoiseComponent());
+			DbgUI.Text("Surface: " + GetSurfaceNoiseComponent() + " [ cfg: " + m_pPlayer.GetSurfaceNoise() + "]");
 			DbgUI.Spacer(10);
 
 			DbgUI.Panel("-- Result", mainPanelSizeX, 2);
 			DbgUI.Text("Result: ");
-			DbgUI.Text("Visual coef: " + GetVisualPresence());
-			DbgUI.Text("Noise coef: " + GetNoisePresence());
-			DbgUI.Text("Result coef: " + GetPresence());
-			DbgUI.Spacer(20);
-			DbgUI.Text("Alert Level:");
-			DbgUI.Spacer(20);
-			DbgUI.SameLine();
+			visualAlertLevel = "";
+			for(int iv = 0; iv < GetVisualPresence(); iv++)
+			{
+				visualAlertLevel += "!";
+			}
+			DbgUI.Text("Visual level: " + GetVisualPresence() + " [" + visualAlertLevel + "]");
 
-			if (GetPresence() <= 0.5)
+						
+			noiseAlertLevel = "";
+			for(int ia = 0; ia < GetNoisePresence(); ia++)
 			{
-				DbgUI.Text("!");
+				noiseAlertLevel += "!";
 			}
-			else if (GetPresence() <= 0.75)
-			{
-				DbgUI.Text("!!");
-			}
-			else
-			{
-				DbgUI.Text("!!!");
-			}
-			
+
+			DbgUI.Text("Noise level: " + GetNoisePresence() + " [" + noiseAlertLevel + "]");
+		
 			DbgUI.End();
 			
 			//! HumanMovementState content
@@ -83,15 +181,26 @@ class PluginPresenceNotifier extends PluginBase
 		DbgUI.EndCleanupScope();
 	}
 	
-	//! returns overall presence coef
-	float GetPresence()
+	//! returns actual noise presence of player
+	int GetNoisePresence()
 	{
-		float resultMean = (GetVisualPresence() + GetNoisePresence()) / 2;
-		
-		return resultMean;
+		return ProcessNoiseComponents();
 	}
 	
-	protected float GetVisualPresence()
+	//! returns actual visibility presence of player
+	int GetVisualPresence()
+	{
+		return ProcessVisualComponents();
+	}
+
+	//! processing of external one-time events (land, fire, etc.)
+	void ProcessEvent(EPresenceNotifierNoiseEventType pEventType)
+	{
+		m_PresenceNotifierNoiseEvents.ProcessEvent(pEventType);
+		
+	}
+	
+	protected int ProcessVisualComponents()
 	{
 		float visualMean = 0;
 		if (m_pPlayer)
@@ -102,17 +211,19 @@ class PluginPresenceNotifier extends PluginBase
 		return visualMean;	
 	}
 
-	protected float GetNoisePresence()
+	protected int ProcessNoiseComponents()
 	{
-		float noiseMean = 0;
+		int noise = 0;
 		if (m_pPlayer)
 		{
-			noiseMean = (GetSurfaceNoiseCoef() + GetMovementSpeedNoiseCoef() + GetBootsNoiseCoef() + GetLandNoise()) / 4;
+			noise = GetSurfaceNoiseComponent() + GetMovementSpeedNoiseComponent() + GetBootsNoiseComponent() + GetExternalNoiseEventsComponent();
 		}
 		
-		return noiseMean;
+		return Math.Clamp(noise, NOISE_LEVEL_MIN, NOISE_LEVEL_MAX);
 	}
 	
+	
+	//! Visibility
 	protected float GetMovementSpeedVisualCoef()
 	{
 		ref HumanMovementState	hms = new HumanMovementState();
@@ -156,79 +267,89 @@ class PluginPresenceNotifier extends PluginBase
 		
 		return stanceCoef;
 	}
+	
+	//! --------------------------------------------------------
 
-		
-	protected float GetMovementSpeedNoiseCoef()
+
+	//!
+	//! Noise related
+	
+	//! noise component of presence based on player's speed
+	protected int GetMovementSpeedNoiseComponent()
 	{
-		float speedCoef = 0;
+		int val = 0;
 		
 		ref HumanMovementState	hms = new HumanMovementState();
 
-		//! noise multiplier based on player speed
 		m_pPlayer.GetMovementState(hms);
 		switch(AITargetCallbacksPlayer.StanceToMovementIdxTranslation(hms))
 		{
-			case DayZPlayerConstants.MOVEMENTIDX_SPRINT:
-				speedCoef = 1.0;
-				break;
-			case DayZPlayerConstants.MOVEMENTIDX_RUN:
-				speedCoef = 0.33;
-				break;
-			case DayZPlayerConstants.MOVEMENTIDX_WALK:
-				speedCoef = 0.11;
-				break;
+		case DayZPlayerConstants.MOVEMENTIDX_SPRINT:
+			val = 3.0;
+			break;
+		case DayZPlayerConstants.MOVEMENTIDX_RUN:
+			val = 2.0;
+			break;
+		case DayZPlayerConstants.MOVEMENTIDX_WALK:
+			val = 1.0;
+			break;
 		}
 
-		return speedCoef;
+		return val;
 	}
 
-	protected float GetBootsNoiseCoef()
+	//! noise component of presence based on player's shoes
+	protected int GetBootsNoiseComponent()
 	{
-		float bootsCoef = 0.0;
+		int val = 0;
 
 		ref HumanMovementState	hms = new HumanMovementState();
 		m_pPlayer.GetMovementState(hms);
 
-		if (hms.m_iMovement == DayZPlayerConstants.MOVEMENT_IDLE)
-			return bootsCoef;
+		if ( AITargetCallbacksPlayer.StanceToMovementIdxTranslation(hms) == DayZPlayerConstants.MOVEMENTIDX_IDLE || hms.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_PRONE)
+			return 0;
 		
 		//! noise multiplier based on type of boots
 		switch(m_pPlayer.GetBootsType())
 		{
-			case AnimBootsType.Boots:
-				bootsCoef = 1.0;
-				break;
-			case AnimBootsType.Sneakers:
-				bootsCoef = 0.66;
-				break;
+		case AnimBootsType.None:
+			val = -1;
+			break
+		case AnimBootsType.Sneakers:
+			val = 0;
+			break;
+		case AnimBootsType.Boots:
+			val = 1;
+			break;
 		}
-		
-		return bootsCoef;
+
+		return val;
 	}
 	
-	protected float GetLandNoise()
-	{
-		return m_LandNoise;
-	}
-	
-	protected float GetSurfaceNoiseCoef()
+	protected int GetSurfaceNoiseComponent()
 	{
 		ref HumanMovementState	hms = new HumanMovementState();
 		m_pPlayer.GetMovementState(hms);
 
-		if (hms.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE)
-			return 0;
+		if (hms.m_iMovement == DayZPlayerConstants.MOVEMENTIDX_IDLE && GetExternalNoiseEventsComponent() == 0)
+			return SURFACE_NOISE_LVL0;
 		
-		return m_pPlayer.GetSurfaceNoise();
-	}
-	
-	static void SetLandNoise()
-	{
-		m_LandNoise = 2.0;
+		//! CfgSurface - audibility param
+		float surfNoise = m_pPlayer.GetSurfaceNoise();
+		if( surfNoise >= SURFACE_LVL2_THRESHOLD )
+		{
+			return SURFACE_NOISE_LVL2;
+		}
+		else if( surfNoise > SURFACE_LVL1_THRESHOLD )
+		{
+			return SURFACE_NOISE_LVL1;
+		}
+		
+		return SURFACE_NOISE_LVL0;
 	}
 
-	static void ClearLandNoise()
+	protected int GetExternalNoiseEventsComponent()
 	{
-		m_LandNoise = 0.0;
+		return m_PresenceNotifierNoiseEvents.GetValue();
 	}
 }

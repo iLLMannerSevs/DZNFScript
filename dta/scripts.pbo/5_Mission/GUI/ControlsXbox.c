@@ -323,20 +323,20 @@ class ControlsXbox extends UIScriptedMenu
 	
 	override void Update( float timeslice )
 	{
-		if( GetGame().GetInput().GetActionDown("UAUITabLeft",false) )
+		if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 		{
 			m_TabScript.PreviousTab();
 			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
 		//RIGHT BUMPER - TAB RIGHT
-		if( GetGame().GetInput().GetActionDown("UAUITabRight",false) )
+		if( GetGame().GetInput().LocalPress("UAUITabRight",false) )
 		{
 			m_TabScript.NextTab();
 			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
-		if( GetGame().GetInput().GetActionDown("UAUIBack",false) )
+		if( GetGame().GetInput().LocalPress("UAUIBack",false) )
 		{
 			Back();
 		}

@@ -1,4 +1,4 @@
-class FNX45 : Pistol_Base
+class FNX45_Base : Pistol_Base
 {
 	override RecoilBase SpawnRecoilObject()
 	{

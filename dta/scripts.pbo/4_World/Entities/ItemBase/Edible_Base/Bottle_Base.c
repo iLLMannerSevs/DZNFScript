@@ -253,8 +253,7 @@ class Bottle_Base extends Edible_Base
 				vector local_pos = GetSteamPosition();
 				//TODO set steam position to pot (proxy) memory point (new hierarchy needed)
 				//m_ParticleCooking = Particle.Create( particle_id, this, local_pos );
-				m_ParticleCooking = Particle.Create( particle_id, local_pos );
-				m_ParticleCooking.Play();
+				m_ParticleCooking = Particle.PlayInWorld( particle_id, local_pos );
 				m_ParticlePlaying = particle_id;
 			}
 		}

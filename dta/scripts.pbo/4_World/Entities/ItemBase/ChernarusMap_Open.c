@@ -7,10 +7,17 @@ class ChernarusMap_Open extends ItemMap
 		super.OnItemLocationChanged(old_owner,new_owner);
 		
 		PlayerBase player = PlayerBase.Cast(old_owner);
-		if (player && !m_ItemChanged && GetGame().IsServer())
+		if (player/* && !m_ItemChanged*/)
 		{
-			MiscGameplayFunctions.TurnItemIntoItem(this, "ChernarusMap", player); //changes map on player death/drop
-			m_ItemChanged = true;
+			if (GetGame().IsServer())
+			{
+				MiscGameplayFunctions.TurnItemIntoItem(this, "ChernarusMap", player); //changes map on player death/drop
+				//m_ItemChanged = true;
+			}
+			/*else if ((!GetGame().IsMultiplayer() || GetGame().IsClient()) && GetGame().GetUIManager().IsMenuOpen(MENU_MAP))
+			{
+				GetGame().GetUIManager().CloseMenu(MENU_MAP);
+			}*/
 		}
 	}
 	
