@@ -8,8 +8,9 @@ FrameWidgetClass rootFrame {
  priority 951
  {
   FrameWidgetClass InfoTextRight {
-   position 300 150
-   size 300 900
+   position 320 0
+   size 300 520
+   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -17,17 +18,17 @@ FrameWidgetClass rootFrame {
    priority 2
    {
     GridSpacerWidgetClass PanelWidget0 {
-     visible 0
-     color 0 0 0 0.8627
+     visible 1
+     color 0 0 0 1
      position 0 0
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -36,36 +37,37 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget0 {
        visible 1
-       size 280 60
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
+       hexactsize 0
+       vexactsize 0
        text "0"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget1 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.1
+     visible 1
+     color 0 0 0 1
+     position 0 50
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -74,36 +76,37 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget1 {
        visible 1
-       size 280 60
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
+       hexactsize 0
+       vexactsize 0
        text "1"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget2 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.2
+     visible 1
+     color 0 0 0 1
+     position 0 100
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -112,36 +115,37 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget2 {
        visible 1
-       size 280 60
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
+       hexactsize 0
+       vexactsize 0
        text "2"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget3 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.3
+     visible 1
+     color 0 0 0 1
+     position 0 150
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -150,36 +154,37 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget3 {
        visible 1
-       size 280 60
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
+       hexactsize 0
+       vexactsize 0
        text "3"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget4 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.4
+     visible 1
+     color 0 0 0 1
+     position 0 200
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -188,36 +193,38 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget4 {
        visible 1
-       size 280 60
+       position 0 0
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
+       hexactsize 0
+       vexactsize 0
        text "4"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget5 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.5
-     size 300 80
+     visible 1
+     color 0 0 0 1
+     position 0 250
+     size 300 30
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -226,36 +233,38 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget5 {
        visible 1
-       size 280 60
+       size 1 1
        halign center_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       text "5"
+       hexactsize 0
+       vexactsize 0
+       text "5<br>5"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
+       "size to text h" 0
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget6 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.6
+     visible 1
+     color 0 0 0 1
+     position 0 320
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -274,26 +283,27 @@ FrameWidgetClass rootFrame {
        text "6"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget7 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.7
+     visible 1
+     color 0 0 0 1
+     position 0 370
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -312,26 +322,27 @@ FrameWidgetClass rootFrame {
        text "7"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget8 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.8
+     visible 1
+     color 0 0 0 1
+     position 0 420
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -350,26 +361,27 @@ FrameWidgetClass rootFrame {
        text "8"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget9 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.9
+     visible 1
+     color 0 0 0 1
+     position 0 470
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -388,20 +400,22 @@ FrameWidgetClass rootFrame {
        text "9"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
    }
   }
   FrameWidgetClass InfoTextLeft {
-   position 300 150
-   size 300 900
+   position 320 -50
+   size 300 440
    halign right_ref
+   valign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -409,17 +423,17 @@ FrameWidgetClass rootFrame {
    priority 2
    {
     GridSpacerWidgetClass PanelWidget10 {
-     visible 0
-     color 0 0 0 0.8627
+     visible 1
+     color 0 0 0 1
      position 0 0
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -438,26 +452,27 @@ FrameWidgetClass rootFrame {
        text "10"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget11 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.1
+     visible 1
+     color 0 0 0 1
+     position 0 50
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -466,6 +481,7 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget11 {
        visible 1
+       position 0 0
        size 280 60
        halign center_ref
        valign center_ref
@@ -476,26 +492,27 @@ FrameWidgetClass rootFrame {
        text "11"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget12 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.2
+     visible 1
+     color 0 0 0 1
+     position 0 100
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -514,26 +531,27 @@ FrameWidgetClass rootFrame {
        text "12"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget13 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.3
+     visible 1
+     color 0 0 0 1
+     position 0 150
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -552,26 +570,27 @@ FrameWidgetClass rootFrame {
        text "13"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget14 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.4
+     visible 1
+     color 0 0 0 1
+     position 0 200
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -590,26 +609,27 @@ FrameWidgetClass rootFrame {
        text "14"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget15 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.5
+     visible 1
+     color 0 0 0 1
+     position 0 200
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -628,26 +648,27 @@ FrameWidgetClass rootFrame {
        text "15"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget16 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.6
+     visible 1
+     color 0 0 0 1
+     position 0 250
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -666,26 +687,27 @@ FrameWidgetClass rootFrame {
        text "16"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget17 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.7
+     visible 1
+     color 0 0 0 1
+     position 0 300
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -704,26 +726,27 @@ FrameWidgetClass rootFrame {
        text "17"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget18 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.8
+     visible 1
+     color 0 0 0 1
+     position 0 350
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -742,26 +765,27 @@ FrameWidgetClass rootFrame {
        text "18"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
     GridSpacerWidgetClass PanelWidget19 {
-     visible 0
-     color 0 0 0 0.8627
-     position 0 0.9
+     visible 1
+     color 0 0 0 1
+     position 0 400
      size 300 80
      hexactpos 0
-     vexactpos 0
+     vexactpos 1
      hexactsize 1
      vexactsize 1
-     style Colorable
+     style DayZDefaultPanel
      Padding 0
-     Margin 10
+     Margin 5
      "Size To Content V" 1
      content_halign center
      content_valign center
@@ -780,11 +804,12 @@ FrameWidgetClass rootFrame {
        text "19"
        font "gui/fonts/sdf_MetronLight24"
        "exact text" 1
-       "exact text size" 24
+       "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
+       "content offset" 4
       }
      }
     }
@@ -812,7 +837,7 @@ FrameWidgetClass rootFrame {
      vexactsize 1
      {
       PanelWidgetClass TabBar {
-       clipchildren 1
+       clipchildren 0
        ignorepointer 1
        position 0 0
        size 1 1
@@ -822,7 +847,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        {
         ImageWidgetClass Tabs_Background {
-         visible 1
+         visible 0
          ignorepointer 1
          color 1 1 1 0.5098
          position 0 0
@@ -839,22 +864,24 @@ FrameWidgetClass rootFrame {
         }
         GridSpacerWidgetClass Tab_Control_Container {
          ignorepointer 1
+         color 0 0 0 0.549
          position 0 0
          size 1 1
          hexactpos 1
          vexactpos 1
          hexactsize 0
          vexactsize 0
+         style DayZDefaultPanel
          Padding 0
          Margin 0
          "Size To Content H" 1
-         "Size To Content V" 1
          Columns 10
          Rows 1
          {
           PanelWidgetClass Tab_Control_0 {
            visible 1
            clipchildren 1
+           color 0 0 0 0
            position 0 0
            size 270 1
            hexactpos 1
@@ -863,7 +890,7 @@ FrameWidgetClass rootFrame {
            vexactsize 0
            priority 200
            userID 0
-           style blank
+           style DayZDefaultPanel
            "next down" "XComboBoxWidget1"
            {
             TextWidgetClass Tab_Control_0_Title {
@@ -887,7 +914,7 @@ FrameWidgetClass rootFrame {
              "text valign" center
             }
             ImageWidgetClass Tab_Control_0_Background {
-             visible 1
+             visible 0
              disabled 0
              inheritalpha 0
              ignorepointer 1
@@ -914,15 +941,16 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass Tab_Control_1 {
            visible 1
            clipchildren 1
+           color 0 0 0 0
            position 250 0
-           size 150 1
+           size 250 1
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 0
            priority 200
            userID 0
-           style blank
+           style DayZDefaultPanel
            "next down" "XComboBoxWidget1"
            {
             TextWidgetClass Tab_Control_1_Title {
@@ -973,15 +1001,16 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass Tab_Control_2 {
            visible 1
            clipchildren 1
+           color 0 0 0 0
            position 700 0
-           size 140 1
+           size 200 1
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 0
            priority 200
            userID 0
-           style blank
+           style DayZDefaultPanel
            "next down" "XComboBoxWidget1"
            {
             TextWidgetClass Tab_Control_2_Title {
@@ -1032,15 +1061,16 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass Tab_Control_3 {
            visible 1
            clipchildren 1
+           color 0 0 0 0
            position 930 0
-           size 190 1
+           size 250 1
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 0
            priority 200
            userID 0
-           style blank
+           style DayZDefaultPanel
            "next down" "XComboBoxWidget1"
            {
             TextWidgetClass Tab_Control_3_Title {
@@ -1091,15 +1121,16 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass Tab_Control_4 {
            visible 1
            clipchildren 1
+           color 0 0 0 0
            position 930 0
-           size 140 1
+           size 200 1
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 0
            priority 200
            userID 0
-           style blank
+           style DayZDefaultPanel
            "next down" "XComboBoxWidget1"
            {
             TextWidgetClass Tab_Control_4_Title {
@@ -1152,7 +1183,7 @@ FrameWidgetClass rootFrame {
        }
       }
       FrameWidgetClass ConsoleControls {
-       visible 0
+       visible 1
        clipchildren 0
        ignorepointer 1
        size 1 1
@@ -1212,20 +1243,8 @@ FrameWidgetClass rootFrame {
      hexactsize 0
      vexactsize 0
      {
-      CanvasWidgetClass CanvasWidget_0 {
-       visible 1
-       ignorepointer 1
-       position 0 0
-       size 1 1
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       scaled 1
-       priority 500
-      }
       ImageWidgetClass ImageWidget_0 {
-       visible 0
+       visible 1
        position 0 119
        size 1352 800.70001
        halign center_ref
@@ -1234,11 +1253,24 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       imageTexture "{5EF8B444387F2409}Gui/textures/hud.edds"
+       imageTexture "{3A40B4F14DF4CA15}Gui/textures/tutorials/health.edds"
        "no wrap" 0
        stretch 1
       }
+      CanvasWidgetClass CanvasWidget_0 {
+       visible 1
+       clipchildren 0
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       scaled 1
+      }
       PanelWidgetClass PanelWidget20 {
+       visible 1
        size 429 162
        halign center_ref
        valign center_ref
@@ -1247,11 +1279,11 @@ FrameWidgetClass rootFrame {
        hexactsize 1
        vexactsize 1
        priority 99
-       style Outline
+       style blank
        {
         FrameWidgetClass Markers_0 {
          visible 1
-         clipchildren 1
+         clipchildren 0
          size 418 162
          valign center_ref
          hexactpos 1
@@ -1262,7 +1294,7 @@ FrameWidgetClass rootFrame {
          priority 100
          {
           PanelWidgetClass Health0 {
-           clipchildren 1
+           clipchildren 0
            inheritalpha 0
            position 0 0
            size 70 162
@@ -1277,7 +1309,7 @@ FrameWidgetClass rootFrame {
            {
             ImageWidgetClass IconHealth0 {
              disabled 0
-             clipchildren 1
+             clipchildren 0
              inheritalpha 0
              ignorepointer 0
              keepsafezone 0
@@ -1302,15 +1334,14 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               PanelWidgetClass button_marker_health_indicator {
-               visible 0
+               visible 1
+               position 0 -10
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
                style rover_sim_colorable
               }
              }
@@ -1490,6 +1521,7 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               TextWidgetClass BloodType0 {
+               visible 0
                color 0.8627 0.8627 0.8627 1
                position -8 -4
                size 34 24
@@ -1503,6 +1535,7 @@ FrameWidgetClass rootFrame {
                "text halign" center
               }
               TextWidgetClass BloodPosType0 {
+               visible 0
                color 0.8627 0.8627 0.8627 1
                position -8 16
                size 34 24
@@ -1516,15 +1549,14 @@ FrameWidgetClass rootFrame {
                "text halign" center
               }
               PanelWidgetClass button_marker_blood_indicator {
-               visible 0
+               visible 1
+               position 0 -10
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
                style rover_sim_colorable
               }
              }
@@ -1575,7 +1607,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass BloodArrowUp5 {
-             visible 1
+             visible 0
              clipchildren 1
              inheritalpha 0
              color 0.8627 0.8627 0.8627 1
@@ -1598,22 +1630,21 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               PanelWidgetClass button_marker_raising_tendency {
-               visible 0
+               visible 1
+               position 0 -7
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
-               style rover_sim_colorable
+               style blank
               }
              }
             }
             ImageWidgetClass BloodArrowDown0 {
              visible 0
-             clipchildren 1
+             clipchildren 0
              color 0.8627 0.8627 0.8627 1
              position 0 44
              size 44 14
@@ -1684,7 +1715,7 @@ FrameWidgetClass rootFrame {
           PanelWidgetClass NotifierDivider0 {
            color 1 1 1 0.2941
            position 161 0
-           size 6 38
+           size 5 38
            halign right_ref
            valign center_ref
            hexactpos 1
@@ -1708,6 +1739,7 @@ FrameWidgetClass rootFrame {
            style blank
            {
             ImageWidgetClass IconTemperature0 {
+             clipchildren 0
              color 0.8627 0.8627 0.8627 1
              position 0 0
              size 70 70
@@ -1729,15 +1761,14 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               PanelWidgetClass button_marker_temperature_indicator {
-               visible 0
+               visible 1
+               position 0 -10
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
                style rover_sim_colorable
               }
              }
@@ -1811,7 +1842,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass TemperatureArrowDown0 {
-             visible 1
+             visible 0
              clipchildren 1
              color 0.8627 0.8627 0.8627 1
              position 0 44
@@ -1831,20 +1862,6 @@ FrameWidgetClass rootFrame {
              "flip v" 0
              filter 1
              nocache 0
-             {
-              PanelWidgetClass button_marker_decrease_tendency {
-               visible 0
-               size 7 7
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               fixaspect fixwidth
-               style rover_sim_colorable
-              }
-             }
             }
             ImageWidgetClass TemperatureArrowDown4 {
              visible 0
@@ -1895,7 +1912,7 @@ FrameWidgetClass rootFrame {
            }
           }
           PanelWidgetClass Hungry0 {
-           clipchildren 1
+           clipchildren 0
            inheritalpha 0
            position 258 0
            size 70 162
@@ -1909,6 +1926,7 @@ FrameWidgetClass rootFrame {
            style blank
            {
             ImageWidgetClass IconHungry0 {
+             clipchildren 0
              color 0.8627 0 0 1
              position 0 0
              size 70 70
@@ -1930,15 +1948,14 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               PanelWidgetClass button_marker_food_indicator {
-               visible 0
+               visible 1
+               position 0 -10
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
                style rover_sim_colorable
               }
              }
@@ -1966,7 +1983,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass HungryArrowUp4 {
-             visible 1
+             visible 0
              clipchildren 1
              inheritalpha 0
              color 0.8627 0.8627 0.8627 1
@@ -1987,20 +2004,6 @@ FrameWidgetClass rootFrame {
              "flip v" 1
              filter 1
              nocache 0
-             {
-              PanelWidgetClass button_marker_strong_raising_tendency {
-               visible 0
-               size 7 7
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               fixaspect fixwidth
-               style rover_sim_colorable
-              }
-             }
             }
             ImageWidgetClass HungryArrowUp5 {
              visible 0
@@ -2071,8 +2074,8 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass HungryArrowDown5 {
-             visible 0
-             clipchildren 1
+             visible 1
+             clipchildren 0
              inheritalpha 0
              color 0.8627 0.8627 0.8627 1
              position 0 54
@@ -2083,7 +2086,6 @@ FrameWidgetClass rootFrame {
              vexactpos 1
              hexactsize 1
              vexactsize 1
-             priority 999
              image0 "set:dayz_gui image:iconArrowUp3"
              mode blend
              "src alpha" 1
@@ -2092,6 +2094,35 @@ FrameWidgetClass rootFrame {
              "flip v" 0
              filter 1
              nocache 0
+             {
+              PanelWidgetClass button_marker_strong_raising_tendency {
+               visible 0
+               clipchildren 1
+               inheritalpha 0
+               position 0 -10
+               size 7 7
+               halign center_ref
+               valign bottom_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               priority 1
+               style rover_sim_colorable
+              }
+              PanelWidgetClass button_marker_strong_decrease_tendency {
+               visible 1
+               position 0 -10
+               size 7 7
+               halign center_ref
+               valign bottom_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               style rover_sim_colorable
+              }
+             }
             }
            }
           }
@@ -2110,6 +2141,7 @@ FrameWidgetClass rootFrame {
            style blank
            {
             ImageWidgetClass IconThirsty0 {
+             clipchildren 0
              color 0.8627 0.8627 0 1
              position 0 0
              size 70 70
@@ -2131,15 +2163,14 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               PanelWidgetClass button_marker_hydration_indicator {
-               visible 0
+               visible 1
+               position 0 -10
                size 7 7
                halign center_ref
-               valign center_ref
                hexactpos 1
                vexactpos 1
                hexactsize 1
                vexactsize 1
-               fixaspect fixwidth
                style rover_sim_colorable
               }
              }
@@ -2168,7 +2199,7 @@ FrameWidgetClass rootFrame {
             }
             ImageWidgetClass ThirstyArrowUp4 {
              visible 0
-             clipchildren 1
+             clipchildren 0
              inheritalpha 0
              color 0.8627 0.8627 0.8627 1
              position 0 -50
@@ -2213,8 +2244,8 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass ThirstyArrowDown0 {
-             visible 0
-             clipchildren 1
+             visible 1
+             clipchildren 0
              color 0.8627 0.8627 0.8627 1
              position 0 44
              size 44 14
@@ -2233,6 +2264,20 @@ FrameWidgetClass rootFrame {
              "flip v" 0
              filter 1
              nocache 0
+             {
+              PanelWidgetClass button_marker_decrease_tendency {
+               visible 1
+               position 0 -10
+               size 7 7
+               halign center_ref
+               valign bottom_ref
+               hexactpos 1
+               vexactpos 1
+               hexactsize 1
+               vexactsize 1
+               style rover_sim_colorable
+              }
+             }
             }
             ImageWidgetClass ThirstyArrowDown4 {
              visible 0
@@ -2258,7 +2303,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass ThirstyArrowDown5 {
-             visible 1
+             visible 0
              clipchildren 1
              inheritalpha 0
              color 0.8627 0.8627 0.8627 1
@@ -2279,20 +2324,6 @@ FrameWidgetClass rootFrame {
              "flip v" 0
              filter 1
              nocache 0
-             {
-              PanelWidgetClass button_marker_strong_decrease_tendency {
-               visible 0
-               size 7 7
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               fixaspect fixwidth
-               style rover_sim_colorable
-              }
-             }
             }
            }
           }
@@ -2490,6 +2521,7 @@ FrameWidgetClass rootFrame {
        }
       }
       FrameWidgetClass HUDPanel {
+       visible 0
        clipchildren 0
        ignorepointer 1
        position 0 -0.02
@@ -2730,6 +2762,7 @@ FrameWidgetClass rootFrame {
              nocache 0
              {
               TextWidgetClass BloodType {
+               visible 0
                color 0.8627 0.8627 0.8627 1
                position -4 -2
                size 17 12
@@ -2743,6 +2776,7 @@ FrameWidgetClass rootFrame {
                "text halign" center
               }
               TextWidgetClass BloodPosType {
+               visible 0
                color 0.8627 0.8627 0.8627 1
                position -4 8
                size 17 12
@@ -3647,7 +3681,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass StanceCrouch {
-             visible 0
+             visible 1
              size 1 1
              halign center_ref
              valign center_ref
@@ -3664,7 +3698,7 @@ FrameWidgetClass rootFrame {
              nocache 0
             }
             ImageWidgetClass StanceStand {
-             visible 1
+             visible 0
              position 0 0
              size 1 1
              halign center_ref
@@ -3748,6 +3782,7 @@ FrameWidgetClass rootFrame {
          }
         }
         PanelWidgetClass PanelWidget21 {
+         visible 1
          ignorepointer 1
          position -20 -9.5
          size 260 100
@@ -3760,6 +3795,7 @@ FrameWidgetClass rootFrame {
          style Outline
         }
         ImageWidgetClass ImageWidget1 {
+         visible 0
          ignorepointer 1
          position 240 40.5
          size 620 2
@@ -3772,6 +3808,7 @@ FrameWidgetClass rootFrame {
          scaled 1
         }
         ImageWidgetClass ImageWidget0 {
+         visible 0
          ignorepointer 1
          position 860 40.5
          size 2 301
@@ -3869,7 +3906,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       imageTexture "{D1E6A05F17AF1B01}Gui/textures/melee.edds"
+       imageTexture "{92EF7001B2ABF5C3}Gui/textures/tutorials/melee.edds"
        "no wrap" 0
        stretch 1
        filter 1
@@ -3908,7 +3945,7 @@ FrameWidgetClass rootFrame {
        priority 50
        {
         PanelWidgetClass button_marker_scope {
-         visible 1
+         visible 0
          position -201.64101 600.92303
          size 7 7
          halign center_ref
@@ -3971,7 +4008,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       imageTexture "{075BCF0FA3D90218}Gui/textures/guns.edds"
+       imageTexture "{1EAE6D8A6359889C}Gui/textures/tutorials/guns.edds"
        "no wrap" 0
        stretch 1
       }
@@ -4045,7 +4082,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       imageTexture "{EB744B6401945B65}Gui/textures/infected.edds"
+       imageTexture "{2E141DDA4A41B752}Gui/textures/tutorials/infected.edds"
        "no wrap" 0
        stretch 1
       }
@@ -4118,7 +4155,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       imageTexture "{E91CFCBC73537488}Gui/textures/loot.edds"
+       imageTexture "{F0E95E39B3D3FE0C}Gui/textures/tutorials/loot.edds"
        "no wrap" 0
        stretch 1
       }
@@ -4165,9 +4202,9 @@ FrameWidgetClass rootFrame {
    "text valign" center
   }
   PanelWidgetClass toolbar_bg {
-   visible 0
+   visible 1
    inheritalpha 0
-   color 1 1 1 0.4706
+   color 0 0 0 0.549
    size 1 0.1
    halign center_ref
    valign bottom_ref
@@ -4203,7 +4240,7 @@ FrameWidgetClass rootFrame {
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       Padding 4
+       Padding 5
        Margin 0
        "Size To Content H" 1
        "Size To Content V" 1

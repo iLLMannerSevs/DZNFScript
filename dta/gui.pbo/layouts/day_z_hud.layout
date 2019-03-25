@@ -1729,24 +1729,26 @@ FrameWidgetClass HudFrameWidget {
       }
      }
     }
-    PanelWidgetClass QuickbarGrid {
+    WrapSpacerWidgetClass QuickbarGrid {
      visible 1
      disabled 0
-     color 1 1 1 0.502
      position 0 0
-     size 0.329 48
+     size 1 66
+     halign center_ref
      valign bottom_ref
-     hexactpos 0
+     hexactpos 1
      vexactpos 1
      hexactsize 0
      vexactsize 1
      scriptclass "InventoryGrid"
+     style Colorable
+     Margin 0
+     "Size To Content H" 1
+     content_halign center
+     content_valign bottom
      {
       ScriptParamsClass {
-       Gap 2
-       ItemSizeHeight 40
-       ItemsHorizontal 10
-       ItemsVertical 1
+       m_IsDebugOutput 0
       }
      }
     }
@@ -1829,12 +1831,13 @@ FrameWidgetClass HudFrameWidget {
      }
     }
     ImageWidgetClass mic {
-     visible 0
+     visible 1
      color 1 1 1 0.3922
-     position 0.225 0.785
+     position 502.47998 136.60001
      size 0.035 0.035
-     hexactpos 0
-     vexactpos 0
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
      hexactsize 0
      vexactsize 0
      fixaspect fixwidth
@@ -2618,7 +2621,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 36 36
+             size 25.92 36
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -2737,7 +2740,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 36 36
+             size 25.92 36
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -2839,10 +2842,112 @@ FrameWidgetClass HudFrameWidget {
      hexactsize 0
      vexactsize 0
      priority 100
-     Padding 10
+     Padding 4
      Margin 0
      content_valign bottom
      {
+      PanelWidgetClass PresencePanel {
+       visible 1
+       disabled 0
+       position 230 0
+       size 32 32
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect fixwidth
+       style blank
+       {
+        ImageWidgetClass Presence0 {
+         visible 0
+         position 0 0
+         size 9.66 32
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         image0 "set:dayz_gui image:Presence0"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         filter 1
+         nocache 0
+        }
+        ImageWidgetClass Presence1 {
+         visible 0
+         position 5.12 0
+         size 9.66 32
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         image0 "set:dayz_gui image:Presence1"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         filter 1
+         nocache 0
+        }
+        ImageWidgetClass Presence2 {
+         visible 0
+         position 10.24 0
+         size 9.66 32
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         image0 "set:dayz_gui image:Presence2"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         filter 1
+         nocache 0
+        }
+        ImageWidgetClass Presence3 {
+         visible 0
+         position 15.36 0
+         size 9.66 32
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         image0 "set:dayz_gui image:Presence3"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         filter 1
+         nocache 0
+        }
+        ImageWidgetClass Presence4 {
+         visible 0
+         inheritalpha 0
+         position 20.48 0
+         size 9.66 32
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         image0 "set:dayz_gui image:Presence4"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         stretch 0
+         filter 1
+         nocache 0
+        }
+       }
+      }
       PanelWidgetClass StancePanel {
        visible 1
        position 0 0
@@ -2857,13 +2962,11 @@ FrameWidgetClass HudFrameWidget {
         ImageWidgetClass StanceProne {
          visible 0
          position 0 0
-         size 1 1
-         halign center_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
+         size 32 32
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
          draggable 0
          image0 "set:dayz_gui image:stance_prone"
          mode additive
@@ -2874,13 +2977,12 @@ FrameWidgetClass HudFrameWidget {
         }
         ImageWidgetClass StanceCrouch {
          visible 0
-         size 1 1
-         halign center_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
+         position 0 0
+         size 32 32
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
          draggable 0
          image0 "set:dayz_gui image:stance_crouch"
          mode additive
@@ -2892,13 +2994,11 @@ FrameWidgetClass HudFrameWidget {
         ImageWidgetClass StanceStand {
          visible 0
          position 0 0
-         size 1 1
-         halign center_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
+         size 32 32
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
          draggable 0
          image0 "set:dayz_gui image:stance_walk"
          mode additive
@@ -2911,10 +3011,8 @@ FrameWidgetClass HudFrameWidget {
          visible 0
          position 0 0
          size 32 32
-         halign center_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
+         hexactpos 1
+         vexactpos 1
          hexactsize 1
          vexactsize 1
          draggable 0
@@ -2971,201 +3069,110 @@ FrameWidgetClass HudFrameWidget {
         }
        }
       }
-      PanelWidgetClass PresencePanel {
-       visible 1
-       disabled 0
-       position 230 0
-       size 32 32
-       valign bottom_ref
+      FrameWidgetClass SpecializationPanelPanel {
+       ignorepointer 1
+       position 0 0
+       size 292 32
        hexactpos 1
        vexactpos 1
        hexactsize 1
        vexactsize 1
-       fixaspect fixwidth
-       style blank
        {
-        ImageWidgetClass Presence0 {
-         visible 0
-         position 0 0
-         size 0.5 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:Presence0"
-         mode additive
-         "src alpha" 1
-         "no wrap" 1
-         filter 1
-         nocache 0
-        }
-        ImageWidgetClass Presence1 {
-         visible 0
-         position 0.125 0
-         size 0.5 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:Presence1"
-         mode blend
-         "src alpha" 1
-         "no wrap" 1
-         filter 1
-         nocache 0
-        }
-        ImageWidgetClass Presence2 {
-         visible 0
-         position 0.25 0
-         size 0.5 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:Presence2"
-         mode blend
-         "src alpha" 1
-         "no wrap" 1
-         filter 1
-         nocache 0
-        }
-        ImageWidgetClass Presence3 {
-         visible 0
-         position 0.375 0
-         size 0.5 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:Presence3"
-         mode blend
-         "src alpha" 1
-         "no wrap" 1
-         filter 1
-         nocache 0
-        }
-        ImageWidgetClass Presence4 {
-         visible 0
-         inheritalpha 0
-         position 0.5 0
-         size 0.5 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:Presence4"
-         mode blend
-         "src alpha" 1
-         "no wrap" 1
-         stretch 0
-         filter 1
-         nocache 0
-        }
-       }
-      }
-      PanelWidgetClass SpecializationPanel {
-       visible 0
-       clipchildren 0
-       position 0 40
-       size 260 32
-       valign bottom_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       fixaspect fixwidth
-       priority 1
-       style blank
-       {
-        ImageWidgetClass SpecializationIconNeedle {
-         visible 1
-         size 1 1
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         fixaspect fixwidth
-         priority 999
-         image0 "set:dayz_gui image:icon_needle"
-         mode additive
-         "src alpha" 1
-         "no wrap" 1
-         "flip u" 0
-         "flip v" 0
-         filter 1
-        }
-        ImageWidgetClass SpecializationIconHammer {
-         visible 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 0
-         vexactpos 0
-         hexactsize 0
-         vexactsize 0
-         fixaspect fixwidth
-         priority 999
-         image0 "set:dayz_gui image:icon_hammer"
-         mode additive
-         "src alpha" 1
-         "no wrap" 1
-         "flip u" 0
-         "flip v" 0
-         filter 1
-         nocache 0
-        }
-        ImageWidgetClass SpecializationBar {
+        PanelWidgetClass SpecializationPanel {
          visible 1
          clipchildren 0
-         position 0 0
-         size 180 8
-         halign center_ref
+         size 260 32
+         halign right_ref
          valign center_ref
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          fixaspect fixwidth
-         priority 999
-         image0 "set:dayz_gui image:icon_bar_specialisation"
-         mode additive
-         "src alpha" 1
-         "no wrap" 1
-         "flip u" 0
-         "flip v" 0
-         filter 0
+         priority 1
+         style blank
          {
-          ImageWidgetClass SpecializationIcon {
+          ImageWidgetClass SpecializationIconNeedle {
            visible 1
-           clipchildren 0
-           position 0 -0.75
-           size 17 11
-           halign center_ref
+           size 1 1
            valign center_ref
            hexactpos 0
            vexactpos 0
-           hexactsize 1
-           vexactsize 1
+           hexactsize 0
+           vexactsize 0
            fixaspect fixwidth
            priority 999
-           image0 "set:dayz_gui image:specialization_arrow"
+           image0 "set:dayz_gui image:icon_needle"
            mode additive
            "src alpha" 1
            "no wrap" 1
            "flip u" 0
            "flip v" 0
            filter 1
+          }
+          ImageWidgetClass SpecializationIconHammer {
+           visible 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           fixaspect fixwidth
+           priority 999
+           image0 "set:dayz_gui image:icon_hammer"
+           mode additive
+           "src alpha" 1
+           "no wrap" 1
+           "flip u" 0
+           "flip v" 0
+           filter 1
+           nocache 0
+          }
+          ImageWidgetClass SpecializationBar {
+           visible 1
+           clipchildren 0
+           position 0 0
+           size 180 8
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           fixaspect fixwidth
+           priority 999
+           image0 "set:dayz_gui image:icon_bar_specialisation"
+           mode additive
+           "src alpha" 1
+           "no wrap" 1
+           "flip u" 0
+           "flip v" 0
+           filter 0
+           {
+            ImageWidgetClass SpecializationIcon {
+             visible 1
+             clipchildren 0
+             position 0 -0.75
+             size 17 11
+             halign center_ref
+             valign center_ref
+             hexactpos 0
+             vexactpos 0
+             hexactsize 1
+             vexactsize 1
+             fixaspect fixwidth
+             priority 999
+             image0 "set:dayz_gui image:specialization_arrow"
+             mode additive
+             "src alpha" 1
+             "no wrap" 1
+             "flip u" 0
+             "flip v" 0
+             filter 1
+            }
+           }
           }
          }
         }
@@ -3178,7 +3185,7 @@ FrameWidgetClass HudFrameWidget {
        keepsafezone 0
        color 0.3137 0.3137 0.3137 0
        position 0 51
-       size 0 0
+       size 320 160
        valign bottom_ref
        hexactpos 1
        vexactpos 1
@@ -3189,7 +3196,9 @@ FrameWidgetClass HudFrameWidget {
        "no focus" 0
        Padding 0
        Margin 0
+       "Size To Content H" 1
        "Size To Content V" 1
+       content_valign bottom
        Columns 1
        Rows 4
        {
@@ -3199,13 +3208,13 @@ FrameWidgetClass HudFrameWidget {
          inheritalpha 0
          color 0.3137 0.3137 0.3137 0.6275
          position 0 0
-         size 300 40
+         size 320 40
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
+         scriptclass ""
          imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
          mode blend
          "src alpha" 1
@@ -3214,6 +3223,7 @@ FrameWidgetClass HudFrameWidget {
          {
           ContentWidgetClass ia_item_left {
            clipchildren 1
+           position 10 0
            size 40 36
            valign center_ref
            hexactpos 1
@@ -3315,7 +3325,7 @@ FrameWidgetClass HudFrameWidget {
           PanelWidgetClass ia_item_right {
            clipchildren 1
            inheritalpha 0
-           position 40 0
+           position 60 0
            size 260 36
            hexactpos 1
            vexactpos 1
@@ -3387,10 +3397,6 @@ FrameWidgetClass HudFrameWidget {
            }
           }
          }
-         {
-          ScriptParamsClass {
-          }
-         }
         }
         ImageWidgetClass ia_interact {
          visible 1
@@ -3398,13 +3404,13 @@ FrameWidgetClass HudFrameWidget {
          keepsafezone 0
          color 0.3137 0.3137 0.3137 0.6275
          position 0 0
-         size 300 40
+         size 320 40
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
+         scriptclass ""
          imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
          mode blend
          "src alpha" 1
@@ -3584,7 +3590,7 @@ FrameWidgetClass HudFrameWidget {
            }
           }
           ContentWidgetClass ia_interact_right {
-           position 40 0
+           position 60 0
            size 260 36
            valign center_ref
            hexactpos 1
@@ -3622,23 +3628,19 @@ FrameWidgetClass HudFrameWidget {
            }
           }
          }
-         {
-          ScriptParamsClass {
-          }
-         }
         }
         ImageWidgetClass ia_single {
          visible 1
          clipchildren 0
          color 0.3137 0.3137 0.3137 0.6275
          position 0 0
-         size 300 40
+         size 320 40
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
+         scriptclass ""
          imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
          mode blend
          "src alpha" 1
@@ -3680,7 +3682,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 32 32
+             size 23.04 32
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -3703,7 +3705,7 @@ FrameWidgetClass HudFrameWidget {
            }
           }
           ContentWidgetClass ia_single_right {
-           position 40 0
+           position 60 0
            size 260 36
            valign center_ref
            hexactpos 1
@@ -3741,23 +3743,19 @@ FrameWidgetClass HudFrameWidget {
            }
           }
          }
-         {
-          ScriptParamsClass {
-          }
-         }
         }
         ImageWidgetClass ia_continuous {
          visible 1
          clipchildren 0
          color 0.3137 0.3137 0.3137 0.6275
          position 0 0
-         size 300 40
+         size 320 40
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
+         scriptclass ""
          imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
          mode blend
          "src alpha" 1
@@ -3798,7 +3796,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 32 32
+             size 23.04 32
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -3820,6 +3818,7 @@ FrameWidgetClass HudFrameWidget {
            }
           }
           ContentWidgetClass ia_continuous_right {
+           position 60 0
            size 260 36
            valign center_ref
            hexactpos 1
@@ -3857,10 +3856,6 @@ FrameWidgetClass HudFrameWidget {
            }
           }
          }
-         {
-          ScriptParamsClass {
-          }
-         }
         }
        }
       }
@@ -3878,7 +3873,7 @@ FrameWidgetClass HudFrameWidget {
        style blank
       }
       PanelWidgetClass VehiclePanel {
-       visible 0
+       visible 1
        clipchildren 0
        position 0 40
        size 457 218
@@ -3919,9 +3914,10 @@ FrameWidgetClass HudFrameWidget {
            nocache 0
            {
             ImageWidgetClass RPMDialRedline {
-             visible 0
+             visible 1
              clipchildren 0
-             color 1 0 0 0.7843
+             color 1 0 0 1
+             position 1 0
              size 195 164
              halign center_ref
              hexactpos 1

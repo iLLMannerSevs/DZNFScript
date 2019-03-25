@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: scripts\config.bin
-//Produced from mikero's Dos Tools Dll version 7.03
+//Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Thu Feb 21 09:01:22 2019 : 'file' last modified on Wed Feb 20 16:53:26 2019
+//'now' is Mon Mar 25 16:08:27 2019 : 'file' last modified on Mon Mar 25 09:53:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -339,13 +339,13 @@ class CfgSlots
 		displayName = "weaponMuzzleMosin";
 		ghostIcon = "weaponmuzzlemosin";
 	};
-	class Slot_weaponUngerSlugM4
+	class Slot_weaponUnderSlugM4
 	{
 		name = "weaponUnderSlugM4";
 		displayName = "weaponUnderSlugM4";
 		ghostIcon = "weaponunderslungm4";
 	};
-	class Slot_weaponUngerSlugAK
+	class Slot_weaponUnderSlugAK
 	{
 		name = "weaponUnderSlugAK";
 		displayName = "weaponUnderSlugAK";
@@ -1764,5 +1764,11 @@ class CfgSlots
 		displayName = "LargeBattery";
 		selection = "battery";
 		ghostIcon = "carbattery";
+	};
+	class Slot_Knife_Holster
+	{
+		name = "KnifeHolster";
+		displayName = "KnifeHolster";
+		ghostIcon = "muzzle";
 	};
 };

@@ -10,6 +10,8 @@ class ActionFillCoolantCB : ActionContinuousBaseCB
 
 class ActionFillCoolant: ActionContinuousBase
 {
+	const string RADIATOR_SELECTION_NAME = "radiator";
+
 	void ActionFillCoolant()
 	{
 		m_CallbackClass = ActionFillCoolantCB;
@@ -19,18 +21,12 @@ class ActionFillCoolant: ActionContinuousBase
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		m_LockTargetOnUse = false;
 
-		m_MessageStartFail = "";
-		m_MessageStart = "";
-		m_MessageSuccess = "";
-		m_MessageFail = "";
-		m_MessageCancel = "";
-
 	}
 
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTNone;
+		m_ConditionTarget = new CCTParent(10);
 	}
 
 	override int GetType()
@@ -43,58 +39,46 @@ class ActionFillCoolant: ActionContinuousBase
 		return "#refill_car";
 	}
 
-	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{	
-		ItemBase tgt_item = ItemBase.Cast( target.GetObject() );
-		EntityAI tgt_parent = EntityAI.Cast( target.GetParent() );
-		EntityAI tgt_entity = EntityAI.Cast( target.GetObject() );
-		
-		if( !tgt_item )
-			return false;
+	override bool IsUsingProxies()
+	{
+		return true;
+	}
 
-		if( tgt_item.GetType() != "CarRadiator" )
-			return false;
-		
-		//if( !IsTransport(tgt_parent) )
-			//return false;
+	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
+	{
+		EntityAI tgt_parent = EntityAI.Cast( target.GetParent() );
 
 		if( item.GetQuantity() <= 0 )
 			return false;
-		
+
 		if( item.GetLiquidType() != LIQUID_WATER && item.GetLiquidType() != LIQUID_RIVERWATER )
 			return false;
-		
-		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) )
+
+		Car car = Car.Cast(tgt_parent);
+		if( car && car.GetFluidFraction( CarFluid.COOLANT ) >= 0.95 )
 			return false;
 
-		Car car = Car.Cast(target.GetObject());
-		if( car && car.GetFluidFraction( CarFluid.COOLANT ) >= 0.98 )
-			return false;
+		//! TODO:
+		//! 1) use some sane default
+		//! 2) create some getter(overriden per Car) to differentiate distances for each car type
+		float max_action_distance = 3;
 
-		/*
-		if( car.IsActionComponentPartOfSelection(target.GetComponentIndex(), "radiator") )
-		{
-			// not full tank con &&
-			return true;
-		}
-		*/
-		
-		return true;
-	}
-/*
-	override void OnCompleteServer( ActionData action_data )
-	{
-		Car car = Car.Cast(action_data.m_Target.GetObject());
-		Param1<float> nacdata;
-		Class.CastTo(nacdata,  action_data.m_ActionComponent.GetACData() );
-		float amount = nacdata.param1;
-		if ( car && action_data.m_MainItem && action_data.m_MainItem.GetQuantity() <= UAQuantityConsumed.FUEL )
-		{
-			action_data.m_MainItem.AddQuantity( -amount );
-			car.Fill( CarFluid.FUEL, amount );
+		float distance = Math.AbsFloat(vector.Distance(tgt_parent.GetPosition(), player.GetPosition()));
 
-			action_data.m_Player.GetSoftSkillManager().AddSpecialty( m_SpecialtyWeight );
+		if( distance <= max_action_distance )
+		{
+			array<string> selections = new array<string>;
+			target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
+
+			for (int s = 0; s < selections.Count(); s++)
+			{
+				if ( selections[s] == RADIATOR_SELECTION_NAME )
+				{
+					return true;
+				}
+			}
 		}
+
+		return false;
 	}
-*/
 };

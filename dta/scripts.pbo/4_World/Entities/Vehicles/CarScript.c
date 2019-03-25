@@ -226,6 +226,31 @@ class CarScript extends Car
 			}
 		}
 	}
+	
+	override bool CanReleaseAttachment( EntityAI attachment )
+	{
+
+		if ( GetSpeedometer() > 0.5 )
+			return false;
+
+		//GetInventoryOwner()
+				
+		//if ( !GetGame().IsServer() || !GetGame().IsMultiplayer() )
+		//{
+			for( int i =0; i < CrewSize(); i++ )
+			{
+				Human crew = CrewMember( i );
+				if ( !crew )
+					continue;
+
+				PlayerBase player;
+				if ( Class.CastTo(player, crew ) )
+					return false;
+			}
+		//}
+		
+		return true;
+	}
 
 	override void EOnPostSimulate(IEntity other, float timeSlice)
 	{
@@ -326,7 +351,7 @@ class CarScript extends Car
 						if ( !SEffectManager.IsEffectExist( m_coolantPtcFx ) )
 						{
 							m_coolantFx = new EffCoolantSteam();
-							m_coolantPtcFx = SEffectManager.PlayOnObject( m_coolantFx, this, m_coolantPtcPos );
+							m_coolantPtcFx = SEffectManager.PlayOnObject( m_coolantFx, this, m_coolantPtcPos, Vector(0,0,0), true );
 						}
 
 						if ( GetFluidFraction( CarFluid.COOLANT ) > 0 )
@@ -382,7 +407,7 @@ class CarScript extends Car
 				if ( !SEffectManager.IsEffectExist( m_enginePtcFx ) )
 				{
 					m_engineFx = new EffEngineSmoke();
-					m_enginePtcFx = SEffectManager.PlayOnObject( m_engineFx, this, m_enginePtcPos );
+					m_enginePtcFx = SEffectManager.PlayOnObject( m_engineFx, this, m_enginePtcPos, Vector(0,0,0), true );
 					//m_engineFx.SetParticleStateLight();
 					m_engineFx.SetParticleStateHeavy();
 				}
@@ -783,10 +808,39 @@ class CarScript extends Car
 	{
 		return "";
 	}
+
+	string GetDoorConditionPointFromSelection( string selection )
+	{
+		return "";
+	}
 	
 	int GetCrewIndex( string selection )
 	{
 		return -1;
+	}
+
+	override bool CanReachSeatFromDoors( string pSeatSelection, vector pFromPos, float pDistance = 1.0 )
+	{
+		string conPointName = GetDoorConditionPointFromSelection(pSeatSelection);
+		if (conPointName.Length() > 0)
+		{
+			if( MemoryPointExists(conPointName) )
+			{
+				vector conPointMS = GetMemoryPointPos(conPointName);
+				vector conPointWS = ModelToWorld(conPointMS);
+				
+				//! skip the height for now
+				conPointWS[1] = 0;
+				pFromPos[1] = 0;
+				
+				if (vector.Distance(pFromPos, conPointWS) <= pDistance)
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;		
 	}
 
 	bool IsVitalCarBattery()

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: bin\config.bin
-//Produced from mikero's Dos Tools Dll version 7.03
+//Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Thu Feb 21 09:01:07 2019 : 'file' last modified on Wed Feb 20 06:29:11 2019
+//'now' is Mon Mar 25 16:08:14 2019 : 'file' last modified on Mon Mar 25 10:21:08 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -288,6 +288,17 @@ class Mode_FullAuto: Mode_SemiAuto
 	sound[] = {"",10.0,1};
 	soundEnd[] = {"sound",1};
 };
+class OpticsInfoDefault
+{
+	memoryPointCamera = "eye";
+	opticsZoomMin = 0.35;
+	opticsZoomMax = 0.35;
+	opticsZoomInit = 0.35;
+	distanceZoomMin = 400;
+	distanceZoomMax = 400;
+	discreteDistance[] = {100};
+	discreteDistanceInitIndex = 0;
+};
 class Muzzle_Base
 {
 	chamberSize = 0;
@@ -299,8 +310,6 @@ class Muzzle_Base
 	magazines[] = {};
 	chamberableFrom[] = {};
 	barrelArmor = 1000.0;
-	jamChance = 0.0;
-	jamChanceDestroyed = 0.0;
 	initSpeedMultiplier = 1.0;
 	aiDispersionCoefX = 1.0;
 	aiDispersionCoefY = 1.0;
@@ -311,7 +320,7 @@ class Muzzle_Base
 	soundBullet[] = {"emptySound",1};
 	useModelOptics = 1;
 	modelOptics = "";
-	memoryPointCamera = "eye";
+	class OpticsInfo: OpticsInfoDefault{};
 };
 class CfgWeapons
 {
@@ -355,8 +364,6 @@ class CfgWeapons
 		chamberableFrom[] = {};
 		modes[] = {"this"};
 		barrelArmor = 1000.0;
-		jamChance = 0.0;
-		jamChanceDestroyed = 0.0;
 		initSpeedMultiplier = 1.0;
 		useModelOptics = 1;
 		modelOptics = "";
@@ -366,15 +373,7 @@ class CfgWeapons
 		irLaserEnd = "laser dir";
 		cartridgePos = "nabojnicestart";
 		cartridgeVel = "nabojniceend";
-		memoryPointCamera = "eye";
-		opticsID = 0;
-		opticsFlare = 1;
-		opticsDisablePeripherialVision = 0.67;
-		opticsZoomMin = 0.35;
-		opticsZoomMax = 0.35;
-		opticsZoomInit = 0.35;
-		distanceZoomMin = 400;
-		distanceZoomMax = 400;
+		class OpticsInfo: OpticsInfoDefault{};
 		selectionFireAnim = "";
 		muzzles[] = {"this"};
 		reloadSound[] = {"",1,1};
@@ -412,7 +411,17 @@ class CfgAmmo
 		animated = 0;
 		shadow = 0;
 		reverses = 1;
-		class DamageSystem{};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{"PRISTINE_VALUE",{}},{"WORN_VALUE",{}},{"DAMAGED_VALUE",{}},{"BADLY_DAMAGED_VALUE",{}},{"RUINED_VALUE",{}}};
+				};
+			};
+		};
 		hit = 0.0;
 		indirectHit = 0.0;
 		indirectHitRange = 1.0;
@@ -2146,102 +2155,6 @@ class CfgFontFamilies
 	};
 };
 class CfgFonts{};
-class UserActionsConflictGroups
-{
-	class ActionGroups
-	{
-		basic[] = {"ToggleWeapons","DefaultAction","ReloadMagazine","LockTarget","PrevAction","NextAction","Action","ActionContext","ActionFreeLook","Throwitem","Dropitem","MoveItemFromHandsToInventory","Headlights","NightVision","MiniMap","MiniMapToggle","ShowMap","HideMap","Help","TimeInc","TimeDec","Optics","PersonView","TacticalView","LiteUnitInfoToggle","ZoomIn","ZoomInToggle","ZoomOut","zoomOutToggle","ZoomContIn","ZoomContOut","ZoomInOptics","ZoomOutOptics","ZeroingUp","ZeroingDown","LookAround","LookAroundToggle","LookLeftDown","LookDown","LookRightDown","LookLeft","LookCenter","LookRight","LookLeftUp","LookUp","LookRightUp","LookLeftCont","LookRightCont","LookDownCont","LookUpCont","PrevChannel","NextChannel","Chat","VoiceOverNet","PushToTalk","PushToTalkAll","PushToTalkSide","PushToTalkCommand","PushToTalkGroup","PushToTalkVehicle","PushToTalkDirect","NetworkStats","Turbo","Slow","HoldBreath","IngamePause","MenuSelect","SwapGunner","CancelAction","CommandWatch","Gear","Cheat1","Cheat2","Diary","Surrender","GetOver","Item0","Item1","Item2","Item3","Item4","Item5","Item6","Item7","Item8","Item9","ItemsShow"};
-		ManBasic[] = {"TempRaiseWeapon","ToggleRaiseWeapon","GestureSlot01","GestureSlot02","GestureSlot03","GestureSlot04","GestureSlot05","GestureSlot06","GestureSlot07","GestureSlot08","GestureSlot09","GestureSlot10","GestureSlot11","GestureSlot12","Throw","LockTargets","LockEmptyTargets"};
-		VehBasic[] = {"Fire","VehicleTurbo","VehicleSlow","HeliManualFire","VehLockTargets","VehLockEmptyTargets","GetOut","Eject"};
-		ManMove[] = {"AimUp","AimDown","AimLeft","AimRight","MoveForward","MoveBack","TurnLeft","TurnRight","MoveUp","MoveDown","MoveFastForward","MoveSlowForward","MoveLeft","MoveRight","EvasiveForward","EvasiveLeft","EvasiveRight","EvasiveBack","Stand","Crouch","Prone","LeanLeft","LeanRight","LeanLeftToggle","LeanRightToggle","WalkRunToggle","WalkRunTemp"};
-		AimingHead[] = {"AimHeadUp","AimHeadDown","AimHeadLeft","AimHeadRight"};
-		AirCraft[] = {"HeliUp","HeliDown","HeliThrottlePos","HeliThrottleNeg","HeliLeft","HeliRight","AirBankLeft","AirBankRight","HeliRudderLeft","HeliRudderRight","HeliForward","HeliBack","HeliFastForward","AutoHover","AutoHoverCancel","LandGear","LandGearUp","FlapsDown","FlapsUp"};
-		Heli[] = {"HeliCollectiveRaise","HeliCollectiveLower","HeliCollectiveRaiseCont","HeliCollectiveLowerCont","HeliLeft","HeliRight","HeliCyclicLeft","HeliCyclicRight","HeliRudderLeft","HeliRudderRight","CyclicForward","CyclicBack","HeliFastForward","AutoHover","AutoHoverCancel","LandGear","LandGearUp","FlapsDown","FlapsUp","HelicopterTrimOn","HelicopterTrimOff","HeliThrottleIncrease1","HeliThrottleDecrease1","HeliThrottleIncrease2","HeliThrottleDecrease2","HeliThrottleIncrease3","HeliThrottleDecrease3","HeliStarterToggle1","HeliStarterToggle2","HeliStarterToggle3","HeliBatteriesToggle","HeliRotorBrakeToggle","HeliEnginesToggle","HeliAPUToggle","HeliWheelsBrake","HeliTrimLeft","HeliTrimRight","HeliTrimForward","HeliTrimBackward","HeliTrimRudderLeft","HeliTrimRudderRight"};
-		CarMovement[] = {"CarLeft","CarRight","CarWheelLeft","CarWheelRight","CarForward","CarBack","CarFastForward","CarSlowForward","CarShiftGearUp","CarShiftGearDown"};
-		CarFreelook[] = {"CarAimUp","CarAimDown","CarAimLeft","CarAimRight"};
-		Tank[] = {"TurnIn","TurnOut"};
-		SeaGull[] = {"SeagullUp","SeagullDown","SeagullForward","SeagullBack","SeagullFastForward"};
-		FreeHeadMove[] = {"FreeHeadMove"};
-		HeadMove[] = {"LookShiftLeftCont","LookShiftRightCont","LookShiftUpCont","LookShiftDownCont","LookShiftForwardCont","LookShiftBackCont","LookRollLeftCont","LookRollRightCont","LookShiftLeft","LookShiftRight","LookShiftUp","LookShiftDown","LookShiftForward","LookRollLeft","LookRollRight","LookShiftBack","LookShiftCenter"};
-		Command[] = {"CommandLeft","CommandRight","CommandForward","CommandBack","CommandFast","CommandSlow"};
-		buldozer[] = {"BuldFreeLook","BuldRunScript","BuldSelectToggle","BuldSelect","BuldSelectAddMod","BuldSelectRemoveMod","BuldModifySelected","BuldCycleMod","BuldRotationXAxisMod","BuldRotationZAxisMod","BuldCoordModCycle","BuldResetCamera","BuldSampleTerrainHeight","BuldSetTerrainHeight","BuldScaleMod","BuldElevateMod","BuldSmoothMod","BuldFlattenMod","BuldBrushRatioUp","BuldBrushRatioDown","BuldBrushOuterUp","BuldBrushOuterDown","BuldBrushStrengthUp","BuldBrushStrengthDown","BuldToggleNearestObjectArrow","BuldCycleBrushMod","BuldSelectionType","BuldCreateLastSelectedObject","BuldDuplicateSelection","BuldDeleteSelection","BuldUndo","BuldRedo","BuldObjectRotateLeft","BuldObjectRotateRight","BuldObjectRotateForward","BuldObjectRotateBack","BuldViewerMoveLeft","BuldViewerMoveRight","BuldViewerMoveForward","BuldViewerMoveBack","BuldViewerMoveUp","BuldViewerMoveDown","BuldMoveLeft","BuldMoveRight","BuldMoveForward","BuldMoveBack","BuldMoveUp","BuldMoveDown","BuldLeft","BuldRight","BuldForward","BuldBack","BuldLookLeft","BuldLookRight","BuldLookUp","BuldLookDown","BuldTurbo","BuldSlow","BuldPreviousAnimation","BuldNextAnimation","BuldRecedeAnimation","BuldAdvanceAnimation","BuldZoomIn","BuldZoomOut","BuldTextureInfo"};
-	};
-	class CollisionGroups
-	{
-		manMain[] = {"basic","manBasic"};
-		vehMain[] = {"basic","vehBasic"};
-		manMove[] = {"manMove","manBasic","basic"};
-		commander[] = {"command","vehBasic","basic"};
-		aimingHead[] = {"aimingHead","manBasic","basic"};
-		heli[] = {"heli","vehBasic","basic","HeadMove"};
-		aircraft[] = {"aircraft","vehBasic","basic","HeadMove"};
-		carMove[] = {"CarMovement","vehBasic","basic","HeadMove"};
-		carLook[] = {"CarFreelook","vehBasic","basic","HeadMove"};
-		TankMove[] = {"CarMovement","Tank","vehBasic","basic","HeadMove"};
-		TankLook[] = {"CarFreelook","Tank","vehBasic","basic","HeadMove"};
-		heliF[] = {"heli","vehBasic","basic","FreeHeadMove"};
-		aircraftF[] = {"aircraft","vehBasic","basic","FreeHeadMove"};
-		carMoveF[] = {"CarMovement","vehBasic","basic","FreeHeadMove"};
-		carLookF[] = {"CarFreelook","vehBasic","basic","FreeHeadMove"};
-		TankMoveF[] = {"CarMovement","Tank","vehBasic","basic","FreeHeadMove"};
-		TankLookF[] = {"CarFreelook","Tank","vehBasic","basic","FreeHeadMove"};
-		seagull[] = {"seagull"};
-		buldozer[] = {"buldozer"};
-	};
-	class Exceptions
-	{
-		leftAlt[] = {"lookAround","commandWatch"};
-		map[] = {"showMap","hideMap"};
-		rollLeft[] = {"EvasiveLeft","LeanLeft"};
-		rollRight[] = {"EvasiveRight","LeanRight"};
-		landGear[] = {"LandGear","LandGearUp"};
-		zoomIn[] = {"zoomIn","zoomInToggle"};
-		zoomOut[] = {"zoomOut","zoomOutToggle"};
-		mouseConfirm[] = {"DefaultAction","ActionContext","ActionFreeLook"};
-		moveUp[] = {"zeroingUp","heliUp","seagullUp"};
-		moveDown[] = {"zeroingDown","heliDown","seagullDown"};
-		autoHover[] = {"AutoHover","AutoHoverCancel"};
-	};
-};
-class UserActionGroups
-{
-	class All
-	{
-		name = "$STR_USRACT_GROUP_ALL";
-		group[] = {"MoveForward","MoveBack","TurnLeft","TurnRight","MoveUp","MoveDown","MoveFastForward","MoveSlowForward","MoveLeft","MoveRight","EvasiveForward","EvasiveLeft","EvasiveRight","Stand","Crouch","Prone","LeanLeft","LeanRight","LeanLeftToggle","LeanRightToggle","WalkRunToggle","WalkRunTemp","ToggleWeapons","Fire","DefaultAction","ReloadMagazine","opticsMode","LockTargets","LockEmptyTargets","LockTarget","TempRaiseWeapon","ToggleRaiseWeapon","PrevAction","NextAction","Action","ActionContext","ActionFreeLook","Throwitem","Headlights","NightVision","MiniMap","MiniMapToggle","ShowMap","HideMap","Help","TimeInc","TimeDec","Optics","PersonView","TacticalView","LiteUnitInfoToggle","ZoomIn","ZoomInToggle","ZoomOut","zoomOutToggle","ZoomContIn","ZoomContOut","ZoomInOptics","ZoomOutOptics","ZeroingUp","ZeroingDown","LookAround","LookAroundToggle","LookLeftDown","LookDown","LookRightDown","LookLeft","LookCenter","LookRight","LookLeftUp","LookUp","LookRightUp","LookLeftCont","LookRightCont","LookDownCont","LookUpCont","LookShiftLeftCont","LookShiftRightCont","LookShiftUpCont","LookShiftDownCont","LookShiftForwardCont","LookShiftBackCont","LookRollLeftCont","LookRollRightCont","LookShiftLeft","LookShiftRight","LookShiftUp","LookShiftDown","LookShiftForward","LookShiftBack","LookRollLeft","LookRollRight","LookShiftCenter","FreeHeadMove","PrevChannel","NextChannel","Chat","VoiceOverNet","PushToTalk","PushToTalkAll","PushToTalkSide","PushToTalkCommand","PushToTalkGroup","PushToTalkVehicle","PushToTalkDirect","NetworkStats","Turbo","VehicleTurbo","VehicleSlow","Slow","HoldBreath","GestureSlot01","GestureSlot02","GestureSlot03","GestureSlot04","GestureSlot05","GestureSlot06","GestureSlot07","GestureSlot08","GestureSlot09","GestureSlot10","GestureSlot11","GestureSlot12","Throw","AimUp","AimDown","AimLeft","AimRight","AimHeadUp","AimHeadDown","AimHeadLeft","AimHeadRight","IngamePause","MenuSelect","MenuBack","HeliThrottlePos","HeliThrottleNeg","HeliUp","HeliDown","HeliLeft","HeliRight","AirBankLeft","AirBankRight","HeliRudderLeft","HeliRudderRight","HeliForward","HeliBack","HeliFastForward","HeliCollectiveRaise","HeliCollectiveLower","HeliCollectiveRaiseCont","HeliCollectiveLowerCont","HeliCyclicLeft","HeliCyclicRight","CyclicForward","CyclicBack","AutoHover","AutoHoverCancel","LandGear","LandGearUp","FlapsDown","FlapsUp","HelicopterTrimOn","HelicopterTrimOff","HeliThrottleIncrease1","HeliThrottleDecrease1","HeliThrottleIncrease2","HeliThrottleDecrease2","HeliThrottleIncrease3","HeliThrottleDecrease3","HeliStarterToggle1","HeliStarterToggle2","HeliStarterToggle3","HeliBatteriesToggle","HeliRotorBrakeToggle","HeliEnginesToggle","HeliAPUToggle","heliWheelsBrake","HeliTrimLeft","HeliTrimRight","HeliTrimForward","HeliTrimBackward","HeliTrimRudderLeft","HeliTrimRudderRight","SeagullUp","SeagullDown","SeagullForward","SeagullBack","SeagullFastForward","CarLeft","CarRight","CarWheelLeft","CarWheelRight","CarForward","CarBack","CarFastForward","CarSlowForward","CarShiftGearUp","CarShiftGearDown","CarAimUp","CarAimDown","CarAimLeft","CarAimRight","CommandLeft","CommandRight","CommandForward","CommandBack","CommandFast","CommandSlow","VehLockTargets","VehLockEmptyTargets","SwapGunner","HeliManualFire","TurnIn","TurnOut","GetOut","Eject","CancelAction","CommandWatch","Gear","Cheat1","Cheat2","Diary","DSInterface","Surrender","GetOver","Item0","Item1","Item2","Item3","Item4","Item5","Item6","Item7","Item8","Item9","ItemsShow"};
-	};
-	class BasicInfantryControls
-	{
-		name = "$STR_USRACT_GROUP_INFANTRY";
-		group[] = {"MoveForward","MoveBack","TurnLeft","TurnRight","MoveFastForward","MoveSlowForward","MoveLeft","MoveRight","EvasiveForward","EvasiveLeft","EvasiveRight","Stand","Crouch","Prone","LeanLeft","LeanRight","LeanLeftToggle","LeanRightToggle","WalkRunToggle","WalkRunTemp","ToggleWeapons","DefaultAction","ReloadMagazine","LockTargets","LockEmptyTargets","LockTarget","TempRaiseWeapon","ToggleRaiseWeapon","PrevAction","NextAction","MenuBack","Action","ActionContext","ActionFreeLook","Optics","LookAround","LookAroundToggle","Gear","MiniMap","MiniMapToggle","Diary","Throwitem","Headlights","NightVision","ShowMap","HideMap","PersonView","TacticalView","LiteUnitInfoToggle","ZoomIn","ZoomInToggle","ZoomOut","zoomOutToggle","ZeroingUp","ZeroingDown","HoldBreath","GestureSlot01","GestureSlot02","GestureSlot03","GestureSlot04","GestureSlot05","GestureSlot06","GestureSlot07","GestureSlot08","GestureSlot09","GestureSlot10","GestureSlot11","GestureSlot12","Throw","GetOver","VoiceOverNet","PrevChannel","NextChannel","Chat","PushToTalk","PushToTalkAll","PushToTalkSide","PushToTalkCommand","PushToTalkGroup","PushToTalkVehicle","PushToTalkDirect","AimUp","AimDown","AimLeft","AimRight","AimHeadUp","AimHeadDown","AimHeadLeft","AimHeadRight","LookLeftDown","LookDown","LookRightDown","LookLeft","LookCenter","LookRight","LookLeftUp","LookUp","LookRightUp","LookLeftCont","LookRightCont","LookDownCont","LookUpCont"};
-	};
-	class Car
-	{
-		name = "$STR_USRACT_GROUP_VEHICLE";
-		group[] = {"CarLeft","CarRight","CarWheelLeft","CarWheelRight","CarForward","CarBack","CarFastForward","CarSlowForward","CarShiftGearUp","CarShiftGearDown","CarAimUp","CarAimDown","CarAimLeft","CarAimRight","TurnIn","TurnOut","GetOut","Eject","Fire"};
-	};
-	class Air
-	{
-		name = "$STR_USRACT_GROUP_FLYING";
-		group[] = {"HeliUp","HeliDown","HeliThrottlePos","HeliThrottleNeg","HeliLeft","HeliRight","AirBankLeft","AirBankRight","HeliRudderLeft","HeliRudderRight","HeliForward","HeliBack","HeliFastForward","HeliManualFire","AutoHover","AutoHoverCancel","LandGear","LandGearUp","FlapsDown","FlapsUp","GetOut","Eject","SeagullUp","SeagullDown","SeagullForward","SeagullBack","SeagullFastForward","Fire","LookShiftLeftCont","LookShiftRightCont","LookShiftUpCont","LookShiftDownCont","LookShiftForwardCont","LookShiftBackCont","LookRollLeftCont","LookRollRightCont","LookShiftLeft","LookShiftRight","LookShiftUp","LookShiftDown","LookShiftForward","LookShiftBack","LookRollLeft","LookRollRight","LookShiftCenter","FreeHeadMove"};
-	};
-	class Helicopter
-	{
-		name = "$STR_USRACT_GROUP_HELI";
-		group[] = {"HeliCyclicForward","HeliCyclicBack","HeliCyclicLeft","HeliCyclicRight","HeliCollectiveRaiseCont","HeliCollectiveLowerCont","HeliCollectiveRaise","HeliCollectiveLower","HeliRudderLeft","HeliRudderRight","HeliLeft","HeliRight","AutoHover","AutoHoverCancel","HeliThrottleIncrease1","HeliThrottleDecrease1","HeliThrottleIncrease2","HeliThrottleDecrease2","HeliThrottleIncrease3","HeliThrottleDecrease3","HeliStarterToggle1","HeliStarterToggle2","HeliStarterToggle3","HeliBatteriesToggle","HeliRotorBrakeToggle","HeliEnginesToggle","HeliAPUToggle","heliWheelsBrake","LandGear","LandGearUp","HelicopterTrimOn","HelicopterTrimOff","HeliTrimLeft","HeliTrimRight","HeliTrimForward","HeliTrimBackward","HeliTrimRudderLeft","HeliTrimRudderRight","minimap","minimapToggle","GetOut","Eject","LockTarget","VehLockTargets","VehLockEmptyTargets","DefaultAction","Fire","FreeHeadMove","LookShiftLeftCont","LookShiftRightCont","LookShiftUpCont","LookShiftDownCont","LookShiftForwardCont","LookShiftBackCont","LookRollLeftCont","LookRollRightCont","LookShiftLeft","LookShiftRight","LookShiftUp","LookShiftDown","LookShiftForward","LookShiftBack","LookRollLeft","LookRollRight","LookShiftCenter"};
-	};
-	class Buldozer
-	{
-		name = "$STR_USRACT_GROUP_BULDOZER";
-		buldozerOnly = 1;
-		group[] = {"BuldFreeLook","BuldRunScript","BuldSelectToggle","BuldSelect","BuldSelectAddMod","BuldSelectRemoveMod","BuldModifySelected","BuldCycleMod","BuldRotationXAxisMod","BuldRotationZAxisMod","BuldCoordModCycle","BuldResetCamera","BuldSampleTerrainHeight","BuldSetTerrainHeight","BuldScaleMod","BuldElevateMod","BuldSmoothMod","BuldFlattenMod","BuldBrushRatioUp","BuldBrushRatioDown","BuldBrushOuterUp","BuldBrushOuterDown","BuldBrushStrengthUp","BuldBrushStrengthDown","BuldToggleNearestObjectArrow","BuldCycleBrushMod","BuldSelectionType","BuldCreateLastSelectedObject","BuldDuplicateSelection","BuldDeleteSelection","BuldUndo","BuldRedo","BuldObjectRotateLeft","BuldObjectRotateRight","BuldObjectRotateForward","BuldObjectRotateBack","BuldViewerMoveLeft","BuldViewerMoveRight","BuldViewerMoveForward","BuldViewerMoveBack","BuldViewerMoveUp","BuldViewerMoveDown","BuldMoveLeft","BuldMoveRight","BuldMoveForward","BuldMoveBack","BuldMoveUp","BuldMoveDown","BuldLeft","BuldRight","BuldForward","BuldBack","BuldLookLeft","BuldLookRight","BuldLookUp","BuldLookDown","BuldTurbo","BuldSlow","BuldPreviousAnimation","BuldNextAnimation","BuldRecedeAnimation","BuldAdvanceAnimation","BuldZoomIn","BuldZoomOut","BuldTextureInfo"};
-	};
-	class UserActions
-	{
-		name = "$STR_USRACT_GROUP_USER";
-		group[] = {"User1","User2","User3","User4","User5","User6","User7","User8","User9","User10","User11","User12","User13","User14","User15","User16","User17","User18","User19","User20"};
-	};
-};
 overviewLockedMission = "dtaext\lockedmission";
 overviewMyMissions = "dtaext\mymissions";
 overviewNewMission = "dtaext\newmission";
@@ -3378,10 +3291,6 @@ class CfgHeads
 		radius = 0.3;
 	};
 };
-class CfgMusic
-{
-	access = 1;
-};
 class CfgSounds
 {
 	access = 1;
@@ -3619,13 +3528,9 @@ class CfgWorlds
 	class DefaultWorld
 	{
 		access = 0;
-		worldId = 0;
-		plateFormat = "$$$  ## - ##";
-		plateLetters = "ABCDEFHIKLMOPRSTVXYZ";
 		centerPosition[] = {6400,6400,0};
 		latitude = -40;
 		longitude = 15;
-		class Music: CfgMusic{};
 		class EnvSounds: CfgEnvSounds{};
 		cutscenes[] = {"intro"};
 		class ReplaceObjects{};
@@ -3667,440 +3572,11 @@ class CfgWorlds
 		};
 		startTime = "16:45";
 		startDate = "17/11/2006";
-		startWeather = 0.12;
-		startFog = 0.0;
-		startWind = 0.1;
-		forecastWeather = 0.3;
-		forecastFog = 0.0;
-		forecastWind = 0.1;
 		class Lighting: DefaultLighting{};
-		class DayLightingBrightAlmost
-		{
-			deepNight[] = {-15,{0.05,0.05,0.06},{0.001,0.001,0.002},{0.02,0.02,0.05},{0.003,0.003,0.003},{0.003,0.003,0.006},{0.003,0.003,0.006},0};
-			fullNight[] = {-5,{0.05,0.05,0.06},{0.02,0.02,0.02},{0.04,0.04,0.04},{0.04,0.04,0.04},{0.01,0.01,0.02},{0.08,0.06,0.06},0};
-			sunMoon[] = {-3.75,{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.035,0.04},{0.11,0.08,0.09},0.5};
-			earlySun[] = {-2.5,{0.32,0.24,0.28},{0.08,0.06,0.07},{0.32,0.24,0.28},{0.08,0.06,0.07},{0.08,0.07,0.08},{0.14,0.1,0.12},1};
-			sunrise[] = {0,{{0.7,0.45,0.45},"5.5+(-4)"},{{0.07,0.09,0.12},"4.5+(-4)"},{{0.6,0.47,0.25},"4.7+(-4)"},{{0.1,0.09,0.1},"4.4+(-4)"},{{0.5,0.4,0.4},"4.5+(-4)"},{{0.88,0.51,0.24},"6+(-4)"},1};
-			earlyMorning[] = {5,{{0.65,0.55,0.55},"6+(-4)"},{{0.08,0.09,0.11},"5+(-4)"},{{0.55,0.47,0.25},"5.75+(-4)"},{{0.1,0.09,0.1},"4.75+(-4)"},{{0.5,0.4,0.4},"7.5+(-4)"},{{0.88,0.51,0.24},"8.75+(-4)"},1};
-			midMorning[] = {15,{{0.98,0.85,0.8},"10.5+(-4)"},{{0.08,0.09,0.11},"6.5+(-4)"},{{0.87,0.47,0.25},"9.5+(-4)"},{{0.09,0.09,0.1},"7.5+(-4)"},{{0.5,0.4,0.4},"9.5+(-4)"},{{0.88,0.51,0.24},"9.75+(-4)"},1};
-			morning[] = {25,{{1,1,0.9},"15.5+(-4)"},{{0.17,0.18,0.19},"12.5+(-4)"},{{1,1,0.9},"14.5+(-4)"},{{0.17,0.18,0.19},"13+(-4)"},{{0.15,0.15,0.15},"14.5+(-4)"},{{0.17,0.17,0.15},"15.5+(-4)"},1};
-			noon[] = {70,{{0.96,0.98,1},"15.75+(-4)"},{{0.36,0.49,0.61},"13+(-4)"},{{1,1,1},"15+(-4)"},{{0.36,0.37,0.38},"13.5+(-4)"},{{0.9,0.9,0.9},"15+(-4)"},{{1.0,1.0,0.9},"16+(-4)"},1};
-		};
-		class DayLightingRainy
-		{
-			deepNight[] = {-15,{0.0034,0.0034,0.004},{0.003,0.003,0.003},{0.0034,0.0034,0.004},{0.003,0.003,0.003},{0.003,0.003,0.006},{0.003,0.003,0.006},0};
-			fullNight[] = {-5,{0.023,0.023,0.023},{0.02,0.02,0.02},{0.023,0.023,0.023},{0.02,0.02,0.02},{0.01,0.01,0.02},{0.08,0.06,0.06},0};
-			sunMoon[] = {-3.75,{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.04,0.05},{0.04,0.035,0.04},{0.11,0.08,0.09},0.5};
-			earlySun[] = {-2.5,{0.0689,0.0689,0.0804},{0.06,0.06,0.07},{0.0689,0.0689,0.0804},{0.06,0.06,0.07},{0.08,0.07,0.08},{0.14,0.1,0.12},0.5};
-			earlyMorning[] = {0,{{1,1,1},"(-4)+3.95"},{{1,1,1},"(-4)+3.75"},{{1,1,1},"(-4)+3.95"},{{1,1,1},"(-4)+3.75"},{{1,1,1},"(-4)+4"},{{1,1,1},"(-4)+4.5"},1};
-			morning[] = {5,{{1,1,1},"(-4)+5.7"},{{1,1,1},"(-4)+5.5"},{{1,1,1},"(-4)+5.7"},{{1,1,1},"(-4)+5.5"},{{1,1,1},"(-4)+7"},{{1,1,1},"(-4)+7.5"},1};
-			lateMorning[] = {25,{{1,1,1},"(-4)+10.45"},{{1,1,1},"(-4)+10.25"},{{1,1,1},"(-4)+10.45"},{{1,1,1},"(-4)+10.25"},{{1,1,1},"(-4)+12"},{{1,1,1},"(-4)+12.5"},1};
-			noon[] = {70,{{1,1,1},"(-4)+10.7"},{{1,1,1},"(-4)+10.5"},{{1,1,1},"(-4)+10.7"},{{1,1,1},"(-4)+10.5"},{{1,1,1},"(-4)+12.25"},{{1,1,1},"(-4)+12.75"},1};
-		};
 		class Weather
 		{
 			class LightingNew
 			{
-				class C_Night
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -18;
-					sunOrMoon = 0.0;
-					diffuse[] = {{0.036,0.056,0.087},0.8};
-					diffuseCloud[] = {{0.036,0.056,0.087},0.8};
-					ambient[] = {{0.004,0.0079,0.012},0.1};
-					ambientCloud[] = {{0.004,0.0079,0.012},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.036,0.056,0.087};
-					skyAroundSun[] = {0.036,0.056,0.087};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Astro1
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -17;
-					sunOrMoon = 0.5;
-					diffuse[] = {{0.0,0.0,0.0},0.8};
-					diffuseCloud[] = {{0.0,0.0,0.0},0.8};
-					ambient[] = {{0.016,0.0316,0.048},0.1};
-					ambientCloud[] = {{0.016,0.0316,0.048},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.036,0.056,0.087};
-					skyAroundSun[] = {0.036,0.056,0.087};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Astro2
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -16;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.0,0.0,0.0},0.8};
-					diffuseCloud[] = {{0.0,0.0,0.0},0.8};
-					ambient[] = {{0.032,0.0632,0.096},0.1};
-					ambientCloud[] = {{0.032,0.0632,0.096},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.036,0.056,0.087},0.1};
-					skyAroundSun[] = {{0.1011,0.1063,0.0926},0.1};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Astro3
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -14;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.1011,0.1063,0.0926},0.8};
-					diffuseCloud[] = {{0.1011,0.1063,0.0926},0.8};
-					ambient[] = {{0.032,0.0632,0.096},0.1};
-					ambientCloud[] = {{0.032,0.0632,0.096},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.1,0.14,0.22},0.1};
-					skyAroundSun[] = {{0.3035,0.319,0.278},0.4};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Nautical1
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -12;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.1011,0.1063,0.0926},0.8};
-					diffuseCloud[] = {{0.1011,0.1063,0.0926},0.8};
-					ambient[] = {{0.032,0.0632,0.096},0.1};
-					ambientCloud[] = {{0.032,0.0632,0.096},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.15,0.21,0.34},0.1};
-					skyAroundSun[] = {{0.6039,0.5411,0.4509},0.4};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Nautical2
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -10;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.1011,0.1063,0.0926},0.8};
-					diffuseCloud[] = {{0.1011,0.1063,0.0926},0.8};
-					ambient[] = {{0.032,0.0632,0.096},0.1};
-					ambientCloud[] = {{0.032,0.0632,0.096},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.15,0.21,0.34},0.1};
-					skyAroundSun[] = {{0.8039,0.5411,0.4509},0.4};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Nautical3
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -8;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.2311,0.2112,0.184},0.8};
-					diffuseCloud[] = {{0.2311,0.2112,0.184},0.8};
-					ambient[] = {{0.064,0.1264,0.192},0.1};
-					ambientCloud[] = {{0.064,0.1264,0.192},0.1};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.15,0.21,0.34},0.1};
-					skyAroundSun[] = {{1.039,0.5411,0.2509},0.8};
-					desiredLuminanceCoef = 0.25;
-					desiredLuminanceCoefCloud = 0.25;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Civil1
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -6;
-					sunOrMoon = 1.0;
-					diffuse[] = {0.346,0.1803,0.0836};
-					diffuseCloud[] = {0.346,0.1803,0.0836};
-					ambient[] = {0.128,0.2528,0.384};
-					ambientCloud[] = {0.128,0.2528,0.384};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.3,0.225,0.327},1.0};
-					skyAroundSun[] = {{1.039,0.5411,0.2509},1.8};
-					desiredLuminanceCoef = 0.35;
-					desiredLuminanceCoefCloud = 0.35;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Civil2
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -4;
-					sunOrMoon = 1.0;
-					diffuse[] = {{0.446,0.1803,0.0836},0.5};
-					diffuseCloud[] = {{0.446,0.1803,0.0836},0.5};
-					ambient[] = {{0.128,0.2528,0.384},1.5};
-					ambientCloud[] = {{0.128,0.2528,0.384},1.5};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{0.6,0.549,0.745},2.0};
-					skyAroundSun[] = {{1.439,0.5411,0.2509},3.1};
-					desiredLuminanceCoef = 0.4;
-					desiredLuminanceCoefCloud = 0.4;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Civil3
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = -2;
-					sunOrMoon = 1.0;
-					diffuse[] = {{3.5,1.64,1},2.5};
-					diffuseCloud[] = {{3.5,1.64,1},2.5};
-					ambient[] = {{0.2,0.23,0.4},3.5};
-					ambientCloud[] = {{0.2,0.23,0.4},3.5};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{1.2,0.64,1},3.0};
-					skyAroundSun[] = {{1.439,0.5411,0.2509},4.1};
-					desiredLuminanceCoef = 0.45;
-					desiredLuminanceCoefCloud = 0.45;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day0
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 0;
-					sunOrMoon = 1.0;
-					diffuse[] = {{1.3,0.404,0.294},4.5};
-					diffuseCloud[] = {{1.3,0.404,0.294},4.5};
-					ambient[] = {{0.2,0.23,0.4},6.5};
-					ambientCloud[] = {{0.2,0.23,0.4},6.5};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {{1.2,0.64,1},6.7};
-					skyAroundSun[] = {{3.5,1.64,1},7.7};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day4
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 4;
-					sunOrMoon = 1;
-					diffuse[] = {{1.2,0.404,0.294},7.4};
-					diffuseCloud[] = {{1.2,0.404,0.294},7.4};
-					ambient[] = {{0.2,0.23,0.4},8.0};
-					ambientCloud[] = {{0.2,0.23,0.4},8.0};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.03,0.03,0.03};
-					bidirectCloud[] = {0.03,0.03,0.03};
-					sky[] = {{1.2,0.917,1.213},9.0};
-					skyAroundSun[] = {{2.2,1.24,1},10.2};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day8
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 8;
-					sunOrMoon = 1;
-					diffuse[] = {{1.0,0.604,0.294},10.4};
-					diffuseCloud[] = {{1.0,0.604,0.294},10.4};
-					ambient[] = {{0.383,0.58,0.858},9.8};
-					ambientCloud[] = {{0.383,0.58,0.858},9.8};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.03,0.03,0.03};
-					bidirectCloud[] = {0.03,0.03,0.03};
-					sky[] = {{1.1,0.917,1.213},10.4};
-					skyAroundSun[] = {{1.2,0.674,0.294},11};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day12
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 12;
-					sunOrMoon = 1;
-					diffuse[] = {{1.0,0.64,0.31},11.4};
-					diffuseCloud[] = {{1.0,0.64,0.31},11.4};
-					ambient[] = {{0.383,0.58,0.858},10.6};
-					ambientCloud[] = {{0.383,0.58,0.858},10.6};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.03,0.03,0.03};
-					bidirectCloud[] = {0.03,0.03,0.03};
-					sky[] = {{0.5,0.64,1},10.8};
-					skyAroundSun[] = {{1.0,0.874,0.494},11.4};
-					desiredLuminanceCoef = 0.57;
-					desiredLuminanceCoefCloud = 0.57;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day16
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 16;
-					sunOrMoon = 1;
-					diffuse[] = {{1,0.87,0.85},11.8};
-					diffuseCloud[] = {{1,0.87,0.85},11.8};
-					ambient[] = {{0.12,0.18,0.28},10.8};
-					ambientCloud[] = {{0.12,0.18,0.28},10.8};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.16,0.16,0.14};
-					bidirectCloud[] = {0.06,0.06,0.06};
-					sky[] = {{0.5,0.64,1},11};
-					skyAroundSun[] = {{1.0,1.0,1.0},11.8};
-					desiredLuminanceCoef = 0.56;
-					desiredLuminanceCoefCloud = 0.56;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class C_Day35
-				{
-					height = 0;
-					overcast = 0.5;
-					sunAngle = 35;
-					sunOrMoon = 1;
-					diffuse[] = {{1,0.87,0.85},12.8};
-					diffuseCloud[] = {{1,0.87,0.85},12.8};
-					ambient[] = {{0.2,0.27,0.32},11.0};
-					ambientCloud[] = {{0.2,0.27,0.32},11.0};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.16,0.16,0.14};
-					bidirectCloud[] = {0.06,0.06,0.06};
-					sky[] = {{0.5,0.64,1},12.0};
-					skyAroundSun[] = {{1.0,1.0,1.0},12.5};
-					desiredLuminanceCoef = 0.58;
-					desiredLuminanceCoefCloud = 0.58;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
 				class C_Day60
 				{
 					height = 0;
@@ -4109,297 +3585,25 @@ class CfgWorlds
 					sunOrMoon = 1;
 					diffuse[] = {{1,0.87,0.85},13.8};
 					diffuseCloud[] = {{1,0.87,0.85},13.8};
-					ambient[] = {{0.2,0.27,0.32},11.8};
-					ambientCloud[] = {{0.2,0.27,0.32},11.8};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.16,0.16,0.14};
-					bidirectCloud[] = {0.06,0.06,0.06};
-					sky[] = {{0.5,0.64,1},12.5};
+					bidirect[] = {0.08,0.08,0.07};
+					bidirectCloud[] = {0.08,0.08,0.07};
+					ambient[] = {{0.12,0.18,0.22},11.8};
+					ambientCloud[] = {{0.12,0.18,0.22},11.8};
+					groundReflection[] = {0.0,0.0,0.0};
+					groundReflectionCloud[] = {0.0,0.0,0.0};
+					sky[] = {{0.5,0.64,1},12.6};
 					skyAroundSun[] = {{1.0,1.0,1.0},13.0};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
+					desiredLuminanceCoef = 0.72;
+					desiredLuminanceCoefCloud = 0.72;
+					EVMin = -2.0;
+					EVMax = 1.0;
+					filmGrainIntensity = 0.0;
 					luminanceRectCoef = 0.0;
 					luminanceRectCoefCloud = 0.0;
 					rayleigh[] = {0.0,0.0,0.0};
 					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Night
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = -18;
-					sunOrMoon = 0.0;
-					diffuse[] = {0.0,0.0,0.0};
-					diffuseCloud[] = {0.0,0.0,0.0};
-					ambient[] = {0.145,0.227,0.349};
-					ambientCloud[] = {0.145,0.227,0.349};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.012,0.012,0.012};
-					skyAroundSun[] = {0.012,0.012,0.012};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Astro1
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = -17;
-					sunOrMoon = 0.5;
-					diffuse[] = {0.004,0.0079,0.012};
-					diffuseCloud[] = {0.004,0.0079,0.012};
-					ambient[] = {0.004,0.0079,0.012};
-					ambientCloud[] = {0.004,0.0079,0.012};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.036,0.056,0.087};
-					skyAroundSun[] = {0.036,0.056,0.087};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Nautical1
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = -12;
-					sunOrMoon = 1.0;
-					diffuse[] = {0.004,0.0079,0.012};
-					diffuseCloud[] = {0.004,0.0079,0.012};
-					ambient[] = {0.004,0.0079,0.012};
-					ambientCloud[] = {0.004,0.0079,0.012};
-					groundReflection[] = {0.0,0.0,0.0};
-					groundReflectionCloud[] = {0.0,0.0,0.0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.036,0.056,0.087};
-					skyAroundSun[] = {0.1011,0.1063,0.0926};
-					desiredLuminanceCoef = 0.15;
-					desiredLuminanceCoefCloud = 0.15;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Civil1
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = -6;
-					sunOrMoon = 1;
-					diffuse[] = {0.018,0.018,0.018};
-					diffuseCloud[] = {0.018,0.018,0.018};
-					ambient[] = {0.1,0.18,0.29};
-					ambientCloud[] = {0.1,0.18,0.29};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0,0,0};
-					bidirectCloud[] = {0,0,0};
-					sky[] = {0.1,0.14,0.22};
-					skyAroundSun[] = {0.1,0.14,0.22};
-					desiredLuminanceCoef = 0.25;
-					desiredLuminanceCoefCloud = 0.25;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Civil2
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = -2;
-					sunOrMoon = 1;
-					diffuse[] = {0.018,0.018,0.018};
-					diffuseCloud[] = {0.018,0.018,0.018};
-					ambient[] = {{0.145,0.227,0.349},1.6};
-					ambientCloud[] = {{0.145,0.227,0.349},1.6};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.03,0.03,0.03};
-					bidirectCloud[] = {0.03,0.03,0.03};
-					sky[] = {{0.1,0.14,0.22},1.715};
-					skyAroundSun[] = {{0.1,0.14,0.22},2.799};
-					desiredLuminanceCoef = 0.35;
-					desiredLuminanceCoefCloud = 0.35;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day0
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 0;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.27},0.4};
-					diffuseCloud[] = {{0.27,0.27,0.27},0.4};
-					ambient[] = {{0.145,0.227,0.349},3.4};
-					ambientCloud[] = {{0.145,0.227,0.349},3.4};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.065,0.065,0.065};
-					bidirectCloud[] = {0.065,0.065,0.065};
-					sky[] = {{0.1,0.14,0.22},3.715};
-					skyAroundSun[] = {{0.1,0.14,0.22},4.799};
-					desiredLuminanceCoef = 0.55;
-					desiredLuminanceCoefCloud = 0.55;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day4
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 4;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.29},4.4};
-					diffuseCloud[] = {{0.27,0.27,0.29},4.4};
-					ambient[] = {{0.145,0.227,0.349},5.4};
-					ambientCloud[] = {{0.145,0.227,0.349},5.4};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.13,0.13,0.13};
-					bidirectCloud[] = {0.13,0.13,0.13};
-					sky[] = {{0.1,0.18,0.29},6.715};
-					skyAroundSun[] = {{0.1,0.18,0.29},7.799};
-					desiredLuminanceCoef = 0.55;
-					desiredLuminanceCoefCloud = 0.55;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day8
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 8;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.3},7.4};
-					diffuseCloud[] = {{0.27,0.27,0.3},7.4};
-					ambient[] = {{0.145,0.227,0.349},8.1};
-					ambientCloud[] = {{0.145,0.227,0.349},8.1};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.13,0.13,0.13};
-					bidirectCloud[] = {0.13,0.13,0.13};
-					sky[] = {{0.2,0.36,0.58},8.0};
-					skyAroundSun[] = {{0.2,0.36,0.58},8.8};
-					desiredLuminanceCoef = 0.55;
-					desiredLuminanceCoefCloud = 0.55;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day12
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 12;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.3},8.2};
-					diffuseCloud[] = {{0.27,0.27,0.3},8.2};
-					ambient[] = {{0.145,0.227,0.349},10.1};
-					ambientCloud[] = {{0.145,0.227,0.349},10.1};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.13,0.13,0.13};
-					bidirectCloud[] = {0.13,0.13,0.13};
-					sky[] = {{0.4,0.72,1.0},9.0};
-					skyAroundSun[] = {{0.4,0.72,1.0},9.8};
-					desiredLuminanceCoef = 0.55;
-					desiredLuminanceCoefCloud = 0.55;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day35
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 35;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.3},9.4};
-					diffuseCloud[] = {{0.27,0.27,0.3},9.4};
-					ambient[] = {{0.15,0.2,0.25},11.1};
-					ambientCloud[] = {{0.15,0.2,0.25},11.1};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.23,0.23,0.23};
-					bidirectCloud[] = {0.23,0.23,0.23};
-					sky[] = {{1,1,1},11};
-					skyAroundSun[] = {{1,1,1},11.8};
-					desiredLuminanceCoef = 0.55;
-					desiredLuminanceCoefCloud = 0.55;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
-				};
-				class O_Day60
-				{
-					height = 0;
-					overcast = 0.9;
-					sunAngle = 60;
-					sunOrMoon = 1;
-					diffuse[] = {{0.27,0.27,0.3},10.4};
-					diffuseCloud[] = {{0.27,0.27,0.3},10.4};
-					ambient[] = {{0.2,0.24,0.29},12.4};
-					ambientCloud[] = {{0.2,0.24,0.29},12.4};
-					groundReflection[] = {0,0,0};
-					groundReflectionCloud[] = {0,0,0};
-					bidirect[] = {0.33,0.33,0.33};
-					bidirectCloud[] = {0.33,0.33,0.33};
-					sky[] = {{0.8,0.8,0.8},13};
-					skyAroundSun[] = {{1,1,1},13.8};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
-					luminanceRectCoef = 0.0;
-					luminanceRectCoefCloud = 0.0;
-					rayleigh[] = {0.0,0.0,0.0};
-					mie[] = {0.0,0.0,0.0};
-					cloudsColor[] = {0,0,0};
-					swBrightness = 1;
+					cloudsColor[] = {0.0,0.0,0.0};
+					swBrightness = 0;
 				};
 			};
 			class VolFog
@@ -4407,12 +3611,6 @@ class CfgWorlds
 				CameraFog = 0;
 				Item1[] = {0.0,0.0,0.0,0.0,0.0};
 			};
-			godraysTexture = "core\data\godrays.paa";
-			rainTexture = "core\data\raindrops_8888.paa";
-			rainTextureDrop = "core\data\raindropsground.paa";
-			rainTextureEnv = "dz\data\data\env03_co.paa";
-			rainTextureLayer = "core\data\raindropslayer.paa";
-			rainTextureLayerNoise = "core\data\raindroplayernoise.paa";
 			class Overcast
 			{
 				class Weather1
@@ -4499,17 +3697,6 @@ class CfgWorlds
 					cloudDiffuse = 0.95;
 					waves = 0.7;
 					lightingOvercast = 1.0;
-				};
-			};
-			class Lighting
-			{
-				class BrightAlmost: DayLightingBrightAlmost
-				{
-					overcast = 0;
-				};
-				class Rainy: DayLightingRainy
-				{
-					overcast = 1.0;
 				};
 			};
 			class ThunderboltNorm
@@ -4632,12 +3819,6 @@ class CfgWorlds
 		skyTextureR = "#(argb,8,8,3)color(0.18,0,0.84,0.676)";
 		seaTexture = "#(rgb,8,8,3)color(0,0,0,1)";
 		midDetailTexture = "#(rgb,1,1,1)color(0.5,0.5,0.5,1,cdt)";
-		outsideMaterial = "";
-		outsideHeight = -10;
-		minHeight = -10;
-		shoreTop = 0;
-		peakWaveTop = -1;
-		peakWaveBottom = -5;
 		clouds[] = {"core\default\default.p3d","core\default\default.p3d","core\default\default.p3d","core\default\default.p3d"};
 		noDetailDist = 50;
 		fullDetailDist = 20;
@@ -4651,10 +3832,10 @@ class CfgWorlds
 		class DefaultClutter
 		{
 			affectedByWind = 0;
-			relativeColor[] = {1,1,1,1};
 			scaleMin = 0.5;
 			scaleMax = 1.0;
 			swLighting = 1;
+			noSatColor = 0;
 		};
 		class Clutter{};
 		flareMinDistance = 1.0;
@@ -4667,7 +3848,6 @@ class CfgWorlds
 		sunObject = "core\default\default.p3d";
 		rainbowObject = "core\default\default.p3d";
 		moonObject = "core\default\default.p3d";
-		waterTexture = "#(argb,8,8,3)color(0.18,0,0.84,0.676)";
 		starsIntensity = 0.01;
 		envTexture = "";
 		satelliteMap = "";
@@ -4699,11 +3879,6 @@ class CfgWorlds
 		class Ambient{};
 	};
 	initWorld = "";
-	demoWorld = "";
-};
-class CfgWorldList
-{
-	access = 1;
 };
 class CfgAddons
 {
@@ -6995,7 +6170,6 @@ class PreloadConfig
 	CfgVehicles = "fastFind";
 	CfgNonAIVehicles = "fastFind";
 	CfgAmmo = "fastFind";
-	CfgMusic = "*";
 	CfgTitles = "*";
 	CfgFonts = "*";
 	CfgFontFamilies = "*";

@@ -184,7 +184,7 @@ class TabberUI extends ScriptedWidgetEventHandler
 		{			
 			Widget tab_title = TextWidget.Cast(tab_control.FindAnyWidget( tab_control.GetName() + "_Title" ));
 			tab_title.SetColor( ARGB(255, 255, 255, 255) );
-			tab_control.SetColor( ARGB(140, 0, 0 ,0) );
+			tab_control.SetColor( ARGB(0, 0, 0 ,0) );
 		}
 		return false;
 	}
@@ -252,8 +252,8 @@ class TabberUI extends ScriptedWidgetEventHandler
 			*/
 			
 			Widget tab_title = TextWidget.Cast(tab_control.FindAnyWidget( tab_control.GetName() + "_Title" ));
-			tab_title.SetColor( ARGB(255, 255, 255, 255) );
-			tab_control.SetColor( ARGB(255, 200, 0 ,0) );
+			tab_title.SetColor( ARGB(255, 255, 0, 0) );
+			tab_control.SetColor( ARGB(255, 0, 0 ,0) );
 		}
 	}
 	
@@ -280,7 +280,7 @@ class TabberUI extends ScriptedWidgetEventHandler
 			*/
 			Widget tab_title = TextWidget.Cast(tab_control.FindAnyWidget( tab_control.GetName() + "_Title" ));
 			tab_title.SetColor( ARGB(255, 255, 255,255) );
-			tab_control.SetColor( ARGB(140, 0, 0 ,0) );
+			tab_control.SetColor( ARGB(0, 0, 0 ,0) );
 		}
 	}
 	

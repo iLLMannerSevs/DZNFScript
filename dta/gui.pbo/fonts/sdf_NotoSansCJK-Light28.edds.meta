@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{A3A68EDD5D72DF22}Gui/fonts/sdf_NotoSansCJK-Light28.edds"
+ Author "inv1562"
+ ChangeDate 768812646
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "sdf_NotoSansCJK-Light28.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

@@ -306,7 +306,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 #endif
 		{
 			//! cursor with fixed position (environment interaction mainly)
-			if ( m_Target.GetObject() == null && m_Interact)
+			if ( m_Target.GetObject() == null && (m_Interact || m_Single || m_Continuous))
 			{
 				//Print(">> fixed widget");
 				m_CachedObject.Invalidate();

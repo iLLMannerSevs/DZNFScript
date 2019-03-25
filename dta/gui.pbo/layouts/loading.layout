@@ -114,6 +114,22 @@ FrameWidgetClass LoadingFrame {
      filter 1
      nocache 0
     }
+    TextWidgetClass ProgressText {
+     visible 0
+     clipchildren 0
+     ignorepointer 1
+     position 0 200
+     size 100 30
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "100%"
+     font "gui/fonts/sdf_MetronLight24"
+     "text halign" center
+    }
    }
   }
  }

@@ -78,6 +78,16 @@ class CarWheel extends InventoryItemSuper
 	}
 */
 
+	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	{
+		Print("CarWheel>>> EEHitBy");
+		Print( dmgZone );
+		Print( damageResult );
+		Print( source );
+		Print( component );
+		Print( damageResult.GetDamage(dmgZone, "Health") );
+	}
+	
 	override void EEKilled(Object killer)
 	{
 		string newWheel = "";
@@ -133,15 +143,25 @@ class HatchbackWheel extends CarWheel {};
 
 class CarDoor extends InventoryItemSuper
 {
-/*
-	override bool CanDetachAttachment(EntityAI attachment)
+
+	override bool CanDetachAttachment(EntityAI parent)
 	{
-		if ( GetCarDoorsState( "Driver" ) == CarDoorState.DOORS_OPEN )
+		//parent.FindAtt
+		InventoryLocation loc = new InventoryLocation();
+		
+		bool isPresent = GetInventory().GetCurrentInventoryLocation( loc );
+		
+		if ( !isPresent )
+		 return false;
+		
+		string slotName = InventorySlots.GetSlotName( loc.GetSlot() );
+
+		if ( slotName && CarScript.Cast( parent ).GetCarDoorsState( slotName ) == CarDoorState.DOORS_OPEN )
 			return true;
 		
 		return false;
 	}
-*/
+
 
 /*
 	override void OnWasAttached( EntityAI parent, int slot_name )

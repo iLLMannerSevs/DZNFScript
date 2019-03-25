@@ -92,14 +92,14 @@ ImageSetClass {
   }
   ImageSetDefClass R1 {
    Name "R1"
-   Pos 9 60
-   Size 44 32
+   Pos 9 59
+   Size 43 32
    Flags 0
   }
   ImageSetDefClass L1 {
    Name "L1"
-   Pos 8 112
-   Size 44 32
+   Pos 9 111
+   Size 43 32
    Flags 0
   }
   ImageSetDefClass R2 {

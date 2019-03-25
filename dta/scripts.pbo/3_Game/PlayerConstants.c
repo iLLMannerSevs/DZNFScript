@@ -1,5 +1,6 @@
 class PlayerConstants 
 {
+	static const float WEAPON_RAISE_BLEND_DELAY = 0.16;
 	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.1;
 	//-------------------------------------------------------
 	static const float NORMAL_TEMPERATURE_L = 35.2;

@@ -118,6 +118,11 @@ class Transport extends EntityAI
 	{
 		return false;
 	}
+	
+	bool CanReachSeatFromDoors( string pSeatSelection, vector pFromPos, float pDistance = 1.0 )
+	{
+		return false;		
+	}
 
 	bool CanReachDoorsFromSeat( string pDoorsSelection, int pCurrentSeat )
 	{

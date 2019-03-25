@@ -245,6 +245,9 @@ const int AT_TURN_ON_WEAPON_FLASHLIGHT = 579;
 const int AT_TURN_OFF_WEAPON_FLASHLIGHT = 580;
 const int AT_VEH_SWITCH_SEATS = 581;
 const int AT_NEXT_COMBINATION_LOCK_DIAL = 582;
+const int AT_BANDANA_TO_MASK = 583;
+const int AT_BANDANA_TO_HEAD = 584;
+const int AT_BANDANA_UNFOLD = 585;
 
 //Interact Actions
 const int AT_PULL_OUT_PLUG = 1001;

@@ -39,23 +39,23 @@ class VirtualHud
 		m_LastTick		= 0;
 
 		// !!!!!! don't add new stuff unless you really really REALLY know what you're doing !!!!!!
-		RegisterElement(new BadgeStuffed);// size 2
-		RegisterElement(new BadgeWet);// size 1
-		RegisterElement(new BadgeSick);// size 1
-		RegisterElement(new BadgePills);// size 1
-		RegisterElement(new BadgePoisoned);// size 1
-		RegisterElement(new BadgeFracture);// size 1
-		RegisterElement(new TendencyHealth);// size 6
-		RegisterElement(new TendencyBlood);// size 6
-		RegisterElement(new TendencyTemperature);// size 6
+		RegisterElement(new BadgeStuffed(m_Player));// size 2
+		RegisterElement(new BadgeWet(m_Player));// size 1
+		RegisterElement(new BadgeSick(m_Player));// size 1
+		RegisterElement(new BadgePills(m_Player));// size 1
+		RegisterElement(new BadgePoisoned(m_Player));// size 1
+		RegisterElement(new BadgeFracture(m_Player));// size 1
+		RegisterElement(new TendencyHealth(m_Player));// size 6
+		RegisterElement(new TendencyBlood(m_Player));// size 6
+		RegisterElement(new TendencyTemperature(m_Player));// size 6
 		// sum 25/32
-		RegisterElement(new TendencyHunger);// size 6
-		RegisterElement(new TendencyThirst);// size 6
-		RegisterElement(new TendencyBacteria);// size 6
+		RegisterElement(new TendencyHunger(m_Player));// size 6
+		RegisterElement(new TendencyThirst(m_Player));// size 6
+		RegisterElement(new TendencyBacteria(m_Player));// size 6
 		// sum 18/32
 
-		RegisterElement(new ElementStance);// size 0(client only)
-		RegisterElement(new BadgeBleeding);// size 0(client only)
+		RegisterElement(new ElementStance(m_Player));// size 0(client only)
+		RegisterElement(new BadgeBleeding(m_Player));// size 0(client only)
 
 		mission = GetGame().GetMission();
 		if ( mission )

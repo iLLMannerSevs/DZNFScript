@@ -30,7 +30,7 @@ class BaseBuildingBase extends ItemBase
 	const string SOUND_DISMANTLE_WIRE			= "putDown_BarbedWire_SoundSet";
 	
 	protected EffectSound m_Sound;
-		
+	
 	ref map<string, ref AreaDamageRegularDeferred> m_DamageTriggers;
 	
 	// Constructor
@@ -45,6 +45,9 @@ class BaseBuildingBase extends ItemBase
 		RegisterNetSyncVariableInt( "m_InteractedPartId" );
 		RegisterNetSyncVariableInt( "m_PerformedActionId" );
 		RegisterNetSyncVariableBool( "m_HasBase" );
+		
+		//Construction init
+		ConstructionInit();
 	}
 
 	// --- SYNCHRONIZATION
@@ -56,16 +59,16 @@ class BaseBuildingBase extends ItemBase
 			
 			if ( GetGame().IsMultiplayer() )
 			{
-				Refresh();
+				RefreshBaseState();
 			}
 		}
 	}
 	
 	//refresh visual/physics state
-	void Refresh()
+	void RefreshBaseState()
 	{
 		UpdateVisuals();
-		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( UpdatePhysics, 200, false );
+		UpdatePhysics();
 	}
 	
 	override void OnVariablesSynchronized()
@@ -79,7 +82,7 @@ class BaseBuildingBase extends ItemBase
 		SetActionFromSyncData();
 		
 		//update visuals (client)
-		Refresh();
+		RefreshBaseState();
 	}
 	
 	//parts synchronization
@@ -324,7 +327,6 @@ class BaseBuildingBase extends ItemBase
 		ctx.Write( m_SyncParts02 );
 		ctx.Write( m_SyncParts03 );
 		
-		//has base 
 		ctx.Write( m_HasBase );
 	}
 	
@@ -335,54 +337,57 @@ class BaseBuildingBase extends ItemBase
 		
 		//--- Base building data ---
 		//Restore synced parts data
-		//sync parts 01
 		if ( !ctx.Read( m_SyncParts01 ) )
 		{
 			m_SyncParts01 = 0;		//set default
+			return false;
 		}
 		if ( !ctx.Read( m_SyncParts02 ) )
 		{
 			m_SyncParts02 = 0;		//set default
+			return false;
 		}
 		if ( !ctx.Read( m_SyncParts03 ) )
 		{
 			m_SyncParts03 = 0;		//set default
+			return false;
 		}
 		
 		//has base
 		if ( !ctx.Read( m_HasBase ) )
 		{
-			ConstructionPart construction_part = GetConstruction().GetBaseConstructionPart();
-			m_HasBase = construction_part.IsBuilt();
+			m_HasBase = false;
+			return false;
 		}
 		//---
-		
-		//update server data
-		SetPartsFromSyncData();
-				
-		//synchronize after load
-		Synchronize();
 
 		return true;
+	}
+	
+	override void AfterStoreLoad()
+	{	
+		//update server data
+		SetPartsFromSyncData();
+		
+		//set base state
+		ConstructionPart construction_part = GetConstruction().GetBaseConstructionPart();
+		SetBaseState( construction_part.IsBuilt() ) ;
+			
+		//synchronize after load
+		Synchronize();
 	}
 	
 	override void EEInit()
 	{
 		super.EEInit();
 		
-		//Construction init
-		ConstructionInit();
-		
 		//update visuals and physics
-		Refresh();
+		RefreshBaseState();
 	}
 
 	override void OnItemLocationChanged( EntityAI old_owner, EntityAI new_owner ) 
 	{
 		super.OnItemLocationChanged( old_owner, new_owner );
-		
-		//update visuals after location change
-		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( UpdatePhysics, 200, false );
 	}
 	
 	override void EEItemAttached ( EntityAI item, string slot_name )
@@ -390,7 +395,7 @@ class BaseBuildingBase extends ItemBase
 		super.EEItemAttached ( item, slot_name );
 		
 		//update visuals and physics
-		Refresh();
+		RefreshBaseState();
 	}
 	
 	override void EEItemDetached ( EntityAI item, string slot_name )
@@ -398,10 +403,11 @@ class BaseBuildingBase extends ItemBase
 		super.EEItemDetached ( item, slot_name );
 		
 		//update visuals and physics
-		Refresh();
+		RefreshBaseState();
 	}
 	
 	//CONSTRUCTION EVENTS
+	//Build
 	void OnPartBuiltServer( string part_name, int action_id )
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
@@ -434,6 +440,7 @@ class BaseBuildingBase extends ItemBase
 		SoundBuildStart( part_name );
 	}	
 	
+	//Dismantle
 	void OnPartDismantledServer( string part_name, int action_id )
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
@@ -442,7 +449,7 @@ class BaseBuildingBase extends ItemBase
 		if ( constrution_part.IsBase() )
 		{
 			//Destroy construction
-			DestroyConstruction();
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( DestroyConstruction, 200, false, this );
 		}
 					
 		//register constructed parts for synchronization
@@ -462,10 +469,17 @@ class BaseBuildingBase extends ItemBase
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
 		
+		//receive materials (client)
+		GetConstruction().ReceiveMaterialsClient( part_name );
+		
+		//drop non-usable materials (client)
+		GetConstruction().DropNonUsableMaterialsServer( part_name );
+		
 		//play sound
 		SoundDismantleStart( part_name );
 	}	
 	
+	//Destroy
 	void OnPartDestroyedServer( string part_name, int action_id )
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
@@ -492,6 +506,9 @@ class BaseBuildingBase extends ItemBase
 	
 	void OnPartDestroyedClient( string part_name, int action_id )
 	{
+		//drop non-usable materials (client)
+		GetConstruction().DropNonUsableMaterialsServer( part_name );
+		
 		//play sound
 		SoundDestroyStart( part_name );
 	}	
@@ -659,6 +676,16 @@ class BaseBuildingBase extends ItemBase
 			GetGame().ConfigGetTextArray( config_path, attachment_slots );
 		}
 	}
+
+	bool CheckSlotVerticalDistance( int slot_id, PlayerBase player )
+	{
+		return true;
+	}
+		
+	protected bool CheckMemoryPointVerticalDistance( float max_dist, string selection, PlayerBase player )	
+	{
+		return true;
+	}
 	
 	// --- INIT
 	void ConstructionInit()
@@ -718,16 +745,17 @@ class BaseBuildingBase extends ItemBase
 	
 	//--- ACTION CONDITIONS
 	//direction
-	bool IsFacingFront( PlayerBase player, string selection )
+	bool IsFacingPlayer( PlayerBase player, string selection )
 	{
 		return true;
 	}
-	
-	bool IsFacingBack( PlayerBase player, string selection )
+		
+	//camera direction check
+	bool IsFacingCamera( string selection )
 	{
-		return !IsFacingFront( player, selection );
+		return true;
 	}
-	
+		
 	//folding
 	bool CanFoldBaseBuildingObject()
 	{
@@ -746,7 +774,7 @@ class BaseBuildingBase extends ItemBase
 	}
 	
 	//Damage triggers (barbed wire)
-	void CreateAreaDamage( string slot_name )
+	void CreateAreaDamage( string slot_name, float rotation_angle = 0 )
 	{
 		if ( GetGame() && GetGame().IsServer() )
 		{
@@ -775,8 +803,13 @@ class BaseBuildingBase extends ItemBase
 			center = GetConstruction().GetBoxCenter( min_max );
 			center = ModelToWorld( center );
 			
+			//rotate center if needed
+			vector orientation = GetOrientation();;
+			CalcDamageAreaRotation( rotation_angle, center, orientation );
+			
 			area_damage.SetExtents( extents[0], extents[1] );
 			area_damage.SetAreaPosition( center );
+			area_damage.SetAreaOrientation( orientation );
 			area_damage.SetLoopInterval( 0.5 );
 			area_damage.SetDeferInterval( 0.5 );
 			area_damage.SetHitZones( { "Head","Torso","LeftHand","LeftLeg","LeftFoot","RightHand","RightLeg","RightFoot" } );
@@ -786,7 +819,27 @@ class BaseBuildingBase extends ItemBase
 			m_DamageTriggers.Insert( slot_name, area_damage );
 		}
 	}
-	
+		
+	void CalcDamageAreaRotation( float angle_deg, out vector center, out vector orientation )
+	{
+		if ( angle_deg != 0 )
+		{
+			//orientation
+			orientation[0] = orientation[0] - angle_deg;
+			
+			//center
+			vector rotate_axis;
+			if ( MemoryPointExists( "rotate_axis" ) )
+			{
+				rotate_axis = ModelToWorld( GetMemoryPointPos( "rotate_axis" ) );
+			}			
+			float r_center_x = ( Math.Cos( angle_deg * Math.DEG2RAD ) * ( center[0] - rotate_axis[0] ) ) - ( Math.Sin( angle_deg * Math.DEG2RAD ) * ( center[2] - rotate_axis[2] ) ) + rotate_axis[0];
+			float r_center_z = ( Math.Sin( angle_deg * Math.DEG2RAD ) * ( center[0] - rotate_axis[0] ) ) + ( Math.Cos( angle_deg * Math.DEG2RAD ) * ( center[2] - rotate_axis[2] ) ) + rotate_axis[2];
+			center[0] = r_center_x;
+			center[2] = r_center_z;
+		}
+	}
+		
 	void DestroyAreaDamage( string slot_name )
 	{
 		if ( GetGame() && GetGame().IsServer() )

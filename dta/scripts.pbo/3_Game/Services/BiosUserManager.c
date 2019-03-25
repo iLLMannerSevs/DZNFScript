@@ -129,8 +129,22 @@ class BiosUserManager
 		{
 			SelectUser( null );
 			
-			GetGame().GetUIManager().CloseAllSubmenus();
-			GetGame().GetMission().AbortMission();
+			if (GetGame().GetUIManager() != null)
+			{
+				GetGame().GetUIManager().CloseAllSubmenus();
+				
+				if ( GetGame().GetUIManager().IsDialogVisible() )
+				{
+					GetGame().GetUIManager().CloseDialog();
+				}
+				
+				g_Game.DeleteGamepadDisconnectMenu();
+			}
+			
+			if ( GetGame().GetMission() != null )
+			{
+				GetGame().GetMission().AbortMission();
+			}
 			
 			GetGame().GetInput().ResetActiveGamepad();
 			

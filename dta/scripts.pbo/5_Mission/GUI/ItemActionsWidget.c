@@ -134,36 +134,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		SetActionWidget(m_Continuous, GetActionDesc(m_Continuous), "ia_continuous", "ia_continuous_action_name");
 		SetMultipleInteractAction("ia_interact_mlt_wrapper");
 		
-		UpdateWidth();
 		m_HealthQuantitySpacer.Update();
-	}
-	
-	protected void UpdateWidth()
-	{
-		m_Root.GetSize(m_RootWidth, m_RootHeight);
-		Widget child = m_Root.GetChildren();
-		int index = 0;
-
-		if (m_MaxWidthChild > 100 && m_MaxWidthChild < m_RootWidth)
-		{
-			m_Root.SetSize(m_MaxWidthChild + 60, 0);
-			while (child)
-			{
-				child.SetSize(m_MaxWidthChild + 60, 40);
-				index++;
-				child = child.GetSibling();
-			}
-		}
-		else
-		{
-			m_Root.SetSize(300, 0);
-			while (child)
-			{
-				child.SetSize(250, 40);
-				index++;
-				child = child.GetSibling();
-			}
-		}
 	}
 		
 	protected void Update()
@@ -339,9 +310,9 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 			{
 				q_mag = mag.GetAmmoCount();
 			}
-			else if (wpn.GetChamberCartridgeCount(mi) > 1)
+			else if (wpn.GetInternalMagazineCartridgeCount(mi) > 0)
 			{
-				q_mag = wpn.GetChamberCartridgeCount(mi) - 1;
+				q_mag = wpn.GetInternalMagazineCartridgeCount(mi);
 			}
 		}
 	}
