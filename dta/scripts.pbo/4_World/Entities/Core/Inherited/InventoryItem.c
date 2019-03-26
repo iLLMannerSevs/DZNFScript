@@ -310,4 +310,36 @@ typedef ItemGrenade GrenadeBase;
 //-----------------------------------------------------------------------------
 class ItemMap extends InventoryItemSuper
 {
+	
+	override void OnItemLocationChanged(EntityAI old_owner, EntityAI new_owner)
+	{
+		super.OnItemLocationChanged(old_owner,new_owner);
+		
+		SetMapStateOpen(false, PlayerBase.Cast(old_owner));
+	}
+	
+	//! displays open/closed selections; 1 == opened
+	void SetMapStateOpen(bool state, PlayerBase player)
+	{
+		if (state)
+		{
+			ShowSelection("map_opened");
+			HideSelection("map_closed");
+		}
+		else
+		{
+			ShowSelection("map_closed");
+			HideSelection("map_opened");
+		}
+		
+		if (player)
+			player.SetMapOpen(state);
+	}
+	
+	bool GetMapStateAnimation()
+	{
+		if (GetAnimationPhase("map_opened") == 0)
+			return true;
+		return false;
+	}
 };

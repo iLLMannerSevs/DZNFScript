@@ -70,7 +70,7 @@ class MissionServer extends MissionBase
 	
 	override void OnUpdate(float timeslice)
 	{
-		UpdateDummyScheduler( timeslice );
+		UpdateDummyScheduler();
 		TickScheduler(timeslice);
 		UpdateLogoutPlayers();
 	}
@@ -504,7 +504,7 @@ class MissionServer extends MissionBase
 			//PrintString(m_currentPlayer.ToString());
 			PlayerBase currentPlayer = PlayerBase.Cast(m_Players.Get(m_currentPlayer));
 			
-			currentPlayer.OnTick( timeslice );
+			currentPlayer.OnTick();
 			m_currentPlayer++;
 		}
 	}

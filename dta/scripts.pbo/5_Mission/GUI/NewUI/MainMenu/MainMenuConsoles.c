@@ -48,6 +48,9 @@ class MainMenuConsole extends UIScriptedMenu
 			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "ChooseAccount" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:cross" );
 			toolbar_y.Show( false );
+		
+			Widget w_play_video = layoutRoot.FindAnyWidget( "play_video" );
+			w_play_video.Show(false);
 		#endif
 		
 		Refresh();

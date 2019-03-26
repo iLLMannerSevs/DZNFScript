@@ -45,6 +45,11 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 		m_Options 									= options;
 		m_Menu										= menu;
 		
+		#ifdef PLATFORM_PS4
+		TextWidget text_controller = TextWidget.Cast(m_Root.FindAnyWidget( "controller_text" ));
+		text_controller.SetText( "#layout_PS4_controls_controller" );
+		#endif
+		
 		SetOptions( options );
 		
 		#ifdef PLATFORM_WINDOWS

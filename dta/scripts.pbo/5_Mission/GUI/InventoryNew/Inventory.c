@@ -149,12 +149,12 @@ class Inventory: LayoutHolder
 			m_TopConsoleToolbarHands		= GetRootWidget().FindAnyWidget( "LBRB_Hands" );
 			m_TopConsoleToolbarEquipment	= GetRootWidget().FindAnyWidget( "LBRB_Equipment" );
 			#ifdef PLATFORM_PS4
-			ImageWidget.Cast( m_TopConsoleToolbarVicinity.FindAnyWidget( "LBRB_Vicinity_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L2" );
-			ImageWidget.Cast( m_TopConsoleToolbarVicinity.FindAnyWidget( "LBRB_Vicinity_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R2" );
-			ImageWidget.Cast( m_TopConsoleToolbarHands.FindAnyWidget( "LBRB_Hands_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L2" );
-			ImageWidget.Cast( m_TopConsoleToolbarHands.FindAnyWidget( "LBRB_Hands_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R2" );
-			ImageWidget.Cast( m_TopConsoleToolbarEquipment.FindAnyWidget( "LBRB_Equipment_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L2" );
-			ImageWidget.Cast( m_TopConsoleToolbarEquipment.FindAnyWidget( "LBRB_Equipment_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R2" );
+			ImageWidget.Cast( m_TopConsoleToolbarVicinity.FindAnyWidget( "LBRB_Vicinity_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L1" );
+			ImageWidget.Cast( m_TopConsoleToolbarVicinity.FindAnyWidget( "LBRB_Vicinity_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R1" );
+			ImageWidget.Cast( m_TopConsoleToolbarHands.FindAnyWidget( "LBRB_Hands_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L1" );
+			ImageWidget.Cast( m_TopConsoleToolbarHands.FindAnyWidget( "LBRB_Hands_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R1" );
+			ImageWidget.Cast( m_TopConsoleToolbarEquipment.FindAnyWidget( "LBRB_Equipment_LBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:L1" );
+			ImageWidget.Cast( m_TopConsoleToolbarEquipment.FindAnyWidget( "LBRB_Equipment_RBIcon" ) ).LoadImageFile( 0, "set:playstation_buttons image:R1" );
 			#endif
 			m_BottomConsoleToolbar			= RichTextWidget.Cast( GetRootWidget().FindAnyWidget( "ContextToolbarText" ) );
 			UpdateConsoleToolbar();

@@ -62,7 +62,6 @@ class InventoryGrid extends ScriptedWidgetEventHandler
 	{
 		m_Root = w;
 		m_Root.SetHandler(this);
-		GenerateQuickBarBackgroundTiles( 10 );
 	}
 	
 	// ScriptedWidgetEventHandler override

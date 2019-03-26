@@ -10,7 +10,7 @@ modded class ParticleList
 
 class ParticleList
 {
-	ref static map<int, string> m_ParticlePaths;
+	ref static map<int, string> m_ParticlePaths; // Contains paths to all particles. WARNING: Paths are without the '.ptc' suffix!
 	static int m_lastID = 0;
 	
 	// REGISTER ALL PARTICLES BELOW:
@@ -241,5 +241,30 @@ class ParticleList
 	static string GetPathToParticles()
 	{
 		return "graphics/particles/";
+	}
+	
+	//! Preloads all particles
+	static void PreloadParticles()
+	{
+		if ( !GetGame().IsServer()  ||  !GetGame().IsMultiplayer() ) // client side
+		{
+			int count = m_ParticlePaths.Count();
+			
+			//Print("START PRELOAD OF PARTICLES");
+			//Print(count);
+			
+			for (int i = 0; i < count; ++i)
+			{
+				string path = m_ParticlePaths.Get(i);
+				path = path + ".ptc";
+				//Print(path);
+				vobject vobj;
+				vobj = GetObject( path );
+				//Print(vobj);
+				ReleaseObject(vobj);
+			}
+			
+			//Print("END PARTICLE PRELOAD");
+		}
 	}
 }

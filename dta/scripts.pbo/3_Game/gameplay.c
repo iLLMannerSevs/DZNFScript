@@ -630,6 +630,8 @@ class Mission
 		return false;
 	}
 	
+	bool IsControlDisabled() {}
+	
 	void PlayerControlEnable() {}
 	void PlayerControlDisable() {}
 

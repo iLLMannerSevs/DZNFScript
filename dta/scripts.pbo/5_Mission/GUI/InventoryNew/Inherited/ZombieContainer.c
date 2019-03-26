@@ -108,6 +108,7 @@ class ZombieContainer: CollapsibleContainer
 		{
 			return;
 		}
+		
 		name.Replace( "Render", "Col" );
 		w.FindAnyWidget( name ).Show( true );
 		name.Replace( "Col", "RadialIcon" );
@@ -165,6 +166,43 @@ class ZombieContainer: CollapsibleContainer
 		}
 	}
 	
+	override void DraggingOverHeader( Widget w, int x, int y, Widget receiver )
+	{
+		Print( "PP" );
+		
+		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( "Render" ) );
+		string name = receiver.GetName();
+		name.Replace( "PanelWidget", "Render" );
+		ItemPreviewWidget receiver_iw = ItemPreviewWidget.Cast( receiver.FindAnyWidget( name ) );
+		EntityAI receiver_item;
+		if( receiver_iw )
+		{
+			receiver_item = receiver_iw.GetItem();
+		}
+		
+		if( !ipw )
+		{
+			name = w.GetName();
+			name.Replace( "PanelWidget", "Render" );
+			ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		}
+		if( !ipw )
+		{
+		  ipw = ItemPreviewWidget.Cast( w );
+		}
+		
+		if( !ipw.IsInherited( ItemPreviewWidget ) )
+		{
+			return;	
+		}
+		
+		EntityAI item = ipw.GetItem();
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+		
+		if( !item.GetInventory().CanRemoveEntity() )
+			return;
+	}
+	
 	void OnDropReceivedFromGhostArea( Widget w, int x, int y, Widget receiver )
 	{
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( "Render" ) );
@@ -179,10 +217,10 @@ class ZombieContainer: CollapsibleContainer
 		
 		if( !ipw )
 		{
-		  name = w.GetName();
-		  name.Replace( "PanelWidget", "Render" );
-		  ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
-		} 
+			name = w.GetName();
+			name.Replace( "PanelWidget", "Render" );
+			ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		}
 		if( !ipw )
 		{
 		  ipw = ItemPreviewWidget.Cast( w );
@@ -229,7 +267,7 @@ class ZombieContainer: CollapsibleContainer
 		
 		if( item )
 		{
-			if( m_ZombieEntity.GetInventory().CanAddEntityToInventory( item ) )
+			if( m_ZombieEntity.GetInventory().CanAddEntityInto( item, FindInventoryLocationType.CARGO ) )
 			{
 				player.PredictiveTakeEntityToTargetInventory( m_ZombieEntity, FindInventoryLocationType.CARGO, ipw.GetItem() );
 			}
@@ -622,6 +660,10 @@ class ZombieContainer: CollapsibleContainer
 			Widget item_preview = GetWidgetSlot( 0 );
 			LoadIconIntoWidgetSlot( "cat_common_cargo", 0 );
 			WidgetEventHandler.GetInstance().RegisterOnMouseButtonUp( item_preview.GetParent().GetParent().FindAnyWidget( "GhostSlot0"), this, "ToggleWidget" );
+			WidgetEventHandler.GetInstance().RegisterOnDrag( item_preview.GetParent(),  this, "OnIconDrag" );
+			WidgetEventHandler.GetInstance().RegisterOnDrop( item_preview.GetParent(),  this, "OnIconDrop" );
+			WidgetEventHandler.GetInstance().RegisterOnDoubleClick( item_preview.GetParent(),  this, "DoubleClick" );
+			
 			item_preview.GetParent().GetParent().FindAnyWidget( "RadialIconPanel0" ).Show( true );
 			item_preview.GetParent().GetParent().FindAnyWidget( "RadialIconClosed0" ).Show( true );
 		}
@@ -639,15 +681,7 @@ class ZombieContainer: CollapsibleContainer
 		int row = slot_number / ITEMS_IN_ROW;
 		int column = slot_number % ITEMS_IN_ROW;
 
-		Widget item_preview = m_Container.Get( row ).GetMainWidget().FindAnyWidget( "Render" + column );
-		if( !item_preview )
-		{
-			item_preview = m_Container.Get( row ).GetMainWidget().FindAnyWidget( "Icon" + column );
-		}
-		WidgetEventHandler.GetInstance().RegisterOnDrag( item_preview.GetParent(),  this, "OnIconDrag" );
-		WidgetEventHandler.GetInstance().RegisterOnDrop( item_preview.GetParent(),  this, "OnIconDrop" );
-		WidgetEventHandler.GetInstance().RegisterOnDoubleClick( item_preview.GetParent(),  this, "DoubleClick" );
-		return item_preview;
+		return m_Container.Get( row ).GetMainWidget().FindAnyWidget( "Render" + column );
 	}
 	
 	void DoubleClick(Widget w, int x, int y, int button)

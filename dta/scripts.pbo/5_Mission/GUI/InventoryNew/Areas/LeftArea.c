@@ -32,8 +32,8 @@ class LeftArea: Container
 		ImageWidget lt = ImageWidget.Cast( m_RootWidget.FindAnyWidget( "LTIcon" ) );
 		ImageWidget rt = ImageWidget.Cast( m_RootWidget.FindAnyWidget( "RTIcon" ) );
 		
-		lt.LoadImageFile( 0, "set:playstation_buttons image:L1" );
-		rt.LoadImageFile( 0, "set:playstation_buttons image:R1" );
+		lt.LoadImageFile( 0, "set:playstation_buttons image:L2" );
+		rt.LoadImageFile( 0, "set:playstation_buttons image:R2" );
 		#endif
 	}
 	

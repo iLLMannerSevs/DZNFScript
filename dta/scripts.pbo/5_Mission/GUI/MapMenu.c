@@ -34,9 +34,10 @@ class MapMenu extends UIScriptedMenu
 		
 		if( GetGame() && GetGame().GetInput() && GetGame().GetInput().LocalPress("UAUIBack", false) )
 		{
-			PlayerBase player = PlayerBase.Cast(g_Game.GetPlayer());
+			/*PlayerBase player = PlayerBase.Cast(g_Game.GetPlayer());
 			if( player )
-				player.CloseMap();
+				player.CloseMap();*/
+			Close();
 		}
 	}
 }

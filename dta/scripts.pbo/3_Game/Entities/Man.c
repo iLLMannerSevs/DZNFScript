@@ -540,7 +540,7 @@ class Man extends EntityAI
 	protected bool TakeEntityToTargetInventoryImpl (InventoryMode mode, notnull EntityAI target, FindInventoryLocationType flags, notnull EntityAI item)
 	{
 		syncDebugPrint("[inv] " + GetSimulationTimeStamp() + " Man@" + this + "::Take2TargetInv(" + typename.EnumToString(InventoryMode, mode) + ") item=" + item);
-		bool code = GetInventory().TakeEntityToTargetInventory(mode, target, FindInventoryLocationType.ANY, item);
+		bool code = GetInventory().TakeEntityToTargetInventory(mode, target, flags, item);
 		UpdateInventoryMenu();
 		return code;
 	}

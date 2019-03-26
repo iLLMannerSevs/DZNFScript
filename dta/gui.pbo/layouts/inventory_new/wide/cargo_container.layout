@@ -15,10 +15,10 @@ PanelWidgetClass grid_container_root {
   GridSpacerWidgetClass header_grid_container {
    ignorepointer 1
    position 0 0
-   size 521 0
+   size 1 0
    hexactpos 1
    vexactpos 1
-   hexactsize 1
+   hexactsize 0
    vexactsize 1
    Padding 0
    Margin 0
@@ -135,10 +135,10 @@ PanelWidgetClass grid_container_root {
      ignorepointer 1
      color 0 0 0 0.7059
      position 0 0
-     size 521 0
+     size 1 0
      hexactpos 1
      vexactpos 1
-     hexactsize 1
+     hexactsize 0
      vexactsize 1
      Padding 0
      Margin 0
@@ -149,10 +149,10 @@ PanelWidgetClass grid_container_root {
       PanelWidgetClass grid_container {
        visible 1
        position 0 0
-       size 521 0
+       size 1 0
        hexactpos 1
        vexactpos 1
-       hexactsize 1
+       hexactsize 0
        vexactsize 1
        priority 1
        scriptclass "SizeToChild"
@@ -162,10 +162,10 @@ PanelWidgetClass grid_container_root {
          visible 1
          clipchildren 1
          ignorepointer 1
-         size 521 0
+         size 1 0
          hexactpos 1
          vexactpos 1
-         hexactsize 1
+         hexactsize 0
          vexactsize 1
          style Colorable
          Padding 0

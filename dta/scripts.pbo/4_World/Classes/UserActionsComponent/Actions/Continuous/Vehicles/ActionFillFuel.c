@@ -10,6 +10,8 @@ class ActionFillFuelCB : ActionContinuousBaseCB
 
 class ActionFillFuel: ActionContinuousBase
 {
+	const string FUEL_SELECTION_NAME = "refill";
+	
 	void ActionFillFuel()
 	{
 		m_CallbackClass = ActionFillFuelCB;
@@ -56,35 +58,34 @@ class ActionFillFuel: ActionContinuousBase
 		if( item.GetLiquidType() != LIQUID_GASOLINE )
 			return false;
 		
-		if( !IsInReach(player, target, UAMaxDistances.DEFAULT) )
-			return false;
+		//if( !IsInReach(player, target, UAMaxDistances.DEFAULT) )
+			//return false;
 
 		Car car = Car.Cast(target.GetObject());
 		if( car && car.GetFluidFraction( CarFluid.FUEL ) >= 0.98 )
 			return false;
 
-		if( car.IsActionComponentPartOfSelection(target.GetComponentIndex(), "refill") )
-		{
-			/* not full tank con &&*/
-			return true;
-		}
 		
+		//! TODO:
+		//! 1) use some sane default
+		//! 2) create some getter(overriden per Car) to differentiate distances for each car type
+		float max_action_distance = 4;
+
+		float distance = Math.AbsFloat(vector.Distance(car.GetPosition(), player.GetPosition()));
+
+		if( distance <= max_action_distance )
+		{
+			array<string> selections = new array<string>;
+			target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
+
+			for (int s = 0; s < selections.Count(); s++)
+			{
+				if ( selections[s] == FUEL_SELECTION_NAME )
+				{
+					return true;
+				}
+			}
+		}
 		return false;
 	}
-/*
-	override void OnCompleteServer( ActionData action_data )
-	{
-		Car car = Car.Cast(action_data.m_Target.GetObject());
-		Param1<float> nacdata;
-		Class.CastTo(nacdata,  action_data.m_ActionComponent.GetACData() );
-		float amount = nacdata.param1;
-		if ( car && action_data.m_MainItem && action_data.m_MainItem.GetQuantity() <= UAQuantityConsumed.FUEL )
-		{
-			action_data.m_MainItem.AddQuantity( -amount );
-			car.Fill( CarFluid.FUEL, amount );
-
-			action_data.m_Player.GetSoftSkillManager().AddSpecialty( m_SpecialtyWeight );
-		}
-	}
-*/
 };
