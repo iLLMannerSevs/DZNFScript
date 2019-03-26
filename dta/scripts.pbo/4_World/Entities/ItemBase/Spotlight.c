@@ -66,6 +66,17 @@ class Spotlight extends ItemBase
 		UpdateAllSelections();
 	}
 	
+	override void EOnInit(IEntity other, int extra)
+	{
+		super.EOnInit(other, extra);
+		
+		if ( !IsHologram() )
+		{
+			UpdateAllSelections();
+			HideSelection(SEL_CORD_FOLDED_F);
+		}
+	}
+	
 	//--- POWER EVENTS
 	override void OnSwitchOn()
 	{
@@ -146,6 +157,8 @@ class Spotlight extends ItemBase
 		
 		if ( IsFolded() )
 		{
+			HideSelection( SEL_REFLECTOR_COMP_U );
+			
 			ShowSelection( SEL_INVENTORY );
 			ShowSelection( SEL_GLASS_F );
 			ShowSelection( SEL_REFLECTOR_F );

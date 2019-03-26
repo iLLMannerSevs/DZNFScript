@@ -101,7 +101,6 @@ class MainMenu extends UIScriptedMenu
 		
 		LoadMods();
 		
-		
 		GetDayZGame().GetBacklit().MainMenu_OnShow();
 	
 		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );				
@@ -116,21 +115,32 @@ class MainMenu extends UIScriptedMenu
 	
 	void LoadMods()
 	{
-		array<ref ModStructure> mods	= ModLoader.GetMods();
-		int count						= Math.Min( mods.Count(), 4 );
-		for( int i = 0; i < count; i++ )
+		/*
+		ref array<ModInfo> modArray = new array<ModInfo>;
+		
+		GetGame().GetModInfos( modArray );
+		int count				= Math.Min( modArray.Count(), 4 );
+		
+		if( count > 0 )
 		{
-			ModStructure mod	= mods.Get( i );
-			ImageWidget image	= ImageWidget.Cast( layoutRoot.FindAnyWidget( "Mod" + i ) );
-			if( mod.GetModLogo() != "" )
+			layoutRoot.FindAnyWidget( "Mods" ).Show( true );
+			for( int i = 0; i < count; i++ )
 			{
-				image.LoadImageFile( 0, mod.GetModLogo() );
+				ModInfo mod			= modArray.Get( i );
+				ImageWidget image	= ImageWidget.Cast( layoutRoot.FindAnyWidget( "Mod" + i ) );
+				string logo			= mod.GetLogo();
+				if( logo != "" )
+				{
+					image.LoadImageFile( 0, logo );
+				}
+				
 				image.Show( true );	
 			}
+			
+			if( modArray.Count() > 4 )
+				layoutRoot.FindAnyWidget( "ModMore" ).Show( true );
 		}
-		
-		if( mods.Count() > 4 )
-			layoutRoot.FindAnyWidget( "ModMore" ).Show( true );
+		*/
 	}
 	
 	override bool OnMouseButtonDown( Widget w, int x, int y, int button )

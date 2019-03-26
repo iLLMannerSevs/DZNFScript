@@ -34,6 +34,7 @@ class InventoryQuickbar extends InventoryGridController
 		{
 			quickbarGridWidget.GetScript( m_Grid );
 			m_Grid.SetController( this );
+			m_Grid.GenerateQuickBarBackgroundTiles( 10 );
 		}
 		
 		m_Items.Clear();

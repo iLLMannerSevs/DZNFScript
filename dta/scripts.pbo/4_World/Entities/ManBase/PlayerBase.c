@@ -247,6 +247,7 @@ class PlayerBase extends ManBase
 			m_StanceIndicator = new StanceIndicator(this);
 			
 			m_PresenceNotifier = PluginPresenceNotifier.Cast( GetPlugin( PluginPresenceNotifier ) );
+			m_PresenceNotifier.Init(this);
 		}
 
 		m_ActionManager = NULL;
@@ -1653,11 +1654,11 @@ class PlayerBase extends ManBase
 		return m_NotifiersManager;
 	}
 	//--------------------------------------------------------------------------
-	void OnTick( float deltaT )
+	void OnTick()
 	{
-		//float deltaT = (GetGame().GetTime() - m_LastTick) / 1000;
-		//if ( m_LastTick < 0 )  deltaT = 0;//first tick protection
-		//m_LastTick = GetGame().GetTime();
+		float deltaT = (GetGame().GetTime() - m_LastTick) / 1000;
+		if ( m_LastTick < 0 )  deltaT = 0;//first tick protection
+		m_LastTick = GetGame().GetTime();
 
 		//PrintString("deltaT: " + deltaT);
 		//PrintString("at time: " + m_LastTick);
@@ -1667,7 +1668,7 @@ class PlayerBase extends ManBase
 		{		
 			if ( GetHologramLocal() )
 			{
-				GetHologramLocal().UpdateHologram( deltaT );
+				GetHologramLocal().UpdateHologram();
 			}
 		}
 	}
@@ -1985,7 +1986,7 @@ class PlayerBase extends ManBase
 			OnVehicleExit();
 		}
 		//map closing - feel free to move to different "update" if it does not belong here
-		if ( (!GetGame().IsMultiplayer() || GetGame().IsClient()) && m_MapOpen )
+		if ( (!GetGame().IsMultiplayer() || GetGame().IsClient()) && IsMapOpen() )
 		{
 			if ( m_hac && !GetGame().GetUIManager().IsMenuOpen(MENU_MAP) )
 				CloseMap();
@@ -2022,12 +2023,18 @@ class PlayerBase extends ManBase
 			}
 			if (!GetGame().IsMultiplayer() || GetGame().IsClient())
 			{
-				GetGame().GetMission().PlayerControlEnable();
+				if ( !GetGame().GetUIManager().GetMenu() )
+					GetGame().GetMission().PlayerControlEnable();
 				if (GetGame().GetUIManager().IsMenuOpen(MENU_MAP))
 					GetGame().GetUIManager().FindMenu(MENU_MAP).Close();
 			}
-			m_MapOpen = false;
+			//SetMapOpen(false);
 		}
+	}
+	
+	void SetMapOpen(bool state)
+	{
+		m_MapOpen = state;
 	}
 	
 	bool IsMapOpen()
@@ -2435,10 +2442,10 @@ class PlayerBase extends ManBase
 					drawCheckerboard.ShowWidgets(DiagMenu.GetBool(DiagMenuIDs.DM_DRAW_CHECKERBOARD));
 				}
 			}
-			
+
 			if(m_PresenceNotifier)
 			{
-				m_PresenceNotifier.UpdatePresenceNotifier(this, DiagMenu.GetBool(DiagMenuIDs.DM_PRESENCE_NOTIFIER_DBG));
+				m_PresenceNotifier.EnableDebug(DiagMenu.GetBool(DiagMenuIDs.DM_PRESENCE_NOTIFIER_DBG));
 			}
 #endif
 		}
@@ -4233,7 +4240,7 @@ class PlayerBase extends ManBase
 		{
 			return m_PresenceNotifier.GetNoisePresence();
 		}
-		
+
 		return 0;
 	}
 

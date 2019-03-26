@@ -168,7 +168,7 @@ class MissionGameplay extends MissionBase
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
 				
 		if( player )
-			player.OnTick( timeslice );
+			player.OnTick();
 	}
 	
 	void SendMuteListToServer( map<string, bool> mute_list )
@@ -223,7 +223,7 @@ class MissionGameplay extends MissionBase
 		Man player = GetGame().GetPlayer();
 		PlayerBase playerPB = PlayerBase.Cast(player);
 		TickScheduler(timeslice);
-		UpdateDummyScheduler( timeslice );//for external entities
+		UpdateDummyScheduler();//for external entities
 		UIScriptedMenu menu = m_UIManager.GetMenu();
 		InventoryMenu inventory = InventoryMenu.Cast( m_UIManager.FindMenu(MENU_INVENTORY) );
 		MapMenu map_menu = MapMenu.Cast( m_UIManager.FindMenu(MENU_MAP) );
@@ -274,6 +274,7 @@ class MissionGameplay extends MissionBase
 				if ( !GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 				{
 					RadialQuickbarMenu.OpenMenu();
+					m_Hud.ToggleHud( false, true );
 				}	
 			}
 		}
@@ -284,6 +285,7 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 			{
 				RadialQuickbarMenu.CloseMenu();
+				m_Hud.ToggleHud( m_Hud.GetHudState(), true );
 			}
 		}
 		
@@ -342,6 +344,7 @@ class MissionGameplay extends MissionBase
 				if ( !GetUIManager().IsMenuOpen( MENU_GESTURES ) )
 				{
 					GesturesMenu.OpenMenu();
+					m_Hud.ToggleHud( false, true );
 				}
 			}
 		}
@@ -352,6 +355,7 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_GESTURES ) )
 			{
 				GesturesMenu.CloseMenu();
+				m_Hud.ToggleHud( m_Hud.GetHudState(), true );
 			}
 		}
 		
@@ -758,7 +762,7 @@ class MissionGameplay extends MissionBase
 		m_ControlDisabled = true;
 	}
 
-	bool IsControlDisabled()
+	override bool IsControlDisabled()
 	{
 		return m_ControlDisabled;
 	}

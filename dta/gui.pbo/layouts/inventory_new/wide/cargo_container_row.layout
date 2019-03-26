@@ -42,6 +42,7 @@ PanelWidgetClass widget {
    vexactpos 1
    hexactsize 0
    vexactsize 1
+   style Colorable
    Padding 0
    Margin 0
    "Size To Content H" 1

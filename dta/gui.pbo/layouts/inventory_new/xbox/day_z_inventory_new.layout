@@ -211,7 +211,7 @@ FrameWidgetClass inventory_root {
               ImageWidgetClass LBRB_Hands_LBIcon {
                ignorepointer 1
                position 30 0
-               size 38 40
+               size 40 32
                valign center_ref
                hexactpos 1
                vexactpos 1
@@ -226,7 +226,7 @@ FrameWidgetClass inventory_root {
               ImageWidgetClass LBRB_Hands_RBIcon {
                ignorepointer 1
                position 30 0
-               size 38 40
+               size 40 32
                halign right_ref
                valign center_ref
                hexactpos 1
@@ -311,7 +311,7 @@ FrameWidgetClass inventory_root {
           ImageWidgetClass LBRB_Vicinity_LBIcon {
            ignorepointer 1
            position 30 0
-           size 38 40
+           size 40 32
            valign center_ref
            hexactpos 1
            vexactpos 1
@@ -326,7 +326,7 @@ FrameWidgetClass inventory_root {
           ImageWidgetClass LBRB_Vicinity_RBIcon {
            ignorepointer 1
            position 30 0
-           size 38 40
+           size 40 32
            halign right_ref
            valign center_ref
            hexactpos 1
@@ -385,7 +385,7 @@ FrameWidgetClass inventory_root {
           ImageWidgetClass LBRB_Equipment_LBIcon {
            ignorepointer 1
            position 30 0
-           size 38 40
+           size 40 32
            valign center_ref
            hexactpos 1
            vexactpos 1
@@ -400,7 +400,7 @@ FrameWidgetClass inventory_root {
           ImageWidgetClass LBRB_Equipment_RBIcon {
            ignorepointer 1
            position 30 0
-           size 38 40
+           size 40 32
            halign right_ref
            valign center_ref
            hexactpos 1
@@ -463,11 +463,6 @@ FrameWidgetClass inventory_root {
      scriptclass "InventoryGrid"
      {
       ScriptParamsClass {
-       Gap 2
-       ItemSizeHeight 40
-       ItemsHorizontal 10
-       ItemsVertical 1
-       DebugOutput 0
       }
      }
     }

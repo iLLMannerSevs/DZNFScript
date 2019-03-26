@@ -7,6 +7,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	
 	protected ButtonWidget					m_ContinueButton;
 	protected ButtonWidget					m_ExitButton;
+	protected ButtonWidget					m_ExitDeadButton;
 	protected ButtonWidget					m_RestartButton;
 	protected ButtonWidget					m_OptionsButton;
 	protected ButtonWidget					m_ControlsButton;
@@ -44,11 +45,12 @@ class InGameMenuXbox extends UIScriptedMenu
 	override Widget Init()
 	{
 		layoutRoot		= GetGame().GetWorkspace().CreateWidgets("gui/layouts/xbox/day_z_ingamemenu_xbox.layout");
-		m_OnlineMenu	= GetGame().GetWorkspace().CreateWidgets("gui/layouts/xbox/ingamemenu_xbox/online_info_menu.layout", layoutRoot);
 		
+		m_OnlineMenu	= GetGame().GetWorkspace().CreateWidgets("gui/layouts/xbox/ingamemenu_xbox/online_info_menu.layout", layoutRoot);
 		m_OnlineMenu.Show( false );
 		
 		m_ContinueButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "continuebtn" ) );
+		m_ExitDeadButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "exitbtn_dead" ) );
 		m_ExitButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "exitbtn" ) );
 		m_RestartButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "restartbtn" ) );
 		m_OptionsButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "optionsbtn" ) );
@@ -78,10 +80,8 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		}
 		
-		if( !player_is_alive )
-		{
-			layoutRoot.FindAnyWidget( "bottom" ).Show( false );
-		}
+		m_ExitButton.Show( player_is_alive );
+		m_ExitDeadButton.Show( !player_is_alive );
 		
 		if( GetGame().IsMultiplayer() )
 		{
@@ -256,6 +256,12 @@ class InGameMenuXbox extends UIScriptedMenu
 				OnlineServices.ShowInviteScreen();
 				return true;
 			}
+		}
+		
+		if ( w == m_ExitDeadButton )
+		{
+			GetGame().GetMission().AbortMission();
+			return true;
 		}
 
 		return false;
@@ -474,6 +480,8 @@ class InGameMenuXbox extends UIScriptedMenu
 		layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
 		layoutRoot.FindAnyWidget( "dayz_logo" ).Show( true );
 		layoutRoot.FindAnyWidget( "Select" ).Show( true );
+		
+		SetFocus( m_OnlineButton );
 	}
 	
 	void SelectServer()

@@ -97,8 +97,8 @@ Print("Loading Inc: "+ m_Counter);
 			m_WidgetRoot.Show( false );
 			m_Counter = 0;
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call( g_Game.CheckDialogs );
+			}
 		}
-	}
 	
 	bool IsLoading()
 	{
@@ -1145,6 +1145,9 @@ class DayZGame extends CGame
 	// ------------------------------------------------------------
 	override bool OnInitialize()
 	{
+		ParticleList.PreloadParticles();
+		
+		
 		m_Visited = new TStringArray;
 		GetGame().GetProfileStringList( "SB_Visited", m_Visited );
 		

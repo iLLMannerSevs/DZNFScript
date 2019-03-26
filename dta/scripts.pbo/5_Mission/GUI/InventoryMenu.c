@@ -47,6 +47,15 @@ class InventoryMenu extends UIScriptedMenu
 			else
 				m_WidthType = ScreenWidthType.NARROW;
 		}
+		/*
+		for( int i = 0; i < 100; i++ )
+		{
+			int x = ( 10 * i + 11 );
+			if( ( x + 9 ) % 8 == 0 )
+			{
+				Print( "Grid = " + i + ", slot = " + ( x / 8 ) + ", total = " + x );
+			}
+		}*/
 	}
 	
 	static ScreenWidthType GetWidthType()

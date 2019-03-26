@@ -229,10 +229,12 @@ FrameWidgetClass Icon {
        vexactsize 0
        priority 500
        style Light
-       text "99"
+       text "100"
        font "gui/fonts/sdf_MetronLight24"
-       "exact text" 0
-       text_proportion 0.9
+       "exact text" 1
+       "exact text size" 15
+       "size to text h" 0
+       "size to text v" 0
        "text halign" center
        "text valign" center
       }

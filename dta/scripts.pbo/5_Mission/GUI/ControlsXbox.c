@@ -46,6 +46,7 @@ class ControlsXbox extends UIScriptedMenu
 		float draw_pos_x, draw_pos_y;
 		
 		CanvasWidget canvas_widget = CanvasWidget.Cast( layoutRoot.FindAnyWidget("CanvasWidget_" + index) );
+		canvas_widget.Clear();
 		control_mapping_info  = GetControlMappingInfo();
 		
 		for( int i = 0; i < m_TabScript.GetTabCount(); i++ )

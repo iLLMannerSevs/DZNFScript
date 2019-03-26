@@ -588,7 +588,7 @@ class IngameHud extends Hud
 			Class.CastTo(badge_widget,  m_Badges.FindAnyWidget( badge_name ) );
 			if ( badge_widget )
 			{
-				if ( m_BadgesWidgetDisplay.Get( badge_key ) == true )
+				if ( m_BadgesWidgetDisplay.Get( badge_key ) )
 				{
 					badge_widget.SetPos ( x * 0.2, 0.0, true);
 					badge_widget.Show( true );

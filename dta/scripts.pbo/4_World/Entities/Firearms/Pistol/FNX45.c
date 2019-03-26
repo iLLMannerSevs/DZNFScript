@@ -4,8 +4,4 @@ class FNX45_Base : Pistol_Base
 	{
 		return new Fnx45Recoil(this);
 	}
-	
-	void FNX45 ()
-	{
-	}
 };

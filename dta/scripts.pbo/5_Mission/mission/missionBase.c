@@ -488,13 +488,13 @@ class MissionBase extends Mission
 	}
 	
 		
-	void UpdateDummyScheduler( float timeslice )
+	void UpdateDummyScheduler()
 	{
 		for(int i = 0; i < m_DummyPlayers.Count(); i++)
 		{
 			if (m_DummyPlayers.Get(i))
 			{
-				m_DummyPlayers.Get(i).OnTick( timeslice );
+				m_DummyPlayers.Get(i).OnTick();
 			}
 		}
 	}

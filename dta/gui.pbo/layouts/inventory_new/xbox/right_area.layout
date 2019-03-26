@@ -18,7 +18,7 @@ PanelWidgetClass DropzoneX {
    clipchildren 0
    ignorepointer 0
    color 0.1961 0.1961 0.1961 0.3922
-   size 533 1
+   size 528 1
    halign right_ref
    valign center_ref
    hexactpos 1
@@ -57,10 +57,10 @@ PanelWidgetClass DropzoneX {
        clipchildren 0
        ignorepointer 1
        position 0 0
-       size 513 1
+       size 1 1
        hexactpos 0
        vexactpos 0
-       hexactsize 1
+       hexactsize 0
        vexactsize 0
        scriptclass ""
        style Colorable
