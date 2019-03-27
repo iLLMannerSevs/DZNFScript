@@ -145,7 +145,7 @@ class BarbedWire extends ItemBase
 		BaseBuildingBase base_building = BaseBuildingBase.Cast( parent );
 		if ( base_building )
 		{
-			base_building.RefreshBaseState();
+			base_building.Refresh();
 		}
 	}
 	

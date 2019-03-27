@@ -11,7 +11,7 @@ FrameWidgetClass ServerBrowserRoot {
  {
   FrameWidgetClass Tabber {
    ignorepointer 1
-   position 0 0
+   position 6.784 0
    size 1 1
    hexactpos 1
    vexactpos 1

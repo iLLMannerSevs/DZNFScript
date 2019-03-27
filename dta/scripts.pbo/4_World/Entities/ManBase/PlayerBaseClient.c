@@ -1,6 +1,6 @@
 class PlayerBaseClient extends PlayerBase
 {	
-	static private ScriptedLightBase m_PersonalLight;
+	static protected ScriptedLightBase m_PersonalLight;
 	
 	void PlayerBaseClient()
 	{

@@ -245,9 +245,6 @@ class PlayerBase extends ManBase
 			m_BleedingManagerRemote = new BleedingSourcesManagerRemote(this);
 			m_PlayerSoundManagerClient = new PlayerSoundManagerClient(this);
 			m_StanceIndicator = new StanceIndicator(this);
-			
-			m_PresenceNotifier = PluginPresenceNotifier.Cast( GetPlugin( PluginPresenceNotifier ) );
-			m_PresenceNotifier.Init(this);
 		}
 
 		m_ActionManager = NULL;
@@ -3522,7 +3519,10 @@ class PlayerBase extends ManBase
 				}
 			}
 			
-			GetGame().GetMission().PlayerControlEnable();			
+			GetGame().GetMission().PlayerControlEnable();
+			
+			m_PresenceNotifier = PluginPresenceNotifier.Cast( GetPlugin( PluginPresenceNotifier ) );
+			m_PresenceNotifier.Init(this);
 		}
 #ifdef BOT
 		m_Bot = new Bot(this);

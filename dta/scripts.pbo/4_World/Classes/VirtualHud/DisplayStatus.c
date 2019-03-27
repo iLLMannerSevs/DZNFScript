@@ -78,7 +78,7 @@ class VirtualHud
 		if( GetGame().IsClient() || !GetGame().IsMultiplayer() )
 		{
 			ImmediateUpdate();
-			DisplayPresence();
+			//DisplayPresence();
 		}
 	}
 
@@ -194,7 +194,7 @@ class VirtualHud
 			if( GetElement(i) && GetElement(i).IsClientOnly() ) GetElement(i).UpdateHUD();
 		}
 	}
-	
+	/*
 	void DisplayPresence()
 	{
 		if ( m_Hud )
@@ -202,7 +202,7 @@ class VirtualHud
 			m_Hud.DisplayPresence();
 		}
 	}
-
+*/
 	void UpdateStatus()
 	{
 		//Log("UpdateStatus called for entity: "+ToString(m_Player));
@@ -215,7 +215,7 @@ class VirtualHud
 		}
 	}
 
-	void OnRPC(ParamsReadContext ctx)//on Client 			REWORK.V: NUMBER_OF_MASKS should ideally be transmitted with the masks, ie. saved when sending, and then read on receive as first item
+	void OnRPC(ParamsReadContext ctx)//on Client
 	{
 		//Log("OnRPC called");
 		array<int> mask_array = new array<int>;

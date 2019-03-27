@@ -7,7 +7,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	
 	protected ButtonWidget					m_ContinueButton;
 	protected ButtonWidget					m_ExitButton;
-	protected ButtonWidget					m_ExitDeadButton;
+	protected ButtonWidget					m_RestartDeadButton;
 	protected ButtonWidget					m_RestartButton;
 	protected ButtonWidget					m_OptionsButton;
 	protected ButtonWidget					m_ControlsButton;
@@ -50,7 +50,7 @@ class InGameMenuXbox extends UIScriptedMenu
 		m_OnlineMenu.Show( false );
 		
 		m_ContinueButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "continuebtn" ) );
-		m_ExitDeadButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "exitbtn_dead" ) );
+		m_RestartDeadButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "restartbtn_dead" ) );
 		m_ExitButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "exitbtn" ) );
 		m_RestartButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "restartbtn" ) );
 		m_OptionsButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "optionsbtn" ) );
@@ -58,15 +58,6 @@ class InGameMenuXbox extends UIScriptedMenu
 		m_OnlineButton		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "onlinebtn" ) );
 		m_TutorialsButton	= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "tutorialsbtn" ) );
 		m_Version			= TextWidget.Cast( layoutRoot.FindAnyWidget( "version" ) );
-		
-		string version;
-		GetGame().GetVersion( version );
-		#ifdef PLATFORM_CONSOLE
-			version = "#main_menu_version" + " " + version + " (" + g_Game.GetDatabaseID() + ")";
-		#else
-			version = "#main_menu_version" + " " + version;
-		#endif
-		m_Version.SetText( version );
 		
 		Man player = GetGame().GetPlayer();
 		bool player_is_alive = false;
@@ -80,8 +71,19 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		}
 		
-		m_ExitButton.Show( player_is_alive );
-		m_ExitDeadButton.Show( !player_is_alive );
+		if ( !player_is_alive )
+		{
+			SetFocus(m_RestartDeadButton);
+		}
+		
+		string version;
+		GetGame().GetVersion( version );
+		#ifdef PLATFORM_CONSOLE
+			version = "#main_menu_version" + " " + version + " (" + g_Game.GetDatabaseID() + ")";
+		#else
+			version = "#main_menu_version" + " " + version;
+		#endif
+		m_Version.SetText( version );
 		
 		if( GetGame().IsMultiplayer() )
 		{
@@ -121,7 +123,9 @@ class InGameMenuXbox extends UIScriptedMenu
 				else
 				{
 					layoutRoot.FindAnyWidget( "Mute" ).Show( true );
+					#ifndef PLATFORM_PS4
 					layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+					#endif
 					if( OnlineServices.IsPlayerMuted( uid ) )
 					{
 						mute_text.SetText( "#xbox_ingame_menu_unmute" );
@@ -182,12 +186,10 @@ class InGameMenuXbox extends UIScriptedMenu
 		PPEffects.SetBlurMenu( 0.6 );
 			
 		#ifdef PLATFORM_PS4
-			m_OptionsButton.Show( false );
-		
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "SelectIcon" );
 			ImageWidget toolbar_b = layoutRoot.FindAnyWidget( "BackIcon" );
-			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "GamercardIcon" );
-			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "MuteIcon" );
+			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "MuteIcon" );
+			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "GamercardIcon" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:cross" );
 			toolbar_b.LoadImageFile( 0, "set:playstation_buttons image:circle" );
 			toolbar_x.LoadImageFile( 0, "set:playstation_buttons image:square" );
@@ -258,9 +260,9 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		}
 		
-		if ( w == m_ExitDeadButton )
+		if ( w == m_RestartDeadButton )
 		{
-			GetGame().GetMission().AbortMission();
+			GameRetry();
 			return true;
 		}
 
@@ -294,34 +296,36 @@ class InGameMenuXbox extends UIScriptedMenu
 			g_Game.CancelQueueTime();
 		}
 		else if ( code == IDC_INT_RETRY && result == DBB_YES )
-		{
-			if ( GetGame().IsMultiplayer() )
-			{
-				GetGame().GetUIManager().CloseAll();
-				GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RespawnPlayer);
-				//turns off dead screen, hides HUD for countdown
-				//---------------------------------------------------
-				PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
-				if(player)
-				{
-					GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(player.ShowDeadScreen, DayZPlayerImplement.DEAD_SCREEN_DELAY, false, false);
-				}
-				
-				GetGame().GetUIManager().CloseAll();
-				//---------------------------------------------------
-				GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().GetMission().Continue);
-				
-				return true;
-			}
-			else
-			{
-				GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RestartMission);
-			}
-			
+		{			
+			GameRetry();
 			return true;
 		}
 		
 		return false;
+	}
+	
+	void GameRetry()
+	{
+		if ( GetGame().IsMultiplayer() )
+		{
+			GetGame().GetUIManager().CloseAll();
+			GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RespawnPlayer);
+			//turns off dead screen, hides HUD for countdown
+			//---------------------------------------------------
+			PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+			if(player)
+			{
+				GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallLater(player.ShowDeadScreen, DayZPlayerImplement.DEAD_SCREEN_DELAY, false, false);
+			}
+			
+			GetGame().GetUIManager().CloseAll();
+			//---------------------------------------------------
+			GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().GetMission().Continue);
+		}
+		else
+		{
+			GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RestartMission);
+		}
 	}
 	
 	bool IsLocalPlayer( string uid )
@@ -349,6 +353,8 @@ class InGameMenuXbox extends UIScriptedMenu
 	
 	override void Update( float timeslice )
 	{
+		UpdateGUI();
+		
 		string uid;
 		if( GetGame().IsMultiplayer() && layoutRoot.FindAnyWidget( "OnlineInfo" ).IsVisible() )
 		{
@@ -369,7 +375,9 @@ class InGameMenuXbox extends UIScriptedMenu
 						else
 						{
 							layoutRoot.FindAnyWidget( "Mute" ).Show( true );
+							#ifndef PLATFORM_PS4
 							layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+							#endif
 							if( OnlineServices.IsPlayerMuted( uid ) )
 							{
 								mute_text.SetText( "#xbox_ingame_menu_unmute" );
@@ -403,7 +411,9 @@ class InGameMenuXbox extends UIScriptedMenu
 						else
 						{
 							layoutRoot.FindAnyWidget( "Mute" ).Show( true );
+							#ifndef PLATFORM_PS4
 							layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+							#endif
 							if( OnlineServices.IsPlayerMuted( uid ) )
 							{
 								mute_text.SetText( "#xbox_ingame_menu_unmute" );
@@ -456,6 +466,7 @@ class InGameMenuXbox extends UIScriptedMenu
 				}
 			}
 			
+			#ifndef PLATFORM_PS4
 			if( GetGame().GetInput().LocalPress( "UAUICtrlY", false ) )
 			{
 				if( m_ServerInfoPanel )
@@ -466,7 +477,36 @@ class InGameMenuXbox extends UIScriptedMenu
 					return;
 				OnlineServices.ShowUserProfile( uid );
 			}
+			#endif
 		}
+	}
+	
+	void UpdateGUI()
+	{
+		Man player = GetGame().GetPlayer();
+		bool player_is_alive = false;
+
+		if (player)
+		{
+			int life_state = player.GetPlayerState();
+
+			if (life_state == EPlayerStates.ALIVE)
+			{
+				player_is_alive = true;
+			}
+		}
+		
+		if ( player_is_alive )
+		{
+			m_RestartButton.Show( player.IsUnconscious() );
+		}
+		else
+		{
+			m_RestartButton.Show( false );
+		}
+		
+		m_ContinueButton.Show( player_is_alive );
+		m_RestartDeadButton.Show( !player_is_alive );		
 	}
 	
 	bool IsOnlineOpen()
@@ -480,6 +520,9 @@ class InGameMenuXbox extends UIScriptedMenu
 		layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
 		layoutRoot.FindAnyWidget( "dayz_logo" ).Show( true );
 		layoutRoot.FindAnyWidget( "Select" ).Show( true );
+		layoutRoot.FindAnyWidget( "Mute" ).Show( false );
+		layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
+		
 		
 		SetFocus( m_OnlineButton );
 	}
@@ -500,7 +543,9 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 			else
 			{
+				#ifndef PLATFORM_PS4
 				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+				#endif
 				layoutRoot.FindAnyWidget( "Mute" ).Show( true );
 			}
 		}
@@ -526,7 +571,9 @@ class InGameMenuXbox extends UIScriptedMenu
 			else
 			{
 				layoutRoot.FindAnyWidget( "Mute" ).Show( true );
+				#ifndef PLATFORM_PS4
 				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+				#endif
 				if( OnlineServices.IsPlayerMuted( uid ) )
 				{
 					mute_text.SetText( "#xbox_ingame_menu_unmute" );
@@ -560,7 +607,9 @@ class InGameMenuXbox extends UIScriptedMenu
 			else
 			{
 				layoutRoot.FindAnyWidget( "Mute" ).Show( true );
+				#ifndef PLATFORM_PS4
 				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+				#endif
 				if( OnlineServices.IsPlayerMuted( uid ) )
 				{
 					mute_text.SetText( "#xbox_ingame_menu_unmute" );
@@ -639,34 +688,7 @@ class InGameMenuXbox extends UIScriptedMenu
 		#endif
 		m_Version.SetText( version );
 	}
-	/*
-	//Coloring functions (Until WidgetStyles are useful)
-	void ColorHighlight( Widget w )
-	{
-		SetFocus( w );
-		
-		ButtonWidget button = ButtonWidget.Cast( w );
-		if( button && button != m_ContinueButton )
-		{
-			button.SetTextColor( ARGB( 255, 255, 0, 0 ) );
-		}
-		
-		
-	}
 	
-	void ColorNormal( Widget w )
-	{
-		#ifdef PLATFORM_WINDOWS
-		SetFocus( null );
-		#endif
-		
-		ButtonWidget button = ButtonWidget.Cast( w );
-		if( button && button != m_ContinueButton )
-		{
-			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
-		}
-	}
-	*/
 	void ColorDisable( Widget w )
 	{
 		#ifdef PLATFORM_WINDOWS
@@ -686,9 +708,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		if( !w )
 			return;
-		
-		//SetFocus( w );
-		
+				
 		int color_pnl = ARGB(255, 0, 0, 0);
 		int color_lbl = ARGB(255, 255, 0, 0);
 		

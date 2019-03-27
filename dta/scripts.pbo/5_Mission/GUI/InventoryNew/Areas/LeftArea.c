@@ -156,6 +156,12 @@ class LeftArea: Container
 		UpdateSelectionIcons();
 	}
 	
+	override void SetLastActive()
+	{
+		UnfocusAll();
+		UpdateSelectionIcons();
+	}
+	
 	override void SetNextActive()
 	{
 		Container active_container = Container.Cast( m_Body.Get( m_ActiveIndex ) );
