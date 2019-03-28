@@ -35,7 +35,7 @@ class DayZInfectedType extends DayZCreatureAIType
 		m_SuitableFinisherHitComponents = new array<string>;
 		m_SuitableFinisherHitComponents.Insert("Head");
 		m_SuitableFinisherHitComponents.Insert("Neck");
-		//m_SuitableFinisherHitComponents.Insert("Torso");
+		m_SuitableFinisherHitComponents.Insert("Torso");
 
 		//! register hit components that are selected by probability
 		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Head", 2);

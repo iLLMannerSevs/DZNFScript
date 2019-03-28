@@ -1242,7 +1242,7 @@ class IngameHud extends Hud
 		super.Update( timeslice );
 
 		m_ActionTargetsCursor.Update();
-
+		DisplayPresence();
 		//
 		//modifiers - tendency status (critical)
 		if ( m_BlinkTime > TENDENCY_BLINK_TIME )

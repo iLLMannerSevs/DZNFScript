@@ -48,13 +48,13 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "0"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -87,13 +87,13 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "1"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -126,13 +126,13 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "2"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -165,13 +165,13 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "3"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -205,13 +205,13 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "4"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -244,6 +244,7 @@ FrameWidgetClass rootFrame {
        vexactsize 0
        text "5"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text h" 0
@@ -251,7 +252,6 @@ FrameWidgetClass rootFrame {
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -284,13 +284,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "6"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -323,13 +323,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "7"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -362,13 +362,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "8"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -401,13 +401,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "9"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -440,13 +440,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "10"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -480,13 +480,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "11"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -519,13 +519,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "12"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -558,13 +558,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "13"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -588,6 +588,7 @@ FrameWidgetClass rootFrame {
      {
       RichTextWidgetClass TextWidget14 {
        visible 1
+       clipchildren 0
        size 280 60
        halign center_ref
        valign center_ref
@@ -597,13 +598,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "14"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -650,13 +651,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "15"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -689,13 +690,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "16"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -728,13 +729,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "17"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -767,13 +768,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "18"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -806,13 +807,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "19"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -845,13 +846,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "20"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -884,13 +885,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "21"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -923,13 +924,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "22"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -962,13 +963,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "23"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1001,13 +1002,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "24"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1040,13 +1041,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "25"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1079,13 +1080,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "26"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1118,13 +1119,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "27"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1157,13 +1158,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "28"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1196,13 +1197,13 @@ FrameWidgetClass rootFrame {
        vexactsize 1
        text "29"
        font "gui/fonts/sdf_MetronLight24"
+       "text spacing" 0 5
        "exact text" 1
        "exact text size" 20
        "size to text v" 1
        "text halign" center
        "text valign" center
        wrap 1
-       "content offset" 4
       }
      }
     }
@@ -1222,9 +1223,9 @@ FrameWidgetClass rootFrame {
      visible 1
      clipchildren 0
      ignorepointer 1
-     position 0.05 80
+     position 150 80
      size 890 60
-     hexactpos 0
+     hexactpos 1
      vexactpos 1
      hexactsize 1
      vexactsize 1
@@ -1714,7 +1715,7 @@ FrameWidgetClass rootFrame {
        visible 1
        clipchildren 0
        ignorepointer 1
-       position 0 0
+       position 4.096 1.024
        size 1 1
        hexactpos 1
        vexactpos 1
@@ -4878,10 +4879,10 @@ FrameWidgetClass rootFrame {
   }
   TextWidgetClass TutorialsTextWidget {
    ignorepointer 1
-   position 80 80
+   position 0.05 80
    size 0.35 50
    halign right_ref
-   hexactpos 1
+   hexactpos 0
    vexactpos 1
    hexactsize 0
    vexactsize 1

@@ -209,6 +209,21 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			SetFocusToIndex( true );
 	}
 	
+	override void SetLastActive()
+	{
+		if( GetFocusedContainer() )
+		{
+			GetFocusedContainer().UnfocusAll();
+		}
+		
+		Container old = GetFocusedContainer();
+		m_ActiveIndex = m_Body.Count() - 1;
+		if( old != GetFocusedContainer() )
+			old.SetActive( false );
+		
+		SetFocusToIndex( true, true );
+	}
+	
 	void EquipmentMoveUp()
 	{
 		PlayerContainer pc = PlayerContainer.Cast( m_Parent );
@@ -400,7 +415,7 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		}
 	}
 	
-	void SetFocusToIndex( bool focus )
+	void SetFocusToIndex( bool focus, bool last = false )
 	{
 		int index = m_ActiveIndex - 1;
 		int attachment_start_index = -1;
@@ -432,7 +447,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				{
 					if( focus )
 					{
-						m_Atts.SetDefaultFocus();
+						if( last )
+							m_Atts.SetLastActive();
+						else
+							m_Atts.SetDefaultFocus();
 					}
 					else
 					{
@@ -444,7 +462,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				{
 					if( focus )
 					{
-						m_AttachmentAttachments.GetElement( index - 1 ).SetDefaultFocus();
+						if( last )
+							m_AttachmentAttachments.GetElement( index - 1 ).SetLastActive();
+						else
+							m_AttachmentAttachments.GetElement( index - 1 ).SetDefaultFocus();
 					}
 					else
 					{
@@ -457,7 +478,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			{
 				if( focus )
 				{
-					m_AttachmentAttachments.GetElement( index ).SetDefaultFocus();
+					if( last )
+						m_AttachmentAttachments.GetElement( index ).SetLastActive();
+					else
+						m_AttachmentAttachments.GetElement( index ).SetDefaultFocus();
 				}
 				else
 				{
@@ -473,7 +497,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				{
 					if( focus )
 					{
-						m_CargoGrid.SetDefaultFocus();
+						if( last )
+							m_CargoGrid.SetLastActive();
+						else
+							m_CargoGrid.SetDefaultFocus();
 					}
 					else
 					{
@@ -484,7 +511,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 				{
 					if( focus )
 					{
-						m_AttachmentCargos.GetElement( index - 1 - cargo_start_index ).SetDefaultFocus();
+						if( last )
+							m_AttachmentCargos.GetElement( index - 1 - cargo_start_index ).SetLastActive();
+						else
+							m_AttachmentCargos.GetElement( index - 1 - cargo_start_index ).SetDefaultFocus();
 					}
 					else
 					{
@@ -496,7 +526,10 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			{
 				if( focus )
 				{
-					m_AttachmentCargos.GetElement( index - cargo_start_index ).SetDefaultFocus();
+					if( last )
+						m_AttachmentCargos.GetElement( index - cargo_start_index ).SetLastActive();
+					else
+						m_AttachmentCargos.GetElement( index - cargo_start_index ).SetDefaultFocus();
 				}
 				else
 				{
@@ -692,8 +725,6 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		name.Replace( "Temperature", "Selected" );
 		w.FindAnyWidget( name ).Show( false );
 		w.FindAnyWidget( name ).SetColor( ARGBF( 1, 1, 1, 1 ) );
-		name.Replace( "Selected", "GhostSlot" );
-		w.GetParent().FindAnyWidget( name ).Show( true );
 	}
 
 	void DropReceived( Widget w, int x, int y, CargoContainer cargo )

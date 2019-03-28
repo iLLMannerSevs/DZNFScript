@@ -817,9 +817,6 @@ class HandsContainer: Container
 		name.Replace( "Col", "Selected" );
 		w.FindAnyWidget( name ).Show( false );
 		w.FindAnyWidget( name ).SetColor( ARGBF( 1, 1, 1, 1 ) );
-		name.Replace( "Selected", "Render" );
-		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
-		ipw.SetItem( null );
 		ItemManager.GetInstance().SetDraggedItem( null );
 
 		return false;

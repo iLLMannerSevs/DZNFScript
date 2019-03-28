@@ -2,7 +2,7 @@ class CanisterGasoline extends Bottle_Base
 {
 	void CanisterGasoline()
 	{
-		
+		m_LiquidEmptyRate = 2000;
 	}
 	
 	void ~CanisterGasoline()

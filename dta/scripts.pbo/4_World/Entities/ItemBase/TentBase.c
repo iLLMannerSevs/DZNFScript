@@ -448,7 +448,7 @@ class TentBase extends ItemBase
 	void Refresh()
 	{
 		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).Call( UpdateVisuals );
-		UpdatePhysics();
+		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( UpdatePhysics, 100, false );
 	}
 	
 	bool CanToggleAnimations( string selection )

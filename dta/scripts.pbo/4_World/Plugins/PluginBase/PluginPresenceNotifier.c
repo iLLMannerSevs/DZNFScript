@@ -126,16 +126,17 @@ class PluginPresenceNotifier extends PluginBase
 	
 	protected void ShowCoefsDbg(bool pEnabled)
 	{
-		ref HumanMovementState	hms = new HumanMovementState();
-		m_pPlayer.GetMovementState(hms);
-		
-		string visualAlertLevel;
-		string noiseAlertLevel;
 
 		DbgUI.BeginCleanupScope();
 
-		if (pEnabled)
+		if (pEnabled && m_pPlayer)
 		{
+			ref HumanMovementState	hms = new HumanMovementState();
+			m_pPlayer.GetMovementState(hms);
+			
+			string visualAlertLevel;
+			string noiseAlertLevel;
+
 			DbgUI.Begin("Presence Notifier", windowPosX + 10, windowPosY);
 			DbgUI.Panel("MinimumSize", mainPanelSizeX, mainPanelSizeY);
 

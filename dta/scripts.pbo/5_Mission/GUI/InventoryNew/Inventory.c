@@ -599,6 +599,10 @@ class Inventory: LayoutHolder
 			{
 				m_RightArea.EquipItem();
 			}
+			else if( m_LeftArea.IsActive() )
+			{
+				m_LeftArea.EquipItem();
+			}
 			
 			UpdateConsoleToolbar();
 			ItemManager.GetInstance().HideTooltip();

@@ -68,15 +68,15 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 	{
 		if ( m_ActionData && m_ActionData.m_Player )
 		{
-			if ( pCanceled ) 
-			{
+			//if ( pCanceled ) 
+			//{
 				if ( m_ActionData && m_ActionData.m_ActionComponent )
 					m_ActionData.m_State = m_ActionData.m_ActionComponent.Interrupt(m_ActionData);
 				if ( (!GetGame().IsMultiplayer() || GetGame().IsClient()) && GetGame().GetUIManager() && GetGame().GetUIManager().IsMenuOpen(MENU_MAP) )
 				{
 					GetGame().GetUIManager().FindMenu(MENU_MAP).Close();
 				}
-			}
+			//}
 			
 			ActionUnfoldMap action = ActionUnfoldMap.Cast(m_ActionData.m_Action);
 			

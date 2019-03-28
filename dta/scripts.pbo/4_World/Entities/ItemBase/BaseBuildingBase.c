@@ -45,9 +45,6 @@ class BaseBuildingBase extends ItemBase
 		RegisterNetSyncVariableInt( "m_InteractedPartId" );
 		RegisterNetSyncVariableInt( "m_PerformedActionId" );
 		RegisterNetSyncVariableBool( "m_HasBase" );
-		
-		//Construction init
-		ConstructionInit();
 	}
 
 	// --- SYNCHRONIZATION
@@ -59,16 +56,16 @@ class BaseBuildingBase extends ItemBase
 			
 			if ( GetGame().IsMultiplayer() )
 			{
-				RefreshBaseState();
+				Refresh();
 			}
 		}
 	}
 	
 	//refresh visual/physics state
-	void RefreshBaseState()
+	void Refresh()
 	{
 		UpdateVisuals();
-		UpdatePhysics();
+		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( UpdatePhysics, 200, false );
 	}
 	
 	override void OnVariablesSynchronized()
@@ -82,7 +79,7 @@ class BaseBuildingBase extends ItemBase
 		SetActionFromSyncData();
 		
 		//update visuals (client)
-		RefreshBaseState();
+		Refresh();
 	}
 	
 	//parts synchronization
@@ -381,13 +378,19 @@ class BaseBuildingBase extends ItemBase
 	{
 		super.EEInit();
 		
+		//Construction init
+		ConstructionInit();
+		
 		//update visuals and physics
-		RefreshBaseState();
+		Refresh();
 	}
 
 	override void OnItemLocationChanged( EntityAI old_owner, EntityAI new_owner ) 
 	{
 		super.OnItemLocationChanged( old_owner, new_owner );
+		
+		//update visuals after location change
+		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( UpdatePhysics, 200, false );
 	}
 	
 	override void EEItemAttached ( EntityAI item, string slot_name )
@@ -395,7 +398,7 @@ class BaseBuildingBase extends ItemBase
 		super.EEItemAttached ( item, slot_name );
 		
 		//update visuals and physics
-		RefreshBaseState();
+		Refresh();
 	}
 	
 	override void EEItemDetached ( EntityAI item, string slot_name )
@@ -403,7 +406,7 @@ class BaseBuildingBase extends ItemBase
 		super.EEItemDetached ( item, slot_name );
 		
 		//update visuals and physics
-		RefreshBaseState();
+		Refresh();
 	}
 	
 	//CONSTRUCTION EVENTS

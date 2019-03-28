@@ -399,7 +399,7 @@ FrameWidgetClass FrameWidget {
         }
        }
       }
-      ButtonWidgetClass exitbtn_dead {
+      ButtonWidgetClass restartbtn_dead {
        visible 0
        color 0 0 0 0
        position 0 0
@@ -410,7 +410,6 @@ FrameWidgetClass FrameWidget {
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       userID 114
        style Empty
        "no focus" 0
        "next left" ""
@@ -421,7 +420,7 @@ FrameWidgetClass FrameWidget {
        font "gui/fonts/sdf_MetronLight72"
        switch normal
        {
-        PanelWidgetClass exitbtn_dead_panel {
+        PanelWidgetClass restartbtn_dead_panel {
          visible 1
          ignorepointer 1
          color 0 0 0 0
@@ -433,7 +432,7 @@ FrameWidgetClass FrameWidget {
          vexactsize 0
          style rover_sim_colorable
          {
-          TextWidgetClass exitbtn_dead_label {
+          TextWidgetClass restartbtn_dead_label {
            ignorepointer 1
            size 1 0.6
            halign center_ref
@@ -442,7 +441,7 @@ FrameWidgetClass FrameWidget {
            vexactpos 1
            hexactsize 0
            vexactsize 0
-           text "#main_menu_exit"
+           text "#main_menu_restart"
            font "gui/fonts/sdf_MetronLight24"
            "text halign" center
            "text valign" center

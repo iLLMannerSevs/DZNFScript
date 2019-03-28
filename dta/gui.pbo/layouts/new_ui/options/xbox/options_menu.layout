@@ -23,7 +23,7 @@ FrameWidgetClass settings_menu_root {
      visible 1
      clipchildren 0
      ignorepointer 1
-     position 80 80
+     position 150 80
      size 550 60
      hexactpos 1
      vexactpos 1
@@ -314,8 +314,8 @@ FrameWidgetClass settings_menu_root {
     FrameWidgetClass Tab_0 {
      visible 1
      ignorepointer 1
-     position 80 160
-     size 1760 800
+     position 105 160
+     size 1709 800
      hexactpos 1
      vexactpos 1
      hexactsize 1

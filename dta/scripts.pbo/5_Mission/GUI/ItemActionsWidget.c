@@ -16,7 +16,6 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 
 	protected Widget					m_Root;
 	protected Widget 					m_ItemLeft;
-	ref AutoHeightSpacer				m_HealthQuantitySpacer;
 
 	//! widget width
 	protected float m_MaxWidthChild;
@@ -80,8 +79,6 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		m_Root.Show(false);
 
 		m_ItemLeft = w.FindAnyWidget("ia_item_left");
-		m_ItemLeft.GetScript( m_HealthQuantitySpacer );
-		m_HealthQuantitySpacer.Update();
 		
 #ifdef PLATFORM_XBOX
 		SetSingleXboxIcon("xbox_buttons", "RT");
@@ -133,8 +130,6 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		SetActionWidget(m_Single, GetActionDesc(m_Single), "ia_single", "ia_single_action_name");
 		SetActionWidget(m_Continuous, GetActionDesc(m_Continuous), "ia_continuous", "ia_continuous_action_name");
 		SetMultipleInteractAction("ia_interact_mlt_wrapper");
-		
-		m_HealthQuantitySpacer.Update();
 	}
 		
 	protected void Update()

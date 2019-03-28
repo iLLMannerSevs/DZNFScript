@@ -2134,7 +2134,7 @@ FrameWidgetClass HudFrameWidget {
      filter 1
      nocache 0
     }
-    FrameWidgetClass ActionTargetsCursorWidget {
+    GridSpacerWidgetClass ActionTargetsCursorWidget {
      visible 1
      clipchildren 0
      inheritalpha 0
@@ -2149,150 +2149,218 @@ FrameWidgetClass HudFrameWidget {
      fixaspect fixwidth
      draggable 0
      scriptclass "ActionTargetsCursor"
+     Padding 0
+     Margin 0
+     "Size To Content H" 1
+     "Size To Content V" 1
+     Columns 1
      {
-      ImageWidgetClass container {
+      ImageWidgetClass item {
+       visible 1
        clipchildren 0
-       inheritalpha 1
+       inheritalpha 0
        color 0.3137 0.3137 0.3137 0.6275
        position 0 0
-       size 350 172
+       size 350 40
        hexactpos 1
        vexactpos 1
        hexactsize 1
        vexactsize 1
        scaled 1
-       fixaspect inside
-       scriptclass "AutoHeightSpacer"
+       scriptclass ""
        imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
        mode blend
        "src alpha" 1
        stretch 1
        {
-        ContentWidgetClass item {
-         visible 1
-         clipchildren 0
+        GridSpacerWidgetClass item_left {
+         clipchildren 1
          inheritalpha 0
-         color 1 1 1 0
          position 0 0
-         size 350 40
+         size 60 30
+         valign center_ref
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
+         scriptclass ""
+         Padding 0
+         Margin 0
+         "Size To Content H" 1
+         "Size To Content V" 1
+         Columns 1
+         Rows 2
          {
-          ContentWidgetClass item_left {
-           clipchildren 1
+          ContentWidgetClass item_health_mark_wrapper {
+           visible 1
            inheritalpha 0
-           position 0 0
-           size 60 40
-           valign center_ref
+           size 60 10
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 1
            scaled 1
-           scriptclass "AutoHeightSpacer"
            {
-            ContentWidgetClass item_health_mark_wrapper {
-             visible 1
-             inheritalpha 0
-             size 60 10
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             {
-              ImageWidgetClass item_health_mark {
-               visible 1
-               clipchildren 1
-               inheritalpha 0
-               color 1 1 1 0.498
-               size 8 8
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               image0 "set:dayz_gui image:circle"
-               mode blend
-               "src alpha" 1
-               "no wrap" 1
-               stretch 0
-               filter 1
-               nocache 0
-              }
-             }
-            }
-            ContentWidgetClass item_quantity_wrapper {
+            ImageWidgetClass item_health_mark {
              visible 1
              clipchildren 1
              inheritalpha 0
-             size 60 10
+             color 1 1 1 0.498
+             size 8 8
+             halign center_ref
+             valign center_ref
              hexactpos 1
              vexactpos 1
              hexactsize 1
              vexactsize 1
              scaled 1
-             {
-              ProgressBarWidgetClass item_quantity_pb {
-               visible 1
-               inheritalpha 0
-               size 36 4
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               style Quantity
-               "no focus" 0
-               vertical 0
-               flipped 0
-              }
-              TextWidgetClass item_quantity_text {
-               visible 0
-               disabled 0
-               clipchildren 1
-               inheritalpha 0
-               size 36 10
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               style None
-               text "10/30"
-               font "gui/fonts/sdf_MetronBook72"
-               "shadow size" 3
-               "shadow offset" 2 2
-               "italic text" 0
-               "bold text" 0
-               "exact text" 0
-               "text halign" center
-               "text valign" center
-              }
-             }
-            }
-           }
-           {
-            ScriptParamsClass {
-             AlignChilds 1
-             Gap 6
+             image0 "set:dayz_gui image:circle"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 0
+             filter 1
+             nocache 0
             }
            }
           }
-          PanelWidgetClass item_right {
+          ContentWidgetClass item_quantity_wrapper {
+           visible 1
+           clipchildren 1
+           inheritalpha 0
+           position 0 0
+           size 1 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           scaled 1
+           {
+            ProgressBarWidgetClass item_quantity_pb {
+             visible 1
+             inheritalpha 0
+             size 36 4
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             style Quantity
+             "no focus" 0
+             vertical 0
+             flipped 0
+            }
+            TextWidgetClass item_quantity_text {
+             visible 0
+             disabled 0
+             clipchildren 1
+             inheritalpha 0
+             size 36 16
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             style None
+             text "10/30"
+             font "gui/fonts/sdf_MetronBook24"
+             "shadow size" 3
+             "shadow offset" 2 2
+             "italic text" 0
+             "bold text" 0
+             "exact text" 1
+             "exact text size" 14
+             "size to text h" 1
+             "size to text v" 1
+             "text halign" center
+             "text valign" center
+            }
+           }
+          }
+         }
+        }
+        PanelWidgetClass item_right {
+         clipchildren 0
+         inheritalpha 0
+         position 60 0
+         size 290 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          TextWidgetClass item_desc {
+           visible 1
+           disabled 0
            clipchildren 0
            inheritalpha 0
-           size 290 40
+           ignorepointer 0
+           keepsafezone 0
+           position 10 0
+           size 270 16
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           style Normal
+           text "#layout_hud_action_target_description"
+           font "gui/fonts/sdf_MetronBook72"
+           "shadow size" 3
+           "shadow color" 0 0 0 1
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      ImageWidgetClass interact {
+       visible 1
+       clipchildren 0
+       inheritalpha 0
+       ignorepointer 0
+       keepsafezone 0
+       color 0.3137 0.3137 0.3137 0.6275
+       position 0 0
+       size 350 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       scaled 1
+       scriptclass ""
+       imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
+       mode blend
+       "src alpha" 1
+       stretch 1
+       {
+        ContentWidgetClass interact_left {
+         inheritalpha 0
+         position 0 0
+         size 60 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          PanelWidgetClass interact_mlt_wrapper {
+           visible 1
+           inheritalpha 0
+           position 3 0
+           size 8 16
            valign center_ref
            hexactpos 1
            vexactpos 1
@@ -2300,15 +2368,115 @@ FrameWidgetClass HudFrameWidget {
            vexactsize 1
            scaled 1
            {
-            TextWidgetClass item_desc {
+            ImageWidgetClass interact_mtl_up {
+             inheritalpha 0
+             position 0 -5
+             size 8 8
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             draggable 0
+             image0 "set:dayz_gui image:specialization_arrow"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 0
+             "flip v" 1
+            }
+            ImageWidgetClass interact_mtl_down {
+             inheritalpha 0
+             position 0 5
+             size 8 8
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             draggable 0
+             image0 "set:dayz_gui image:specialization_arrow"
+             mode additive
+             "src alpha" 1
+             "no wrap" 1
+             stretch 0
+             "flip u" 0
+             "flip v" 0
+            }
+           }
+          }
+          ImageWidgetClass interact_btn_icon_xbox {
+           visible 0
+           clipchildren 1
+           inheritalpha 0
+           position 0 0
+           size 32 32
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           fixaspect inside
+           scriptclass ""
+           image0 "set:xbox_buttons image:X"
+           mode blend
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           nocache 0
+          }
+          PanelWidgetClass interact_btn_icon {
+           position 0 0
+           size 60 40
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           {
+            ImageWidgetClass interact_icon_frame {
+             visible 1
+             clipchildren 1
+             inheritalpha 0
+             position 0 0
+             size 40 40
+             halign center_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             fixaspect inside
+             image0 "set:dayz_gui image:key_icon"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 0
+             "flip u" 0
+             "flip v" 0
+             filter 1
+             nocache 0
+            }
+            TextWidgetClass interact_btn_text {
              visible 1
              disabled 0
-             clipchildren 0
+             clipchildren 1
              inheritalpha 0
              ignorepointer 0
              keepsafezone 0
-             position 10 0
-             size 270 16
+             size 22 22
+             halign center_ref
              valign center_ref
              hexactpos 1
              vexactpos 1
@@ -2316,109 +2484,21 @@ FrameWidgetClass HudFrameWidget {
              vexactsize 1
              scaled 1
              style Normal
-             text "#layout_hud_action_target_description"
+             text "F"
              font "gui/fonts/sdf_MetronBook72"
+             "outline size" 1
              "shadow size" 3
-             "shadow color" 0 0 0 1
-             "italic text" 0
-             "bold text" 0
+             "shadow offset" 2 2
+             "bold text" 1
              "exact text" 0
+             "text halign" center
              "text valign" center
             }
-           }
-          }
-         }
-         {
-          ScriptParamsClass {
-          }
-         }
-        }
-        ContentWidgetClass interact {
-         visible 1
-         clipchildren 0
-         inheritalpha 0
-         ignorepointer 0
-         keepsafezone 0
-         color 1 1 1 0
-         position 0 0
-         size 350 40
-         hexactpos 1
-         vexactpos 1
-         hexactsize 1
-         vexactsize 1
-         scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
-         {
-          ContentWidgetClass interact_left {
-           inheritalpha 0
-           position 0 0
-           size 60 40
-           valign center_ref
-           hexactpos 1
-           vexactpos 1
-           hexactsize 1
-           vexactsize 1
-           scaled 1
-           {
-            PanelWidgetClass interact_mlt_wrapper {
-             visible 1
-             inheritalpha 0
-             position 3 0
-             size 8 16
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             {
-              ImageWidgetClass interact_mtl_up {
-               inheritalpha 0
-               position 0 -5
-               size 8 8
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               draggable 0
-               image0 "set:dayz_gui image:specialization_arrow"
-               mode blend
-               "src alpha" 1
-               "no wrap" 1
-               stretch 0
-               "flip v" 1
-              }
-              ImageWidgetClass interact_mtl_down {
-               inheritalpha 0
-               position 0 5
-               size 8 8
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               draggable 0
-               image0 "set:dayz_gui image:specialization_arrow"
-               mode additive
-               "src alpha" 1
-               "no wrap" 1
-               stretch 0
-               "flip u" 0
-               "flip v" 0
-              }
-             }
-            }
-            ImageWidgetClass interact_btn_icon_xbox {
+            ImageWidgetClass interact_btn_inner_icon {
              visible 0
              clipchildren 1
              inheritalpha 0
-             position 0 0
-             size 32 32
+             size 22 22
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -2426,188 +2506,7 @@ FrameWidgetClass HudFrameWidget {
              hexactsize 1
              vexactsize 1
              scaled 1
-             fixaspect inside
-             scriptclass ""
-             image0 "set:xbox_buttons image:X"
-             mode blend
-             "src alpha" 1
-             "no wrap" 1
-             stretch 0
-             "flip u" 0
-             "flip v" 0
-             nocache 0
-            }
-            PanelWidgetClass interact_btn_icon {
-             position 0 0
-             size 60 40
-             halign center_ref
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             {
-              ImageWidgetClass interact_icon_frame {
-               visible 1
-               clipchildren 1
-               inheritalpha 0
-               position 0 0
-               size 40 40
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               fixaspect inside
-               image0 "set:dayz_gui image:key_icon"
-               mode blend
-               "src alpha" 1
-               "no wrap" 1
-               stretch 0
-               "flip u" 0
-               "flip v" 0
-               filter 1
-               nocache 0
-              }
-              TextWidgetClass interact_btn_text {
-               visible 1
-               disabled 0
-               clipchildren 1
-               inheritalpha 0
-               ignorepointer 0
-               keepsafezone 0
-               size 22 22
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               style Normal
-               text "F"
-               font "gui/fonts/sdf_MetronBook72"
-               "outline size" 1
-               "shadow size" 3
-               "shadow offset" 2 2
-               "bold text" 1
-               "exact text" 0
-               "text halign" center
-               "text valign" center
-              }
-              ImageWidgetClass interact_btn_inner_icon {
-               visible 0
-               clipchildren 1
-               inheritalpha 0
-               size 22 22
-               halign center_ref
-               valign center_ref
-               hexactpos 1
-               vexactpos 1
-               hexactsize 1
-               vexactsize 1
-               scaled 1
-               image0 "set:dayz_gui image:gear"
-               mode additive
-               "src alpha" 1
-               "no wrap" 1
-               stretch 0
-               "flip u" 0
-               "flip v" 0
-               nocache 0
-              }
-             }
-            }
-           }
-          }
-          ContentWidgetClass interact_right {
-           clipchildren 0
-           inheritalpha 0
-           size 290 40
-           valign center_ref
-           hexactpos 1
-           vexactpos 1
-           hexactsize 1
-           vexactsize 1
-           scaled 1
-           {
-            TextWidgetClass interact_action_name {
-             visible 1
-             disabled 0
-             clipchildren 0
-             inheritalpha 0
-             ignorepointer 0
-             keepsafezone 0
-             position 10 0
-             size 270 16
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             style None
-             text "#layout_hud_action_target_interact"
-             font "gui/fonts/sdf_MetronBook72"
-             "shadow size" 3
-             "shadow color" 0 0 0 1
-             "shadow offset" 2 2
-             "italic text" 0
-             "bold text" 0
-             "exact text" 0
-             "text valign" center
-            }
-           }
-          }
-         }
-         {
-          ScriptParamsClass {
-          }
-         }
-        }
-        ContentWidgetClass single {
-         visible 1
-         clipchildren 0
-         inheritalpha 0
-         color 1 1 1 0
-         position 0 0
-         size 350 40
-         hexactpos 1
-         vexactpos 1
-         hexactsize 1
-         vexactsize 1
-         scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
-         {
-          ContentWidgetClass single_left {
-           inheritalpha 0
-           position 0 0
-           size 60 40
-           valign center_ref
-           hexactpos 1
-           vexactpos 1
-           hexactsize 1
-           vexactsize 1
-           scaled 1
-           {
-            ImageWidgetClass single_btn_icon {
-             visible 1
-             clipchildren 1
-             inheritalpha 0
-             position 0 0
-             size 36 36
-             halign center_ref
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             fixaspect fixwidth
-             image0 "set:dayz_gui image:left_mouse"
+             image0 "set:dayz_gui image:gear"
              mode additive
              "src alpha" 1
              "no wrap" 1
@@ -2616,202 +2515,289 @@ FrameWidgetClass HudFrameWidget {
              "flip v" 0
              nocache 0
             }
-            ImageWidgetClass single_btn_icon_xbox {
-             visible 0
-             clipchildren 1
-             inheritalpha 0
-             position 0 0
-             size 25.92 36
-             halign center_ref
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             fixaspect inside
-             scriptclass ""
-             image0 "set:xbox_buttons image:X"
-             mode blend
-             "src alpha" 1
-             "no wrap" 1
-             stretch 0
-             "flip u" 0
-             "flip v" 0
-             nocache 0
-            }
            }
-          }
-          ContentWidgetClass single_right {
-           clipchildren 0
-           inheritalpha 0
-           size 290 40
-           valign center_ref
-           hexactpos 1
-           vexactpos 1
-           hexactsize 1
-           vexactsize 1
-           scaled 1
-           {
-            TextWidgetClass single_action_name {
-             visible 1
-             disabled 0
-             clipchildren 0
-             inheritalpha 0
-             ignorepointer 0
-             keepsafezone 0
-             position 10 0
-             size 270 16
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             style None
-             text "#layout_hud_action_target_single"
-             font "gui/fonts/sdf_MetronBook72"
-             "shadow size" 3
-             "shadow color" 0 0 0 1
-             "shadow offset" 2 2
-             "italic text" 0
-             "bold text" 0
-             "exact text" 0
-             "text valign" center
-            }
-           }
-          }
-         }
-         {
-          ScriptParamsClass {
           }
          }
         }
-        ContentWidgetClass continuous {
-         visible 1
+        ContentWidgetClass interact_right {
          clipchildren 0
          inheritalpha 0
-         color 1 1 1 0
-         position 0 0
-         size 350 40
+         position 60 0
+         size 290 40
+         valign center_ref
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
          scaled 1
-         scriptclass "HorizontalSpacerWithFixedAspect"
          {
-          ContentWidgetClass continuous_left {
-           inheritalpha 0
-           position 0 0
-           size 60 40
-           valign center_ref
-           hexactpos 1
-           vexactpos 1
-           hexactsize 1
-           vexactsize 1
-           scaled 1
-           {
-            ImageWidgetClass continuous_btn_icon {
-             visible 1
-             clipchildren 1
-             inheritalpha 0
-             size 36 36
-             halign center_ref
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             fixaspect inside
-             scriptclass ""
-             image0 "set:dayz_gui image:left_mouse"
-             mode additive
-             "src alpha" 1
-             "no wrap" 1
-             stretch 0
-             "flip u" 0
-             "flip v" 0
-             nocache 0
-            }
-            ImageWidgetClass continuous_btn_icon_xbox {
-             visible 0
-             clipchildren 1
-             inheritalpha 0
-             position 0 0
-             size 25.92 36
-             halign center_ref
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             fixaspect inside
-             scriptclass ""
-             image0 "set:xbox_buttons image:X"
-             mode blend
-             "src alpha" 1
-             "no wrap" 1
-             stretch 0
-             "flip u" 0
-             "flip v" 0
-             nocache 0
-            }
-           }
-          }
-          ContentWidgetClass continuous_right {
+          TextWidgetClass interact_action_name {
+           visible 1
+           disabled 0
            clipchildren 0
            inheritalpha 0
-           position 0 0
-           size 290 40
+           ignorepointer 0
+           keepsafezone 0
+           position 10 0
+           size 270 16
            valign center_ref
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 1
            scaled 1
-           {
-            TextWidgetClass continuous_action_name {
-             visible 1
-             disabled 0
-             clipchildren 0
-             inheritalpha 0
-             ignorepointer 0
-             keepsafezone 0
-             position 10 0
-             size 270 16
-             valign center_ref
-             hexactpos 1
-             vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             scaled 1
-             style None
-             text "#layout_hud_action_target_continuous"
-             font "gui/fonts/sdf_MetronBook72"
-             "shadow size" 3
-             "shadow color" 0 0 0 1
-             "shadow offset" 2 2
-             "italic text" 0
-             "bold text" 0
-             "exact text" 0
-             "text valign" center
-            }
-           }
-          }
-         }
-         {
-          ScriptParamsClass {
+           style None
+           text "#layout_hud_action_target_interact"
+           font "gui/fonts/sdf_MetronBook72"
+           "shadow size" 3
+           "shadow color" 0 0 0 1
+           "shadow offset" 2 2
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
           }
          }
         }
        }
+      }
+      ImageWidgetClass single {
+       visible 1
+       clipchildren 0
+       inheritalpha 0
+       color 0.3137 0.3137 0.3137 0.6275
+       position 0 0
+       size 350 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       scaled 1
+       scriptclass ""
+       imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
+       mode blend
+       "src alpha" 1
+       stretch 1
        {
-        ScriptParamsClass {
-         AlignChilds 1
-         Gap 3
+        ContentWidgetClass single_left {
+         inheritalpha 0
+         position 0 0
+         size 60 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          ImageWidgetClass single_btn_icon {
+           visible 1
+           clipchildren 1
+           inheritalpha 0
+           position 0 0
+           size 36 36
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           fixaspect fixwidth
+           image0 "set:dayz_gui image:left_mouse"
+           mode additive
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           nocache 0
+          }
+          ImageWidgetClass single_btn_icon_xbox {
+           visible 0
+           clipchildren 1
+           inheritalpha 0
+           position 0 0
+           size 25.92 36
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           fixaspect inside
+           scriptclass ""
+           image0 "set:xbox_buttons image:X"
+           mode blend
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           nocache 0
+          }
+         }
+        }
+        ContentWidgetClass single_right {
+         clipchildren 0
+         inheritalpha 0
+         position 60 0
+         size 290 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          TextWidgetClass single_action_name {
+           visible 1
+           disabled 0
+           clipchildren 0
+           inheritalpha 0
+           ignorepointer 0
+           keepsafezone 0
+           position 10 0
+           size 270 16
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           style None
+           text "#layout_hud_action_target_single"
+           font "gui/fonts/sdf_MetronBook72"
+           "shadow size" 3
+           "shadow color" 0 0 0 1
+           "shadow offset" 2 2
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+      ImageWidgetClass continuous {
+       visible 1
+       clipchildren 0
+       inheritalpha 0
+       color 0.3137 0.3137 0.3137 0.6275
+       position 0 0
+       size 350 40
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       scaled 1
+       scriptclass ""
+       imageTexture "{E262CF82FD5DFF31}Gui/textures/linear_gradient.edds"
+       mode blend
+       "src alpha" 1
+       stretch 1
+       {
+        ContentWidgetClass continuous_left {
+         inheritalpha 0
+         position 0 0
+         size 60 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          ImageWidgetClass continuous_btn_icon {
+           visible 1
+           clipchildren 1
+           inheritalpha 0
+           size 36 36
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           fixaspect inside
+           scriptclass ""
+           image0 "set:dayz_gui image:left_mouse"
+           mode additive
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           nocache 0
+          }
+          ImageWidgetClass continuous_btn_icon_xbox {
+           visible 0
+           clipchildren 1
+           inheritalpha 0
+           position 0 0
+           size 25.92 36
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           fixaspect inside
+           scriptclass ""
+           image0 "set:xbox_buttons image:X"
+           mode blend
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           nocache 0
+          }
+         }
+        }
+        ContentWidgetClass continuous_right {
+         clipchildren 0
+         inheritalpha 0
+         position 60 0
+         size 290 40
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         scaled 1
+         {
+          TextWidgetClass continuous_action_name {
+           visible 1
+           disabled 0
+           clipchildren 0
+           inheritalpha 0
+           ignorepointer 0
+           keepsafezone 0
+           position 10 0
+           size 270 16
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           style None
+           text "#layout_hud_action_target_continuous"
+           font "gui/fonts/sdf_MetronBook72"
+           "shadow size" 3
+           "shadow color" 0 0 0 1
+           "shadow offset" 2 2
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
         }
        }
       }
@@ -3221,24 +3207,32 @@ FrameWidgetClass HudFrameWidget {
          "no wrap" 1
          stretch 1
          {
-          ContentWidgetClass ia_item_left {
+          GridSpacerWidgetClass ia_item_left {
            clipchildren 1
-           position 10 0
-           size 40 36
+           position 0 0
+           size 50 30
            valign center_ref
            hexactpos 1
            vexactpos 1
            hexactsize 1
            vexactsize 1
            scaled 1
-           scriptclass "AutoHeightSpacer"
+           scriptclass ""
+           Padding 0
+           Margin 0
+           "Size To Content H" 1
+           "Size To Content V" 1
+           Columns 1
+           Rows 2
            {
             ContentWidgetClass ia_item_health_mark_wrapper {
              visible 1
-             size 40 10
+             position 0 2
+             size 1 10
+             halign center_ref
              hexactpos 1
              vexactpos 1
-             hexactsize 1
+             hexactsize 0
              vexactsize 1
              scaled 1
              {
@@ -3267,11 +3261,14 @@ FrameWidgetClass HudFrameWidget {
             ContentWidgetClass ia_item_quantity_wrapper {
              visible 1
              clipchildren 1
-             size 40 10
+             position 0 0
+             size 1 1
+             halign center_ref
+             valign bottom_ref
              hexactpos 1
              vexactpos 1
-             hexactsize 1
-             vexactsize 1
+             hexactsize 0
+             vexactsize 0
              scaled 1
              {
               ProgressBarWidgetClass ia_item_quantity_pb {
@@ -3293,32 +3290,29 @@ FrameWidgetClass HudFrameWidget {
                visible 0
                disabled 0
                clipchildren 1
-               size 32 10
+               size 1 16
                halign center_ref
                valign center_ref
                hexactpos 1
                vexactpos 1
-               hexactsize 1
+               hexactsize 0
                vexactsize 1
                scaled 1
                style None
                text "10/30"
-               font "gui/fonts/sdf_MetronBook72"
+               font "gui/fonts/sdf_MetronBook24"
                "shadow size" 3
                "shadow offset" 2 2
                "italic text" 0
                "bold text" 0
-               "exact text" 0
+               "exact text" 1
+               "exact text size" 12
+               "size to text h" 1
+               "size to text v" 1
                "text halign" center
                "text valign" center
               }
              }
-            }
-           }
-           {
-            ScriptParamsClass {
-             AlignChilds 1
-             Gap 6
             }
            }
           }
@@ -3484,7 +3478,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 32 32
+             size 36 36
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -3682,7 +3676,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 23.04 32
+             size 25.92 36
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -3796,7 +3790,7 @@ FrameWidgetClass HudFrameWidget {
              clipchildren 1
              inheritalpha 0
              position 0 0
-             size 23.04 32
+             size 25.92 36
              halign center_ref
              valign center_ref
              hexactpos 1

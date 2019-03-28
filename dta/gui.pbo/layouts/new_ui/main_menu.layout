@@ -1401,7 +1401,6 @@ FrameWidgetClass main_menu_root {
      vexactpos 1
      hexactsize 1
      vexactsize 1
-     imageTexture ""
      mode blend
      "src alpha" 0
      "no wrap" 1
