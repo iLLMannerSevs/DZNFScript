@@ -106,6 +106,8 @@ class Edible_Base extends ItemBase
 	
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();
+		
 		//synchronize
 		Synchronize();
 	}	

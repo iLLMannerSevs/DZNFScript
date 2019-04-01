@@ -289,6 +289,8 @@ class FireplaceBase extends ItemBase
 	
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();
+				
 		//synchronize
 		Synchronize();
 		

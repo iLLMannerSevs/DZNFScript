@@ -423,6 +423,12 @@ class Particle extends ScriptedEntity
 		return p;
 	}
 	
+	//! LEGACY FUNCTION!
+	static Particle Create( int particle_id, Object parent_obj, vector local_pos = "0 0 0", vector local_ori = "0 0 0" )
+	{
+		return CreateOnObject( particle_id, parent_obj, local_pos, local_ori);
+	}
+	
 	/**
 	\brief Creates a particle emitter on the given position
 		\param particle_id \p int Particle ID registered in ParticleList.c
@@ -446,6 +452,12 @@ class Particle extends ScriptedEntity
 		}
 		
 		return null;
+	}
+	
+	//! Legacy function for modding support from 1.01 and below.
+	static Particle Create( int particle_id, vector global_pos, vector global_ori = "0 0 0" )
+	{
+		return CreateInWorld( particle_id, global_pos, global_ori );
 	}
 	
 	
@@ -472,6 +484,12 @@ class Particle extends ScriptedEntity
 		return p;
 	}
 	
+	//! Legacy function for modding support from 1.01 and below.
+	static Particle Play( int particle_id, Object parent_obj, vector local_pos = "0 0 0", vector local_ori = "0 0 0" )
+	{
+		return PlayOnObject( particle_id, parent_obj, local_pos, local_ori);
+	}
+	
 	/**
 	\brief Creates a particle emitter on the given position and activates it
 		\param particle_id \p int Particle ID registered in ParticleList.c
@@ -486,6 +504,12 @@ class Particle extends ScriptedEntity
 		return p;
 	}
 	
+	//! Legacy function for modding support from 1.01 and below.
+	static Particle Play( int particle_id, vector global_pos)
+	{
+		return PlayInWorld( particle_id, global_pos);
+	}
+	
 	//! Plays the current particle. The optional parameter changes this particle for the new one.
 	void PlayParticle(int particle_id = -1)
 	{
@@ -497,6 +521,12 @@ class Particle extends ScriptedEntity
 		m_IsPlaying = true;
 
 		UpdateState();
+	}
+	
+	//! Legacy function for modding support from 1.01 and below. Please use PlayParticle(...) instead of this one.
+	void Play(int particle_id = -1)
+	{
+		PlayParticle(particle_id);
 	}
 	
 	//! Stops generating particles. Emitter is later automatically removed from memory on clients when its particle count is 0.

@@ -29,16 +29,19 @@ class Watchtower extends BaseBuildingBase
 		{
 			//check action initiator (AT_ATTACH_TO_CONSTRUCTION)
 			player = PlayerBase.Cast( GetGame().GetPlayer() );
-			ConstructionActionData construction_action_data = player.GetConstructionActionData();
-			PlayerBase action_initiator = construction_action_data.GetActionInitiator();
-			
-			if ( action_initiator == player )			
+			if ( player )
 			{
-				construction_action_data.SetActionInitiator( NULL );				//reset action initiator
-			}
-			else
-			{
-				player = null;					//do not do vertical check (next)
+				ConstructionActionData construction_action_data = player.GetConstructionActionData();
+				PlayerBase action_initiator = construction_action_data.GetActionInitiator();
+				
+				if ( action_initiator == player )			
+				{
+					construction_action_data.SetActionInitiator( NULL );				//reset action initiator
+				}
+				else
+				{
+					player = null;					//do not do vertical check (next)
+				}
 			}
 		}
 		//

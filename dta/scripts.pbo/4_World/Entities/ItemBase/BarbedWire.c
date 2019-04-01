@@ -177,6 +177,8 @@ class BarbedWire extends ItemBase
 
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();
+				
 		// m_IsMounted is already set during Load - but not Active! this is done here because hierarchy
 		SetMountedState( m_IsMounted );
 	}
