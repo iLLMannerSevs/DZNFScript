@@ -2,7 +2,7 @@
 //DeRap: scripts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Wed Mar 27 18:33:47 2019 : 'file' last modified on Wed Mar 27 13:58:38 2019
+//'now' is Mon Apr 01 10:28:06 2019 : 'file' last modified on Fri Mar 29 09:53:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

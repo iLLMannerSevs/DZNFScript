@@ -363,6 +363,8 @@ class BaseBuildingBase extends ItemBase
 	
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();		
+		
 		//update server data
 		SetPartsFromSyncData();
 		

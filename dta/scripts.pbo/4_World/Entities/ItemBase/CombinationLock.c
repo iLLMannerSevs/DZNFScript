@@ -62,7 +62,7 @@ class CombinationLock extends ItemBase
 				if ( fence )
 				{
 					//drop entity
-					fence.GetInventory().DropEntity( InventoryMode.PREDICTIVE, fence, this );
+					fence.GetInventory().DropEntity( InventoryMode.LOCAL, fence, this );
 				}
 			}
 		}
@@ -165,6 +165,8 @@ class CombinationLock extends ItemBase
 	
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();		
+		
 		//is lock attached
 		m_IsLockAttached = false;
 		

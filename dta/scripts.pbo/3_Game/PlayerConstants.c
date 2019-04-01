@@ -65,8 +65,8 @@ class PlayerConstants
 	//--------------------------------------------------------
 	static const int BLOOD_THRESHOLD_FATAL 					= 2500;	//fatal blood level
 	
-	static const float BLOOD_REGEN_RATE_PER_SEC				= 0.7; 	//base amount of blood regenerated per second
-	static const float DAMAGE_ZONE_BLOOD_REGEN_MODIFIER 	= 0.7;
+	static const float BLOOD_REGEN_RATE_PER_SEC				= 0.5; 	//base amount of blood regenerated per second
+	static const float DAMAGE_ZONE_BLOOD_REGEN_MODIFIER 	= 0.5;
 	
 	//static const int BLOOD_REGEN_THRESHOLD_ENERGY_LOW		= 200;
 	//static const int BLOOD_REGEN_THRESHOLD_ENERGY_MID		= 400;
@@ -88,7 +88,7 @@ class PlayerConstants
 	static const float SALINE_LIQUID_AMOUNT					= 250;
 	
 	static const float HEMOLYTIC_BLOOD_DRAIN_PER_SEC		= 2;	//hemolytic reaction blood drain per second
-	static const float HEMOLYTIC_BLOODLOSS_AMOUNT			= 250;
+	static const float HEMOLYTIC_BLOODLOSS_AMOUNT			= 1000;
 	
 	static const float WATER_LOSS_THRESHOLD_HC_PLUS_LOW		= THRESHOLD_HEAT_COMFORT_PLUS_WARNING;
 	static const float WATER_LOSS_THRESHOLD_HC_PLUS_HIGH	= THRESHOLD_HEAT_COMFORT_MINUS_CRITICAL;

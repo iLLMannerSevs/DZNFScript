@@ -3,8 +3,8 @@ class PersonalLight extends PointLightBase
 	void PersonalLight()
 	{
 		SetVisibleDuringDaylight(false);
-		SetRadiusTo( 20 );
-		SetBrightnessTo(0.25);
+		SetRadiusTo( 15 );
+		SetBrightnessTo(0.2);
 		SetDiffuseColor(0.1, 0.3, 0.6);
 		SetCastShadow(false);
 		EnableSpecular(false);

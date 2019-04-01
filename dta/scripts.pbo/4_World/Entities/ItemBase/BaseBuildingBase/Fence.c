@@ -149,6 +149,8 @@ class Fence extends BaseBuildingBase
 	
 	override void AfterStoreLoad()
 	{	
+		super.AfterStoreLoad();
+		
 		//set gate state
 		ConstructionPart gate_part = GetConstruction().GetGateConstructionPart();
 		SetGateState( gate_part.IsBuilt() );
@@ -239,10 +241,13 @@ class Fence extends BaseBuildingBase
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
 			PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-			ConstructionActionData construction_action_data = player.GetConstructionActionData();
-			
-			//reset action initiator
-			construction_action_data.SetActionInitiator( NULL );
+			if ( player )
+			{
+				ConstructionActionData construction_action_data = player.GetConstructionActionData();
+				
+				//reset action initiator
+				construction_action_data.SetActionInitiator( NULL );				
+			}
 		}
 		//			
 		
