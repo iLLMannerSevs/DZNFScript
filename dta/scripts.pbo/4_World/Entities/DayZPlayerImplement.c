@@ -45,7 +45,7 @@ class DayZPlayerImplement extends DayZPlayer
 	protected float 									m_FallYDiff;
 	protected float										m_SprintedTime;
 	protected bool										m_SprintFull;
-	protected bool										m_IsFireWeaponRaised;
+	protected bool										m_IsFireWeaponRaised; //currently changed in 'HandleWeapons'
 	protected bool										m_ShouldReload;
 	protected bool										m_Camera3rdPerson;
 	protected bool										m_CameraZoomToggle;
@@ -81,6 +81,7 @@ class DayZPlayerImplement extends DayZPlayer
 	protected string 									m_ClimbingLadderType;
 	bool												m_isFBsymptomPlaying;
 	protected bool 										m_HandheldOpticsInUse;
+	protected bool 										m_ResetADS;
 	
 	//! constructor 
 	void 	DayZPlayerImplement()
@@ -597,9 +598,9 @@ class DayZPlayerImplement extends DayZPlayer
 			{
 				if (GetWeaponManager().CanUnjam(weapon))
 				{
-					weapon.ProcessWeaponEvent(new WeaponEventUnjam(this));
-					//GetWeaponManager().Unjam();
-					pExitIronSights = true;
+					//weapon.ProcessWeaponEvent(new WeaponEventUnjam(this));
+					GetWeaponManager().Unjam();
+					//pExitIronSights = true;
 				}
 			}
 		}
@@ -1129,17 +1130,30 @@ class DayZPlayerImplement extends DayZPlayer
 		HumanCommandWeapons	hcw = GetCommandModifier_Weapons();
 		PlayerBase playerPB = PlayerBase.Cast(this);
 		
+		//Print("hic.WeaponADS() = " + hic.WeaponADS());
 //		float val = GetInputInterface().SyncedValue("UAWalkRunTemp");
 //		Print(val);
 		
+		//UAInterface input_interface = GetInputInterface();
+		//if (input_interface.SyncedClick("UAADSToggle"))
+			//Print("Click!");
+		//Print("UAWalkRunTemp = " + GetUApi().GetInputByName("UAWalkRunTemp").LocalValue());
+		
 		bool bADSToggle = false;
-		bool ADSPressedNow = false;
+		//bool ADSPressedNow = false;
 		bool exitSights = false;
+		bool raiseInput = hic.IsWeaponRaised();
 		
 		if( !hia.IsItemInHandsWeapon() )
 			hic.ResetADS();
 		
-		if( !m_IsFireWeaponRaised )
+		if( m_ResetADS )
+		{
+			hic.ResetADS();
+			m_ResetADS = false;
+		}
+		
+		if( !m_IsFireWeaponRaised && !raiseInput )
 		{
 			if (m_ADSAutomationTimer && m_ADSAutomationTimer.IsRunning())
 				m_ADSAutomationTimer.Stop();
@@ -1151,8 +1165,6 @@ class DayZPlayerImplement extends DayZPlayer
 			{
 				m_bADS = hic.WeaponADS();
 				bADSToggle = true;
-				ADSPressedNow = hic.WeaponADS();
-				m_ADSTimedCondition = true;
 				
 /*				if( m_bADS && hic.WeaponWasRaiseClick() )
 					m_WasIronsights = true;
@@ -1162,9 +1174,13 @@ class DayZPlayerImplement extends DayZPlayer
 			
 			if( m_bADS && !m_CameraIronsight && !m_CameraOptics )
 			{
-				bADSToggle = true;
+				if( m_bADS && hic.WeaponWasRaiseClick() )
+				{
+					m_ADSTimedCondition = true;
+				}
+				
 				//!artificial Auto-ADS delay
-				if (!ADSPressedNow && !m_ADSTimedCondition)
+/*				if ( !m_ADSTimedCondition)
 				{
 					if (!m_ADSAutomationTimer)
 						m_ADSAutomationTimer = new Timer();
@@ -1175,6 +1191,10 @@ class DayZPlayerImplement extends DayZPlayer
 					bADSToggle = false;
 					exitSights = true;
 				}
+				else
+				{*/
+					bADSToggle = true;
+//				}
 			}
 		}
 		
@@ -1193,7 +1213,6 @@ class DayZPlayerImplement extends DayZPlayer
 	
 		if( bADSToggle )
 		{
-		
 			if (hia.IsItemInHandsWeapon() && playerPB.GetItemInHands() && playerPB.GetItemInHands().IsWeapon() && playerPB.GetWeaponManager() && !playerPB.GetWeaponManager().IsRunning() )
 			{
 				Weapon_Base weapon = Weapon_Base.Cast(GetHumanInventory().GetEntityInHands());

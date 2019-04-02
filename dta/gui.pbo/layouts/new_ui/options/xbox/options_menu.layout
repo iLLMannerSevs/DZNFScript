@@ -324,7 +324,7 @@ FrameWidgetClass settings_menu_root {
     FrameWidgetClass Tab_1 {
      visible 0
      ignorepointer 1
-     position 80 160
+     position 105 160
      size 1760 800
      hexactpos 1
      vexactpos 1
@@ -334,7 +334,7 @@ FrameWidgetClass settings_menu_root {
     FrameWidgetClass Tab_2 {
      visible 0
      ignorepointer 1
-     position 80 160
+     position 105 160
      size 1760 800
      hexactpos 1
      vexactpos 1
@@ -344,7 +344,7 @@ FrameWidgetClass settings_menu_root {
     FrameWidgetClass Tab_3 {
      visible 0
      ignorepointer 1
-     position 80 160
+     position 105 160
      size 1760 800
      hexactpos 1
      vexactpos 1

@@ -13,6 +13,7 @@ const int INPUT_UDT_USER_MUTE_XBOX				= 11;
 const int INPUT_UDT_USER_SYNC_PERMISSIONS		= 12;
 const int INPUT_UDT_HAND_REMOTE_EVENT			= 13;
 const int INPUT_UDT_WEAPON_LIFT_EVENT 			= 14;
+const int INPUT_UDT_RESET_ADS					= 15;
 
 const int AC_UNCATEGORIZED						= 0;
 const int AC_SINGLE_USE							= 1;
@@ -165,6 +166,7 @@ const int AT_GAG_TARGET = 240;
 const int AT_GAG_SELF = 241;
 const int AT_UNGAG_TARGET = 242;
 const int AT_UNGAG_SELF = 243;
+const int AT_EMPTY_BARREL = 244;
 
 //SingleUse Actions
 const int AT_OPEN = 501;

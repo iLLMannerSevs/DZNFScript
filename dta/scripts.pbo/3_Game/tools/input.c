@@ -118,7 +118,7 @@ class Input
 	proto native void		ResetActiveGamepad();
 	proto native void		SelectActiveGamepad(int gamepad);
 	proto native void		GetGamepadList(out array<int> gamepads);
-	proto void				GetGamepadUser(int gamepad, out string uid);
+	proto void				GetGamepadUser(int gamepad, out BiosUser user);
 	/**  
 	\brief the on OnGamepadIdentification callback will return the first gamepad where the button was pressed
 	@param button the button that needs to be pressed for the identification

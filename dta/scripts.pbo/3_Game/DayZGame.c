@@ -1345,12 +1345,10 @@ class DayZGame extends CGame
 		BiosUserManager user_manager = GetGame().GetUserManager();
 		if( user_manager )
 		{
-			string uid;
 			BiosUser selected_user;
 			if( gamepad > -1 )
 			{
-				GetGame().GetInput().GetGamepadUser( gamepad, uid );
-				selected_user = user_manager.GetUser( uid );
+				GetGame().GetInput().GetGamepadUser( gamepad, selected_user );
 				user_manager.SelectUser( selected_user );
 			}
 			
@@ -1811,6 +1809,11 @@ class DayZGame extends CGame
 		}
 		#endif
 	}
+	
+	/*bool IsConnecting()
+	{
+		return m_IsConnecting;
+	}*/
 	
 	// ------------------------------------------------------------
 	bool IsLoading()

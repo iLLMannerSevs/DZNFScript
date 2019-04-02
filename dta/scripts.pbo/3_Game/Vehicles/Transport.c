@@ -45,7 +45,12 @@ class Transport extends EntityAI
 			actions.Insert(m_InteractActions.Get(i));
 		}
 	}
-	
+
+
+	//! Synchronizes car's state in case the simulation is not running.
+	proto native void Synchronize();
+
+
 	//! Returns crew capacity of this vehicle.
 	proto native int CrewSize();
 

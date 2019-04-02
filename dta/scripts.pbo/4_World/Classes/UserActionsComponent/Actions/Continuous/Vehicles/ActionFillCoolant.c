@@ -46,7 +46,8 @@ class ActionFillCoolant: ActionContinuousBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		EntityAI tgt_parent = EntityAI.Cast( target.GetParent() );
+		if( !target )
+			return false;
 
 		if( item.GetQuantity() <= 0 )
 			return false;
@@ -54,25 +55,24 @@ class ActionFillCoolant: ActionContinuousBase
 		if( item.GetLiquidType() != LIQUID_WATER && item.GetLiquidType() != LIQUID_RIVERWATER )
 			return false;
 
-		Car car = Car.Cast(tgt_parent);
-		if( car && car.GetFluidFraction( CarFluid.COOLANT ) >= 0.95 )
+		Car car = Car.Cast( target.GetParent() );
+		if( !car )
+			return false;
+		
+		if( car.GetFluidFraction( CarFluid.COOLANT ) >= 0.95 )
 			return false;
 
-		//! TODO:
-		//! 1) use some sane default
-		//! 2) create some getter(overriden per Car) to differentiate distances for each car type
-		float max_action_distance = 3;
+		float distance = Math.AbsFloat(vector.Distance(car.GetPosition(), player.GetPosition()));
 
-		float distance = Math.AbsFloat(vector.Distance(tgt_parent.GetPosition(), player.GetPosition()));
-
-		if( distance <= max_action_distance )
+		CarScript carS = CarScript.Cast(car);
+		if( distance <= carS.GetActionDistanceCoolant() )
 		{
 			array<string> selections = new array<string>;
 			target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
 
 			for (int s = 0; s < selections.Count(); s++)
 			{
-				if ( selections[s] == RADIATOR_SELECTION_NAME )
+				if ( selections[s] == carS.GetActionCompNameCoolant() )
 				{
 					return true;
 				}

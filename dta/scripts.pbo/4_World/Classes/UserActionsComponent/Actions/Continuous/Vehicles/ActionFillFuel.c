@@ -46,41 +46,34 @@ class ActionFillFuel: ActionContinuousBase
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{	
-		if( !target ) return false;
-
-		if( !IsTransport(target) )
+	{
+		if( !target || !IsTransport(target) )
 			return false;
 
 		if( item.GetQuantity() <= 0 )
 			return false;
-		
+
 		if( item.GetLiquidType() != LIQUID_GASOLINE )
 			return false;
-		
-		//if( !IsInReach(player, target, UAMaxDistances.DEFAULT) )
-			//return false;
 
-		Car car = Car.Cast(target.GetObject());
-		if( car && car.GetFluidFraction( CarFluid.FUEL ) >= 0.98 )
+		Car car = Car.Cast( target.GetParent() );
+		if( !car )
 			return false;
-
 		
-		//! TODO:
-		//! 1) use some sane default
-		//! 2) create some getter(overriden per Car) to differentiate distances for each car type
-		float max_action_distance = 4;
+		if( car.GetFluidFraction( CarFluid.FUEL ) >= 0.98 )
+			return false;
 
 		float distance = Math.AbsFloat(vector.Distance(car.GetPosition(), player.GetPosition()));
 
-		if( distance <= max_action_distance )
+		CarScript carS = CarScript.Cast(car);
+		if( distance <= carS.GetActionDistanceFuel() )
 		{
 			array<string> selections = new array<string>;
 			target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
 
 			for (int s = 0; s < selections.Count(); s++)
 			{
-				if ( selections[s] == FUEL_SELECTION_NAME )
+				if ( selections[s] == carS.GetActionCompNameFuel() )
 				{
 					return true;
 				}

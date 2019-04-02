@@ -347,14 +347,18 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 	
 	void SetEnableFilters(bool enable)
 	{
-		Widget w = m_Root.FindAnyWidget("filters_content");
-		w.Enable( enable );
+		Widget w_filters = m_Root.FindAnyWidget("filters_content");
+		Widget w_content = m_Root.FindAnyWidget("server_list_scroller");
+		w_filters.Enable( enable );
+		w_content.Enable( !enable );
 	}
 	
 	void SetEnableServers(bool enable)
 	{
-		Widget w = m_Root.FindAnyWidget("server_list_scroller");
-		w.Enable( enable );
+		Widget w_filters = m_Root.FindAnyWidget("filters_content");
+		Widget w_content = m_Root.FindAnyWidget("server_list_scroller");
+		w_filters.Enable( !enable );
+		w_content.Enable( enable );
 	}
 	
 	//Coloring functions (Until WidgetStyles are useful)

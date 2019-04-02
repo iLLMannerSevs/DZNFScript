@@ -633,7 +633,7 @@ class Mission
 	bool IsControlDisabled() {}
 	
 	void PlayerControlEnable() {}
-	void PlayerControlDisable() {}
+	void PlayerControlDisable(int mode) {}
 
 	void ShowInventory() {}
 	void HideInventory() {}
