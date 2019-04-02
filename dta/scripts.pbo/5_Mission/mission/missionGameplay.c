@@ -295,7 +295,7 @@ class MissionGameplay extends MissionBase
 			//close radial quickbar menu
 			if ( GetGame().GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 			{
-				PlayerControlDisable();
+				PlayerControlDisable( INPUT_EXCLUDE_ALL );
 				RadialQuickbarMenu.CloseMenu();
 				RadialQuickbarMenu.SetItemToAssign( NULL );
 			}
@@ -535,16 +535,16 @@ class MissionGameplay extends MissionBase
 				}
 				else if(menu == map_menu && !m_ControlDisabled)
 				{
-					PlayerControlDisableInventory();
+					PlayerControlDisable(INPUT_EXCLUDE_INVENTORY);
 				}
 				else if(menu == gestures_menu && !m_ControlDisabled)
 				{
-					PlayerMouseControlDisableRadial();
+					PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
 					//GetUApi().GetInputByName("UAUIGesturesOpen")->Unlock();
 				}
 				else if(menu == quickbar_menu && !m_ControlDisabled)
 				{
-					PlayerMouseControlDisableRadial();
+					PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
 					//GetUApi().GetInputByName("UAUIGesturesOpen")->Unlock();
 				}
 				else if( IsPaused() )
@@ -700,34 +700,36 @@ class MissionGameplay extends MissionBase
 		hic.LimitsDisableSprint(false);
 	}
 
-	//!total movement restriction
-	override void PlayerControlDisable()
+	//!movement restrictions
+	override void PlayerControlDisable(int mode)
 	{
 		//Print("Disabling Controls");
-		//GetUApi().ActivateExclude("inventory");
-		GetUApi().ActivateExclude("menu");
-		GetUApi().UpdateControls();
-		m_ControlDisabled = true;
-		
-		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-		if( player )
+		switch (mode)
 		{
-			HumanInputController hic = player.GetInputController();
-			hic.ResetADS();
+			case INPUT_EXCLUDE_ALL:
+				GetUApi().ActivateExclude("menu");
+				break;
+			case INPUT_EXCLUDE_INVENTORY:
+				#ifdef PLATOFRM_CONSOLE
+				GetUApi().ActivateExclude("inventory_console");
+				#else
+				GetUApi().ActivateExclude("inventory");
+				GetUApi().GetInputByName("UAWalkRunTemp").ForceEnable(true); // force walk on!
+				#endif
+				break;
+			case INPUT_EXCLUDE_MOUSE_ALL:
+				GetUApi().ActivateExclude("radialmenu");
+				break;
+			case INPUT_EXCLUDE_MOUSE_RADIAL:
+				GetUApi().ActivateExclude("radialmenu");
+				#ifdef PLATOFRM_CONSOLE
+				GetUApi().ActivateExclude("inventory_console");
+				#else
+				GetUApi().ActivateExclude("inventory");
+				#endif
+				break;
 		}
-
-	}
-	
-	//!WSAD-enabled, walk only
-	void PlayerControlDisableInventory()
-	{
-		//Print("Disabling Mouse Controls Quickslot");
-		#ifdef PLATOFRM_CONSOLE
-		GetUApi().ActivateExclude("inventory_console");
-		#else
-		GetUApi().ActivateExclude("inventory");
-		GetUApi().GetInputByName("UAWalkRunTemp").ForceEnable(true); // force walk on!
-		#endif
+		
 		GetUApi().UpdateControls();
 		m_ControlDisabled = true;
 		
@@ -735,33 +737,11 @@ class MissionGameplay extends MissionBase
 		if( player )
 		{
 			HumanInputController hic = player.GetInputController();
-			hic.ResetADS();			
-			hic.LimitsDisableSprint(true);			
-		}		
-		
+			//hic.ResetADS();
+			player.RequestResetADSSync();
+		}
 	}
 	
-	void PlayerMouseControlDisableRadial()
-	{
-		//Print("Disabling Mouse Controls Quickslot");
-		GetUApi().ActivateExclude("radialmenu");
-		#ifdef PLATOFRM_CONSOLE
-		GetUApi().ActivateExclude("inventory_console");
-		#else
-		GetUApi().ActivateExclude("inventory");
-		#endif
-		GetUApi().UpdateControls();
-		m_ControlDisabled = true;
-	}
-	
-	void PlayerMouseControlDisable()
-	{
-		//Print("Disabling Mouse Controls");
-		GetUApi().ActivateExclude("radialmenu");
-		GetUApi().UpdateControls();
-		m_ControlDisabled = true;
-	}
-
 	override bool IsControlDisabled()
 	{
 		return m_ControlDisabled;
@@ -832,7 +812,7 @@ class MissionGameplay extends MissionBase
 		
 		if (m_InventoryMenu && init)
 		{
-			PlayerControlDisableInventory();		
+			PlayerControlDisable(INPUT_EXCLUDE_INVENTORY);		
 		}
 	}
 	
@@ -874,7 +854,7 @@ class MissionGameplay extends MissionBase
 		m_ChatChannelArea.Show(false);
 		m_UIManager.EnterScriptedMenu(MENU_CHAT_INPUT, NULL);
 		
-		PlayerControlDisable();		
+		PlayerControlDisable(INPUT_EXCLUDE_ALL);		
 	}
 
 	override void HideChat()
@@ -931,7 +911,7 @@ class MissionGameplay extends MissionBase
 		
 		// open ingame menu
 		GetUIManager().EnterScriptedMenu( MENU_INGAME, GetGame().GetUIManager().GetMenu() );
-		PlayerControlDisable();
+		PlayerControlDisable(INPUT_EXCLUDE_ALL);
 	}
 	
 	override void Continue()

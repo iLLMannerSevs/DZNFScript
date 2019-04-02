@@ -111,7 +111,7 @@ class CarScript extends Car
 	}
 
 /*
-	here we should handle the damage dealt in OnContact event, but maybe we will react even in that event 
+	//here we should handle the damage dealt in OnContact event, but maybe we will react even in that event 
 	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
 	{
 		Print("CarScript>>> EEHitBy");
@@ -119,24 +119,40 @@ class CarScript extends Car
 		Print( damageResult );
 		Print( source );
 		Print( component );
-		Print( damageResult.GetDamage("", "health") );
-	
-		if ( dmgZone == "Engine" && GetHealth("Engine","") < 0.1 )
+		Print( damageResult.GetDamage(dmgZone, "Health") );
+
+		//if ( dmgZone == "Engine" && GetHealth("Engine","") < 0.1 )
+		//{
+		//	if ( GetHealth01("engine", "") <= 0.1 )
+		//	{
+		//		if ( !m_EngineSmoke )
+		//		{
+		//			Print("Smoke");
+		//			EffVehicleSmoke engSmk = new EffEngineSmoke();
+		//			SEffectManager.PlayOnObject(engSmk, this, "0 0.95 1.25" );
+		//			// Particle is now playing on oject 'this'
+		//		}
+		//	}
+		//}
+
+	}
+*/	
+
+	override void EEDelete(EntityAI parent)
+	{
+		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
-			if ( GetHealth01("engine", "") <= 0.1 )
-			{
-				if ( !m_EngineSmoke )
-				{
-					Print("Smoke");
-					EffVehicleSmoke engSmk = new EffEngineSmoke();
-					SEffectManager.PlayOnObject(engSmk, this, "0 0.95 1.25" );
-					// Particle is now playing on oject 'this'
-				}
-			}
+			if ( SEffectManager.IsEffectExist( m_coolantPtcFx ) )
+				SEffectManager.Stop(m_coolantPtcFx);
+
+			if ( SEffectManager.IsEffectExist( m_exhaustPtcFx ) )
+				SEffectManager.Stop( m_exhaustPtcFx );
+
+			if ( SEffectManager.IsEffectExist( m_enginePtcFx ) )
+				SEffectManager.Stop( m_enginePtcFx );
 		}
 	}
-*/
-	
+
 	override void OnVariablesSynchronized()
 	{
 		super.OnVariablesSynchronized();
@@ -883,5 +899,25 @@ class CarScript extends Car
 	int GetCarDoorsState( string slotType )
 	{
 		return -1;
+	}
+
+	string GetActionCompNameCoolant()
+	{
+		return "radiator";
+	}
+
+	float GetActionDistanceCoolant()
+	{
+		return 3.0;
+	}
+
+	string GetActionCompNameFuel()
+	{
+		return "refill";
+	}
+
+	float GetActionDistanceFuel()
+	{
+		return 3.0;
 	}
 };

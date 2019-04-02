@@ -10,11 +10,11 @@ FrameWidgetClass server_browser_tab_root {
   GridSpacerWidgetClass server_list_root {
    ignorepointer 1
    position 105 0
-   size 1152 1080
+   size 0.6 1
    hexactpos 1
    vexactpos 1
-   hexactsize 1
-   vexactsize 1
+   hexactsize 0
+   vexactsize 0
    "no focus" 1
    Padding 0
    Margin 0

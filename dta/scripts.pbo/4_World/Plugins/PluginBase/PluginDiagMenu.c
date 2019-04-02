@@ -64,7 +64,10 @@ enum DiagMenuIDs
 	DM_ACTIVATE_ALL_BS,
 	DM_BS_RELOAD,
 	DM_QUICK_RESTRAIN,
+	DM_HAIR_MENU,
 	DM_HAIR_LEVEL,
+	DM_HAIR_LEVEL_HIDE,
+	DM_HAIR_HIDE_ALL
 	
 };
 
@@ -109,6 +112,7 @@ class PluginDiagMenu extends PluginBase
 	float m_LifespanLevel			= 0;
 	int  m_DayzPlayerDebugMenu		= -1;
 	int m_BleedingSourceRequested;
+	int m_HairLevelSelected 		= 0;
 	
 	override void OnInit()
 	{
@@ -238,13 +242,16 @@ class PluginDiagMenu extends PluginBase
 				DiagMenu.RegisterBool(DiagMenuIDs.DM_GO_UNCONSCIOUS, "", "Go Unconscious", "Misc");
 				DiagMenu.RegisterBool(DiagMenuIDs.DM_GO_UNCONSCIOUS_DELAYED, "", "Uncons. in 10sec", "Misc");
 				DiagMenu.RegisterBool(DiagMenuIDs.DM_QUICK_RESTRAIN, "ralt+0", "Quick Restrain", "Misc");
-				DiagMenu.RegisterBool(DiagMenuIDs.DM_HAIR_LEVEL, "", "Hide Hair", "Misc");
+				DiagMenu.RegisterMenu(DiagMenuIDs.DM_HAIR_MENU, "Hair Hiding", "Misc");
 					//---------------------------------------------------------------
 					// LEVEL 3
 					//---------------------------------------------------------------
 					DiagMenu.RegisterBool(DiagMenuIDs.DM_ACTION_TARGETS_NEW, "", "New AT Selection", "Action Targets", true);
 					DiagMenu.RegisterBool(DiagMenuIDs.DM_ACTION_TARGETS_DEBUG, "", "Show Debug", "Action Targets");
 					DiagMenu.RegisterBool(DiagMenuIDs.DM_ACTION_TARGETS_SELPOS_DEBUG, "", "Show selection pos debug", "Action Targets");
+					DiagMenu.RegisterRange(DiagMenuIDs.DM_HAIR_LEVEL, "", "Hair Level#", "Hair Hiding","0,44,0,1");
+					DiagMenu.RegisterBool(DiagMenuIDs.DM_HAIR_LEVEL_HIDE, "", "Hide Selected Level", "Hair Hiding");
+					DiagMenu.RegisterBool(DiagMenuIDs.DM_HAIR_HIDE_ALL, "", "Hide/Show All", "Hair Hiding");
 
 			//---------------------------------------------------------------
 			// LEVEL 1
@@ -324,6 +331,7 @@ class PluginDiagMenu extends PluginBase
 		CheckActivateBleedingSource();
 		CheckQuickRestrain();
 		CheckHairLevel();
+		CheckHairHide();
 
 	}
 	//---------------------------------------------
@@ -474,10 +482,29 @@ class PluginDiagMenu extends PluginBase
 	
 	void CheckHairLevel()
 	{
-		if( DiagMenu.GetBool(DiagMenuIDs.DM_HAIR_LEVEL) )
+		int value = DiagMenu.GetRangeValue(DiagMenuIDs.DM_HAIR_LEVEL);
+		if (value != m_HairLevelSelected)
 		{
-			SendSetHairLevelRPC();
-			DiagMenu.SetValue(DiagMenuIDs.DM_HAIR_LEVEL, false);//to prevent constant RPC calls, switch back to false
+			m_HairLevelSelected = value;
+			//SendSetHairLevelRPC();
+			DiagMenu.SetRangeValue(DiagMenuIDs.DM_HAIR_LEVEL, value);//to prevent constant RPC calls, switch back to false
+		}
+	}
+	
+	void CheckHairHide()
+	{
+		int value = DiagMenu.GetBool(DiagMenuIDs.DM_HAIR_LEVEL_HIDE);
+		bool hide_all = DiagMenu.GetBool(DiagMenuIDs.DM_HAIR_HIDE_ALL);
+		if (hide_all)
+		{
+			SendSetHairLevelHideRPC(-1,value);
+			DiagMenu.SetValue(DiagMenuIDs.DM_HAIR_HIDE_ALL, false);//to prevent constant RPC calls, switch back to false
+		}
+		else if (value != m_HairHidden)
+		{
+			m_HairHidden = !m_HairHidden;
+			SendSetHairLevelHideRPC(m_HairLevelSelected,value);
+			DiagMenu.SetValue(DiagMenuIDs.DM_HAIR_LEVEL_HIDE, value);//to prevent constant RPC calls, switch back to false
 		}
 	}
 	
@@ -1263,6 +1290,13 @@ class PluginDiagMenu extends PluginBase
 			GetGame().RPCSingleParam( GetGame().GetPlayer(),ERPCs.DEV_HAIR_LEVEL, NULL, true, GetGame().GetPlayer().GetIdentity() );
  	}
 	
+	void SendSetHairLevelHideRPC(int level, bool value)
+	{
+		Param2<int,bool> p2 = new Param2<int,bool>(level,value);
+		if(GetGame() && GetGame().GetPlayer()) 
+			GetGame().RPCSingleParam( GetGame().GetPlayer(),ERPCs.DEV_HAIR_LEVEL_HIDE, p2, true, GetGame().GetPlayer().GetIdentity() );
+ 	}
+	
 	//---------------------------------------------
 	void OnRPC(PlayerBase player, int rpc_type, ParamsReadContext ctx)
 	{
@@ -1447,12 +1481,19 @@ class PluginDiagMenu extends PluginBase
 				}
 			//DayZPlayerSyncJunctures.SendPlayerUnconsciousness(player, !player.IsUnconscious() );
 			break;
-			case ERPCs.DEV_HAIR_LEVEL:
+			/*case ERPCs.DEV_HAIR_LEVEL:
 				player.HideHair(!m_HairHidden);
 				m_HairHidden = !m_HairHidden;
+			break;*/
+			case ERPCs.DEV_HAIR_LEVEL_HIDE:
+				ctx.Read( CachedObjectsParams.PARAM2_INT_INT ); //PARAM2_INT_INT.param2 is BOOL here
+				player.HideHairLevel(CachedObjectsParams.PARAM2_INT_INT.param1,CachedObjectsParams.PARAM2_INT_INT.param2);
+				
+				//Print("CachedObjectsParams.PARAM2_INT_INT.param1 " + CachedObjectsParams.PARAM2_INT_INT.param1);
+				//Print("CachedObjectsParams.PARAM2_INT_INT.param2 " + CachedObjectsParams.PARAM2_INT_INT.param2);
+			
 			break;
 		}
-		
 	}
 	// Helper diag functions
 	void GoUnconsciousDelayed(Param1<PlayerBase> p1)

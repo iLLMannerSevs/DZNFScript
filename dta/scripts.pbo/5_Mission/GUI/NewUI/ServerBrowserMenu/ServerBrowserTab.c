@@ -307,7 +307,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 		//m_Entries.Clear();
 		m_EntryWidgets.Clear();
 
-#ifdef PLATFORM_WINDOWS
+#ifndef PLATFORM_CONSOLE // PLATFORM_WINDOWS
 		m_CurrentFilterInput = m_Filters.GetFilterOptionsPC();
 #else
 #ifdef PLATFORM_CONSOLE

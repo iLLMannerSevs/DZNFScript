@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Mon Apr 01 10:21:50 2019 : 'file' last modified on Fri Mar 29 08:57:05 2019
+//'now' is Tue Apr 02 16:50:36 2019 : 'file' last modified on Tue Apr 02 13:45:06 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2567,7 +2567,7 @@ class cfgWeapons
 		};
 		class Reliability
 		{
-			ChanceToJam[] = {0,0.01,0.03,0.1,1};
+			ChanceToJam[] = {0,0.0025,0.01,0.05,1};
 		};
 	};
 	class Archery_Base: RifleCore

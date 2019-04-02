@@ -312,7 +312,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	override void Update( float timeslice )
 	{
-		if( !GetGame().GetUIManager().IsDialogVisible() )
+		if( !GetGame().GetUIManager().IsDialogVisible() /*&& !GetDayZGame().IsConnecting()*/ )
 		{
 			if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 			{

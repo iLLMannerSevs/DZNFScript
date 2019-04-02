@@ -2672,7 +2672,7 @@ class ItemBase extends InventoryItem
 	//! Implementations only
 	void Open() {}
 	void Close() {}
-	bool IsOpen() {}
+	bool IsOpen() {return false;}
 	
 	
 	// ------------------------------------------------------------

@@ -89,6 +89,7 @@ class PlayerBase extends ManBase
 	bool							m_IsVehicleSeatDriver;
 	float							m_UnconsciousEndTime = 0;
 	int								m_BleedingSourceCount;
+	Head_Default 					m_CharactersHead;
 
 	ref protected RandomGeneratorSyncManager m_RGSManager;
 	
@@ -1254,6 +1255,9 @@ class PlayerBase extends ManBase
 		{
 			m_Hud.UpdateBloodName();
 		}
+		
+		int slot_id = InventorySlots.GetSlotIdFromString("Head");
+		m_CharactersHead = Head_Default.Cast(GetInventory().FindPlaceholderForSlot( slot_id ));
 	}
 
 	// --------------------------------------------------
@@ -1354,7 +1358,34 @@ class PlayerBase extends ManBase
 		
 		return false;	
 	}
+	
+	void RequestResetADSSync() //temporary solution, to be solved by special input
+	{
+		if ( GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT && GetGame().IsMultiplayer() )
+		{
+			if (ScriptInputUserData.CanStoreInputUserData())
+			{
+				ScriptInputUserData ctx = new ScriptInputUserData;
+				ctx.Write(INPUT_UDT_RESET_ADS);
+				ctx.Send();
+				m_ResetADS = true;
+			}
+		}
+		else
+			m_ResetADS = true;
+	}
+	
+	bool ResetADSPlayerSync( int userDataType, ParamsReadContext ctx )
+	{
+		if ( userDataType == INPUT_UDT_RESET_ADS )
+		{
+			m_ResetADS = true;
+			return true;
+		}
 		
+		return false;	
+	}
+	
 	void TogglePlacingLocal()
 	{		
 		if ( IsPlacingLocal() )
@@ -3588,6 +3619,9 @@ class PlayerBase extends ManBase
 		if ( TogglePlacingServer( userDataType, ctx ) )
 			return true;
 		
+		if ( ResetADSPlayerSync( userDataType, ctx ) )
+			return true;
+		
 		string uid;
 		bool mute;
 		if( userDataType == INPUT_UDT_USER_MUTE_XBOX )
@@ -5531,27 +5565,81 @@ class PlayerBase extends ManBase
 	
 	//-----------------------------------------
 	// vv experimental section vv
-	void HideHair(bool state)
+	
+	/*void HideHair(bool state)
 	{
-		int slot_id = InventorySlots.GetSlotIdFromString("Head");
-		EntityAI players_head = GetInventory().FindPlaceholderForSlot( slot_id );
+		//int slot_id = InventorySlots.GetSlotIdFromString("Head");
+		//EntityAI players_head = GetInventory().FindPlaceholderForSlot( slot_id );
 		
 		//animation solution
-		/*Print(state);
-		players_head.SetAnimationPhase("Hair",state);
-		Print("AnimPhase = " + players_head.GetAnimationPhase("Hair"));*/
-		
+		//players_head.SetAnimationPhase("Hair",state);
+		//Print("AnimPhase = " + players_head.GetAnimationPhase("Hair"));
+	
+		if (!m_CharactersHead)
+		{
+			Print("No valid head detected on character!");
+			return;
+		}
 		//tex/mat swapping solution:
 		if (state)
 		{
-			players_head.SetObjectTexture(1,"");
-			players_head.SetObjectMaterial(1,"");
+			m_CharactersHead.SetObjectTexture(1,"");
+			m_CharactersHead.SetObjectMaterial(1,"");
 		}
 		else
 		{
-			players_head.SetObjectTexture(1,GetHairTexture());
-			players_head.SetObjectMaterial(1,GetHairMaterial());
+			m_CharactersHead.SetObjectTexture(1,GetHairTexture());
+			m_CharactersHead.SetObjectMaterial(1,GetHairMaterial());
 		}
+	}*/
+	
+	void HideHairLevel(int level, bool state)
+	{
+		if (!m_CharactersHead)
+		{
+			Print("No valid head detected on character!");
+			return;
+		}
+		
+		string selection_name; 
+		int selection_index;
+		
+		if (level == -1) //hide ALL
+		{
+			for (int i = 0; i < HAIR_SELECTION_COUNT; i++)
+			{
+				selection_name = m_CharactersHead.GetHeadHideableSelections().Get(i);
+				selection_index = m_CharactersHead.GetHiddenSelectionIndex(selection_name);
+				
+				if (state)
+				{
+					m_CharactersHead.SetObjectTexture(selection_index,"");
+					m_CharactersHead.SetObjectMaterial(selection_index,"");
+				}
+				else
+				{
+					m_CharactersHead.SetObjectTexture(selection_index,GetHairTexture(selection_index));
+					m_CharactersHead.SetObjectMaterial(selection_index,GetHairMaterial(selection_index));
+				}
+			}
+			return;
+		}
+		
+		m_CharactersHead.GetHeadHideableSelections().Get(level);
+		m_CharactersHead.GetHiddenSelectionIndex(selection_name);
+		
+		if (state)
+		{
+			m_CharactersHead.SetObjectTexture(selection_index,"");
+			m_CharactersHead.SetObjectMaterial(selection_index,"");
+		}
+		else
+		{
+			m_CharactersHead.SetObjectTexture(selection_index,GetHairTexture(selection_index));
+			m_CharactersHead.SetObjectMaterial(selection_index,GetHairMaterial(selection_index));
+		}
+		//Print("level " + level);
+		//Print("state " + state);
 	}
 	
 	//TODO sloucit do spolecne metody a vracet jakou OUTy; vlasy ukladat v pluginu primo, hlavy podle pohlavi staticke/dynamicky z lifespanu (pripravit system pro univerzalni lifespan)
@@ -5583,7 +5671,7 @@ class PlayerBase extends ManBase
 	}
 	//TODO add support for hair tex/mat (currently not listed outside models!)
 	
-	string GetHairTexture()
+	string GetHairTexture(int index)
 	{
 		array<string> texture_array = new array<string>;
 		int slot_id = InventorySlots.GetSlotIdFromString("Head");
@@ -5593,7 +5681,7 @@ class PlayerBase extends ManBase
 		return texture_array.Get(1);
 	}
 	
-	string GetHairMaterial()
+	string GetHairMaterial(int index)
 	{
 		array<string> material_array = new array<string>;
 		int slot_id = InventorySlots.GetSlotIdFromString("Head");

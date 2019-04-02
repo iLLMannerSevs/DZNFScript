@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Mon Apr 01 10:22:33 2019 : 'file' last modified on Mon Mar 25 16:14:42 2019
+//'now' is Tue Apr 02 16:51:44 2019 : 'file' last modified on Mon Apr 01 08:59:43 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1032,6 +1032,8 @@ class CfgVehicles
 		radius = 0.238;
 		width = 0.2;
 		tyreRollResistance = 1;
+		tyreRollDrag = 75;
+		tyreRoughness = 1.2;
 		tyreTread = 0.5;
 	};
 	class CivSedanDoors_Driver: CarDoor
@@ -2011,6 +2013,8 @@ class CfgVehicles
 		radius = 0.2;
 		width = 0.17;
 		tyreRollResistance = 1;
+		tyreRollDrag = 70;
+		tyreRoughness = 1;
 		tyreTread = 0.5;
 	};
 	class HatchbackDoors_Driver: CarDoor
