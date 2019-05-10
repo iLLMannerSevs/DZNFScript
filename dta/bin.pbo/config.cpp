@@ -2,7 +2,7 @@
 //DeRap: bin\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Tue Apr 02 16:48:38 2019 : 'file' last modified on Tue Apr 02 14:18:58 2019
+//'now' is Fri May 10 23:33:00 2019 : 'file' last modified on Fri May 10 13:46:53 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -325,8 +325,7 @@ class Muzzle_Base
 class CfgWeapons
 {
 	access = 1;
-	class Weapon_Base{};
-	class DefaultWeapon: Weapon_Base
+	class Weapon_Base
 	{
 		access = 3;
 		scope = 0;
@@ -386,6 +385,7 @@ class CfgWeapons
 		soundLandCrash[] = {"",1.0,1};
 		soundWaterCrash[] = {"",1.0,1};
 	};
+	class DefaultWeapon: Weapon_Base{};
 	class PistolCore: DefaultWeapon{};
 	class RifleCore: DefaultWeapon
 	{
