@@ -2,7 +2,7 @@
 //DeRap: scripts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Tue Apr 02 16:48:49 2019 : 'file' last modified on Tue Apr 02 14:53:33 2019
+//'now' is Fri May 10 23:33:13 2019 : 'file' last modified on Fri May 10 16:46:31 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -459,6 +459,7 @@ class CfgSlots
 		name = "Book";
 		displayName = "Book";
 		ghostIcon = "book";
+		stackMax = 1;
 	};
 	class Slot_ButaneTorchCanister
 	{
@@ -1199,6 +1200,70 @@ class CfgSlots
 		displayName = "CivHatchbackCargo2Doors";
 		ghostIcon = "doorrear";
 	};
+	class Slot_Hatchback_02_Wheel_1_1
+	{
+		name = "Hatchback_02_Wheel_1_1";
+		displayName = "Front Left CivHatchback Wheel";
+		selection = "wheel_1_1";
+		ghostIcon = "wheel";
+	};
+	class Slot_Hatchback_02_Wheel_1_2
+	{
+		name = "Hatchback_02_Wheel_1_2";
+		displayName = "Back Right CivHatchback Wheel";
+		selection = "wheel_1_2";
+		ghostIcon = "wheel";
+	};
+	class Slot_Hatchback_02_Wheel_2_1
+	{
+		name = "Hatchback_02_Wheel_2_1";
+		displayName = "Front Left CivHatchback Wheel";
+		selection = "wheel_2_1";
+		ghostIcon = "wheel";
+	};
+	class Slot_Hatchback_02_Wheel_2_2
+	{
+		name = "Hatchback_02_Wheel_2_2";
+		displayName = "Back Right CivHatchback Wheel";
+		selection = "wheel_2_2";
+		ghostIcon = "wheel";
+	};
+	class Slot_Hatchback_02_Door_1_1
+	{
+		name = "Hatchback_02_Door_1_1";
+		displayName = "CivHatchbackDriverDoors";
+		ghostIcon = "doorfront";
+	};
+	class Slot_Hatchback_02_Door_1_2
+	{
+		name = "Hatchback_02_Door_1_2";
+		displayName = "CivHatchbackCoDriverDoors";
+		ghostIcon = "doorrear";
+	};
+	class Slot_Hatchback_02_Door_2_1
+	{
+		name = "Hatchback_02_Door_2_1";
+		displayName = "CivHatchbackCargo1Doors";
+		ghostIcon = "doorfront";
+	};
+	class Slot_Hatchback_02_Door_2_2
+	{
+		name = "Hatchback_02_Door_2_2";
+		displayName = "CivHatchbackCargo2Doors";
+		ghostIcon = "doorrear";
+	};
+	class Slot_Hatchback_02_Hood
+	{
+		name = "Hatchback_02_Hood";
+		displayName = "CivHatchbackHood";
+		ghostIcon = "hood";
+	};
+	class Slot_Hatchback_02_Trunk
+	{
+		name = "Hatchback_02_Trunk";
+		displayName = "CivHatchbackTrunk";
+		ghostIcon = "trunk";
+	};
 	class Slot_UtilityVehicleWheel_1_1
 	{
 		name = "UtilityVehicleWheel_1_1";
@@ -1770,5 +1835,47 @@ class CfgSlots
 		name = "KnifeHolster";
 		displayName = "KnifeHolster";
 		ghostIcon = "muzzle";
+	};
+	class Slot_Chemlight
+	{
+		name = "Chemlight";
+		displayName = "Chemlight";
+		ghostIcon = "muzzle";
+	};
+	class Slot_WalkieTalkie
+	{
+		name = "WalkieTalkie";
+		displayName = "WalkieTalkie";
+		ghostIcon = "muzzle";
+	};
+	class Slot_NVG
+	{
+		name = "NVG";
+		displayName = "NVG";
+		ghostIcon = "muzzle";
+	};
+	class Slot_helmetFlashlight
+	{
+		name = "helmetFlashlight";
+		displayName = "helmetFlashlight";
+		ghostIcon = "muzzle";
+	};
+	class Slot_Belt_Left
+	{
+		name = "Belt_Left";
+		displayName = "Belt_Left";
+		ghostIcon = "";
+	};
+	class Slot_Belt_Right
+	{
+		name = "Belt_Right";
+		displayName = "Belt_Right";
+		ghostIcon = "";
+	};
+	class Slot_Belt_Back
+	{
+		name = "Belt_Back";
+		displayName = "Belt_Back";
+		ghostIcon = "";
 	};
 };

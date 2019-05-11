@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Tue Apr 02 16:50:36 2019 : 'file' last modified on Tue Apr 02 13:45:06 2019
+//'now' is Fri May 10 23:42:02 2019 : 'file' last modified on Tue May 07 11:51:33 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -977,6 +977,42 @@ class CfgWorlds
 		flareMinDistanceLerp = 1.0;
 		farLightSpotMul = 2.0;
 		farLightPointMul = 2.0;
+		minTreesInForestSquare = 10;
+		minRocksInRockSquare = 5;
+		soundMapAttenCoef = 0.01;
+		class SoundMapValues
+		{
+			treehard = 0.03;
+			treesoft = 0.03;
+			bushhard = 0.0;
+			bushsoft = 0.0;
+			forest = 1.0;
+			house = 0.3;
+			church = 0.5;
+		};
+		class Sounds
+		{
+			sounds[] = {};
+		};
+		class Subdivision
+		{
+			class Fractal
+			{
+				rougness = 5;
+				maxRoad = 0.02;
+				maxTrack = 0.5;
+				maxSlopeFactor = 0.05;
+			};
+			class WhiteNoise
+			{
+				rougness = 2;
+				maxRoad = 0.01;
+				maxTrack = 0.05;
+				maxSlopeFactor = 0.0025;
+			};
+			minY = -0.0;
+			minSlope = 0.02;
+		};
 	};
 };
 class CfgMaterials
@@ -1730,7 +1766,6 @@ class CfgVehicles
 		mfMax = 100;
 		mFact = 0;
 		tBody = 0;
-		class ViewPilot;
 		driverFreelook = 1;
 	};
 	class Man: AllVehicles
@@ -1746,7 +1781,6 @@ class CfgVehicles
 			tex[] = {};
 			mat[] = {};
 		};
-		class ViewPilot;
 	};
 	class DZ_LightAI: Man_Base
 	{
@@ -1755,7 +1789,6 @@ class CfgVehicles
 			tex[] = {};
 			mat[] = {};
 		};
-		class ViewPilot;
 	};
 	class Air: AllVehicles
 	{
@@ -1970,10 +2003,6 @@ class CfgVehicles
 		stackedUnit = "g";
 		quantityBar = 1;
 	};
-	class Tearable_Base: Inventory_Base
-	{
-		ragQuantity = 0;
-	};
 	class Trap_Base: Inventory_Base
 	{
 		itemSize[] = {2,2};
@@ -2014,6 +2043,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing"};
 		visibilityModifier = 1.0;
+		soundVoiceType = "none";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2061,6 +2091,7 @@ class CfgVehicles
 	class Switchable_Base: Powered_Base{};
 	class Box_Base: Inventory_Base
 	{
+		iconType = 0;
 		ContinuousActions[] = {212};
 		isMeleeWeapon = 1;
 	};
@@ -2081,6 +2112,7 @@ class CfgVehicles
 	{
 		scope = 1;
 		simulation = "itemoptics";
+		selectionFireAnim = "zasleh";
 		SingleUseActions[] = {};
 		ContinuousActions[] = {236};
 		class AnimationSources
@@ -2253,87 +2285,154 @@ class Mode_Safe: Mode_SemiAuto
 {
 	magazines[] = {};
 };
+class cfgAmmoTypes
+{
+	class AType_Arrow_Composite
+	{
+		name = "Arrow_Composite";
+	};
+	class AType_Arrow_Crude
+	{
+		name = "Arrow_Crude";
+	};
+	class AType_Arrow_Primitive
+	{
+		name = "Arrow_Primitive";
+	};
+	class AType_Bullet_12GaugePellets
+	{
+		name = "Bullet_12GaugePellets";
+	};
+	class AType_Bullet_12GaugeSlug
+	{
+		name = "Bullet_12GaugeSlug";
+	};
+	class AType_Bullet_22
+	{
+		name = "Bullet_22";
+	};
+	class AType_Bullet_357
+	{
+		name = "Bullet_357";
+	};
+	class AType_Bullet_308Win
+	{
+		name = "Bullet_308Win";
+	};
+	class AType_Bullet_308WinTracer
+	{
+		name = "Bullet_308WinTracer";
+	};
+	class AType_Bullet_380
+	{
+		name = "Bullet_380";
+	};
+	class AType_Bullet_45ACP
+	{
+		name = "Bullet_45ACP";
+	};
+	class AType_Bullet_9x19
+	{
+		name = "Bullet_9x19";
+	};
+	class AType_Bullet_9x39
+	{
+		name = "Bullet_9x39";
+	};
+	class AType_Bullet_9x39AP
+	{
+		name = "Bullet_9x39AP";
+	};
+	class AType_Bullet_545x39
+	{
+		name = "Bullet_545x39";
+	};
+	class AType_Bullet_545x39Tracer
+	{
+		name = "Bullet_545x39Tracer";
+	};
+	class AType_Bullet_556x45
+	{
+		name = "Bullet_556x45";
+	};
+	class AType_Bullet_556x45Tracer
+	{
+		name = "Bullet_556x45Tracer";
+	};
+	class AType_Bullet_762x39
+	{
+		name = "Bullet_762x39";
+	};
+	class AType_Bullet_762x39Tracer
+	{
+		name = "Bullet_762x39Tracer";
+	};
+	class AType_Bullet_762x54
+	{
+		name = "Bullet_762x54";
+	};
+	class AType_Bullet_762x54Tracer
+	{
+		name = "Bullet_762x54Tracer";
+	};
+};
+class OpticsInfoDefault;
+class OpticsInfoRifle: OpticsInfoDefault
+{
+	memoryPointCamera = "eye";
+	opticsZoomMin = 0.414215;
+	opticsZoomInit = 0.57737;
+	opticsZoomMax = 0.70022;
+	distanceZoomMin = 25;
+	distanceZoomMax = 25;
+	discreteDistance[] = {50,100,200,300};
+	discreteDistanceInitIndex = 1;
+};
+class OpticsInfoShotgun: OpticsInfoRifle
+{
+	memoryPointCamera = "eye";
+	modelOptics = "-";
+	distanceZoomMin = 25;
+	distanceZoomMax = 25;
+	discreteDistance[] = {25};
+	discreteDistanceInitIndex = 0;
+};
+class OpticsInfoPistol: OpticsInfoDefault
+{
+	memoryPointCamera = "eye";
+	opticsZoomMin = 0.414215;
+	opticsZoomInit = 0.57737;
+	opticsZoomMax = 0.70022;
+	distanceZoomMin = 25;
+	distanceZoomMax = 25;
+	discreteDistance[] = {25};
+	discreteDistanceInitIndex = 0;
+};
+class OpticsInfoArchery: OpticsInfoDefault
+{
+	memoryPointCamera = "eye";
+	opticsZoomMin = 0.414215;
+	opticsZoomInit = 0.57737;
+	opticsZoomMax = 0.70022;
+	modelOptics = "-";
+	distanceZoomMin = 10;
+	distanceZoomMax = 10;
+	discreteDistance[] = {10};
+	discreteDistanceInitIndex = 0;
+};
+class OpticsInfoLauncher: OpticsInfoDefault
+{
+	memoryPointCamera = "eye";
+	opticsZoomMin = 0.25;
+	opticsZoomMax = 1.1;
+	opticsZoomInit = 0.5;
+	distanceZoomMin = 100;
+	distanceZoomMax = 100;
+	discreteDistance[] = {100};
+	discreteDistanceInitIndex = 0;
+};
 class cfgAmmo
 {
-	class cfgAmmoTypes
-	{
-		class AType_Arrow_Composite
-		{
-			name = "Arrow_Composite";
-		};
-		class AType_Arrow_Crude
-		{
-			name = "Arrow_Crude";
-		};
-		class AType_Arrow_Primitive
-		{
-			name = "Arrow_Primitive";
-		};
-		class AType_Bullet_12GaugePellets
-		{
-			name = "Bullet_12GaugePellets";
-		};
-		class AType_Bullet_12GaugeSlug
-		{
-			name = "Bullet_12GaugeSlug";
-		};
-		class AType_Bullet_22
-		{
-			name = "Bullet_22";
-		};
-		class AType_Bullet_357
-		{
-			name = "Bullet_357";
-		};
-		class AType_Bullet_308Win
-		{
-			name = "Bullet_308Win";
-		};
-		class AType_Bullet_380
-		{
-			name = "Bullet_380";
-		};
-		class AType_Bullet_45ACP
-		{
-			name = "Bullet_45ACP";
-		};
-		class AType_Bullet_9x19
-		{
-			name = "Bullet_9x19";
-		};
-		class AType_Bullet_9x39
-		{
-			name = "Bullet_9x39";
-		};
-		class AType_Bullet_545x39
-		{
-			name = "Bullet_545x39";
-		};
-		class AType_Bullet_556x45
-		{
-			name = "Bullet_556x45";
-		};
-		class AType_Bullet_556x45Tracer
-		{
-			name = "Bullet_556x45Tracer";
-		};
-		class AType_Bullet_762x39
-		{
-			name = "Bullet_762x39";
-		};
-		class AType_Bullet_762x39Tracer
-		{
-			name = "Bullet_762x39Tracer";
-		};
-		class AType_Bullet_762x54
-		{
-			name = "Bullet_762x54";
-		};
-		class AType_Bullet_762x54Tracer
-		{
-			name = "Bullet_762x54Tracer";
-		};
-	};
 	class DefaultAmmo;
 	class Explosion_NonLethal: DefaultAmmo
 	{
@@ -2379,59 +2478,6 @@ class cfgWeapons
 	class LauncherCore;
 	class RifleCore;
 	class PistolCore;
-	class OpticsInfoDefault;
-	class OpticsInfoRifle: OpticsInfoDefault
-	{
-		memoryPointCamera = "eye";
-		opticsZoomMin = 0.414215;
-		opticsZoomInit = 0.57737;
-		opticsZoomMax = 0.70022;
-		discreteDistance[] = {50,100,200,300};
-		discreteDistanceInitIndex = 1;
-	};
-	class OpticsInfoShotgun: OpticsInfoRifle
-	{
-		memoryPointCamera = "eye";
-		modelOptics = "-";
-		distanceZoomMin = 25;
-		distanceZoomMax = 25;
-		discreteDistance[] = {25};
-		discreteDistanceInitIndex = 0;
-	};
-	class OpticsInfoPistol: OpticsInfoDefault
-	{
-		memoryPointCamera = "eye";
-		opticsZoomMin = 0.414215;
-		opticsZoomInit = 0.57737;
-		opticsZoomMax = 0.70022;
-		distanceZoomMin = 25;
-		distanceZoomMax = 25;
-		discreteDistance[] = {25};
-		discreteDistanceInitIndex = 0;
-	};
-	class OpticsInfoArchery: OpticsInfoDefault
-	{
-		memoryPointCamera = "eye";
-		opticsZoomMin = 0.414215;
-		opticsZoomInit = 0.57737;
-		opticsZoomMax = 0.70022;
-		modelOptics = "-";
-		distanceZoomMin = 10;
-		distanceZoomMax = 10;
-		discreteDistance[] = {10};
-		discreteDistanceInitIndex = 0;
-	};
-	class OpticsInfoLauncher: OpticsInfoDefault
-	{
-		memoryPointCamera = "eye";
-		opticsZoomMin = 0.25;
-		opticsZoomMax = 1.1;
-		opticsZoomInit = 0.5;
-		distanceZoomMin = 100;
-		distanceZoomMax = 100;
-		discreteDistance[] = {100};
-		discreteDistanceInitIndex = 0;
-	};
 	class Rifle_Base: RifleCore
 	{
 		scope = 0;
@@ -2493,6 +2539,24 @@ class cfgWeapons
 		class Reliability
 		{
 			ChanceToJam[] = {0,0.001,0.005,0.05,1};
+		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "FirearmHit_Rifle";
+				range = 1.2;
+			};
+			class Buttstock
+			{
+				ammo = "FirearmHit_Rifle_Buttstock";
+				range = 1.2;
+			};
+			class Bayonet
+			{
+				ammo = "FirearmHit_Rifle_Bayonet";
+				range = 1.8;
+			};
 		};
 	};
 	class BoltActionRifle_Base: Rifle_Base{};
@@ -2568,6 +2632,14 @@ class cfgWeapons
 		class Reliability
 		{
 			ChanceToJam[] = {0,0.0025,0.01,0.05,1};
+		};
+		class MeleeModes
+		{
+			class Default
+			{
+				ammo = "FirearmHit_Pistol";
+				range = 1.2;
+			};
 		};
 	};
 	class Archery_Base: RifleCore
