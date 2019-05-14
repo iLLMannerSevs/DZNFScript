@@ -34,18 +34,7 @@ class Building extends EntityAI
 		m_InteractActions = new TIntArray;
 		g_Game.ConfigGetIntArray("cfgVehicles " +GetType() + " InteractActions", m_InteractActions);
 	}
-#ifdef OLD_ACTIONS
-	override void GetInteractActions( out TIntArray actions)
-	{
-		if ( m_InteractActions )
-		{		
-			for( int i = 0; i < m_InteractActions.Count(); i++ )
-			{
-				actions.Insert(m_InteractActions.Get(i));
-			}
-		}
-	}
-#endif
+
 	override bool IsInventoryVisible()
 	{
 		return false;

@@ -131,14 +131,9 @@ const int CM_MODE_INVENTORY = 2;
 
 					ActionManagerClient am = ActionManagerClient.Cast(m_player.GetActionManager());
 					
-#ifdef OLD_ACTIONS					
-					if( m_player.GetItemInHands() == item1) am.SetInventoryAction(InventoryActionHandler.IAH_CONTINUOUS, AT_WORLD_CRAFT, item2);
-					else am.SetInventoryAction(InventoryActionHandler.IAH_CONTINUOUS, AT_WORLD_CRAFT, item1);
-#else
-					
 					if( m_player.GetItemInHands() == item1) am.SetInventoryAction( am.GetAction(ActionWorldCraft), item2, item1);
 					else am.SetInventoryAction( am.GetAction(ActionWorldCraft), item1, item2);					
-#endif					
+
 					return true;
 				}		
 			}			

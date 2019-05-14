@@ -137,10 +137,10 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		SetItemDesc(m_EntityInHands, GetItemDesc(m_EntityInHands), "ia_item", "ia_item_desc");
 		SetInteractActionIcon("ia_interact", "ia_interact_icon_frame", "ia_interact_btn_inner_icon", "ia_interact_btn_text");
 		SetActionWidget(m_Interact, GetActionDesc(m_Interact), "ia_interact", "ia_interact_action_name");
-		#ifndef OLD_ACTIONS
+
 		SetInteractActionIcon("ia_continuous_interact", "ia_continuous_interact_icon_frame", "ia_continuous_interact_btn_inner_icon", "ia_continuous_interact_btn_text");
 		SetActionWidget(m_ContinuousInteract, GetActionDesc(m_ContinuousInteract), "ia_continuous_interact", "ia_continuous_interact_action_name");
-		#endif
+
 		SetActionWidget(m_Single, GetActionDesc(m_Single), "ia_single", "ia_single_action_name");
 		SetActionWidget(m_Continuous, GetActionDesc(m_Continuous), "ia_continuous", "ia_continuous_action_name");
 		SetMultipleInteractAction("ia_interact_mlt_wrapper");
@@ -206,7 +206,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		if(!m_AM) return;
 		//if(!m_EntityInHands) return false;
 		if(m_Player.IsSprinting()) return;
-#ifndef OLD_ACTIONS			
+		
 		array<ActionBase> possible_interact_actions = m_AM.GetPossibleActions(InteractActionInput);
 		int possible_interact_actions_index = m_AM.GetPossibleActionIndex(InteractActionInput);
 		array<ActionBase> possible_continuous_interact_actions = m_AM.GetPossibleActions(ContinuousInteractActionInput);
@@ -227,18 +227,6 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		
 		m_Single = m_AM.GetPossibleAction(DefaultActionInput);
 		m_Continuous = m_AM.GetPossibleAction(ContinuousDefaultActionInput);
-#else
-		TSelectableActionInfoArray selectableActions = m_AM.GetSelectableActions();
-		int selectedActionIndex = m_AM.GetSelectedActionIndex();
-		m_InteractActionsNum = selectableActions.Count();
-		if ( m_InteractActionsNum > 0 )
-		{
-			m_Interact = m_AM.GetAction(selectableActions.Get(selectedActionIndex).param2);
-		}
-
-		m_Single = m_AM.GetSingleUseAction();
-		m_Continuous = m_AM.GetContinuousAction();
-#endif
 	}
 
 	protected void GetEntityInHands()
@@ -613,11 +601,8 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 			TextWidget actionName;
 			Class.CastTo(actionName, widget.FindAnyWidget(descWidget));
 			
-			#ifndef OLD_ACTIONS
+
 			if(action.GetInput().GetInputType() == ActionInputType.AIT_CONTINUOUS)
-			#else
-			if(action.GetActionCategory() == AC_CONTINUOUS)
-			#endif
 			{
 				descText = descText + " " + "#action_target_cursor_hold";
 				actionName.SetText(descText);

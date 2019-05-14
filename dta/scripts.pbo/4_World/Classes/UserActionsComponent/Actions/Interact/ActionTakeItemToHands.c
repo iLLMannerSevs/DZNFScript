@@ -19,12 +19,10 @@ class ActionTakeItemToHands: ActionInteractBase
 		return true;
 	}
 	
-#ifndef OLD_ACTIONS	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override bool HasProgress()
 	{
@@ -48,17 +46,10 @@ class ActionTakeItemToHands: ActionInteractBase
 		if ( tgt_item.IsBeingPlaced() ) return false;
 		if ( target.GetParent() ) return false;
 		
-#ifdef OLD_ACTIONS
-		if ( !player.GetInventory().CanAddEntityIntoInventory(tgt_item) && player.GetInventory().CanAddEntityIntoHands(tgt_item) )
-		{
-			return true;
-		}
-#else
 		if ( player.GetInventory().CanAddEntityIntoHands(tgt_item) )
 		{
 			return true;
 		}
-#endif
 		return false;
 	}
 	

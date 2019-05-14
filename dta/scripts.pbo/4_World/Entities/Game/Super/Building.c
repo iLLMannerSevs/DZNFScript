@@ -1,20 +1,14 @@
 class BuildingBase: Building
 {
-#ifndef OLD_ACTIONS
 	static ref map<typename, ref TInputActionMap> m_BuildingTypeActionsMap = new map<typename, ref TInputActionMap>;
 	TInputActionMap m_InputActionMap;
 	bool	m_ActionsInitialize;
-#endif
 	
 	void BuildingBase()
 	{
-#ifndef OLD_ACTIONS
 		m_ActionsInitialize = false;
-#endif
 	}
 	
-	
-#ifndef OLD_ACTIONS	
 	void InitializeActions()
 	{
 		m_InputActionMap = m_BuildingTypeActionsMap.Get( this.Type() );
@@ -84,13 +78,6 @@ class BuildingBase: Building
 			action_array.RemoveItem(action);
 		}
 	}
-#else
-	void SetActions() {}	
-	void AddAction(typename actionName) {}
-	void RemoveAction(typename actionName) {}
-	
-#endif	
-
 };
 
 typedef BuildingBase BuildingSuper;

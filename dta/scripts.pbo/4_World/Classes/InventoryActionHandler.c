@@ -1,16 +1,11 @@
 //! Client only - manage set up crafting on client 
 class InventoryActionHandler
 {
-#ifdef OLD_ACTIONS
-	int m_actionID;
-	ItemBase m_itemTarget;
-	ItemBase m_itemInHand;
-#else
 	ActionBase m_action;
 	ActionTarget m_target;
 	ItemBase m_mainItem;
 	bool 	m_useItemInHands;
-#endif
+
 	PlayerBase m_player;
 	
 	bool m_isActive;
@@ -25,45 +20,13 @@ class InventoryActionHandler
 	{
 		m_player = player;
 		m_isActive = false;
-#ifdef OLD_ACTIONS
-		m_itemTarget = NULL;
-		m_itemInHand = NULL;
-		m_actionID = -1;
-#else
 		m_action = null;
 		m_target = null;
 		m_mainItem = null;
 		m_useItemInHands = false;
-#endif
+
 	}
-#ifdef OLD_ACTIONS
-	void SetAction(int type, int ActionID, ItemBase actionTargetItem )
-	{
-		m_actionID = ActionID;
-		m_itemTarget = actionTargetItem;
-		m_itemInHand = m_player.GetItemInHands();
-		m_actionStartPos = m_player.GetPosition();
-		m_isActive = true;
-		
-		ActionManagerClient mngr;
-		Class.CastTo(mngr, m_player.GetActionManager());
-		
-		ActionTarget at;
-		at = new ActionTarget(actionTargetItem, null, -1, vector.Zero, -1);
-		switch( type )
-		{
-			case IAH_SINGLE_USE:
-				mngr.InjectSingleUseAction(ActionID, at, m_itemInHand);
-				break;
-			case IAH_CONTINUOUS:
-				mngr.InjectContinuousAction(ActionID, at, m_itemInHand);
-				break;
-		}
-		mngr.ForceTarget(actionTargetItem);
-		
-		GetGame().GetMission().HideInventory();
-	}
-#else
+	
 	void SetAction(ActionBase action, ItemBase target_item, ItemBase main_item )
 	{
 		Object target_parent = null;
@@ -96,14 +59,6 @@ class InventoryActionHandler
 		
 		GetGame().GetMission().HideInventory();
 	}	
-#endif	
-	
-#ifdef OLD_ACTIONS
-	int GetActionID()
-	{
-		return m_actionID;
-	}
-#endif
 	
 	bool IsActiveAction()
 	{
@@ -126,15 +81,7 @@ class InventoryActionHandler
 			DeactiveAction();
 			return;				
 		}
-#ifdef OLD_ACTIONS		
-		ItemBase handItem = m_player.GetItemInHands();
-		
-		if( handItem != m_itemInHand )
-		{
-			DeactiveAction();
-			return;
-		}
-#else
+
 		if (m_useItemInHands)
 		{
 			ItemBase handItem = m_player.GetItemInHands();
@@ -145,7 +92,7 @@ class InventoryActionHandler
 				return;
 			}
 		}
-#endif			
+			
 		if( Math.AbsFloat( vector.Distance(m_actionStartPos, m_player.GetPosition())) > MIN_DISTANCE_TO_INTERRUPT )
 		{
 			DeactiveAction();
@@ -160,17 +107,7 @@ class InventoryActionHandler
 		if( !m_isActive ) return;
 		
 		m_isActive = false;
-#ifdef OLD_ACTIONS
-		m_itemTarget = NULL;
-		m_itemInHand = NULL;
-		m_actionID = -1;
 		
-		
-		ActionManagerClient mngr;
-		Class.CastTo(mngr, m_player.GetActionManager());
-		mngr.EjectActions();
-		mngr.ClearForceTarget();
-#else
 		ActionManagerClient mngr;
 		Class.CastTo(mngr, m_player.GetActionManager());
 	
@@ -182,8 +119,6 @@ class InventoryActionHandler
 		m_action = null;
 		m_target = null;
 		m_mainItem = null;
-		m_useItemInHands = false;
-#endif	
-		
+		m_useItemInHands = false;	
 	}
 }

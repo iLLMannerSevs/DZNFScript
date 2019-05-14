@@ -31,6 +31,7 @@ class MissionGameplay extends MissionBase
 	protected int					m_ActionUpTime;
 	protected bool 					m_InitOnce;
 	protected bool 					m_ControlDisabled;
+	protected bool 					m_QuickbarHold;
 	
 	void MissionGameplay()
 	{
@@ -239,7 +240,7 @@ class MissionGameplay extends MissionBase
 				Paper paper = Paper.Cast(playerPB.GetItemInHands());
 				m_Note = NoteMenu.Cast( GetUIManager().EnterScriptedMenu(MENU_NOTE, menu) ); //NULL means no parent
 				m_Note.InitRead(paper.m_AdvancedText);
-				m_Hud.ToggleHud( false, true );
+				m_Hud.ShowHudUI( false );
 			}
 		
 			if( playerPB.enterNoteMenuWrite )
@@ -247,7 +248,7 @@ class MissionGameplay extends MissionBase
 				playerPB.enterNoteMenuWrite = false;
 				m_Note = NoteMenu.Cast( GetUIManager().EnterScriptedMenu(MENU_NOTE, menu) ); //NULL means no parent
 				m_Note.InitWrite(playerPB.m_paper,playerPB.m_writingImplement,playerPB.m_Handwriting);
-				m_Hud.ToggleHud( false, true );
+				m_Hud.ShowHudUI( false );
 			}
 			
 			if( !menu && m_ControlDisabled && !playerPB.GetCommand_Melee2() )
@@ -350,7 +351,7 @@ class MissionGameplay extends MissionBase
 				if ( !GetUIManager().IsMenuOpen( MENU_GESTURES ) )
 				{
 					GesturesMenu.OpenMenu();
-					m_Hud.ToggleHud( false, true );
+					m_Hud.ShowHudUI( false );
 				}
 			}
 		}
@@ -361,7 +362,7 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_GESTURES ) )
 			{
 				GesturesMenu.CloseMenu();
-				m_Hud.ToggleHud( m_Hud.GetHudState(), true );
+				m_Hud.ShowHudUI( true );
 			}
 		}
 		
@@ -416,33 +417,21 @@ class MissionGameplay extends MissionBase
 				}
 			}
 			
-			if( input.LocalPress("UAUIQuickbarToggle",false) )
+			if( input.LocalHold("UAUIQuickbarToggle",false) )
 			{
-				SetActionDownTime( GetGame().GetTime() );
-				bool hud_state = m_Hud.GetHudState();
-				m_ToggleHudTimer.Run( 0.3, m_Hud, "ToggleHud", new Param1<bool>( !hud_state ) );
+				if( !m_QuickbarHold )
+				{
+					m_QuickbarHold = true;
+					SetActionDownTime( GetGame().GetTime() );
+					m_Hud.ShowHudPlayer( m_Hud.IsHideHudPlayer() );
+				}
 			}
 			
 			if( input.LocalRelease("UAUIQuickbarToggle",false) )
 			{
-				SetActionUpTime( GetGame().GetTime() );
-				
-				if ( GetHoldActionTime() < HOLD_LIMIT_TIME )
-				{
-					if ( menu == NULL )
-					{
-						if ( m_Hud.GetQuickBarState() )
-						{
-							m_Hud.HideQuickbar( false, true );
-						}
-						else
-						{
-							m_Hud.ShowQuickbar();
-						}
-					}
-				}
-				
-				m_ToggleHudTimer.Stop();
+				if( !m_QuickbarHold )
+					m_Hud.ShowQuickbarPlayer( m_Hud.IsHideQuickbarPlayer() );
+				m_QuickbarHold = false;
 			}
 			
 			if ( g_Game.GetInput().LocalPress("UAZeroingUp",false) || g_Game.GetInput().LocalPress("UAZeroingDown",false) || g_Game.GetInput().LocalPress("UAToggleWeapons",false) )

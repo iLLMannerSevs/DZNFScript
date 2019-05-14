@@ -24,12 +24,10 @@ class ActionSwitchLights: ActionInteractBase
 		return "#switch_lights";
 	}
 
-#ifndef OLD_ACTIONS	
 	override typename GetInputType()
 	{
 		return ToggleLightsActionInput;
 	}
-#endif
 	
 	override bool HasTarget()
 	{

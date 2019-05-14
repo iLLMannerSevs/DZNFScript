@@ -59,10 +59,9 @@ class ActionExitLadder: ActionInteractBase
 	{
 		return false;
 	}
-#ifndef OLD_ACTIONS	
+
 	override bool CanBeUsedOnLadder()
 	{
 		return true;
 	}
-#endif
 };

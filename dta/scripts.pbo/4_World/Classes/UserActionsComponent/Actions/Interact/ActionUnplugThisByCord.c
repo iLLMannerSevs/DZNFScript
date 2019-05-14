@@ -15,13 +15,11 @@ class ActionUnplugThisByCord: ActionInteractBase
 	{
 		return "#unplug_by_cord";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override bool HasProgress()
 	{

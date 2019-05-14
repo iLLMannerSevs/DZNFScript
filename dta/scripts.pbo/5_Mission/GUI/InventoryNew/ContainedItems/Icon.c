@@ -817,6 +817,8 @@ class Icon: LayoutHolder
 
 	void DropReceivedFromMain( Widget w, int x, int y, Widget receiver )
 	{
+		ItemManager.GetInstance().HideDropzones();
+		ItemManager.GetInstance().SetIsDragging( false );
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );

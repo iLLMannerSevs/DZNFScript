@@ -24,13 +24,11 @@ class ActionCPR: ActionContinuousBase
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_HIGH;
 	}
-	
-	#ifndef OLD_ACTIONS	
+		
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-	#endif
 	
 	override void OnStartClient(ActionData action_data)
 	{

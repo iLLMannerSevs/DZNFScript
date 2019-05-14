@@ -177,10 +177,10 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		SetInteractActionIcon("interact", "interact_icon_frame", "interact_btn_inner_icon", "interact_btn_text");
 		SetItemDesc(GetItemDesc(m_Interact), cargoCount, "item", "item_desc");
 		SetActionWidget(m_Interact, GetActionDesc(m_Interact), "interact", "interact_action_name");
-		#ifndef OLD_ACTIONS
+
 		SetInteractActionIcon("continuous_interact", "continuous_interact_icon_frame", "continuous_interact_btn_inner_icon", "continuous_interact_btn_text");
 		SetActionWidget(m_ContinuousInteract, GetActionDesc(m_ContinuousInteract), "continuous_interact", "continuous_interact_action_name");
-		#endif
+
 		SetActionWidget(m_Single, GetActionDesc(m_Single), "single", "single_action_name");
 		SetActionWidget(m_Continuous, GetActionDesc(m_Continuous), "continuous", "continuous_action_name");
 		SetMultipleInteractAction("interact_mlt_wrapper");
@@ -623,7 +623,7 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		if(!m_Target) return;
 		if(m_Player.IsSprinting()) return;
 		if(m_Player.IsInVehicle()) return; // TODO: TMP: Car AM rework needed
-#ifndef OLD_ACTIONS			
+			
 		array<ActionBase> possible_interact_actions = m_AM.GetPossibleActions(InteractActionInput);
 		array<ActionBase> possible_continuous_interact_actions = m_AM.GetPossibleActions(ContinuousInteractActionInput);
 		int possible_interact_actions_index = m_AM.GetPossibleActionIndex(InteractActionInput);
@@ -644,18 +644,6 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		
 		m_Single = m_AM.GetPossibleAction(DefaultActionInput);
 		m_Continuous = m_AM.GetPossibleAction(ContinuousDefaultActionInput);
-#else
-		TSelectableActionInfoArray selectableActions = m_AM.GetSelectableActions();
-		int selectedActionIndex = m_AM.GetSelectedActionIndex();
-		m_InteractActionsNum = selectableActions.Count();
-		if ( m_InteractActionsNum > 0 )
-		{
-			m_Interact = m_AM.GetAction(selectableActions.Get(selectedActionIndex).param2);
-		}
-				
-		m_Single = m_AM.GetSingleUseAction();
-		m_Continuous = m_AM.GetContinuousAction();
-#endif
 	}
 
 	protected void GetTarget()
@@ -952,11 +940,8 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 			{
 				TextWidget actionName;
 				Class.CastTo(actionName, widget.FindAnyWidget(descWidget));
-				#ifndef OLD_ACTIONS
+
 				if(action.GetInput().GetInputType() == ActionInputType.AIT_CONTINUOUS)
-				#else
-				if(action.GetActionCategory() == AC_CONTINUOUS)
-				#endif
 				{
 					descText = descText + " " + "#action_target_cursor_hold";
 					actionName.SetText(descText);

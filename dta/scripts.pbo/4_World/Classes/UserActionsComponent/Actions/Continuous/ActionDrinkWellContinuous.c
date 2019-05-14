@@ -25,13 +25,11 @@ class ActionDrinkWellContinuous: ActionContinuousBase
 	{
 		return "#drink";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override void CreateConditionComponents()  
 	{
@@ -67,9 +65,11 @@ class ActionDrinkWellContinuous: ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )
 	{
 		Param1<float> nacdata = Param1<float>.Cast( action_data.m_ActionComponent.GetACData() );
-		float amount = nacdata.param1 * UAQuantityConsumed.DRINK;
-		action_data.m_Player.Consume(NULL,amount, EConsumeType.ENVIRO_WELL);
-		action_data.m_Player.GetItemAccessor().HideItemInHands(false);
+		if(nacdata)
+		{
+			float amount = nacdata.param1 * UAQuantityConsumed.DRINK;
+			action_data.m_Player.Consume(NULL,amount, EConsumeType.ENVIRO_WELL);
+		}
 	}
 
 	override void OnEndAnimationLoopServer( ActionData action_data )

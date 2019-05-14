@@ -808,25 +808,11 @@ class Object extends IEntity
 		
 		return false;
 	}
-#ifndef OLD_ACTIONS
+
 	void GetActions(typename action_input_type, out array<ActionBase_Basic> actions)
 	{
 	}
-	#else
-	void GetSingleUseActions(out TIntArray actions)
-	{	
-	}
-	
-	void GetContinuousActions(out TIntArray actions)
-	{
-	}
-	
-	void GetInteractActions(out TIntArray actions)
-	{
-	}
-#endif
 
-	
 	//! Plays the given sound once on this object's instance. Range is in meters. Created sound is only local, unless create_local is set to false. Returns the sound itself.
 	SoundOnVehicle PlaySound(string sound_name, float range, bool create_local = true)
 	{

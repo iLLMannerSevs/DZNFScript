@@ -10,11 +10,10 @@ enum CarDoorState
 */
 class CarScript extends Car
 {
-#ifndef OLD_ACTIONS
 	static ref map<typename, ref TInputActionMap> m_CarTypeActionsMap = new map<typename, ref TInputActionMap>;
 	TInputActionMap m_InputActionMap;
 	bool	m_ActionsInitialize;
-#endif
+
 	protected float m_Time;
 
 	//! keeps ammount of each fluid
@@ -121,9 +120,8 @@ class CarScript extends Car
 		else
 			m_fuelPos = "0 0 0";
 		
-#ifndef OLD_ACTIONS
 		m_ActionsInitialize = false;
-#endif
+
 	}
 
 	vector GetCoolantPtcPosWS()
@@ -988,7 +986,6 @@ class CarScript extends Car
 		return 2.0;
 	}
 	
-#ifndef OLD_ACTIONS	
 	void InitializeActions()
 	{
 		m_InputActionMap = m_CarTypeActionsMap.Get( this.Type() );
@@ -1061,10 +1058,4 @@ class CarScript extends Car
 			action_array.RemoveItem(action);
 		}
 	}
-#else
-	void SetActions() {}	
-	void AddAction(typename actionName) {}
-	void RemoveAction(typename actionName) {}
-	
-#endif	
 };

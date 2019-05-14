@@ -198,15 +198,6 @@ class PlayerContainer: CollapsibleContainer
 				ric.Show( !conta.IsOpened() );
 				icon.GetRadialIconClosed().Show( conta.IsOpened() );
 			}
-			
-			bool changed_size;
-			if( m_ShouldChangeSize )
-				m_ContentResize.ResizeParentToChild( changed_size );
-			if( changed_size )
-			{
-				CheckScrollbarVisibility();
-				m_ShouldChangeSize = false;
-			}
 		}
 	}
 	
@@ -231,15 +222,6 @@ class PlayerContainer: CollapsibleContainer
 			Inventory in = Inventory.Cast( GetRoot() );
 			if( in )
 				in.UpdateConsoleToolbar();
-			
-			bool changed_size;
-			if( m_ShouldChangeSize )
-				m_ContentResize.ResizeParentToChild( changed_size );
-			if( changed_size )
-			{
-				CheckScrollbarVisibility();
-				m_ShouldChangeSize = false;
-			}
 		}
 	}
 	
@@ -1401,6 +1383,15 @@ class PlayerContainer: CollapsibleContainer
 				cont.UpdateInterval();
 			}
 		}
+		
+		bool changed_size;
+		if( m_ShouldChangeSize )
+			m_ContentResize.ResizeParentToChild( changed_size );
+		if( changed_size )
+		{
+			CheckScrollbarVisibility();
+			m_ShouldChangeSize = false;
+		}
 	}
 
 	void ToggleContainer( Widget w, EntityAI item )
@@ -1447,6 +1438,8 @@ class PlayerContainer: CollapsibleContainer
 			ToggleContainer( w, ipw.GetItem() );
 			RecomputeOpenedContainers();
 		}
+		
+		Refresh();
 	}
 
 	override void CollapseButtonOnMouseButtonDown(Widget w)

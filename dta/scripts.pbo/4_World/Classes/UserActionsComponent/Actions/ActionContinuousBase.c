@@ -141,11 +141,7 @@ class ActionContinuousBase : AnimatedActionBase
 		}
 	}
 	
-#ifdef OLD_ACTIONS	
-	override void OnContinuousCancel( ActionData action_data )
-#else
 	override void OnEndInput( ActionData action_data )
-#endif
 	{
 		ActionContinuousBaseCB callback;
 		if( Class.CastTo(callback, action_data.m_Callback) )
@@ -161,12 +157,12 @@ class ActionContinuousBase : AnimatedActionBase
 	{
 		return false;
 	}
-#ifndef OLD_ACTIONS	
+
 	override typename GetInputType()
 	{
 		return ContinuousDefaultActionInput;
 	}
-#endif
+
 	override int GetActionCategory()
 	{
 		return AC_CONTINUOUS;

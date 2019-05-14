@@ -38,13 +38,11 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 	{
 		return "#uncover_players_head";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{	

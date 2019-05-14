@@ -52,12 +52,10 @@ class ActionDialCombinationLockOnTarget: ActionContinuousBase
 		return "#dial_combination_lock" + " " + combination_lock_text;	
 	}
 
-#ifndef OLD_ACTIONS	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 
 	override bool ActionCondition ( PlayerBase player, ActionTarget target, ItemBase item )
 	{	

@@ -56,6 +56,12 @@ class ActionDigInStash: ActionContinuousBase
 		
 		if ( Class.CastTo(target_IB, target.GetObject()) )
 		{			
+			if ( target_IB.IsInherited(UndergroundStash) )
+			{
+				return false;
+			}
+			
+			
 			// Check surface
 			string surface_type;
 			vector position = target_IB.GetPosition();
