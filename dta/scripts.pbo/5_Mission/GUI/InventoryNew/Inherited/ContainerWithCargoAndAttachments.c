@@ -43,6 +43,8 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 							m_Body.RemoveItem( old_cont );
 							m_AttachmentCargos.Remove( e );
 							RecomputeOpenedContainers();
+							if( m_Parent )
+								m_Parent.Refresh();
 						}
 						else
 						{
@@ -62,6 +64,8 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 						
 						m_AttachmentCargos.Insert( cargo_attachments.Get( i ), cont );
 						RecomputeOpenedContainers();
+						if( m_Parent )
+							m_Parent.Refresh();
 					}
 				}
 			}
@@ -84,6 +88,8 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 							m_Body.RemoveItem( old_att_cont );
 							m_AttachmentAttachments.Remove( e );
 							RecomputeOpenedContainers();
+							if( m_Parent )
+								m_Parent.Refresh();
 						}
 						else
 						{
@@ -104,6 +110,8 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 						
 						att_cont.RefreshAtt();
 						RecomputeOpenedContainers();
+						if( m_Parent )
+							m_Parent.Refresh();
 					}
 				}
 			}

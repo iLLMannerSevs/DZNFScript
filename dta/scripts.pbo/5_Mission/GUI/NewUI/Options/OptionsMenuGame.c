@@ -152,17 +152,14 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		g_Game.SetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES, m_ShowAdminSelector.GetValue() );
 		g_Game.SetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES, m_ShowPlayerSelector.GetValue() );
 		
-		#ifndef PLATFORM_CONSOLE
-			g_Game.SetProfileOption( EDayZProfilesOptions.QUICKBAR, m_ShowQuickbarSelector.GetValue() );
-			if( hud )
-			{
-				hud.ToggleQuickBar( m_ShowQuickbarSelector.GetValue() );
-			}
-		#endif
-		
 		if( hud )
 		{
-			hud.ToggleHud( m_ShowHUDSelector.GetValue() );
+			#ifndef PLATFORM_CONSOLE
+				g_Game.SetProfileOption( EDayZProfilesOptions.QUICKBAR, m_ShowQuickbarSelector.GetValue() );
+				hud.ShowQuickBar( m_ShowQuickbarSelector.GetValue() );
+			#endif
+			
+			hud.ShowHud( m_ShowHUDSelector.GetValue() );
 		}
 	}
 	

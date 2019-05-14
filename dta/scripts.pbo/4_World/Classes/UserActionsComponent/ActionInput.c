@@ -1,4 +1,3 @@
-#ifndef OLD_ACTIONS
 enum ActionInputType
 {
 	AIT_CONTINUOUS,				//React to hold input and release after it
@@ -43,11 +42,6 @@ class ActionInput : ActionInput_Basic
 		m_ForcedActionData = null;
 		m_Player = player;
 		m_JustActivate = false;
-	}
-	
-	protected typename GetType()
-	{
-		return ActionInput;
 	}
 	
 	void Init(ActionManagerClient am)
@@ -266,11 +260,6 @@ class ContinuousInteractActionInput : ActionInput
 		m_SelectActions = new array<ActionBase>;
 	}
 	
-	override typename GetType()
-	{
-		return ContinuousInteractActionInput;
-	}
-	
 	override void ForceAction(ActionBase action, ActionTarget target, ItemBase item )
 	{
 		super.ForceAction(action, target, item);
@@ -302,7 +291,7 @@ class ContinuousInteractActionInput : ActionInput
 		Object target_obj = target.GetObject();
 		
 		if(target_obj)
-			target_obj.GetActions(GetType(), possible_actions);
+			target_obj.GetActions(this.Type(), possible_actions);
 		
 		if(possible_actions)
 		{		
@@ -334,7 +323,7 @@ class ContinuousInteractActionInput : ActionInput
 		target_obj = target.GetParent();
 		
 		if(target_obj)
-			target_obj.GetActions(GetType(), possible_actions);
+			target_obj.GetActions(this.Type(), possible_actions);
 		
 		if(possible_actions)
 		{		
@@ -364,7 +353,7 @@ class ContinuousInteractActionInput : ActionInput
 		
 		
 		
-		player.GetActions(GetType(), possible_actions);
+		player.GetActions(this.Type(), possible_actions);
 		if(possible_actions)
 		{
 			for (i = 0; i < possible_actions.Count(); i++)
@@ -465,11 +454,6 @@ class InteractActionInput : ContinuousInteractActionInput
 		m_Active = false;
 	}
 	
-	override typename GetType()
-	{
-		return InteractActionInput;
-	}
-	
 	override bool WasEnded()
 	{
 		return false;
@@ -508,7 +492,7 @@ class ContinuousDefaultActionInput : ActionInput
 		
 		if(item)
 		{
-			item.GetActions(GetType(), possible_actions);
+			item.GetActions(this.Type(), possible_actions);
 			if(possible_actions)
 			{
 				for (i = 0; i < possible_actions.Count(); i++)
@@ -523,7 +507,7 @@ class ContinuousDefaultActionInput : ActionInput
 			}
 		}
 		
-		player.GetActions(GetType(), possible_actions);
+		player.GetActions(this.Type(), possible_actions);
 		if(possible_actions)
 		{
 			for (i = 0; i < possible_actions.Count(); i++)
@@ -557,11 +541,6 @@ class ContinuousDefaultActionInput : ActionInput
 	{
 		m_SelectAction = NULL;
 	}
-	
-	override typename GetType()
-	{
-		return ContinuousDefaultActionInput;
-	}
 };
 
 class DefaultActionInput : ContinuousDefaultActionInput
@@ -575,11 +554,6 @@ class DefaultActionInput : ContinuousDefaultActionInput
 	{
 		super.OnActionStart();
 		m_Active = false;
-	}
-	
-	override typename GetType()
-	{
-		return DefaultActionInput;
 	}
 	
 	override bool WasEnded()
@@ -614,7 +588,7 @@ class DropActionInput : DefaultActionInput
 		
 		if(item)
 		{
-			item.GetActions(GetType(), possible_actions);
+			item.GetActions(this.Type(), possible_actions);
 			if(possible_actions)
 			{
 				for (i = 0; i < possible_actions.Count(); i++)
@@ -628,11 +602,6 @@ class DropActionInput : DefaultActionInput
 				}
 			}
 		}
-	}
-	
-	override typename GetType()
-	{
-		return DropActionInput;
 	}
 };
 
@@ -694,7 +663,7 @@ class ToggleLightsActionInput : DefaultActionInput
 		
 		if(target && target.GetObject())
 		{
-			target.GetObject().GetActions(GetType(), possible_actions);
+			target.GetObject().GetActions(this.Type(), possible_actions);
 			if(possible_actions)
 			{
 				for (i = 0; i < possible_actions.Count(); i++)
@@ -708,11 +677,6 @@ class ToggleLightsActionInput : DefaultActionInput
 				}
 			}
 		}
-	}
-	
-	override typename GetType()
-	{
-		return ToggleLightsActionInput;
 	}
 };
 
@@ -763,7 +727,7 @@ class ToggleNVGActionInput : DefaultActionInput
 		
 		if(target && target.GetObject())
 		{
-			target.GetObject().GetActions(GetType(), possible_actions);
+			target.GetObject().GetActions(this.Type(), possible_actions);
 			if(possible_actions)
 			{
 				for (i = 0; i < possible_actions.Count(); i++)
@@ -778,10 +742,4 @@ class ToggleNVGActionInput : DefaultActionInput
 			}
 		}
 	}
-	
-	override typename GetType()
-	{
-		return ToggleNVGActionInput;
-	}
 };
-#endif

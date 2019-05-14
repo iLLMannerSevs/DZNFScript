@@ -40,13 +40,11 @@ class ActionTakeMaterialToHands: ActionInteractBase
 		
 		return "";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override bool HasProgress()
 	{

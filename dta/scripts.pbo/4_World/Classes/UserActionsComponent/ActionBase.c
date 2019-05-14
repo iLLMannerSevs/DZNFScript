@@ -54,11 +54,9 @@ class ActionBase : ActionBase_Basic
 	protected ref TStringArray		m_Sounds;			//User action sound is picked from this array randomly
 	ref CCIBase 					m_ConditionItem;	//Condition Component
 	ref CCTBase						m_ConditionTarget; 	//Condition Component
-#ifndef OLD_ACTIONS
 	protected ActionInput			m_Input;
 	protected int 					m_ActionID;
 	int 							m_ConditionMask;
-#endif
 
 	//RUNTIME DATA
 	protected ref Param1<string> 	m_MessageParam; //used for passing messages from server to client
@@ -90,13 +88,10 @@ class ActionBase : ActionBase_Basic
 		m_MessageParam = new Param1<string>("");
 		m_MessagesParam = new Param2<int,int>(0,0);
 		m_Sounds = new TStringArray;
-#ifndef OLD_ACTIONS
 		m_Input = null;
 		m_ActionID = 0;
 		InitConditionMask();
-#endif
 	}
-#ifndef OLD_ACTIONS	
 	void InitConditionMask()
 	{
 		m_ConditionMask = ActionConditionMask.ACM_NO_EXEPTION;
@@ -130,7 +125,7 @@ class ActionBase : ActionBase_Basic
 			m_ConditionMask |= ActionConditionMask.ACM_ON_BACK;
 		}
 	}
-#endif
+	
 	bool SetupAction(PlayerBase player, ActionTarget target, ItemBase item, out ActionData action_data, Param extra_data = NULL )
 	{
 		action_data = CreateActionData();
@@ -158,7 +153,7 @@ class ActionBase : ActionBase_Basic
 		
 		return true;
 	}
-#ifndef OLD_ACTIONS
+	
 	typename GetInputType()
 	{
 		return DefaultActionInput;
@@ -168,7 +163,6 @@ class ActionBase : ActionBase_Basic
 	{
 		m_Input = ai;
 	}
-#endif
 	
 	ActionData CreateActionData()
 	{
@@ -284,7 +278,7 @@ class ActionBase : ActionBase_Basic
 	{
 		return false;
 	}
-#ifndef OLD_ACTIONS	
+
 	bool CanBeUsedSwimming()
 	{
 		return false;
@@ -299,7 +293,7 @@ class ActionBase : ActionBase_Basic
 	{
 		return false;
 	}
-#endif
+
 	protected bool ActionConditionContinue( ActionData action_data ) //condition for action
 	{
 		return ActionCondition(action_data.m_Player,action_data.m_Target,action_data.m_MainItem);
@@ -493,14 +487,10 @@ class ActionBase : ActionBase_Basic
 		if( action_data.m_Player )
 			action_data.m_Player.GetActionManager().OnActionEnd();
 	}
-#ifdef OLD_ACTIONS	
-	void OnContinuousCancel(ActionData action_data)
-	{}
-#endif
 	
 	void Interrupt(ActionData action_data)
 	{}
-#ifndef OLD_ACTIONS
+
 	void OnEndInput(ActionData action_data)
 	{}
 	
@@ -590,59 +580,6 @@ class ActionBase : ActionBase_Basic
 		
 		return Can( player, target, item, condition_mask);
 	}
-#else
-	bool Can( PlayerBase player, ActionTarget target, ItemBase item )
-	{
-		if(  !CanBeUsedOnBack() && player.GetCommand_Move() && player.GetCommand_Move().IsOnBack())
-		{
-			return false;
-		}
-		
-		if ( !IsFullBody(player) && !player.IsPlayerInStance(GetStanceMask(player)) )
-		{
-			return false;
-		}
-		
-		if ( player.IsRestrained() && !CanBeUsedInRestrain() )
-		{
-			return false;
-		}
-		
-		if ( !CanBeUsedInVehicle() && player.GetCommand_Vehicle() )
-		{
-			return false;
-		}
-		
-		if ( HasTarget() )
-		{
-			EntityAI entity = EntityAI.Cast(target.GetObject());
-			if ( entity && !target.GetObject().IsMan() )
-			{
-				Man man = entity.GetHierarchyRootPlayer();
-				if( man && man != player )
-				{
-					return false;
-				}
-			}
-		}
-		
-		if ( m_ConditionItem && !m_ConditionItem.Can(player, item))
-		{
-			return false;
-		}
-		
-		if ( m_ConditionTarget && !m_ConditionTarget.Can(player, target))
-		{
-			return false;
-		}
-		
-		if ( ActionCondition(player, target, item) )
-		{
-			return true;
-		}
-		return false;
-	}	
-#endif
 	
 	protected bool CanContinue( ActionData action_data )
 	{
@@ -1046,7 +983,7 @@ class ActionBase : ActionBase_Basic
 	{
 		return -1;
 	}
-#ifndef OLD_ACTIONS
+	
 	ActionInput GetInput()
 	{
 		return m_Input;
@@ -1066,5 +1003,4 @@ class ActionBase : ActionBase_Basic
 	{
 		return m_ActionID;
 	}
-#endif
 };

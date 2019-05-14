@@ -1,76 +1,20 @@
 class AdvancedCommunication extends EntityAI
 {
-#ifdef OLD_ACTIONS
-	ref TIntArray m_SingleUseActions;
-	ref TIntArray m_ContinuousActions;
-	ref TIntArray m_InteractActions;
-#else
 	static ref map<typename, ref TInputActionMap> m_AdvComTypeActionsMap = new map<typename, ref TInputActionMap>;
 	TInputActionMap m_InputActionMap;
 	bool	m_ActionsInitialize;
-#endif
 	
 	void AdvancedCommunication()
 	{
 		if (GetGame().IsClient() || !GetGame().IsMultiplayer())
 		{
-#ifdef OLD_ACTIONS
-		//user actions
-		m_SingleUseActions = new TIntArray;
-		m_ContinuousActions = new TIntArray;
-		m_InteractActions = new TIntArray;
-		SetUserActions();
-#else
 			if(GetGame().GetPlayer())
 			{
 				m_ActionsInitialize = false;
 			}
-#endif
 		}	
 	}
-		
-#ifdef OLD_ACTIONS	
-	//User actions
-	void SetUserActions()
-	{
-		g_Game.ConfigGetIntArray("cfgVehicles " +GetType() + " ContinuousActions", m_ContinuousActions);	
-		g_Game.ConfigGetIntArray("cfgVehicles " +GetType() + " SingleUseActions", m_SingleUseActions);	
-		g_Game.ConfigGetIntArray("cfgVehicles " +GetType() + " InteractActions", m_InteractActions);	
-	}
 
-	override void GetSingleUseActions(out TIntArray actions)
-	{	
-		if ( m_SingleUseActions )
-		{			
-			for ( int i = 0; i < m_SingleUseActions.Count(); i++ )
-			{
-				actions.Insert(m_SingleUseActions.Get(i));
-			}
-		}
-	}
-	
-	override void GetContinuousActions(out TIntArray actions)
-	{
-		if ( m_ContinuousActions )
-		{
-			for ( int i = 0; i < m_ContinuousActions.Count(); i++ )
-			{
-				actions.Insert(m_ContinuousActions.Get(i));
-			}
-		}
-	}
-	
-	override void GetInteractActions(out TIntArray actions)
-	{
-		if ( m_InteractActions )
-		{			
-			for ( int i = 0; i < m_InteractActions.Count(); i++ )
-			{
-				actions.Insert(m_InteractActions.Get(i));
-			}
-		}
-	}
-#endif
 	//HUD
 	/*
 	protected Hud GetHud( PlayerBase player )
@@ -110,7 +54,6 @@ class AdvancedCommunication extends EntityAI
 		GetCompEM().SwitchOff();
 	}
 	
-#ifndef OLD_ACTIONS	
 	void InitializeActions()
 	{
 		m_InputActionMap = m_AdvComTypeActionsMap.Get( this.Type() );
@@ -182,12 +125,6 @@ class AdvancedCommunication extends EntityAI
 			action_array.RemoveItem(action);
 		}
 	}
-#else
-	void SetActions() {}	
-	void AddAction(typename actionName) {}
-	void RemoveAction(typename actionName) {}
-	
-#endif	
 }
 
 class PASReceiver extends AdvancedCommunication

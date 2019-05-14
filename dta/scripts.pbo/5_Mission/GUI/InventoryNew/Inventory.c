@@ -83,6 +83,8 @@ class Inventory: LayoutHolder
 	protected ref InventoryQuickbar			m_Quickbar;
 	
 	protected Widget						m_QuickbarWidget;
+	protected Widget						m_SpecializationPanel;
+	protected Widget						m_SpecializationIcon;
 	protected Widget						m_TopConsoleToolbarVicinity;
 	protected Widget						m_TopConsoleToolbarHands;
 	protected Widget						m_TopConsoleToolbarEquipment;
@@ -123,7 +125,9 @@ class Inventory: LayoutHolder
 		m_QuickbarWidget = GetMainWidget().FindAnyWidget( "QuickbarGrid" );
 		m_Quickbar = new InventoryQuickbar( m_QuickbarWidget );
 		m_Quickbar.UpdateItems( m_QuickbarWidget );
-#endif			
+#endif
+		m_SpecializationPanel = GetMainWidget().FindAnyWidget("SpecializationPanelPanel");
+		m_SpecializationIcon = GetMainWidget().FindAnyWidget("SpecializationIcon");
 		
 		WidgetEventHandler.GetInstance().RegisterOnDropReceived( GetMainWidget().FindAnyWidget( "LeftBackground" ),  this, "OnLeftPanelDropReceived" );
 		WidgetEventHandler.GetInstance().RegisterOnDraggingOver( GetMainWidget().FindAnyWidget( "LeftBackground" ),  this, "DraggingOverLeftPanel" );
@@ -1095,11 +1099,13 @@ class Inventory: LayoutHolder
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.SetSpecialtyMeterVisibility( true );
-				hud.HideQuickbar( true, true );
-				hud.ToggleHud( true, true );
+				hud.ShowQuickbarUI( false );
+				hud.ShowHudInventory( true );
 			}
 		}
+		
+		UpdateSpecialtyMeter();
+		
 		#ifdef PLATFORM_CONSOLE
 			ResetFocusedContainers();
 		#endif	
@@ -1120,16 +1126,22 @@ class Inventory: LayoutHolder
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.SetSpecialtyMeterVisibility( false );
-				if( hud.GetQuickBarState() )
-				{
-					hud.ShowQuickbar();
-				}
-				
-				hud.ToggleHud( hud.GetHudState(), true );
+				hud.ShowQuickbarUI( true );
+				hud.ShowHudInventory( false );
 			}
 		}
 		ItemManager.GetInstance().SetSelectedItem( null, null, null );
+	}
+	
+	void UpdateSpecialtyMeter()
+	{
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+		if ( player && player.GetSoftSkillsManager() )
+		{
+			float x = player.GetSoftSkillsManager().GetSpecialtyLevel() / 2;
+			float y = -0.75;
+			m_SpecializationIcon.SetPos( x, y, true );	
+		}
 	}
 	
 	override void Refresh()
@@ -1147,17 +1159,6 @@ class Inventory: LayoutHolder
 		if ( m_Quickbar )
 		{
 			m_Quickbar.UpdateItems( m_QuickbarWidget );
-		}
-#endif
-	}
-
-
-	void ShowQuickbar()
-	{
-#ifdef PLATFORM_WINDOWS
-		if ( m_QuickbarWidget )
-		{
-			m_QuickbarWidget.Show( true );
 		}
 #endif
 	}

@@ -62,11 +62,8 @@ class FirearmActionLoadMultiBullet : FirearmActionBase
 	{
 		return false;
 	}
-#ifdef OLD_ACTIONS	
-	override void OnContinuousCancel( ActionData action_data )
-#else
+
 	override void OnEndInput( ActionData action_data )
-#endif
 	{
 		action_data.m_Player.GetWeaponManager().LoadMultiBulletStop();
 	}
@@ -98,10 +95,8 @@ class FirearmActionLoadMultiBullet : FirearmActionBase
 		return -1;
 	}*/
 	
-#ifndef OLD_ACTIONS
 	override typename GetInputType()
 	{
 		return ContinuousDefaultActionInput;
 	}
-#endif
 };

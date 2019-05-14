@@ -1088,6 +1088,7 @@ class UAInputAPI
 	proto native owned string SortingName( int index );	// sorting group name
 
 	proto native void Export();	// export XML (user) configuration
+	proto native void Revert();	// revert XML (user) configuration - all of it and use default PBO content!
 	
 	proto native void Backlit_None(); // turn off backlit
 	proto native void Backlit_Background( int eType, int iColor1, int iColor2 ); // start backlit

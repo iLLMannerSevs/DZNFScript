@@ -29,13 +29,11 @@ class ActionUngagTarget: ActionContinuousBase
 	{
 		return "#ungag_person";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{

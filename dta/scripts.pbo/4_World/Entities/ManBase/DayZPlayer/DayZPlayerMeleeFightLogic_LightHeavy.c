@@ -593,20 +593,24 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 		break;
 		}
 	}
-	
+
 	protected void EnableControls()
 	{
+		/*
 		if(m_Mission)
 		{
 			m_Mission.PlayerControlEnable();
 		}
+		*/
 	}
 
 	protected void DisableControls()
 	{
+		/*
 		if(m_Mission)
 		{
 			m_Mission.PlayerControlDisable(INPUT_EXCLUDE_MOUSE_ALL);
 		}
+		*/
 	}
 }

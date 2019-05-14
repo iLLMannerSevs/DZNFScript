@@ -19,7 +19,7 @@ class NoteMenu extends UIScriptedMenu
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				hud.ToggleHud( hud.GetHudState() );
+				hud.ShowHudUI( true );
 			}
 		}
 	}

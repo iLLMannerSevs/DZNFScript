@@ -101,6 +101,7 @@ class PluginRecipesManagerBase extends PluginBase
 		RegisterRecipe(new CraftWatchtowerKit);
 		RegisterRecipe(new CraftWoodenPlank);
 		RegisterRecipe(new SawWoodenLog);
+		RegisterRecipe(new CraftWoodenCrate);
 		
 		//"paint" recipes
 		/*RegisterRecipe(new PaintFirefighterAxe);

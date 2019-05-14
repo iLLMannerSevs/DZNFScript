@@ -13,12 +13,12 @@ class FirearmActionBase : ActionBase
 	{
 		return AC_SINGLE_USE;
 	}
-#ifndef OLD_ACTIONS
+
 	override typename GetInputType()
 	{
 		return DefaultActionInput;
 	}
-#endif
+
 	override bool ActionConditionContinue( ActionData action_data ) //condition for action
 	{
 		Weapon_Base wpn = Weapon_Base.Cast(action_data.m_MainItem);
@@ -46,13 +46,11 @@ class FirearmActionBase : ActionBase
 		return true;
 	}
 	
-#ifndef OLD_ACTIONS
 	override bool CanBeUsedRaised()
 	{
 		return true;
 	}
-#endif
-	
+
 	override void OnUpdate( ActionData action_data )
 	{
 		super.OnUpdate( action_data );

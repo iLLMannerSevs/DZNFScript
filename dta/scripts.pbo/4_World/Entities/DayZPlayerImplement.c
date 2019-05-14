@@ -373,8 +373,8 @@ class DayZPlayerImplement extends DayZPlayer
 			Print("m_DeathEffectTimer = " + m_DeathEffectTimer);
 			Print("~StopDeathDarkeningEffect");*/
 			m_DeathEffectTimer.Stop();
-			PPEffects.SetDeathDarkening(0);
 		}
+		PPEffects.SetDeathDarkening(0);
 	}
 	
 	void SimulateDeath(bool state)
@@ -400,8 +400,14 @@ class DayZPlayerImplement extends DayZPlayer
 			//TODO: move below audio to execute the delayed stuff all at once. Plus, rename the fn called.
 			m_DeathEffectTimer.Run(DYING_PROGRESSION_TIME, this, "SetDeathDarknessLevel", new Param2<float,float>( duration, DYING_PROGRESSION_TIME ), true);
 		}
-		ShowDeadScreen(state,duration);
-		
+		/*else if (!state && IsAlive() && m_DeathEffectTimer && m_DeathEffectTimer.IsRunning())
+		{
+			m_DeathEffectTimer.Stop();
+		}*/
+		if (state)
+			ShowDeadScreen(state,duration);
+		else
+			ShowDeadScreen(state,0);
 		//audio
 		if (state == true)
 		{

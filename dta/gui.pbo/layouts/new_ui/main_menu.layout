@@ -526,97 +526,266 @@ FrameWidgetClass main_menu_root {
     }
    }
   }
-  FrameWidgetClass character_stats_root {
-   visible 0
+  GridSpacerWidgetClass character_stats_root {
+   visible 1
    ignorepointer 1
-   position 0.05 320
-   size 480 380
+   position 100 182
+   size 400 380
    halign right_ref
-   hexactpos 0
+   hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
    priority 3
+   Padding 0
+   Margin 0
+   "Size To Content V" 1
+   Columns 1
+   Rows 2
    {
-    PanelWidgetClass character_stats_header {
+    ImageWidgetClass character_stats_header {
      ignorepointer 1
-     color 0 0 0 0.9608
+     color 0 0 0 0.8784
      position 0 0
      size 1 36
      hexactpos 1
      vexactpos 1
      hexactsize 0
      vexactsize 1
-     style DayZDefaultPanelTop
+     image0 "set:dayz_gui image:inv_header_1"
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
      {
-      ButtonWidgetClass character_stats_close {
-       position 6 0
-       size 36 36
-       halign right_ref
-       valign center_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       style Empty
-       font "gui/fonts/sdf_MetronLight24"
-       {
-        ImageWidgetClass character_stats_close_image {
-         ignorepointer 1
-         size 1 1
-         halign center_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         image0 "set:dayz_gui image:icon_x"
-         mode additive
-         "src alpha" 1
-        }
-       }
-      }
       TextWidgetClass character_stats_text {
        ignorepointer 1
-       size 480 26
+       size 1 26
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 1
+       hexactsize 0
        vexactsize 1
        style Normal
-       text "#layout_main_menu_char_stats"
-       font "gui/fonts/sdf_MetronBook72"
-       "exact text" 0
+       text "#main_menu_statistics"
+       font "gui/fonts/sdf_MetronLight42"
+       "exact text" 1
+       "exact text size" 22
        "text halign" center
        "text valign" center
       }
      }
     }
-    PanelWidgetClass character_stats_content {
+    GridSpacerWidgetClass character_stats_content {
      ignorepointer 1
-     color 0 0 0 0.8627
+     color 0 0 0 0.7059
      position 0 36
-     size 1 344
+     size 1 0
      hexactpos 1
      vexactpos 1
      hexactsize 0
      vexactsize 1
      style DayZDefaultPanelBottom
+     Padding 4
+     Margin 6
+     "Size To Content V" 1
+     Columns 1
+     Rows 5
      {
-      RichTextWidgetClass temp_text_content {
+      FrameWidgetClass TimeSurvived {
        ignorepointer 1
-       size 0.901 0.899
-       halign center_ref
-       valign center_ref
+       position 0 0
+       size 48 24
        hexactpos 1
        vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       text "stat = value"
-       font "gui/fonts/sdf_MetronBook24"
-       "exact text" 1
-       "text halign" center
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass TimeSurvivedLabel {
+         ignorepointer 1
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#main_menu_time"
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass TimeSurvivedValue {
+         ignorepointer 1
+         size 1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      FrameWidgetClass PlayersKilled {
+       ignorepointer 1
+       position 0 0
+       size 48 24
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass PlayersKilledLabel {
+         ignorepointer 1
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#main_menu_players_killed"
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass PlayersKilledValue {
+         ignorepointer 1
+         size 1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      FrameWidgetClass InfectedKilled {
+       ignorepointer 1
+       position 0 0
+       size 48 24
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass InfectedKilledLabel {
+         ignorepointer 1
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#main_menu_infected_killed"
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass InfectedKilledValue {
+         ignorepointer 1
+         size 1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      FrameWidgetClass DistanceTraveled {
+       ignorepointer 1
+       position 0 0
+       size 48 24
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass DistanceTraveledLabel {
+         ignorepointer 1
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#main_menu_distance_foot"
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass DistanceTraveledValue {
+         ignorepointer 1
+         size 1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      FrameWidgetClass LongRangeShot {
+       ignorepointer 1
+       position 0 0
+       size 48 24
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass LongRangeShotLabel {
+         ignorepointer 1
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "#main_menu_long_range_hit_player"
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+        TextWidgetClass LongRangeShotValue {
+         ignorepointer 1
+         size 1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         "size to text h" 1
+         "size to text v" 0
+         "text halign" center
+         "text valign" center
+        }
+       }
       }
      }
     }
@@ -1275,42 +1444,6 @@ FrameWidgetClass main_menu_root {
      "flip v" 0
      filter 1
      rotation 0 0 270
-    }
-   }
-  }
-  ButtonWidgetClass character_stats_open {
-   visible 1
-   color 0 0 0 0.8627
-   position 0 340
-   size 36 36
-   halign right_ref
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   priority 3
-   style DayZDefaultButtonNoBorder
-   font "gui/fonts/sdf_MetronLight24"
-   {
-    ImageWidgetClass character_stats_open_image {
-     ignorepointer 1
-     position 0 0
-     size 1 1
-     halign center_ref
-     valign center_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 0
-     image0 "set:dayz_gui image:icon_collapse"
-     mode blend
-     "src alpha" 1
-     "no wrap" 0
-     stretch 0
-     "flip u" 0
-     "flip v" 0
-     filter 1
-     rotation 0 0 90
     }
    }
   }

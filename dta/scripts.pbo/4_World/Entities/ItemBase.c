@@ -6,11 +6,9 @@ class DummyItem extends ItemBase {};
 
 class ItemBase extends InventoryItem
 {
-#ifndef OLD_ACTIONS
 	static ref map<typename, ref TInputActionMap> m_ItemTypeActionsMap = new map<typename, ref TInputActionMap>;
 	TInputActionMap m_InputActionMap;
 	bool	m_ActionsInitialize;
-#endif
 	
 	static int		m_DebugActionsMask;
 	bool	m_RecipesInitialized;
@@ -100,9 +98,7 @@ class ItemBase extends InventoryItem
 		if (GetGame().IsClient() || !GetGame().IsMultiplayer())
 		{
 			PreLoadSoundAttachmentType();
-#ifndef OLD_ACTIONS
 			m_ActionsInitialize = false;
-#endif
 		}
 		m_OldLocation = null;
 		
@@ -152,7 +148,7 @@ class ItemBase extends InventoryItem
 		RegisterNetSyncVariableBool("m_IsBeingPlaced");
 		RegisterNetSyncVariableBool("m_IsTakeable");
 	}
-#ifndef OLD_ACTIONS	
+
 	void InitializeActions()
 	{
 		m_InputActionMap = m_ItemTypeActionsMap.Get( this.Type() );
@@ -228,12 +224,7 @@ class ItemBase extends InventoryItem
 			action_array.RemoveItem(action);
 		}
 	}
-#else
-	void SetActions() {}	
-	void AddAction(typename actionName) {}
-	void RemoveAction(typename actionName) {}
 	
-#endif	
 	// Loads muzzle flash particle configuration from config and saves it to a map for faster access
 	void LoadParticleConfigOnFire(int id)
 	{
@@ -574,40 +565,6 @@ class ItemBase extends InventoryItem
 		g_Game.ConfigGetIntArray(path + " SingleUseActions", m_SingleUseActions);
 		g_Game.ConfigGetIntArray(path + " InteractActions", m_InteractActions);
 	}
-	#ifdef OLD_ACTIONS
-	override void GetSingleUseActions(out TIntArray actions)
-	{	
-		if ( m_SingleUseActions )
-		{			
-			for ( int i = 0; i < m_SingleUseActions.Count(); i++ )
-			{
-				actions.Insert(m_SingleUseActions.Get(i));
-			}
-		}
-	}
-	
-	override void GetContinuousActions(out TIntArray actions)
-	{
-		if ( m_ContinuousActions )
-		{
-			for ( int i = 0; i < m_ContinuousActions.Count(); i++ )
-			{
-				actions.Insert(m_ContinuousActions.Get(i));
-			}
-		}
-	}
-	
-	override void GetInteractActions(out TIntArray actions)
-	{
-		if ( m_InteractActions )
-		{			
-			for ( int i = 0; i < m_InteractActions.Count(); i++ )
-			{
-				actions.Insert(m_InteractActions.Get(i));
-			}
-		}
-	}
-	#endif
 	// -------------------------------------------------------------------------
 	static int GetDebugActionsMask()
 	{
@@ -2087,7 +2044,7 @@ class ItemBase extends InventoryItem
 			return false;
 
 		PlayerBase player;
-		if( Class.CastTo(player, GetHierarchyRootPlayer()) )
+		if( Class.CastTo(player, GetHierarchyRootPlayer()) || version == int.MAX )
 		{
 			//Load quickbar item bind
 			int itemQBIndex;

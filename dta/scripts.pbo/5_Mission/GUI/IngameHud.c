@@ -66,8 +66,6 @@ class IngameHud extends Hud
 	
 	protected ProgressBarWidget					m_Stamina;
 	protected Widget							m_StaminaBackground;
-	protected Widget							m_SpecializationPanel;
-	protected Widget							m_SpecializationIcon;
 	protected Widget							m_Presence;
 	protected Widget							m_StanceProne;
 	protected Widget							m_StanceStand;
@@ -116,7 +114,12 @@ class IngameHud extends Hud
 	// CrossHairs
 	protected ImageWidget						m_PermanentCrossHair;
 	
+	protected bool								m_HudHideUI;
+	protected bool								m_HudHidePlayer;
+	protected bool								m_HudInventory;
 	protected bool								m_HudState;
+	protected bool								m_QuickbarHideUI;
+	protected bool								m_QuickbarHidePlayer;
 	protected bool								m_QuickbarState;
 	protected bool								m_Faded;
 	protected bool								m_ZeroingKeyPressed;
@@ -188,8 +191,6 @@ class IngameHud extends Hud
 		
 		//Panels
 		Class.CastTo(m_Stamina, m_HudPanelWidget.FindAnyWidget("StaminaBar"));
-		m_SpecializationPanel			= m_HudPanelWidget.FindAnyWidget("SpecializationPanelPanel");
-		m_SpecializationIcon			= m_HudPanelWidget.FindAnyWidget("SpecializationIcon");
 		m_Presence						= m_HudPanelWidget.FindAnyWidget("PresencePanel");
 		m_Badges						= hud_panel_widget.FindAnyWidget("BadgesPanel");
 		m_Notifiers						= m_HudPanelWidget.FindAnyWidget("NotifiersPanel");
@@ -322,8 +323,8 @@ class IngameHud extends Hud
 //		#endif
 		
 		SetLeftStatsVisibility( true );
-		ToggleHud( g_Game.GetProfileOption( EDayZProfilesOptions.HUD ) );
-		ToggleQuickBar( g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ) );
+		m_HudState = g_Game.GetProfileOption( EDayZProfilesOptions.HUD );
+		m_QuickbarState = g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR );
 	}
 	
 	override void OnResizeScreen()
@@ -1034,7 +1035,6 @@ class IngameHud extends Hud
 		if (m_Quickbar == NULL)
 		{
 			m_Quickbar = new InventoryQuickbar( m_QuickbarWidget );
-			ShowQuickbar();
 		}
 	}
 	
@@ -1043,93 +1043,93 @@ class IngameHud extends Hud
 		return m_Quickbar;
 	}
 	
-	void ShowQuickbar( bool ignore_state = false )
+	void RefreshQuickbarVisibility()
 	{
-#ifdef PLATFORM_XBOX
-		return;
-#else
-#ifdef PLATFORM_PS4
-		return;
-#endif
-#endif
-		
-		PlayerBase player;
-		Class.CastTo(player,  GetGame().GetPlayer() );
-		if(!player)
-		{
-			return;
-		}
-
-		if ( m_QuickbarWidget && player.GetQuickBarSize() != 0 )
-		{
-				RefreshQuickbar();
-
-				m_FadeTimers.Clear();
-				
-				m_QuickbarWidget.Show( true );
-				if ( !ignore_state )
-				{
-					m_QuickbarState = true;
-				}
-		}
+		m_QuickbarWidget.Show( !m_QuickbarHideUI && !m_QuickbarHidePlayer && m_QuickbarState );
 	}
 	
-	void HideQuickbar( bool ignore_state = false , bool instant_hide = false )
+	void RefreshHudVisibility()
 	{
-		if ( m_QuickbarWidget )
-		{
-			InventoryGrid quickbarGrid;
-			m_QuickbarWidget.GetScript(quickbarGrid);
-			
-			if( !instant_hide )
-			{
-				Widget child = quickbarGrid.GetRoot().GetChildren();
-				while (child)
-				{
-					WidgetFadeTimer fade_timer_quickbar = new WidgetFadeTimer;
-					fade_timer_quickbar.FadeOut(child, 5, true);
-					m_FadeTimers.Insert(fade_timer_quickbar);
-					child = child.GetSibling();
-				}
-			}
-			else
-			{
-				m_QuickbarWidget.Show( false );
-			}
-			
-			if ( !ignore_state )
-			{
-				m_QuickbarState = false;
-			}
-		}
+		SetLeftStatsVisibility( !m_HudHidePlayer && !m_HudHideUI && m_HudState );
+		m_Badges.Show( ( !m_HudHidePlayer && !m_HudHideUI && m_HudState ) || m_HudInventory );
+		m_Notifiers.Show( ( !m_HudHidePlayer && !m_HudHideUI && m_HudState ) || m_HudInventory );
+		m_BadgeNotifierDivider.Show( ( ( !m_HudHidePlayer && !m_HudHideUI && m_HudState ) || m_HudInventory ) && m_AnyBadgeVisible );
 	}
 	
-	void ToggleQuickBar( bool show, bool ignore_state = false )
+	bool IsHideQuickbarPlayer()
 	{
-		if ( show )
+		return m_QuickbarHidePlayer;
+	}
+	
+	bool IsHideHudPlayer()
+	{
+		return m_HudHidePlayer;
+	}
+	
+	void ShowQuickbarUI( bool show )
+	{
+		m_QuickbarHideUI = !show;
+		RefreshQuickbarVisibility();
+	}
+	
+	void ShowQuickbarPlayer( bool show )
+	{
+		if( !m_QuickbarState )
 		{
-			ShowQuickbar( ignore_state );
+			m_QuickbarState = true;
+			m_QuickbarHidePlayer = false;
+			if( m_HideTimer.IsRunning() )
+				m_HideTimer.Stop();
+			m_HideTimer.Run( 3, this, "HideQuickbarTimer" );
 		}
 		else
 		{
-			HideQuickbar( false, ignore_state );
+			m_QuickbarHidePlayer = !show;
 		}
+		RefreshQuickbarVisibility();
 	}
 	
-	void ToggleHud( bool show, bool ignore_state = false )
+	void HideQuickbarTimer()
 	{
-		//You can add more widgets to toggle here
-		SetLeftStatsVisibility( show );
-		m_Badges.Show( show );
-		m_Notifiers.Show( show );
-		m_BadgeNotifierDivider.Show( show && m_AnyBadgeVisible );
-		
-		if( !ignore_state )
-		{
-			m_HudState = show;
-			//! save it to profiles
-			g_Game.SetProfileOption( EDayZProfilesOptions.HUD, show );
-		}
+		m_QuickbarState = false;
+		RefreshQuickbarVisibility();
+	}
+	
+	void ShowHudPlayer( bool show )
+	{
+		m_HudHidePlayer = !show;
+		RefreshHudVisibility();
+	}
+	
+	void ShowHudUI( bool show )
+	{
+		m_HudHideUI = !show;
+		RefreshHudVisibility();
+	}
+	
+	void ShowHudInventory( bool show )
+	{
+		m_HudInventory = show;
+		RefreshHudVisibility();
+	}
+
+	void ShowQuickBar( bool show )
+	{
+		#ifdef PLATFORM_CONSOLE
+			return;
+		#endif
+		if( m_HideTimer.IsRunning() )
+			m_HideTimer.Stop();
+		m_QuickbarState = show;
+		g_Game.SetProfileOption( EDayZProfilesOptions.QUICKBAR, show );
+		RefreshQuickbarVisibility();
+	}
+	
+	void ShowHud( bool show )
+	{
+		m_HudState = show;
+		g_Game.SetProfileOption( EDayZProfilesOptions.HUD, show );
+		RefreshHudVisibility();
 	}
 	
 	bool GetQuickBarState()
@@ -1145,31 +1145,6 @@ class IngameHud extends Hud
 	void SetLeftStatsVisibility(bool visible)
 	{
 		m_LeftHudPanelWidget.Show( visible );
-	}
-
-	void SetSpecialtyMeterVisibility( bool visible )
-	{
-		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
-
-		if ( player && player.GetSoftSkillsManager() )
-		{
-			m_SpecializationPanel.Show( visible );
-			float x = player.GetSoftSkillsManager().GetSpecialtyLevel() / 2;
-			float y = -0.75;
-			m_SpecializationIcon.SetPos( x, y, true );	
-		}
-	}
-	
-	void CheckHudElementsVisibility()
-	{
-		if (m_HudState != g_Game.GetProfileOption( EDayZProfilesOptions.HUD))
-		{
-			ToggleHud( g_Game.GetProfileOption( EDayZProfilesOptions.HUD ) );
-		}
-		if (m_QuickbarState != (g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR)))
-		{
-			ToggleQuickBar( g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ) );
-		}
 	}
 	
 	override void RefreshQuickbar( bool itemChanged = false )

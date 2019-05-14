@@ -22,6 +22,7 @@ class Shovel extends ItemBase
 		AddAction(ActionDismantlePart);
 		AddAction(ActionBuryBody);
 		AddAction(ActionBuryAshes);
+		AddAction(ActionDigOutStash);
 		AddAction(ActionDigInStash);
 		AddAction(ActionFillObject);
 		AddAction(ActionDigWorms);

@@ -217,10 +217,9 @@ class ActionEnterLadder: ActionInteractBase
 	{
 		return false;
 	}
-#ifndef OLD_ACTIONS		
+	
 	override bool CanBeUsedSwimming()
 	{
 		return true;
 	}
-#endif
 };

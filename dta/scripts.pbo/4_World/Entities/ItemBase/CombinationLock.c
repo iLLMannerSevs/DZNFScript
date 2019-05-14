@@ -73,6 +73,8 @@ class CombinationLock extends ItemBase
 				{
 					//drop entity
 					fence.GetInventory().DropEntity( InventoryMode.LOCAL, fence, this );
+					SetPosition( fence.GetKitSpawnPosition() );
+					PlaceOnSurface();
 				}
 			}
 		}
@@ -334,6 +336,9 @@ class CombinationLock extends ItemBase
 		
 		//drop entity from attachment slot
 		parent.GetInventory().DropEntity( InventoryMode.PREDICTIVE, parent, this );
+		Fence fence = Fence.Cast( parent );
+		SetPosition( fence.GetKitSpawnPosition() );
+		PlaceOnSurface();
 		
 		//set lock attached
 		SetLockAttachedState( false );

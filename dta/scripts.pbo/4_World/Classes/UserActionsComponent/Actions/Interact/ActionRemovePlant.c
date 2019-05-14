@@ -22,13 +22,11 @@ class ActionRemovePlant: ActionInteractBase
 	{
 		return "#remove_plant";
 	}
-
-#ifndef OLD_ACTIONS	
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override void CreateConditionComponents()  
 	{	

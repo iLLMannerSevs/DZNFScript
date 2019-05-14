@@ -9,7 +9,7 @@ class InGameMenu extends UIScriptedMenu
 	
 	void ~InGameMenu()
 	{
-		HudSow( true );
+		HudShow( true );
 	}
 
 	override Widget Init()
@@ -35,7 +35,7 @@ class InGameMenu extends UIScriptedMenu
 		delete m_RestartButton;
 	#endif
 		
-		HudSow( false );
+		HudShow( false );
 		
 		SetGameVersion();
 		
@@ -56,7 +56,7 @@ class InGameMenu extends UIScriptedMenu
 		#endif
 	}
 	
-	protected void HudSow( bool show )
+	protected void HudShow( bool show )
 	{
 		Mission mission = GetGame().GetMission();
 		if ( mission )
@@ -64,16 +64,8 @@ class InGameMenu extends UIScriptedMenu
 			IngameHud hud = IngameHud.Cast( mission.GetHud() );
 			if ( hud )
 			{
-				if ( show )
-				{
-					hud.ToggleHud( hud.GetHudState(), true );
-					hud.ToggleQuickBar( hud.GetQuickBarState(), true );
-				}
-				else
-				{
-					hud.ToggleHud( false, true );
-					hud.ToggleQuickBar( false, true );
-				}
+				hud.ShowHudUI(show);
+				hud.ShowQuickbarUI(show);
 			}
 		}
 	}

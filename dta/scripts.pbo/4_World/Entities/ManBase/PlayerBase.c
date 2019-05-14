@@ -49,10 +49,8 @@ class PlayerBase extends ManBase
 	ref Param2<float,float>			m_StaminaParam;
 	ref Param1<string> 				m_UAParamMessage;
 	ref DamageDealtEffect			m_DamageDealtEffect;
-#ifndef OLD_ACTIONS
 	ref TInputActionMap				m_InputActionMap;
 	bool							m_ActionsInitialize;
-#endif
 	//ref CraftingMeta 				m_CraftingMeta;
 	ref WeaponManager				m_WeaponManager;
 	ref CraftingManager 			m_CraftingManager;
@@ -260,9 +258,7 @@ class PlayerBase extends ManBase
 			m_BleedingManagerRemote = new BleedingSourcesManagerRemote(this);
 			m_PlayerSoundManagerClient = new PlayerSoundManagerClient(this);
 			m_StanceIndicator = new StanceIndicator(this);
-#ifndef OLD_ACTIONS
 			m_ActionsInitialize = false;
-#endif
 			ClientData.AddPlayerBase( this );
 		}
 
@@ -793,60 +789,6 @@ class PlayerBase extends ManBase
 	// --------------------------------------------------
 	// User Actions
 	//---------------------------------------------------
-#ifdef OLD_ACTIONS		
-	override void GetSingleUseActions(out TIntArray actions)
-	{
-		//actions.Insert(AT_WORLD_CRAFT_CANCEL); 
-		actions.Insert(AT_WORLD_LIQUID_ACTION_SWITCH);
-		actions.Insert(AT_VEH_ENGINE_STOP);
-		actions.Insert(AT_VEH_SWITCH_SEATS);
-		actions.Insert(AT_TAKE_MATERIAL_TO_HANDS_SWITCH);
-	}
-	
-	override void GetContinuousActions(out TIntArray actions)
-	{
-		actions.Insert(AT_CPR_T);
-		actions.Insert(AT_UNCOVER_HEAD_S);
-		actions.Insert(AT_UNCOVER_HEAD_T);
-		//actions.Insert(AT_ATTACHED);
-		//actions.Insert(AT_DRINK_POND); //<-- moved to interact (will be reused for continuous in future)
-		//actions.Insert(AT_DRINK_WELL); //<-- moved to interact (will be reused for continuous in future)
-		actions.Insert(AT_IGNITE_FIREPLACE_BY_AIR);
-		actions.Insert(AT_LIGHT_ITEM_ON_FIRE);
-		//actions.Insert(AT_WASH_HANDS_WELL); //<-- moved to interact (will be reused for continuous in future)
-		//actions.Insert(AT_WASH_HANDS_WATER); //<-- moved to interact (will be reused for continuous in future)
-		actions.Insert(AT_BUILD_OVEN);
-		actions.Insert(AT_DISMANTLE_OVEN);
-		actions.Insert(AT_VEH_ENGINE_START);
-		actions.Insert(AT_ACTIVATE_TRAP);
-		actions.Insert(AT_FOLD_BASEBUILDING_OBJECT);
-		actions.Insert(AT_DIAL_COMBINATION_LOCK_ON_TARGET);
-		actions.Insert(AT_UNGAG_SELF);
-		actions.Insert(AT_UNGAG_TARGET);
-	}
-	
-	override void GetInteractActions(out TIntArray actions)
-	{
-		actions.Insert(AT_PICK_BERRY);
-		actions.Insert(AT_OPEN_DOORS);
-		actions.Insert(AT_CLOSE_DOORS);
-		actions.Insert(AT_ENTER_LADDER);
-		actions.Insert(AT_EXIT_LADDER);
-		actions.Insert(AT_TAKE_ITEM);
-		actions.Insert(AT_TAKE_ITEM_TO_HANDS);
-		//actions.Insert(AT_SWAP_ITEM_TO_HANDS);
-		actions.Insert(AT_LOCKED_DOORS);
-		actions.Insert(AT_DRINK_POND_ONE);
-		actions.Insert(AT_DRINK_WELL_ONE);
-		actions.Insert(AT_WASH_HANDS_WELL_ONE);
-		actions.Insert(AT_WASH_HANDS_WATER_ONE);
-		actions.Insert(AT_GETOUT_TRANSPORT);
-		actions.Insert(AT_VEH_SWITCH_LIGHTS);
-		actions.Insert(AT_FENCE_OPEN);
-		actions.Insert(AT_FENCE_CLOSE);
-		actions.Insert(AT_TAKE_MATERIAL_TO_HANDS);
-	}
-#else
 	void SetActions()
 	{
 		AddAction(ActionOpenDoors);
@@ -964,7 +906,6 @@ class PlayerBase extends ManBase
 		}
 		action_array.Insert(action); 
 	}
-#endif	
 	int GetCurrentRecipe()
 	{
 		return m_RecipePick;
@@ -2050,40 +1991,6 @@ class PlayerBase extends ManBase
 				}
 				
 			}
-#ifdef OLD_ACTIONS		
-			if (hic.IsSingleUse())
-			{
-				Print("PlayerBase.c OnSingleUse");
-				mngr.OnSingleUse();
-			//if ( GetGame().IsServer() )  mngr.SetDeliveredTarget(synceddata.GetParam.Param1);
-			}
-
-			if (hic.IsContinuousUseStart())
-			{
-				if(m_ActionQBControl)
-				{
-					Print("PlayerBase.c ContinuousUse change control");
-					m_ActionQBControl = false;
-				}
-				else
-				{
-					Print("PlayerBase.c OnContinuousUseStart");
-					mngr.OnContinuousStart();
-				}
-				//if ( GetGame().IsServer() )  mngr.SetDeliveredTarget(synceddata.GetParam.Param1);
-			}
-			if (hic.IsContinuousUseEnd())
-			{
-				Print("PlayerBase.c OnContinuousUseEnd");
-				mngr.OnContinuousCancel();
-			}
-			if (hic.IsImmediateAction())
-			{
-				Print("PlayerBase.c OnAction");
-				mngr.OnInteractAction();
-			//if ( GetGame().IsServer()  )  mngr.SetDeliveredTarget(synceddata.GetParam.Param1);
-			}
-#endif
 			
 			// quickbar use
 			int quickBarSlot = hic.IsQuickBarSlot();
@@ -2837,24 +2744,6 @@ class PlayerBase extends ManBase
 	//---------------------------------------------------------
 	void OnQuickBarContinuousUseEnd(int slotClicked)
 	{
-#ifdef OLD_ACTIONS
-		if ( m_QuickBarHold )
-		{
-			if (m_ActionQBControl)
-			{
-				GetActionManager().OnContinuousCancel();
-			}
-			else if (  GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT )
-			{
-				ActionManagerClient mngr;
-				if( Class.CastTo(mngr, GetActionManager()) )	
-				{
-					mngr.ClearForceTarget();
-				}
-			}
-		}
-		m_QuickBarHold = false;
-#else
 		if ( m_QuickBarHold )
 		{
 			if (  GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT )
@@ -2879,15 +2768,7 @@ class PlayerBase extends ManBase
 			}
 		}
 		m_QuickBarHold = false;
-#endif
 	}
-#ifdef OLD_ACTIONS
-	void SetActionEndInput()
-	{
-		HumanInputController hic = GetInputController();
-		m_ActionQBControl = !hic.IsUseButtonDown();
-	}
-#else
 	void SetActionEndInput(ActionBase action)
 	{
 		m_ActionQBControl = !action.GetInput().IsActive();
@@ -2897,7 +2778,6 @@ class PlayerBase extends ManBase
 	{
 		return m_ActionQBControl;
 	}
-#endif
 	void ResetActionEndInput()
 	{
 		m_ActionQBControl = false;
@@ -5904,13 +5784,10 @@ class PlayerBase extends ManBase
 		super.PredictiveTakeEntityToHands(item);
 	}
 	
-	//-----------------------------------------
-	// vv experimental section vv
-	
 	//TODO remove/move when done experimenting
 	bool m_HideHairAnimated = true;
 	
-	//! Dynamic hair hiding - debug only, for now
+	//! Dynamic hair hiding
 	void SetHairLevelToHide(int level, bool state, bool was_debug = false)
 	{
 		if (was_debug && GetInstanceType() != DayZPlayerInstanceType.INSTANCETYPE_CLIENT)
@@ -5931,7 +5808,9 @@ class PlayerBase extends ManBase
 			for (int i = 0; i < m_CharactersHead.m_HeadHairSelectionArray.Count(); i++)
 			{
 				//m_CharactersHead.SetSimpleHiddenSelectionState(i,m_HideHairAnimated);
-				m_CharactersHead.m_HeadHairHidingStateMap.Set(i,m_HideHairAnimated);
+				SelectionTranslation stt = SelectionTranslation.Cast(m_CharactersHead.m_HeadHairHidingStateMap.Get(i));
+				stt.SetSelectionState(m_HideHairAnimated);
+				m_CharactersHead.m_HeadHairHidingStateMap.Set(i,stt);
 #ifdef DEVELOPER
 				diagmenu.m_HairHidingStateMap.Set(i,m_HideHairAnimated);
 #endif
@@ -5953,7 +5832,9 @@ class PlayerBase extends ManBase
 				switchState = !state;
 			}
 			//m_CharactersHead.SetSimpleHiddenSelectionState(level,switchState);
-			m_CharactersHead.m_HeadHairHidingStateMap.Set(level,switchState); //nescessary?
+			stt = SelectionTranslation.Cast(m_CharactersHead.m_HeadHairHidingStateMap.Get(level));
+			stt.SetSelectionState(switchState);
+			m_CharactersHead.m_HeadHairHidingStateMap.Set(level,stt); //nescessary?
 		}
 	}
 	
@@ -5964,8 +5845,6 @@ class PlayerBase extends ManBase
 		
 		string str
 		int idx;
-		//array<string> 	selection_array = new array<string>;
-		//m_CharactersHead.GetHeadHideableSelections(selection_array);
 		
 		for (int i = 0; i < item.m_HeadHidingSelections.Count(); i++)
 		{
@@ -5981,6 +5860,9 @@ class PlayerBase extends ManBase
 		if (!m_CharactersHead)
 			return;
 		bool shown;
+		bool exception_hidden = false;
+		int i;
+		SelectionTranslation stt;
 		
 		//hide/show beard
 		if ( IsMale() && m_CharactersHead.GetBeardIndex() > -1 && !was_debug )
@@ -5989,26 +5871,46 @@ class PlayerBase extends ManBase
 		}
 		
 		//show all first
-		for (int i = 0; i < m_CharactersHead.m_HeadHairHidingStateMap.Count()/*currently_hidden.Count()*/; i++)
+		for (i = 0; i < m_CharactersHead.m_HeadHairHidingStateMap.Count(); i++)
 		{
-			//shown = m_CharactersHead.m_HeadHairHidingStateMap.Get(i);
-			m_CharactersHead.SetSimpleHiddenSelectionState(i,true); //TODO add "hair" selection and show only "hair and "beard, to save time
+			m_CharactersHead.SetSimpleHiddenSelectionState(i,true);
 		}
 		//then carve it up
-		for (i = 0; i < m_CharactersHead.m_HeadHairHidingStateMap.Count()/*currently_hidden.Count()*/; i++)
+		for (i = 0; i < m_CharactersHead.m_HeadHairHidingStateMap.Count(); i++)
 		{
-			shown = m_CharactersHead.m_HeadHairHidingStateMap.Get(i);
+			stt = m_CharactersHead.m_HeadHairHidingStateMap.Get(i);
+			shown = stt.GetSelectionState();
 			if (!shown)
-				m_CharactersHead.SetSimpleHiddenSelectionState(i,shown);
+			{
+				if ( IsMale() && !m_CharactersHead.IsHandlingException() )
+				{
+					m_CharactersHead.SetSimpleHiddenSelectionState(i,shown);
+					UpdateTranslatedSelections(stt);
+					//Print("hidden idx: " + i);
+				}
+				else
+				{
+					exception_hidden = true;
+				}
+			}
 		}
 		
-		//re-hide beard?
-		/*int level = GetLifeSpanState();
-		if (GetLifeSpanState() != LifeSpanState.BEARD_EXTRA)
+		//exceptions handled differently; hides hair
+		if ( exception_hidden )
 		{
-			int idx = m_CharactersHead.GetBeardIndex();
-			m_CharactersHead.SetSimpleHiddenSelectionState(idx,false);
-		}*/
+			m_CharactersHead.SetSimpleHiddenSelectionState(m_CharactersHead.GetHairIndex(),false);
+			if ( IsMale() )
+				m_CharactersHead.SetSimpleHiddenSelectionState(m_CharactersHead.GetBeardIndex(),false);
+		}
+	}
+	
+	void UpdateTranslatedSelections(SelectionTranslation stt)
+	{
+		array<int> translatedSelectinosArray = stt.GetTranslatedSelections();
+		for (int i = 0; i < translatedSelectinosArray.Count(); i++)
+		{
+			m_CharactersHead.SetSimpleHiddenSelectionState(translatedSelectinosArray.Get(i),false); //safe this way, only hiding/carving from shown parts
+		}
 	}
 	
 	bool IsNVGWorking()

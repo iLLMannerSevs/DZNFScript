@@ -1,7 +1,6 @@
-#ifndef OLD_ACTIONS
 typedef map<typename,ref array<ActionBase_Basic>>		TInputActionMap;
 typedef map<typename,ref ActionInput>					TTypeNameActionInputMap;
-#endif
+
 class ActionManagerClient: ActionManagerBase 
 {
 	
@@ -11,13 +10,12 @@ class ActionManagerClient: ActionManagerBase
 	protected ref array<ref InventoryLocation>	m_ReservedInventoryLocations;
 	protected ref InventoryActionHandler		m_InventoryActionHandler;
 	protected ref InventoryLocation				m_HandInventoryLocationTest;
-#ifndef OLD_ACTIONS	
 	protected static ref TTypeNameActionInputMap		m_RegistredInputsMap;
 
 	//protected bool								m_ActionWantEnd;		//If set action try end // send request to server to end
 	protected bool 								m_ActionWantEndRequest_Send;		//Request to server was sended
 	protected bool								m_ActionInputWantEnd_Send;	
-#endif
+
 	void ActionManagerClient(PlayerBase player) 
 	{
 		//ActionManagerBase(player);
@@ -28,11 +26,11 @@ class ActionManagerClient: ActionManagerBase
 		m_ReservedInventoryLocations = new array<ref InventoryLocation>;
 		m_InventoryActionHandler = new InventoryActionHandler(player);
 		EnableActions();
-#ifndef OLD_ACTIONS	
+
 		m_ActionWantEndRequest_Send = false;
 		m_ActionInputWantEnd_Send = false;
 		RegisterInputs();
-#endif
+
 	}
 	
 	override void Update(int pCurrentCommandID)
@@ -78,7 +76,6 @@ class ActionManagerClient: ActionManagerBase
 					break;
 			
 				default:
-#ifndef OLD_ACTIONS
 					if ( m_ActionWantEndRequest )
 					{
 						if ( GetGame().IsMultiplayer() && !m_CurrentActionData.m_Action.IsLocal() )
@@ -131,7 +128,6 @@ class ActionManagerClient: ActionManagerBase
 							m_CurrentActionData.m_Action.OnEndInput(m_CurrentActionData);
 						}
 					}
-#endif
 				break;
 			}
 		}
@@ -152,15 +148,13 @@ class ActionManagerClient: ActionManagerBase
 			m_Targets.Update();
 			FindContextualUserActions( pCurrentCommandID );	
 		}
-#ifndef OLD_ACTIONS
 		InputsUpdate();
-#endif
 #ifdef DEVELOPER
 			}
 #endif
 
 	}
-#ifndef OLD_ACTIONS	
+	
 	void RegisterInputs()
 	{
 		if (!m_RegistredInputsMap)
@@ -275,7 +269,6 @@ class ActionManagerClient: ActionManagerBase
 		}
 		return -1;
 	}
-#endif	
 	//--------------------------------------------------------
 	// Controls avaliability of contextual actions
 	//--------------------------------------------------------
@@ -339,47 +332,7 @@ class ActionManagerClient: ActionManagerBase
 	}*/
 	//--------------------------------------------------------
 	// Alows to set different action to current contextual one //jtomasik - pri injectu budu muset serveru poslat ID injectnute akce
-	//--------------------------------------------------------
-#ifdef OLD_ACTIONS
-	void InjectContinuousAction( int actionid, ActionTarget target, ItemBase item )
-	{
-		//DisableContinuousAction();
-		
-		//ActionBase action = GetAction(actionid);
-		SetContinuousAction(GetAction(actionid),target,item);
-		//DeliverInjectedAction(1,action_id,action_target,action_item);
-	}
-	
-	void EjectContinuousAction()
-	{
-		RemoveContinuousAction();
-		EnableContinuousAction();
-		//DeliverEjectAction(1);
-	}
-	
-	void InjectSingleUseAction( int actionid, ActionTarget target, ItemBase item )
-	{
-		//DisableSingleUseAction();
-		SetSingleUseAction(GetAction(actionid),target,item);
-		
-		
-		//DeliverInjectedAction(2,action_id,action_target,action_item);
-	}
-	
-	void EjectSingleUseAction()
-	{
-		RemoveSingleUseAction();
-		EnableSingleUseAction();
-		//DeliverEjectAction(2);
-	}
-			
-	void EjectActions()
-	{
-		EjectContinuousAction();
-		EjectSingleUseAction();
-		//DeliverEjectAction(4);
-	}
-#else	
+	//--------------------------------------------------------	
 	void InjectAction( ActionBase action, ActionTarget target, ItemBase item)
 	{
 		ActionInput ai = action.GetInput();
@@ -403,8 +356,7 @@ class ActionManagerClient: ActionManagerBase
 		ActionBase action = GetAction(actionType);
 		EjectAction(action);
 	}
-	
-#endif	
+		
 	void ForceTarget(Object targetObject)
 	{
 		m_ForceTarget = new ActionTarget(targetObject, null, -1, vector.Zero, -1);
@@ -468,19 +420,11 @@ class ActionManagerClient: ActionManagerBase
 	protected void FindContextualUserActions( int pCurrentCommandID )
 	{
 		RemoveActions();
-#ifdef OLD_ACTIONS
-		if (m_Player.IsRaised() || !ActionPossibilityCheck(pCurrentCommandID) || HasHandInventoryReservation() || GetGame().IsInventoryOpen() )
-		{
-			m_SelectableActions.Clear();
-			return;
-		}
-#else
 		if (!ActionPossibilityCheck(pCurrentCommandID) || HasHandInventoryReservation() || GetGame().IsInventoryOpen())
 		{
 			//add clearing for actions maybe
 			return;
-		}
-#endif	
+		}	
 		
 		if ( (m_PrimaryActionEnabled || m_SecondaryActionEnabled || m_TertiaryActionEnabled ) && !GetRunningAction() )
 		{	
@@ -493,7 +437,6 @@ class ActionManagerClient: ActionManagerBase
 			item = FindActionItem();
 			target = FindActionTarget();
 			
-#ifndef OLD_ACTIONS	
 			ItemBase target_item;
 			Class.CastTo(target_item,  target.GetObject() );
 			
@@ -507,229 +450,8 @@ class ActionManagerClient: ActionManagerBase
 			}
 			SetActionContext( target,item );
 		}
-#else		
-			//When player swim there is only enter ladder action
-			if ( pCurrentCommandID == DayZPlayerConstants.COMMANDID_SWIM )
-			{
-				m_SelectableActions.Clear();
-				m_SelectedActionIndex = 0;
-
-				action = GetAction(AT_ENTER_LADDER);
-
-				if ( action && action.Can(m_Player, target, NULL) )
-				{
-					m_SelectableActions.Insert(new TSelectableActionInfo(SAT_INTERACT_ACTION, action.GetType(), action.GetText()));
-				}
-				return;
-			}
-			
-			if ( pCurrentCommandID == DayZPlayerConstants.COMMANDID_LADDER )
-			{
-				m_SelectableActions.Clear();
-				m_SelectedActionIndex = 0;
-				action = GetAction(AT_EXIT_LADDER);
-
-				if ( action && action.Can(m_Player, target, NULL) )
-				{
-					m_SelectableActions.Insert(new TSelectableActionInfo(SAT_INTERACT_ACTION, action.GetType(), action.GetText()));
-				}
-				return;
-			}
-			
-			ItemBase target_item;
-			Class.CastTo(target_item,  target.GetObject() );
-			
-			m_Player.GetCraftingManager().OnUpdate(item,target_item);
-
-			//Looking for suitable user actions with given inputs
-			if ( m_PrimaryActionEnabled ) 
-			{
-				SetContinuousAction(FindContextualContinuousAction(target,item),target,item);
-			}
-			if ( m_SecondaryActionEnabled ) 
-			{
-				SetSingleUseAction(FindContextualSingleUseAction(target,item),target,item);
-			}
-			if ( m_TertiaryActionEnabled ) 
-			{
-				FindSelectableActions(target);
-			}
-
-		}
-		else
-		{
-			m_SelectableActions.Clear();
-		}
-#endif
 	}
 	
-#ifdef OLD_ACTIONS	
-	protected ActionBase FindContextualContinuousAction(ActionTarget target, ItemBase item)
-	{
-		ref TIntArray primary_action_ids = new TIntArray;
-		ActionBase picked_action;
-		
-		primary_action_ids.Insert(AT_WORLD_CRAFT);
-		if ( item )
-		{
-			item.GetContinuousActions(primary_action_ids);
-		}
-		
-		// Adding default continuous actions of player
-		if ( m_Player ) 
-		{
-			m_Player.GetContinuousActions(primary_action_ids);
-		}
-
-		// Adding actions of item
-
-		// Looking for first possible continuous action 
-		if ( primary_action_ids && primary_action_ids.Count() > 0  )
-		{
-			for ( int i = 0; i < primary_action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(primary_action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player,target, item) )
-				{
-					return picked_action;
-				}
-			}
-		}
-		return NULL;
-	}
-		
-	protected ActionBase FindContextualSingleUseAction(ActionTarget target, ItemBase item)
-	{
-		ref TIntArray secondary_action_ids = new TIntArray;
-		ActionBase picked_action;
-		secondary_action_ids.Insert(AT_WORLD_CRAFT_SWITCH);
-		// Adding actions of item
-		if ( item )
-		{
-			item.GetSingleUseActions(secondary_action_ids);
-		}
-		// Adding default single use actions of player
-		if ( m_Player ) 
-		{
-			m_Player.GetSingleUseActions(secondary_action_ids);
-		}
-		
-		// Looking for first possible single use action 
-		if ( secondary_action_ids  && secondary_action_ids.Count() > 0 )
-		{
-			for ( int i = 0; i < secondary_action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(secondary_action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player, target, item) ) 
-				{
-					return picked_action;
-				}
-			}
-		}
-		return NULL;
-	}
-	
-	protected void GetContextualInteractActions(out TSelectableActionInfoArray outarray, ActionTarget target)
-	{
-		Object targetObject;
-		Object targetParent;
-
-		if( target )
-		{
-			targetObject = target.GetObject();
-			targetParent = target.GetParent();
-		}
-		ref TIntArray tertiary_action_ids = new TIntArray;
-		ActionBase picked_action; 
-		
-		if (targetParent)
-		{
-			targetParent.GetInteractActions(tertiary_action_ids);
-		}
-
-		// Adding interact actions of items in the world
-		if ( targetObject )
-		{
-			targetObject.GetInteractActions(tertiary_action_ids);
-		}
-		
-		// Adding default interact actions of player
-		if ( m_Player ) 
-		{
-			m_Player.GetInteractActions(tertiary_action_ids);	
-		}
-
-		// Looking for first possible interact action 
-		if ( tertiary_action_ids && tertiary_action_ids.Count() > 0 )
-		{
-			for ( int i = 0; i < tertiary_action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(tertiary_action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player, target, NULL) )
-				{
-					outarray.Insert(new TSelectableActionInfo(SAT_INTERACT_ACTION, tertiary_action_ids.Get(i), picked_action.GetText()));
-				}
-			}
-		}
-	}
-	
-	void FindSelectableActions(ActionTarget target)
-	{
-		ref TSelectableActionInfoArray newSelectableActions = new TSelectableActionInfoArray;
-
-			// add contextual user actions
-			GetContextualInteractActions(newSelectableActions, target);
-			// add rest
-			ItemBase targetItem;
-			if( Class.CastTo(targetItem, target.GetObject()) )
-			{
-				//targetItem.GetRecipesActions(m_Player, newSelectableActions); //jtomasik - now are those actions peformed through user action actionworldcraft.c
-				if ( ItemBase.GetDebugActionsMask() & DebugActionType.GENERIC_ACTIONS )
-				{	
-					targetItem.GetDebugActions(newSelectableActions);
-				}		
-				if( ItemBase.GetDebugActionsMask() & DebugActionType.PLAYER_AGENTS )
-				{
-					m_Player.GetDebugActions(newSelectableActions);
-				}
-			}
-		// was there any change?
-		m_SelectableActionsHasChanged = !newSelectableActions.IsSameAs(m_SelectableActions);
-		if( m_SelectableActionsHasChanged )
-		{
-			m_SelectableActions = newSelectableActions;
-			m_SelectedActionIndex = 0;
-		}
-	}
-	
-	int GetContinuousActionForTargetItem(ItemBase item)
-	{
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(item, null, -1, vector.Zero, -1);
-		
-		if( itemInHand )
-		{
-			ref TIntArray primary_action_ids = new TIntArray;
-			ActionBase picked_action;
-			itemInHand.GetContinuousActions(primary_action_ids);			
-			
-			if ( primary_action_ids && primary_action_ids.Count() > 0  )
-			{
-				for ( int i = 0; i < primary_action_ids.Count(); i++ )
-				{
-					picked_action = GetAction(primary_action_ids.Get(i));
-					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) )
-					{
-						return picked_action.GetType();
-					}
-				}
-			}
-		}		
-		
-		return -1;
-	}
-#endif
 	//TOOD MW In progress
 	protected bool LockInventory(ActionData action_data)
 	{
@@ -764,7 +486,6 @@ class ActionManagerClient: ActionManagerBase
 	{
 		if ( !m_CurrentActionData && action ) 
 		{
-#ifndef OLD_ACTIONS
 			m_ActionWantEndRequest_Send = false;
 			m_ActionInputWantEnd_Send = false;
 			m_ActionWantEndRequest = false;
@@ -774,7 +495,7 @@ class ActionManagerClient: ActionManagerBase
 				m_Player.SetActionEndInput(action);
 			
 			HandleInputsOnActionStart(action);
-#endif
+
 			Debug.Log("Action=" + action.Type() + " started, STS=" + m_Player.GetSimulationTimeStamp());
 			m_Interrupted = false;
 			if ( GetGame().IsMultiplayer() && !action.IsLocal() )
@@ -795,20 +516,13 @@ class ActionManagerClient: ActionManagerBase
 				return;
 			}
 			Debug.Log("[AM] Action data created (" + m_Player + ")");
-#ifdef OLD_ACTIONS
-			if ( action.CanBePerformedFromQuickbar() )
-				m_Player.SetActionEndInput();
-#endif
 			
 			if ( GetGame().IsMultiplayer() && !action.IsLocal() )
 			{
 				ScriptInputUserData ctx = new ScriptInputUserData;
 				ctx.Write(INPUT_UDT_STANDARD_ACTION_START);
-#ifdef OLD_ACTIONS
-				ctx.Write(action.GetType());
-#else
 				ctx.Write(action.GetID());
-#endif
+
 				action.WriteToContext(ctx, m_CurrentActionData);
 					
 				if (action.UseAcknowledgment())
@@ -836,7 +550,7 @@ class ActionManagerClient: ActionManagerBase
 			}
 		}
 	}
-#ifndef OLD_ACTIONS
+
 	void HandleInputsOnActionStart(ActionBase action)
 	{
 		for (int i = 0; i < m_RegistredInputsMap.Count();i++)
@@ -861,7 +575,7 @@ class ActionManagerClient: ActionManagerBase
 			ain.Reset();
 		}
 	}
-#endif	
+
 	override void OnJumpStart()
 	{
 		if(m_CurrentActionData)
@@ -877,88 +591,6 @@ class ActionManagerClient: ActionManagerBase
 			}
 		}
 	}
-	
-	//---------------------------------
-	// EVENTS
-	//---------------------------------
-	override void OnContinuousStart()
-	{
-#ifdef OLD_ACTIONS
-		if (!m_PrimaryActionEnabled || !m_ActionPossible || m_CurrentActionData )
-			return;
-								
-		ActionStart(m_PrimaryAction, m_PrimaryActionTarget, m_PrimaryActionItem);
-#endif
-	}
-	
-	override void OnContinuousCancel()
-	{
-#ifdef OLD_ACTIONS
-		if (!m_CurrentActionData || m_CurrentActionData.m_Action.GetActionCategory()!= AC_CONTINUOUS )
-			return;
-		
-		if( m_CurrentActionData.m_State == UA_AM_PENDING || m_CurrentActionData.m_State == UA_AM_REJECTED || m_CurrentActionData.m_State == UA_AM_ACCEPTED )
-		{
-			OnActionEnd();
-			m_PendingActionAcknowledgmentID = -1;
-		}
-		else
-		{
-			m_CurrentActionData.m_Action.OnContinuousCancel(m_CurrentActionData);
-		}
-#endif
-	}
-		
-	// Single----------------------------------------------------
-	override void OnSingleUse()
-	{
-#ifdef OLD_ACTIONS
-		if (!m_SecondaryActionEnabled || !m_ActionPossible || m_CurrentActionData)
-			return;
-		
-		ActionStart(m_SecondaryAction, m_SecondaryActionTarget, m_SecondaryActionItem);
-#endif
-	}
-	
-	// Interact----------------------------------------------------
-	override void OnInteractAction() //Interact
-	{
-#ifdef OLD_ACTIONS
-		if(!m_TertiaryActionEnabled || !m_ActionPossible || m_CurrentActionData)
-			return;
-		
-		if ( m_SelectableActions.Count() > 0 )
-		{
-			int action_type = m_SelectableActions.Get(m_SelectedActionIndex).param1;
-			switch ( action_type )
-			{
-				case SAT_INTERACT_ACTION :
-					ActionBase action = GetAction(m_SelectableActions.Get(m_SelectedActionIndex).param2);
-					ActionTarget target = NULL;
-					if (action.HasTarget())
-						target = FindActionTarget();
-				
-					ActionStart(action, target, NULL);
-					break;
-					
-				case SAT_DEBUG_ACTION :
-					int action_id = m_SelectableActions.Get(m_SelectedActionIndex).param2;
-					Object item = FindActionTarget().GetObject();
-					if ( item.IsItemBase() )
-					{
-						ItemBase action_item;
-						Class.CastTo(action_item, item);
-						OnInstantAction(AT_DEBUG,new Param2<ItemBase,int>(action_item,action_id)); 
-					}
-					break;
-				default :
-					Print("WRONG SELECTABLE ACTION TYPE!");
-					break;
-			}
-		}
-#endif
-	}
-	
 	
 	//Instant Action (Debug Actions) ---------------------------------
 	override void OnInstantAction(int user_action_id, Param data = NULL)
@@ -982,22 +614,10 @@ class ActionManagerClient: ActionManagerBase
 				m_InventoryActionHandler.DeactiveAction();
 			
 			super.OnActionEnd();
-#ifndef OLD_ACTIONS
 			HandleInputsOnActionEnd();
-#endif
 		}
 	}
-#ifdef OLD_ACTIONS
-	void SetInventoryAction(int type, int ActionID, ItemBase action_target_item)
-	{
-		m_InventoryActionHandler.SetAction(type, ActionID, action_target_item);
-	}
-	
-	void UnsetInventoryAction()
-	{
-		m_InventoryActionHandler.DeactiveAction();
-	}
-#else
+
 	void SetInventoryAction(ActionBase action_name, ItemBase target_item, ItemBase main_item)
 	{
 		m_InventoryActionHandler.SetAction(action_name, target_item, main_item);
@@ -1012,10 +632,7 @@ class ActionManagerClient: ActionManagerBase
 	{
 		m_InventoryActionHandler.DeactiveAction();
 	}
-#endif
 
-
-#ifndef OLD_ACTIONS
 	override void SelectNextAction()
 	{
 		ActionInput ai = m_RegistredInputsMap.Get(InteractActionInput);
@@ -1033,45 +650,9 @@ class ActionManagerClient: ActionManagerBase
 			ai.SelectPrevAction();
 		}
 	}
-#endif
 
 	bool CanPerformActionFromQuickbar(ItemBase mainItem, ItemBase targetItem)
 	{	
-#ifdef OLD_ACTIONS	
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First check continuous actions
-			mainItem.GetContinuousActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-						return true;
-				}
-			}
-			//second single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int j = 0; j < action_ids.Count(); j++ )
-			{
-				picked_action = GetAction(action_ids.Get(j));
-				if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-						return true;
-				}
-			}
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1111,54 +692,11 @@ class ActionManagerClient: ActionManagerBase
 				}
 			}
 		}
-#endif	
 		return false;
 	}
 	
 	void PerformActionFromQuickbar(ItemBase mainItem, ItemBase targetItem)
 	{
-#ifdef OLD_ACTIONS
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First continuous actions
-			mainItem.GetContinuousActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					{
-						ActionStart(picked_action, target, mainItem);
-						return;
-					}
-				}
-			}
-			//Second check single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int j = 0; j < action_ids.Count(); j++ )
-			{
-				picked_action = GetAction(action_ids.Get(j));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					{
-						ActionStart(picked_action, target, mainItem);
-						return;
-					}
-				}
-			}
-
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1205,45 +743,10 @@ class ActionManagerClient: ActionManagerBase
 			}
 
 		}
-#endif
 	}
 	
 	bool CanPerformActionFromInventory(ItemBase mainItem, ItemBase targetItem)
 	{	
-#ifdef OLD_ACTIONS
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First check single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					return true;
-				}
-			}
-				//second continuous actions - performing continuous action from inventory not supported yet
-				/*mainItem.GetContinuousActions(action_ids);
-				for ( int i = 0; i < action_ids.Count(); i++ )
-				{
-					picked_action = GetAction(action_ids.Get(i));
-					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromInventory() )
-					{
-						return true;
-					}
-				}*/
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1268,54 +771,12 @@ class ActionManagerClient: ActionManagerBase
 					}
 				}
 			}
-			//second continuous actions
-			/*mainItem.GetActions(ContinuousDefaultActionInput, actions);
-			if (actions)
-			{
-				for ( int j = 0; j < actions.Count(); j++ )
-				{
-					picked_action = ActionBase.Cast(actions[j]);
-					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
-					{
-						if( hasTarget == picked_action.HasTarget())
-							return true;
-					}
-				}
-			}*/
 		}
-#endif	
 		return false;
 	}
 	
 	void PerformActionFromInventory(ItemBase mainItem, ItemBase targetItem)
 	{
-#ifdef OLD_ACTIONS
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First check single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					{
-						ActionStart(picked_action, target, mainItem);
-						return;
-					}
-				}
-			}
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1343,48 +804,11 @@ class ActionManagerClient: ActionManagerBase
 					}
 				}
 			}
-
 		}
-#endif
 	}
 	
 	bool CanSetActionFromInventory(ItemBase mainItem, ItemBase targetItem)
 	{
-#ifdef OLD_ACTIONS
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First check single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBeSetFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-						return true;
-				}
-			}
-			//second continuous actions
-			mainItem.GetContinuousActions(action_ids);
-			for ( int j = 0; j < action_ids.Count(); j++ )
-			{
-				picked_action = GetAction(action_ids.Get(j));
-				if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBeSetFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-						return true;
-				}
-			}
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1424,54 +848,11 @@ class ActionManagerClient: ActionManagerBase
 				}
 			}
 		}
-#endif	
 		return false;
 	}
 	
 	void SetActionFromInventory(ItemBase mainItem, ItemBase targetItem)
 	{
-#ifdef OLD_ACTIONS
-		ItemBase itemInHand = m_Player.GetItemInHands();
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		if( mainItem )
-		{
-			ref TIntArray action_ids = new TIntArray;
-			ActionBase picked_action;
-			
-			//First continuous actions
-			mainItem.GetContinuousActions(action_ids);
-			for ( int i = 0; i < action_ids.Count(); i++ )
-			{
-				picked_action = GetAction(action_ids.Get(i));
-				if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBeSetFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					{
-						SetInventoryAction(InventoryActionHandler.IAH_CONTINUOUS, action_ids.Get(i), targetItem);
-						return;
-					}
-				}
-			}
-			//Second check single use actions
-			mainItem.GetSingleUseActions(action_ids);
-			for ( int j = 0; j < action_ids.Count(); j++ )
-			{
-				picked_action = GetAction(action_ids.Get(j));
-				if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBeSetFromInventory() )
-				{
-					if( hasTarget == picked_action.HasTarget())
-					{
-						SetInventoryAction(InventoryActionHandler.IAH_SINGLE_USE, action_ids.Get(j), targetItem);
-						return;
-					}
-				}
-			}
-
-		}
-#else
 		ItemBase itemInHand = m_Player.GetItemInHands();
 		ActionTarget target;
 		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
@@ -1517,31 +898,6 @@ class ActionManagerClient: ActionManagerBase
 				}
 			}
 		}	
-	
-	
-	
-#endif	
-	}
-	
-	void ActionDropItemStart(ItemBase itemInHand, ItemBase targetItem)
-	{
-#ifdef OLD_ACTIONS
-		ActionTarget target;
-		target = new ActionTarget(targetItem, null, -1, vector.Zero, -1);
-		bool hasTarget = targetItem != NULL;
-		
-		ActionBase picked_action;
-		
-		picked_action = GetAction(AT_DROP_ITEM);
-		if ( picked_action && picked_action.Can(m_Player,target,itemInHand) )
-		{
-			if( hasTarget == picked_action.HasTarget())
-			{
-				ActionStart(picked_action, target, itemInHand);
-				return;
-			}
-		}
-#endif
 	}
 	
 	override void Interrupt()

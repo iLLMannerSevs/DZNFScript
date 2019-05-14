@@ -31,12 +31,10 @@ class ActionDetach: ActionInteractBase
 		return "#take_to_hands";
 	}
 	
-#ifndef OLD_ACTIONS	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
 	}
-#endif
 	
 	override bool HasProgress()
 	{

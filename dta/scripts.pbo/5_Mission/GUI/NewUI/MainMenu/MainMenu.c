@@ -23,8 +23,6 @@ class MainMenu extends UIScriptedMenu
 	protected Widget				m_Exit;
 	protected Widget				m_NewsFeedOpen;
 	protected Widget				m_NewsFeedClose;
-	protected Widget				m_CharacterStatsOpen;
-	protected Widget				m_CharacterStatsClose;
 	protected Widget				m_NewsMain;
 	protected Widget				m_NewsSec1;
 	protected Widget				m_NewsSec2;
@@ -57,8 +55,6 @@ class MainMenu extends UIScriptedMenu
 		m_Exit						= layoutRoot.FindAnyWidget( "exit_button" );
 		m_NewsFeedOpen				= layoutRoot.FindAnyWidget( "news_feed_open" );
 		m_NewsFeedClose				= layoutRoot.FindAnyWidget( "news_feed_close" );
-		m_CharacterStatsOpen		= layoutRoot.FindAnyWidget( "character_stats_open" );
-		m_CharacterStatsClose		= layoutRoot.FindAnyWidget( "character_stats_close" );
 		m_PrevCharacter				= layoutRoot.FindAnyWidget( "prev_character" );
 		m_NextCharacter				= layoutRoot.FindAnyWidget( "next_character" );
 
@@ -218,16 +214,6 @@ class MainMenu extends UIScriptedMenu
 				HideNewsfeed();
 				return true;
 			}
-			else if ( w == m_CharacterStatsOpen )
-			{
-				ShowStats();
-				return true;
-			}
-			else if ( w == m_CharacterStatsClose )
-			{
-				HideStats();
-				return true;
-			}
 			else if ( w == m_PlayVideo )
 			{
 				m_LastFocusedButton = m_PlayVideo;
@@ -320,7 +306,7 @@ class MainMenu extends UIScriptedMenu
 				return true;
 			}
 			
-			if( w == m_CharacterStatsOpen || w == m_CharacterStatsClose || w == m_NewsMain || w == m_NewsSec1 || w == m_NewsSec2 || w == m_PrevCharacter || w == m_NextCharacter );
+			if( w == m_NewsMain || w == m_NewsSec1 || w == m_NewsSec2 || w == m_PrevCharacter || w == m_NextCharacter );
 			{
 				return true;
 			}
@@ -489,18 +475,6 @@ class MainMenu extends UIScriptedMenu
 	void OpenMessages()
 	{
 		
-	}
-	
-	void ShowStats()
-	{
-		m_Stats.ShowStats();
-		m_CharacterStatsOpen.Show( false );
-	}
-	
-	void HideStats()
-	{
-		m_CharacterStatsOpen.Show( true );
-		m_Stats.HideStats();
 	}
 	
 	void ShowNewsfeed()
