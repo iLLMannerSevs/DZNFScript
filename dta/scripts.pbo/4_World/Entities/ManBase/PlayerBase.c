@@ -2668,8 +2668,8 @@ class PlayerBase extends ManBase
 		
 		if( inHandEntity == quickBarEntity )
 		{
-			// @TODO: move to prev loc?
-			PredictiveMoveItemFromHandsToInventory();
+			if( GetHumanInventory().CanRemoveEntityInHands() )
+				PredictiveMoveItemFromHandsToInventory();
 		}
 		else
 		{

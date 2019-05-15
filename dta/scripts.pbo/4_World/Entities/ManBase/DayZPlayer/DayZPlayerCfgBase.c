@@ -1046,6 +1046,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 	{
 		pType.AddItemInHandsProfileIK("CivilianBelt", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/clothing/belts/civ_belt_g.anm");
 		pType.AddItemInHandsProfileIK("MilitaryBelt", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/clothing/belts/mil_belt_g.anm");
+		pType.AddItemInHandsProfileIK("NylonKnifeSheath", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 					"dz/anims/anm/player/ik/clothing/belts/nylon_KnifeSheath.anm");
 
 	}
 	

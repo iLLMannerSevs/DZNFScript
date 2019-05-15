@@ -473,6 +473,15 @@ class Weapon_Base extends Weapon
 		}
 		return false;
 	}
+	
+	override bool CanRemoveFromHands (EntityAI parent)
+	{
+		if (IsIdle())
+		{
+			return true;
+		}
+		return false; // do not allow removal of weapon while weapon is busy
+	}
 
 	bool IsRemoteWeapon ()
 	{

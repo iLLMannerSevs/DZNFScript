@@ -32,6 +32,7 @@ class PPEffects
 	
 	static void Init()
 	{
+		//Print("---Init PPEffects---");
 		if ( m_BlurValues )
 		{
 			delete m_BlurValues;
@@ -66,7 +67,7 @@ class PPEffects
 		// colorize: r, g, b
 		// colorize effects registration
 		m_ColorizeEffects.Set(PPEffects.COLORIZE_NV, colorizeDefault);
-		SetNVParams(1, 0, 2.35, 2.75); //default values
+		SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 		// ------------------------End of NV-related stuff------------------------
 	}
 	

@@ -53,7 +53,7 @@ float fixAngle_180_180(float pAngle)
 
 enum NVTypes
 {
-	NONE,
+	NONE = 0,
 	NV_GOGGLES,
 	NV_OPTICS_ON,
 	NV_OPTICS_OFF
@@ -304,30 +304,31 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 	
 	void SetNVPostprocess(int NVtype)
 	{
+		//Print("+++Setting NV type: " + NVtype + " +++");
 		switch (NVtype)
 		{
 			case NVTypes.NONE:
 				PPEffects.SetEVValuePP(0);
 				PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
-				PPEffects.SetNVParams(1, 0, 2.35, 2.75); //default values
+				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case NVTypes.NV_OPTICS_ON:
 				PPEffects.SetEVValuePP(7);
 				PPEffects.SetColorizationNV(0.0, 1.0, 0.0);
-				PPEffects.SetNVParams(3, 2, 9, 1);
+				PPEffects.SetNVParams(3.0, 2.0, 9.0, 1.0);
 			break;
 			
 			case NVTypes.NV_OPTICS_OFF:
 				PPEffects.SetEVValuePP(-7);
 				PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
-				PPEffects.SetNVParams(1, 0, 2.35, 2.75); //default values
+				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
 			case NVTypes.NV_GOGGLES:
 				PPEffects.SetEVValuePP(7);
 				PPEffects.SetColorizationNV(0.0, 1.0, 0.0);
-				PPEffects.SetNVParams(2, 1, 10, 1);
+				PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
 			break;
 		}
 	}

@@ -1364,8 +1364,11 @@ class ComponentEnergyManager : Component
 	//! Energy manager: Called when energy was added on this device
 	void OnEnergyAdded()
 	{
-		m_UpdateQuantityTimer.Stop();
-		m_UpdateQuantityTimer = NULL;
+		if (m_UpdateQuantityTimer)
+		{
+			m_UpdateQuantityTimer.Stop();
+			m_UpdateQuantityTimer = NULL;
+		}
 		
 		m_ThisEntityAI.OnEnergyAdded();
 	}
