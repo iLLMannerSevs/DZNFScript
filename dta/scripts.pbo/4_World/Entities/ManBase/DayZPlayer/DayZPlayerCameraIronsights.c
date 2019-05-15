@@ -212,6 +212,7 @@ class DayZPlayerCameraIronsights extends DayZPlayerCameraBase
 	// sets PP for ironsights and optics (override) cameras
 	override void SetCameraPP(bool state, DayZPlayerCamera launchedFrom)
 	{
+		//Print("SetCameraPP - ADS");
 		if (!state || !m_weaponUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).m_CurrentCamera))
 		{
 			PPEffects.ResetPPMask();
@@ -401,6 +402,7 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 	
 	override void SetCameraPP(bool state,DayZPlayerCamera launchedFrom)
 	{
+		//Print("SetCameraPP - optics");
 		if (!state || !m_opticsUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).m_CurrentCamera))
 		{
 			PPEffects.ResetPPMask();
@@ -415,6 +417,11 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 			else
 			{
 				SetNVPostprocess(NVTypes.NONE);
+			}
+			
+			if (m_weaponUsed)
+			{
+				m_weaponUsed.HideWeaponBarrel(false);
 			}
 		}
 		else
@@ -456,6 +463,17 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 					{
 						SetCameraNV(false);
 						SetNVPostprocess(NVTypes.NV_OPTICS_OFF);
+					}
+				}
+				else
+				{
+					if (IsCameraNV())
+					{
+						SetNVPostprocess(NVTypes.NV_GOGGLES);
+					}
+					else
+					{
+						SetNVPostprocess(NVTypes.NONE);
 					}
 				}
 			}
@@ -510,11 +528,11 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 					SetNVPostprocess(NVTypes.NONE);
 				}
 			}
-		}
-		
-		if (m_weaponUsed)
-		{
-			m_weaponUsed.HideWeaponBarrel(true);
+			
+			if (m_weaponUsed)
+			{
+				m_weaponUsed.HideWeaponBarrel(true);
+			}
 		}
 	}
 	
@@ -548,8 +566,15 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 	{
 		if ( !m_opticsUsed || (m_opticsUsed && !m_opticsUsed.IsNVOptic()) )
 		{
-			//super.UpdateCameraNV(player);
-			SetCameraNV(false);
+			if (m_opticsUsed && m_opticsUsed.AllowsDOF()) //1x scopes
+			{
+				super.UpdateCameraNV(player);
+			}
+			else if ( IsCameraNV() )
+			{
+				//super.UpdateCameraNV(player);
+				SetCameraNV(false);
+			}
 		}
 	}
 };
