@@ -55,7 +55,7 @@ class ActionDestroyCombinationLock: ActionContinuousBase
 			CombinationLock combination_lock = fence.GetCombinationLock();
 			if ( combination_lock )
 			{
-				combination_lock.Unlock( fence );
+				combination_lock.ServerUnlock( action_data.m_Player, fence );
 				combination_lock.DecreaseHealth( combination_lock.GetMaxHealth() );
 			}
 		}

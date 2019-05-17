@@ -92,7 +92,7 @@ class Construction
 		DropNonUsableMaterialsServer( part_name );
 		
 		//call event
-		GetParent().OnPartDismantledServer( part_name, action_id );
+		GetParent().OnPartDismantledServer( player, part_name, action_id );
 	}
 	
 	//DestroyPart

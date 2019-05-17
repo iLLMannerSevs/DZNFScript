@@ -62,23 +62,6 @@ class CombinationLock extends ItemBase
 	// --- VISUALS
 	void UpdateVisuals()
 	{
-		//Client (only)
-		if ( GetGame().IsMultiplayer() && GetGame().IsClient() )
-		{
-			//was unlocked
-			if ( m_IsLockAttachedClient && !m_IsLockAttached )
-			{
-				Fence fence = Fence.Cast( GetHierarchyParent() );
-				if ( fence )
-				{
-					//drop entity
-					fence.GetInventory().DropEntity( InventoryMode.LOCAL, fence, this );
-					SetPosition( fence.GetKitSpawnPosition() );
-					PlaceOnSurface();
-				}
-			}
-		}
-		
 		//Client/Server
 		if ( IsLockedOnGate() )
 		{
@@ -213,6 +196,7 @@ class CombinationLock extends ItemBase
 	// --- SYNCHRONIZATION
 	void Synchronize()
 	{
+		bsbDebugPrint("[bsb] CombinationLock.Synchronize " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
 		if ( GetGame().IsServer() )
 		{
 			SetSynchDirty();
@@ -234,6 +218,8 @@ class CombinationLock extends ItemBase
 		//update client state
 		m_CombinationClient = m_Combination;
 		m_IsLockAttachedClient = m_IsLockAttached;
+		
+		bsbDebugPrint("[bsb] CombinationLock.OnVariablesSynchronized " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
 	}
 	
 	void SetCombination( int combination )
@@ -312,6 +298,7 @@ class CombinationLock extends ItemBase
 	//Lock lock
 	void Lock( EntityAI parent )
 	{
+		bsbDebugPrint("[bsb] CombinationLock.Lock " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
 		if ( !IsLockAttached() )
 		{
 			SetCombinationLocked( m_Combination );
@@ -327,15 +314,16 @@ class CombinationLock extends ItemBase
 		}
 	}
 	
-	void Unlock( EntityAI parent )
+	void ServerUnlock( notnull EntityAI player, EntityAI parent )
 	{
+		bsbDebugPrint("[bsb] CombinationLock.ServerUnlock " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
 		//set slot unlock
 		InventoryLocation inventory_location = new InventoryLocation;
 		GetInventory().GetCurrentInventoryLocation( inventory_location );			
 		parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), false );			
-		
+
 		//drop entity from attachment slot
-		parent.GetInventory().DropEntity( InventoryMode.PREDICTIVE, parent, this );
+		player.ServerDropEntity(this);
 		Fence fence = Fence.Cast( parent );
 		SetPosition( fence.GetKitSpawnPosition() );
 		PlaceOnSurface();

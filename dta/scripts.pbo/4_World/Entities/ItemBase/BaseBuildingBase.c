@@ -514,7 +514,7 @@ class BaseBuildingBase extends ItemBase
 	}	
 	
 	//Dismantle
-	void OnPartDismantledServer( string part_name, int action_id )
+	void OnPartDismantledServer( notnull Man player, string part_name, int action_id )
 	{
 		bsbDebugPrint("[bsb] " + GetDebugName(this) + " OnPartDismantledServer " + part_name);
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );

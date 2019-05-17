@@ -212,7 +212,8 @@ class CarDoor extends InventoryItemSuper
 */
 	override void SetActions()
 	{
-		//super.SetActions();
+		super.SetActions();
+
 		AddAction(ActionOpenCarDoors);
 		AddAction(ActionCloseCarDoors);
 		AddAction(ActionAttachOnSelection);
@@ -350,7 +351,9 @@ class HeadlightH7 extends ItemBase
 	{
 		super.SetActions();
 		
-		AddAction(ActionAttach);
+		//AddAction(ActionAttach);
+		AddAction(ActionAttachOnSelection);
+		AddAction(ActionDetach);
 	}
 };
 

@@ -111,7 +111,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		{
 			weapon.GetCurrentState().OnUpdate(dt);
 
-			//wpnDebugPrint("[wpnfsm] HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
+			wpnDebugSpamALot("[wpnfsm] HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
 
 			if (!weapon.IsIdle())
 			{
@@ -174,7 +174,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		{
 			m_FSM.GetCurrentState().OnUpdate(dt);
 
-			//hndDebugSpam("[hndfsm] HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
+			hndDebugSpamALot("[hndfsm] HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
 
 			if ( !m_FSM.GetCurrentState().IsIdle() || !m_FSM.IsRunning() )
 			{

@@ -25,7 +25,6 @@ class ActionManagerClient: ActionManagerBase
 		m_Targets	= new ActionTargets(player);
 		m_ReservedInventoryLocations = new array<ref InventoryLocation>;
 		m_InventoryActionHandler = new InventoryActionHandler(player);
-		EnableActions();
 
 		m_ActionWantEndRequest_Send = false;
 		m_ActionInputWantEnd_Send = false;
@@ -132,26 +131,24 @@ class ActionManagerClient: ActionManagerBase
 			}
 		}
 #ifdef DEVELOPER
-			if( DeveloperFreeCamera.IsFreeCameraEnabled() )
-			{
-				m_ActionPossible = false;
-				RemoveSingleUseAction();
-				RemoveContinuousAction();
-				m_SelectableActions.Clear();
-				m_SelectedActionIndex = 0;
-			}
-			else
-			{
-#endif
-		if(!m_CurrentActionData)
+		if( DeveloperFreeCamera.IsFreeCameraEnabled() )
 		{
-			m_Targets.Update();
-			FindContextualUserActions( pCurrentCommandID );	
+			m_ActionPossible = false;
+			ResetInputsActions();
 		}
-		InputsUpdate();
-#ifdef DEVELOPER
-			}
+		else
+		{
 #endif
+			if(!m_CurrentActionData)
+			{
+				m_Targets.Update();
+				FindContextualUserActions( pCurrentCommandID );	
+			}
+		
+			InputsUpdate();
+#ifdef DEVELOPER
+		}
+#endif		
 
 	}
 	
@@ -226,15 +223,18 @@ class ActionManagerClient: ActionManagerBase
 		}
 		else
 		{
-			for (int i = 0; i < m_RegistredInputsMap.Count();i++)
+			if( m_ActionsAvaibale )
 			{
-				ActionInput ain = m_RegistredInputsMap.GetElement(i);
-				ain.Update();
-				
-				if( ain.JustActivate() && ain.HasAction() )
+				for (int i = 0; i < m_RegistredInputsMap.Count();i++)
 				{
-					ActionStart(ain.GetAction(), ain.GetUsedActionTarget(), ain.GetUsedMainItem());
-					break;
+					ActionInput ain = m_RegistredInputsMap.GetElement(i);
+					ain.Update();
+				
+					if( ain.JustActivate() && ain.HasAction() )
+					{
+						ActionStart(ain.GetAction(), ain.GetUsedActionTarget(), ain.GetUsedMainItem());
+						break;
+					}
 				}
 			}
 		}
@@ -269,67 +269,7 @@ class ActionManagerClient: ActionManagerBase
 		}
 		return -1;
 	}
-	//--------------------------------------------------------
-	// Controls avaliability of contextual actions
-	//--------------------------------------------------------
-/*	void EnableContinuousAction()
-	{
-		m_PrimaryActionEnabled = true;	
-	}
-*/	
-	override void DisableContinuousAction()
-	{
-		RemoveContinuousAction();
-		m_PrimaryActionEnabled = false;
-	}
-	
-/*	void EnableSingleUseAction()
-	{
-		m_SecondaryActionEnabled = true;
-	}
-*/	
-	override void DisableSingleUseAction()
-	{
-		RemoveSingleUseAction();
-		m_SecondaryActionEnabled = false;
-	}
-/*	
-	void EnableInteractAction()
-	{
-		m_TertiaryActionEnabled = true;
-	}
-*/
-	/*override void DisableInteractAction()
-	{
-		m_TertiaryActionEnabled = false;
-	}*/
-	
-/*	void EnableActions()
-	{
-		EnableContinuousAction();
-		EnableSingleUseAction();
-		EnableInteractAction();
-	}
-	
-	void DisableActions()
-	{
-		DisableContinuousAction();
-		DisableSingleUsesAction();
-		DisableInteractAction();
-	}
-*/	
-	
-/*	override bool ActionPossibilityCheck(int pCurrentCommandID)
-	{
-		if ( super.ActionPossibilityCheck(pCurrentCommandID) )
-		{
-			m_HandInventoryLocationTest.SetHands(m_Player,m_Player.GetItemInHands());
-			if (!m_Player.GetHumanInventory().HasInventoryReservation(m_Player.GetItemInHands(),m_HandInventoryLocationTest))
-				return true;
-		}
-		
-		return false;
-	}*/
+
 	//--------------------------------------------------------
 	// Alows to set different action to current contextual one //jtomasik - pri injectu budu muset serveru poslat ID injectnute akce
 	//--------------------------------------------------------	
@@ -419,20 +359,21 @@ class ActionManagerClient: ActionManagerBase
 	
 	protected void FindContextualUserActions( int pCurrentCommandID )
 	{
-		RemoveActions();
-		if (!ActionPossibilityCheck(pCurrentCommandID) || HasHandInventoryReservation() || GetGame().IsInventoryOpen())
+		m_ActionsAvaibale = false;
+		if ( !m_ActionPossible || HasHandInventoryReservation() || GetGame().IsInventoryOpen())
 		{
-			//add clearing for actions maybe
+			ResetInputsActions();
 			return;
-		}	
+		}
 		
-		if ( (m_PrimaryActionEnabled || m_SecondaryActionEnabled || m_TertiaryActionEnabled ) && !GetRunningAction() )
+		if ( !GetRunningAction() )
 		{	
 			ActionBase action;
 			ActionTarget 	target;
 			ItemBase 		item;
 
 			// Gathering current inputs
+			m_ActionsAvaibale = true;
 			
 			item = FindActionItem();
 			target = FindActionTarget();
@@ -569,10 +510,24 @@ class ActionManagerClient: ActionManagerBase
 	
 	void HandleInputsOnActionEnd()
 	{
+		ResetInputsState();
+	}
+	
+	void ResetInputsState()
+	{
 		for (int i = 0; i < m_RegistredInputsMap.Count();i++)
 		{
 			ActionInput ain = m_RegistredInputsMap.GetElement(i);
 			ain.Reset();
+		}
+	}
+	
+	void ResetInputsActions()
+	{
+		for (int i = 0; i < m_RegistredInputsMap.Count();i++)
+		{
+			ActionInput ain = m_RegistredInputsMap.GetElement(i);
+			ain.ActionsSelectReset();
 		}
 	}
 

@@ -57,6 +57,7 @@ class BarbedWire extends ItemBase
 	
 	void SetMountedState( bool is_mounted )
 	{
+		bsbDebugPrint("[bsb] " + GetDebugName(this) + " SetMountedState mounted=" + is_mounted);
 		m_IsMounted = is_mounted;
 		
 		//lock slot
@@ -83,6 +84,8 @@ class BarbedWire extends ItemBase
 	override void OnVariablesSynchronized()
 	{
 		super.OnVariablesSynchronized();
+		
+		bsbDebugPrint("[bsb] " + GetDebugName(this) + " OnVariablesSynchronized mounted=" + IsMounted());
 
 		//mounting sounds
 		if ( IsMounted() != m_IsMountedClient )
