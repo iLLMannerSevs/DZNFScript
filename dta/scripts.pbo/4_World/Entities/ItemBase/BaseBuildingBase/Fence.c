@@ -198,7 +198,7 @@ class Fence extends BaseBuildingBase
 		super.OnPartBuiltServer( part_name, action_id );
 	}
 	
-	override void OnPartDismantledServer( string part_name, int action_id )
+	override void OnPartDismantledServer( notnull Man player, string part_name, int action_id )
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
 
@@ -214,11 +214,11 @@ class Fence extends BaseBuildingBase
 			if ( IsLocked() )
 			{
 				CombinationLock combination_lock = CombinationLock.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_COMBINATION_LOCK ) );
-				combination_lock.Unlock( this );
+				combination_lock.ServerUnlock( player , this );
 			}
 		}
 		
-		super.OnPartDismantledServer( part_name, action_id );
+		super.OnPartDismantledServer( player, part_name, action_id );
 	}
 	
 	override void OnPartDestroyedServer( string part_name, int action_id )

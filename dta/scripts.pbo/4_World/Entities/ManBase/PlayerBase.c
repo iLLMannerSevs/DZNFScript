@@ -2669,7 +2669,10 @@ class PlayerBase extends ManBase
 		if( inHandEntity == quickBarEntity )
 		{
 			if( GetHumanInventory().CanRemoveEntityInHands() )
+			{
+				syncDebugPrint("[QB] Stash - PredictiveMoveItemFromHandsToInventory HND=" + Object.GetDebugName(inHandEntity));
 				PredictiveMoveItemFromHandsToInventory();
+			}
 		}
 		else
 		{
@@ -2680,19 +2683,23 @@ class PlayerBase extends ManBase
 				
 			if (inHandEntity)
 			{
-				InventoryLocation il = new InventoryLocation;
-				quickBarEntity.GetInventory().GetCurrentInventoryLocation(il);
+				InventoryLocation inHandEntityFSwapDst = new InventoryLocation;
+				//InventoryLocation il = new InventoryLocation;
+				//quickBarEntity.GetInventory().GetCurrentInventoryLocation(il);
+				
 				/*if( il.GetSlot()!= InventorySlots.INVALID && il.GetSlot() == inHandEntity.GetInventory().GetSlotId(0) )
 				{
 					PredictiveSwapEntities( inHandEntity, quickBarEntity );	
 				}
 				else */if(GameInventory.CanSwapEntities( inHandEntity, quickBarEntity ))
 				{
+					syncDebugPrint("[QB] PredictiveSwapEntities HND=" + Object.GetDebugName(inHandEntity) +  " QB=" + Object.GetDebugName(quickBarEntity));
 					PredictiveSwapEntities( inHandEntity, quickBarEntity );
 				}
-				else if(GameInventory.CanForceSwapEntities( quickBarEntity, inHandEntity, il ))
+				else if(GameInventory.CanForceSwapEntities( quickBarEntity, inHandEntity, inHandEntityFSwapDst ))
 				{
-					GetHumanInventory().ForceSwapEntities( InventoryMode.PREDICTIVE, quickBarEntity, inHandEntity, il );
+					syncDebugPrint("[QB] Swap - PredictiveForceSwapEntities HND=" + Object.GetDebugName(inHandEntity) +  " QB=" + Object.GetDebugName(quickBarEntity) + " fswap_dst=" + InventoryLocation.DumpToStringNullSafe(inHandEntityFSwapDst));
+					PredictiveForceSwapEntities( quickBarEntity, inHandEntity, inHandEntityFSwapDst );
 				}
 			}
 			else
@@ -2702,6 +2709,7 @@ class PlayerBase extends ManBase
 				
 				if (GetInventory().CanAddEntityIntoHands(quickBarEntity) )
 				{
+					syncDebugPrint("[QB] Stash - PredictiveTakeEntityToHands QB=" + Object.GetDebugName(quickBarEntity));
 					PredictiveTakeEntityToHands( quickBarEntity );
 				}
 			}
@@ -5387,7 +5395,7 @@ class PlayerBase extends ManBase
 	
 	void SetLoadedQuickBarItemBind(EntityAI entity, int index)
 	{
-		//if( m_aQuickBarLoad )
+		if( m_aQuickBarLoad )
 			m_aQuickBarLoad.Insert(new Param2<EntityAI, int>(entity,index));
 	}
 	
@@ -5906,10 +5914,13 @@ class PlayerBase extends ManBase
 	
 	void UpdateTranslatedSelections(SelectionTranslation stt)
 	{
+		int index;
 		array<int> translatedSelectinosArray = stt.GetTranslatedSelections();
 		for (int i = 0; i < translatedSelectinosArray.Count(); i++)
 		{
-			m_CharactersHead.SetSimpleHiddenSelectionState(translatedSelectinosArray.Get(i),false); //safe this way, only hiding/carving from shown parts
+			index = translatedSelectinosArray.Get(i);
+			if (index > -1)
+				m_CharactersHead.SetSimpleHiddenSelectionState(index,false); //safe this way, only hiding/carving from shown parts
 		}
 	}
 	

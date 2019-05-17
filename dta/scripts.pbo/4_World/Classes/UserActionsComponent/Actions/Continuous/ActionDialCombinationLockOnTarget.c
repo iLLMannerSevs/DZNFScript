@@ -92,7 +92,7 @@ class ActionDialCombinationLockOnTarget: ActionContinuousBase
 		if ( !combination_lock.IsLockedOnGate() )
 		{
 			EntityAI target_entity = EntityAI.Cast( action_data.m_Target.GetObject() );
-			combination_lock.Unlock( target_entity );
+			combination_lock.ServerUnlock( action_data.m_Player, target_entity );
 		}
 	}
 }

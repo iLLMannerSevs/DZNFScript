@@ -56,6 +56,8 @@ class ActionManagerBase
 	static ref map<typename, ActionBase>		m_ActionNameActionMap;
 	protected bool								m_ActionWantEndRequest;
 	protected bool								m_ActionInputWantEnd;
+	protected bool								m_ActionsEnabled;
+	protected bool								m_ActionsAvaibale;
 		
 //Pending actions waiting for acknowledgment
 	protected int 					m_PendingActionAcknowledgmentID;
@@ -84,6 +86,9 @@ class ActionManagerBase
 			m_ActionWantEndRequest = false;
 			m_ActionInputWantEnd = false;
 		}
+		
+		m_ActionsEnabled = true;
+		m_ActionsAvaibale = true;
 	}
 	
 	ActionBase GetRunningAction()
@@ -93,6 +98,11 @@ class ActionManagerBase
 			return m_CurrentActionData.m_Action;
 		}
 		return NULL;
+	}
+	
+	void EnableActions(bool enable)
+	{
+		m_ActionsEnabled = enable;
 	}
 	
 	void Update(int pCurrentCommandID)
@@ -198,6 +208,9 @@ class ActionManagerBase
 	//------------------------------------------------------
 	bool ActionPossibilityCheck(int pCurrentCommandID)
 	{
+		if ( !m_ActionsEnabled )
+			return false;
+		
 		if ( m_Player.IsSprinting() || m_Player.IsUnconscious() || m_Player.GetCommandModifier_Action() || m_Player.GetCommand_Action() || m_Player.IsPlayingEmote() )
 			return false;
 		
@@ -213,87 +226,7 @@ class ActionManagerBase
 		m_TestedActionItem = item;
 	}
 	
-	//------------------------------------------------------	
-	protected void SetContinuousAction( ActionBase action, ActionTarget target, ItemBase item )
-	{
-		m_PrimaryAction = action;
-		m_PrimaryActionTarget = target;
-		m_PrimaryActionItem = item;
-	}
-	
-	protected void SetSingleUseAction( ActionBase action, ActionTarget target, ItemBase item )
-	{
-		m_SecondaryAction = action;
-		m_SecondaryActionTarget = target;
-		m_SecondaryActionItem = item;
-	}
-	
-	protected void RemoveContinuousAction()
-	{
-		m_PrimaryAction = NULL;
-		m_PrimaryActionTarget = NULL;
-		m_PrimaryActionItem = NULL;
-	}
-	
-	protected void RemoveSingleUseAction()
-	{
-		m_SecondaryAction = NULL;
-		m_SecondaryActionTarget = NULL;
-		m_SecondaryActionItem = NULL;
-	}
-		
-	protected void RemoveActions()
-	{
-		RemoveContinuousAction();
-		RemoveSingleUseAction();
-	}
-	
-	void DisableContinuousAction()
-	{
-		m_PrimaryActionEnabled = false;
-	}
-	
-	void EnableContinuousAction()
-	{
-		m_PrimaryActionEnabled = true;		
-	}
-	
-	void DisableSingleUseAction()
-	{
-		m_SecondaryActionEnabled = false;
-	}
-	
-	void EnableSingleUseAction()
-	{
-		m_SecondaryActionEnabled = true;		
-	}
-	
-	void DisableInteractAction()
-	{
-		m_TertiaryActionEnabled = false;
-	}
-	
-	void EnableInteractAction()
-	{
-		m_TertiaryActionEnabled = true;		
-	}
-	
-	void EnableActions()
-	{
-		//Print("ActionManager - Enable actions");
-		EnableContinuousAction();
-		EnableSingleUseAction();
-		EnableInteractAction();
-	}
-	
-	void DisableActions()
-	{
-		//Print("ActionManager - Disable actions");
-		DisableContinuousAction();
-		DisableSingleUseAction();
-		DisableInteractAction();
-	}
-	//---------------------------------------------------------------------
+	//------------------------------------------------------
 		
 	int GetActionState(ActionBase action)
 	{

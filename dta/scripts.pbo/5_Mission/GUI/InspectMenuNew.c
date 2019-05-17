@@ -102,14 +102,14 @@ class InspectMenuNew extends UIScriptedMenu
 		
 		if ( w == m_item_widget )
 		{
-			GetGame().GetDragQueue().Call(this, "UpdateScale");
-			m_characterScaleDelta = wheel ;
+			m_characterScaleDelta = wheel;
+			UpdateScale();
 		}
 		return false;
 	}
 	
 	//--------------------------------------------------------------------------
-	void UpdateScale(int mouse_x, int mouse_y, int wheel, bool is_dragging)
+	void UpdateScale()
 	{
 		float w, h, x, y;		
 		m_item_widget.GetPos(x, y);

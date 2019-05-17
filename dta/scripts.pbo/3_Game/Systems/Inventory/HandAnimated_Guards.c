@@ -113,8 +113,8 @@ bool SelectAnimationOfForceSwapInHands (notnull Man player, notnull InventoryLoc
 	{
 		hndDebugPrint("[hndfsm] SlotToAnimType - old_src=" + InventoryLocation.DumpToStringNullSafe(old_src) + " new_src=" + InventoryLocation.DumpToStringNullSafe(new_src) + " old_dst=" + InventoryLocation.DumpToStringNullSafe(old_dst) + " new_dst=" + InventoryLocation.DumpToStringNullSafe(new_dst));
 		
-		animType1 = SlotToAnimType(player, old_dst);
-		animType2 = SlotToAnimType(player, new_src);
+		animType1 = SlotToAnimType(player, new_dst);
+		animType2 = SlotToAnimType(player, old_src);
 		if (animType1 != -1 || animType2 != -1)
 		{
 			hndDebugPrint("[hndfsm] SelectAnimationOfForceSwapInHands guard - selected animType1=" + animType1 + " animType2=" + animType2 + " for old_item=" + old_src.GetItem() + " for new_item=" + new_src.GetItem());
@@ -193,7 +193,7 @@ class HandSelectAnimationOfForceSwapInHandsEvent extends HandGuardBase
 		HandEventForceSwap es = HandEventForceSwap.Cast(e);
 		if (es)
 		{
-			hndDebugPrint("[hndfsm] HandGuardHasRoomForItem FSwap e=" + e.DumpToString());
+			hndDebugPrint("[hndfsm] HandSelectAnimationOfForceSwapInHandsEvent FSwap e=" + e.DumpToString());
 			
 			bool allow = false;
 			if (GameInventory.CanSwapEntities(es.GetSrc().GetItem(), es.m_Src2.GetItem()))
@@ -201,7 +201,7 @@ class HandSelectAnimationOfForceSwapInHandsEvent extends HandGuardBase
 			else if (es.m_Dst2)
 			{
 				if (!GameInventory.LocationTestAddEntity(es.m_Dst2, false, true, true, true, true))
-					Error("[hndfsm] HandGuardHasRoomForItem - no room at dst=" + InventoryLocation.DumpToStringNullSafe(e.GetDst()));
+					Error("[hndfsm] HandSelectAnimationOfForceSwapInHandsEvent - no room at dst=" + InventoryLocation.DumpToStringNullSafe(e.GetDst()));
 				allow = true;
 			}
 			

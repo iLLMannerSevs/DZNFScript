@@ -1227,7 +1227,7 @@ class EmoteManager
 			}
 			
 			if ( m_Player.GetActionManager() )
-				m_Player.GetActionManager().EnableActions();
+				m_Player.GetActionManager().EnableActions(true);
 			
 			m_Player.SetInventorySoftLock(false);
 						
@@ -1248,7 +1248,7 @@ class EmoteManager
 			}
 				
 			if ( m_Player.GetActionManager() )
-				m_Player.GetActionManager().DisableActions();
+				m_Player.GetActionManager().EnableActions(false);
 			
 			//m_Player.SetInventorySoftLock(true);
 			

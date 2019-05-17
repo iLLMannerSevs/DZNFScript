@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Wed May 15 15:30:29 2019 : 'file' last modified on Wed May 15 13:03:05 2019
+//'now' is Fri May 17 14:11:39 2019 : 'file' last modified on Fri May 17 09:49:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -82,7 +82,7 @@ class CfgVehicles
 				{
 					class Health
 					{
-						hitpoints = 50;
+						hitpoints = 70;
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{""}}};
 					};
@@ -1321,7 +1321,7 @@ class CfgVehicles
 		friction = 0.96;
 		width = 0.16;
 		tyreRollResistance = 0.014;
-		tyreTread = 1.0;
+		tyreTread = 0.95;
 	};
 	class Hatchback_02_Wheel_Ruined: Hatchback_02_Wheel
 	{
@@ -1495,21 +1495,21 @@ class CfgVehicles
 			airDragCoefficient = 0.79;
 			class Steering
 			{
-				increaseSpeed[] = {0,55,60,40,100,25};
-				decreaseSpeed[] = {0,90,60,45,100,15};
-				centeringSpeed[] = {0,0,15,26,60,42,100,57};
+				increaseSpeed[] = {0,50,60,30,100,15};
+				decreaseSpeed[] = {0,90,60,45,100,20};
+				centeringSpeed[] = {0,0,15,27,60,45,100,63};
 			};
 			class Throttle
 			{
 				reactionTime = 0.7;
-				defaultThrust = 0.7;
+				defaultThrust = 0.75;
 				gentleThrust = 0.5;
 				turboCoef = 2.2;
 				gentleCoef = 0.5;
 			};
 			class Engine
 			{
-				inertia = 0.25;
+				inertia = 0.27;
 				torqueMax = 186;
 				torqueRpm = 4400;
 				powerMax = 100;
@@ -1525,7 +1525,7 @@ class CfgVehicles
 				reverse = 3.167;
 				ratios[] = {3.455,2.118,1.444,1.129,0.912};
 				timeToUncoupleClutch = 0.25;
-				timeToCoupleClutch = 0.4;
+				timeToCoupleClutch = 0.35;
 				maxClutchTorque = 225;
 			};
 			class Axles: Axles
@@ -1541,8 +1541,8 @@ class CfgVehicles
 					class Suspension
 					{
 						swayBar = 2000;
-						stiffness = 24000;
-						compression = 1450;
+						stiffness = 27000;
+						compression = 1650;
 						damping = 6000;
 						travelMaxUp = 0.16;
 						travelMaxDown = 0.16;
@@ -1571,8 +1571,8 @@ class CfgVehicles
 					class Suspension
 					{
 						swayBar = 2000;
-						stiffness = 24000;
-						compression = 1450;
+						stiffness = 27000;
+						compression = 1650;
 						damping = 6000;
 						travelMaxUp = 0.16;
 						travelMaxDown = 0.16;
