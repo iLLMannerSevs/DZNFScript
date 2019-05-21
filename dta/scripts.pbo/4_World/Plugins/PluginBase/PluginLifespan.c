@@ -88,7 +88,7 @@ class PluginLifespan extends PluginBase
 			
 			if ( survivor_name != "" && survivor_name != "access" )
 			{
-				if ( GetGame().IsKindOf(survivor_name, "SurvivorMale_Base") )
+				if ( GetGame().IsKindOf(survivor_name, "SurvivorMale_Base")  ||  GetGame().IsKindOf(survivor_name, "SurvivorFemale_Base") )
 				{
 					string survivor_path = config_name + " " + survivor_name;
 					int survivor_lifespan_count = GetGame().ConfigGetChildrenCount( survivor_path );
@@ -440,7 +440,11 @@ class PluginLifespan extends PluginBase
 			if (eai)
 			{
 				eai.SetObjectMaterial( 0, m_BloodyHands.Get(player_class).GetMaterial(material_type) );
-			}	
+			}
+		}
+		else
+		{
+			Print("Error! Player class <" + player_class + "> does not contain valid configuration for bloody hands!");
 		}
 	}
 

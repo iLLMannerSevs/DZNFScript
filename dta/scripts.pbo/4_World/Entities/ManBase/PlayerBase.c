@@ -2691,10 +2691,10 @@ class PlayerBase extends ManBase
 				{
 					PredictiveSwapEntities( inHandEntity, quickBarEntity );	
 				}
-				else */if(GameInventory.CanSwapEntities( inHandEntity, quickBarEntity ))
+				else */if(GameInventory.CanSwapEntities( quickBarEntity, inHandEntity ))
 				{
-					syncDebugPrint("[QB] PredictiveSwapEntities HND=" + Object.GetDebugName(inHandEntity) +  " QB=" + Object.GetDebugName(quickBarEntity));
-					PredictiveSwapEntities( inHandEntity, quickBarEntity );
+					syncDebugPrint("[QB] PredictiveSwapEntities QB=" + Object.GetDebugName(quickBarEntity) + " HND=" + Object.GetDebugName(inHandEntity));
+					PredictiveSwapEntities( quickBarEntity, inHandEntity );
 				}
 				else if(GameInventory.CanForceSwapEntities( quickBarEntity, inHandEntity, inHandEntityFSwapDst ))
 				{
