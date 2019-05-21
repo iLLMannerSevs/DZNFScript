@@ -2,9 +2,11 @@ class VicinityItemManager
 {
 	static private const float UPDATE_FREQUENCY 			= 10;
 	static private const float VICINITY_DISTANCE			= 0.5;
+	static private const float VICINITY_ACTOR_DISTANCE		= 3.0;
 	static private const float VICINITY_CONE_DISTANCE		= 3;
 	static private const float VICINITY_CONE_REACH_DISTANCE	= 2.0;
 	static private const float VICINITY_CONE_ANGLE 			= 30;
+	static private const float VICINITY_CONE_RADIANS 		= 0.5;
 	static private const string CE_CENTER 					= "ce_center";
 	static private const float HEIGHT_OFFSET 				= 0.2;
 	static private const int OBJECT_OBSTRUCTION_WEIGHT		= 10000; //in grams
@@ -77,24 +79,71 @@ class VicinityItemManager
 			m_VicinityItems.Clear();
 		}
 
-		//1. GetAll Objects in VICINITY_DISTANCE
-		GetGame().GetObjectsAtPosition3D( player.GetPosition(), VICINITY_DISTANCE, objects_in_vicinity, proxyCargos );		
-//		DebugShpeheresDraw();
-		
+		//1. GetAll actors in VICINITY_ACTOR_DISTANCE
+//		DebugActorsSphereDraw( VICINITY_ACTOR_DISTANCE );
+		GetGame().GetObjectsAtPosition3D( player.GetPosition(), VICINITY_ACTOR_DISTANCE, objects_in_vicinity, proxyCargos );		
+
 		//filter unnecessary objects beforehand
 		for ( int i = 0; i < objects_in_vicinity.Count(); i++ )
 		{
-			Object object_in_radius = objects_in_vicinity.Get(i);
+			Object actor_in_radius = objects_in_vicinity.Get(i);
+			//Print("---actor in radius: " + actor_in_radius);
+			if ( !Class.CastTo( entity_ai, actor_in_radius) ){continue;}
+			if ( entity_ai == player ){continue;}			
+			if ( entity_ai.IsParticle() ){continue;}			
+			if ( entity_ai.IsScriptedLight() ){continue;}
+			
+			if ( entity_ai.IsMan() || entity_ai.IsZombie() || entity_ai.IsZombieMilitary() )
+			{
+				//visibility cone check
+				vector entity_direction = player.GetPosition() - entity_ai.GetPosition();
+				entity_direction.Normalize();
+				entity_direction[1] = 0; //ignore height
+				
+				vector player_direction =  MiscGameplayFunctions.GetHeadingVector( player );
+				player_direction.Normalize();
+				player_direction[1] = 0; //ignore height
+				
+				float dot_rad = vector.Dot( player_direction, entity_direction );
+				
+				if ( dot_rad > -0.5 )
+				{
+					//Print("~~~actor_in_radius out of VICINITY_CONE_RADIANS~~~");
+					//Print("~~~dot_rad: ~~~: " + dot_rad);
+					continue;
+				}
+				
+				if ( filtered_objects.Find( actor_in_radius ) == INDEX_NOT_FOUND )
+				{
+					//Print("+0+filtered_objects in radius inserting: " + actor_in_radius);
+					filtered_objects.Insert( actor_in_radius );
+				}
+			}			
+		}
+		
+		if ( objects_in_vicinity ) 
+		{
+			objects_in_vicinity.Clear();
+		}
+		
+		//2. GetAll Objects in VICINITY_DISTANCE
+		GetGame().GetObjectsAtPosition3D( player.GetPosition(), VICINITY_DISTANCE, objects_in_vicinity, proxyCargos );		
+//		DebugObjectsSphereDraw( VICINITY_DISTANCE );
+		
+		//filter unnecessary objects beforehand
+		for ( int j = 0; j < objects_in_vicinity.Count(); j++ )
+		{
+			Object object_in_radius = objects_in_vicinity.Get(j);
 			//Print("---object in radius: " + object_in_radius);
-			if ( object_in_radius == GetGame().GetPlayer() ){continue;}
-			if ( !object_in_radius.CastTo( entity_ai, object_in_radius) ){continue;}
-			if ( entity_ai && entity_ai.IsParticle() ){continue;}			
-			if ( entity_ai && entity_ai.IsScriptedLight() ){continue;}
+			if ( !Class.CastTo( entity_ai, object_in_radius) ){continue;}
+			if ( entity_ai == player ){continue;}	
+			if ( entity_ai.IsParticle() ){continue;}			
+			if ( entity_ai.IsScriptedLight() ){continue;}
 			
 			
 			if ( filtered_objects.Find( object_in_radius ) == INDEX_NOT_FOUND )
 			{
-				//Print("+++filtered_objects in radius inserting: " + object_in_radius);
+				//Print("+1+filtered_objects in radius inserting: " + object_in_radius);
 				filtered_objects.Insert( object_in_radius );
 			}
 		}
@@ -104,52 +153,65 @@ class VicinityItemManager
 			objects_in_vicinity.Clear();
 		}
 		
-		//2. Add objects from GetEntitiesInCone
+		//3. Add objects from GetEntitiesInCone
 		vector headingDirection = MiscGameplayFunctions.GetHeadingVector( player );
 		DayZPlayerUtils.GetEntitiesInCone( player.GetPosition(), headingDirection, VICINITY_CONE_ANGLE, VICINITY_CONE_REACH_DISTANCE, CONE_HEIGHT_MIN, CONE_HEIGHT_MAX, objects_in_vicinity);
 
 //		DebugConeDraw( player.GetPosition(), VICINITY_CONE_ANGLE );
 
 		//filter unnecessary objects beforehand
-		for ( int j = 0; j < objects_in_vicinity.Count(); j++ )
+		for ( int k = 0; k < objects_in_vicinity.Count(); k++ )
 		{
-			Object object_in_cone = objects_in_vicinity.Get(j);
+			Object object_in_cone = objects_in_vicinity.Get(k);
 			//Print("---object in cone: " + object_in_cone);
 			
-			//quick distance check
-			
-			if ( vector.DistanceSq( player.GetPosition(), object_in_cone.GetPosition() ) > VICINITY_CONE_REACH_DISTANCE * VICINITY_CONE_REACH_DISTANCE )
-			{
-				if ( !object_in_cone.IsTransport() && !object_in_cone.CanUseConstruction() )
-				{
-					//Print("Distance ckeck pre: " + object_in_cone + " failed" );
-					continue;
-				}	
-			}
-			
-			if ( object_in_cone == GetGame().GetPlayer() ){continue;}
-			if ( !object_in_cone.CastTo( entity_ai, object_in_cone) ){continue;}
-			if ( entity_ai && entity_ai.IsParticle() ){continue;}			
-			if ( entity_ai && entity_ai.IsScriptedLight() ){continue;}
+			if ( !Class.CastTo( entity_ai, object_in_cone) ){continue;}
+			if ( entity_ai == player ){continue;}	
+			if ( entity_ai.IsParticle() ){continue;}			
+			if ( entity_ai.IsScriptedLight() ){continue;}
 			
 			if ( filtered_objects.Find( object_in_cone ) == INDEX_NOT_FOUND )
 			{
-				//Print("+++filtered_objects in cone inserting: " + object_in_cone);
+				//Print("+2+filtered_objects in cone inserting: " + object_in_cone);
 				filtered_objects.Insert( object_in_cone );
 			}
 		}
 
-		//3. Filter filtered objects with RayCast from the player ( head bone )
-		for ( int ii = 0; ii < filtered_objects.Count(); ii++ )
+		//4. Filter filtered objects with RayCast from the player ( head bone )
+		for ( int l = 0; l < filtered_objects.Count(); l++ )
 		{
-			Object filtered_object = filtered_objects.Get(ii);
+			Object filtered_object = filtered_objects.Get(l);
 			bool is_obstructed = false;
+			Class.CastTo( entity_ai, filtered_object );
+			
+			//distance check
+			if ( vector.DistanceSq( player.GetPosition(), entity_ai.GetPosition() ) > VICINITY_CONE_REACH_DISTANCE * VICINITY_CONE_REACH_DISTANCE )
+			{
+				if ( !entity_ai.IsTransport() && !entity_ai.CanUseConstruction() )
+				{
+					//Print("Distance ckeck pre: " + entity_ai + " failed" );
+					continue;
+				}	
+			}
 			
 			if ( filtered_object.MemoryPointExists(CE_CENTER) )
 			{
 				//Print("CE_CENTER found");
 				vector modelPos = filtered_object.GetMemoryPointPos(CE_CENTER);
 				object_center_pos = filtered_object.ModelToWorld(modelPos);
+			}
+			else if ( entity_ai.IsMan() )
+			{
+				//Print("NA HRACovi alebo INFECTEDovi getujem pelvis");
+				PlayerBase vicinity_player = PlayerBase.Cast( entity_ai );
+				int bone_index_player = vicinity_player.GetBoneIndexByName( "Pelvis" );
+				object_center_pos = vicinity_player.GetBonePositionWS( bone_index_player );
+			}
+			else if ( entity_ai.IsZombie() || entity_ai.IsZombieMilitary() )
+			{
+				//Print("NA INFECTEDovi getujem pelvis");
+				ZombieBase vicinity_zombie = ZombieBase.Cast( entity_ai );
+				object_center_pos = vicinity_zombie.ModelToWorld( vicinity_zombie.GetSelectionPositionOld("Pelvis") );
 			}
 			else
 			{
@@ -161,12 +223,7 @@ class VicinityItemManager
 			//Print("-->raycast from player to: " + filtered_object);
 			MiscGameplayFunctions.GetHeadBonePos( PlayerBase.Cast( GetGame().GetPlayer() ), raycast_start);
 //			DebugRaycastDraw( raycast_start, object_center_pos );
-				
-			if ( hit_objects ) 
-			{
-				hit_objects.Clear();
-			}
-			
+						
 			if ( filtered_object.HasProxyParts() || filtered_object.CanUseConstruction() )
 			{
 				//Print(" :) (: pouzij proxy raycast koli proxy itemom :) (: ");
@@ -207,13 +264,17 @@ class VicinityItemManager
 			{
 				//Print(" ===>>> pouzij standardny raycast s fire geometriou koli domom a basebuildingu <<<=== ");
 				DayZPhysics.RaycastRV( raycast_start, object_center_pos, object_contact_pos, object_contact_dir, contact_component, hit_objects, null, GetGame().GetPlayer(), false, false, ObjIntersectFire, 0.0, CollisionFlags.ALLOBJECTS );
-			}
-			//1. ignore items from list if is in ray object out of current list
-			// TODO: not necessary for the first iterrationaa
-			
-			for ( int iii = 0; iii < hit_objects.Count(); iii++ )
+			}	
+				
+			if ( hit_objects ) 
 			{
-				Object hit_object = hit_objects.Get(iii);
+				hit_objects.Clear();
+			}
+				
+			//4.2. ignore items if they are obstructed
+			for ( int m = 0; m < hit_objects.Count(); m++ )
+			{
+				Object hit_object = hit_objects.Get(m);
 				
 				//Print("-->>pocas raycastu hitujem: " + hit_object);
 				
@@ -229,11 +290,11 @@ class VicinityItemManager
 					is_obstructed = true;
 				}
 				
-				//2. ignore item from list if is in ray item with weight bigger than OBJECT_OBSTRUCTION_WEIGHT 
+				//4.3. ignore item if items are big and heavy >= OBJECT_OBSTRUCTION_WEIGHT 
 				EntityAI eai;
 				if ( Class.CastTo( eai, hit_object ) )
 				{
-					if ( eai.GetItemWeight() >= 10000 )
+					if ( eai.GetItemWeight() >= OBJECT_OBSTRUCTION_WEIGHT )
 					{
 						if ( eai != filtered_object )
 						{
@@ -258,11 +319,16 @@ class VicinityItemManager
 	
 	static ref array<Shape> rayShapes = new array<Shape>();
 	
-	static private void DebugShpeheresDraw()
+	static private void DebugActorsSphereDraw( float radius )
 	{
 		CleanupDebugShapes(rayShapes);
 		
-		rayShapes.Insert( Debug.DrawSphere( GetGame().GetPlayer().GetPosition(), VICINITY_DISTANCE, COLOR_GREEN, ShapeFlags.TRANSP|ShapeFlags.WIREFRAME ) );
+		rayShapes.Insert( Debug.DrawSphere( GetGame().GetPlayer().GetPosition(), radius, COLOR_GREEN, ShapeFlags.TRANSP|ShapeFlags.WIREFRAME ) );
+	}
+	
+	static private void DebugObjectsSphereDraw( float radius )
+	{		
+		rayShapes.Insert( Debug.DrawSphere( GetGame().GetPlayer().GetPosition(), radius, COLOR_GREEN, ShapeFlags.TRANSP|ShapeFlags.WIREFRAME ) );
 	}
 	
 	static private void DebugRaycastDraw( vector start, vector end )
@@ -276,22 +342,22 @@ class VicinityItemManager
 		float playerAngle;
 		float xL,xR,zL,zR;
 		
-		playerAngle = MiscGameplayFunctions.GetHeadingAngle(GetGame().GetPlayer());
+		playerAngle = MiscGameplayFunctions.GetHeadingAngle( PlayerBase.Cast( GetGame().GetPlayer() ) );
 
 		endL = start;
 		endR = start;
-		xL = VICINITY_CONE_REACH_DISTANCE * Math.Cos(playerAngle + Math.PI_HALF + cone_angle * Math.DEG2RAD); // x
-		zL = VICINITY_CONE_REACH_DISTANCE * Math.Sin(playerAngle + Math.PI_HALF + cone_angle * Math.DEG2RAD); // z
-		xR = VICINITY_CONE_REACH_DISTANCE * Math.Cos(playerAngle + Math.PI_HALF - cone_angle * Math.DEG2RAD); // x
-		zR = VICINITY_CONE_REACH_DISTANCE * Math.Sin(playerAngle + Math.PI_HALF - cone_angle * Math.DEG2RAD); // z
+		xL = VICINITY_CONE_REACH_DISTANCE * Math.Cos( playerAngle + Math.PI_HALF + cone_angle * Math.DEG2RAD ); // x
+		zL = VICINITY_CONE_REACH_DISTANCE * Math.Sin( playerAngle + Math.PI_HALF + cone_angle * Math.DEG2RAD ); // z
+		xR = VICINITY_CONE_REACH_DISTANCE * Math.Cos( playerAngle + Math.PI_HALF - cone_angle * Math.DEG2RAD ); // x
+		zR = VICINITY_CONE_REACH_DISTANCE * Math.Sin( playerAngle + Math.PI_HALF - cone_angle * Math.DEG2RAD ); // z
 		endL[0] = endL[0] + xL;
 		endL[2] = endL[2] + zL;
 		endR[0] = endR[0] + xR;
 		endR[2] = endR[2] + zR;
 
-		rayShapes.Insert( Debug.DrawLine(start, endL, COLOR_GREEN) );
-		rayShapes.Insert( Debug.DrawLine(start, endR, COLOR_GREEN) ) ;
-		rayShapes.Insert( Debug.DrawLine(endL, endR, COLOR_GREEN) );
+		rayShapes.Insert( Debug.DrawLine( start, endL, COLOR_GREEN ) );
+		rayShapes.Insert( Debug.DrawLine( start, endR, COLOR_GREEN ) ) ;
+		rayShapes.Insert( Debug.DrawLine( endL, endR, COLOR_GREEN ) );
 	}
 	
 	static private void CleanupDebugShapes(array<Shape> shapesArr)

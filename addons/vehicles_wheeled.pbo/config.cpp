@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Fri May 17 14:11:39 2019 : 'file' last modified on Fri May 17 09:49:44 2019
+//'now' is Tue May 21 15:20:21 2019 : 'file' last modified on Mon May 20 10:52:40 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -34,10 +34,12 @@ class CfgVehicles
 	class Inventory_Base;
 	class CarWheel: Inventory_Base
 	{
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
-		simulation = "carwheel";
+		scope = 1;
 		itemBehaviour = 0;
+		physLayer = "item_large";
+		itemSize[] = {6,6};
+		weight = 12000;
+		simulation = "carwheel";
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -64,8 +66,10 @@ class CfgVehicles
 	class CarDoor: Inventory_Base
 	{
 		scope = 1;
-		InteractActions[] = {1043,1042,573};
-		SingleUseActions[] = {577};
+		itemBehaviour = 0;
+		physLayer = "item_large";
+		itemSize[] = {10,10};
+		weight = 15000;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -124,7 +128,6 @@ class CfgVehicles
 	class Car;
 	class CarScript: Car
 	{
-		InteractActions[] = {1047,1035};
 		rotationFlags = 64;
 		storageCategory = 4;
 		insideSoundCoef = 0.9;
@@ -1308,12 +1311,9 @@ class CfgVehicles
 	class Hatchback_02_Wheel: CarWheel
 	{
 		scope = 2;
-		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Wheel.p3d";
 		displayName = "$STR_CivHatchbackWheel0";
 		descriptionShort = "$STR_CivHatchbackWheel1";
-		itemSize[] = {6,6};
-		weight = 12000;
-		physLayer = "item_large";
+		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Wheel.p3d";
 		rotationFlags = 4;
 		inventorySlot[] = {"Hatchback_02_Wheel_1_1","Hatchback_02_Wheel_1_2","Hatchback_02_Wheel_2_1","Hatchback_02_Wheel_2_2"};
 		radiusByDamage[] = {0,0.34,0.3,0.3,0.9998,0.25,0.9999,0.2};
@@ -1337,12 +1337,9 @@ class CfgVehicles
 	class Hatchback_02_Door_1_1: CarDoor
 	{
 		scope = 2;
-		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Door_1_1.p3d";
 		displayName = "$STR_CivHatchbackDoors_Driver0";
 		descriptionShort = "$STR_CivHatchbackDoors_Driver1";
-		itemSize[] = {10,10};
-		weight = 15000;
-		physLayer = "item_large";
+		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Door_1_1.p3d";
 		inventorySlot = "Hatchback_02_Door_1_1";
 		rotationFlags = 2;
 		class DamageSystem: DamageSystem
