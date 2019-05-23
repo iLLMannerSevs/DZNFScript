@@ -732,11 +732,9 @@ class GameInventory
 				return LocationSyncMoveEntity(src, dst);
 
 			case InventoryMode.SERVER:
-				Error("Server side inventory command without player is not implemented.. none shall pass! (src=" + InventoryLocation.DumpToStringNullSafe(src) + " dst=" + InventoryLocation.DumpToStringNullSafe(dst) + ")");
-				return false;
-				//bool ret = LocationSyncMoveEntity(src, dst);
-				//InventoryInputUserData.SendServerMove(nullptr, InventoryCommandType.SYNC_MOVE, src, dst);
-				//return ret;
+				bool ret = LocationSyncMoveEntity(src, dst);
+				InventoryInputUserData.SendServerMove(null, InventoryCommandType.SYNC_MOVE, src, dst);
+				return ret;
 			default:
 				Error("HandEvent - Invalid mode");
 		}

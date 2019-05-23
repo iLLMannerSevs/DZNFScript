@@ -3044,11 +3044,9 @@ class PlayerBase extends ManBase
 		for (int att = 0; att < attcount; att++)
 		{	
 			attachment = GetInventory().GetAttachmentFromIndex(att);
-			if ( attachment.IsItemBase() )
+			if( attachment )
 			{
-				ItemBase attachmentIB;
-				Class.CastTo(attachmentIB, attachment);
-				total_load += attachmentIB.GetItemWeight();
+				total_load += attachment.GetItemWeight();
 			}
 		}
 
@@ -5330,11 +5328,9 @@ class PlayerBase extends ManBase
 				float amount;
 				if(DayZPlayerSyncJunctures.ReadKuruRequest(pCtx, amount))
 				{
-					DayZPlayerImplement pl = DayZPlayerImplement.Cast(this);
-				
-					if(pl.GetAimingModel() && pl.IsFireWeaponRaised()) 
+					if(GetAimingModel() && IsFireWeaponRaised()) 
 					{
-						pl.GetAimingModel().RequestKuruShake(amount);
+						GetAimingModel().RequestKuruShake(amount);
 					}
 				}
 				break;

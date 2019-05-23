@@ -2306,8 +2306,9 @@ class ItemBase extends InventoryItem
 			}
 			totalWeight += (item_wetness + 1) * ConfWeight;
 		}
+		
 		//cargo?
-		else if (cargo != NULL )
+		if (cargo != NULL )
 		{
 			for (i = 0; i < cargo.GetItemCount(); i++)
 			{
@@ -2316,8 +2317,8 @@ class ItemBase extends InventoryItem
 			totalWeight += (item_wetness + 1) * ConfWeight;
 			//return Math.Round(GetContainerWeight() + ((item_wetness + 1) * ConfWeight));
 		}
+
 		//other
-		else
 		{
 			if (this.ConfigGetBool("canBeSplit")) //quantity determines size of the stack
 			{

@@ -388,8 +388,10 @@ class EntityAI extends Entity
 	}
 	void EEInventoryOut (Man oldParentMan, EntityAI diz, EntityAI newParent)
 	{
-		if (GetInventory())
+		if (GetInventory() && newParent == null)
+		{
 			GetInventory().ResetFlipCargo();
+		}
 	}
 
 	void EEAmmoChanged()
