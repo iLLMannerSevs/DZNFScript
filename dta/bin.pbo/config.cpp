@@ -2,7 +2,7 @@
 //DeRap: bin\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Tue May 21 15:05:11 2019 : 'file' last modified on Tue May 21 12:11:33 2019
+//'now' is Thu May 23 16:22:53 2019 : 'file' last modified on Thu May 23 10:14:09 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -311,8 +311,6 @@ class Muzzle_Base
 	chamberableFrom[] = {};
 	barrelArmor = 1000.0;
 	initSpeedMultiplier = 1.0;
-	aiDispersionCoefX = 1.0;
-	aiDispersionCoefY = 1.0;
 	irDistance = 0.0;
 	irLaserPos = "laser pos";
 	irLaserEnd = "laser dir";
@@ -356,8 +354,6 @@ class CfgWeapons
 		chamberSize = 0;
 		drySound[] = {"",1,1};
 		soundBullet[] = {"emptySound",1};
-		aiDispersionCoefX = 1.0;
-		aiDispersionCoefY = 1.0;
 		irDistance = 0;
 		magazines[] = {};
 		chamberableFrom[] = {};
@@ -389,8 +385,6 @@ class CfgWeapons
 	class PistolCore: DefaultWeapon{};
 	class RifleCore: DefaultWeapon
 	{
-		aiRateOfFire = 0.5;
-		aiRateOfFireDistance = 500;
 		inventorySlot = "Shoulder";
 		itemSize[] = {2,1};
 	};

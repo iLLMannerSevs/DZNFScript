@@ -216,7 +216,7 @@ class BaseBuildingBase extends ItemBase
 		string key = part.m_PartName;
 		bool is_base = part.IsBase();
 		bool is_part_built_sync = IsPartBuildInSyncData( part.GetId() );
-		bsbDebugPrint("[bsb] " + GetDebugName(this) + " SetPartFromSyncData try to sync: built=" + is_part_built_sync + " key=" + key + " part=" + part.GetPartName() + " part_built=" + part.IsBuilt());
+		bsbDebugSpam("[bsb] " + GetDebugName(this) + " SetPartFromSyncData try to sync: built=" + is_part_built_sync + " key=" + key + " part=" + part.GetPartName() + " part_built=" + part.IsBuilt());
 		if ( is_part_built_sync )
 		{
 			if ( !part.IsBuilt() )
@@ -1076,6 +1076,10 @@ class BaseBuildingBase extends ItemBase
 }
 
 void bsbDebugPrint (string s)
+{
+	//Print("" + s); // comment/uncomment to hide/see debug logs
+}
+void bsbDebugSpam (string s)
 {
 	//Print("" + s); // comment/uncomment to hide/see debug logs
 }

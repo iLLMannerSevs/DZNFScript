@@ -578,20 +578,21 @@ class Construction
 				{
 					if ( attachment )
 					{
-						InventoryLocation inventory_location = new InventoryLocation;
-						attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
-						bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " DropNonUsableMaterials UNlocking slot=" + inventory_location.GetSlot());
-						GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
+						InventoryLocation src = new InventoryLocation;
+						attachment.GetInventory().GetCurrentInventoryLocation( src );
+						bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " DropNonUsableMaterials UNlocking slot=" + src.GetSlot());
+						GetParent().GetInventory().SetSlotLock( src.GetSlot() , false );
 						
 						//detach if base
 						if ( construction_part.IsBase() )
 						{
-							InventoryLocation gnd = new InventoryLocation;
-							vector mat[4];
-							Math3D.MatrixIdentity4(mat);
-							mat[3] = player.GetPosition();
-							gnd.SetGround(attachment, mat);
-							player.PredictiveTakeToDst(inventory_location, gnd);
+							InventoryLocation dst = new InventoryLocation;
+							GameInventory.SetGroundPosByOwner(player, src.GetItem(), dst);
+							player.ServerTakeToDst(src, dst);
+							
+							// @NOTE: cannot use PredictiveTakeToDst as it should be, because immeadiately after this action is finished
+							// the parent object is deleted before the simulation timestep handles the body of PredictiveTakeToDst 
+							//player.PredictiveTakeToDst(src, gnd);
 						}
 					}
 				}

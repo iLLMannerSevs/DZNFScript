@@ -237,11 +237,8 @@ class HandEventDrop extends HandEventBase
 	override InventoryLocation GetDst ()
 	{
 		InventoryLocation dst = new InventoryLocation;
-		vector mat[4];
-		Math3D.MatrixIdentity4(mat);
-		mat[3] = m_Player.GetPosition();
-
-		dst.SetGround(GetSrcEntity(), mat);
+		GameInventory.SetGroundPosByOwner(m_Player, GetSrcEntity(), dst);
+		
 		return dst;
 	}
 	
