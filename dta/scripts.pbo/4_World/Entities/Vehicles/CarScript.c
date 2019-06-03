@@ -274,8 +274,10 @@ class CarScript extends Car
 	
 	override bool CanReleaseAttachment( EntityAI attachment )
 	{
-
-		if ( GetSpeedometer() > 0.5 )
+		if( !super.CanReleaseAttachment( attachment ) )
+			return false;
+		
+		if ( GetSpeedometer() > 3.5 )
 			return false;
 
 		//GetInventoryOwner()

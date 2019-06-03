@@ -331,6 +331,11 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 				PPEffects.SetNVParams(2.0, 1.0, 10.0, 1.0);
 			break;
 		}
+		
+		if (PlayerBaseClient.Cast(m_pPlayer))
+		{
+			PlayerBaseClient.Cast(m_pPlayer).SwitchPersonalLight(NVtype < 1); //TODO 
+		}
 	}
 	
 	protected float 				m_fLRAngleVel[1];

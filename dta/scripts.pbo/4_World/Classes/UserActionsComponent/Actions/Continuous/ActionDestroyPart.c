@@ -66,7 +66,7 @@ class ActionDestroyPart: ActionContinuousBase
 		if ( construction.CanDestroyPart( construction_part.GetPartName() ) )
 		{
 			//build
-			construction.DestroyPartServer( construction_part.GetPartName(), GetType() );
+			construction.DestroyPartServer( action_data.m_Player, construction_part.GetPartName(), GetType() );
 			
 			//add damage to tool
 			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DESTROY, false );

@@ -107,6 +107,7 @@ class Rangefinder extends PoweredOptic_Base
 	{
 		super.SetActions();
 		
+		RemoveAction(ActionViewOptics);
 		AddAction(ActionViewBinoculars);
 	}
 }

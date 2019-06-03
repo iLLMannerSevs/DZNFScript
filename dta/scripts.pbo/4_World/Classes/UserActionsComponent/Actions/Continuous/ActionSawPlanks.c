@@ -8,9 +8,9 @@ class ActionSawPlanksCB : ActionContinuousBaseCB
 
 class ActionSawPlanks: ActionContinuousBase
 {	
-	static const int DECREASE_HEALTH_OF_TOOL_DEFAULT = 1; // any other item, including hacksaw
-	static const int DECREASE_HEALTH_OF_TOOL_AXE = 2; // axes
-	static const int DECREASE_FUEL_OF_CHAINSAW = 3; // chainsaw fuel in ml
+	static const int DECREASE_HEALTH_OF_TOOL_DEFAULT = 3; // any other item, including hacksaw
+	static const int DECREASE_HEALTH_OF_TOOL_AXE = 6; // axes
+	static const int DECREASE_FUEL_OF_CHAINSAW = 9; // chainsaw fuel in ml
 	
 	void ActionSawPlanks()
 	{
@@ -78,13 +78,12 @@ class ActionSawPlanks: ActionContinuousBase
 	override void OnFinishProgressServer( ActionData action_data )
 	{	
 		PileOfWoodenPlanks item_POWP = PileOfWoodenPlanks.Cast( action_data.m_Target.GetObject() );
-		item_POWP.RemovePlanks(1);
+		item_POWP.RemovePlanks(3);
 		
 		vector pos = action_data.m_Player.GetPosition();
 		ItemBase planks = ItemBase.Cast( GetGame().CreateObject("WoodenPlank", pos) );
-		const float NEW_PLANKS = 3;
 
-		planks.SetQuantity( Math.Round( action_data.m_Player.GetSoftSkillsManager().AddSpecialtyBonus( NEW_PLANKS, this.GetSpecialtyWeight() ) ), true );
+		planks.SetQuantity( Math.Round( action_data.m_Player.GetSoftSkillsManager().AddSpecialtyBonus( 9, this.GetSpecialtyWeight() ) ), true );
 		
 		ItemBase item = action_data.m_MainItem;
 		
