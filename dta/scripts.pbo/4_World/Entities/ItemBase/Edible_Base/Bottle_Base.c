@@ -278,11 +278,13 @@ class Bottle_Base extends Edible_Base
 	protected vector GetSteamPosition()
 	{
 		EntityAI parent = GetHierarchyParent();
-		vector particle_pos = parent.GetPosition();
+		vector particle_pos;
 		float steam_offset = 0;
 		
 		if ( parent )
 		{
+			particle_pos = parent.GetPosition();
+			
 			if ( parent.IsInherited( PortableGasStove ) )
 			{
 				steam_offset = 0.2;

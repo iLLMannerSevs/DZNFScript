@@ -1109,6 +1109,11 @@ class PlayerBase extends ManBase
 		return m_IsRestrained;
 	}
 	
+	override bool IsInventoryVisible()
+	{
+		return true;
+	}
+	
 	bool CanManipulateInventory()
 	{
 		return ( !IsControlledPlayer() || !IsRestrained() );
@@ -2605,9 +2610,7 @@ class PlayerBase extends ManBase
 		if ( m_InjuryHandler && m_InjuryHandler.GetInjuryAnimValue() >= InjuryAnimValues.LVL3 )
 			return false;
 		
-		super.CanJump();
-		
-		return true;
+		return super.CanJump();
 	}
 	
 	// -------------------------------------------------------------------------

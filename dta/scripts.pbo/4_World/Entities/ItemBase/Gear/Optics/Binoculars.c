@@ -4,6 +4,7 @@ class Binoculars: ItemOptics
 	{
 		super.SetActions();
 		
+		RemoveAction(ActionViewOptics);
 		AddAction(ActionViewBinoculars);
 	}
 };

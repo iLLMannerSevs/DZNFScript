@@ -89,27 +89,27 @@ class Construction
 		ReceiveMaterialsServer( player, part_name );
 			
 		//drop non-usable materials
-		DropNonUsableMaterialsServer( part_name );
+		DropNonUsableMaterialsServer( player, part_name );
 		
 		//call event
 		GetParent().OnPartDismantledServer( player, part_name, action_id );
 	}
 	
 	//DestroyPart
-	void DestroyPartServer( string part_name, int action_id )
+	void DestroyPartServer( notnull Man player, string part_name, int action_id )
 	{
 		//add part to constructed parts
 		RemoveFromConstructedParts( part_name );
 		
 		//destroy attached materials (if locked)
-		DestroyMaterialsServer( part_name );
+		DestroyMaterialsServer( player, part_name );
 		
 		//drop non-usable materials
-		DropNonUsableMaterialsServer( part_name );			
+		DropNonUsableMaterialsServer( player, part_name );			
 		
 		//call event
 		GetParent().OnPartDestroyedServer( part_name, action_id );
-	}	
+	}
 	
 	//============================================
 	// Update construction
@@ -580,15 +580,24 @@ class Construction
 					{
 						InventoryLocation src = new InventoryLocation;
 						attachment.GetInventory().GetCurrentInventoryLocation( src );
-						bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " DropNonUsableMaterials UNlocking slot=" + src.GetSlot());
+						bsbDebugPrint("[bsb] " + Object.GetDebugName( GetParent()) + " DropNonUsableMaterials UNlocking slot=" + src.GetSlot() );
 						GetParent().GetInventory().SetSlotLock( src.GetSlot() , false );
 						
 						//detach if base
 						if ( construction_part.IsBase() )
 						{
-							InventoryLocation dst = new InventoryLocation;
-							GameInventory.SetGroundPosByOwner(player, src.GetItem(), dst);
-							player.ServerTakeToDst(src, dst);
+
+							
+							if ( GetGame().IsMultiplayer() )
+							{
+								InventoryLocation dst = new InventoryLocation;
+								GameInventory.SetGroundPosByOwner( player, src.GetItem(), dst );
+								player.ServerTakeToDst( src, dst );
+							}
+							else
+							{
+								GetParent().GetInventory().DropEntity( InventoryMode.PREDICTIVE, GetParent(), attachment );
+							}
 							
 							// @NOTE: cannot use PredictiveTakeToDst as it should be, because immeadiately after this action is finished
 							// the parent object is deleted before the simulation timestep handles the body of PredictiveTakeToDst 
@@ -644,63 +653,8 @@ class Construction
 		}
 	}
 	
-	//receive materials when dismantling
-	void ReceiveMaterialsClient( string part_name )
-	{
-		ConstructionPart construction_part = GetConstructionPart( part_name );
-		string main_part_name = construction_part.GetMainPartName();
-		string cfg_path = "cfgVehicles" + " " + GetParent().GetType() + " "+ "Construction" + " " + main_part_name + " " + part_name + " " + "Materials";
-		
-		if ( GetGame().ConfigIsExisting( cfg_path ) )
-		{
-			int	child_count = GetGame().ConfigGetChildrenCount( cfg_path );
-			
-			for ( int i = 0; i < child_count; i++ )
-			{
-				string child_name;
-				GetGame().ConfigGetChildName( cfg_path, i, child_name );
-				
-				//get type, quantity from material
-				string config_path;
-				string type;
-				string slot_name;
-				config_path = cfg_path + " " + child_name + " " + "type";
-				GetGame().ConfigGetText( config_path, type );
-				config_path = cfg_path + " " + child_name + " " + "slot_name";
-				GetGame().ConfigGetText( config_path, slot_name );
-				config_path = cfg_path + " " + child_name + " " + "quantity";
-				float quantity = GetGame().ConfigGetFloat( config_path );
-				config_path = cfg_path + " " + child_name + " " + "lockable";
-				bool lockable = GetGame().ConfigGetInt( config_path );
-				
-				//receive material quantity
-				ItemBase attachment = ItemBase.Cast( GetParent().FindAttachmentBySlotName( slot_name ) );
-				int slot_id;
-				
-				//material still attached
-				if ( lockable )			//if lockable 
-				{
-					if ( attachment )
-					{
-						InventoryLocation inventory_location = new InventoryLocation;
-						attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
-						bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " ReceiveMaterialsClient locking slot=" + inventory_location.GetSlot());
-						GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
-						
-						//detach if base
-						if ( construction_part.IsBase() )
-						{
-							if (!GetGame().IsMultiplayer())
-								GetParent().GetInventory().DropEntity( InventoryMode.PREDICTIVE, GetParent(), attachment );
-						}
-					}
-				}
-			}
-		}
-	}	
-		
 	//destroy lockable materials when destroying
-	protected void DestroyMaterialsServer( string part_name )
+	protected void DestroyMaterialsServer( notnull Man player, string part_name )
 	{
 		ConstructionPart cPart = GetConstructionPart( part_name );
 		string main_part_name = cPart.GetMainPartName();
@@ -740,27 +694,15 @@ class Construction
 						attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
 						bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " DestroyMaterialsServer unlock slot=" + inventory_location.GetSlot());
 						
-						GetGame().ObjectDelete( attachment );		//delete object
-						
 						GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
+						GetGame().ObjectDelete( attachment );		//delete object
 					}
 				}
 			}
 		}
 	}
-	
-	//drop materials when dismantling part that will prevent other parts to be built
-	void DropNonUsableMaterialsServer( string part_name )
-	{
-		DropNonUsableMaterials( part_name );
-	}
-	
-	void DropNonUsableMaterialsClient( string part_name )
-	{
-		DropNonUsableMaterials( part_name );
-	}	
-	
-	protected void DropNonUsableMaterials( string part_name )
+		
+	protected void DropNonUsableMaterialsServer( notnull Man player, string part_name )
 	{
 		ConstructionPart construction_part = GetConstructionPart( part_name );
 		
@@ -772,7 +714,7 @@ class Construction
 			GetGame().ConfigGetText( cfg_path, platform_support );
 		}
 		
-		if ( platform_support.Length() > 0 )
+		if ( platform_support.Length() > 0 || construction_part.IsBase() )
 		{
 			string at_cfg_path = "cfgVehicles" + " " + GetParent().GetType() + " "+ "GUIInventoryAttachmentsProps";
 			
@@ -803,10 +745,20 @@ class Construction
 								attachment.GetInventory().GetCurrentInventoryLocation( inventory_location );
 								bsbDebugPrint("[bsb] " + Object.GetDebugName(GetParent()) + " DropNonUsableMaterials UNlocking slot=" + inventory_location.GetSlot());
 								
-								//detach if base
-								GetParent().GetInventory().DropEntity( InventoryMode.PREDICTIVE, GetParent(), attachment );
-								
+								//unlock slot
 								GetParent().GetInventory().SetSlotLock( inventory_location.GetSlot() , false );
+								
+								//drop
+								if ( GetGame().IsMultiplayer() )
+								{
+									InventoryLocation dst = new InventoryLocation;
+									GameInventory.SetGroundPosByOwner( player, inventory_location.GetItem(), dst );
+									player.ServerTakeToDst( inventory_location, dst );
+								}
+								else
+								{
+									GetParent().GetInventory().DropEntity( InventoryMode.PREDICTIVE, GetParent(), attachment );
+								}
 							}
 						}
 					}

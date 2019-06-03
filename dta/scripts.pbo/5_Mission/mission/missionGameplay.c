@@ -281,7 +281,7 @@ class MissionGameplay extends MissionBase
 				if ( !GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 				{
 					RadialQuickbarMenu.OpenMenu();
-					m_Hud.ToggleHud( false, true );
+					m_Hud.ShowHudUI( false );
 				}	
 			}
 		}
@@ -292,7 +292,7 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 			{
 				RadialQuickbarMenu.CloseMenu();
-				m_Hud.ToggleHud( m_Hud.GetHudState(), true );
+				m_Hud.ShowHudUI( m_Hud.GetHudState() );
 			}
 		}
 		
