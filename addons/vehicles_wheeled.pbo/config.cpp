@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Mon Jun 03 15:30:56 2019 : 'file' last modified on Thu May 23 22:32:12 2019
+//'now' is Tue Jun 04 15:04:49 2019 : 'file' last modified on Thu May 23 22:32:12 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
