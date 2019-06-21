@@ -66,10 +66,11 @@ class PortableGasStove extends ItemBase
 		//cookware
 		if ( item.Type() == ATTACHMENT_COOKING_POT )
 		{
-			ClearCookingEquipment();
-			
 			//stop steam particle
-			RemoveCookingAudioVisuals();			
+			RemoveCookingAudioVisuals();
+			
+			//remove cooking equipment reference
+			ClearCookingEquipment();
 		}	
 	}
 	

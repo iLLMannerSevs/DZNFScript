@@ -2,7 +2,6 @@ class ActionSwitchLights: ActionInteractBase
 {
 	void ActionSwitchLights()
 	{
-		m_MessageSuccess    = "";
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_HEADLIGHT;
 		m_StanceMask        = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 		m_HUDCursorIcon     = CursorIcons.LootCorpse;
@@ -12,11 +11,6 @@ class ActionSwitchLights: ActionInteractBase
 	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNone;
-	}	
-	
-	override int GetType()
-	{
-		return AT_VEH_SWITCH_LIGHTS;
 	}
 
 	override string GetText()
@@ -48,7 +42,7 @@ class ActionSwitchLights: ActionInteractBase
 				{
 					if ( car.CrewMemberIndex( player ) == DayZPlayerConstants.VEHICLESEAT_DRIVER )
 					{
-						if ( !car.IsLightsOn() )
+						if ( !car.IsScriptedLightsOn() )
 						{
 							EntityAI neededItem = null;
 
@@ -90,12 +84,12 @@ class ActionSwitchLights: ActionInteractBase
 				CarScript car;
 				if ( Class.CastTo(car, trans) )
 				{
-					car.SwitchLights();
+					car.ToggleHeadlights();
 				}
 			}
 		}
 	}
-
+	
 	override bool CanBeUsedInVehicle()
 	{
 		return true;

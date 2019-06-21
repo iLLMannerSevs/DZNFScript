@@ -40,10 +40,6 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 		m_Filters				= new ServerBrowserFilterContainer( m_Root.FindAnyWidget( "filters_content" ), this );
 		
 		SetSort( ESortType.HOST, ESortOrder.ASCENDING );
-		
-		//SetFocus( m_Root.FindAnyWidget( "sort_button" ) );
-		SetFocus ( m_Root );
-		
 		SetFocusFilters();
 		
 		m_Root.SetHandler( this );
@@ -330,6 +326,16 @@ class ServerBrowserTabConsole extends ServerBrowserTab
 		
 		m_Filters.Focus();
 		m_IsFilterFocused = true;
+	}
+	
+	override void Focus()
+	{
+		if( m_EntryWidgets.Contains( m_CurrentSelectedServer ) )
+		{
+			m_EntryWidgets.Get( m_CurrentSelectedServer ).Focus();
+			ScrollToEntry( m_EntryWidgets.Get( m_CurrentSelectedServer ) );
+		}
+		SetFocusServers();
 	}
 	
 	void SetFocusServers()

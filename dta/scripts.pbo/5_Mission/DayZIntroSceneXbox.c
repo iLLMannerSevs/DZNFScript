@@ -364,7 +364,7 @@ class DayZIntroSceneXbox: Managed
 				return;
 			}
 		}
-		g_Game.SetPlayerGameName(DEFAULT_CHARACTER_NAME);
+		g_Game.SetPlayerGameName(GameConstants.DEFAULT_CHARACTER_NAME);
 	}
 	
 	// ------------------------------------------------------------

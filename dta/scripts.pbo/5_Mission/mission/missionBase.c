@@ -144,6 +144,9 @@ class MissionBase extends MissionBaseWorld
 		case MENU_LOGIN_QUEUE:
 			menu = new LoginQueueBase;
 			break;
+		case MENU_LOGIN_TIME:
+			menu = new LoginTimeBase;
+			break;
 		case MENU_CAMERA_TOOLS:
 			menu = new CameraToolsMenu;
 			break;

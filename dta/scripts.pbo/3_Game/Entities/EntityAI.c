@@ -29,6 +29,8 @@ class EntityAI extends Entity
 	protected ref ScriptInvoker		m_OnItemMovedInCargo;
 	//Called when an item is moved around in the cargo of this item
 	protected ref ScriptInvoker		m_OnItemFlipped;
+	//Called when an item is moved around in the cargo of this item
+	protected ref ScriptInvoker		m_OnViewIndexChanged;
 	
 	void EntityAI ()
 	{
@@ -261,7 +263,7 @@ class EntityAI extends Entity
 	void RemoveAgent(int agent_id);
 	void RemoveAllAgents();
 	void RemoveAllAgentsExcept(int agent_to_keep);
-	void InsertAgent(int agent, float count);
+	void InsertAgent(int agent, float count = 1);
 
 	override bool IsEntityAI() { return true; }
 	
@@ -559,6 +561,13 @@ class EntityAI extends Entity
 		return m_OnItemFlipped;
 	}
 	
+	ScriptInvoker GetOnViewIndexChanged()
+	{
+		if( !m_OnViewIndexChanged )
+			m_OnViewIndexChanged = new ScriptInvoker;
+		return m_OnViewIndexChanged;
+	}
+	
 	//! Called when this item enters cargo of some container
 	void OnMovedInsideCargo(EntityAI container)
 	{
@@ -697,6 +706,16 @@ class EntityAI extends Entity
 	 **/
 	bool CanReleaseAttachment (EntityAI attachment)
 	{
+		if( attachment && attachment.GetInventory() && GetInventory() )
+		{
+			InventoryLocation il = new InventoryLocation;
+			attachment.GetInventory().GetCurrentInventoryLocation( il );
+			if( il.IsValid() )
+			{
+				int slot = il.GetSlot();
+				return !GetInventory().GetSlotLock( slot );
+			}
+		}
 		return true;
 	}
 	/**@fn		CanDetachAttachment
@@ -1580,7 +1599,7 @@ class EntityAI extends Entity
 		}
 	}
 	
-	//! Returns item preview index
+	//! Returns item preview index !!!! IF OVERRIDING with more dynamic events call GetOnViewIndexChanged() in constructor on client !!!!
 	int GetViewIndex()
 	{
 		if( MemoryPointExists( "invView2" ) )

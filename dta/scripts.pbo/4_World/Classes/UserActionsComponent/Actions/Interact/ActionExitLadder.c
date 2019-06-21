@@ -2,8 +2,6 @@ class ActionExitLadder: ActionInteractBase
 {
 	void ActionExitLadder()
 	{
-		m_MessageSuccess = "";
-		//m_CommandUID = DayZPlayerConstants.;
 		m_HUDCursorIcon = CursorIcons.LadderDown;
 	}
 	
@@ -11,11 +9,6 @@ class ActionExitLadder: ActionInteractBase
 	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_EXIT_LADDER;
 	}
 
 	override string GetText()

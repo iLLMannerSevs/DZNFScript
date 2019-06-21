@@ -3,11 +3,6 @@ class ActionUngagTarget: ActionContinuousBase
 	void ActionUngagTarget()
 	{
 		m_CallbackClass = ActionUncoverHeadTargetCB;
-		m_MessageStartFail = "There's nothing left.";
-		m_MessageStart = "Player started removing sack from your head.";
-		m_MessageSuccess = "Player finished removing sack from your head.";
-		m_MessageFail = "Player moved and removing sack from was canceled.";
-		m_MessageCancel = "You stopped removing sack.";
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
@@ -18,11 +13,6 @@ class ActionUngagTarget: ActionContinuousBase
 	
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
-	}
-
-	override int GetType()
-	{
-		return AT_UNGAG_TARGET;
 	}
 	
 	override string GetText()

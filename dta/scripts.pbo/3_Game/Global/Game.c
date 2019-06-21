@@ -28,7 +28,7 @@ class CGame
 		m_AnalyticsManagerClient = new AnalyticsManagerClient;
 		
 		// actual script version - increase by one when you make changes
-		StorageVersion(105);
+		StorageVersion(106);
 	}
 	
 	private void ~CGame();
@@ -674,10 +674,7 @@ class CGame
 	proto native vector		GetScreenPos(vector world_pos);
 	//! Transforms position in world to position in screen in percentage (0.0 - 1.0) as x, y component of vector, z parameter represents distance between camera and world_pos
 	proto native vector		GetScreenPosRelative(vector world_pos);
-	
-	//! Stores login userdata as parameters which are sent to server	
-	proto native void		StoreLoginData(notnull array<ref Param> params);
-		
+			
 	//! Return singleton of MenuData class - at main menu contains characters played with current profile.
 	proto native MenuData	GetMenuData();
 	/**

@@ -1,6 +1,6 @@
-class UtilityVehicle extends CarScript
+class Truck_01_Chassis extends CarScript
 {
-	void UtilityVehicle()
+	void Truck_01_Chassis()
 	{
 		m_dmgContactCoef = 0.018;
 		m_enginePtcPos = "0 1.346 2.205";
@@ -8,7 +8,7 @@ class UtilityVehicle extends CarScript
 	
 	override int GetAnimInstance()
 	{
-		return VehicleAnimInstances.MULTICAR;
+		return VehicleAnimInstances.V3S;
 	}
 
 	override int GetSeatAnimationType( int posIdx )
@@ -35,7 +35,7 @@ class UtilityVehicle extends CarScript
 		switch( posIdx )
 		{
 			case 0:
-				if ( GetCarDoorsState( "UtilityVehicleDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Truck_01_Door_1_1" ) == CarDoorState.DOORS_CLOSED )
 				{
 					return false;
 				}
@@ -44,7 +44,7 @@ class UtilityVehicle extends CarScript
 			break;
 			
 			case 1:
-				if ( GetCarDoorsState( "UtilityVehicleCoDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Truck_01_Door_2_1" ) == CarDoorState.DOORS_CLOSED )
 				{
 					return false;
 				}
@@ -64,16 +64,14 @@ class UtilityVehicle extends CarScript
 				float newValue = 0;
 
 				//-----
-				if ( GetCarDoorsState( "UtilityVehicleDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Truck_01_Door_1_1" ) == CarDoorState.DOORS_CLOSED )
 				{
 					newValue += 0.4;
-					m_enviroCoef += 0.5;
 				}
 
-				if ( GetCarDoorsState( "UtilityVehicleCoDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Truck_01_Door_2_1" ) == CarDoorState.DOORS_CLOSED )
 				{
 					newValue += 0.4;
-					m_enviroCoef += 0.5;
 				}
 
 				if ( newValue > 1 )
@@ -83,7 +81,6 @@ class UtilityVehicle extends CarScript
 			break;
 		}
 
-		m_enviroCoef = oldValue;
 		return oldValue;
 	}
 	
@@ -93,7 +90,7 @@ class UtilityVehicle extends CarScript
 		
 		switch( slotType )
 		{
-			case "UtilityVehicleDriverDoors":
+			case "Truck_01_Door_1_1":
 				Class.CastTo( carDoor, FindAttachmentBySlotName( slotType ) );
 				if ( carDoor )
 				{
@@ -110,7 +107,7 @@ class UtilityVehicle extends CarScript
 				return CarDoorState.DOORS_MISSING;
 			break;
 			
-			case "UtilityVehicleCoDriverDoors":
+			case "Truck_01_Door_1_1":
 				Class.CastTo( carDoor, FindAttachmentBySlotName( slotType ) );
 				if ( carDoor )
 				{
@@ -204,10 +201,10 @@ class UtilityVehicle extends CarScript
 		
 		if ( Class.CastTo(entity, this) )
 		{
-			entity.GetInventory().CreateInInventory( "V3SWheel" );
-			entity.GetInventory().CreateInInventory( "V3SWheel" );
-			entity.GetInventory().CreateInInventory( "V3SWheel" );
-			entity.GetInventory().CreateInInventory( "V3SWheel" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Wheel" );
 			
 			entity.GetInventory().CreateInInventory( "V3SWheelDouble" );
 			entity.GetInventory().CreateInInventory( "V3SWheelDouble" );
@@ -216,9 +213,9 @@ class UtilityVehicle extends CarScript
 
 			entity.GetInventory().CreateInInventory( "TruckBattery" );
 
-			entity.GetInventory().CreateInInventory( "V3SDoors_Driver" );
-			entity.GetInventory().CreateInInventory( "V3SDoors_CoDriver" );
-			entity.GetInventory().CreateInInventory( "V3SHood" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Door_1_1" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Door_2_1" );
+			entity.GetInventory().CreateInInventory( "Truck_01_Hood" );
 
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );
 			entity.GetInventory().CreateInInventory( "HeadlightH7" );

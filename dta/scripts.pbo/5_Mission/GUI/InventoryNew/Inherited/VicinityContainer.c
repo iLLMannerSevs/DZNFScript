@@ -395,7 +395,7 @@ class VicinityContainer: CollapsibleContainer
 			{
 				showable_items.Insert( eai );
 
-				if( !eai.IsInherited( DayZInfected ) && !eai.IsInherited( PlayerBase ) )
+				if( !eai.IsInherited( DayZInfected ) && !eai.IsInherited( PlayerBase ) && !eai.IsInherited( AnimalBase ) )
 				{
 					m_ShowedItemIcons.Insert( eai );
 				}

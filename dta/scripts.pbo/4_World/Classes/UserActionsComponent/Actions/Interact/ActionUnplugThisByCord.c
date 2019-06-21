@@ -2,13 +2,6 @@ class ActionUnplugThisByCord: ActionInteractBase
 {
 	void ActionUnplugThisByCord()
 	{
-		m_MessageSuccess = "I've unplugged and folded the cord.";
-		m_MessageStart = "";
-	}
-
-	override int GetType()
-	{
-		return AT_UNPLUG_THIS_BY_CORD;
 	}
 		
 	override string GetText()

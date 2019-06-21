@@ -17,8 +17,8 @@ enum BARIMStableStateID
 
 class BARIMEmptyDischarged extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { EmptyDischarged C0"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } EmptyDischarged C0"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { EmptyDischarged C0"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } EmptyDischarged C0"); }
 	override int GetCurrentStateID () { return BARIMStableStateID.EmptyDischarged; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -26,8 +26,8 @@ class BARIMEmptyDischarged extends WeaponStableState
 };
 class BARIMLoadedCharged extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { LoadedCharged C1"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } LoadedCharged C1"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { LoadedCharged C1"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } LoadedCharged C1"); }
 	override int GetCurrentStateID () { return BARIMStableStateID.LoadedCharged; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -35,8 +35,8 @@ class BARIMLoadedCharged extends WeaponStableState
 };
 class BARIMLoadedDischarged extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { LoadedDischarged D1"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } LoadedDischarged D1"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { LoadedDischarged D1"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } LoadedDischarged D1"); }
 	override int GetCurrentStateID () { return BARIMStableStateID.LoadedDischarged; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -44,8 +44,8 @@ class BARIMLoadedDischarged extends WeaponStableState
 };
 class BARIMLoadedJammed extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { LoadedJammed JF"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } LoadedJammed JF"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { LoadedJammed JF"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } LoadedJammed JF"); }
 	override int GetCurrentStateID () { return BARIMStableStateID.LoadedJammed; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -195,7 +195,7 @@ class BoltActionRifle_InnerMagazine_Base extends BoltActionRifle_Base
 		m_fsm.SetInitialState(C0);
 
 		SelectionBulletHide();
-		SelectionMagazineHide();
+		HideMagazine();
 
 		m_fsm.Start();
 	}	
@@ -204,6 +204,8 @@ class BoltActionRifle_InnerMagazine_Base extends BoltActionRifle_Base
 	{
 		super.SetActions();
 		AddAction(FirearmActionLoadMultiBullet);
+		//RemoveAction(FirearmActionLoadBulletQuick); // Easy reload
+		//AddAction(FirearmActionLoadMultiBulletQuick);
 	}
 };
 

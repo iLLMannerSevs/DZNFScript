@@ -40,7 +40,7 @@ FrameWidgetClass server_browser_tab_root {
        clipchildren 0
        ignorepointer 1
        color 0 0 0 0.549
-       size 45 35
+       size 0 35
        halign center_ref
        hexactpos 1
        vexactpos 1
@@ -78,12 +78,12 @@ FrameWidgetClass server_browser_tab_root {
         ImageWidgetClass server_list_root_nav_img_lb_xbox {
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:xbox_buttons image:LB"
+         image0 "set:xbox_buttons image:LT"
          mode blend
          "src alpha" 1
         }
@@ -91,7 +91,7 @@ FrameWidgetClass server_browser_tab_root {
          visible 0
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
@@ -112,12 +112,12 @@ FrameWidgetClass server_browser_tab_root {
         ImageWidgetClass server_list_root_nav_img_rb_xbox {
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:xbox_buttons image:RB"
+         image0 "set:xbox_buttons image:RT"
          mode blend
          "src alpha" 1
         }
@@ -125,7 +125,7 @@ FrameWidgetClass server_browser_tab_root {
          visible 0
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
@@ -583,12 +583,12 @@ FrameWidgetClass server_browser_tab_root {
         ImageWidgetClass filters_root_nav_img_lb_xbox {
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:xbox_buttons image:LB"
+         image0 "set:xbox_buttons image:LT"
          mode blend
          "src alpha" 1
         }
@@ -596,12 +596,12 @@ FrameWidgetClass server_browser_tab_root {
          visible 0
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:playstation_buttons image:L1"
+         image0 "set:playstation_buttons image:L2"
          mode blend
          "src alpha" 1
         }
@@ -617,25 +617,27 @@ FrameWidgetClass server_browser_tab_root {
         ImageWidgetClass filters_root_nav_img_rb_xbox {
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:xbox_buttons image:RB"
+         image0 "set:xbox_buttons image:RT"
          mode blend
          "src alpha" 1
+         "no wrap" 0
+         stretch 0
         }
         ImageWidgetClass filters_root_nav_img_r1_ps4 {
          visible 0
          ignorepointer 1
          position 10 10
-         size 40 32
+         size 25.2 35
          hexactpos 1
          vexactpos 1
          hexactsize 1
          vexactsize 1
-         image0 "set:playstation_buttons image:R1"
+         image0 "set:playstation_buttons image:R2"
          mode blend
          "src alpha" 1
         }

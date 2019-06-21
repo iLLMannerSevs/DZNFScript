@@ -12,7 +12,7 @@ FrameWidgetClass LoadingFrame {
   PanelWidgetClass PanelWidget1 {
    clipchildren 0
    color 0 0 0 1
-   position 0 0
+   position 0.00089 0
    size 1 1
    halign center_ref
    valign center_ref
@@ -53,8 +53,8 @@ FrameWidgetClass LoadingFrame {
      "Transition width" 1
      Progress 0
     }
-    TextWidgetClass ErrorText {
-     position 0 0.0655
+    TextWidgetClass StatusText {
+     position 0 0.024
      size 0.7438 0.03
      halign center_ref
      valign bottom_ref

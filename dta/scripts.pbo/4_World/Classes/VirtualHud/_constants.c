@@ -15,6 +15,7 @@ enum eDisplayElements
 	DELM_BADGE_FRACTURE,
 	DELM_BADGE_BLEEDING,
 	DELM_BADGE_PILLS,
+	DELM_BADGE_HEARTBEAT,
 	//------------------
 	DELM_TDCY_HEALTH,
 	DELM_TDCY_BLOOD,
@@ -44,7 +45,7 @@ const int	NTFKEY_LIVES	= 12;
 const int	NTFKEY_BACTERIA	= 13;
 const int	NTFKEY_POISONED	= 14;
 const int	NTFKEY_PILLS	= 15;
-
+const int	NTFKEY_HEARTBEAT = 16;
 
 //tendency 
 const int	TENDENCY_STABLE 	= 0;

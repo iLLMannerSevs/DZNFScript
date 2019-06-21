@@ -47,7 +47,7 @@ class WeaponFire extends WeaponStartAction
 	{
 		m_dtAccumulator = 0;
 
-		wpnPrint("[wpnfsm] WeaponFire bang!");
+		wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " WeaponFire bang!");
 		//m_weapon.Fire();
 		int mi = m_weapon.GetCurrentMuzzle();
 		if (TryFireWeapon(m_weapon, mi))
@@ -91,7 +91,7 @@ class WeaponFireToJam extends WeaponStartAction
 	{
 		m_dtAccumulator = 0;
 
-		wpnPrint("[wpnfsm] WeaponFire bang! and jam?");
+		wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " WeaponFire bang! and jam?");
 		//m_weapon.Fire();
 		int mi = m_weapon.GetCurrentMuzzle();
 		if (TryFireWeapon(m_weapon, mi))
@@ -134,7 +134,7 @@ class WeaponFireAndChamber extends WeaponFire
 		
 		if (!m_weapon.IsJammed())
 		{
-			wpnDebugPrint("[wpnfsm] ejected fired out casing");
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " ejected fired out casing");
 			int mi = m_weapon.GetCurrentMuzzle();
 			m_weapon.EjectCasing(mi);
 			m_weapon.SelectionBulletHide();
@@ -152,7 +152,7 @@ class WeaponFireAndChamberFromInnerMagazine extends WeaponFire
 		
 		if (!m_weapon.IsJammed())
 		{
-			wpnDebugPrint("[wpnfsm] ejected fired out casing");
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " ejected fired out casing");
 			int mi = m_weapon.GetCurrentMuzzle();
 			m_weapon.EjectCasing(mi);
 			m_weapon.SelectionBulletHide();

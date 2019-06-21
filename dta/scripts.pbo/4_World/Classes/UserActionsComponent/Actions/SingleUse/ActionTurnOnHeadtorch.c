@@ -14,11 +14,6 @@ class ActionTurnOnHeadtorch: ActionBase
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNonRuined(UAMaxDistances.DEFAULT);
 	}
-
-	override int GetType()
-	{
-		return AT_HEADTORCH_ON;
-	}
 	
 	override typename GetInputType()
 	{

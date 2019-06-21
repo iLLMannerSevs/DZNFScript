@@ -25,12 +25,6 @@ class ActionRestrainTarget: ActionContinuousBase
 	void ActionRestrainTarget()
 	{
 		m_CallbackClass = ActionRestrainTargetCB;
-		m_MessageStartFail = "Item is damaged.";
-		m_MessageStart = "Player started restraining you.";
-		m_MessageSuccess = "Player finished restraining you.";
-		m_MessageFail = "Player moved and restraining was canceled.";
-		m_MessageCancel = "You stopped restraining.";
-		//m_Animation = "restrain";
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_RESTRAINTARGET;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
@@ -71,12 +65,6 @@ class ActionRestrainTarget: ActionContinuousBase
 			
 		}
 		return true;
-	}
-		
-	
-	override int GetType()
-	{
-		return AT_RESTRAIN_T;
 	}
 		
 	override string GetText()
@@ -190,6 +178,7 @@ class RestrainTargetPlayerLambda : ReplaceItemWithNewLambdaBase
 		super.OnSuccess(new_item);
 
 		m_TargetPlayer.SetRestrained(true);
+		m_TargetPlayer.OnItemInHandsChanged();
 	}
 };
 

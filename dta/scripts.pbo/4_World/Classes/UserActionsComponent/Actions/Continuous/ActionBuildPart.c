@@ -23,11 +23,6 @@ class ActionBuildPart: ActionContinuousBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
 	}
-
-	override int GetType()
-	{
-		return AT_BUILD_PART;
-	}
 		
 	override string GetText()
 	{
@@ -66,7 +61,7 @@ class ActionBuildPart: ActionContinuousBase
 		if ( !construction.IsColliding( part_name ) && construction.CanBuildPart( part_name, action_data.m_MainItem ) )
 		{
 			//build
-			construction.BuildPartServer( part_name, GetType() );
+			construction.BuildPartServer( part_name, AT_BUILD_PART );
 			
 			//add damage to tool
 			action_data.m_MainItem.DecreaseHealth( UADamageApplied.BUILD, false );
@@ -136,7 +131,7 @@ class ActionBuildPart: ActionContinuousBase
 				if ( constrution_part )
 				{
 					//camera and position checks
-					if ( !base_building.IsFacingPlayer( player, constrution_part.GetMainPartName() ) && !player.GetInputController().CameraIsFreeLook() )
+					if ( !base_building.IsFacingPlayer( player, constrution_part.GetMainPartName() ) && !player.GetInputController().CameraIsFreeLook() && base_building.HasProperDistance( main_part_name, player ) )
 					{
 						//Camera check (client-only)
 						if ( camera_check )
@@ -155,4 +150,9 @@ class ActionBuildPart: ActionContinuousBase
 		
 		return false;
 	}	
+	
+	override string GetAdminLogMessage(ActionData action_data)
+	{
+		return " built " + action_data.m_Target.GetObject().GetDisplayName() + " with " + action_data.m_MainItem.GetDisplayName();
+	}
 }

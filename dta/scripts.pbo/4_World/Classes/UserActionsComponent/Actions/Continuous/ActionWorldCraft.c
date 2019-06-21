@@ -36,12 +36,7 @@ class ActionWorldCraft: ActionContinuousBase
 
 	void ActionWorldCraft()
 	{
-		m_CallbackClass = ActionWorldCraftCB;		
-		m_MessageStartFail = "Ooops";
-		m_MessageStart = "I have started crafting.";
-		m_MessageSuccess = "I crafted something!";
-		m_MessageFail = "Oops again..";
-		
+		m_CallbackClass = ActionWorldCraftCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_CRAFTING;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
@@ -58,11 +53,6 @@ class ActionWorldCraft: ActionContinuousBase
 	{	
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTObject(UAMaxDistances.DEFAULT);
-	}
-
-	override int GetType()
-	{
-		return AT_WORLD_CRAFT;
 	}
 		
 	override string GetText()

@@ -13,11 +13,6 @@ class ActionHandcuffTarget: ActionSingleUseBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
-
-	override int GetType()
-	{
-		return AT_HANDCUFF_T;
-	}
 		
 	override string GetText()
 	{

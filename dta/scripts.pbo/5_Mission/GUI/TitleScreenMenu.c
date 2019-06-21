@@ -23,10 +23,17 @@ class TitleScreenMenu extends UIScriptedMenu
 		if (m_TextPress)
 		{
 			string gamertag;
+			string text = Widget.TranslateString( "#console_start_game" );
 			GetGame().GetPlayerName(gamertag);
-			
 			#ifdef PLATFORM_XBOX
-				m_TextPress.SetText("#dayz_game_press" + " " + "<image set=\"xbox_buttons\" name=\"A\" />" + "" + "#dayz_game_to_start");
+				BiosUserManager user_manager = GetGame().GetUserManager();
+				if( user_manager )
+				{
+					if( user_manager.GetSelectedUser() )
+						m_TextPress.SetText( string.Format( text, "<image set=\"xbox_buttons\" name=\"A\" />" ) );
+					else
+						m_TextPress.SetText( string.Format( text, "<image set=\"xbox_buttons\" name=\"A\" />" ) );
+				}
 			#endif
 					
 			#ifdef PLATFORM_PS4
@@ -39,7 +46,7 @@ class TitleScreenMenu extends UIScriptedMenu
 				{
 					confirm = "circle";
 				}
-				m_TextPress.SetText("#ps4_dayz_game_press" + "" + "<image set=\"playstation_buttons\" name=\"" + confirm + "\" />" + "" + "#ps4_dayz_game_to_start");
+				m_TextPress.SetText( string.Format( text, "<image set=\"playstation_buttons\" name=\"" + confirm + "\" />" ) );
 			#endif
 		}
 		return layoutRoot;

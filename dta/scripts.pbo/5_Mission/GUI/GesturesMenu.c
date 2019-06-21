@@ -238,6 +238,7 @@ class GesturesMenu extends UIScriptedMenu
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_SUICIDE, 	"#STR_USRACT_ID_EMOTE_SUICIDE", 	GestureCategories.CATEGORY_3 ) );
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_CAMPFIRE, 	"#STR_USRACT_ID_EMOTE_CAMPFIRE", 	GestureCategories.CATEGORY_3 ) );
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_SURRENDER, 	"#STR_USRACT_ID_EMOTE_SURRENDER", 	GestureCategories.CATEGORY_3 ) );
+			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_VOMIT, 		"#STR_USRACT_ID_EMOTE_VOMIT", 		GestureCategories.CATEGORY_3 ) );
 			//gesture_items.Insert( new GestureMenuItem( ID_EMOTE_RPS_R, 	"#STR_USRACT_ID_EMOTE_RPS_R", 		GestureCategories.CATEGORY_3 ) );
 			//gesture_items.Insert( new GestureMenuItem( ID_EMOTE_RPS_P, 	"#STR_USRACT_ID_EMOTE_RPS_P", 		GestureCategories.CATEGORY_3 ) );
 			//gesture_items.Insert( new GestureMenuItem( ID_EMOTE_RPS_S, 	"#STR_USRACT_ID_EMOTE_RPS_S", 		GestureCategories.CATEGORY_3 ) );

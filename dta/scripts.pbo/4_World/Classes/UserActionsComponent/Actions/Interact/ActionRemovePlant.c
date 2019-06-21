@@ -2,20 +2,6 @@ class ActionRemovePlant: ActionInteractBase
 {
 	void ActionRemovePlant()
 	{
-		m_MessageSuccess = "";
-		m_MessageStartFail = "";
-		m_MessageStart = "";
-		m_MessageSuccess = "";
-		m_MessageFail = "";
-		m_MessageCancel = "";
-		
-		//m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
-		//m_FullBody = true;
-	}
-
-	override int GetType()
-	{
-		return AT_REMOVE_PLANT;
 	}
 
 	override string GetText()

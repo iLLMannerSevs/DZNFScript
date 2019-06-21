@@ -194,16 +194,16 @@ class DayZPlayerCameraIronsights extends DayZPlayerCameraBase
 	{
 		if (m_pPlayer.IsHoldingBreath())
 		{
-			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
+			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, GameConstants.DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
 		}
 		else if (m_isEntering) //sets FOV immediatelly to avoid "floating camera" effect
 		{
-			m_fFovAbsolute = DZPLAYER_CAMERA_FOV_IRONSIGHTS;
+			m_fFovAbsolute = GameConstants.DZPLAYER_CAMERA_FOV_IRONSIGHTS;
 			m_isEntering = false;
 		}
 		else
 		{
-			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, DZPLAYER_CAMERA_FOV_IRONSIGHTS, m_fFovAbsVel, 0.1, 1000, pDt);
+			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, GameConstants.DZPLAYER_CAMERA_FOV_IRONSIGHTS, m_fFovAbsVel, 0.1, 1000, pDt);
 		}
 
 		return m_fFovAbsolute;
@@ -342,7 +342,7 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 		if (DayZPlayerCameraBase.Cast(pPrevCamera) && DayZPlayerCameraBase.Cast(pPrevCamera).IsCameraNV())
 		{
 			PPEffects.SetEVValuePP(0); //sets EV value immediately to avoid bright flashes at night
-			PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
+			//PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
 		}
 		PlayerBase player = PlayerBase.Cast(m_pPlayer);
 		if (player)
@@ -377,9 +377,9 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 		ItemOptics optics = ItemOptics.Cast( GetCurrentSightEntity() );
 		if (optics)
 		{
-			if (optics.GetCurrentStepFOV() >= DZPLAYER_CAMERA_FOV_EYEZOOM && (m_pPlayer.IsHoldingBreath() || m_pPlayer.IsEyeZoom()))
+			if (optics.GetCurrentStepFOV() >= GameConstants.DZPLAYER_CAMERA_FOV_EYEZOOM && (m_pPlayer.IsHoldingBreath() || m_pPlayer.IsEyeZoom()))
 			{
-				m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
+				m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, GameConstants.DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
 			}
 			else if (m_isEntering) //sets FOV immediatelly to avoid "floating camera" effect
 			{

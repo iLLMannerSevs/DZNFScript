@@ -78,7 +78,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 			if (m_PostedHandEvent == NULL)
 			{
 				m_PostedHandEvent = e;
-				hndDebugPrint("[hndfsm] Posted event m_PostedHandEvent=" + m_PostedHandEvent.ToString());
+				hndDebugPrint("[hndfsm] STS=" + GetDayZPlayerOwner().GetSimulationTimeStamp() + " Posted event m_PostedHandEvent=" + m_PostedHandEvent.ToString());
 			}
 			else
 				Error("[hndfsm] warning - pending hand event already posted, curr_event=" + m_PostedHandEvent.ToString() + " new_event=" + e.ToString());
@@ -94,10 +94,10 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		if (m_PostedEvent == NULL)
 		{
 			m_PostedEvent = e;
-			wpnDebugPrint("[wpnfsm] Posted event m_PostedEvent=" + m_PostedEvent.ToString());
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(GetInventoryOwner()) + " Posted event m_PostedEvent=" + m_PostedEvent.DumpToString());
 		}
 		else
-			Error("[wpnfsm] warning - pending event already posted, curr_event=" + m_PostedEvent.ToString() + " new_event=" + e.ToString());
+			Error("[wpnfsm] " + Object.GetDebugName(GetInventoryOwner()) + " warning - pending event already posted, curr_event=" + m_PostedEvent.DumpToString() + " new_event=" + e.DumpToString());
 	}
 
 	void HandleWeaponEvents (float dt, out bool exitIronSights)
@@ -111,7 +111,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		{
 			weapon.GetCurrentState().OnUpdate(dt);
 
-			wpnDebugSpamALot("[wpnfsm] HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
+			wpnDebugSpamALot("[wpnfsm] " + Object.GetDebugName(weapon) + " HCW: playing A=" + typename.EnumToString(WeaponActions, hcw.GetRunningAction()) + " AT=" + WeaponActionTypeToString(hcw.GetRunningAction(), hcw.GetRunningActionType()) + " fini=" + hcw.IsActionFinished());
 
 			if (!weapon.IsIdle())
 			{
@@ -129,7 +129,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 					}
 
 					WeaponEventBase anim_event = WeaponAnimEventFactory(weaponEventId, GetDayZPlayerOwner(), NULL);
-					wpnDebugPrint("[wpnfsm] HandleWeapons: event arrived " + typename.EnumToString(WeaponEvents, weaponEventId) + "(" + weaponEventId + ")  fsm_ev=" + anim_event.ToString());
+					wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(weapon) + " HandleWeapons: event arrived " + typename.EnumToString(WeaponEvents, weaponEventId) + "(" + weaponEventId + ")  fsm_ev=" + anim_event.ToString());
 					if (anim_event != NULL)
 					{
 						weapon.ProcessWeaponEvent(anim_event);
@@ -140,12 +140,12 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 				{
 					if (weapon.IsWaitingForActionFinish())
 					{
-						wpnDebugPrint("[wpnfsm] Weapon event: finished! notifying waiting state=" + weapon.GetCurrentState());
+						wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(weapon) + " Weapon event: finished! notifying waiting state=" + weapon.GetCurrentState());
 						weapon.ProcessWeaponEvent(new WeaponEventHumanCommandActionFinished(GetDayZPlayerOwner()));
 					}
 					else
 					{
-						wpnDebugPrint("[wpnfsm] Weapon event: ABORT! notifying running state=" + weapon.GetCurrentState());
+						wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(weapon) + " Weapon event: ABORT! notifying running state=" + weapon.GetCurrentState());
 						weapon.ProcessWeaponAbortEvent(new WeaponEventHumanCommandActionAborted(GetDayZPlayerOwner()));
 					}
 				}
@@ -153,10 +153,10 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 
 			if (m_PostedEvent)
 			{
-				wpnDebugPrint("[wpnfsm] Weapon event: deferred " + m_PostedEvent);
+				wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(weapon) + " Weapon event: deferred " + m_PostedEvent.DumpToString());
 				weapon.ProcessWeaponEvent(m_PostedEvent);
 				exitIronSights = true;
-				fsmDebugSpam("[wpnfsm] Weapon event: resetting deferred event" + m_PostedEvent);
+				fsmDebugSpam("[wpnfsm] " + Object.GetDebugName(weapon) + " Weapon event: resetting deferred event" + m_PostedEvent.DumpToString());
 				m_PostedEvent = NULL;
 			}
 		}
@@ -218,10 +218,10 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 		
 		if (m_PostedHandEvent)
 		{
-			hndDebugSpam("[hndfsm] Hand event: deferred " + m_PostedHandEvent);
+			hndDebugSpam("[hndfsm] STS=" + GetDayZPlayerOwner().GetSimulationTimeStamp() + " Hand event: deferred " + m_PostedHandEvent);
 
 			HandEventBase hndEvent = m_PostedHandEvent; // make a copy for processing and release post
-			hndDebugSpam("[hndfsm] Hand event: deferred event reset to null.");
+			hndDebugSpam("[hndfsm] STS=" + GetDayZPlayerOwner().GetSimulationTimeStamp() + " Hand event: deferred event reset to null.");
 			m_PostedHandEvent = NULL;
 
 			ProcessHandEvent(hndEvent); // process copy
@@ -420,7 +420,13 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 					}
 				}
 
-				e.m_Player.GetHumanInventory().PostHandEvent(e);
+				if (handling_juncture)
+				{
+					// juncture is already handled inside DayZPlayer::Simulate so it can be handled synchronously right now without delaying via m_PostedEvent
+					e.m_Player.GetHumanInventory().ProcessHandEvent(e);
+				}
+				else
+					e.m_Player.GetHumanInventory().PostHandEvent(e);
 				break;
 			}
 
@@ -670,7 +676,7 @@ class DayZPlayerInventory : HumanInventoryWithFSM
 				{
 					pb.GetWeaponManager().SetRunning(true);
 		
-					fsmDebugSpam("[wpnfsm] recv event from remote: created event=" + e);
+					fsmDebugSpam("[wpnfsm] " + Object.GetDebugName(wpn) + " recv event from remote: created event=" + e);
 					if (e.GetEventID() == WeaponEventID.HUMANCOMMAND_ACTION_ABORTED)
 					{
 						wpn.ProcessWeaponAbortEvent(e);

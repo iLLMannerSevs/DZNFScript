@@ -12,10 +12,10 @@ enum NotificationType
 
 class NotificationRuntimeData
 {
-	NotificationData	m_StaticData;
+	ref NotificationData	m_StaticData;
 	
-	float				m_NotificationTime;
-	string				m_DetailText;
+	float					m_NotificationTime;
+	string					m_DetailText;
 	
 	void NotificationRuntimeData( float time, NotificationData data, string detail_text )
 	{

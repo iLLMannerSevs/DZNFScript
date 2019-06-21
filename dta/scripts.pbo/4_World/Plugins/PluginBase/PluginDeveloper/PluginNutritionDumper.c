@@ -1,5 +1,7 @@
+
 class PluginNutritionDumper extends PluginBase
 {
+	/*
 	ref TStringArray m_AllPaths = new TStringArray;
 	ref TStringArray m_AllLines = new TStringArray;
 	ref map<string, int> m_ParamPool = new map<string, int>;
@@ -105,5 +107,5 @@ class PluginNutritionDumper extends PluginBase
 		line = line + profile.GetNutritionalIndex();
 		return line;
 	}
-	
+	*/
 }

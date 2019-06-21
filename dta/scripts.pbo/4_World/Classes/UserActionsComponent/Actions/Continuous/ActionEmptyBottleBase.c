@@ -45,11 +45,6 @@ class ActionEmptyBottleBase: ActionContinuousBase
 	void ActionEmptyBottleBase()
 	{
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_EMPTY_VESSEL;
-		m_MessageStartFail = "It's ruined.";
-		m_MessageStart = "I have started filling the bottle.";
-		m_MessageSuccess = "I have finished filling the bottle..";
-		m_MessageFail = "Player moved and filling the bottle was canceled.";
-		m_MessageCancel = "I stopped filling the bottle.";
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		
 		m_CallbackClass = ActionEmptyBottleBaseCB;
@@ -61,11 +56,6 @@ class ActionEmptyBottleBase: ActionContinuousBase
 	{
 		m_ConditionItem = new CCINotRuinedAndEmpty;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_EMPTY_BOTTLE;
 	}
 
 	override bool HasTarget()

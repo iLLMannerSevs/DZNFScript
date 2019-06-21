@@ -10,11 +10,6 @@ class ActionBuildPartSwitch: ActionSingleUseBase
 		m_ConditionTarget = new CCTNonRuined(UAMaxDistances.BASEBUILDING);
 	}
 	
-	override int GetType()
-	{
-		return AT_BUILD_PART_SWITCH;
-	}
-	
 	override string GetText()
 	{
 		return "#switch_to_the_next_part";
@@ -37,7 +32,7 @@ class ActionBuildPartSwitch: ActionSingleUseBase
 				if ( construction_action_data.GetConstructionPartsCount() > 1 )
 				{
 					//camera and position checks
-					if ( !base_building.IsFacingPlayer( player, main_part_name ) && !player.GetInputController().CameraIsFreeLook() )
+					if ( !base_building.IsFacingPlayer( player, main_part_name ) && !player.GetInputController().CameraIsFreeLook() && base_building.HasProperDistance( main_part_name, player ) )
 					{
 						//Camera check (client-only)
 						if ( GetGame() && ( !GetGame().IsMultiplayer() || GetGame().IsClient() ) )

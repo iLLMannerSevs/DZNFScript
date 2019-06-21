@@ -159,6 +159,9 @@ class ReplaceWheelLambda : TurnItemIntoItemLambda
 class Hatchback_02_Wheel extends CarWheel {};
 class Hatchback_02_Wheel_Ruined extends ItemBase {};
 
+class Sedan_02_Wheel extends CarWheel {};
+class Sedan_02_Wheel_Ruined extends ItemBase {};
+
 class HatchbackWheel extends CarWheel {};
 class HatchbackWheel_Ruined extends ItemBase {};
 
@@ -223,36 +226,29 @@ class CarDoor extends InventoryItemSuper
 };
 
 class Hatchback_02_Door_1_1 extends CarDoor {};
-
 class Hatchback_02_Door_1_2 extends CarDoor {};
-
 class Hatchback_02_Door_2_1 extends CarDoor {};
-
 class Hatchback_02_Door_2_2 extends CarDoor {};
-
 class Hatchback_02_Hood extends CarDoor {};
-
 class Hatchback_02_Trunk extends CarDoor {};
 
+class Sedan_02_Door_1_1 extends CarDoor {};
+class Sedan_02_Door_1_2 extends CarDoor {};
+class Sedan_02_Door_2_1 extends CarDoor {};
+class Sedan_02_Door_2_2 extends CarDoor {};
+class Sedan_02_Hood extends CarDoor {};
+class Sedan_02_Trunk extends CarDoor {};
 
 class HatchbackDoors_Driver extends CarDoor {};
-
 class HatchbackDoors_CoDriver extends CarDoor {};
-
 class HatchbackHood extends CarDoor {};
-
 class HatchbackTrunk extends CarDoor {};
 
 class CivSedanDoors_Driver extends CarDoor {};
-
 class CivSedanDoors_CoDriver extends CarDoor {};
-
 class CivSedanDoors_BackLeft extends CarDoor {};
-
 class CivSedanDoors_BackRight extends CarDoor {};
-
 class CivSedanHood extends CarDoor {};
-
 class CivSedanTrunk extends CarDoor {};
 
 class CarRadiator extends InventoryItemSuper

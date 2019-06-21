@@ -9,7 +9,7 @@ FrameWidgetClass rootFrame {
  {
   FrameWidgetClass TagFrame {
    ignorepointer 1
-   color 0 1 0 0.7843
+   color 1 1 1 0.7843
    position 0 0
    size 300 20
    halign center_ref
@@ -21,7 +21,7 @@ FrameWidgetClass rootFrame {
    {
     TextWidgetClass TagText {
      ignorepointer 1
-     color 0 1 0 0.7843
+     color 0.902 0.902 0.902 1
      position 0 0
      size 1 1
      halign center_ref
@@ -32,7 +32,11 @@ FrameWidgetClass rootFrame {
      vexactsize 0
      text "this is a player"
      font "gui/fonts/sdf_MetronBook24"
-     "text color" 0 1 0 0.3922
+     "outline size" 1
+     "outline color" 0 0 0 0.498
+     "shadow size" 5
+     "shadow color" 0 0 0 0.3922
+     "shadow offset" 1 1
      "size to text h" 0
      "size to text v" 0
      "text halign" center

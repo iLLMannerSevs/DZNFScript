@@ -31,12 +31,6 @@ class ActionSkinning: ActionContinuousBase
 	void ActionSkinning()
 	{
 		m_CallbackClass = ActionSkinningCB;
-		m_MessageStartFail = "The blade is not sharp enough";
-		m_MessageStart = "I have started skinning the target.";
-		m_MessageSuccess = "I have skinned the target.";
-		m_MessageFail = "I have moved and skinning was canceled.";
-		m_MessageCancel = "I stopped skinning the target.";
-		//m_Animation = "EAT";
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_MEDIUM;
 		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_ANIMALSKINNING;
@@ -48,11 +42,6 @@ class ActionSkinning: ActionContinuousBase
 	{	
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTDummy( );	
-	}
-
-	override int GetType()
-	{
-		return AT_SKINNING;
 	}
 		
 	override string GetText()

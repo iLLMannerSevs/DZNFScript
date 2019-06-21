@@ -8,6 +8,7 @@ class ItemOptics extends InventoryItemSuper
 	float 				m_blur_float;
 	string 				m_optic_sight_texture;
 	string 				m_optic_sight_material;
+	string 				m_2D_preload_type;
 	ref array<float> 	m_mask_array;
 	ref array<float> 	m_lens_array;
 	ref array<float> 	m_OpticsDOFProperties = new array<float>;
@@ -19,6 +20,7 @@ class ItemOptics extends InventoryItemSuper
 		InitReddotData();
 		InitOpticsPPInfo();
 		InitOpticsDOFProperties(m_OpticsDOFProperties);
+		Init2DPreloadType();
 	}
 	
 	/**@fn		EnterOptics
@@ -227,6 +229,17 @@ class ItemOptics extends InventoryItemSuper
 		SetTakeable(true);
 	}
 	
+	override void OnInventoryEnter(Man player)
+	{
+		super.OnInventoryEnter(player);
+		
+		/*if (PlayerBase.Cast(player))
+		{
+			PlayerBase.Cast(player).m_bProcessOpticsPreload = true;
+			PlayerBase.Cast(player).m_sOpticsType = GetType();
+		}*/
+	}
+	
 	override void OnInventoryExit(Man player)
 	{
 		super.OnInventoryExit(player);
@@ -238,6 +251,12 @@ class ItemOptics extends InventoryItemSuper
 		}
 		
 		SetTakeable(true);
+		
+		/*if (PlayerBase.Cast(player))
+		{
+			PlayerBase.Cast(player).m_bProcessOpticsPreload = false;
+			PlayerBase.Cast(player).m_sOpticsType = "";
+		}*/
 	}
 	
 	void InitReddotData()
@@ -308,7 +327,7 @@ class ItemOptics extends InventoryItemSuper
 			return false; // no DOF for handheld optics
 		*/
 		fov_max = GetGame().ConfigGetFloat(path + " opticsZoomMax");
-		if (fov_max >= DZPLAYER_CAMERA_FOV_IRONSIGHTS)
+		if (fov_max >= GameConstants.DZPLAYER_CAMERA_FOV_IRONSIGHTS)
 		{
 			return true;
 		}
@@ -365,6 +384,18 @@ class ItemOptics extends InventoryItemSuper
 	float GetOpticsPPBlur()
 	{
 		return m_blur_float;
+	}
+	
+	void Init2DPreloadType()
+	{
+		string path = "cfgVehicles " + GetType() + " OpticsInfo preloadOpticType";
+		string type_2d;
+		
+		if ( GetGame().ConfigIsExisting(path) )
+		{
+			GetGame().ConfigGetText(path, type_2d);
+			m_2D_preload_type = type_2d;
+		}
 	}
 	
 	override void SetActions()

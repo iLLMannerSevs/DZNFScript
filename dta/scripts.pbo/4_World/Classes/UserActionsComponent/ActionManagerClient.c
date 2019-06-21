@@ -10,7 +10,9 @@ class ActionManagerClient: ActionManagerBase
 	protected ref array<ref InventoryLocation>	m_ReservedInventoryLocations;
 	protected ref InventoryActionHandler		m_InventoryActionHandler;
 	protected ref InventoryLocation				m_HandInventoryLocationTest;
-	protected static ref TTypeNameActionInputMap		m_RegistredInputsMap;
+	protected ref TTypeNameActionInputMap		m_RegistredInputsMap;
+	
+	protected ref ActionData 					m_PendingActionData;
 
 	//protected bool								m_ActionWantEnd;		//If set action try end // send request to server to end
 	protected bool 								m_ActionWantEndRequest_Send;		//Request to server was sended
@@ -28,7 +30,7 @@ class ActionManagerClient: ActionManagerBase
 
 		m_ActionWantEndRequest_Send = false;
 		m_ActionInputWantEnd_Send = false;
-		RegisterInputs();
+		RegisterInputs(player);
 
 	}
 	
@@ -37,6 +39,17 @@ class ActionManagerClient: ActionManagerBase
 		m_InventoryActionHandler.OnUpdate();
 		super.Update(pCurrentCommandID);
 		m_ActionPossible = ActionPossibilityCheck(pCurrentCommandID);
+		
+		if (m_PendingActionData) //SP only
+		{
+			m_CurrentActionData = m_PendingActionData;
+			
+			m_CurrentActionData.m_Action.Start(m_CurrentActionData);
+				if( m_CurrentActionData.m_Action.IsInstant() )
+					OnActionEnd();
+			m_PendingActionData = null;
+		}
+		
 		if (m_CurrentActionData)
 		{
 			switch (m_CurrentActionData.m_State)
@@ -90,14 +103,14 @@ class ActionManagerClient: ActionManagerBase
 									m_ActionWantEndRequest_Send = true;
 									
 									m_ActionWantEndRequest = false;
-									m_CurrentActionData.m_Action.OnEndRequest(m_CurrentActionData);
+									m_CurrentActionData.m_Action.EndRequest(m_CurrentActionData);
 								}
 							}
 						}
 						else
 						{
 							m_ActionWantEndRequest = false;
-							m_CurrentActionData.m_Action.OnEndRequest(m_CurrentActionData);
+							m_CurrentActionData.m_Action.EndRequest(m_CurrentActionData);
 						}
 					}
 					
@@ -117,14 +130,18 @@ class ActionManagerClient: ActionManagerBase
 									m_ActionInputWantEnd_Send = true;
 									
 									m_ActionInputWantEnd = false;
-									m_CurrentActionData.m_Action.OnEndInput(m_CurrentActionData);
+									m_CurrentActionData.m_Action.EndInput(m_CurrentActionData);
 								}
 							}
 						}
 						else
 						{
-							m_ActionInputWantEnd = false;
-							m_CurrentActionData.m_Action.OnEndInput(m_CurrentActionData);
+							if (!m_ActionInputWantEnd_Send)
+							{
+								m_ActionInputWantEnd_Send = true;
+								m_ActionInputWantEnd = false;
+								m_CurrentActionData.m_Action.EndInput(m_CurrentActionData);
+							}
 						}
 					}
 				break;
@@ -141,7 +158,14 @@ class ActionManagerClient: ActionManagerBase
 #endif
 			if(!m_CurrentActionData)
 			{
-				m_Targets.Update();
+				if ( m_Player.IsRaised() )
+				{
+					m_Targets.Clear();
+				}
+				else
+				{
+					m_Targets.Update();
+				}
 				FindContextualUserActions( pCurrentCommandID );	
 			}
 		
@@ -152,7 +176,7 @@ class ActionManagerClient: ActionManagerBase
 
 	}
 	
-	void RegisterInputs()
+	void RegisterInputs(PlayerBase player)
 	{
 		if (!m_RegistredInputsMap)
 		{
@@ -175,7 +199,7 @@ class ActionManagerClient: ActionManagerBase
 		
 			for (int j = 0; j < m_RegistredInputsMap.Count(); j++ )
 			{
-				m_RegistredInputsMap.GetElement(j).Init(this);
+				m_RegistredInputsMap.GetElement(j).Init(player, this);
 			}
 		}
 	}
@@ -230,10 +254,14 @@ class ActionManagerClient: ActionManagerBase
 					ActionInput ain = m_RegistredInputsMap.GetElement(i);
 					ain.Update();
 				
-					if( ain.JustActivate() && ain.HasAction() )
+					if( ain.JustActivate() )
 					{
-						ActionStart(ain.GetAction(), ain.GetUsedActionTarget(), ain.GetUsedMainItem());
-						break;
+						ActionBase action = ain.GetAction();
+						if( action )
+						{
+							ActionStart(action, ain.GetUsedActionTarget(), ain.GetUsedMainItem());
+							break;
+						}
 					}
 				}
 			}
@@ -335,6 +363,10 @@ class ActionManagerClient: ActionManagerBase
 					break;
 				}
 			}
+		}
+		else
+		{
+			action_target = new ActionTarget(null, null, -1, vector.Zero, -1 );
 		}
 		return action_target;
 	}
@@ -548,10 +580,15 @@ class ActionManagerClient: ActionManagerBase
 	}
 	
 	//Instant Action (Debug Actions) ---------------------------------
-	override void OnInstantAction(int user_action_id, Param data = NULL)
+	override void OnInstantAction(typename user_action_type, Param data = NULL)
 	{
-		ActionStart(GetAction(user_action_id),NULL,NULL, data);
+		ActionBase action = GetAction(user_action_type);
+		if(action)
+		{
+			ActionStart(action,NULL,NULL, data);
+		}
 	}
+	
 #ifdef BOT
 	/// used for bots
 	void PerformAction(int user_action_id, ActionTarget target, ItemBase item, Param extraData = NULL)
@@ -559,6 +596,19 @@ class ActionManagerClient: ActionManagerBase
 		ActionStart(GetAction(user_action_id), target, item, extraData);
 	}
 #endif
+	
+	void PerformActionStart(ActionBase action, ActionTarget target, ItemBase item, Param extra_data = NULL )
+	{
+		if (!GetGame().IsMultiplayer())
+		{
+			m_PendingActionData = new ActionData;
+	
+			if (!action.SetupAction(m_Player,target,item,m_PendingActionData,extra_data))
+				m_PendingActionData = null;
+		}
+		else
+			ActionStart(action, target, item, extra_data);
+	}
 	
 	override void OnActionEnd()
 	{
@@ -617,12 +667,26 @@ class ActionManagerClient: ActionManagerBase
 		{
 			array<ActionBase_Basic> actions;
 			ActionBase picked_action;
+			int i;
 			
+			mainItem.GetActions(QuickaBarActionInput, actions);
+			if (actions)
+			{
+				for ( i = 0; i < actions.Count(); i++ )
+				{			
+					picked_action = ActionBase.Cast(actions[i]);
+					if ( picked_action && picked_action.Can(m_Player,target, itemInHand) )
+					{
+						if( hasTarget == picked_action.HasTarget())
+							return true;
+					}
+				}
+			}			
 			//First check continuous actions
 			mainItem.GetActions(ContinuousDefaultActionInput, actions);
 			if (actions)
 			{
-				for ( int i = 0; i < actions.Count(); i++ )
+				for ( i = 0; i < actions.Count(); i++ )
 				{			
 					picked_action = ActionBase.Cast(actions[i]);
 					if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
@@ -636,9 +700,9 @@ class ActionManagerClient: ActionManagerBase
 			mainItem.GetActions(DefaultActionInput, actions);
 			if (actions)
 			{
-				for ( int j = 0; j < actions.Count(); j++ )
+				for ( i = 0; i < actions.Count(); i++ )
 				{
-					picked_action = ActionBase.Cast(actions[j]);
+					picked_action = ActionBase.Cast(actions[i]);
 					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
 					{
 						if( hasTarget == picked_action.HasTarget())
@@ -661,12 +725,30 @@ class ActionManagerClient: ActionManagerBase
 		{
 			ActionBase picked_action;
 			array<ActionBase_Basic> actions;
+			int i;
+					
+			mainItem.GetActions(QuickaBarActionInput, actions);
+			if (actions)
+			{
+				for ( i = 0; i < actions.Count(); i++ )
+				{
+					picked_action = ActionBase.Cast(actions[i]);
+					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) )
+					{
+						if( hasTarget == picked_action.HasTarget())
+						{
+							ActionStart(picked_action, target, mainItem);
+							return;
+						}
+					}
+				}
+			}
 			
 			//First continuous actions
 			mainItem.GetActions(ContinuousDefaultActionInput, actions);
 			if (actions)
 			{
-				for ( int i = 0; i < actions.Count(); i++ )
+				for ( i = 0; i < actions.Count(); i++ )
 				{
 					picked_action = ActionBase.Cast(actions[i]);
 					if ( picked_action && picked_action.HasTarget() && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
@@ -683,9 +765,9 @@ class ActionManagerClient: ActionManagerBase
 			mainItem.GetActions(DefaultActionInput, actions);
 			if (actions)
 			{
-				for ( int j = 0; j < actions.Count(); j++ )
+				for ( i = 0; i < actions.Count(); i++ )
 				{
-					picked_action = ActionBase.Cast(actions[j]);
+					picked_action = ActionBase.Cast(actions[i]);
 					if ( picked_action && picked_action.Can(m_Player,target, itemInHand) && picked_action.CanBePerformedFromQuickbar() )
 					{
 						if( hasTarget == picked_action.HasTarget())

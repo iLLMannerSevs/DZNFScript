@@ -98,9 +98,6 @@ class Construction
 	//DestroyPart
 	void DestroyPartServer( notnull Man player, string part_name, int action_id )
 	{
-		//add part to constructed parts
-		RemoveFromConstructedParts( part_name );
-		
 		//destroy attached materials (if locked)
 		DestroyMaterialsServer( player, part_name );
 		
@@ -108,7 +105,7 @@ class Construction
 		DropNonUsableMaterialsServer( player, part_name );			
 		
 		//call event
-		GetParent().OnPartDestroyedServer( part_name, action_id );
+		GetParent().OnPartDestroyedServer( player, part_name, action_id );
 	}
 	
 	//============================================

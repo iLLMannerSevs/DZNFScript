@@ -49,14 +49,19 @@ class HandActionThrow extends HandActionBase
 	override void Action (HandEventBase e)
 	{
 		hndDebugPrint("[hndfsm] action=throw");
-		HandActionThrow action = HandActionThrow.Cast(e);
+		HandEventThrow throwEvent = HandEventThrow.Cast(e);
 
 		GameInventory.LocationSyncMoveEntity(e.GetSrc(), e.GetDst());
 
-		e.GetSrcEntity().CreateDynamicPhysics(PhxInteractionLayers.DYNAMICITEM);
-		dBodyApplyImpulse(e.GetSrcEntity(), vector.Up * 20);
+		DayZPlayer player = DayZPlayer.Cast(e.m_Player);
+		if ( player.GetInstanceType() != DayZPlayerInstanceType.INSTANCETYPE_REMOTE )
+		{
+			InventoryItem item = InventoryItem.Cast(e.GetSrcEntity());
+			if( item )
+				item.ThrowPhysically(player, throwEvent.GetForce());
+		}
 
-		e.m_Player.OnItemInHandsChanged();
+		player.OnItemInHandsChanged();
 	}
 };
 

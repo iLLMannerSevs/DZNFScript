@@ -196,19 +196,19 @@ class BaseBuildingBase extends ItemBase
 		if ( m_InteractedPartId > -1 && m_PerformedActionId > -1 )
 		{
 			ConstructionPart constrution_part = GetConstructionPartById( m_InteractedPartId );
-			int action_id = m_PerformedActionId;
+			int build_action_id = m_PerformedActionId;
 			
-			switch( action_id )
+			switch( build_action_id )
 			{
-				case AT_BUILD_PART		: OnPartBuiltClient( constrution_part.GetPartName(), action_id ); break;
-				case AT_DISMANTLE_PART	: OnPartDismantledClient( constrution_part.GetPartName(), action_id ); break;
-				case AT_DESTROY_PART	: OnPartDestroyedClient( constrution_part.GetPartName(), action_id ); break;
+				case AT_BUILD_PART		: OnPartBuiltClient( constrution_part.GetPartName(), build_action_id ); break;
+				case AT_DISMANTLE_PART	: OnPartDismantledClient( constrution_part.GetPartName(), build_action_id ); break;
+				case AT_DESTROY_PART	: OnPartDestroyedClient( constrution_part.GetPartName(), build_action_id ); break;
 			}
 		}
 	}
 	//------
 	
-	void SetPartFromSyncData (ConstructionPart part)
+	void SetPartFromSyncData( ConstructionPart part )
 	{
 		string key = part.m_PartName;
 		bool is_base = part.IsBase();
@@ -405,6 +405,12 @@ class BaseBuildingBase extends ItemBase
 		
 		// init visuals and physics
 		InitBaseState();
+		
+		//debug
+		if ( GetGame().IsDebug() ) 
+		{
+			DebugCustomState();
+		}
 	}
 
 	override void EEItemAttached ( EntityAI item, string slot_name )
@@ -430,6 +436,12 @@ class BaseBuildingBase extends ItemBase
 
 		UpdateAttachmentVisuals( slot_name, locked );
 		UpdateAttachmentPhysics( slot_name, locked );
+	}
+	
+	//ignore out of reach condition
+	override bool IgnoreOutOfReachCondition()
+	{
+		return true;
 	}
 	
 	//CONSTRUCTION EVENTS
@@ -484,8 +496,8 @@ class BaseBuildingBase extends ItemBase
 		//synchronize
 		SynchronizeBaseState();
 
-		if (GetGame().IsMultiplayer() && GetGame().IsServer())
-			SetPartFromSyncData(constrution_part); // server part of sync, client will be synced from SetPartsFromSyncData
+		// server part of sync, client will be synced from SetPartsFromSyncData
+		SetPartFromSyncData( constrution_part );
 		
 		//reset action sync data
 		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( ResetActionSyncData, 100, false, this );
@@ -500,24 +512,15 @@ class BaseBuildingBase extends ItemBase
 	
 	void OnPartDismantledClient( string part_name, int action_id )
 	{
-		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
-		
 		//play sound
 		SoundDismantleStart( part_name );
 	}	
 	
 	//Destroy
-	void OnPartDestroyedServer( string part_name, int action_id )
+	void OnPartDestroyedServer( notnull Man player, string part_name, int action_id )
 	{
 		bsbDebugPrint("[bsb] " + GetDebugName(this) + " OnPartDestroyedServer " + part_name);
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
-		
-		//check base state
-		if ( constrution_part.IsBase() )
-		{
-			//Destroy construction
-			DestroyConstruction();
-		}
 					
 		//register constructed parts for synchronization
 		UnregisterPartForSync( constrution_part.GetId() );
@@ -528,8 +531,18 @@ class BaseBuildingBase extends ItemBase
 		//synchronize
 		SynchronizeBaseState();
 		
+		// server part of sync, client will be synced from SetPartsFromSyncData
+		SetPartFromSyncData( constrution_part );
+		
 		//reset action sync data
 		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( ResetActionSyncData, 100, false, this );
+		
+		//check base state
+		if ( constrution_part.IsBase() )
+		{
+			//Destroy construction
+			GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( DestroyConstruction, 200, false, this );
+		}			
 	}
 	
 	void OnPartDestroyedClient( string part_name, int action_id )
@@ -806,6 +819,12 @@ class BaseBuildingBase extends ItemBase
 	{
 		return true;
 	}
+	
+	//selection->player distance check
+	bool HasProperDistance( string selection, PlayerBase player )
+	{
+		return true;
+	}
 		
 	//folding
 	bool CanFoldBaseBuildingObject()
@@ -862,7 +881,7 @@ class BaseBuildingBase extends ItemBase
 			area_damage.SetAreaPosition( center );
 			area_damage.SetAreaOrientation( orientation );
 			area_damage.SetLoopInterval( 0.5 );
-			area_damage.SetDeferInterval( 0.5 );
+			area_damage.SetDeferDuration( 0.5 );
 			area_damage.SetHitZones( { "Head","Torso","LeftHand","LeftLeg","LeftFoot","RightHand","RightLeg","RightFoot" } );
 			area_damage.SetAmmoName( "MeleeDamage" );
 			area_damage.Spawn();
@@ -900,7 +919,7 @@ class BaseBuildingBase extends ItemBase
 			{
 				if ( area_damage )
 				{
-					area_damage.DestroyDamageTrigger();
+					area_damage.Destroy();
 				}
 				
 				m_DamageTriggers.Remove( slot_name );
@@ -956,6 +975,13 @@ class BaseBuildingBase extends ItemBase
 		}
 		
 		return "";
+	}	
+	
+	//================================================================
+	// DEBUG
+	//================================================================	
+	protected void DebugCustomState()
+	{
 	}	
 }
 

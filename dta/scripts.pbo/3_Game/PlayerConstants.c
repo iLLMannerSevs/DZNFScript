@@ -2,9 +2,14 @@ class PlayerConstants
 {
 	static const float WEAPON_RAISE_BLEND_DELAY = 0.17;
 	static const float MELEE2_MOVEMENT_BLEND_DELAY = 0.35;
-	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.1;
 	//----------------------------------------------------------
-	//						STAT LEVELS START
+	//				SHOES DAMAGE/FEET BLEEDING
+	//----------------------------------------------------------
+	static const float BAREFOOT_MOVEMENT_BLEED_MODIFIER = 0.1;
+	static const float SHOES_MOVEMENT_DAMAGE_PER_STEP = 0.1;
+	static const int CHECK_EVERY_N_STEP = 10;//will process every n-th step(for performance reasons)
+	//----------------------------------------------------------
+	//					STAT LEVELS START
 	//----------------------------------------------------------
 	static const float SL_HEALTH_CRITICAL = 20;
 	static const float SL_HEALTH_LOW = 40;
@@ -108,6 +113,8 @@ class PlayerConstants
 	static const float HEALTH_LOSS_HC_MINUS_LOW				= 0.05;
 	static const float HEALTH_LOSS_HC_MINUS_HIGH 			= 0.15;	
 	
+	static const float WATER_LOSS_FEVER						= 0.2;
+	
 	//--------------------------------------------------------
 	static const float LOW_ENERGY_DAMAGE_PER_SEC			= 0.125;	//health loss per second while low on energy
 	static const float LOW_WATER_DAMAGE_PER_SEC				= 0.2;		//health loss per second while low on water
@@ -149,7 +156,7 @@ class PlayerConstants
 	static const float VITAMINS_LIFETIME_SECS				= 300;
 
 	static const float CHANCE_TO_BLEED_SLIDING_LADDER_PER_SEC = 0.3; // probability of bleeding source occuring while sliding down ladder without gloves given as percentage per second(0.5 means 50% chance bleeding source will happen every second while sliding down) 
-	static const float GLOVES_DAMAGE_SLIDING_LADDER_PER_SEC = -3;// how much damage the gloves receive while sliding down the ladder
+	static const float GLOVES_DAMAGE_SLIDING_LADDER_PER_SEC = -3;// how much damage the gloves receive while sliding down the ladder (per sec)
 	
 	//----------------------------------------------------------
 	//						BADGE THRESHOLDS
@@ -160,5 +167,4 @@ class PlayerConstants
 
 	//!
 	static const int LAST_UA_MSG_LIFETIME = 30;						//! last User Action message lifetime [s] (default: 30s)
-	
 }

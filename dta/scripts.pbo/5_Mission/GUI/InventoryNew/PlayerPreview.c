@@ -36,7 +36,6 @@ class PlayerPreview: LayoutHolder
 				m_CharacterOrientation = orientation;
 			}
 		}
-			
 	}
 
 	void UpdateScale()
@@ -87,6 +86,7 @@ class PlayerPreview: LayoutHolder
 		{
 			// injury animation update
 			HumanCommandAdditives hca = dummyPlayer.GetCommandModifier_Additives();
+			//dummyPlayer.UpdateDummyPlayerProxyVisibility(realPlayer.FindAttachmentBySlotName("Shoulder"), realPlayer.FindAttachmentBySlotName("Melee"));
 			if( hca && realPlayer.m_InjuryHandler )
 				hca.SetInjured(realPlayer.m_InjuryHandler.GetInjuryAnimValue(), realPlayer.m_InjuryHandler.IsInjuryAnimEnabled());
 		}

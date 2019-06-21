@@ -187,7 +187,10 @@ class BiosUserManager
 	*/
 	void OnSignedOut(BiosUser user)
 	{
-		if ( user == GetSelectedUser() || !GetSelectedUser() )
+		Print("OnSignedOut(): selectedUser: " + GetSelectedUser());
+		bool isSelectedUser  = (GetSelectedUser() != null);
+		
+		if ( user == GetSelectedUser() )
 		{
 			SelectUser( null );
 			
@@ -205,6 +208,7 @@ class BiosUserManager
 			
 			if ( GetGame().GetMission() != null )
 			{
+				Print("OnSignedOut(): AbortMission");
 				GetGame().GetMission().AbortMission();
 			}
 			
@@ -213,6 +217,10 @@ class BiosUserManager
 			g_Game.SetGameState( DayZGameState.MAIN_MENU );
 			g_Game.SetLoadState( DayZLoadState.MAIN_MENU_START );
 			g_Game.GamepadCheck();
+		}
+		else if ( !isSelectedUser )
+		{
+			Print("OnSignedOut(): before TitleScreen");
 		}
 	}
 	
@@ -230,6 +238,10 @@ class BiosUserManager
 	{
 		if( !OnlineServices.ErrorCaught( error ) )
 		{
+			if(GetSelectedUser())
+				OnlineServices.SetBiosUser( GetSelectedUser() );
+			else
+				OnlineServices.SetBiosUser( joiner );
 			SelectUser( joiner );
 			OnlineServices.SetSessionHandle( handle );
 			
@@ -240,6 +252,11 @@ class BiosUserManager
 			}
 			else
 			{
+				if( GetGame().GetUIManager() )
+				{
+					GetGame().GetUIManager().CloseMenu( MENU_TITLE_SCREEN );
+					GetGame().GetInput().IdentifyGamepad( GamepadButton.BUTTON_NONE );
+				}
 				g_Game.SetLoadState( DayZLoadState.JOIN_START );
 				g_Game.GamepadCheck();
 			}
@@ -281,23 +298,36 @@ class BiosUserManager
 	*/
 	void OnPartyHost(BiosUser host, array<string> invitee_list, EBiosError error)
 	{
-		g_Game.SetGameState( DayZGameState.PARTY );
-		g_Game.SetLoadState( DayZLoadState.PARTY_START );
-		
 		#ifdef PLATFORM_PS4
 		if( host && host.IsOnline() )
 		#endif
-			SelectUser( host );
+		{
+			SelectUser(host);
+		}
 		#ifdef PLATFORM_PS4
 		else if( host )
 		{
 			SelectUser( host );
-			LogOnUserAsync( host ); 
+			LogOnUserAsync( host );
 		}
 		#endif
+
+		if (GetGame().GetUIManager())
+		{
+			GetGame().GetUIManager().CloseMenu(MENU_TITLE_SCREEN);
+		}
 		
 		OnlineServices.SetPendingInviteList( invitee_list );
-		g_Game.GamepadCheck();
+		if(g_Game.GetGameState() != DayZGameState.IN_GAME && g_Game.GetGameState() != DayZGameState.CONNECTING)
+		{
+			if (!GetGame().GetUIManager().GetMenu() || GetGame().GetUIManager().GetMenu().GetID() != MENU_MAIN)
+			{
+				GetGame().GetUIManager().EnterScriptedMenu(MENU_MAIN, GetGame().GetUIManager().GetMenu());
+			}
+			g_Game.SetGameState( DayZGameState.PARTY );
+			g_Game.SetLoadState( DayZLoadState.PARTY_START );
+			g_Game.GamepadCheck();
+		}
 	}
 
 	//! Callback function.

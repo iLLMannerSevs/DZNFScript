@@ -456,7 +456,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 					{
 						// execute attack (dmg part)
 						hitPosWS = targetEntity.ModelToWorld(targetEntity.GetDefaultHitPosition());
-						DamageSystem.CloseCombatDamage(EntityAI.Cast(m_DZPlayer), target, hitZoneIdx, "FinisherHit", hitPosWS);
+						DamageSystem.CloseCombatDamage(m_DZPlayer, target, hitZoneIdx, "FinisherHit", hitPosWS);
 						return; //! early exit
 					}
 				}
@@ -491,7 +491,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			if( GetGame().IsServer() && targetEntity )
 			{
 				hitPosWS = targetEntity.ModelToWorld(targetEntity.GetDefaultHitPosition()); //! override hit pos by pos defined in type
-				targetEntity.EEHitBy(null, 0, EntityAI.Cast(m_DZPlayer), hitZoneIdx, "", ammo, hitPosWS);
+				targetEntity.EEHitBy(null, 0, m_DZPlayer, hitZoneIdx, "", ammo, hitPosWS);
 			}
 		}
 	}

@@ -47,6 +47,8 @@ class Torch : ItemBase
 	
 	override bool CanReleaseAttachment (EntityAI attachment)
 	{
+		if( !super.CanReleaseAttachment( attachment ) )
+			return false;
 		return !GetCompEM().IsWorking();
 	}
 	

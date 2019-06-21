@@ -1,8 +1,12 @@
-class CivilianVan extends CarScript
+class Sedan_02 extends CarScript
 {
+	void Sedan_02()
+	{
+		m_dmgContactCoef = 0.070;
+	}
 	override int GetAnimInstance()
 	{
-		return VehicleAnimInstances.CIVVAN;
+		return VehicleAnimInstances.S120;
 	}
 
 	override int GetSeatAnimationType( int posIdx )
@@ -16,13 +20,12 @@ class CivilianVan extends CarScript
 		case 2:
 			return DayZPlayerConstants.VEHICLESEAT_PASSENGER_L;
 		case 3:
-			return DayZPlayerConstants.VEHICLESEAT_PASSENGER_L;
-		case 4:
-			return DayZPlayerConstants.VEHICLESEAT_PASSENGER_L;
+			return DayZPlayerConstants.VEHICLESEAT_PASSENGER_R;
 		}
 
 		return 0;
 	}
+	
 	
 	override int GetCarDoorsState( string slotType )
 	{
@@ -34,7 +37,7 @@ class CivilianVan extends CarScript
 	
 		switch( slotType )
 		{
-			case "CivVanDriverDoors":
+			case "Sedan_02_Door_1_1":
 				if ( GetAnimationPhase("DoorsDriver") > 0.5 )
 					return CarDoorState.DOORS_OPEN;
 				else
@@ -42,7 +45,7 @@ class CivilianVan extends CarScript
 
 			break;
 			
-			case "CivVanCoDriverDoors":
+			case "Sedan_02_Door_2_1":
 				if ( GetAnimationPhase("DoorsCoDriver") > 0.5 )
 					return CarDoorState.DOORS_OPEN;
 				else
@@ -50,7 +53,7 @@ class CivilianVan extends CarScript
 
 			break;
 			
-			case "CivVanCargo1Doors":
+			case "Sedan_02_Door_1_2":
 				if ( GetAnimationPhase("DoorsCargo1") > 0.5 )
 					return CarDoorState.DOORS_OPEN;
 				else
@@ -58,19 +61,24 @@ class CivilianVan extends CarScript
 
 			break;
 			
-			case "CivVanCargo2Doors":
+			case "Sedan_02_Door_2_2":
 				if ( GetAnimationPhase("DoorsCargo2") > 0.5 )
 					return CarDoorState.DOORS_OPEN;
 				else
 					return CarDoorState.DOORS_CLOSED;
 			break;
 			
-			case "CivVanDoorsHood":
+			case "Sedan_02_Hood":
 				if ( GetAnimationPhase("DoorsHood") > 0.5 )
 					return CarDoorState.DOORS_OPEN;
 				else
 					return CarDoorState.DOORS_CLOSED;
 
+			case "Sedan_02_Trunk":
+				if ( GetAnimationPhase("DoorsTrunk") > 0.5 )
+					return CarDoorState.DOORS_OPEN;
+				else
+					return CarDoorState.DOORS_CLOSED;
 			break;
 		}
 
@@ -83,32 +91,28 @@ class CivilianVan extends CarScript
 		switch( posIdx )
 		{
 			case 0:
-				if ( GetCarDoorsState( "CivVanDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_1_1" ) == CarDoorState.DOORS_CLOSED )
 					return false;
 
 				return true;
 			break;
 			
 			case 1:
-				if ( GetCarDoorsState( "CivVanCoDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_2_1" ) == CarDoorState.DOORS_CLOSED )
 					return false;
 
 				return true;
 			break;
 
 			case 2:
-				if ( GetCarDoorsState( "CivVanCargo1Doors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_1_2" ) == CarDoorState.DOORS_CLOSED )
 					return false;
 
 				return true;
 			break;
 
 			case 3:
-				if ( GetCarDoorsState( "CivVanCargo1Doors" ) == CarDoorState.DOORS_CLOSED )
-					return false;
-			
-			case 4:
-				if ( GetCarDoorsState( "CivVanCargo1Doors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_2_2" ) == CarDoorState.DOORS_CLOSED )
 					return false;
 
 				return true;
@@ -127,30 +131,28 @@ class CivilianVan extends CarScript
 				float newValue = 0;
 				
 				//-----
-				if ( GetCarDoorsState( "CivVanDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_1_1" ) == CarDoorState.DOORS_CLOSED )
 					newValue += 0.25;
 
 				//-----
-				if ( GetCarDoorsState( "CivVanCoDriverDoors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_2_1" ) == CarDoorState.DOORS_CLOSED )
 					newValue += 0.25;
 			
 				//-----
-				if ( GetCarDoorsState( "CivVanCargo1Doors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_1_2" ) == CarDoorState.DOORS_CLOSED )
 					newValue += 0.25;
 
 				//-----
-				if ( GetCarDoorsState( "CivVanCargo2Doors" ) == CarDoorState.DOORS_CLOSED )
+				if ( GetCarDoorsState( "Sedan_02_Door_2_2" ) == CarDoorState.DOORS_CLOSED )
 					newValue += 0.25;
 
 				if ( newValue > 1 )
 					newValue = 1;
 			
-				m_enviroCoef = newValue;
 				return newValue;
 			break;
 		}
 
-		m_enviroCoef = oldValue;
 		return oldValue;
 	}
 	
@@ -166,34 +168,15 @@ class CivilianVan extends CarScript
 			return "DoorsCargo1";
 		case "doors_cargo2":
 			return "DoorsCargo2";
-		case "doors_cargo3":
-			return "DoorsCargo3";
 		case "doors_hood":
 			return "DoorsHood";
+		case "doors_trunk":
+			return "DoorsTrunk";
 		}
 
 		return "";
 	}
-	
-	override string GetDoorConditionPointFromSelection( string selection )
-	{
-			switch( selection )
-		{
-			case "seat_driver":
-				return "seat_con_1_1";
-			break;
-			case "seat_codriver":
-				return "seat_con_2_1";
-			break;
-			case "seat_cargo1":
-			case "seat_cargo2":
-			case "seat_cargo3":
-				return "seat_con_1_2";
-			break;
-		}
 
-		return "";
-	};
 
 	override bool IsVitalTruckBattery()
 	{
@@ -261,5 +244,36 @@ class CivilianVan extends CarScript
 		}
 		
 		return false;		
+	}
+
+	override void OnDebugSpawn()
+	{
+		EntityAI entity;
+		
+		if ( Class.CastTo(entity, this) )
+		{
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Hood" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Trunk" );
+
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+		};
+
+		Fill( CarFluid.FUEL, 50 );
+		Fill( CarFluid.COOLANT, 6.0 );
+		Fill( CarFluid.OIL, 4.0 );
 	}
 }

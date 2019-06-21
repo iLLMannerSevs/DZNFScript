@@ -3641,7 +3641,31 @@
                 <Item Name="Top" Image="top" />
             </State>
         </Style>
-        <Style Name="NewStyle" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="20">
+        <Style Name="DayZDefaultPanelSides" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="17">
+            <State Name="Disabled">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="" />
+                <Item Name="Left" Image="" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+            <State Name="Normal">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="DayZDefaultPanelCorner" />
+                <Item Name="Left" Image="DayZDefaultPanelLeft" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="DayZDefaultPanelRight" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+        </Style>
+        <Style Name="UIDefaultPanel" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="20">
             <State Name="Disabled">
                 <Item Name="Bottom" Image="" />
                 <Item Name="Center" Image="" />
@@ -4059,6 +4083,30 @@
                 <Item Name="Top" Image="dashedTop" />
             </State>
         </Style>
+        <Style Name="Colorable" Font="gui/fonts/AmorSerifPro-Bold58" ImageSet="dayz_gui" Color="0">
+            <State Name="Disabled">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="" />
+                <Item Name="Left" Image="" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+            <State Name="Normal">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="DayZDefaultPanelCorner" />
+                <Item Name="Left" Image="" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+        </Style>
     </Widget>
     <Widget Name="GridSpacerWidget">
         <Style Name="Colorable" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="rover_imageset" Color="0">
@@ -4237,6 +4285,30 @@
                 <Item Name="RightBottom" Image="DayZDefaultPanelCorner" />
                 <Item Name="RightTop" Image="DayZDefaultPanelCorner" />
                 <Item Name="Top" Image="DayZDefaultPanelCorner" />
+            </State>
+        </Style>
+        <Style Name="DayZDefaultPanelSides" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="17">
+            <State Name="Disabled">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="" />
+                <Item Name="Left" Image="" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+            <State Name="Normal">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="DayZDefaultPanelCorner" />
+                <Item Name="Left" Image="DayZDefaultPanelLeft" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="DayZDefaultPanelRight" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
             </State>
         </Style>
         <Style Name="outline" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="0">
@@ -4513,6 +4585,30 @@
                 <Item Name="RightBottom" Image="DayZDefaultPanelCorner" />
                 <Item Name="RightTop" Image="DayZDefaultPanelCorner" />
                 <Item Name="Top" Image="DayZDefaultPanelCorner" />
+            </State>
+        </Style>
+        <Style Name="DayZDefaultPanelSides" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="17">
+            <State Name="Disabled">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="" />
+                <Item Name="Left" Image="" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
+            </State>
+            <State Name="Normal">
+                <Item Name="Bottom" Image="" />
+                <Item Name="Center" Image="DayZDefaultPanelCorner" />
+                <Item Name="Left" Image="DayZDefaultPanelLeft" />
+                <Item Name="LeftBottom" Image="" />
+                <Item Name="LeftTop" Image="" />
+                <Item Name="Right" Image="DayZDefaultPanelRight" />
+                <Item Name="RightBottom" Image="" />
+                <Item Name="RightTop" Image="" />
+                <Item Name="Top" Image="" />
             </State>
         </Style>
         <Style Name="Empty" Font="gui/fonts/AmorSerifPro-Bold" ImageSet="dayz_gui" Color="0">

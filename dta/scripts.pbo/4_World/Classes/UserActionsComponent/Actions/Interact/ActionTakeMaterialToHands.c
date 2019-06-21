@@ -2,7 +2,6 @@ class ActionTakeMaterialToHands: ActionInteractBase
 {
 	void ActionTakeMaterialToHands()
 	{
-		m_MessageSuccess    = "";
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_PICKUP_HANDS;
 		m_CommandUIDProne	= DayZPlayerConstants.CMD_ACTIONFB_PICKUP_HANDS;
 		m_HUDCursorIcon     = CursorIcons.LootCorpse;
@@ -17,11 +16,6 @@ class ActionTakeMaterialToHands: ActionInteractBase
 	override bool HasProneException()
 	{
 		return true;
-	}
-	
-	override int GetType()
-	{
-		return AT_TAKE_MATERIAL_TO_HANDS;
 	}
 
 	override string GetText()

@@ -15,12 +15,6 @@ class ActionSawPlanks: ActionContinuousBase
 	void ActionSawPlanks()
 	{
 		m_CallbackClass = ActionSawPlanksCB;
-		m_MessageStartFail = "The tool is ruined.";
-		m_MessageStart = "I have started sawing the planks.";
-		m_MessageSuccess = "I have sawn 3 planks.";
-		m_MessageFail = "I've stopped sawing the planks.";
-		m_MessageCancel = "I've stopped sawing the planks.";
-		//m_Animation = "startFire";
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DISASSEMBLE;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
@@ -31,11 +25,6 @@ class ActionSawPlanks: ActionContinuousBase
 	{	
 		m_ConditionTarget = new CCTNonRuined(UAMaxDistances.DEFAULT);
 		m_ConditionItem = new CCINonRuined;
-	}
-
-	override int GetType()
-	{
-		return AT_SAW_PLANKS;
 	}
 
 	override string GetText()

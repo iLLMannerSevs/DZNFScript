@@ -4,7 +4,6 @@ class ActionDetach: ActionInteractBase
 
 	void ActionDetach()
 	{
-		m_MessageSuccess    = "";
 		m_CommandUID        = DayZPlayerConstants.CMD_ACTIONMOD_PICKUP_HANDS;
 		m_CommandUIDProne	= DayZPlayerConstants.CMD_ACTIONFB_PICKUP_HANDS;
 		m_HUDCursorIcon     = CursorIcons.LootCorpse;
@@ -19,11 +18,6 @@ class ActionDetach: ActionInteractBase
 	override bool HasProneException()
 	{
 		return true;
-	}
-	
-	override int GetType()
-	{
-		return AT_DETACH;
 	}
 
 	override string GetText()

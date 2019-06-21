@@ -62,11 +62,6 @@ class ActionActivateTrap: ActionContinuousBase
 		m_ConditionItem = new CCINotPresent;
 	}
 
-	override int GetType()
-	{
-		return AT_ACTIVATE_TRAP;
-	}
-
 	override string GetText()
 	{
 		return "#activate";

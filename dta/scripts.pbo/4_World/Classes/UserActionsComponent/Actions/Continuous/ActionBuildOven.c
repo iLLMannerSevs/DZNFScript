@@ -14,10 +14,6 @@ class ActionBuildOven: ActionContinuousBase
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_CRAFTING;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
-		
-		m_MessageStartFail = "I cannot build an oven.";
-		m_MessageSuccess = "I have build an oven.";
-		m_MessageFail = "I cannot build an oven.";
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_HIGH;
 	}
 	
@@ -26,11 +22,6 @@ class ActionBuildOven: ActionContinuousBase
 		
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.DEFAULT );
 		m_ConditionItem = new CCINotPresent;
-	}
-
-	override int GetType()
-	{
-		return AT_BUILD_OVEN;
 	}
 		
 	override string GetText()

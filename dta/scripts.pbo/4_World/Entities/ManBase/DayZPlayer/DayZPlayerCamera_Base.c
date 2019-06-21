@@ -56,7 +56,7 @@ enum NVTypes
 	NONE = 0,
 	NV_GOGGLES,
 	NV_OPTICS_ON,
-	NV_OPTICS_OFF
+	NV_OPTICS_OFF,
 	MAX
 }
 
@@ -75,7 +75,7 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		
 		if (m_pPlayer.IsEyeZoom())
 		{
-			m_fFovAbsolute		= DZPLAYER_CAMERA_FOV_EYEZOOM;
+			m_fFovAbsolute		= GameConstants.DZPLAYER_CAMERA_FOV_EYEZOOM;
 		}
 		else
 		{
@@ -187,7 +187,7 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		//! change abs FOV for naked eye zoom
 		if (m_pPlayer.IsEyeZoom())
 		{
-			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
+			m_fFovAbsolute = Math.SmoothCD(m_fFovAbsolute, GameConstants.DZPLAYER_CAMERA_FOV_EYEZOOM, m_fFovAbsVel, 0.1, 1000, pDt);
 		}
 		else
 		{
@@ -309,7 +309,7 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		{
 			case NVTypes.NONE:
 				PPEffects.SetEVValuePP(0);
-				PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
+				PPEffects.SetColorizationNV(1.0, 1.0, 1.0);
 				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;
 			
@@ -320,7 +320,7 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 			break;
 			
 			case NVTypes.NV_OPTICS_OFF:
-				PPEffects.SetEVValuePP(-7);
+				PPEffects.SetEVValuePP(-10);
 				PPEffects.SetColorizationNV(0.0, 0.0, 0.0);
 				PPEffects.SetNVParams(1.0, 0.0, 2.35, 2.75); //default values
 			break;

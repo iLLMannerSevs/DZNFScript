@@ -70,6 +70,16 @@ class CargoContainer extends Container
 		#ifdef PLATFORM_CONSOLE
 		UpdateRowVisibility( m_ShowedItemPositions.Count() );
 		UpdateSelection();
+		for( int i = 0; i < m_Cargo.GetItemCount(); i++ )
+		{
+			EntityAI item2 = m_Cargo.GetItem( i );
+			Param3<ref Icon, int, int> data = m_ShowedItemPositions.Get( item2 );
+			if( data )
+			{
+				data.param1.SetCargoPos( i );
+				data.param1.SetPos();
+			}
+		}
 		#endif
 	}
 	
@@ -82,6 +92,17 @@ class CargoContainer extends Container
 		#ifdef PLATFORM_CONSOLE
 		UpdateRowVisibility( m_ShowedItemPositions.Count() );
 		UpdateSelection();
+		
+		for( int i = 0; i < m_Cargo.GetItemCount(); i++ )
+		{
+			EntityAI item2 = m_Cargo.GetItem( i );
+			Param3<ref Icon, int, int> data = m_ShowedItemPositions.Get( item2 );
+			if( data )
+			{
+				data.param1.SetCargoPos( i );
+				data.param1.SetPos();
+			}
+		}
 		#endif
 	}
 	
@@ -96,7 +117,6 @@ class CargoContainer extends Container
 		#else
 		int y = il.GetRow();
 		#endif
-		
 		if( m_ShowedItemPositions.Contains( item ) )
 		{
 			ref Param3<ref Icon, int, int> data = m_ShowedItemPositions.Get( item );
@@ -109,8 +129,10 @@ class CargoContainer extends Container
 					#ifdef PLATFORM_CONSOLE
 						data.param1.SetCargoPos( data.param3 );
 					#endif
+					#ifdef PLATFORM_WINDOWS
 					data.param1.SetPosX( data.param2 );
 					data.param1.SetPosY( data.param3 );
+					#endif
 				}
 				data.param1.UpdateInterval();
 			}

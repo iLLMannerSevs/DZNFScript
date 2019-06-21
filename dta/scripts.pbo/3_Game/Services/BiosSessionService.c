@@ -50,6 +50,7 @@ class BiosSessionService
 			GetSessionAsync( m_CurrentHandle );
 		else
 		{
+			GetGame().GetUserManager().SelectUser(OnlineServices.GetBiosUser());
 			if( g_Game.GetGameState() != DayZGameState.IN_GAME )
 			{
 				if( GetGame().GetMission() )
@@ -199,6 +200,7 @@ class BiosSessionService
 			GetGame().GetCallQueue( CALL_CATEGORY_SYSTEM ).CallLater( TryGetSession, 100, false, "" );
 		#else
 			#ifdef PLATFORM_PS4
+				GetGame().GetUserManager().SelectUser(OnlineServices.GetBiosUser());
 				if( g_Game.GetGameState() != DayZGameState.IN_GAME )
 				{
 					if( GetGame().GetMission() )

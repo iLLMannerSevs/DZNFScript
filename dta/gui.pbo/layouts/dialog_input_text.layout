@@ -9,7 +9,7 @@ ImageWidgetClass TextInputDialogRoot {
  hexactsize 0
  vexactsize 0
  fixaspect outside
- priority 999
+ priority 1001
  imageTexture "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.edds"
  mode blend
  "src alpha" 1
@@ -29,7 +29,6 @@ ImageWidgetClass TextInputDialogRoot {
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   priority 999
    style Colorable
    "title visible" 0
    {

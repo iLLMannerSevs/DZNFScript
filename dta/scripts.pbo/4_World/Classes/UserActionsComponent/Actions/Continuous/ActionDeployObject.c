@@ -66,7 +66,7 @@ class ActiondeployObjectCB : ActionContinuousBaseCB
 
 	void DropDuringPlacing()
 	{
-		EntityAI entity_for_placing = EntityAI.Cast( m_ActionData.m_MainItem );	
+		EntityAI entity_for_placing = m_ActionData.m_MainItem;
 		vector orientation = m_ActionData.m_Player.GetOrientation();
 		vector 	position = m_ActionData.m_Player.GetPosition() + m_ActionData.m_Player.GetDirection();
 		vector rotation_matrix[3];
@@ -100,11 +100,6 @@ class ActionDeployObject: ActionContinuousBase
 	{	
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNone;
-	}
-	
-	override int GetType()
-	{
-		return AT_DEPLOY_OBJECT;
 	}
 
 	override bool HasTarget()
@@ -195,7 +190,7 @@ class ActionDeployObject: ActionContinuousBase
 	{
 		if( GetGame().IsMultiplayer() )
 		{
-			EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+			EntityAI entity_for_placing = action_data.m_MainItem;
 			PlaceObjectActionData poActionData;
 			poActionData = PlaceObjectActionData.Cast(action_data);
 			
@@ -218,7 +213,7 @@ class ActionDeployObject: ActionContinuousBase
 	{
 		PlaceObjectActionData poActionData;
 		poActionData = PlaceObjectActionData.Cast(action_data);
-		EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+		EntityAI entity_for_placing = action_data.m_MainItem;
 		vector position = action_data.m_Player.GetLocalProjectionPosition();
 		vector orientation = action_data.m_Player.GetLocalProjectionOrientation();
 		
@@ -232,7 +227,7 @@ class ActionDeployObject: ActionContinuousBase
 	{	
 		PlaceObjectActionData poActionData;
 		poActionData = PlaceObjectActionData.Cast(action_data);
-		EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+		EntityAI entity_for_placing = action_data.m_MainItem;
 		vector position = action_data.m_Player.GetLocalProjectionPosition();
 		vector orientation = action_data.m_Player.GetLocalProjectionOrientation();
 				
@@ -272,7 +267,7 @@ class ActionDeployObject: ActionContinuousBase
 		{
 			action_data.m_Player.PlacingCancelLocal();
 		
-			EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+			EntityAI entity_for_placing = action_data.m_MainItem;
 			action_data.m_Player.PredictiveTakeEntityToHands( entity_for_placing );
 		}
 	}
@@ -283,7 +278,7 @@ class ActionDeployObject: ActionContinuousBase
 		poActionData = PlaceObjectActionData.Cast(action_data);
 		if ( !poActionData.m_AlreadyPlaced )
 		{
-			EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+			EntityAI entity_for_placing = action_data.m_MainItem;
 			GetGame().ClearJuncture( action_data.m_Player, entity_for_placing );
 			action_data.m_MainItem.SetIsBeingPlaced( false );
 		
@@ -360,7 +355,7 @@ class ActionDeployObject: ActionContinuousBase
 	{
 		if ( action_data.m_MainItem.IsKindOf( "FenceKit" ) || action_data.m_MainItem.IsKindOf( "WatchtowerKit" ) ) return;
 		
-		EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+		EntityAI entity_for_placing = action_data.m_MainItem;
 		vector rotation_matrix[3];
 		float direction[4];
 		InventoryLocation source = new InventoryLocation;

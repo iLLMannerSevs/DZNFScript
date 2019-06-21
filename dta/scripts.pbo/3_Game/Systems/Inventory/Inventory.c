@@ -59,6 +59,7 @@ class GameInventory
 
 	///@{ cargo
 	proto native CargoBase GetCargo ();
+	proto native CargoBase GetCargoFromIndex (int index);
 	/**
 	 * @brief Create Entity of specified type in cargo of entity
 	 **/
@@ -975,6 +976,9 @@ class GameInventory
 	proto native void SetFlipCargo (bool flip);
 	proto native void FlipCargo ();
 	proto native void ResetFlipCargo ();
+	
+	proto native void SetUserReservedLocation ();
+	proto native void ClearUserReservedLocation (notnull EntityAI eai);
 
 ///@} script functions
 };

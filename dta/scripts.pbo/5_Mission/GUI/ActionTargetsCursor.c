@@ -836,27 +836,27 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 				case -1 :
 					healthMark.GetParent().Show(false);
 					break;
-				case STATE_PRISTINE :
+				case GameConstants.STATE_PRISTINE :
 					healthMark.SetColor(Colors.COLOR_PRISTINE);
 					healthMark.SetAlpha(0.5);
 					healthMark.GetParent().Show(true);
 					break;
-				case STATE_WORN :
+				case GameConstants.STATE_WORN :
 					healthMark.SetColor(Colors.COLOR_WORN);
 					healthMark.SetAlpha(0.5);
 					healthMark.GetParent().Show(true);
 					break;
-				case STATE_DAMAGED :
+				case GameConstants.STATE_DAMAGED :
 					healthMark.SetColor(Colors.COLOR_DAMAGED);
 					healthMark.SetAlpha(0.5);
 					healthMark.GetParent().Show(true);
 					break;
-				case STATE_BADLY_DAMAGED:
+				case GameConstants.STATE_BADLY_DAMAGED:
 					healthMark.SetColor(Colors.COLOR_BADLY_DAMAGED);
 					healthMark.SetAlpha(0.5);
 					healthMark.GetParent().Show(true);
 					break;
-				case STATE_RUINED :
+				case GameConstants.STATE_RUINED :
 					healthMark.SetColor(Colors.COLOR_RUINED);
 					healthMark.SetAlpha(0.5);
 					healthMark.GetParent().Show(true);

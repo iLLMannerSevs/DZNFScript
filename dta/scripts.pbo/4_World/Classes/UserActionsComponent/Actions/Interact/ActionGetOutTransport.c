@@ -6,8 +6,6 @@ class ActionGetOutTransport: ActionInteractBase
 
 	void ActionGetOutTransport()
 	{
-		m_MessageSuccess = "";
-		//m_CommandUID = DayZPlayerConstants.;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ALL;
 		m_HUDCursorIcon = "GetInDriver";
 	}
@@ -17,11 +15,6 @@ class ActionGetOutTransport: ActionInteractBase
 	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_GETOUT_TRANSPORT;
 	}
 
 	override string GetText()

@@ -47,8 +47,6 @@ class MissionGameplay extends MissionBase
 		
 		m_ToggleHudTimer			= new Timer(CALL_CATEGORY_GUI);
 		
-		g_Game.m_IsPlayerSpawning	= true;
-		
 		SyncEvents.RegisterEvents();
 		PlayerBase.Event_OnPlayerDeath.Insert( Pause );
 	}
@@ -86,7 +84,6 @@ class MissionGameplay extends MissionBase
 		
 		m_UIManager = GetGame().GetUIManager();
 			
-		g_Game.m_IsPlayerSpawning	= true;
 		m_Initialized				= true;
 
 		// init hud ui
@@ -292,7 +289,7 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 			{
 				RadialQuickbarMenu.CloseMenu();
-				m_Hud.ShowHudUI( m_Hud.GetHudState() );
+				m_Hud.ShowHudUI( true );
 			}
 		}
 		
@@ -423,7 +420,8 @@ class MissionGameplay extends MissionBase
 				{
 					m_QuickbarHold = true;
 					SetActionDownTime( GetGame().GetTime() );
-					m_Hud.ShowHudPlayer( m_Hud.IsHideHudPlayer() );
+					//m_Hud.ShowHudPlayer( m_Hud.IsHideHudPlayer() );
+					m_Hud.ShowHud( !m_Hud.GetHudState() );
 				}
 			}
 			
@@ -904,7 +902,7 @@ class MissionGameplay extends MissionBase
 		if ( IsPaused() || ( GetGame().GetUIManager().GetMenu() && GetGame().GetUIManager().GetMenu().GetID() == MENU_INGAME ) )
 			return;
 
-		if ( g_Game.IsClient() && g_Game.IsPlayerSpawning() )
+		if ( g_Game.IsClient() && g_Game.GetGameState() == DayZGameState.CONNECTING )
 			return;
 		
 		CloseAllMenus();

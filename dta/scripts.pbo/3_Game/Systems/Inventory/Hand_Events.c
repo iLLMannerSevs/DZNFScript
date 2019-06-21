@@ -273,9 +273,57 @@ class HandEventDrop extends HandEventBase
 class HandEventThrow extends HandEventDrop
 {
 	void HandEventThrow (Man p = null, InventoryLocation src = null) 
-	{ 
+	{
 		m_EventID = HandEventID.THROW; 
+		if( src )
+		{
+			m_Dst = new InventoryLocation;
+			
+			vector mat[4];
+			EntityAI entity = GetSrcEntity();
+			entity.GetTransform(mat);
+
+			m_Dst.SetGround(entity, mat);
+		}
 	}
+	
+	override InventoryLocation GetDst ()
+	{
+		return m_Dst;
+	}
+	
+	override void ReadFromContext (ParamsReadContext ctx)
+	{
+		super.ReadFromContext(ctx);
+		
+		m_Dst = new InventoryLocation;
+		m_Dst.ReadFromContext(ctx);
+
+		float x, y, z;
+		ctx.Read(x);
+		ctx.Read(y);
+		ctx.Read(z);
+		m_Force[0] = x;
+		m_Force[1] = y;
+		m_Force[2] = z;
+	}
+	override void WriteToContext (ParamsWriteContext ctx)
+	{
+		super.WriteToContext(ctx);
+		
+		m_Dst.WriteToContext(ctx);
+
+		ctx.Write(m_Force[0]);
+		ctx.Write(m_Force[1]);
+		ctx.Write(m_Force[2]);
+	}
+
+	void SetForce(vector force)	{ m_Force = force; }
+	vector GetForce() { return m_Force; }
+	
+	vector m_Force;	
+	
+	ref InventoryLocation m_Dst;
 };
 
 class HandEventSwap extends HandEventBase

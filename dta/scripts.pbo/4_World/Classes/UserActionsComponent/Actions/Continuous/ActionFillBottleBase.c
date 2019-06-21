@@ -28,12 +28,6 @@ class ActionFillBottleBase: ActionContinuousBase
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_FILLBOTTLEPOND;
 		m_FullBody = true;
 		m_StanceMask = 0;
-		
-		m_MessageStartFail = "It's ruined.";
-		m_MessageStart = "I have started filling the bottle.";
-		m_MessageSuccess = "I have finished filling the bottle..";
-		m_MessageFail = "Player moved and filling the bottle was canceled.";
-		m_MessageCancel = "I stopped filling the bottle.";
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 	}
 	
@@ -41,11 +35,6 @@ class ActionFillBottleBase: ActionContinuousBase
 	{
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_FILL_BOTTLE;
 	}
 
 	override string GetText()

@@ -3270,6 +3270,22 @@ FrameWidgetClass HudFrameWidget {
          hexactsize 1
          vexactsize 1
          draggable 0
+         image0 "set:dayz_gui image:stance_stand"
+         mode additive
+         "src alpha" 1
+         "no wrap" 1
+         filter 1
+         nocache 0
+        }
+        ImageWidgetClass StanceStandWalk {
+         visible 0
+         position 0 0
+         size 32 32
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         draggable 0
          image0 "set:dayz_gui image:stance_walk"
          mode additive
          "src alpha" 1
@@ -4305,55 +4321,68 @@ FrameWidgetClass HudFrameWidget {
            vexactpos 1
            hexactsize 1
            vexactsize 1
-           image0 "set:dayz_gui image:large_circle"
+           image0 ""
+           imageTexture "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
            mode blend
            "src alpha" 1
            "no wrap" 1
            stretch 1
            filter 1
            nocache 0
+           Mask "{A794C8AEB6A0287B}Gui/textures/cardial_big_mask.edds"
+           "Transition width" 0
+           Progress 0.8
            {
             ImageWidgetClass RPMDialRedline {
              visible 1
              clipchildren 0
              color 1 0 0 1
-             position 1 0
-             size 195 164
+             position 0 0
+             size 1 1
              halign center_ref
              hexactpos 1
              vexactpos 1
-             hexactsize 1
-             vexactsize 1
+             hexactsize 0
+             vexactsize 0
              priority 1
-             image0 "set:dayz_gui image:large_circle_half"
+             image0 ""
+             imageTexture "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
              mode blend
              "src alpha" 1
              "no wrap" 1
              stretch 1
+             "flip u" 1
              filter 1
              nocache 0
-             rotation 0 0 90
-             pivot 0.496 0.592
+             pivot 0 0
+             Mask "{A794C8AEB6A0287B}Gui/textures/cardial_big_mask.edds"
+             "Transition width" 0
+             Progress 0.2
             }
             ImageWidgetClass RPMDialOptimal {
              visible 0
              clipchildren 0
              color 1 1 1 0.7843
-             size 195 164
+             size 1 1
              halign center_ref
              hexactpos 1
              vexactpos 1
-             hexactsize 1
-             vexactsize 1
-             image0 "set:dayz_gui image:large_circle_half"
-             mode additive
+             hexactsize 0
+             vexactsize 0
+             image0 ""
+             imageTexture "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
+             mode blend
              "src alpha" 1
              "no wrap" 1
              stretch 1
+             "flip u" 1
+             "flip v" 0
              filter 1
              nocache 0
-             rotation 0 0 60
-             pivot 0.496 0.592
+             pivot 0 0
+             Mask "{A794C8AEB6A0287B}Gui/textures/cardial_big_mask.edds"
+             "Transition width" 0
+             Progress 0.8
             }
            }
           }
@@ -4510,7 +4539,8 @@ FrameWidgetClass HudFrameWidget {
            vexactpos 1
            hexactsize 1
            vexactsize 1
-           image0 "set:dayz_gui image:large_circle"
+           image0 ""
+           imageTexture "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
            mode blend
            "src alpha" 1
            "no wrap" 1
@@ -4621,9 +4651,36 @@ FrameWidgetClass HudFrameWidget {
              vexactpos 1
              hexactsize 1
              vexactsize 1
-             image0 "set:dayz_gui image:small_circle"
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
              mode blend
              "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 1
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0.8
+             Progress 0.75
+            }
+            ImageWidgetClass FuelDialLow {
+             color 1 0 0 1
+             position 0 0
+             size 68 56
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             priority 1
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 0
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0.2
+             Progress 0.25
             }
             ImageWidgetClass FuelPointer {
              clipchildren 0
@@ -4673,6 +4730,26 @@ FrameWidgetClass HudFrameWidget {
            vexactsize 1
            style blank
            {
+            ImageWidgetClass TemperatureDialLow {
+             color 0 0 1 1
+             position 0 0
+             size 68 56
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             priority 1
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 0
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0.2
+             Progress 0.3
+            }
             ImageWidgetClass TemperatureDial {
              color 0.6275 0.6275 0.6275 1
              position 0 0
@@ -4681,9 +4758,36 @@ FrameWidgetClass HudFrameWidget {
              vexactpos 1
              hexactsize 1
              vexactsize 1
-             image0 "set:dayz_gui image:small_circle"
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
              mode blend
              "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 1
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0
+             Progress 0.7
+            }
+            ImageWidgetClass TemperatureDialHigh {
+             color 1 0 0 1
+             position 0 0
+             size 68 56
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             priority 1
+             image0 ""
+             imageTexture "{22721E7344C22D6A}Gui/textures/cardial_small.edds"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 1
+             "flip u" 1
+             Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
+             "Transition width" 0.2
+             Progress 0.3
             }
             ImageWidgetClass TemperaturePointer {
              clipchildren 0

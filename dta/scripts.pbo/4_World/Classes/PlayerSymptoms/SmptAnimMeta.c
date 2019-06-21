@@ -85,7 +85,8 @@ class SmptAnimMetaFB extends SmptAnimMetaBase
 	
 	void ~SmptAnimMetaFB()
 	{
-		m_Player.m_isFBsymptomPlaying = false;
+		if(m_Player)
+			m_Player.m_isFBsymptomPlaying = false;
 	}
 	
 	override void Init(ParamsReadContext ctx, SymptomManager manager, PlayerBase player)

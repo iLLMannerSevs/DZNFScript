@@ -135,6 +135,10 @@ class KeybindingElement extends ScriptedWidgetEventHandler
 			{
 				m_ElementModifier.SetText( "#keybind_hold" );
 			}
+			if( input.IsHoldBeginLimit() )
+			{
+				m_ElementModifier.SetText( "#keybind_holdbegin" );
+			}
 			if( input.IsClickLimit() )
 			{
 				m_ElementModifier.SetText( "#keybind_click" );

@@ -1,14 +1,22 @@
+enum LockAction
+{
+	NONE,
+	DIAL_NUMBER_CHANED,
+	DIAL_INDEX_CHANGED,
+	LOCKED,
+	UNLOCKED,
+	
+	COUNT
+}
+
 class CombinationLock extends ItemBase
 {
 	int m_LockDigits;					//how many digits will the combination contain
 	int m_Combination;					//actual combination that is dialed on lock
 	int m_CombinationLocked;			//combination that was dialed on lock before the shuffle
+	int m_DialIndex;					//index of current combination dial
 	
-	bool m_IsLockAttached;				//for storing to db
-	
-	//client only
-	int m_CombinationClient;
-	bool m_IsLockAttachedClient;
+	protected LockAction m_LockActionPerformed 		= LockAction.NONE;
 	
 	//Sounds
 	//build
@@ -25,10 +33,10 @@ class CombinationLock extends ItemBase
 		
 		//synchronized variables
 		int combination_length = Math.Pow( 10, m_LockDigits );
-		
-		RegisterNetSyncVariableInt( "m_Combination", 		0, combination_length - 1 );
-		RegisterNetSyncVariableInt( "m_CombinationLocked", 	0, combination_length - 1 );
-		RegisterNetSyncVariableBool( "m_IsLockAttached" );	
+		RegisterNetSyncVariableInt( "m_Combination", 0, combination_length - 1 );
+		RegisterNetSyncVariableInt( "m_CombinationLocked", 0, combination_length - 1 );
+		RegisterNetSyncVariableInt( "m_DialIndex", 0, m_LockDigits - 1 );
+		RegisterNetSyncVariableInt( "m_LockActionPerformed", 0, LockAction.COUNT );
 	}
 	
 	protected void SetBaseLockValues()
@@ -46,19 +54,289 @@ class CombinationLock extends ItemBase
 		//set visual on init
 		UpdateVisuals();
 	}	
-
-	void SetLockAttachedState( bool state )
-	{
-		m_IsLockAttached = state;
+	
+	// --- EVENTS
+	override void OnStoreSave( ParamsWriteContext ctx )
+	{   
+		super.OnStoreSave( ctx );
 		
+		//write data
+		ctx.Write( m_Combination );
+		ctx.Write( m_CombinationLocked );
+	}
+	
+	override bool OnStoreLoad( ParamsReadContext ctx, int version )
+	{
+		if ( !super.OnStoreLoad( ctx, version ) )
+			return false;
+		
+		//--- Combination Lock data ---
+		//combination
+		if ( !ctx.Read( m_Combination ) )
+		{
+			m_Combination = 0;
+			return false;
+		}
+		
+		//combination locked
+		if ( !ctx.Read( m_CombinationLocked ) )
+		{
+			m_CombinationLocked = 0;
+			return false;
+		}
+		
+		//is lock attached
+		if ( version < 105 )					//removed in 105
+		{
+			bool is_lock_attached;
+			if ( !ctx.Read( is_lock_attached ) )
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+	
+	override void AfterStoreLoad()
+	{	
+		super.AfterStoreLoad();		
+		
+		//synchronize
 		Synchronize();
+	}
+	
+	// --- SYNCHRONIZATION
+	void Synchronize()
+	{
+		bsbDebugPrint("[bsb] CombinationLock.Synchronize " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked);
+		if ( GetGame().IsServer() )
+		{
+			SetSynchDirty();
+			
+			UpdateVisuals();
+		}
+	}
+	
+	override void OnVariablesSynchronized()
+	{
+		super.OnVariablesSynchronized();
+
+		//update visuals (client)
+		UpdateVisuals();
+		
+		//update sound (client)
+		UpdateSound();
+		
+		bsbDebugPrint("[bsb] CombinationLock.OnVariablesSynchronized " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked);
+	}
+	
+	void SetCombination( int combination )
+	{
+		m_Combination = combination;
+	}
+	
+	void SetCombinationLocked( int combination )
+	{
+		m_CombinationLocked = combination;
+	}
+	
+	int GetCombination()
+	{
+		return m_Combination;
+	}
+	
+	int GetLockDigits()
+	{
+		return m_LockDigits;
+	}
+	
+	// --- ACTIONS
+	void DialNextNumber()
+	{
+		string combination_text = m_Combination.ToString();
+		string dialed_text;
+		
+		//insert zeros to dials with 0 value
+		int length_diff = m_LockDigits - combination_text.Length();
+		for ( int i = 0; i < length_diff; ++i )
+		{
+			combination_text = "0" + combination_text;
+		}
+		
+		//assemble the whole combination with increased part
+		for ( int j = 0; j < combination_text.Length(); ++j )
+		{
+			if ( j == m_DialIndex )
+			{
+				int next_dialed_number = combination_text.Get( j ).ToInt() + 1;
+				if ( next_dialed_number > 9 )
+				{
+					next_dialed_number = 0;
+				}
+				
+				dialed_text += next_dialed_number.ToString();
+			}
+			else
+			{
+				dialed_text += combination_text.Get( j );
+			}
+		}
+		
+		//set new number		
+		SetCombination( dialed_text.ToInt() );
+		m_LockActionPerformed = LockAction.DIAL_INDEX_CHANGED;
+		
+		//synchronize
+		Synchronize();
+	}
+	
+	int GetDialIndex()
+	{
+		return m_DialIndex;
+	}
+	
+	void SetNextDial()
+	{
+		if ( m_LockDigits > 1 )
+		{
+			if ( m_DialIndex <= m_LockDigits - 2 )
+			{
+				m_DialIndex++;
+			}
+			else if ( m_DialIndex >= m_LockDigits >  - 1 )
+			{
+				m_DialIndex = 0;
+			}
+		}
+		else
+		{
+			m_DialIndex = 0;
+		}
+		
+		//performed action
+		m_LockActionPerformed = LockAction.DIAL_NUMBER_CHANED;
+		
+		//synchronize
+		Synchronize();
+	}	
+	
+	//Lock lock
+	void LockServer( EntityAI parent )
+	{
+		bsbDebugPrint("[bsb] CombinationLock.LockServer " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked);
+		if ( IsLockAttached() )
+		{
+			SetCombinationLocked( m_Combination );
+			ShuffleLock();
+			
+			//set slot lock
+			InventoryLocation inventory_location = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( inventory_location );		
+			parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), true );
+			
+			m_LockActionPerformed = LockAction.LOCKED;
+			
+			//synchronize
+			Synchronize();
+		}
+		
+		//reset performed action
+		//m_LockActionPerformed = LockAction.NONE;
+	}
+	
+	void UnlockServer( notnull EntityAI player, EntityAI parent )
+	{
+		bsbDebugPrint("[bsb] CombinationLock.UnlockServer " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked);
+		if ( IsLockAttached() )
+		{
+			Fence fence = Fence.Cast( parent );
+			
+			//set slot unlock
+			InventoryLocation inventory_location = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( inventory_location );			
+			fence.GetInventory().SetSlotLock( inventory_location.GetSlot(), false );			
+	
+			//drop entity from attachment slot
+			player.ServerDropEntity( this );
+			SetPosition( fence.GetKitSpawnPosition() );
+			PlaceOnSurface();
+			
+			m_LockActionPerformed = LockAction.UNLOCKED;
+			
+			//synchronize
+			Synchronize();			
+		}
+		
+		//reset performed action
+		//m_LockActionPerformed = LockAction.NONE;		
+	}
+		
+	//Shuffle lock
+	void ShuffleLock()
+	{
+		string combination_text = m_Combination.ToString();
+		string shuffled_text;
+		
+		//insert zeros to dials with 0 value
+		int length_diff = m_LockDigits - combination_text.Length();
+		for ( int i = 0; i < length_diff; ++i )
+		{
+			combination_text = "0" + combination_text;
+		}
+		
+		//assemble the whole combination with increased part
+		for ( int j = 0; j < combination_text.Length(); ++j )
+		{
+			int dial_number = combination_text.Get( j ).ToInt();
+			dial_number = ( dial_number + Math.RandomInt( 1, 9 ) ) % 10;
+			shuffled_text = shuffled_text + dial_number.ToString();
+		}
+		
+		SetCombination( shuffled_text.ToInt() );
+	}
+	
+	bool IsLocked()
+	{
+		if ( m_Combination != m_CombinationLocked )
+		{
+			return true;
+		}
+		
+		return false;
+	}
+	
+	bool IsLockedOnGate()
+	{
+		Fence fence = Fence.Cast( GetHierarchyParent() );
+		if ( fence )
+		{
+			if ( IsLocked() )
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	bool IsLockAttached()
 	{
-		return m_IsLockAttached;
-	}	
+		Fence fence = Fence.Cast( GetHierarchyParent() );
+		if ( fence )
+		{
+			return true;
+		}
+		
+		return false;
+	}
 	
+	//destroy lock
+	void DestroyLock()
+	{
+		GetGame().ObjectDelete( this );
+	}
+		
 	// --- VISUALS
 	void UpdateVisuals()
 	{
@@ -77,25 +355,32 @@ class CombinationLock extends ItemBase
 	
 	void UpdateSound()
 	{
-		//dialed new number
-		if ( m_CombinationClient != m_Combination )
-		{
-			SoundLockChangeNumber();
-		}
-		
 		//was locked
-		if ( !m_IsLockAttachedClient && m_IsLockAttached )
+		if ( m_LockActionPerformed == LockAction.LOCKED )
 		{
 			SoundLockClose();
 		}
+		
 		//was unlocked
-		else if ( m_IsLockAttachedClient && !m_IsLockAttached )
+		if ( m_LockActionPerformed == LockAction.UNLOCKED )
 		{
 			SoundLockOpen();
 		}
+		
+		//next dial index
+		if ( m_LockActionPerformed == LockAction.DIAL_INDEX_CHANGED )
+		{
+			SoundLockChangeDial();
+		}		
+		
+		//dialed new number
+		if ( m_LockActionPerformed == LockAction.DIAL_NUMBER_CHANED )
+		{
+			SoundLockChangeNumber();
+		}
 	}
 	
-	//TODO
+	//Show/Hide anims
 	protected void ShowItem()
 	{
 		SetAnimationPhase( "Combination_Lock_Item", 0 );
@@ -123,252 +408,7 @@ class CombinationLock extends ItemBase
 		SetAnimationPhase( "Lock_Attached_1", 			1 );
 		SetAnimationPhase( "Lock_Attached_2", 			1 );
 	}	
-	// ---
-	
-	// --- EVENTS
-	override void OnStoreSave( ParamsWriteContext ctx )
-	{   
-		super.OnStoreSave( ctx );
-		
-		//write data
-		ctx.Write( m_Combination );
-		ctx.Write( m_CombinationLocked );
-		ctx.Write( m_IsLockAttached );
-	}
-	
-	override bool OnStoreLoad( ParamsReadContext ctx, int version )
-	{
-		if ( !super.OnStoreLoad( ctx, version ) )
-			return false;
-		
-		//--- Combination Lock data ---
-		//combination
-		if ( !ctx.Read( m_Combination ) )
-		{
-			m_Combination = 0;
-			return false;
-		}
-		
-		//combination locked
-		if ( !ctx.Read( m_CombinationLocked ) )
-		{
-			m_CombinationLocked = 0;
-			return false;
-		}
-		
-		//is lock attached
-		if ( !ctx.Read( m_IsLockAttached ) )
-		{
-			m_IsLockAttached = false;
-			return false;
-		}
-		
-		return true;
-	}
-	
-	override void AfterStoreLoad()
-	{	
-		super.AfterStoreLoad();		
-		
-		//is lock attached
-		m_IsLockAttached = false;
-		
-		Fence fence = Fence.Cast( GetHierarchyParent() );
-		if ( fence )
-		{
-			//check for gate part
-			m_IsLockAttached = fence.HasGate();
-			
-			//do check for lock 'not attached but locked' state
-			if ( m_IsLockAttached )
-			{
-				InventoryLocation inventory_location = new InventoryLocation;
-				GetInventory().GetCurrentInventoryLocation( inventory_location );		
-				fence.GetInventory().SetSlotLock( inventory_location.GetSlot(), m_IsLockAttached );
-			}
-		}
-		//---
-		
-		//synchronize
-		Synchronize();
-	}
-	
-	// --- SYNCHRONIZATION
-	void Synchronize()
-	{
-		bsbDebugPrint("[bsb] CombinationLock.Synchronize " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
-		if ( GetGame().IsServer() )
-		{
-			SetSynchDirty();
-			
-			UpdateVisuals();
-		}
-	}
-	
-	override void OnVariablesSynchronized()
-	{
-		super.OnVariablesSynchronized();
-
-		//update visuals (client)
-		UpdateVisuals();
-		
-		//update sound (client)
-		UpdateSound();
-		
-		//update client state
-		m_CombinationClient = m_Combination;
-		m_IsLockAttachedClient = m_IsLockAttached;
-		
-		bsbDebugPrint("[bsb] CombinationLock.OnVariablesSynchronized " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
-	}
-	
-	void SetCombination( int combination )
-	{
-		m_Combination = combination;
-		
-		Synchronize();
-	}
-	
-	void SetCombinationLocked( int combination )
-	{
-		m_CombinationLocked = combination;
-		
-		Synchronize();
-	}
-	
-	// --- ACTIONS
-	int GetCombination()
-	{
-		return m_Combination;
-	}
-	
-	void DialNextNumber( int dial_index )
-	{
-		string combination_text = m_Combination.ToString();
-		string dialed_text;
-		
-		//insert zeros to dials with 0 value
-		int length_diff = m_LockDigits - combination_text.Length();
-		for ( int i = 0; i < length_diff; ++i )
-		{
-			combination_text = "0" + combination_text;
-		}
-		
-		//assemble the whole combination with increased part
-		for ( int j = 0; j < combination_text.Length(); ++j )
-		{
-			if ( j == dial_index )
-			{
-				int next_dialed_number = combination_text.Get( j ).ToInt() + 1;
-				if ( next_dialed_number > 9 )
-				{
-					next_dialed_number = 0;
-				}
-				
-				dialed_text += next_dialed_number.ToString();
-			}
-			else
-			{
-				dialed_text += combination_text.Get( j );
-			}
-		}
-		
-		SetCombination( dialed_text.ToInt() );
-	}
-	
-	void SetNextDial( out int dial_index )
-	{
-		if ( m_LockDigits > 1 )
-		{
-			if ( dial_index <= m_LockDigits - 2 )
-			{
-				dial_index++;
-			}
-			else if ( dial_index >= m_LockDigits >  - 1 )
-			{
-				dial_index = 0;
-			}
-		}
-		else
-		{
-			dial_index = 0;
-		}
-	}	
-	
-	//Lock lock
-	void Lock( EntityAI parent )
-	{
-		bsbDebugPrint("[bsb] CombinationLock.Lock " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
-		if ( !IsLockAttached() )
-		{
-			SetCombinationLocked( m_Combination );
-			ShuffleLock();
-			
-			//set slot lock
-			InventoryLocation inventory_location = new InventoryLocation;
-			GetInventory().GetCurrentInventoryLocation( inventory_location );		
-			parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), true );
-			
-			//set lock attached
-			SetLockAttachedState( true );
-		}
-	}
-	
-	void ServerUnlock( notnull EntityAI player, EntityAI parent )
-	{
-		bsbDebugPrint("[bsb] CombinationLock.ServerUnlock " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked + " m_IsLockAttached=" + m_IsLockAttached + " m_CombinationClient=" + m_CombinationClient + " m_IsLockAttachedClient=" + m_IsLockAttachedClient);
-		//set slot unlock
-		InventoryLocation inventory_location = new InventoryLocation;
-		GetInventory().GetCurrentInventoryLocation( inventory_location );			
-		parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), false );			
-
-		//drop entity from attachment slot
-		player.ServerDropEntity(this);
-		Fence fence = Fence.Cast( parent );
-		SetPosition( fence.GetKitSpawnPosition() );
-		PlaceOnSurface();
-		
-		//set lock attached
-		SetLockAttachedState( false );
-	}
-		
-	//Shuffle lock
-	void ShuffleLock()
-	{
-		string combination_text = m_Combination.ToString();
-		string shuffled_text;
-		
-		//insert zeros to dials with 0 value
-		int length_diff = m_LockDigits - combination_text.Length();
-		for ( int i = 0; i < length_diff; ++i )
-		{
-			combination_text = "0" + combination_text;
-		}
-		
-		//assemble the whole combination with increased part
-		for ( int j = 0; j < combination_text.Length(); ++j )
-		{
-			int dial_number = combination_text.Get( j ).ToInt();
-			dial_number = ( dial_number + Math.RandomInt( 1, 9 ) ) % 10;
-			shuffled_text = shuffled_text + dial_number.ToString();
-		}
-		
-		SetCombination( shuffled_text.ToInt() );
-	}
-	
-	bool IsLockedOnGate()
-	{
-		Fence fence = Fence.Cast( GetHierarchyParent() );
-		if ( fence )
-		{
-			if ( m_Combination != m_CombinationLocked )
-			{
-				return true;
-			}
-		}
-		
-		return false;
-	}
+	// ---	
 	
 	//================================================================
 	// SOUNDS

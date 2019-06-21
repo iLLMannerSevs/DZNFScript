@@ -10,11 +10,6 @@ class ActionTakeMaterialToHandsSwitch: ActionSingleUseBase
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
 	}
 	
-	override int GetType()
-	{
-		return AT_TAKE_MATERIAL_TO_HANDS_SWITCH;
-	}
-	
 	override string GetText()
 	{
 		return "#switch_to_next_material";

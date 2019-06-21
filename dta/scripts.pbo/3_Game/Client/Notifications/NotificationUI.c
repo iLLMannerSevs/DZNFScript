@@ -50,6 +50,8 @@ class NotificationUI
 			RichTextWidget detail	= RichTextWidget.Cast( notification.FindAnyWidget( "Detail" ) );
 			bottom_spacer.Show(true);
 			detail.SetText( data.GetDetailText() );
+			detail.Update();
+			bottom_spacer.Update();
 			notification.Update();
 		}
 		
@@ -70,7 +72,6 @@ class NotificationUI
 	
 	void AddVoiceNotification(string player, string name)
 	{
-		Print("Trying to add voice notification");
 		if (!m_VoiceNotifications.Contains(player))
 		{
 			Widget notification;
@@ -80,14 +81,18 @@ class NotificationUI
 			}
 			else
 			{
-				Print("Replacing old widget");
 				notification = m_WidgetTimers.Get(player);
 				m_WidgetTimers.Remove(player);
+				notification.SetAlpha( 120 / 255 );
+				Widget w_c = notification.FindAnyWidget( "Name" );
+				if( w_c )
+				{
+					w_c.SetAlpha( 1 );
+				}
 			}
 
 			RichTextWidget title = RichTextWidget.Cast(notification.FindAnyWidget("Name"));
 			m_VoiceNotifications.Insert(player, notification);
-			Print("Added voice notification");
 			title.SetText(name);
 			UpdateTargetHeight();
 		}
@@ -142,6 +147,8 @@ class NotificationUI
 			m_VelArr[0] = 0;
 		}
 		
+		array<Widget> to_delete = new array<Widget>;
+		
 		for( int i = 0; i < m_WidgetTimers.Count(); )
 		{
 			Widget w = m_WidgetTimers.GetElement( i );
@@ -151,11 +158,17 @@ class NotificationUI
 				w.SetAlpha( new_alpha );
 				Widget w_c = w.FindAnyWidget( "TopSpacer" );
 				Widget w_c2 = w.FindAnyWidget( "BottomSpacer" );
+				Widget w_c3 = w.FindAnyWidget( "Name" );
 				if( w_c && w_c2 )
 				{
 					float new_alpha_cont	= Math.Clamp( w_c.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
 					w_c.SetAlpha( new_alpha_cont );
 					w_c2.SetAlpha( new_alpha_cont );
+				}
+				if( w_c3 )
+				{
+					float new_alpha_voice	= Math.Clamp( w_c3.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
+					w_c3.SetAlpha(new_alpha_voice);
 				}
 				i++;
 			}

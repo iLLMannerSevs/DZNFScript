@@ -274,7 +274,6 @@ class BarbedWire extends ItemBase
 	{
 		m_AreaDamage = new AreaDamageOneTime(this);
 		m_AreaDamage.SetExtents("-1 0 -0.4", "1 0.7 0.4");
-		m_AreaDamage.SetLoopInterval(0.1);
 		m_AreaDamage.SetHitZones({"RightLeg", "LeftLeg", "RightFoot", "LeftFoot"});
 		m_AreaDamage.SetAmmoName("MeleeDamage");
 		m_AreaDamage.Spawn();
@@ -283,7 +282,7 @@ class BarbedWire extends ItemBase
 	
 	protected void DestroyDamageTrigger()
 	{
-		m_AreaDamage.DestroyDamageTrigger();
+		m_AreaDamage.Destroy();
 		m_TriggerActive = false;
 	}
 	// ---------------------------------------------------------
@@ -429,7 +428,7 @@ class BarbedWire extends ItemBase
 	override void SetActions()
 	{
 		super.SetActions();
-		
+
 		AddAction(ActionRestrainTarget);
 		AddAction(ActionRestrainSelf);
 	}	

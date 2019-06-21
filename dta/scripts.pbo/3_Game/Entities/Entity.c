@@ -1,5 +1,7 @@
 class Entity extends ObjectTyped
 {
+	proto native void DisableSimulation(bool disable);
+
 	//! returns simulation timestamp
 	proto native int GetSimulationTimeStamp();
 
@@ -22,7 +24,8 @@ class Entity extends ObjectTyped
 	\brief Client event on transformation update from network
 	@param pos, world space position
 	@param ypr, world space orientation in radians in form of Yaw/Pitch/Roll
+	@return true if visual cut (won't do any interpolation) should be done after calling this callback
 	\note object up vector is always y-axis
 	*/
-	void OnNetworkTransformUpdate(out vector pos, out vector ypr);
+	bool OnNetworkTransformUpdate(out vector pos, out vector ypr);
 };

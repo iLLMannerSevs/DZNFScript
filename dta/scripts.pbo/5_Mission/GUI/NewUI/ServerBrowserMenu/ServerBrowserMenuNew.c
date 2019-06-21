@@ -40,13 +40,14 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 #ifdef PLATFORM_CONSOLE
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/xbox/server_browser.layout" );
 		m_OfficialTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
+		m_CommunityTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
 #else
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser.layout" );
 		m_OfficialTab	= new ServerBrowserTabPc( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
 		m_CommunityTab	= new ServerBrowserTabPc( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
 		m_LANTab		= new ServerBrowserTabPc( layoutRoot.FindAnyWidget( "Tab_2" ), this, TabType.LAN );
 #endif
-			
+		
 		layoutRoot.FindAnyWidget( "Tabber" ).GetScript( m_Tabber );
 		
 		m_Play					= layoutRoot.FindAnyWidget( "play" );
@@ -181,7 +182,9 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 
 	bool IsFavorited( string server_id )
 	{
-		int index = m_Favorites.Find( server_id );		
+		int index = -1;
+		if( m_Favorites )
+			index = m_Favorites.Find( server_id );		
 		return ( index >= 0 );
 	}
 	
@@ -235,8 +238,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 			con_text.Update();
 			ref_text.Update();
 			res_text.Update();
-		}		
-		
+		}
 		#endif
 	}
 	
@@ -323,15 +325,24 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		if( !GetGame().GetUIManager().IsDialogVisible() && !GetDayZGame().IsConnecting() )
 		{
+			#ifndef PLATFORM_PS4
 			if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 			{
-				//m_Tabber.PreviousTab();
-				GetSelectedTab().PressSholderLeft();
+				m_Tabber.PreviousTab();
 			}
 			
 			if( GetGame().GetInput().LocalPress("UAUITabRight",false) )
 			{
-				//m_Tabber.NextTab();
+				m_Tabber.NextTab();
+			}
+			#endif
+			if( GetGame().GetInput().LocalPress("UAUINextDown",false) )
+			{
+				GetSelectedTab().PressSholderLeft();
+			}
+			
+			if( GetGame().GetInput().LocalPress("UAUINextUp",false) )
+			{
 				GetSelectedTab().PressSholderRight();
 			}
 			
@@ -420,8 +431,6 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		SaveFavoriteServersConsoles();
 #endif
 		Play();
-		
-		//server.
 	}
 	
 	void Play()

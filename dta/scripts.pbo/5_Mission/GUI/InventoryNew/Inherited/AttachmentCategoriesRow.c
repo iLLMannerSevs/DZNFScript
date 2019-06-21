@@ -604,13 +604,12 @@ class AttachmentCategoriesRow: ClosableContainer
 
 	override void UnfocusAll()
 	{
-		Container cnt = Container.Cast( this );
 		int i;
-		for ( i = 1; i < cnt.Count(); i++ )
+		for ( i = 1; i < Count(); i++ )
 		{
 			for ( int j = 0; j < ITEMS_IN_ROW; j++ )
 			{
-				Widget w = cnt.Get( i ).GetMainWidget().FindAnyWidget( "Cursor" + j );
+				Widget w = Get( i ).GetMainWidget().FindAnyWidget( "Cursor" + j );
 				if( w )
 					w.Show( false );
 			}

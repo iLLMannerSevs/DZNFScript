@@ -161,7 +161,7 @@ class ActionManagerServer: ActionManagerBase
 					//{
 					//	accepted = false;
 					//}
-					if( !AdvancedCommunication.Cast(targetEntity) && !Building.Cast(targetEntity) )
+					if( !AdvancedCommunication.Cast(targetEntity) && !Building.Cast(targetEntity) && !Fireplace.Cast(targetEntity) )
 					{
 						//Lock target
 						if( !GetGame().AddActionJuncture(m_Player,targetEntity,10000) )
@@ -252,7 +252,7 @@ class ActionManagerServer: ActionManagerBase
 				if (success)
 				{
 					StartDeliveredAction();
-				}	
+				}
 				else
 				{
 					if (m_PendingAction.UseAcknowledgment())
@@ -302,13 +302,13 @@ class ActionManagerServer: ActionManagerBase
 					if(m_ActionInputWantEnd)
 					{
 						m_ActionInputWantEnd = false;
-						m_CurrentActionData.m_Action.OnEndInput(m_CurrentActionData);
+						m_CurrentActionData.m_Action.EndInput(m_CurrentActionData);
 					}
 				
 					if(m_ActionWantEndRequest)
 					{
 						m_ActionWantEndRequest = false;
-						m_CurrentActionData.m_Action.OnEndRequest(m_CurrentActionData);
+						m_CurrentActionData.m_Action.EndRequest(m_CurrentActionData);
 					}
 					break;
 			}

@@ -5,6 +5,7 @@ enum ActionInputType
 	AIT_DOUBLECLICK,			//React to double click input - single use actions
 	AIT_HOLDSINGLE,				//React to hold input - single use actions
 	AIT_CLICKCONTINUOUS,		//React to click input for start and click for end
+	AIT_NOINPUTCONTROL,
 }
 
 class ForcedActionData
@@ -16,7 +17,7 @@ class ForcedActionData
 
 class ActionInput : ActionInput_Basic
 {
-	UAInput m_input;			//Input ID automaticly generated from name.
+	UAIDWrapper m_input;			//Input ID automaticly generated from name.
 	int m_InputType;			//Use from action manager for handling input
 	bool m_DetectFromTarget;	//Can be used action from target in vicinity?
 	bool m_Enabled;
@@ -30,22 +31,26 @@ class ActionInput : ActionInput_Basic
 	
 	ref ActionTarget m_Target;
 	ItemBase m_MainItem;
+	int m_ConditionMask;
 	
 	bool m_Active;
 	
-	void ActionInput(PlayerBase player)
+	void ActionInput()
 	{
 		Debug.Log("+ ActionInput() " + this);
+		
 		m_Active = false;
 		m_Enabled = true;
 		m_ForcedTarget = null;
 		m_ForcedActionData = null;
-		m_Player = player;
+		
 		m_JustActivate = false;
+		m_DetectFromTarget = false;
 	}
 	
-	void Init(ActionManagerClient am)
+	void Init(PlayerBase player, ActionManagerClient am)
 	{
+		m_Player = player;
 	}
 	
 	void SetEnablity(bool value)
@@ -55,11 +60,11 @@ class ActionInput : ActionInput_Basic
 	
 	protected void SetInput(string input_name)
 	{
-		m_input = GetUApi().GetInputByName(input_name);
-		if(m_input)
-			Print("+ input: "+input_name);
+		m_input = GetUApi().GetInputByName(input_name).GetPersistentWrapper();
+		if(m_input && m_input.InputP())
+			Debug.Log("+ input: " + input_name);
 		else
-			Print("- input: "+input_name);
+			Debug.Log("- input: " + input_name);
 	}
 	
 	int GetInputType()
@@ -69,7 +74,7 @@ class ActionInput : ActionInput_Basic
 	
 	UAInput GetUAInput()
 	{
-		return m_input;
+		return m_input.InputP();
 	}
 	
 	bool JustActivate()
@@ -102,25 +107,25 @@ class ActionInput : ActionInput_Basic
 				m_JustActivate = false;
 				if(m_Active)
 				{
-					m_Active = m_input.LocalHold();
+					m_Active = m_input.InputP().LocalHold();
 				}
 				else
 				{
-					m_Active = m_input.LocalHoldBegin();
+					m_Active = m_input.InputP().LocalHoldBegin();
 					m_JustActivate = m_Active;
 				}
 				break;
 			case ActionInputType.AIT_SINGLE:
-				m_Active = m_input.LocalClick();
+				m_Active = m_input.InputP().LocalClick();
 				m_JustActivate = m_Active;
 				break;
 			case ActionInputType.AIT_DOUBLECLICK:
-				m_Active = m_input.LocalDoubleClick();
+				m_Active = m_input.InputP().LocalDoubleClick();
 				m_JustActivate = m_Active;
 				break;
 			break;
 			case ActionInputType.AIT_HOLDSINGLE:
-				m_Active = m_input.LocalHoldBegin();
+				m_Active = m_input.InputP().LocalHoldBegin();
 				m_JustActivate = m_Active;
 				break;
 			break;
@@ -128,18 +133,20 @@ class ActionInput : ActionInput_Basic
 				m_JustActivate = false;
 				if(m_Active)
 				{
-					if ( m_input.LocalClick() )
+					if ( m_input.InputP().LocalClick() )
 					{
 						m_Active = false;
 					}
 				}
 				else
 				{
-					m_Active = m_input.LocalClick();
+					m_Active = m_input.InputP().LocalClick();
 					m_JustActivate = m_Active;
 				}
 				break;
 			break;
+			default:
+				break;
 		}
 	}
 	
@@ -147,11 +154,6 @@ class ActionInput : ActionInput_Basic
 	{
 		m_Active = false;
 		ActionsSelectReset();
-	}
-	
-	bool HasAction()
-	{
-		return false;
 	}
 	
 	void UpdatePossibleActions(PlayerBase player, ActionTarget target, ItemBase item, int action_condition_mask)
@@ -244,6 +246,11 @@ class ActionInput : ActionInput_Basic
 	
 	void SelectPrevAction()
 	{}
+	
+	bool HasInput()
+	{
+		return m_input != NULL;
+	}
 }
 
 class ContinuousInteractActionInput : ActionInput
@@ -287,6 +294,7 @@ class ContinuousInteractActionInput : ActionInput
 		
 		m_MainItem = item;
 		m_Target = target;
+		m_ConditionMask = action_condition_mask;
 
 		Object target_obj = target.GetObject();
 		
@@ -390,11 +398,6 @@ class ContinuousInteractActionInput : ActionInput
 		}
 	}
 	
-	override bool HasAction()
-	{
-		return m_SelectActions.Count() > 0;
-	}
-	
 	override array<ActionBase> GetPossibleActions()
 	{
 		return m_SelectActions;
@@ -407,7 +410,9 @@ class ContinuousInteractActionInput : ActionInput
 	
 	override ActionBase GetAction()
 	{
-		return m_SelectActions[m_selectedActionIndex];
+		if (m_SelectActions.Count() > 0)
+			return m_SelectActions[m_selectedActionIndex];
+		return null;
 	}
 	
 	override void ActionsSelectReset()
@@ -460,6 +465,53 @@ class InteractActionInput : ContinuousInteractActionInput
 	}
 };
 
+class NoIndicationActionInputBase : ActionInput
+{
+	void NoIndicationActionInputBase(PlayerBase player)
+	{
+		m_DetectFromTarget = false;
+	}
+	
+	override void UpdatePossibleActions(PlayerBase player, ActionTarget target, ItemBase item, int action_condition_mask)
+	{
+		m_MainItem = item;
+		m_Target = target;
+		m_ConditionMask = action_condition_mask;
+	}
+	
+	override ActionBase GetAction()
+	{
+		if ( ForceActionCheck(m_Player) )
+			return m_ForcedActionData.m_Action;
+		
+		if(m_MainItem)
+		{
+			array<ActionBase_Basic> possible_actions;
+			ActionBase action;
+			
+			m_MainItem.GetActions(this.Type(), possible_actions);
+			if(possible_actions)
+			{
+				for (int i = 0; i < possible_actions.Count(); i++)
+				{
+					action = ActionBase.Cast(possible_actions.Get(i));
+					if ( action.Can(m_Player, m_Target, m_MainItem, m_ConditionMask) )
+					{
+						return action;
+					}
+				}
+			}
+		
+		}
+		return NULL;
+	}
+
+	override ActionBase GetPossibleAction()
+	{
+		return GetAction();
+	}
+}
+
 class ContinuousDefaultActionInput : ActionInput
 {
 	protected ActionBase m_SelectAction;
@@ -468,6 +520,7 @@ class ContinuousDefaultActionInput : ActionInput
 		SetInput("UADefaultAction");
 		m_InputType = ActionInputType.AIT_CONTINUOUS;
 		m_DetectFromTarget = false;
+		m_SelectAction = null;
 	}
 	
 	override void UpdatePossibleActions(PlayerBase player, ActionTarget target, ItemBase item, int action_condition_mask)
@@ -489,6 +542,7 @@ class ContinuousDefaultActionInput : ActionInput
 		
 		m_MainItem = item;
 		m_Target = target;
+		m_ConditionMask = action_condition_mask;
 		
 		if(item)
 		{
@@ -520,11 +574,6 @@ class ContinuousDefaultActionInput : ActionInput
 				}
 			}
 		}
-	}
-	
-	override bool HasAction()
-	{
-		return m_SelectAction != NULL;
 	}
 	
 	override ActionBase GetPossibleAction()
@@ -562,46 +611,12 @@ class DefaultActionInput : ContinuousDefaultActionInput
 	}
 };
 
-class DropActionInput : DefaultActionInput
+class DropActionInput : NoIndicationActionInputBase
 {
 	void DropActionInput(PlayerBase player)
 	{
 		SetInput("UADropitem");
 		m_InputType = ActionInputType.AIT_SINGLE;
-	}
-	
-	override void UpdatePossibleActions(PlayerBase player, ActionTarget target, ItemBase item, int action_condition_mask)
-	{
-		if ( ForceActionCheck(player))
-		{
-			m_SelectAction = m_ForcedActionData.m_Action;
-			return;
-		}
-
-		m_SelectAction = NULL;
-		array<ActionBase_Basic> possible_actions;
-		ActionBase action;
-		int i;
-		
-		m_MainItem = item;
-		m_Target = target;
-		
-		if(item)
-		{
-			item.GetActions(this.Type(), possible_actions);
-			if(possible_actions)
-			{
-				for (i = 0; i < possible_actions.Count(); i++)
-				{
-					action = ActionBase.Cast(possible_actions.Get(i));
-					if ( action.Can(player, target, item, action_condition_mask) )
-					{
-						m_SelectAction = action;
-						return;
-					}
-				}
-			}
-		}
 	}
 };
 
@@ -632,10 +647,11 @@ class ToggleLightsActionInput : DefaultActionInput
 		m_MainItem = NULL;
 		if ( player && !player.IsInVehicle() ) 
 		{
-			if ( player.FindAttachmentBySlotName("Headgear") )
+			Clothing headgear = Clothing.Cast(player.FindAttachmentBySlotName("Headgear"));
+			if ( headgear )
 			{
 				//m_MainItem = Headtorch_ColorBase.Cast(player.FindAttachmentBySlotName("Headgear"));
-				target_new = new ActionTarget(player.FindAttachmentBySlotName("Headgear"), null, -1, vector.Zero, -1);
+				target_new = new ActionTarget(headgear, null, -1, vector.Zero, -1);
 				ForceActionTarget(target_new);
 			}
 			else
@@ -707,15 +723,17 @@ class ToggleNVGActionInput : DefaultActionInput
 		m_MainItem = NULL;
 		if ( player ) 
 		{
-			if ( player.FindAttachmentBySlotName("Headgear") )
+			Mich2001Helmet helmet = Mich2001Helmet.Cast(player.FindAttachmentBySlotName("Headgear"));
+			NVGHeadstrap headstrap = NVGHeadstrap.Cast(player.FindAttachmentBySlotName("Eyewear"));
+			if ( helmet )
 			{
 				//m_MainItem = Headtorch_ColorBase.Cast(player.FindAttachmentBySlotName("Headgear"));
-				target_new = new ActionTarget(player.FindAttachmentBySlotName("Headgear"), null, -1, vector.Zero, -1);
+				target_new = new ActionTarget(helmet, null, -1, vector.Zero, -1);
 				ForceActionTarget(target_new);
 			}
-			else if ( player.FindAttachmentBySlotName("Eyewear") )
+			else if ( headstrap )
 			{
-				target_new = new ActionTarget(player.FindAttachmentBySlotName("Eyewear"), null, -1, vector.Zero, -1);
+				target_new = new ActionTarget(headstrap, null, -1, vector.Zero, -1);
 				ForceActionTarget(target_new);
 			}
 			else
@@ -743,3 +761,36 @@ class ToggleNVGActionInput : DefaultActionInput
 		}
 	}
 };
+
+class ContinuousWeaponManipulationActionInput : NoIndicationActionInputBase
+{
+	void ContinuousWeaponManipulationActionInput(PlayerBase player)
+	{
+		SetInput("UAReloadMagazine");
+		m_InputType = ActionInputType.AIT_CONTINUOUS;
+	}
+};
+
+class WeaponManipulationActionInput : NoIndicationActionInputBase
+{	
+	void WeaponManipulationActionInput(PlayerBase player)
+	{
+		SetInput("UAReloadMagazine");
+		m_InputType = ActionInputType.AIT_SINGLE;
+	}
+};
+
+class ExternalControlledActionInput : NoIndicationActionInputBase
+{	
+	void ExternalControlledActionInput(PlayerBase player)
+	{
+		//SetInput("UAReloadMagazine");
+		m_InputType = ActionInputType.AIT_NOINPUTCONTROL;
+	}
+};
+
+class QuickaBarActionInput : ExternalControlledActionInput
+{	
+};
+
+

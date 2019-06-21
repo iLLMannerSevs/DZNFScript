@@ -6,7 +6,7 @@ class ActionSewTargetCB : ActionContinuousBaseCB
 	}
 };
 
-class ActionSewTarget: ActionContinuousBase
+class ActionSewTarget: ActionBandageBase
 {
 	void ActionSewTarget()
 	{
@@ -23,40 +23,26 @@ class ActionSewTarget: ActionContinuousBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
-
-	override int GetType()
-	{
-		return AT_SEW_T;
-	}
 		
 	override string GetText()
 	{
 		return "#sew_targets_cuts";
 	}
-	
+	/*
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		PlayerBase other_player = PlayerBase.Cast(target.GetObject());
 		return other_player.IsBleeding();
 	}
-
+*/
 	override void OnFinishProgressServer( ActionData action_data )
 	{
-		PlayerBase ntarget = PlayerBase.Cast(action_data.m_Target.GetObject());
-		if (ntarget.GetBleedingManagerServer() )
-		{
-			ntarget.GetBleedingManagerServer().RemoveMostSignificantBleedingSource();
-		}
+		PlayerBase target = PlayerBase.Cast(action_data.m_Target.GetObject());
 		
-		if (action_data.m_MainItem.HasQuantity())
+		if(action_data.m_MainItem && target)
 		{
-			action_data.m_MainItem.AddQuantity(-1,true);
+			ApplyBandage( action_data.m_MainItem, target );
+			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
-		else
-		{
-			action_data.m_MainItem.Delete();
-		}
-
-		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}
 };

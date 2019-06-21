@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
+ Author "3672"
+ ChangeDate -762665270
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "cardial_big.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

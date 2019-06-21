@@ -11,12 +11,6 @@ class ActionTestBloodTarget: ActionContinuousBase
 	void ActionTestBloodTarget()
 	{
 		m_CallbackClass = ActionTestBloodTargetCB;
-		m_MessageStartFail = "It's used up.";
-		m_MessageStart = "Player started testing your blood.";
-		m_MessageSuccess = "Player finished testing your blood.";
-		m_MessageFail = "Player moved and testing was canceled.";
-		m_MessageCancel = "You stopped testing.";
-	//	m_Animation = "testblood";
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_BANDAGETARGET;
 		m_FullBody = true;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
@@ -26,11 +20,6 @@ class ActionTestBloodTarget: ActionContinuousBase
 	{
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
-	}
-
-	override int GetType()
-	{
-		return AT_TEST_BLOOD_T;
 	}
 		
 	override string GetText()

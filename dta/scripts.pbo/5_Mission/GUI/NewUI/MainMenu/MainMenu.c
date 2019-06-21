@@ -39,6 +39,7 @@ class MainMenu extends UIScriptedMenu
 
 	protected ref ModsMenuSimple	m_ModsSimple;
 	protected ref ModsMenuDetailed	m_ModsDetailed;
+	protected ref ModsMenuTooltip	m_ModsTooltip;
 
 	override Widget Init()
 	{
@@ -102,7 +103,7 @@ class MainMenu extends UIScriptedMenu
 		
 		GetDayZGame().GetBacklit().MainMenu_OnShow();
 	
-		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );				
+		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );
 		
 		return layoutRoot;
 	}
@@ -117,9 +118,18 @@ class MainMenu extends UIScriptedMenu
 		ref array<ref ModInfo> modArray = new array<ref ModInfo>;
 		
 		GetGame().GetModInfos( modArray );
+		modArray.Remove( modArray.Count() - 1 );
+		modArray.Invert();
 		
-		//m_ModsSimple = new ModsMenuSimple(modArray, layoutRoot.FindAnyWidget("ModsSimple"));
-		//m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"));
+		if( m_ModsSimple )
+			delete m_ModsSimple;
+		if( m_ModsDetailed )
+			delete m_ModsDetailed;
+		
+		m_ModsTooltip = new ModsMenuTooltip(layoutRoot);
+		m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"), m_ModsTooltip);
+		
+		m_ModsSimple = new ModsMenuSimple(modArray, layoutRoot.FindAnyWidget("ModsSimple"), m_ModsDetailed);
 	}
 	
 	override bool OnMouseButtonDown( Widget w, int x, int y, int button )
@@ -332,6 +342,8 @@ class MainMenu extends UIScriptedMenu
 	override void OnShow()
 	{
 		SetFocus( null );
+		OnChangeCharacter();
+		LoadMods();
 		return;
 		/*
 		GetDayZGame().GetBacklit().MainMenu_OnShow();
@@ -370,8 +382,8 @@ class MainMenu extends UIScriptedMenu
 	{
 		if (m_ScenePC && m_ScenePC.GetIntroCharacter())
 		{
-			//saves demounit for further use
-			if (m_ScenePC.GetIntroCharacter().GetCharacterObj().GetInventory().FindAttachment(InventorySlots.BODY) && m_ScenePC.GetIntroCharacter().GetCharacterID() == -1)
+			//saves new, unplayed demounit for further use
+			if (CanSaveCharacterSetup())
 			{
 				m_ScenePC.GetIntroCharacter().SaveCharacterSetup();
 			}
@@ -385,6 +397,19 @@ class MainMenu extends UIScriptedMenu
 		{
 			GetGame().GetCallQueue(CALL_CATEGORY_GUI).CallByName(this, "ConnectBestServer");
 		}
+	}
+	
+	bool CanSaveCharacterSetup()
+	{
+		if (m_ScenePC && m_ScenePC.GetIntroCharacter() && m_ScenePC.GetIntroCharacter().GetCharacterID() == -1)
+		{
+			PlayerBase player = m_ScenePC.GetIntroCharacter().GetCharacterObj();
+			if (player && player.GetInventory() && player.GetInventory().FindAttachment(InventorySlots.BODY)) //default equipment detected
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	void OpenMenuServerBrowser()

@@ -23,11 +23,6 @@ class ActionDestroyPart: ActionContinuousBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
 	}
-
-	override int GetType()
-	{
-		return AT_DESTROY_PART;
-	}
 		
 	override string GetText()
 	{
@@ -66,7 +61,7 @@ class ActionDestroyPart: ActionContinuousBase
 		if ( construction.CanDestroyPart( construction_part.GetPartName() ) )
 		{
 			//build
-			construction.DestroyPartServer( action_data.m_Player, construction_part.GetPartName(), GetType() );
+			construction.DestroyPartServer( action_data.m_Player, construction_part.GetPartName(), AT_DESTROY_PART );
 			
 			//add damage to tool
 			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DESTROY, false );
@@ -115,5 +110,10 @@ class ActionDestroyPart: ActionContinuousBase
 		}
 		
 		return false;
-	}	
+	}
+	
+	override string GetAdminLogMessage(ActionData action_data)
+	{
+		return " destroyed " + action_data.m_Target.GetObject().GetDisplayName() + " with " + action_data.m_MainItem.GetDisplayName();
+	}
 }

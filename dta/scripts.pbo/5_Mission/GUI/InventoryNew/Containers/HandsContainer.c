@@ -1538,7 +1538,7 @@ class HandsContainer: Container
 					if( item.ConfigGetFloat("varStackMax") )
 						item.SplitIntoStackMaxClient( player, -1, );
 					else
-						player.PredictiveTakeEntityToInventory( FindInventoryLocationType.ANY, InventoryItem.Cast( item ) );
+						player.PredictiveTakeEntityToInventory( FindInventoryLocationType.ANY, item );
 				}
 				else
 				{

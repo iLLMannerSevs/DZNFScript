@@ -146,11 +146,11 @@ class MissionServer extends MissionBase
 		
 		switch(eventTypeId)
 		{
-		case PreloadEventTypeID:
-			PreloadEventParams preloadParams;
-			Class.CastTo(preloadParams, params);
+		case ClientPrepareEventTypeID:
+			ClientPrepareEventParams clientPrepareParams;
+			Class.CastTo(clientPrepareParams, params);
 			
-			OnPreloadEvent(preloadParams.param1, preloadParams.param2, preloadParams.param3, preloadParams.param4, preloadParams.param5);
+			OnClientPrepareEvent(clientPrepareParams.param1, clientPrepareParams.param2, clientPrepareParams.param3, clientPrepareParams.param4);
 			break;
 
 		case ClientNewEventTypeID:
@@ -231,8 +231,8 @@ class MissionServer extends MissionBase
 				Debug.Log("ClientDisconnectenEvent: Player is empty");
 				return;
 			}
-						
-			OnClientDisconnectedEvent(identity, player, logoutTime, authFailed);	
+			
+			OnClientDisconnectedEvent(identity, player, logoutTime, authFailed);
 			break;
 			
 		case LogoutCancelEventTypeID:
@@ -266,25 +266,21 @@ class MissionServer extends MissionBase
 	{
 		Debug.Log("InvokeOnDisconnect:"+this.ToString(),"Connect");
 		if( player ) player.OnDisconnect();
-		
-		// Send list of players at all clients
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater( SyncEvents.SendPlayerList, 500 );
 	}
 
-	void OnPreloadEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw, out int queueTime)
+	void OnClientPrepareEvent(PlayerIdentity identity, out bool useDB, out vector pos, out float yaw)
 	{
 		if (GetHive())
 		{
-			// Preload data on client by character from database
+			// use character from database
 			useDB = true;
 		}
 		else
 		{
-			// Preload data on client without database
+			// use following data without database
 			useDB = false;
 			pos = "1189.3 0.0 5392.48";
 			yaw = 0;
-			queueTime = 5;
 		}
 	}
 	
@@ -339,7 +335,7 @@ class MissionServer extends MissionBase
 		Class.CastTo(m_player, playerEnt);
 		
 		GetGame().SelectPlayer(identity, m_player);
-		
+	
 		return m_player;
 		//moduleDefaultCharacter.FileDelete(moduleDefaultCharacter.GetFileName());
 	}
@@ -374,9 +370,9 @@ class MissionServer extends MissionBase
 	{
 		string characterName;
 		// get login data for new character
-		// note: ctx can be filled on client in StoreLoginData()
+		// note: ctx can be filled on client in GetLoginData()
 		ProcessLoginData(ctx, m_top, m_bottom, m_shoes, m_skin);
-		
+				
 		if (m_top == -1 || m_bottom == -1 || m_shoes == -1 || m_skin == -1)
 		{
 			characterName = GetGame().CreateRandomPlayer();
@@ -468,10 +464,10 @@ class MissionServer extends MissionBase
 		
 		// disable reconnecting to old char
 		GetGame().RemoveFromReconnectCache(uid);
-		
+
 		// now player can't cancel logout anymore, so call everything needed upon disconnect
 		InvokeOnDisconnect(player);
-		
+
 		Print("[Logout]: Player " + uid + " finished");
 
 		if (GetHive())
@@ -489,6 +485,8 @@ class MissionServer extends MissionBase
 		
 		// remove player from server
 		GetGame().DisconnectPlayer(identity);
+		// Send list of players at all clients
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(SyncEvents.SendPlayerList, 1000);
 	}
 	
 	void HandleBody(PlayerBase player)

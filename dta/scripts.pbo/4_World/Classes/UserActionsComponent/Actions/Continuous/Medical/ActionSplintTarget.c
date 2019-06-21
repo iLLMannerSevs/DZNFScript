@@ -11,12 +11,6 @@ class ActionSplintTarget: ActionContinuousBase
 	void ActionSplintTarget()
 	{
 		m_CallbackClass = ActionSplintTargetCB;
-		m_MessageStartFail = "There's no splint left.";
-		m_MessageStart = "Player started fixing you.";
-		m_MessageSuccess = "Player finished fixing you.";
-		m_MessageFail = "Player moved and fixing was canceled.";
-		m_MessageCancel = "You stopped fixing.";
-		//m_Animation = "splint";
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_BANDAGETARGET;
 		m_FullBody = true;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
@@ -26,11 +20,6 @@ class ActionSplintTarget: ActionContinuousBase
 	{	
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
-	}
-
-	override int GetType()
-	{
-		return AT_SPLINT_T;
 	}
 		
 	override string GetText()

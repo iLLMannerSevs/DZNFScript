@@ -526,271 +526,6 @@ FrameWidgetClass main_menu_root {
     }
    }
   }
-  GridSpacerWidgetClass character_stats_root {
-   visible 1
-   ignorepointer 1
-   position 100 182
-   size 400 380
-   halign right_ref
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   priority 3
-   Padding 0
-   Margin 0
-   "Size To Content V" 1
-   Columns 1
-   Rows 2
-   {
-    ImageWidgetClass character_stats_header {
-     ignorepointer 1
-     color 0 0 0 0.8784
-     position 0 0
-     size 1 36
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 1
-     image0 "set:dayz_gui image:inv_header_1"
-     mode blend
-     "src alpha" 1
-     "no wrap" 1
-     stretch 1
-     {
-      TextWidgetClass character_stats_text {
-       ignorepointer 1
-       size 1 26
-       valign center_ref
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 1
-       style Normal
-       text "#main_menu_statistics"
-       font "gui/fonts/sdf_MetronLight42"
-       "exact text" 1
-       "exact text size" 22
-       "text halign" center
-       "text valign" center
-      }
-     }
-    }
-    GridSpacerWidgetClass character_stats_content {
-     ignorepointer 1
-     color 0 0 0 0.7059
-     position 0 36
-     size 1 0
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 1
-     style DayZDefaultPanelBottom
-     Padding 4
-     Margin 6
-     "Size To Content V" 1
-     Columns 1
-     Rows 5
-     {
-      FrameWidgetClass TimeSurvived {
-       ignorepointer 1
-       position 0 0
-       size 48 24
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       {
-        TextWidgetClass TimeSurvivedLabel {
-         ignorepointer 1
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         text "#main_menu_time"
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-        TextWidgetClass TimeSurvivedValue {
-         ignorepointer 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass PlayersKilled {
-       ignorepointer 1
-       position 0 0
-       size 48 24
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       {
-        TextWidgetClass PlayersKilledLabel {
-         ignorepointer 1
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         text "#main_menu_players_killed"
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-        TextWidgetClass PlayersKilledValue {
-         ignorepointer 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass InfectedKilled {
-       ignorepointer 1
-       position 0 0
-       size 48 24
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       {
-        TextWidgetClass InfectedKilledLabel {
-         ignorepointer 1
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         text "#main_menu_infected_killed"
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-        TextWidgetClass InfectedKilledValue {
-         ignorepointer 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass DistanceTraveled {
-       ignorepointer 1
-       position 0 0
-       size 48 24
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       {
-        TextWidgetClass DistanceTraveledLabel {
-         ignorepointer 1
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         text "#main_menu_distance_foot"
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-        TextWidgetClass DistanceTraveledValue {
-         ignorepointer 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass LongRangeShot {
-       ignorepointer 1
-       position 0 0
-       size 48 24
-       hexactpos 1
-       vexactpos 1
-       hexactsize 1
-       vexactsize 1
-       {
-        TextWidgetClass LongRangeShotLabel {
-         ignorepointer 1
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         text "#main_menu_long_range_hit_player"
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-        TextWidgetClass LongRangeShotValue {
-         ignorepointer 1
-         size 1 1
-         halign right_ref
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         "size to text h" 1
-         "size to text v" 0
-         "text halign" center
-         "text valign" center
-        }
-       }
-      }
-     }
-    }
-   }
-  }
   WrapSpacerWidgetClass play_panel_root {
    visible 1
    ignorepointer 1
@@ -899,7 +634,7 @@ FrameWidgetClass main_menu_root {
      vexactpos 1
      hexactsize 0
      vexactsize 1
-     style DayZDefaultPanel
+     style DayZDefaultPanelSides
      "no focus" 1
      Padding 0
      Margin 0
@@ -1212,6 +947,275 @@ FrameWidgetClass main_menu_root {
       }
      }
     }
+    GridSpacerWidgetClass character_stats_root {
+     visible 1
+     ignorepointer 1
+     position 100 182
+     size 400 380
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     priority 3
+     Padding 0
+     Margin 0
+     "Size To Content V" 1
+     Columns 1
+     Rows 2
+     {
+      ImageWidgetClass character_stats_header {
+       ignorepointer 1
+       color 0 0 0 0.8627
+       position 0 0
+       size 1 33
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       image0 "set:dayz_gui image:inv_header_1"
+       mode blend
+       "src alpha" 1
+       "no wrap" 1
+       stretch 1
+       "flip u" 0
+       "flip v" 0
+       filter 1
+       nocache 0
+       {
+        TextWidgetClass character_stats_text {
+         ignorepointer 1
+         size 1 26
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style Normal
+         text "#main_menu_statistics"
+         font "gui/fonts/sdf_MetronLight42"
+         "exact text" 1
+         "exact text size" 22
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+      GridSpacerWidgetClass character_stats_content {
+       ignorepointer 1
+       color 0 0 0 0.549
+       position 0 36
+       size 1 0
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style DayZDefaultPanelSides
+       Padding 4
+       Margin 6
+       "Size To Content V" 1
+       Columns 1
+       Rows 5
+       {
+        FrameWidgetClass TimeSurvived {
+         ignorepointer 1
+         position 0 0
+         size 48 24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass TimeSurvivedLabel {
+           ignorepointer 1
+           size 1 1
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#main_menu_time"
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+          TextWidgetClass TimeSurvivedValue {
+           ignorepointer 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        FrameWidgetClass PlayersKilled {
+         ignorepointer 1
+         position 0 0
+         size 48 24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass PlayersKilledLabel {
+           ignorepointer 1
+           size 1 1
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#main_menu_players_killed"
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+          TextWidgetClass PlayersKilledValue {
+           ignorepointer 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        FrameWidgetClass InfectedKilled {
+         ignorepointer 1
+         position 0 0
+         size 48 24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass InfectedKilledLabel {
+           ignorepointer 1
+           size 1 1
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#main_menu_infected_killed"
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+          TextWidgetClass InfectedKilledValue {
+           ignorepointer 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        FrameWidgetClass DistanceTraveled {
+         ignorepointer 1
+         position 0 0
+         size 48 24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass DistanceTraveledLabel {
+           ignorepointer 1
+           size 1 1
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#main_menu_distance_foot"
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+          TextWidgetClass DistanceTraveledValue {
+           ignorepointer 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+        FrameWidgetClass LongRangeShot {
+         ignorepointer 1
+         position 0 0
+         size 48 24
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+         {
+          TextWidgetClass LongRangeShotLabel {
+           ignorepointer 1
+           size 1 1
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#main_menu_long_range_hit_player"
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+          TextWidgetClass LongRangeShotValue {
+           ignorepointer 1
+           size 1 1
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           "size to text h" 1
+           "size to text v" 0
+           "text halign" center
+           "text valign" center
+          }
+         }
+        }
+       }
+      }
+     }
+    }
    }
   }
   PanelWidgetClass character_name_xbox_background {
@@ -1458,7 +1462,7 @@ FrameWidgetClass main_menu_root {
    priority 2
   }
   FrameWidgetClass ModsSimple {
-   visible 0
+   visible 1
    clipchildren 0
    ignorepointer 1
    position 100 50
@@ -1472,13 +1476,15 @@ FrameWidgetClass main_menu_root {
    priority 5
   }
   FrameWidgetClass ModsDetailed {
+   clipchildren 0
    ignorepointer 1
    position 100 300
-   size 444 640
+   size 580 640
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
+   priority 5
   }
   PanelWidgetClass last_server_info {
    visible 1

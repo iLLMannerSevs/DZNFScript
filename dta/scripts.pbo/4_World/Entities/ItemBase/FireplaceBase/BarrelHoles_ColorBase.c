@@ -90,8 +90,10 @@ class BarrelHoles_ColorBase extends FireplaceBase
 
 	override bool CanReleaseAttachment( EntityAI attachment )
 	{
-		ItemBase item = ItemBase.Cast( attachment );
+		if( !super.CanReleaseAttachment( attachment ) )
+			return false;
 		
+		ItemBase item = ItemBase.Cast( attachment );
 		//kindling items
 		if ( IsKindling ( item ) && !IsBurning() && IsOpen() )
 		{

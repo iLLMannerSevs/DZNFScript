@@ -46,6 +46,11 @@ class TentBase extends ItemBase
 		return true;
 	}
 	
+	override bool IsItemTent()
+	{
+		return true;
+	}
+	
 	override void OnStoreSave( ParamsWriteContext ctx )
 	{   
 		super.OnStoreSave( ctx );
@@ -88,11 +93,11 @@ class TentBase extends ItemBase
 		
 		if ( GetState() == PITCHED )
 		{
-			Pitch( false );
+			Pitch( false, true );
 		}
 		else
 		{
-			Pack( false );
+			Pack( false, true );
 		}
 	}
 	
@@ -307,6 +312,83 @@ class TentBase extends ItemBase
 		}
 	}
 		
+	override int GetViewIndex()
+	{
+		if( MemoryPointExists( "invView2" ) )
+		{
+			#ifdef PLATFORM_WINDOWS
+			InventoryLocation il = new InventoryLocation;
+			GetInventory().GetCurrentInventoryLocation( il );
+			InventoryLocationType type = il.GetType();
+			
+			if ( GetState() == PACKED )
+			{
+				switch( type )
+				{
+					case InventoryLocationType.CARGO:
+					{
+						return 0;
+					}
+					case InventoryLocationType.ATTACHMENT:
+					{
+						return 1;
+					}
+					case InventoryLocationType.HANDS:
+					{
+						return 0;
+					}
+					case InventoryLocationType.GROUND:
+					{
+						return 0;
+					}
+					case InventoryLocationType.PROXYCARGO:
+					{
+						return 0;
+					}
+					default:
+					{
+						return 0;
+					}
+				}
+			}
+			else
+			{
+				switch( type )
+				{
+					case InventoryLocationType.CARGO:
+					{
+						return 0;
+					}
+					case InventoryLocationType.ATTACHMENT:
+					{
+						return 1;
+					}
+					case InventoryLocationType.HANDS:
+					{
+						return 0;
+					}
+					case InventoryLocationType.GROUND:
+					{
+						return 1;
+					}
+					case InventoryLocationType.PROXYCARGO:
+					{
+						return 0;
+					}
+					default:
+					{
+						return 0;
+					}
+				}
+			}
+			#ifdef PLATFORM_CONSOLE
+			return 1;
+			#endif
+			#endif
+		}
+		return 0;
+	}
+
 	int GetState()
 	{
 		return m_State;
@@ -347,8 +429,8 @@ class TentBase extends ItemBase
 		return false;
 	}
 	
-	void Pack( bool update_navmesh )
-	{	
+	void Pack( bool update_navmesh, bool init = false )
+	{			
 		HideAllAnimationsAndProxyPhysics();
 		
 		m_State = PACKED;
@@ -367,12 +449,15 @@ class TentBase extends ItemBase
 						
 		DestroyClutterCutter();
 		
-		SetViewIndex( PACKED );
-		
 		SetSynchDirty();
+		
+		if ( ( !GetGame().IsMultiplayer() || GetGame().IsClient() ) && !init )
+		{
+			GetOnViewIndexChanged().Invoke();
+		}
 	}
 
-	void Pitch( bool update_navmesh )
+	void Pitch( bool update_navmesh, bool init = false )
 	{		
 		HideAllAnimationsAndProxyPhysics();
 		
@@ -389,10 +474,13 @@ class TentBase extends ItemBase
 		{
 			RegenerateNavmesh();
 		}
-		
-		SetViewIndex( PITCHED );
 
 		SetSynchDirty();
+		
+		if ( ( !GetGame().IsMultiplayer() || GetGame().IsClient() ) && !init )
+		{
+			GetOnViewIndexChanged().Invoke();
+		}
 	}
 	
 	void UpdateVisuals()

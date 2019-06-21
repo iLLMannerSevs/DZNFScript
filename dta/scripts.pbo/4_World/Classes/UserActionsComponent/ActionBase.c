@@ -32,20 +32,13 @@ class ActionData
 	int									m_RefreshReservationTimer;
 	bool								m_WasExecuted;
 	bool								m_WasActionStarted;
+	bool								m_ReciveEndInput;
 }
 
 class ActionBase : ActionBase_Basic
 {	
 	//STATIC DATA
 	// Configurable action parameters
-	protected string				m_MessageStartFail; //called from ontick method of quantity and time baseclasses, usually informing player that item is empty
-	protected string				m_MessageStart; //called from onstart method, usually informing player that he started the action
-	protected string				m_MessageSuccess; //called from ontick method, ussualy informing player that he succesfully finished the action
-	protected string 				m_MessageFail; //called from cancel or ontick methods,  ussualy informing player that he or target moved and thus was action canceled
-	protected string				m_MessageCancel; //called from cancel method, ussualy informing player that he stoped holding RMB and canceled action
-	protected string				m_MessageSuccessTarget; //called from ontick method, ussualy informing other player that he succesfully finished the action
-	protected string 				m_MessageStartTarget; //called from cancel or ontick methods,  ussualy informing other player that he or target moved and thus was action canceled
-	protected string				m_MessageCancelTarget; //called from cancel method, ussualy informing other player that he stoped holding RMB and canceled action
 	protected string				m_Sound; //sound played at the beggining of action
 
 	protected bool					m_LockTargetOnUse;	//this parameter sets wheter player can perform actions on target while other player is already performing action on it. defaulted as true
@@ -60,7 +53,7 @@ class ActionBase : ActionBase_Basic
 
 	//RUNTIME DATA
 	protected ref Param1<string> 	m_MessageParam; //used for passing messages from server to client
-	protected ref Param2<int,int>	m_MessagesParam;
+	//protected ref Param2<int,int>	m_MessagesParam;
 	
 	//SOFT SKILLS
 	protected float					m_SpecialtyWeight;
@@ -75,18 +68,9 @@ class ActionBase : ActionBase_Basic
 		m_FullBody = false;
 		m_Sound = "";
 		m_LockTargetOnUse = HasTarget();
-		m_MessageStartFail = "The action failed";
-		m_MessageStart = "I have started an action.";
-		m_MessageSuccess = "The action succesfully finished.";
-		m_MessageFail = "The action failed.";
-		m_MessageCancel = "I have canceled the action.";
-		m_MessageStartTarget = "Other player started performing action on you.";
-		m_MessageSuccessTarget = "Other player succesfuly performed action on you.";
-		m_MessageCancelTarget = "Other player canceled the action.";
-		
 		// dont override
 		m_MessageParam = new Param1<string>("");
-		m_MessagesParam = new Param2<int,int>(0,0);
+		//m_MessagesParam = new Param2<int,int>(0,0);
 		m_Sounds = new TStringArray;
 		m_Input = null;
 		m_ActionID = 0;
@@ -138,6 +122,7 @@ class ActionBase : ActionBase_Basic
 		action_data.m_RefreshReservationTimer = 150;
 		action_data.m_WasExecuted = false;
 		action_data.m_WasActionStarted = false;
+		action_data.m_ReciveEndInput = false;
 		
 		ActionReciveData action_recive_data = player.GetActionManager().GetReciveData();
 		if ( action_recive_data )
@@ -216,11 +201,6 @@ class ActionBase : ActionBase_Basic
 	int GetActionCategory()
 	{
 		return AC_UNCATEGORIZED;
-	}
-	
-	int GetType()  //returns action uid
-	{
-		return 0;
 	}
 	
 	int IsEat()
@@ -490,13 +470,23 @@ class ActionBase : ActionBase_Basic
 	
 	void Interrupt(ActionData action_data)
 	{}
-
+	
 	void OnEndInput(ActionData action_data)
 	{}
 	
+	void EndInput(ActionData action_data)
+	{
+		action_data.m_ReciveEndInput = true;
+		OnEndInput(action_data);
+	}
+
 	void OnEndRequest(ActionData action_data)
 	{}
 	
+	void EndRequest(ActionData action_data)
+	{
+		OnEndRequest(action_data);
+	}
 	
 	static int ComputeConditionMask( PlayerBase player, ActionTarget target, ItemBase item )
 	{
@@ -700,7 +690,7 @@ class ActionBase : ActionBase_Basic
 	}
 
 	// MESSAGES --------------------------------------------------------------------
-	string GetMessageText( int state ) //returns text of action based on given id
+/*	string GetMessageText( int state ) //returns text of action based on given id
 	{
 		string message = "";
 		switch ( state )
@@ -760,7 +750,7 @@ class ActionBase : ActionBase_Basic
 		}
 
 		return message;
-	}
+	}*/
 	
 	// action need first have permission from server before can start
 	bool UseAcknowledgment()
@@ -814,52 +804,6 @@ class ActionBase : ActionBase_Basic
 		}
 	}
 	
-	protected string GetMessageStartFail()
-	{
-		return m_MessageStartFail;
-	}
-	
-	protected string GetMessageStart()
-	{
-		return m_MessageStart;
-	}
-	
-	protected string GetMessageSuccess() 
-	{
-		return m_MessageSuccess;
-	}
-	
-	protected string GetMessageFail()
-	{
-		return m_MessageFail;
-	}
-	
-	protected string GetMessageCancel() 
-	{
-		return m_MessageCancel;
-	}
-	
-	protected string GetMessageInterrupt() 
-	{
-		return "";
-		//return m_MessageInterrupt;
-	}
-	
-	protected string GetMessageSuccessTarget() 
-	{
-		return m_MessageSuccessTarget;
-	}
-	
-	protected string GetMessageStartTarget()
-	{
-		return m_MessageStartTarget;
-	}
-	
-	protected string GetMessageCancelTarget()
-	{
-		return m_MessageCancelTarget;
-	}
-
 	// ActionCondition Rules
 	// ------------------------------------------------------
 	protected bool IsDamageDestroyed(ActionTarget target)
@@ -989,11 +933,6 @@ class ActionBase : ActionBase_Basic
 		return m_Input;
 	}
 	
-	protected string GetInputName()
-	{
-		return "none";
-	}
-	
 	void SetID(int actionId)
 	{
 		m_ActionID = actionId;
@@ -1002,5 +941,10 @@ class ActionBase : ActionBase_Basic
 	int GetID()
 	{
 		return m_ActionID;
+	}
+	
+	string GetAdminLogMessage(ActionData action_data)
+	{
+		return "";
 	}
 };

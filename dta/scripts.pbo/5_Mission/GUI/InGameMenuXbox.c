@@ -307,14 +307,14 @@ class InGameMenuXbox extends UIScriptedMenu
 				// skip logout screen in singleplayer
 				GetGame().GetMission().AbortMission();
 			}	
-			g_Game.CancelQueueTime();
+			g_Game.CancelLoginTimeCountdown();
 			
 			return true;	
 		
 		}
 		else if ( code == IDC_INT_EXIT && result == DBB_NO )
 		{
-			g_Game.CancelQueueTime();
+			g_Game.CancelLoginTimeCountdown();
 		}
 		else if ( code == IDC_INT_RETRY && result == DBB_YES )
 		{			

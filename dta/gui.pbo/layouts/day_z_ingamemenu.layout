@@ -1,5 +1,5 @@
 FrameWidgetClass FrameWidget {
- ignorepointer 1
+ ignorepointer 0
  size 1 1
  halign center_ref
  valign center_ref
@@ -373,6 +373,17 @@ FrameWidgetClass FrameWidget {
    mode additive
    "src alpha" 1
    stretch 0
+  }
+  FrameWidgetClass hint_frame {
+   clipchildren 0
+   ignorepointer 1
+   position 100 173.75
+   size 400 460
+   halign right_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
   }
  }
 }
