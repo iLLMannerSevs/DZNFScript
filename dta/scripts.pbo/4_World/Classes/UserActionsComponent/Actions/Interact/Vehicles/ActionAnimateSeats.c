@@ -1,10 +1,5 @@
 class ActionAnimateSeats: ActionAnimateCarSelection
 {
-	override int GetType()
-	{
-		return AT_ANIMATE_SEATS;
-	}
-
 	override string GetText()
 	{
 		return "#move_seat";

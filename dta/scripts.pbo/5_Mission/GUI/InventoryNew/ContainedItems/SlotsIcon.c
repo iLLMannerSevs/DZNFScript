@@ -80,7 +80,10 @@ class SlotsIcon: LayoutHolder
 	void ~SlotsIcon()
 	{
 		if( m_Obj )
+		{
 			m_Obj.GetOnItemFlipped().Remove( UpdateFlip );
+			m_Obj.GetOnViewIndexChanged().Remove( SetItemPreview );
+		}
 	}
 	
 	Widget GetPanelWidget()
@@ -270,7 +273,7 @@ class SlotsIcon: LayoutHolder
 				float progress_max = m_QuantityProgress.GetMax();
 				int max = m_Item.ConfigGetInt( "varQuantityMax" );
 				int count = m_Item.ConfigGetInt( "count" );
-				float quantity = QuantityConversions.GetItemQuantity( InventoryItem.Cast( m_Item ) );
+				float quantity = QuantityConversions.GetItemQuantity( m_Item );
 
 				if( count > 0 )
 				{
@@ -323,6 +326,7 @@ class SlotsIcon: LayoutHolder
 			m_Obj	= obj;
 			m_Item	= ItemBase.Cast( m_Obj );
 			m_Obj.GetOnItemFlipped().Insert( UpdateFlip );
+			m_Obj.GetOnViewIndexChanged().Insert( SetItemPreview );
 
 			SetItemPreview();
 			
@@ -342,7 +346,11 @@ class SlotsIcon: LayoutHolder
 	void Clear()
 	{
 		if( m_Obj )
+		{
 			m_Obj.GetOnItemFlipped().Remove( UpdateFlip );
+			m_Obj.GetOnViewIndexChanged().Remove( SetItemPreview );
+		}
+			
 		m_Obj = null;
 		m_Item = null;
 		

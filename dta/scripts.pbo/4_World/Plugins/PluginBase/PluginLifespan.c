@@ -167,17 +167,17 @@ class PluginLifespan extends PluginBase
 		
 		/*for ( int cl = 0; cl < m_LifespanLevels.Count(); cl++ )
 		{
-			string class_name = m_LifespanLevels.GetKeyByIndex( cl );
-			array<LifespanLevel> levels = m_LifespanLevels.GetByIndex( cl );
+			string class_name = m_LifespanLevels.GetKey( cl );
+			array<ref LifespanLevel> levels = m_LifespanLevels.GetElement( cl );
 
 			Print( class_name );
 
 			for ( int ll = 0; ll < levels.Count(); ll++)
 			{
-				Print( levels.Get( ll ).GetLevel() );
-				Print( levels.Get( ll ).GetThreshold() );
-				Print( levels.Get( ll ).GetTextureName() );
-				Print( levels.Get( ll ).GetMaterialName() );
+				Print( "lvl: " + levels.Get( ll ).GetLevel() );
+				Print( "treshold: " + levels.Get( ll ).GetThreshold() );
+				Print( "texture: " + levels.Get( ll ).GetTextureName() );
+				Print( "material: " + levels.Get( ll ).GetMaterialName() );
 			}
 		}*/
 	}

@@ -6,8 +6,6 @@ class ActionEnterLadder: ActionInteractBase
 
 	void ActionEnterLadder()
 	{
-		m_MessageSuccess = "";
-		//m_CommandUID = DayZPlayerConstants.;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
 		m_HUDCursorIcon = CursorIcons.LadderUp;
 	}
@@ -16,11 +14,6 @@ class ActionEnterLadder: ActionInteractBase
 	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_ENTER_LADDER;
 	}
 
 	override string GetText()

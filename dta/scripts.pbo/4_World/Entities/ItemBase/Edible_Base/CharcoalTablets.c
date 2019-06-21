@@ -12,6 +12,10 @@ class CharcoalTablets extends Edible_Base
 	
 	override void OnConsume(float amount, PlayerBase consumer)
 	{
-		//consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_POISONING );
+		if( consumer.GetModifiersManager().IsModifierActive(eModifiers.MDF_CHARCOAL ) )//effectively resets the timer
+		{
+			consumer.GetModifiersManager().DeactivateModifier( eModifiers.MDF_CHARCOAL );
+		}
+		consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_CHARCOAL );
 	}
 }

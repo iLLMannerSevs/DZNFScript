@@ -1,4 +1,4 @@
-class V3S_Cargo extends V3S_Chassis {};
+class Truck_01_Cargo extends Truck_01_Chassis {};
 /*
 {
 	override int GetAnimInstance()

@@ -144,7 +144,7 @@ class CharacterCreationMenu extends UIScriptedMenu
 		}
 		string name = m_PlayerName.GetText();
 		if( name == "" )
-			name = DEFAULT_CHARACTER_NAME;
+			name = GameConstants.DEFAULT_CHARACTER_NAME;
 		
 		m_Scene.GetIntroCharacter().SaveCharName(m_PlayerName.GetText());
 		
@@ -419,7 +419,7 @@ class CharacterCreationMenu extends UIScriptedMenu
 		#else
 			name = m_Scene.GetIntroCharacter().GetCharacterName();
 			if( name == "" )
-				name = DEFAULT_CHARACTER_NAME;
+				name = GameConstants.DEFAULT_CHARACTER_NAME;
 		#endif
 		
 		m_PlayerName.SetText( name );

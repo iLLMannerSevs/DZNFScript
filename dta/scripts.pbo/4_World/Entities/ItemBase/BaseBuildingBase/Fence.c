@@ -17,7 +17,8 @@ class Fence extends BaseBuildingBase
 	const float GATE_ROTATION_ANGLE_DEG 			= 100;
 	const float GATE_ROTATION_TIME_APPROX			= 2000;		//ms
 	
-	const float MAX_ACTION_DETECTION_ANGLE_RAD 		= 1.5;		//1.5 RAD = ~85 DEG
+	const float MAX_ACTION_DETECTION_ANGLE_RAD 		= 1.3;		//1.3 RAD = ~75 DEG
+	const float MAX_ACTION_DETECTION_DISTANCE 		= 2.0;		//meters
 	
 	protected EffectSound m_SoundGate_Start;
 	protected EffectSound m_SoundGate_End;
@@ -28,7 +29,7 @@ class Fence extends BaseBuildingBase
 		RegisterNetSyncVariableBool( "m_HasGate" );
 		RegisterNetSyncVariableBool( "m_IsOpened" );
 	}
-	
+		
 	override string GetConstructionKitType()
 	{
 		return "FenceKit";
@@ -58,7 +59,7 @@ class Fence extends BaseBuildingBase
 	bool IsLocked()
 	{
 		CombinationLock combination_lock = GetCombinationLock();
-		if ( combination_lock && combination_lock.IsLockedOnGate() )
+		if ( combination_lock && combination_lock.IsLocked() )
 		{
 			return true;
 		}
@@ -223,14 +224,14 @@ class Fence extends BaseBuildingBase
 			if ( IsLocked() )
 			{
 				CombinationLock combination_lock = CombinationLock.Cast( FindAttachmentBySlotName( ATTACHMENT_SLOT_COMBINATION_LOCK ) );
-				combination_lock.ServerUnlock( player , this );
+				combination_lock.UnlockServer( player , this );
 			}
 		}
 		
 		super.OnPartDismantledServer( player, part_name, action_id );
 	}
 	
-	override void OnPartDestroyedServer( string part_name, int action_id )
+	override void OnPartDestroyedServer( notnull Man player, string part_name, int action_id )
 	{
 		ConstructionPart constrution_part = GetConstruction().GetConstructionPart( part_name );
 
@@ -240,8 +241,7 @@ class Fence extends BaseBuildingBase
 			SetGateState( false );
 		}
 
-
-		super.OnPartDestroyedServer( part_name, action_id );
+		super.OnPartDestroyedServer( player, part_name, action_id );
 	}	
 
 	//--- ATTACHMENT & CONDITIONS
@@ -286,10 +286,13 @@ class Fence extends BaseBuildingBase
 		super.EEItemAttached( item, slot_name );
 		
 		//Check combination lock
-		if ( item.IsInherited( CombinationLock ) )
+		if ( GetGame().IsServer() )
 		{
-			CombinationLock combination_lock = CombinationLock.Cast( item );
-			combination_lock.Lock( this );
+			if ( item.IsInherited( CombinationLock ) )
+			{
+				CombinationLock combination_lock = CombinationLock.Cast( item );
+				combination_lock.LockServer( this );
+			}
 		}
 	}
 	
@@ -477,7 +480,22 @@ class Fence extends BaseBuildingBase
 		}
 
 		return false;
-	}	
+	}
+	
+	override bool HasProperDistance( string selection, PlayerBase player )
+	{
+		if ( MemoryPointExists( selection ) )
+		{
+			vector selection_pos = ModelToWorld( GetMemoryPointPos( selection ) );
+			float distance = vector.Distance( selection_pos, player.GetPosition() );
+			if ( distance >= MAX_ACTION_DETECTION_DISTANCE )
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
 	
 	//================================================================
 	// SOUNDS
@@ -509,4 +527,19 @@ class Fence extends BaseBuildingBase
 		AddAction(ActionOpenFence);
 		AddAction(ActionCloseFence);
 	}
+	
+	//================================================================
+	// DEBUG
+	//================================================================	
+	/*
+	override void DebugCustomState()
+	{
+		//debug
+		m_SyncParts01 = 881;		//full fence with gate
+		m_HasGate = true;
+		m_HasBase = true;
+		
+		OnVariablesSynchronized();
+	}
+	*/
 }

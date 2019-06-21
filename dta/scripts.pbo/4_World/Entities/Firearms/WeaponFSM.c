@@ -12,7 +12,7 @@ class WeaponFSM extends HFSMBase<WeaponStateBase, WeaponEventBase, WeaponActionB
 		{
 			state.SetInternalStateID(m_NextStateId);
 
-			//wpnDebugSpam("[wpnfsm] unique state=" + state + " has id=" + m_NextStateId);
+			//wpnDebugSpam("[wpnfsm] " + Object.GetDebugName(m_weapon) + " unique state=" + state + " has id=" + m_NextStateId);
 			m_UniqueStates.Insert(state);
 			++m_NextStateId;
 		}
@@ -96,7 +96,7 @@ class WeaponFSM extends HFSMBase<WeaponStateBase, WeaponEventBase, WeaponActionB
 		if (LoadAndSetCurrentFSMState(ctx, version))
 		{
 			bool res = m_State.LoadCurrentFSMState(ctx, version);
-			wpnDebugPrint("[wpnfsm] LoadCurrentFSMState - loaded current state=" + GetCurrentState());
+			wpnDebugSpam("[wpnfsm] LoadCurrentFSMState - loaded current state=" + GetCurrentState());
 			return res;
 		}
 		return false;

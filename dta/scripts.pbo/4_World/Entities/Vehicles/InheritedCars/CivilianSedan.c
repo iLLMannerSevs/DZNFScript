@@ -27,9 +27,22 @@ class CivilianSedan extends CarScript
 		return 0;
 	}
 	
+	// Override for car-specific light type
+	override CarLightBase CreateFrontLight()
+	{
+		return CarLightBase.Cast( ScriptedLightBase.CreateLight(CivilianSedanFrontLight) );
+	}
+	
+	// Override for car-specific light type
+	override CarRearLightBase CreateRearLight()
+	{
+		return CarRearLightBase.Cast( ScriptedLightBase.CreateLight(CivilianSedanRearLight) );
+	}
+	
 	override bool CanReleaseAttachment( EntityAI attachment )
 	{
-		super.CanReleaseAttachment( attachment );
+		if( !super.CanReleaseAttachment( attachment ) )
+			return false;
 		
 		string attType = attachment.GetType();
 		
@@ -166,11 +179,11 @@ class CivilianSedan extends CarScript
 					newValue += 0.25;
 			
 				//-----
-				if ( GetHealthLevel( "WindowFront") == STATE_RUINED )
+				if ( GetHealthLevel( "WindowFront") == GameConstants.STATE_RUINED )
 					newValue -= 0.6;
 
 				//-----
-				if ( GetHealthLevel( "WindowBack") == STATE_RUINED )
+				if ( GetHealthLevel( "WindowBack") == GameConstants.STATE_RUINED )
 					newValue -= 0.6;
 			
 				if ( newValue > 1 )
@@ -179,12 +192,10 @@ class CivilianSedan extends CarScript
 				if ( newValue < 0 )
 					newValue = 0;
 			
-				m_enviroCoef = newValue;
 				return newValue;
 			break;
 		}
 
-		m_enviroCoef = oldValue;
 		return oldValue;
 	}
 
@@ -306,9 +317,5 @@ class CivilianSedan extends CarScript
 		Fill( CarFluid.FUEL, 50 );
 		Fill( CarFluid.COOLANT, 6.0 );
 		Fill( CarFluid.OIL, 4.0 );
-		
-		//hotfix 
-		GetController().ShiftUp();
-		GetController().ShiftDown();
 	};
 }

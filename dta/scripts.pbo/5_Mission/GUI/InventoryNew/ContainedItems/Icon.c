@@ -35,7 +35,8 @@ class Icon: LayoutHolder
 	protected Widget				m_ItemSizePanel;
 	protected TextWidget			m_ItemSizeWidget;
 	
-	protected Widget				m_AmmoIcon;
+	protected ImageWidget			m_AmmoIcon;
+	protected ImageWidget			m_AmmoTypeIcon;
 
 	void Icon( LayoutHolder parent, bool hands_icon = false )
 	{
@@ -55,16 +56,18 @@ class Icon: LayoutHolder
 		m_ItemSizePanel		= GetMainWidget().FindAnyWidget( "ItemSizePanel" );
 		m_ItemSizeWidget	= TextWidget.Cast( GetMainWidget().FindAnyWidget( "ItemSize" ) );
 		
-		m_AmmoIcon			= GetMainWidget().FindAnyWidget( "AmmoIcon" );
+		m_AmmoIcon			= ImageWidget.Cast( GetMainWidget().FindAnyWidget( "AmmoIcon" ) );
+		m_AmmoTypeIcon		= ImageWidget.Cast( GetMainWidget().FindAnyWidget( "AmmoTypeIcon" ) );
 		
 		SetActive( false );
 	}
 	
 	void ~Icon()
 	{
-		if( m_Item )
+		if( m_Obj )
 		{
-			m_Item.GetOnItemFlipped().Remove( UpdateFlip );
+			m_Obj.GetOnItemFlipped().Remove( UpdateFlip );
+			m_Obj.GetOnViewIndexChanged().Remove( SetItemPreview );
 		}
 	}
 
@@ -522,7 +525,7 @@ class Icon: LayoutHolder
 	void OnSelectAction(ItemBase item, int actionId)
 	{
 		PlayerBase m_player = PlayerBase.Cast( GetGame().GetPlayer() );
-		m_player.GetActionManager().OnInstantAction(AT_DEBUG,new Param2<ItemBase,int>(item,actionId));
+		m_player.GetActionManager().OnInstantAction(ActionDebug,new Param2<ItemBase,int>(item,actionId));
 	}
 
 	void ShowActionMenuCombine( EntityAI entity1, EntityAI entity2, int combinationFlags, Widget w , bool color_test )
@@ -1176,7 +1179,28 @@ class Icon: LayoutHolder
 		if( wpn )
 		{
 			int mi = wpn.GetCurrentMuzzle();
-			m_AmmoIcon.Show( wpn.IsChamberFull( mi ) );
+			if( wpn.IsChamberFull( mi ) )
+			{
+				if( wpn.IsJammed() )
+				{
+					m_AmmoIcon.Show( true );
+					m_AmmoIcon.SetImage( 2 );
+				}
+				else if( wpn.IsChamberFiredOut( mi ) )
+				{
+					m_AmmoIcon.Show( true );
+					m_AmmoIcon.SetImage( 1 );
+				}
+				else
+				{
+					m_AmmoIcon.Show( true );
+					m_AmmoIcon.SetImage( 0 );
+				}
+			}
+			else
+			{
+				m_AmmoIcon.Show( false );
+			}
 		}
 	}
 	
@@ -1215,7 +1239,7 @@ class Icon: LayoutHolder
 				float progress_max = m_QuantityProgress.GetMax();
 				int max = m_Item.ConfigGetInt( "varQuantityMax" );
 				int count = m_Item.ConfigGetInt( "count" );
-				float quantity = QuantityConversions.GetItemQuantity( InventoryItem.Cast( m_Item ) );
+				float quantity = QuantityConversions.GetItemQuantity( m_Item );
 
 				if( count > 0 )
 				{
@@ -1285,10 +1309,17 @@ class Icon: LayoutHolder
 		if( obj != m_Obj )
 		{
 			if( m_Obj )
+			{
 				m_Obj.GetOnItemFlipped().Remove( UpdateFlip );
+				m_Obj.GetOnViewIndexChanged().Remove( SetItemPreview );
+			}
 			if( obj )
+			{
 				obj.GetOnItemFlipped().Insert( UpdateFlip );
+				obj.GetOnViewIndexChanged().Insert( SetItemPreview );
+			}
 		}
+		
 		m_Obj	= obj;
 		m_Item	= ItemBase.Cast( m_Obj );
 		
@@ -1318,12 +1349,90 @@ class Icon: LayoutHolder
 	
 	void CheckIsWeapon()
 	{
-		m_IsWeapon = ( Weapon_Base.Cast( m_Obj ) != null );
+		Weapon_Base wep = Weapon_Base.Cast( m_Obj );
+		if( wep )
+		{
+			m_IsWeapon = true;
+			AmmoData data = Magazine.GetAmmoData( wep.GetChamberAmmoTypeName( wep.GetCurrentMuzzle() ) );
+			if( data )
+			{
+				CartridgeType c_type = data.m_CartridgeType;
+				switch( c_type )
+				{
+					case CartridgeType.Pistol:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:cartridge_pistol" );
+						m_AmmoIcon.LoadImageFile( 1, "set:dayz_gui image:shell_pistol" );
+						m_AmmoIcon.LoadImageFile( 2, "set:dayz_gui image:jam_pistol" );
+						break;
+					}
+					case CartridgeType.Intermediate:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:cartridge_int" );
+						m_AmmoIcon.LoadImageFile( 1, "set:dayz_gui image:shell_int" );
+						m_AmmoIcon.LoadImageFile( 2, "set:dayz_gui image:jam_int" );
+						break;
+					}
+					case CartridgeType.FullPower:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:cartridge_fp" );
+						m_AmmoIcon.LoadImageFile( 1, "set:dayz_gui image:shell_fp" );
+						m_AmmoIcon.LoadImageFile( 2, "set:dayz_gui image:jam_fp" );
+						break;
+					}
+					case CartridgeType.Shell:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:cartridge_shell" );
+						m_AmmoIcon.LoadImageFile( 1, "set:dayz_gui image:shell_shell" );
+						m_AmmoIcon.LoadImageFile( 2, "set:dayz_gui image:jam_shell" );
+						break;
+					}
+				}
+			}
+		}
+		else
+		{
+			m_IsWeapon = false;
+		}
+			
 	}
 	
 	void CheckIsMagazine()
 	{
-		m_IsMagazine = ( Magazine.Cast( m_Obj ) != null );
+		Magazine mag = Magazine.Cast( m_Obj );
+		if( mag )
+		{
+			m_IsMagazine = true;
+			AmmoData data = Magazine.GetAmmoData( mag.ClassName() );
+			if( data )
+			{
+				ProjectileType p_type = data.m_ProjectileType;
+				switch(p_type)
+				{
+					case ProjectileType.None:
+					{
+						m_AmmoTypeIcon.Show( false );
+						break;
+					}
+					case ProjectileType.Tracer:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:tracer" );
+						m_AmmoTypeIcon.Show( true );
+						break;
+					}
+					case ProjectileType.AP:
+					{
+						m_AmmoIcon.LoadImageFile( 0, "set:dayz_gui image:armor_piercing" );
+						m_AmmoTypeIcon.Show( true );
+						break;
+					}
+				}
+			}
+		}
+		else
+		{
+			m_IsMagazine = false;
+		}
 	}
 	
 	void CheckHasTemperature()

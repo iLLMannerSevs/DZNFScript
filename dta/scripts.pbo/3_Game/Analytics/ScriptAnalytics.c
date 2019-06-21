@@ -72,6 +72,7 @@ class StatsEventSpawnedData
 	int			m_DaytimeHour;	//!< current time in hour (hour in 24h)
 };
 
+// class binded to engine
 class StatsEventData
 {
 	void StatsEventData(string eventName)
@@ -137,10 +138,12 @@ class ScriptAnalytics
 	
 	//! universal analytics event
 	static proto native void SendEvent(StatsEventData data);
-	
-	
-	//------------------------------------------------------------
-	
+};
+
+
+
+class Analytics
+{
 	// send stats data with log
 	static void PlayerDeath(StatsEventDeathData data)
 	{
@@ -149,7 +152,7 @@ class ScriptAnalytics
 			Print("StatsEventDeathData | CharacterId: '" + data.m_CharacterId + "'; CharacterLifetime: " + data.m_CharacterLifetime + "; Cause: '" + data.m_Cause + "'; WeaponName: '" + data.m_WeaponName + "'; Distance: " + data.m_Distance + "; position: " + data.m_Position);
 		}
 		
-		SendPlayerDeath(data);
+		ScriptAnalytics.SendPlayerDeath(data);
 	}
 	
 	// send stats data with log
@@ -160,7 +163,7 @@ class ScriptAnalytics
 			Print("StatsEventScoredKillData | CharacterId: '" + data.m_CharacterId + "'; WeaponName: '" + data.m_WeaponName + "'; KillDistance: " + data.m_KillDistance + "; PositionKiller: " + data.m_PositionKiller + "; PositionVictim: " + data.m_PositionVictim);
 		}
 		
-		SendPlayerScoredKill(data);
+		ScriptAnalytics.SendPlayerScoredKill(data);
 	}
 	
 	// send stats data with log
@@ -171,7 +174,7 @@ class ScriptAnalytics
 			Print("StatsEventDisconnectedData | CharacterId: " + data.m_CharacterId + "; Reason: " + data.m_Reason);
 		}
 		
-		SendPlayerDisconnected(data);
+		ScriptAnalytics.SendPlayerDisconnected(data);
 	}
 	
 	// send stats data with log
@@ -184,7 +187,7 @@ class ScriptAnalytics
 			Print("StatsEventMeasuresData 3 | HealthStatus: " + data.m_HealthStatus + "; BloodStatus: " + data.m_BloodStatus + "; SicknessStatus: " + data.m_SicknessStatus + "TemperatureStatus: " + data.m_TemperatureStatus + "; FoodStatus: " + data.m_FoodStatus + "; HydrationStatus: " + data.m_HydrationStatus);
 		}
 		
-		SendPlayerMeasures(data);
+		ScriptAnalytics.SendPlayerMeasures(data);
 	}
 	
 	// send stats data with log
@@ -195,6 +198,6 @@ class ScriptAnalytics
 			Print("StatsEventSpawnedData | CharacterId: '" + data.m_CharacterId + "'; Lifetime: " + data.m_Lifetime + "; Position: " + data.m_Position + "; Population: " + data.m_Population + "; DaytimeHour: " + data.m_DaytimeHour);
 		}
 		
-		SendPlayerSpawned(data);
+		ScriptAnalytics.SendPlayerSpawned(data);
 	}
-};
+}

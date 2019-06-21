@@ -119,8 +119,9 @@ class World: Managed
 	/*!
 	enable/disable receiving all voice over network globally
 	\param disable	if true, then player is not able listen any voice from VoN
+	\return true if mute request was sent successfully to server. If false, then was problem with sent request or missing player idendity.
 	*/
-	proto native void DisableReceiveVoN(bool disable);
+	proto native bool DisableReceiveVoN(bool disable);
 	
 	/*!
 	\return true if transmiting voice over network is disabled, so player can not talking

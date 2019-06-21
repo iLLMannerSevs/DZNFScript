@@ -45,12 +45,6 @@ class ActionPourLiquid: ActionContinuousBase
 		m_CallbackClass = ActionPourLiquidCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_EMPTY_VESSEL;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONFB_EMPTY_VESSEL;
-		
-		m_MessageStartFail = "It's ruined.";
-		m_MessageStart = "I have started filling the bottle.";
-		m_MessageSuccess = "I have finished filling the bottle..";
-		m_MessageFail = "Player moved and filling the bottle was canceled.";
-		m_MessageCancel = "I stopped filling the bottle.";
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 	}
 	
@@ -63,11 +57,6 @@ class ActionPourLiquid: ActionContinuousBase
 	override bool HasProneException()
 	{
 		return true;
-	}
-	
-	override int GetType()
-	{
-		return AT_POUR_LIQUID;
 	}
 	
 	override string GetText()

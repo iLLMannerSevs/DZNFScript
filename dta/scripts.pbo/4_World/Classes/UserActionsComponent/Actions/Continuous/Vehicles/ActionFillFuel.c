@@ -20,24 +20,12 @@ class ActionFillFuel: ActionContinuousBase
 		m_FullBody = true;
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_LOW;
 		m_LockTargetOnUse = false;
-
-		m_MessageStartFail = "";
-		m_MessageStart = "";
-		m_MessageSuccess = "";
-		m_MessageFail = "";
-		m_MessageCancel = "";
-
 	}
 
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNone;
-	}
-
-	override int GetType()
-	{
-		return AT_FILL_FUEL;
 	}
 
 	override string GetText()

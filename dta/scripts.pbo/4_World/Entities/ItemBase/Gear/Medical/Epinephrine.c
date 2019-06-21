@@ -7,4 +7,10 @@ class Epinephrine: Inventory_Base
 		AddAction(ActionInjectEpinephrineTarget);
 		AddAction(ActionInjectEpinephrineSelf);
 	}
+	
+	override void OnApply(PlayerBase player)
+	{
+		player.GiveShock(100);
+		player.GetStaminaHandler().SetStamina(100);
+	}
 };

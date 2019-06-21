@@ -27,6 +27,18 @@ class Hatchback_02 extends CarScript
 		return 0;
 	}
 	
+	// Override for car-specific light type
+	override CarRearLightBase CreateRearLight()
+	{
+		return CarRearLightBase.Cast( ScriptedLightBase.CreateLight(Hatchback_02RearLight) );
+	}
+	
+	// Override for car-specific light type
+	override CarLightBase CreateFrontLight()
+	{
+		return CarLightBase.Cast( ScriptedLightBase.CreateLight(Hatchback_02FrontLight) );
+	}
+	
 	override int GetCarDoorsState( string slotType )
 	{
 		CarDoor carDoor;
@@ -150,12 +162,10 @@ class Hatchback_02 extends CarScript
 				if ( newValue > 1 )
 					newValue = 1;
 			
-				m_enviroCoef = newValue;
 				return newValue;
 			break;
 		}
 
-		m_enviroCoef = oldValue;
 		return oldValue;
 	}
 	
@@ -278,10 +288,5 @@ class Hatchback_02 extends CarScript
 		Fill( CarFluid.FUEL, 50 );
 		Fill( CarFluid.COOLANT, 6.0 );
 		Fill( CarFluid.OIL, 4.0 );
-		
-		//hotfix 
-		GetController().ShiftUp();
-		GetController().ShiftDown();
-
 	}
 }

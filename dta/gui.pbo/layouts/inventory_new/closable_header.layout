@@ -180,6 +180,7 @@ WrapSpacerWidgetClass closable_header_root {
      Padding 0
      Margin 0
      "Size To Content H" 1
+     "Size To Content V" 1
      content_halign right
      content_valign center
      Columns 2
@@ -231,20 +232,20 @@ WrapSpacerWidgetClass closable_header_root {
        visible 1
        clipchildren 0
        position 0 0
-       size 1 1
+       size 29 29
        halign right_ref
        valign center_ref
        hexactpos 1
        vexactpos 1
-       hexactsize 0
-       vexactsize 0
-       fixaspect fixwidth
+       hexactsize 1
+       vexactsize 1
        priority 500
        image0 "set:dayz_gui image:icon_x"
        mode additive
        "src alpha" 1
        "no wrap" 0
        stretch 0
+       filter 1
       }
      }
     }

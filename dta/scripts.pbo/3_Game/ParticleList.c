@@ -74,7 +74,37 @@ class ParticleList
 	static const int DIGGING_STASH					= RegisterParticle("digging_ground");
 	
 	// SMOKE GRENADES
-	static const int RDG2 							= RegisterParticle("POI_orange_long_2xspeed");
+	//! RDG2
+	static const int GRENADE_RDG2_BLACK_START		= RegisterParticle("smoke_RDG2_black_01");
+	static const int GRENADE_RDG2_BLACK_LOOP		= RegisterParticle("smoke_RDG2_black_02");
+	static const int GRENADE_RDG2_BLACK_END			= RegisterParticle("smoke_RDG2_black_03");
+	static const int GRENADE_RDG2_WHITE_START		= RegisterParticle("smoke_RDG2_white_01");
+	static const int GRENADE_RDG2_WHITE_LOOP		= RegisterParticle("smoke_RDG2_white_02");
+	static const int GRENADE_RDG2_WHITE_END			= RegisterParticle("smoke_RDG2_white_03");
+	//! M18
+	static const int GRENADE_M18_GREEN_START		= RegisterParticle("smoke_M18_green_01");
+	static const int GRENADE_M18_GREEN_LOOP			= RegisterParticle("smoke_M18_green_02");
+	static const int GRENADE_M18_GREEN_END			= RegisterParticle("smoke_M18_green_03");
+	static const int GRENADE_M18_PURPLE_START		= RegisterParticle("smoke_M18_purple_01");
+	static const int GRENADE_M18_PURPLE_LOOP		= RegisterParticle("smoke_M18_purple_02");
+	static const int GRENADE_M18_PURPLE_END			= RegisterParticle("smoke_M18_purple_03");
+	static const int GRENADE_M18_RED_START			= RegisterParticle("smoke_M18_red_01");
+	static const int GRENADE_M18_RED_LOOP			= RegisterParticle("smoke_M18_red_02");
+	static const int GRENADE_M18_RED_END			= RegisterParticle("smoke_M18_red_03");
+	static const int GRENADE_M18_WHITE_START		= RegisterParticle("smoke_M18_white_01");
+	static const int GRENADE_M18_WHITE_LOOP			= RegisterParticle("smoke_M18_white_02");
+	static const int GRENADE_M18_WHITE_END			= RegisterParticle("smoke_M18_white_03");
+	static const int GRENADE_M18_YELLOW_START		= RegisterParticle("smoke_M18_yellow_01");
+	static const int GRENADE_M18_YELLOW_LOOP		= RegisterParticle("smoke_M18_yellow_02");
+	static const int GRENADE_M18_YELLOW_END			= RegisterParticle("smoke_M18_yellow_03");
+	
+	//! FLASH GRENADE
+	//! M84
+	static const int GRENADE_M84					= RegisterParticle("explosion_M84_01");
+	
+	// FRAGMENTATION GRENADES
+	static const int RGD5							= RegisterParticle("explosion_RGD5_01");
+	static const int M67							= RegisterParticle("explosion_M67_01");
 	
 	// ELECTRICITY	        
 	static const int POWER_GENERATOR_SMOKE			= RegisterParticle("smoke_small_generator_01");
@@ -117,6 +147,8 @@ class ParticleList
 	static const int GUN_SKS						= RegisterParticle("weapon_shot_sks_01");
 	static const int GUN_WINCHESTER70				= RegisterParticle("weapon_shot_winch70_01");
 	static const int GUN_VSS						= RegisterParticle("weapon_shot_vss_01");
+	static const int GUN_AK74						= RegisterParticle("weapon_shot_ak74_01");
+	static const int GUN_AK101						= RegisterParticle("weapon_shot_ak101_01");
 	
 	static const int GUN_CZ61						= RegisterParticle("weapon_shot_cz61_01");
 	static const int GUN_LONG_WINDED_SMOKE			= RegisterParticle("weapon_shot_winded_smoke");

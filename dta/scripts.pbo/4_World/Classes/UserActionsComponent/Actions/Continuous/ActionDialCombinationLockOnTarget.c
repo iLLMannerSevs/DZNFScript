@@ -15,10 +15,6 @@ class ActionDialCombinationLockOnTarget: ActionContinuousBase
 		m_CallbackClass = ActionDialCombinationLockOnTargetCB;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_OPENITEM;
 		m_CommandUIDProne = DayZPlayerConstants.CMD_ACTIONMOD_OPENITEM;		
-		m_MessageStartFail = "I have failed the tunning.";
-		m_MessageStart = "I have started the tunning.";
-		m_MessageFail = "I have failed the tunning.";
-		m_MessageCancel = "I have stopped the tunning.";
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_LOW;
 	}
 	
@@ -31,11 +27,6 @@ class ActionDialCombinationLockOnTarget: ActionContinuousBase
 	override bool HasProneException()
 	{
 		return true;
-	}
-	
-	override int GetType()
-	{
-		return AT_DIAL_COMBINATION_LOCK_ON_TARGET;
 	}
 
 	override string GetText()
@@ -86,13 +77,16 @@ class ActionDialCombinationLockOnTarget: ActionContinuousBase
 		//set dialed number
 		ConstructionActionData construction_action_data = action_data.m_Player.GetConstructionActionData();
 		CombinationLock combination_lock =  construction_action_data.GetCombinationLock();
-		combination_lock.DialNextNumber( construction_action_data.GetDialIndex() );		
-
-		//check for unlock state
-		if ( !combination_lock.IsLockedOnGate() )
+		if ( combination_lock )
 		{
-			EntityAI target_entity = EntityAI.Cast( action_data.m_Target.GetObject() );
-			combination_lock.ServerUnlock( action_data.m_Player, target_entity );
+			combination_lock.DialNextNumber();		
+	
+			//check for unlock state
+			if ( !combination_lock.IsLockedOnGate() )
+			{
+				EntityAI target_entity = EntityAI.Cast( action_data.m_Target.GetObject() );
+				combination_lock.UnlockServer( action_data.m_Player, target_entity );
+			}
 		}
 	}
 }

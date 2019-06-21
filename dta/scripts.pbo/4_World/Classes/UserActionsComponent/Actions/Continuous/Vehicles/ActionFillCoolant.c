@@ -29,11 +29,6 @@ class ActionFillCoolant: ActionContinuousBase
 		m_ConditionTarget = new CCTParent(10);
 	}
 
-	override int GetType()
-	{
-		return AT_FILL_COOLANT;
-	}
-
 	override string GetText()
 	{
 		return "#refill_car";

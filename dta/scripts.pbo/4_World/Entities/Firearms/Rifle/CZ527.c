@@ -19,8 +19,8 @@ enum CZ527StableStateID
 
 class CZ527_CLO_BU0_MA0 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close nobull nomag"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close nobull nomag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close nobull nomag"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close nobull nomag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BU0_MA0; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -28,8 +28,8 @@ class CZ527_CLO_BU0_MA0 extends WeaponStableState
 };
 class CZ527_CLO_BU1_MA0 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close bullet nomag"); super.OnEntry(e);}
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close bullet nomag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close bullet nomag"); super.OnEntry(e);}
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close bullet nomag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BU1_MA0; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -37,8 +37,8 @@ class CZ527_CLO_BU1_MA0 extends WeaponStableState
 };
 class CZ527_CLO_BU1_MA1 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close bullet mag"); super.OnEntry(e);}
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close bullet mag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close bullet mag"); super.OnEntry(e);}
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close bullet mag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BU1_MA1; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return true; }
@@ -46,8 +46,8 @@ class CZ527_CLO_BU1_MA1 extends WeaponStableState
 };
 class CZ527_CLO_BU0_MA1 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close nobull mag"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close nobull mag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close nobull mag"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close nobull mag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BU0_MA1; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return true; }
@@ -55,8 +55,8 @@ class CZ527_CLO_BU0_MA1 extends WeaponStableState
 };
 class CZ527_CLO_BUF_MA0 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close fireout bullet nomag"); super.OnEntry(e);}
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close fireout bullet nomag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close fireout bullet nomag"); super.OnEntry(e);}
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close fireout bullet nomag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BUF_MA0; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return true; }
@@ -64,8 +64,8 @@ class CZ527_CLO_BUF_MA0 extends WeaponStableState
 };
 class CZ527_CLO_BUF_MA1 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close fireout bull mag"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close fireout bull mag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close fireout bull mag"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close fireout bull mag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_CLO_BUF_MA1; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return true; }
@@ -73,8 +73,8 @@ class CZ527_CLO_BUF_MA1 extends WeaponStableState
 };
 class CZ527_JAM_BU1_MA0 extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { jammed bullet nomag"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } jammed bullet nomag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { jammed bullet nomag"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } jammed bullet nomag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_JAM_BU1_MA0; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -83,8 +83,8 @@ class CZ527_JAM_BU1_MA0 extends WeaponStateJammed
 };
 class CZ527_JAM_BU1_MA1 extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { jammed bullet mag"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } jammed bullet mag"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { jammed bullet mag"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } jammed bullet mag"); }
 	override int GetCurrentStateID () { return CZ527StableStateID.CZ527_JAM_BU1_MA1; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return true; }
@@ -413,8 +413,14 @@ class CZ527_Base : BoltActionRifle_Base
 		m_fsm.SetInitialState(C00);
 
 		SelectionBulletHide();
-		SelectionMagazineHide();
+		HideMagazine();
 
 		m_fsm.Start();
+	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionAdvencedDetachMagazine);
 	}
 };

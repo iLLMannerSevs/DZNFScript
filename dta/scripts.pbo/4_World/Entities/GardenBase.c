@@ -414,14 +414,6 @@ class GardenBase extends BuildingSuper
 		return false;
 	}
 
-	TStringArray GetHiddenSelectionsTextures()
-	{
-		string garden_type = this.GetType();
-		TStringArray textures = new TStringArray;
-		GetGame().ConfigGetTextArray( "CfgVehicles " + garden_type + " hiddenSelectionsTextures", textures );
-		return textures;
-	}
-
 	void UpdateSlotTexture( int slot_index )
 	{
 		// TO DO: Fix DAYZ-30633 here!

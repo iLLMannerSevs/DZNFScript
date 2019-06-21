@@ -46,6 +46,8 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_Menu						= menu;
 		
 		m_FOVOption					= NumericOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_FIELD_OF_VIEW ) );
+		m_LanguageOption			= ListOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_LANGUAGE ) );
+		
 		
 		m_Root.FindAnyWidget( "fov_setting_option" ).SetUserID( AT_OPTIONS_FIELD_OF_VIEW );
 		m_Root.FindAnyWidget( "hud_setting_option" ).SetUserID( 1 );
@@ -53,13 +55,13 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		m_Root.FindAnyWidget( "game_setting_option" ).SetUserID( 4 );
 		m_Root.FindAnyWidget( "admin_setting_option" ).SetUserID( 5 );
 		m_Root.FindAnyWidget( "player_setting_option" ).SetUserID( 6 );
+		m_Root.FindAnyWidget( "language_setting_option" ).SetUserID( AT_OPTIONS_LANGUAGE );
 		
 		#ifdef PLATFORM_CONSOLE
 		m_Root.FindAnyWidget( "brightness_setting_option" ).SetUserID( AT_OPTIONS_BRIGHT_SLIDER );
 		#else
 		#ifdef PLATFORM_WINDOWS
 		m_Root.FindAnyWidget( "quickbar_setting_option" ).SetUserID( 3 );
-		m_Root.FindAnyWidget( "language_setting_option" ).SetUserID( AT_OPTIONS_LANGUAGE );
 		#endif
 		#endif
 		
@@ -68,14 +70,22 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 		ref array<string> opt		= { "#options_controls_disabled", "#options_controls_enabled" };
 		ref array<string> opt2		= { "#options_controls_enabled", "#options_controls_disabled" };
 		ref array<string> opt3		= new array<string>;
+		for( int i = 0; i < m_LanguageOption.GetItemsCount(); i++ )
+		{
+			string text;
+			m_LanguageOption.GetItemText( i, text );
+			opt3.Insert( text );
+		}
 		
-		m_FOVSelector				= new OptionSelectorSlider( m_Root.FindAnyWidget( "fov_setting_option" ), m_FOVOption.ReadValue(), this, false, m_FOVOption.GetMin(), m_FOVOption.GetMax() );
-		m_ShowHUDSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "hud_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.HUD ), this, false, opt );
-		m_ShowCrosshairSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "crosshair_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.CROSSHAIR ), this, false, opt );
-		m_ShowGameSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "game_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.GAME_MESSAGES ), this, false, opt2 );
-		m_ShowAdminSelector			= new OptionSelectorMultistate( m_Root.FindAnyWidget( "admin_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ), this, false, opt2 );
-		m_ShowPlayerSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "player_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES ), this, false, opt2 );
+		m_LanugageSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "language_setting_option" ), m_LanguageOption.GetIndex(), this, false, opt3 );
+		m_FOVSelector			= new OptionSelectorSlider( m_Root.FindAnyWidget( "fov_setting_option" ), m_FOVOption.ReadValue(), this, false, m_FOVOption.GetMin(), m_FOVOption.GetMax() );
+		m_ShowHUDSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "hud_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.HUD ), this, false, opt );
+		m_ShowCrosshairSelector	= new OptionSelectorMultistate( m_Root.FindAnyWidget( "crosshair_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.CROSSHAIR ), this, false, opt );
+		m_ShowGameSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "game_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.GAME_MESSAGES ), this, false, opt2 );
+		m_ShowAdminSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "admin_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ), this, false, opt2 );
+		m_ShowPlayerSelector	= new OptionSelectorMultistate( m_Root.FindAnyWidget( "player_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.PLAYER_MESSAGES ), this, false, opt2 );
 		
+		m_LanugageSelector.m_OptionChanged.Insert( UpdateLanguageOption );
 		m_FOVSelector.m_OptionChanged.Insert( UpdateFOVOption );
 		m_ShowHUDSelector.m_OptionChanged.Insert( UpdateHUDOption );
 		m_ShowCrosshairSelector.m_OptionChanged.Insert( UpdateCrosshairOption );
@@ -89,16 +99,6 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 			m_BrightnessSelector.m_OptionChanged.Insert( UpdateBrightnessOption );
 		#else
 		#ifdef PLATFORM_WINDOWS
-			m_LanguageOption		= ListOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_LANGUAGE ) );
-			for( int i = 0; i < m_LanguageOption.GetItemsCount(); i++ )
-			{
-				string text;
-				m_LanguageOption.GetItemText( i, text );
-				opt3.Insert( text );
-			}
-			m_LanugageSelector		= new OptionSelectorMultistate( m_Root.FindAnyWidget( "language_setting_option" ), m_LanguageOption.GetIndex(), this, false, opt3 );
-			m_LanugageSelector.m_OptionChanged.Insert( UpdateLanguageOption );
-		
 			m_ShowQuickbarSelector	= new OptionSelectorMultistate( m_Root.FindAnyWidget( "quickbar_setting_option" ), g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR ), this, false, opt );
 			m_ShowQuickbarSelector.m_OptionChanged.Insert( UpdateQuickbarOption );
 		#endif
@@ -125,7 +125,7 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	void Focus()
 	{
 		#ifdef PLATFORM_CONSOLE
-			SetFocus( m_FOVSelector.GetParent() );
+			SetFocus( m_LanugageSelector.GetParent() );
 		#endif
 	}
 	
@@ -205,19 +205,18 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	{
 		m_Options = options;
 		
-		m_FOVOption					= NumericOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_FIELD_OF_VIEW ) );
+		m_FOVOption				= NumericOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_FIELD_OF_VIEW ) );
+		m_LanguageOption		= ListOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_LANGUAGE ) );
+		
 		if( m_FOVSelector )
 			m_FOVSelector.SetValue( m_FOVOption.ReadValue(), false );
+		if( m_LanguageOption )
+			m_LanugageSelector.SetValue( m_LanguageOption.GetIndex(), false );
+		
 		#ifdef PLATFORM_CONSOLE
 			m_BrightnessOption		= NumericOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_BRIGHT_SLIDER ) );
 			if( m_BrightnessOption )
 				m_BrightnessSelector.SetValue( m_BrightnessOption.ReadValue(), false );
-		#else
-		#ifdef PLATFORM_WINDOWS
-			m_LanguageOption		= ListOptionsAccess.Cast( m_Options.GetOptionByType( AT_OPTIONS_LANGUAGE ) );
-			if( m_LanguageOption )
-				m_LanugageSelector.SetValue( m_LanguageOption.GetIndex(), false );
-		#endif
 		#endif
 	}
 	

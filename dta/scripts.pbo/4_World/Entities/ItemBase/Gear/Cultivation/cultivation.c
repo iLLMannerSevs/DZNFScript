@@ -26,7 +26,6 @@ class SeedBase : Inventory_Base
 		super.SetActions();
 		
 		AddAction(ActionPlantSeed);
-		AddAction(ActionEmptySeedsPack);
 	}
 };
 class TomatoSeeds : SeedBase{};

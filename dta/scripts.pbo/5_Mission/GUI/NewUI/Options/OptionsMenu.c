@@ -65,7 +65,7 @@ class OptionsMenu extends UIScriptedMenu
 		#ifdef PLATFORM_WINDOWS
 			SetFocus( layoutRoot );
 		#else
-			SliderFocus();
+			ToggleFocus();
 		#endif
 		
 		m_Tabber.m_OnTabSwitch.Insert( OnTabSwitch );
@@ -434,6 +434,7 @@ class OptionsMenu extends UIScriptedMenu
 	override void OnShow()
 	{
 		super.OnShow();
+		m_GameTab.Focus();
 		Refresh();
 	}
 	

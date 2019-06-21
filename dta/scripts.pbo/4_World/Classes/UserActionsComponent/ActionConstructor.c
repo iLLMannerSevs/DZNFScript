@@ -270,7 +270,9 @@ class ActionConstructor
 		actions.Insert(ActionCloseFence);
 		actions.Insert(ActionNextCombinationLockDialOnTarget);
 		actions.Insert(ActionTakeMaterialToHands);
-		
+		actions.Insert(ActionCheckPulse);
+		actions.Insert(ActionUnpin);
+		actions.Insert(ActionPin);
 		//vehicle actions
 		actions.Insert(ActionSwitchLights);
 		
@@ -283,6 +285,15 @@ class ActionConstructor
 		actions.Insert(FirearmActionLoadBullet);
 		
 		actions.Insert(ActionTakeItem);
-	
+		
+		actions.Insert(ActionLoadMagazineQuick);
+		actions.Insert(FirearmActionAttachMagazineQuick);
+		//actions.Insert(FirearmActionLoadBulletQuick);
+		//actions.Insert(FirearmActionLoadMultiBulletQuick);
+		actions.Insert(FirearmActionMechanicManipulate);
+		actions.Insert(FirearmActionUnjam);
+		
+		actions.Insert(ActionAdvencedDetachMagazine);
+		
 	}
 };

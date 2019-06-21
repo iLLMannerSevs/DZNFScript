@@ -348,15 +348,15 @@ class ItemManager
 			{
 				case -1 :
 					break;
-				case STATE_PRISTINE:
+				case GameConstants.STATE_PRISTINE:
 					return Colors.COLOR_PRISTINE;
-				case STATE_WORN:
+				case GameConstants.STATE_WORN:
 					return Colors.COLOR_WORN;
-				case STATE_DAMAGED:
+				case GameConstants.STATE_DAMAGED:
 					return Colors.COLOR_DAMAGED;
-				case STATE_BADLY_DAMAGED:
+				case GameConstants.STATE_BADLY_DAMAGED:
 					return Colors.COLOR_BADLY_DAMAGED;
-				case STATE_RUINED:
+				case GameConstants.STATE_RUINED:
 					return Colors.COLOR_RUINED;	
 			}
 		}

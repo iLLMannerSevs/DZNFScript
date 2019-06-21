@@ -29,6 +29,8 @@ class IngameHud extends Hud
 	protected Widget							m_VehiclePanel;
 	
 	protected ImageWidget						m_VehicleRPMPointer;
+	protected ImageWidget						m_VehicleRPMDial;
+	protected ImageWidget						m_VehicleRPMRedline;
 	protected ImageWidget						m_VehicleSpeedPointer;
 	protected ImageWidget						m_VehicleTemperaturePointer;
 	protected ImageWidget						m_VehicleFuelPointer;
@@ -69,6 +71,7 @@ class IngameHud extends Hud
 	protected Widget							m_Presence;
 	protected Widget							m_StanceProne;
 	protected Widget							m_StanceStand;
+	protected Widget							m_StanceStandWalk;
 	protected Widget							m_StanceCrouch;
 	protected Widget							m_StanceCar;
 	protected Widget							m_StancePanel;
@@ -201,6 +204,8 @@ class IngameHud extends Hud
 		m_VehiclePanel					= m_HudPanelWidget.FindAnyWidget("VehiclePanel");
 		
 		m_VehicleRPMPointer				= ImageWidget.Cast( m_VehiclePanel.FindAnyWidget("RPMPointer") );
+		m_VehicleRPMDial				= ImageWidget.Cast( m_VehiclePanel.FindAnyWidget("RPMDial") );
+		m_VehicleRPMRedline				= ImageWidget.Cast( m_VehiclePanel.FindAnyWidget("RPMDialRedline") );
 		m_VehicleSpeedPointer			= ImageWidget.Cast( m_VehiclePanel.FindAnyWidget("SpeedPointer") );
 		m_VehicleSpeedValue				= TextWidget.Cast( m_VehiclePanel.FindAnyWidget("SpeedValue") );
 		
@@ -226,6 +231,7 @@ class IngameHud extends Hud
 		m_StanceProne					= m_HudPanelWidget.FindAnyWidget("StanceProne");
 		m_StanceCrouch					= m_HudPanelWidget.FindAnyWidget("StanceCrouch");
 		m_StanceStand					= m_HudPanelWidget.FindAnyWidget("StanceStand");
+		m_StanceStandWalk				= m_HudPanelWidget.FindAnyWidget("StanceStandWalk");
 		m_StanceCar						= m_HudPanelWidget.FindAnyWidget("StanceCar");
 		m_StancePanel					= m_HudPanelWidget.FindAnyWidget("StancePanel");
 
@@ -324,7 +330,9 @@ class IngameHud extends Hud
 		
 		SetLeftStatsVisibility( true );
 		m_HudState = g_Game.GetProfileOption( EDayZProfilesOptions.HUD );
-		m_QuickbarState = g_Game.GetProfileOption( EDayZProfilesOptions.QUICKBAR );
+#ifndef PLATFORM_CONSOLE
+		m_QuickbarState = g_Game.GetProfileOption(EDayZProfilesOptions.QUICKBAR);
+#endif // !PLATFORM_CONSOLE
 	}
 	
 	override void OnResizeScreen()
@@ -578,7 +586,7 @@ class IngameHud extends Hud
 					if( badge_key == NTFKEY_BLEEDISH )
 					{
 						bleed_count.Show( true );
-						bleed_count.SetText( value.ToString() );
+						bleed_count.SetText( m_BadgesWidgetDisplay.Get( badge_key ).ToString() );
 					}
 				}
 				else
@@ -631,7 +639,7 @@ class IngameHud extends Hud
 			return;
 		}*/
 		float sx, sy;
-		float max = STAMINA_MAX;
+		float max = GameConstants.STAMINA_MAX;
 		float percentage =  range / max;
 		m_Stamina.SetCurrent( ( value / range ) * 100 );
 		m_Stamina.GetSize( sx, sy );
@@ -786,7 +794,9 @@ class IngameHud extends Hud
 		{
 			if( stance == 1 )
 			{
-				m_StanceStand.Show(true);
+				bool is_walking;
+				m_StanceStand.Show(!is_walking);
+				m_StanceStandWalk.Show(is_walking);
 				m_StanceCrouch.Show(false);
 				m_StanceProne.Show(false);
 				m_StanceCar.Show( false );
@@ -794,6 +804,7 @@ class IngameHud extends Hud
 			if( stance == 2 )
 			{
 				m_StanceStand.Show(false);
+				m_StanceStandWalk.Show(false);
 				m_StanceCrouch.Show(true);
 				m_StanceProne.Show(false);
 				m_StanceCar.Show( false );
@@ -801,6 +812,7 @@ class IngameHud extends Hud
 			if( stance == 3 )
 			{
 				m_StanceStand.Show(false);
+				m_StanceStandWalk.Show(false);
 				m_StanceCrouch.Show(false);
 				m_StanceProne.Show(true);
 				m_StanceCar.Show( false );
@@ -890,10 +902,10 @@ class IngameHud extends Hud
 						m_VehicleOilLight.Show( false );
 					}
 					
-					//float optimal_rpm = car.
-					float redline_rpm = car.EngineGetRPMRedline();
+					float rpm_value_red = ( m_CurrentVehicle.EngineGetRPMRedline() / m_CurrentVehicle.EngineGetRPMMax() ) ;
+					m_VehicleRPMDial.SetMaskProgress( rpm_value_red );
+					m_VehicleRPMRedline.SetMaskProgress( 1 - rpm_value_red );
 					
-					m_HudPanelWidget.FindAnyWidget("RPMDialRedline").SetRotation( 0, 0, redline_rpm );
 					m_HudPanelWidget.FindAnyWidget("PlayerPanel").Show( false );
 					m_Presence.Show( false );
 					m_StancePanel.Show( false );
@@ -926,7 +938,7 @@ class IngameHud extends Hud
 			float rpm_value_red = ( m_CurrentVehicle.EngineGetRPMRedline() / m_CurrentVehicle.EngineGetRPMMax() ) ;
 			float speed_value = ( m_CurrentVehicle.GetSpeedometer() / 200 );
 			
-			m_VehicleRPMPointer.SetRotation( 0, 0, rpm_value * 290 - 130, true );
+			m_VehicleRPMPointer.SetRotation( 0, 0, rpm_value * 270 - 130, true );
 			m_VehicleSpeedPointer.SetRotation( 0, 0, speed_value * 260 - 130, true );
 			m_VehicleSpeedValue.SetText( Math.Floor( m_CurrentVehicle.GetSpeedometer() ).ToString() );
 
@@ -946,17 +958,12 @@ class IngameHud extends Hud
 				next_gear = CarGear.NEUTRAL;
 			}
 			
-			
-			rpm_value_red = rpm_value_red * 360 - 180;
-			m_HudPanelWidget.FindAnyWidget("RPMDialRedline").SetRotation( 0, 0, rpm_value_red );
-			
 			bool newHealth = false;
 			
 			int health = m_CurrentVehicle.GetHealthLevel( "Engine" );
 			int color;
 			if( m_CurrentVehicle.EngineGetRPM() > m_CurrentVehicle.EngineGetRPMRedline() )
 			{
-				Print( m_CurrentVehicle.EngineGetRPMRedline() );
 				if( m_TimeSinceLastEngineLightChange > 0.35 )
 				{
 					m_VehicleEngineLight.Show( !m_VehicleEngineLight.IsVisible() );
@@ -999,7 +1006,7 @@ class IngameHud extends Hud
 			m_VehiclePrevGearValue.SetText( m_VehicleGearTable.Get( prev_gear ) );
 			
 			m_VehicleFuelPointer.SetRotation( 0, 0, m_CurrentVehicle.GetFluidFraction( CarFluid.FUEL ) * 260 - 130, true );
-			m_VehicleTemperaturePointer.SetRotation( 0, 0, m_CurrentVehicle.GetFluidFraction( CarFluid.COOLANT ) * 260 - 130, true );
+			m_VehicleTemperaturePointer.SetRotation( 0, 0, -1 * m_CurrentVehicle.GetFluidFraction( CarFluid.COOLANT ) * 260 + 130, true );
 			/*
 			if( !m_VehicleHasOil )
 			{
@@ -1221,7 +1228,7 @@ class IngameHud extends Hud
 				
 				target_player[1] = target_player[1] + 1.2;
 				
-				if( distance <= 25 && player != GetGame().GetPlayer() )
+				if( distance <= 15 && player != GetGame().GetPlayer() )
 				{
 					vector screen_pos = GetGame().GetScreenPosRelative( target_player );
 					vector end_pos = head_pos + GetGame().GetCurrentCameraDirection() * 25;
@@ -1273,9 +1280,10 @@ class IngameHud extends Hud
 					if( screen_pos[1] > 0 && screen_pos[1] < 1 )
 					{
 						m_PlayerTagText.SetAlpha( Math.Clamp( m_PlayerTagText.GetAlpha() + timeslice * 10, 0, 1 ) );
-						m_PlayerTag.SetPos( screen_pos[0], screen_pos[1] );
+						m_PlayerTag.SetPos( 0.55, 0.55 );
 						m_PlayerTagText.SetText( m_CurrentTaggedPlayer.GetIdentity().GetName() );
-						m_PlayerTagText.SetSize( 1, 1 - screen_pos[2] / 25  );
+						
+						//m_PlayerTagText.SetSize( 1, 1 - screen_pos[2] / 25  );
 						return;
 					}
 				}
@@ -1287,7 +1295,10 @@ class IngameHud extends Hud
 			float new_alpha = Math.Clamp( m_PlayerTagText.GetAlpha() - timeslice * 10, 0, 1 );
 			m_PlayerTagText.SetAlpha( Math.Clamp( m_PlayerTagText.GetAlpha() - timeslice * 10, 0, 1 ) );
 			if( new_alpha == 0 )
+			{
+				m_PlayerTagText.SetText( "" );
 				m_CurrentTaggedPlayer = null;
+			}
 		}
 	}
 	

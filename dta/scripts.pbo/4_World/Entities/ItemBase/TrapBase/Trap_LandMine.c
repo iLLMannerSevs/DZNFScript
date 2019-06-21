@@ -50,7 +50,7 @@ class LandMineTrap extends TrapBase
 	{
 		if ( GetGame().IsServer() )
 		{
-			this.Explode();
+			this.Explode(DT_EXPLOSION);
 			
 			m_DeleteTimer = new Timer( CALL_CATEGORY_SYSTEM );
 			m_DeleteTimer.Run( 2, this, "DeleteThis" );

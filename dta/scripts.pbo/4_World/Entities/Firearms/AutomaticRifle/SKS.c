@@ -16,8 +16,8 @@ enum SKSStableStateID
 
 class SKS_CLO_BU0 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close nobull"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close nobull"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close nobull"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close nobull"); }
 	override int GetCurrentStateID () { return SKSStableStateID.SKS_CLO_BU0; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -26,8 +26,8 @@ class SKS_CLO_BU0 extends WeaponStableState
 };
 class SKS_CLO_BU1 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { close bullet"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } close bullet"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { close bullet"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } close bullet"); }
 	override int GetCurrentStateID () { return SKSStableStateID.SKS_CLO_BU1; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -35,8 +35,8 @@ class SKS_CLO_BU1 extends WeaponStableState
 };
 class SKS_OPN_BU0 extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { open nobull"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } open nobull"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { open nobull"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } open nobull"); }
 	override int GetCurrentStateID () { return SKSStableStateID.SKS_OPN_BU0; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return true; }
@@ -45,8 +45,8 @@ class SKS_OPN_BU0 extends WeaponStableState
 };
 class SKS_JAM_BU1 extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { jammed bullet"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } jammed bullet"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { jammed bullet"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } jammed bullet"); }
 	override int GetCurrentStateID () { return SKSStableStateID.SKS_JAM_BU1; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -214,7 +214,7 @@ class SKS_Base extends Rifle_Base
 		m_fsm.SetInitialState(C0);
 
 		SelectionBulletHide();
-		SelectionMagazineHide();
+		HideMagazine();
 
 		m_fsm.Start();
 	}
@@ -231,5 +231,7 @@ class SKS_Base extends Rifle_Base
 	{
 		super.SetActions();
 		AddAction(FirearmActionLoadMultiBullet);
+		//RemoveAction(FirearmActionLoadBulletQuick); // Easy reload
+		//AddAction(FirearmActionLoadMultiBulletQuick);
 	}
 };

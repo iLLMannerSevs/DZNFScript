@@ -12,7 +12,7 @@ class StuffedNotfr: NotifierBase
 
 	override void DisplayBadge()
 	{
-		float volume = m_Player.GetStatStomachVolume().Get();
+		float volume = m_Player.m_PlayerStomach.GetStomachVolume();
 		eBadgeLevel lvl = DetermineBadgeLevel(volume, PlayerConstants.BT_STOMACH_VOLUME_LVL3, PlayerConstants.BT_STOMACH_VOLUME_LVL3, PlayerConstants.BT_STOMACH_VOLUME_LVL3); 
 		DisplayElementBadge dis_elm = DisplayElementBadge.Cast(GetVirtualHud().GetElement(eDisplayElements.DELM_BADGE_STUFFED));
 		

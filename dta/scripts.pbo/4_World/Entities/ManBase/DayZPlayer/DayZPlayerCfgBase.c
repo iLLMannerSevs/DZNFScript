@@ -91,6 +91,15 @@ void DayZPlayerTypeCreate(DayZPlayerType pType)
 //-----------------------------------------------------------------------------------------------
 // ITEMS 
 //-----------------------------------------------------------------------------------------------
+enum ItemBehaviorType
+{
+	EMPTYHANDED,
+	ONEHANDED,
+	TWOHANDED,
+	PISTOLS,
+	FIREARMS,
+	HEAVY
+};
 
 class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 {
@@ -127,6 +136,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void 	SetPistols()
 	{
+		m_iType = ItemBehaviorType.PISTOLS;
+		
 		SetIKStance(DayZPlayerConstants.STANCEIDX_ERECT, false, true, false);
 		SetIKStance(DayZPlayerConstants.STANCEIDX_CROUCH, false, true, false);
 		SetIKStance(DayZPlayerConstants.STANCEIDX_PRONE, false, true, false);
@@ -139,6 +150,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void 	SetFirearms()
 	{
+		m_iType = ItemBehaviorType.FIREARMS;
+		
 		SetIKStance(DayZPlayerConstants.STANCEIDX_ERECT, false, true, true);
 		SetIKStance(DayZPlayerConstants.STANCEIDX_CROUCH, false, true, true);
 		SetIKStance(DayZPlayerConstants.STANCEIDX_PRONE, false, true, true);
@@ -159,6 +172,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void	SetEmptyHanded()
 	{
+		m_iType = ItemBehaviorType.EMPTYHANDED;
+		
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_PRONE | DayZPlayerConstants.STANCEMASK_RAISEDERECT | DayZPlayerConstants.STANCEMASK_RAISEDPRONE;
 		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_EMPTYHANDED;
 
@@ -171,6 +186,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 	
 	void	SetTwoHanded()
 	{
+		m_iType = ItemBehaviorType.TWOHANDED;
+
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_PRONE | DayZPlayerConstants.STANCEMASK_RAISEDERECT | DayZPlayerConstants.STANCEMASK_RAISEDPRONE;
 	  	m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_TWOHANDED;
 
@@ -183,6 +200,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void	SetToolsOneHanded()
 	{
+		m_iType = ItemBehaviorType.ONEHANDED;
+
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_PRONE | DayZPlayerConstants.STANCEMASK_RAISEDERECT | DayZPlayerConstants.STANCEMASK_RAISEDPRONE;
 		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_ONEHANDED;
 
@@ -195,6 +214,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void	SetRestrained()
 	{
+		m_iType = ItemBehaviorType.EMPTYHANDED;
+		
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_PRONE;
 		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_ONEHANDED;
 
@@ -211,6 +232,8 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 
 	void	SetSurrender()
 	{
+		m_iType = ItemBehaviorType.EMPTYHANDED;
+		
 		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_PRONE;
 		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_EMPTYHANDED;
 
@@ -225,14 +248,16 @@ class DayzPlayerItemBehaviorCfg extends HumanItemBehaviorCfg
 	
 	void	SetHeavyItems()
 	{
-	  m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
-	  m_StanceMovements[DayZPlayerConstants.STANCEIDX_ERECT] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK;
-	  m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_TWOHANDED;
+		m_iType = ItemBehaviorType.HEAVY;
+
+		m_iStanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
+		m_StanceMovements[DayZPlayerConstants.STANCEIDX_ERECT] = DayZPlayerConstants.MOVEMENT_IDLE | DayZPlayerConstants.MOVEMENT_WALK;
+		m_iPerItemCameraUserData = DayZPlayerCameras.PERITEMUD_TWOHANDED;
 	  
-	  SetIKAll(false, true, true);
+		SetIKAll(false, true, true);
 		
-	  m_bAttackLean = true;
-	  m_bJumpAllowed = false;
+		m_bAttackLean = true;
+		m_bJumpAllowed = false;
 	}
 }
 
@@ -300,7 +325,7 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		
 		fireArmsItemBehaviour.SetFirearms();
 		
-		pType.AddItemInHandsProfileIK("AK74_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ak74u.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/akm.anm");
+		pType.AddItemInHandsProfileIK("AK74_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
 		pType.AddItemInHandsProfileIK("AK101_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_ak101.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/ak101.anm", "dz/anims/anm/player/reloads/AK101/w_AK101_states.anm");
 		pType.AddItemInHandsProfileIK("AKM_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_akm.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/akm.anm", "dz/anims/anm/player/reloads/AKM/w_akm_states.anm");
 		pType.AddItemInHandsProfileIK("AugSteyr_Base", "dz/anims/workspaces/player/player_main/weapons/player_main_aug.asi", fireArmsItemBehaviour, "dz/anims/anm/player/ik/weapons/aug.anm");
@@ -386,6 +411,14 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("AmmoBox_9x39_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/9x39_20RoundBox.anm");
 		pType.AddItemInHandsProfileIK("AmmoBox_9x39AP_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/9x39_20RoundBox.anm");
 
+		// New ammobox classes
+		pType.AddItemInHandsProfileIK("AmmoBox_556x45Tracer_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/556x20_20RoundBox.anm");
+		pType.AddItemInHandsProfileIK("AmmoBox_308WinTracer_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/308Win_20RoundBox.anm");
+		pType.AddItemInHandsProfileIK("AmmoBox_762x54Tracer_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/762_20RoundBox.anm");
+		pType.AddItemInHandsProfileIK("AmmoBox_762x39Tracer_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/762x39_20RoundBox.anm");
+		pType.AddItemInHandsProfileIK("AmmoBox_12gaSlug_10Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/00Buck_10RoundBox.anm");
+		pType.AddItemInHandsProfileIK("AmmoBox_545x39Tracer_20Rnd", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,			 	"dz/anims/anm/player/ik/ammunition/545x39_20RoundBox.anm");
+		
 		
 		
 		//! Loose Rounds
@@ -401,10 +434,17 @@ void DayZPlayerTypeRegisterItems(DayZPlayerType pType)
 		pType.AddItemInHandsProfileIK("Ammo_545x39", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/545x39_LooseRounds.anm");
 		pType.AddItemInHandsProfileIK("Ammo_9x39", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/9x39_LooseRounds.anm");
 		pType.AddItemInHandsProfileIK("Ammo_9x39AP", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/9x39_LooseRounds.anm");
-
+		
+		// New ammo classes
+		pType.AddItemInHandsProfileIK("Ammo_308Win", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/9x39_LooseRounds.anm");
+		pType.AddItemInHandsProfileIK("Ammo_308WinTracer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/9x39_LooseRounds.anm");
+		pType.AddItemInHandsProfileIK("Ammo_556x45Tracer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/556x45_LooseRounds.anm");
+		pType.AddItemInHandsProfileIK("Ammo_762x54Tracer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/762x54_LooseRounds.anm");
+		pType.AddItemInHandsProfileIK("Ammo_762x39Tracer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/762x39_LooseRounds.anm");
+		pType.AddItemInHandsProfileIK("Ammo_545x39Tracer", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/545x39_LooseRounds.anm");
+		
 		pType.AddItemInHandsProfileIK("Ammo_12gaPellets", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/12ga_00buck.anm");
 		pType.AddItemInHandsProfileIK("Ammo_12gaSlug", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded, 						"dz/anims/anm/player/ik/ammunition/12ga_00buck.anm");
-		
 		
 		pType.AddItemInHandsProfileIK("Ammo_LAW_HE", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				 		"dz/anims/anm/player/ik/gear/banana.anm"); // Not configured
 		pType.AddItemInHandsProfileIK("Ammo_LAW_HE", "dz/anims/workspaces/player/player_main/player_main_1h.asi", toolsOneHanded,				 		"dz/anims/anm/player/ik/gear/banana.anm"); // Not configured

@@ -8,6 +8,11 @@ class Bandana_ColorBase: ItemBase
 		AddAction(ActionBandageTarget);
 		AddAction(ActionBandageSelf);
 	}
+	
+	void Bandana_ColorBase()
+	{
+		InsertAgent(eAgents.WOUND_AGENT);
+	}
 };
 class BatteryD: ItemBase {};
 class Bone:  ItemBase {};

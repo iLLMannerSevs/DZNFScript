@@ -61,6 +61,7 @@ class HumanInventory : GameInventory
 	bool HasEntityInHands (EntityAI e) { return e == GetEntityInHands(); }
 	
 	void PostHandEvent (HandEventBase e) { }
+	bool ProcessHandEvent (HandEventBase e) { }
 
 	void OnHandsStateChanged (HandStateBase src, HandStateBase dst) { }
 	
@@ -131,6 +132,9 @@ class HumanInventory : GameInventory
 	
 	bool ThrowEntity (EntityAI item, vector dir, float force)
 	{
+		if( GetGame().IsMultiplayer() && GetGame().IsServer() )
+			return false;
+		
 		InventoryLocation src = new InventoryLocation;
 		if (item && item.GetInventory() && item.GetInventory().GetCurrentInventoryLocation(src))
 		{
@@ -138,7 +142,9 @@ class HumanInventory : GameInventory
 			{
 				case InventoryLocationType.HANDS:
 					hndDebugPrint("[inv] HumanInventory::ThrowEntity item=" + item);
-					HandEvent(InventoryMode.PREDICTIVE, new HandEventThrow(GetManOwner(), src));
+					HandEventThrow throwEvent = new HandEventThrow(GetManOwner(), src);
+					throwEvent.SetForce(dir * force);
+					HandEvent(InventoryMode.PREDICTIVE, throwEvent);
 					return true;
 
 				default: return super.DropEntity(InventoryMode.PREDICTIVE, src.GetParent(), item);

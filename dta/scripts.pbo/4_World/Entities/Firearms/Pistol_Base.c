@@ -546,7 +546,7 @@ class Pistol_Base extends Weapon_Base
 
 		m_fsm.SetInitialState(CD00);
 		SelectionBulletHide();
-		SelectionMagazineHide();
+		HideMagazine();
 		m_fsm.Start();
 	}
 	
@@ -565,6 +565,12 @@ class Pistol_Base extends Weapon_Base
 		}
 		
 		return chanceToJam;
+	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionAdvencedDetachMagazine);
 	}
 };
 

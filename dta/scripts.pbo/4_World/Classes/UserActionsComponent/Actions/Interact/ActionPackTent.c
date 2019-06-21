@@ -2,20 +2,12 @@ class ActionPackTent: ActionInteractBase
 {
 	void ActionPackTent()
 	{
-		m_MessageSuccess = "I've packed tent.";
-		m_MessageFail = "I cannot pack tent.";
-		//m_Animation = "open";
 	}
 
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTParent(10);
-	}
-	
-	override int GetType()
-	{
-		return AT_PACK_TENT;
 	}
 
 	override string GetText()

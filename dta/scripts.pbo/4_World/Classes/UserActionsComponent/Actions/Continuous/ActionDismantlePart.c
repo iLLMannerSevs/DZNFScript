@@ -23,11 +23,6 @@ class ActionDismantlePart: ActionContinuousBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
 	}
-
-	override int GetType()
-	{
-		return AT_DISMANTLE_PART;
-	}
 		
 	override string GetText()
 	{
@@ -66,7 +61,7 @@ class ActionDismantlePart: ActionContinuousBase
 		if ( construction.CanDismantlePart( construction_part.GetPartName(), action_data.m_MainItem ) )
 		{
 			//build
-			construction.DismantlePartServer( action_data.m_Player, construction_part.GetPartName(), GetType() );
+			construction.DismantlePartServer( action_data.m_Player, construction_part.GetPartName(), AT_DISMANTLE_PART );
 			
 			//add damage to tool
 			action_data.m_MainItem.DecreaseHealth( UADamageApplied.DISMANTLE, false );
@@ -121,7 +116,7 @@ class ActionDismantlePart: ActionContinuousBase
 				if ( construction_part )
 				{
 					//camera and position checks
-					if ( !base_building.IsFacingPlayer( player, part_name ) && !player.GetInputController().CameraIsFreeLook() )
+					if ( !base_building.IsFacingPlayer( player, part_name ) && !player.GetInputController().CameraIsFreeLook() && base_building.HasProperDistance( construction_part.GetMainPartName(), player ) )
 					{
 						//Camera check (client-only)
 						if ( camera_check )
@@ -145,5 +140,10 @@ class ActionDismantlePart: ActionContinuousBase
 		}
 		
 		return false;
-	}		
+	}
+	
+	override string GetAdminLogMessage(ActionData action_data)
+	{
+		return " dismantled " + action_data.m_Target.GetObject().GetDisplayName() + " with " + action_data.m_MainItem.GetDisplayName();
+	}
 }

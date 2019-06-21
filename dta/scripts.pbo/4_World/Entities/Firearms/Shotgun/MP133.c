@@ -14,8 +14,8 @@ enum PumpShotgunStableStateID
 
 class PumpShotgunEmpty extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Empty E"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Empty E"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Empty E"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Empty E"); }
 	override int GetCurrentStateID () { return PumpShotgunStableStateID.Empty; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -23,8 +23,8 @@ class PumpShotgunEmpty extends WeaponStableState
 };
 class PumpShotgunFireout extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Fireout F"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Fireout F"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Fireout F"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Fireout F"); }
 	override int GetCurrentStateID () { return PumpShotgunStableStateID.Fireout; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -32,8 +32,8 @@ class PumpShotgunFireout extends WeaponStableState
 };
 class PumpShotgunLoaded extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Loaded C"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Loaded C"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Loaded C"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Loaded C"); }
 	override int GetCurrentStateID () { return PumpShotgunStableStateID.Loaded; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -41,8 +41,8 @@ class PumpShotgunLoaded extends WeaponStableState
 };
 class PumpShotgunJammed extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Jammed L_J"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Jammed L_J"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Jammed L_J"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Jammed L_J"); }
 	override int GetCurrentStateID () { return PumpShotgunStableStateID.Jammed; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -209,7 +209,7 @@ class Mp133Shotgun_Base : Rifle_Base
 		m_fsm.SetInitialState(E);
 
 		SelectionBulletHide();
-		SelectionMagazineHide();
+		HideMagazine();
 
 		m_fsm.Start();
 	}
@@ -223,6 +223,8 @@ class Mp133Shotgun_Base : Rifle_Base
 	{
 		super.SetActions();
 		AddAction(FirearmActionLoadMultiBullet);
+		//RemoveAction(FirearmActionLoadBulletQuick); // Easy reload
+		//AddAction(FirearmActionLoadMultiBulletQuick);
 	}
 };
 

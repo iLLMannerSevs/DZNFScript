@@ -1,5 +1,11 @@
 class Rag extends ItemBase
 {
+	void Rag()
+	{
+		InsertAgent(eAgents.WOUND_AGENT);
+	}
+	
+	
 	override bool CanPutAsAttachment( EntityAI parent )
 	{
 		if(!super.CanPutAsAttachment(parent))

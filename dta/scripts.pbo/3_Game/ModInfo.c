@@ -8,4 +8,6 @@ class ModInfo
 	proto native owned string GetTooltip();
 	proto native owned string GetOverview();
 	proto native owned string GetAction();
+	proto native owned string GetAuthor();
+	proto native owned string GetVersion();
 }

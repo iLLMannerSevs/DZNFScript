@@ -2,13 +2,6 @@ class ActionPlantSeed: ActionSingleUseBase
 {
 	void ActionPlantSeed()
 	{
-		m_MessageSuccess = "";
-		m_MessageStartFail = "";
-		m_MessageStart = "";
-		m_MessageSuccess = "";
-		m_MessageFail = "";
-		m_MessageCancel = "";
-		//m_Animation = "open";
 		m_SpecialtyWeight = UASoftSkillsWeight.PRECISE_MEDIUM;
 		
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_DROPITEM_HANDS;
@@ -19,11 +12,6 @@ class ActionPlantSeed: ActionSingleUseBase
 	{		
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTDummy;
-	}
-
-	override int GetType()
-	{
-		return AT_PLANT_SEED;
 	}
 
 	override bool HasTarget()

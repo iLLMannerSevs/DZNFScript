@@ -18,11 +18,6 @@ class ActionDrinkPondContinuous: ActionContinuousBase
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH;
 	}
 
-	override int GetType()
-	{
-		return AT_DRINK_POND;
-	}
-
 	override string GetText()
 	{
 		return "#drink";

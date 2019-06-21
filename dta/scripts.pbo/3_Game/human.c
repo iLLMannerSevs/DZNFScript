@@ -72,6 +72,9 @@ class HumanInputController
 
 	//! resets ADS mode to default
 	proto native void			ResetADS();
+	
+	//! returns true if change of throwing mode has been requested
+	proto native bool			IsThrowingModeChange();
 
 	//! returns true if Walk set to toggle
 	proto native bool			IsWalkToggled();
@@ -848,6 +851,16 @@ class HumanCommandWeapons
 	proto native float 			GetBaseAimingAngleLR();
 
 
+	//----------------------------------------------------
+	// throwing
+	proto native void			SetThrowingMode(bool pState);
+	
+	proto native bool			IsThrowingMode();
+	
+	proto native void			ThrowItem(int throwType);
+	
+	proto native bool			WasItemLeaveHandsEvent();
+	
 	//----------------------------------------------------
 	// debug copy 
 

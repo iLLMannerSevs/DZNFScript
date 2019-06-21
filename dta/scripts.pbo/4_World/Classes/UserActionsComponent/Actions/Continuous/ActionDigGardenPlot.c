@@ -26,11 +26,6 @@ class ActionDigGardenPlot: ActionDeployObject
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_LOW;
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DIGMANIPULATE;
 	}
-
-	override int GetType()
-	{
-		return AT_DIG_GARDEN_PLOT;
-	}
 		
 	override string GetText()
 	{
@@ -104,7 +99,7 @@ class ActionDigGardenPlot: ActionDeployObject
 	{	
 		PlaceObjectActionData poActionData;
 		poActionData = PlaceObjectActionData.Cast(action_data);
-		EntityAI entity_for_placing = EntityAI.Cast( action_data.m_MainItem );
+		EntityAI entity_for_placing = action_data.m_MainItem;
 		vector position = action_data.m_Player.GetLocalProjectionPosition();
 		vector orientation = action_data.m_Player.GetLocalProjectionOrientation();
 				

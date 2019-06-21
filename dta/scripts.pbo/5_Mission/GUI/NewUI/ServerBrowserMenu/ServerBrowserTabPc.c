@@ -85,7 +85,12 @@ class ServerBrowserTabPc extends ServerBrowserTab
 		
 		if( type == TabType.LAN )
 		{
-			m_Root.FindAnyWidget( "filters_root" ).Show( false );
+			m_Root.FindAnyWidget( "filters_content" ).Show( false );
+			m_Root.FindAnyWidget( "spacer" ).Show( false );
+			m_Root.FindAnyWidget( "spacer2" ).Show( false );
+			m_Root.FindAnyWidget( "reset_filter_button" ).Show( false );
+			m_ApplyFilter.Show( false );
+			m_FiltersChanged.Show( false );
 		}
 		
 		m_Filters = new ServerBrowserFilterContainer( m_Root.FindAnyWidget( "filters_content" ), this );
@@ -367,7 +372,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	
 	override bool OnMouseButtonUp( Widget w, int x, int y, int button )
 	{
-		Print("SG OnMouseButtonUp: "+ w.GetName());
+		//Print("SG OnMouseButtonUp: "+ w.GetName());
 		
 		if( button == MouseState.LEFT )
 		{

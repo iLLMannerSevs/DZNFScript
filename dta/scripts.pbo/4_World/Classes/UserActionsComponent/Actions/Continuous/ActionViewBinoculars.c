@@ -1,10 +1,6 @@
 class ActionViewBinoculars : ActionViewOptics
 {
 	bool m_workingRangefinder;
-	override int GetType()
-	{
-		return AT_VIEW_BINOCULARS;
-	}
 		
 	override string GetText()
 	{

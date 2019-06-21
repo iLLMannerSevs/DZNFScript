@@ -347,6 +347,15 @@ class FireplaceBase extends ItemBase
 		{
 			PlayPlaceSound();
 		}
+		
+		if( m_IsBurning && !m_AreaDamage )
+		{
+			CreateAreaDamage();
+		}
+		else if( !m_IsBurning && m_AreaDamage )
+		{
+			DestroyAreaDamage();
+		}
 	}
 	
 	//================================================================
@@ -417,6 +426,20 @@ class FireplaceBase extends ItemBase
 			{
 				SetLightEntity( FireplaceLight.Cast( ScriptedLightBase.CreateLight(FireplaceLight, GetPosition(), 20) ) );
 				GetLightEntity().AttachOnMemoryPoint(this, "light");
+			}
+			
+			if (GetLightEntity())
+			{
+				// The following solves an issue with the light point clipping through narrow geometry
+				
+				if ( IsItemTypeAttached ( ATTACHMENT_STONES )  ||  IsBarrelWithHoles()  ||  IsFireplaceIndoor() )
+				{
+					GetLightEntity().SetInteriorMode();
+				}
+				else
+				{
+					GetLightEntity().SetExteriorMode();
+				}
 			}
 		}
 		else
@@ -1923,7 +1946,7 @@ class FireplaceBase extends ItemBase
 		m_AreaDamage = new AreaDamageRegularDeferred( this );
 		m_AreaDamage.SetExtents("-0.25 0 -0.25", "0.25 1.8 0.25");
 		m_AreaDamage.SetLoopInterval( 0.5 );
-		m_AreaDamage.SetDeferInterval( 0.5 );
+		m_AreaDamage.SetDeferDuration( 0.5 );
 		m_AreaDamage.SetHitZones( { "Head","Torso","LeftHand","LeftLeg","LeftFoot","RightHand","RightLeg","RightFoot" } );
 		m_AreaDamage.SetAmmoName( "FireDamage" );
 		m_AreaDamage.Spawn();
@@ -1933,7 +1956,7 @@ class FireplaceBase extends ItemBase
 	{
 		if ( m_AreaDamage ) 
 		{
-			m_AreaDamage.DestroyDamageTrigger();
+			m_AreaDamage.Destroy();
 		}
 	}
 

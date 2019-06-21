@@ -1,6 +1,5 @@
 class Man extends EntityAI
 {
-	proto native void DisableSimulation(bool disable);
 	//! Returns player's input interface
 	proto native UAInterface GetInputInterface();
 	//! Returns player's identity

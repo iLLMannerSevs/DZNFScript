@@ -16,7 +16,7 @@ class StuffedStomachMdfr: ModifierBase
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
-		float stomach = player.GetStatStomachVolume().Get();
+		float stomach = player.m_PlayerStomach.GetStomachVolume();
 		if ( stomach >= STUFFED_TRESHOLD )
 		{
 			return true;

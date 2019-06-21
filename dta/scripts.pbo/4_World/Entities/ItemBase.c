@@ -789,11 +789,34 @@ class ItemBase extends InventoryItem
 		if ( owner_player_old != owner_player_new )
 		{
 			if ( owner_player_old )
-				OnInventoryExit(owner_player_old);
+			{
+				array<EntityAI> subItemsExit = new array<EntityAI>;
+				GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER,subItemsExit);
+				for (int i = 0; i < subItemsExit.Count(); i++)
+				{
+					ItemBase item_exit = ItemBase.Cast(subItemsExit.Get(i));
+					item_exit.OnInventoryExit(owner_player_old);
+				}
+				
+				PlayerBase player_exit = PlayerBase.Cast(owner_player_old);
+				player_exit.OnItemInventoryExit(this);
 				// Debug.Log("Item dropped from inventory");
+			}
 
 			if ( owner_player_new )
-				OnInventoryEnter(owner_player_new);
+			{
+				array<EntityAI> subItemsEnter = new array<EntityAI>;
+				GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER,subItemsEnter);
+				for (int j = 0; j < subItemsEnter.Count(); j++)
+				{
+					ItemBase item_enter = ItemBase.Cast(subItemsEnter.Get(j));
+					item_enter.OnInventoryEnter(owner_player_new);
+				}
+				
+				PlayerBase player_enter = PlayerBase.Cast(owner_player_new);
+				player_enter.OnItemInventoryEnter(this);
+				
+			}
 				// Debug.Log("Item taken to inventory");
 		}
 	//will not work, item location not yet specified
@@ -850,7 +873,7 @@ class ItemBase extends InventoryItem
 				else
 				{
 					//explode item
-					Explode();
+					Explode(DT_EXPLOSION);
 				}
 			}
 		}
@@ -2044,13 +2067,18 @@ class ItemBase extends InventoryItem
 			return false;
 
 		PlayerBase player;
-		if( Class.CastTo(player, GetHierarchyRootPlayer()) || version == int.MAX )
+		int itemQBIndex;
+		if(version == int.MAX)
 		{
-			//Load quickbar item bind
-			int itemQBIndex;
 			if(!ctx.Read(itemQBIndex))
 				return false;
-			if( itemQBIndex != -1 )
+		}
+		else if( Class.CastTo(player, GetHierarchyRootPlayer()) )
+		{
+			//Load quickbar item bind
+			if(!ctx.Read(itemQBIndex))
+				return false;
+			if( itemQBIndex != -1 && player )
 			{
 				player.SetLoadedQuickBarItemBind(this,itemQBIndex);
 			}
@@ -2304,7 +2332,6 @@ class ItemBase extends InventoryItem
 			{
 				totalWeight += GetInventory().GetAttachmentFromIndex(i).GetItemWeight();
 			}
-			totalWeight += (item_wetness + 1) * ConfWeight;
 		}
 		
 		//cargo?
@@ -2314,8 +2341,6 @@ class ItemBase extends InventoryItem
 			{
 				totalWeight += cargo.GetItem(i).GetItemWeight();
 			}
-			totalWeight += (item_wetness + 1) * ConfWeight;
-			//return Math.Round(GetContainerWeight() + ((item_wetness + 1) * ConfWeight));
 		}
 
 		//other
@@ -2597,17 +2622,8 @@ class ItemBase extends InventoryItem
 		PlayerBase nplayer;
 		if ( PlayerBase.CastTo(nplayer, player) )
 		{
-			nplayer.OnItemInventoryEnter(this);
-			array<EntityAI> subItems = new array<EntityAI>;
-			GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER,subItems);
-			
-			for(int i = 0; i < subItems.Count(); i++)
-			{
-				nplayer.SetEnableQuickBarEntityShortcut(subItems.Get(i),true);				
-			}
-			//nplayer.CalculatePlayerLoad();
-			//nplayer.SetEnableQuickBarEntityShortcut(this,true);
-			//nplayer.CalculatePlayerLoad();
+			//nplayer.OnItemInventoryEnter(this);
+			nplayer.SetEnableQuickBarEntityShortcut(this,true);	
 		}
 	}
 	
@@ -2618,17 +2634,9 @@ class ItemBase extends InventoryItem
 		PlayerBase nplayer;
 		if ( PlayerBase.CastTo(nplayer,player) )
 		{		
-			nplayer.OnItemInventoryExit(this);
-			// Test item and attached items for quickbar shortcut to remove 
-			array<EntityAI> subItems = new array<EntityAI>;
-			GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER,subItems);
-			
-			for(int i = 0; i < subItems.Count(); i++)
-			{
-				nplayer.SetEnableQuickBarEntityShortcut(subItems.Get(i),false);				
-			}
-			//nplayer.CalculatePlayerLoad();
-			//nplayer.SetEnableQuickBarEntityShortcut(this,false);
+			//nplayer.OnItemInventoryExit(this);
+			nplayer.SetEnableQuickBarEntityShortcut(this,false);
+
 		}
 		
 		if ( HasEnergyManager() )
@@ -2691,10 +2699,11 @@ class ItemBase extends InventoryItem
 		m_AttachedAgents = m_AttachedAgents & agent_to_keep;
 	}
 	// -------------------------------------------------------------------------
-	override void InsertAgent(int agent, float count)
+	override void InsertAgent(int agent, float count = 1)
 	{
-		if( count < 0.01 ) return;
-		Debug.Log("Inserting Agent on item: " + agent.ToString() +" count: " + count.ToString());
+		if( count < 1 )
+			return;
+		//Debug.Log("Inserting Agent on item: " + agent.ToString() +" count: " + count.ToString());
 		m_AttachedAgents = (agent | m_AttachedAgents);
 	}
 	
@@ -2703,12 +2712,54 @@ class ItemBase extends InventoryItem
 	{
 		m_AttachedAgents = (m_AttachedAgents | agents);
 	}
+	
 	// -------------------------------------------------------------------------
 	override int GetAgents()
 	{
 		return m_AttachedAgents;
 	}
-
+	//----------------------------------------------------------------------
+	
+	int GetContaminationType()
+	{
+		int contamination_type;
+		
+		const int CONTAMINATED_MASK = eAgents.CHOLERA | eAgents.INFLUENZA | eAgents.SALMONELLA | eAgents.BRAIN;
+		const int POISONED_MASK = eAgents.FOOD_POISON | eAgents.CHEMICAL_POISON;
+		const int NERVE_GAS_MASK = eAgents.NERVE_AGENT;
+		const int DIRTY_MASK = eAgents.WOUND_AGENT;
+		
+		Edible_Base edible = Edible_Base.Cast(this);
+		int agents = GetAgents();
+		if(edible)
+		{
+			NutritionalProfile profile = Edible_Base.GetNutritionalProfile(edible);
+			if(profile)
+			{
+				//Print("profile agents:" +profile.GetAgents());
+				agents = agents | profile.GetAgents();//merge item's agents with nutritional agents
+			}
+		}
+		if( agents & CONTAMINATED_MASK )
+		{
+			contamination_type = contamination_type | EContaminationTypes.ITEM_BADGE_CONTAMINATED;
+		}
+		if( agents & POISONED_MASK )
+		{
+			contamination_type = contamination_type | EContaminationTypes.ITEM_BADGE_POISONED;
+		}
+		if( agents & NERVE_GAS_MASK )
+		{
+			contamination_type = contamination_type | EContaminationTypes.ITEM_BADGE_NERVE_GAS;
+		}
+		if( agents & DIRTY_MASK )
+		{
+			contamination_type = contamination_type | EContaminationTypes.ITEM_BADGE_DIRTY;
+		}
+		
+		return agents;
+	}
+	
 	// -------------------------------------------------------------------------
 	bool LoadAgents(ParamsReadContext ctx, int version)
 	{
@@ -3070,6 +3121,8 @@ class ItemBase extends InventoryItem
 	{		
 		return IsBeingPlaced() && IsSoundSynchRemote();
 	}
+	
+	void OnApply(PlayerBase player);
 
 }
 

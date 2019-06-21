@@ -14,8 +14,8 @@ enum RSSStableStateID
 
 class RSSEmpty extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Empty E"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Empty E"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Empty E"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Empty E"); }
 	override int GetCurrentStateID () { return RSSStableStateID.Empty; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -23,8 +23,8 @@ class RSSEmpty extends WeaponStableState
 };
 class RSSFireout extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Fireout F"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Fireout F"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Fireout F"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Fireout F"); }
 	override int GetCurrentStateID () { return RSSStableStateID.Fireout; }
 	override bool HasBullet () { return false; }
 	override bool HasMagazine () { return false; }
@@ -32,8 +32,8 @@ class RSSFireout extends WeaponStableState
 };
 class RSSLoaded extends WeaponStableState
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Loaded C"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Loaded C"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Loaded C"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Loaded C"); }
 	override int GetCurrentStateID () { return RSSStableStateID.Loaded; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }
@@ -41,8 +41,8 @@ class RSSLoaded extends WeaponStableState
 };
 class RSSJammed extends WeaponStateJammed
 {
-	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] { Jammed J"); super.OnEntry(e); }
-	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] } Jammed J"); }
+	override void OnEntry (WeaponEventBase e) { wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " { Jammed J"); super.OnEntry(e); }
+	override void OnExit (WeaponEventBase e) { super.OnExit(e); wpnPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " } Jammed J"); }
 	override int GetCurrentStateID () { return RSSStableStateID.Jammed; }
 	override bool HasBullet () { return true; }
 	override bool HasMagazine () { return false; }

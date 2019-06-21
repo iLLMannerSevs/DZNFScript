@@ -14,12 +14,6 @@ class ActionDigOutStash: ActionContinuousBase
 		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DIGUPCACHE;
 		m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
-		
-		m_MessageStartFail = "I can't dig here.";
-		m_MessageStart = "I've started digging.";
-		m_MessageSuccess = "I have stashed the chest.";
-		m_MessageFail = "I couldn't dig the hole.";
-		m_MessageCancel = "I've stopped digging.";
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_LOW;
 	}
 	
@@ -28,11 +22,6 @@ class ActionDigOutStash: ActionContinuousBase
 		
 		m_ConditionTarget = new CCTObject(UAMaxDistances.DEFAULT);
 		m_ConditionItem = new CCINonRuined;
-	}
-
-	override int GetType()
-	{
-		return AT_DIG_OUT_STASH;
 	}
 
 	override string GetText()

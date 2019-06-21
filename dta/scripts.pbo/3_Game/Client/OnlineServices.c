@@ -23,6 +23,8 @@ class OnlineServices
 	protected static bool													m_FirstFriendsLoad			= true;
 	protected static bool													m_MultiplayState			= false;
 	protected static ref array<string>										m_PendingInvites;
+
+	protected static ref BiosUser											m_BiosUser;
 	
 	static void Init()
 	{
@@ -480,6 +482,9 @@ class OnlineServices
 	{
 		if( g_Game.GetGameState() == DayZGameState.IN_GAME )
 		{
+			#ifdef PLATFORM_PS4
+			GetGame().GetWorld().DisableReceiveVoN( ErrorCaught( err ) );
+			#endif
 			GetGame().GetWorld().DisableTransmitVoN( ErrorCaught( err ) );
 		}
 	}
@@ -511,6 +516,17 @@ class OnlineServices
 			m_ClientServices.GetSessionService().TryGetSession( GetSessionHandle() );
 		}
 	}
+
+	static BiosUser GetBiosUser()
+	{
+		return m_BiosUser;
+	}
+
+	static void SetBiosUser(BiosUser user)
+	{
+		m_BiosUser = user;
+	}
+
 	
 	static bool GetMultiplayState()
 	{
@@ -523,8 +539,9 @@ class OnlineServices
 		bool is_multiplay;
 		if( ClientData.GetSimplePlayerList() )
 			is_multiplay = state && ( ClientData.GetSimplePlayerList().Count() > 1 );
-		
-		m_ClientServices.GetSessionService().SetMultiplayState(is_multiplay);
+
+		if( m_ClientServices )
+			m_ClientServices.GetSessionService().SetMultiplayState(is_multiplay);
 	}
 	
 	static void EnterGameplaySession()
@@ -551,9 +568,12 @@ class OnlineServices
 				m_ClientServices.GetSessionService().LeaveGameplaySessionAsync(m_CurrentServerInfo.m_HostIp, m_CurrentServerInfo.m_HostPort);
 			else if( m_CurrentServerIP != "" )
 				m_ClientServices.GetSessionService().LeaveGameplaySessionAsync(m_CurrentServerIP, m_CurrentServerPort);
+				
 			SetMultiplayState(false);
 			m_FirstFriendsLoad = true;
-			m_FriendsList.Clear();
+			
+			if( m_FriendsList )
+				m_FriendsList.Clear();
 		}
 	}
 	

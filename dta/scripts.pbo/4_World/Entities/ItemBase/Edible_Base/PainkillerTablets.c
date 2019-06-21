@@ -12,6 +12,10 @@ class PainkillerTablets extends Edible_Base
 	
 	override void OnConsume(float amount, PlayerBase consumer)
 	{
-		//consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_IMMUNITYBOOST );
+		if( consumer.GetModifiersManager().IsModifierActive(eModifiers.MDF_PAINKILLERS ) )//effectively resets the timer
+		{
+			consumer.GetModifiersManager().DeactivateModifier( eModifiers.MDF_PAINKILLERS, false );
+		}
+		consumer.GetModifiersManager().ActivateModifier( eModifiers.MDF_PAINKILLERS );
 	}
 }

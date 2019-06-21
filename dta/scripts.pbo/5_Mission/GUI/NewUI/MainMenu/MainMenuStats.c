@@ -75,84 +75,120 @@ class MainMenuStats extends ScriptedWidgetEventHandler
 	
 	protected string GetTimeString( float total_time )
 	{
-		if( total_time < 0 )
-			return "0h";
-	
-		int time_seconds = total_time; 							//convert total time to int
-		string time_string;
+		string day_symbol = "d";							//define symbols
+		string hour_symbol = "h";
+		string minute_symbol = "min";
 		
-		int hours = time_seconds / 3600;
-		if ( hours > 0 )
+		if ( total_time > 0 )
 		{
-			time_string += GetValueString( hours ) + "h";		//hours
+			string time_string;		
+			int time_seconds = total_time; 						//convert total time to int
+			
+			int days = time_seconds / 3600 / 24;
+			int hours = time_seconds / 3600 % 24;
+			int minutes = ( time_seconds % 3600 ) / 60;
+			
+			if ( days > 0 )
+			{
+				time_string += GetValueString( days ) + day_symbol;		//days
+				time_string += " ";										//separator
+			}
+			
+			if ( hours > 0 || days > 0 )
+			{
+				time_string += GetValueString( hours ) + hour_symbol;	//hours
+				time_string += " ";										//separator
+			}			
+
+			if ( minutes >= 0 )
+			{
+				time_string += GetValueString( minutes ) + minute_symbol;	//minutes
+			}			
+
+			return time_string;
 		}
 		
-		time_string += " ";										//separator
-		
-		int minutes = ( time_seconds % 3600 ) / 60;
-		time_string += GetValueString( minutes ) + "m";			//minutes
-		
-		return time_string;
+		return "0" + " " + minute_symbol;
 	}
 	
 	protected string GetDistanceString( float total_distance, bool meters_only = false )
 	{
-		if( total_distance < 0 )
-			return "0m";
+		string meter_symbol = "m";							//define symbols
+		string kilometer_symbol = "km";
+		
+		if ( total_distance > 0 )
+		{
+			string distance_string;
+			
+			float kilometers = total_distance / 1000;
+			kilometers = Math.Round( kilometers );
+			if ( kilometers >= 10 && !meters_only )
+			{
+				distance_string = GetValueString( kilometers, true ) + " " + kilometer_symbol;		//kilometers
+			}
+			else
+			{
+				distance_string = GetValueString( total_distance ) + " " + meter_symbol;			//meters
+			}
+			
+			return distance_string;
+		}	
 	
-		int distance_meters = total_distance;
-		string distance_string;
-		
-		int kilometers = distance_meters / 1000;
-		if ( kilometers > 0 && !meters_only )
-		{
-			distance_string += GetValueString( kilometers ) + "km";			//kilometers
-			distance_string += " ";											//separator
-		}
-		else
-		{
-			distance_string += GetValueString( distance_meters ) + "m";		//meters
-		}
-		
-		return distance_string;
+		return "0" + " " + meter_symbol;
 	}
 	
-	protected string GetValueString( float total_value )
+	protected string GetValueString( float total_value, bool show_decimals = false )
 	{
-		if( total_value < 0 )
-			return "0";
-	
-		int value = total_value;
-		string out_string;
-		
-		if ( value >= 1000 )
+		if ( total_value > 0 )
 		{
-			string value_string = value.ToString();
+			string out_string;
 			
-			int count;		
-			int first_length = value_string.Length() % 3;		//calculate position of the first separator
-			if ( first_length > 0 )
-			{
-				count = 3 - first_length;
-			}
+			int total_value_int = total_value;
+			string number_str = total_value_int.ToString();
 			
-			for ( int i = 0; i < value_string.Length(); ++i )
+			//number
+			if ( total_value >= 1000 )
 			{
-				out_string += value_string.Get( i );
-				count ++;
-				
-				if ( count >= 3 )
+				int count;		
+				int first_length = number_str.Length() % 3;		//calculate position of the first separator
+				if ( first_length > 0 )
 				{
-					out_string += " ";			//separator
-					count = 0;
+					count = 3 - first_length;
+				}
+				
+				for ( int i = 0; i < number_str.Length(); ++i )
+				{
+					out_string += number_str.Get( i );
+					count ++;
+					
+					if ( count >= 3 )
+					{
+						out_string += " ";						//separator
+						count = 0;
+					}
 				}
 			}
-		}
-		else
-		{
-			out_string = value.ToString();
+			else
+			{
+				out_string = number_str;
+			}
+			
+			//decimals
+			if ( show_decimals )
+			{
+				string total_value_str = total_value.ToString();
+				int decimal_idx = total_value_str.IndexOf( "." );
+			
+				if ( decimal_idx > -1 )
+				{
+					out_string.TrimInPlace();
+					out_string += total_value_str.Substring( decimal_idx, total_value_str.Length() - decimal_idx );
+				}
+			}
+
+			return out_string;
 		}
 		
-		return out_string;
+		return "0";
 	}
 }

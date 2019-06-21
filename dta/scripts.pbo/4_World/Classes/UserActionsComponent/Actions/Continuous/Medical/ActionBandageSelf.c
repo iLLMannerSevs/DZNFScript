@@ -6,7 +6,7 @@ class ActionBandageSelfCB : ActionContinuousBaseCB
 	}
 };
 
-class ActionBandageSelf: ActionContinuousBase
+class ActionBandageSelf: ActionBandageBase
 {	
 	void ActionBandageSelf()
 	{
@@ -22,11 +22,6 @@ class ActionBandageSelf: ActionContinuousBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTSelf;
 	}
-		
-	override int GetType()
-	{
-		return AT_BANDAGE_S;
-	}
 
 	override bool HasTarget()
 	{
@@ -37,28 +32,19 @@ class ActionBandageSelf: ActionContinuousBase
 	{
 		return "#treat_wound";
 	}
-
+/*
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		return player.IsBleeding();
-	}
+	}*/
 	
 	override void OnFinishProgressServer( ActionData action_data )
 	{	
-		if (action_data.m_Player.GetBleedingManagerServer() )
+		PlayerBase target = PlayerBase.Cast(action_data.m_Player);
+		if(action_data.m_MainItem && target)
 		{
-			action_data.m_Player.GetBleedingManagerServer().RemoveMostSignificantBleedingSource();	
+			ApplyBandage( action_data.m_MainItem, target );
+			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
-		
-		if (action_data.m_MainItem.HasQuantity())
-		{
-			action_data.m_MainItem.AddQuantity(-1,true);
-		}
-		else
-		{
-			action_data.m_MainItem.Delete();
-		}
-
-		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}
 };

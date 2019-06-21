@@ -58,6 +58,15 @@ class WeaponEventBase
 		ctx.Write(m_player);
 		ctx.Write(m_magazine);
 	}
+	
+	string DumpToString ()
+	{
+		string res = "{ WpnEv id=" + typename.EnumToString(WeaponEventID, GetEventID());
+		res = res + " pl=" + Object.GetDebugName(m_player);
+		res = res + " mag=" + Object.GetDebugName(m_magazine);
+		res = res + " }";
+		return res;
+	}
 };
 
 /**@brief		signalize mechanism manipulation

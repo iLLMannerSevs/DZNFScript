@@ -355,8 +355,8 @@ typedef Param1<string> ScriptLogEventParams;
 typedef Param4<int, string, string, string> ChatMessageEventParams;
 typedef Param1<int> ChatChannelEventParams;
 typedef Param1<int> SQFConsoleEventParams;
-//! PlayerIdentity, useDB, pos, yaw, queueTime
-typedef Param5<PlayerIdentity, bool, vector, float, int> PreloadEventParams;
+//! PlayerIdentity, useDB, pos, yaw
+typedef Param4<PlayerIdentity, bool, vector, float> ClientPrepareEventParams;
 //! PlayerIdentity, PlayerPos, Top, Bottom, Shoe, Skin
 typedef Param3<PlayerIdentity, vector, Serializer> ClientNewEventParams; 
 //! PlayerIdentity, Man
@@ -367,12 +367,13 @@ typedef Param2<PlayerIdentity, Man> ClientReadyEventParams;
 typedef Param2<PlayerIdentity, Man> ClientReconnectEventParams; 
 //! PlayerIdentity, Man, LogoutTime, AuthFailed
 typedef Param4<PlayerIdentity, Man, int, bool> ClientDisconnectedEventParams; 
-//! PlayerIdentity, QueueTime, NewChar
-typedef Param2<int, bool> ClientSpawningEventParams; 
+//! LoginTime
+typedef Param1<int> LoginTimeEventParams; 
+typedef Param1<vector> PreloadEventParams; 
 //! Player
 typedef Param1<Man> LogoutCancelEventParams; 
-//! Error 
-typedef Param1<string> DatabaseErrorEventParams; 
+//! text message for line 1, text message for line 2 
+typedef Param2<string, string> LoginStatusEventParams; 
 //! logoutTime
 typedef Param1<int> LogoutEventParams; 
 //! Width, Height, Windowed
@@ -425,8 +426,8 @@ enum EventType
 	ChatMessageEventTypeID,
 	//! params: \ref ChatChannelEventParams
 	ChatChannelEventTypeID,
-	//! params: \ref PreloadEventParams
-	PreloadEventTypeID,
+	//! params: \ref ClientPrepareEventParams
+	ClientPrepareEventTypeID,
 	//! params: \ref ClientNewEventParams
 	ClientNewEventTypeID,	
 	//! params: \ref ClientRespawnEventParams
@@ -439,12 +440,14 @@ enum EventType
 	ClientDisconnectedEventTypeID,
 	//! params: \ref LogoutCancelEventParams
 	LogoutCancelEventTypeID,
-	//! params: \ref ClientSpawningEventParams
-	ClientSpawningEventTypeID,
+	//! params: \ref LoginTimeEventParams
+	LoginTimeEventTypeID,
+	//! params: \ref PreloadEventParams
+	PreloadEventTypeID,
 	//! params: \ref LogoutEventParams
 	LogoutEventTypeID,	
-	//! params: \ref DatabaseErrorEventParams
-	DatabaseErrorEventTypeID,	
+	//! params: \ref LoginStatusEventParams
+	LoginStatusEventTypeID,	
 	//! params: \ref ScriptLogEventParams
 	ScriptLogEventTypeID,
 	//! params: \ref VONStateEventParams
@@ -723,6 +726,7 @@ const int AT_CONFIG_CONTROLLER_YAXIS = 59,
 const int AT_CONFIG_CONTROLLER_REVERSED_LOOK = 60,
 const int AT_OPTIONS_DISPLAY_MODE = 61,
 const int AT_OPTIONS_TERRAIN_SHADER = 62,
+const int AT_OPTIONS_AIM_HELPER = 63,
 
 // Option Access Control Type
 const int OA_CT_NUMERIC = 0;
@@ -870,7 +874,7 @@ class GameOptions: Managed
 // -------------------------------------------------------------------------
 class Hive
 {
-	proto native void InitOnline( string host = "" );
+	proto native void InitOnline( string ceSetup, string host = "" );
 	proto native void InitOffline();
 	proto native void InitSandbox();
 
@@ -949,6 +953,7 @@ class UAInput
 	proto native bool IsPressLimit();		// if limited to PRESS
 	proto native bool IsReleaseLimit();		// if limited to RELEASE
 	proto native bool IsHoldLimit();		// if limited to HOLD
+	proto native bool IsHoldBeginLimit();	// if limited to HOLDBEGIN
 	proto native bool IsClickLimit();		// if limited to SINGLE CLICK
 	proto native bool IsDoubleClickLimit();	// if limited to DOUBLE CLICK
 
@@ -1159,7 +1164,7 @@ const int	RF_DECORRECTION			= 256;	// angle correction when spawning InventoryIt
 const int	RF_DEFAULT				= 512;	// use default placement setuped on object in config
 
 
-class CETesting
+class CEApi
 {
 	proto native void ExportSpawnData();
 	proto native void ExportProxyData( vector vCenter, float fRadius );
@@ -1173,8 +1178,6 @@ class CETesting
 
 	proto native void TimeShift( float fShift );
 	proto native void OverrideLifeTime( float fLifeTime );
-
-	proto native void NewRestock( bool bEnable );
 
 	proto native void SpawnGroup( string sEvName, vector vPos );
 	proto native void SpawnDE( string sEvName, vector vPos, float fAngle ); /* THIS WILL BE OBSOLETE OR PREFERABLY DEFAULT? */
@@ -1198,7 +1201,7 @@ class CETesting
 
 };
 
-proto native CETesting GetTesting();
+proto native CEApi GetCEApi();
 
 // -------------------------------------------------------------------------
 class CEItemProfile

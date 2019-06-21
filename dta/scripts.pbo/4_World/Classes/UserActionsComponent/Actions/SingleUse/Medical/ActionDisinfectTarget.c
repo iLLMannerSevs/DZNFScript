@@ -38,11 +38,6 @@ class ActionDisinfectTarget: ActionSingleUseBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
-
-	override int GetType()
-	{
-		return AT_DISINFECT_T;
-	}
 		
 	override string GetText()
 	{

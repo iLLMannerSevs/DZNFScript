@@ -211,7 +211,7 @@ class ActionManagerBase
 		if ( !m_ActionsEnabled )
 			return false;
 		
-		if ( m_Player.IsSprinting() || m_Player.IsUnconscious() || m_Player.GetCommandModifier_Action() || m_Player.GetCommand_Action() || m_Player.IsPlayingEmote() )
+		if ( m_Player.IsSprinting() || m_Player.IsUnconscious() || m_Player.GetCommandModifier_Action() || m_Player.GetCommand_Action() || m_Player.IsPlayingEmote() || m_Player.GetThrowing().IsThrowingModeEnabled() )
 			return false;
 		
 		if (pCurrentCommandID == DayZPlayerConstants.COMMANDID_ACTION || pCurrentCommandID == DayZPlayerConstants.COMMANDID_MOVE || pCurrentCommandID == DayZPlayerConstants.COMMANDID_SWIM || pCurrentCommandID == DayZPlayerConstants.COMMANDID_LADDER || pCurrentCommandID == DayZPlayerConstants.COMMANDID_VEHICLE)
@@ -265,7 +265,7 @@ class ActionManagerBase
 	{
 	}
 
-	void OnInstantAction(int user_action_id, Param data = NULL)
+	void OnInstantAction(typename user_action_type, Param data = NULL)
 	{
 	}
 	

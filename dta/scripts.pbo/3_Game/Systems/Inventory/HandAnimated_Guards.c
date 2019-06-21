@@ -1,17 +1,36 @@
-int SlotToAnimType (notnull Man player, notnull InventoryLocation src)
+int SlotToAnimType (notnull Man player, notnull InventoryLocation src, InventoryLocation dst = null)
 {
-	if (src.GetType() == InventoryLocationType.ATTACHMENT)
+	//Print("src.GetType() " + src.GetType());
+	InventoryLocation invloc1 = new InventoryLocation;
+	//InventoryLocation invloc2 = new InventoryLocation;
+	
+	if (dst && (dst.GetType() == InventoryLocationType.ATTACHMENT || dst.GetType() == InventoryLocationType.CARGO))
+	{
+		invloc1.Copy(dst);
+		//invloc2.Copy(src);
+	}
+	else if (src.GetType() == InventoryLocationType.ATTACHMENT || src.GetType() == InventoryLocationType.CARGO)
+	{
+		invloc1.Copy(src);
+		//invloc2.Copy(dst);
+	}
+	else
+	{
+		return -1;
+	}
+	
+	if (invloc1.GetType() == InventoryLocationType.ATTACHMENT /*|| src.GetType() == InventoryLocationType.HANDS*/)
 	{
 		//return WeaponHideShowTypes.HIDESHOW_SLOT_KNIFEBACK;
-		switch (src.GetSlot())
+		switch (invloc1.GetSlot())
 		{
 			case InventorySlots.SHOULDER:
 			{
-				if (src.GetItem() && src.GetItem().IsWeapon())
+				if (invloc1.GetItem() && invloc1.GetItem().IsWeapon())
 				{
 					return WeaponHideShowTypes.HIDESHOW_SLOT_RFLLEFTBACK;
 				}
-				else if (src.GetItem() && src.GetItem().IsOneHandedBehaviour())
+				else if (invloc1.GetItem() && invloc1.GetItem().IsOneHandedBehaviour())
 				{
 					return WeaponHideShowTypes.HIDESHOW_SLOT_1HDLEFTBACK;
 				}
@@ -19,11 +38,11 @@ int SlotToAnimType (notnull Man player, notnull InventoryLocation src)
 			}
 			case InventorySlots.MELEE:
 			{
-				if (src.GetItem() && src.GetItem().IsWeapon())
+				if (invloc1.GetItem() && invloc1.GetItem().IsWeapon())
 				{
 					return WeaponHideShowTypes.HIDESHOW_SLOT_RFLRIGHTBACK;
 				}
-				else if (src.GetItem() && src.GetItem().IsOneHandedBehaviour())
+				else if (invloc1.GetItem() && invloc1.GetItem().IsOneHandedBehaviour())
 				{
 					return WeaponHideShowTypes.HIDESHOW_SLOT_1HDRIGHTBACK;
 				}
@@ -31,7 +50,7 @@ int SlotToAnimType (notnull Man player, notnull InventoryLocation src)
 			}
 			case InventorySlots.PISTOL:
 			{
-				EntityAI parent_item = src.GetParent(); 		// belt
+				EntityAI parent_item = invloc1.GetParent(); 		// belt
 				Man owner;
 				if (parent_item)
 					owner = parent_item.GetHierarchyRootPlayer(); 		// player
@@ -54,12 +73,12 @@ int SlotToAnimType (notnull Man player, notnull InventoryLocation src)
 				return WeaponHideShowTypes.HIDESHOW_SLOT_INVENTORY;
 			
 			default:
-				Print("[hndfsm] SlotToAnimType -  not animated slot in src_loc=" + InventoryLocation.DumpToStringNullSafe(src));
+				Print("[hndfsm] SlotToAnimType -  not animated slot in src_loc=" + InventoryLocation.DumpToStringNullSafe(invloc1));
 		};
 		//
 		//if (InventorySlots.GetSlotIdFromString("Pistol"))
 	}
-	else if (src.GetType() == InventoryLocationType.CARGO)
+	else if (invloc1.GetType() == InventoryLocationType.CARGO)
 	{
 		return WeaponHideShowTypes.HIDESHOW_SLOT_INVENTORY;
 	}
@@ -113,8 +132,10 @@ bool SelectAnimationOfForceSwapInHands (notnull Man player, notnull InventoryLoc
 	{
 		hndDebugPrint("[hndfsm] SlotToAnimType - old_src=" + InventoryLocation.DumpToStringNullSafe(old_src) + " new_src=" + InventoryLocation.DumpToStringNullSafe(new_src) + " old_dst=" + InventoryLocation.DumpToStringNullSafe(old_dst) + " new_dst=" + InventoryLocation.DumpToStringNullSafe(new_dst));
 		
-		animType1 = SlotToAnimType(player, new_dst);
-		animType2 = SlotToAnimType(player, old_src);
+		animType1 = SlotToAnimType(player, new_dst, new_src);
+		animType2 = SlotToAnimType(player, old_src, old_dst);
+		//Print("animType1 = " + animType1);
+		//Print("animType2 = " + animType2);
 		if (animType1 != -1 || animType2 != -1)
 		{
 			hndDebugPrint("[hndfsm] SelectAnimationOfForceSwapInHands guard - selected animType1=" + animType1 + " animType2=" + animType2 + " for old_item=" + old_src.GetItem() + " for new_item=" + new_src.GetItem());

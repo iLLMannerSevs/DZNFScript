@@ -25,11 +25,6 @@ class ActionNextCombinationLockDial: ActionSingleUseBase
 		return false;
 	}
 	
-	override int GetType()
-	{
-		return AT_NEXT_COMBINATION_LOCK_DIAL;
-	}
-	
 	override string GetText()
 	{
 		return "#next_combination_lock_dial";
@@ -53,20 +48,10 @@ class ActionNextCombinationLockDial: ActionSingleUseBase
 		super.Start( action_data );
 		
 		//set next dial
-		ConstructionActionData construction_action_data = action_data.m_Player.GetConstructionActionData();
-		construction_action_data.SetNextCombinationLockDial();
-	}
-	
-	override void OnStartServer( ActionData action_data )
-	{
-		//single player
 		CombinationLock combination_lock = CombinationLock.Cast( action_data.m_MainItem );
-		combination_lock.SoundLockChangeDial();
-	}	
-	
-	override void OnStartClient( ActionData action_data )
-	{
-		CombinationLock combination_lock = CombinationLock.Cast( action_data.m_MainItem );
-		combination_lock.SoundLockChangeDial();
+		if ( combination_lock )
+		{
+			combination_lock.SetNextDial();
+		}
 	}
 }

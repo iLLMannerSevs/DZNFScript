@@ -980,7 +980,11 @@ class SDayZPlayerAimingModel
 // *************************************************************************************
 class DayZPlayer extends Human
 {
-
+	const int 						SIMPLE_SELECTION_MELEE_RIFLE = 0;
+	const int 						SIMPLE_SELECTION_MELEE_MELEE = 1;
+	const int 						SIMPLE_SELECTION_SHOULDER_RIFLE = 2;
+	const int 						SIMPLE_SELECTION_SHOULDER_MELEE = 3;
+	
 	//! returns appropriate DayZPlayerType
 	proto native DayZPlayerType		GetDayZPlayerType();
 	
@@ -1114,5 +1118,24 @@ class DayZPlayer extends Human
 	//! Check if player is using VoN to speak and return max amplitude from current samples
 	proto native	float	IsPlayerSpeaking();
 	
+	void UpdateDummyPlayerProxyVisibility(EntityAI shoulder, EntityAI melee)
+	{
+		/*EntityAI shoulder_item = FindAttachmentBySlotName("Shoulder");
+		EntityAI melee_item = FindAttachmentBySlotName("Melee");*/
+		bool boo;
+		
+		if ( melee )
+		{
+			boo = melee.IsWeapon();
+			SetSimpleHiddenSelectionState(SIMPLE_SELECTION_MELEE_RIFLE,boo);
+			SetSimpleHiddenSelectionState(SIMPLE_SELECTION_MELEE_MELEE,!boo);
+		}
+		if ( shoulder )
+		{
+			boo = shoulder.IsWeapon();
+			SetSimpleHiddenSelectionState(SIMPLE_SELECTION_SHOULDER_RIFLE,boo);
+			SetSimpleHiddenSelectionState(SIMPLE_SELECTION_SHOULDER_MELEE,!boo);
+		}
+	}
 }
 

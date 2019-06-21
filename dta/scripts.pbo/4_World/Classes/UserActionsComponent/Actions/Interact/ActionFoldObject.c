@@ -2,19 +2,7 @@ class ActionFoldObject: ActionInteractBase
 {
 	void ActionFoldObject()
 	{
-		m_MessageSuccess = "";
-		m_MessageStartFail = "Hesco Box is ruined.";
-		m_MessageStart = "Hesco Box is ruined.";
-		m_MessageSuccess = "";
-		m_MessageFail = "";
-		m_MessageCancel = "";
-		//m_Animation = "UNPINGRENADE";
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_MEDIUM;
-	}
-
-	override int GetType()
-	{
-		return AT_FOLD_OBJECT;
 	}
 
 	override string GetText()
