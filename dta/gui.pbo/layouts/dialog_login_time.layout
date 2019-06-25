@@ -1,4 +1,4 @@
-ImageWidgetClass TextInputDialogRoot {
+WindowWidgetClass TextInputDialogRoot {
  clipchildren 0
  position 0 0
  size 1.6 0.9
@@ -10,11 +10,6 @@ ImageWidgetClass TextInputDialogRoot {
  vexactsize 0
  fixaspect outside
  priority 1001
- imageTexture "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.edds"
- mode blend
- "src alpha" 1
- "no wrap" 1
- stretch 1
  {
   WindowWidgetClass TextInputDialog {
    clipchildren 0
@@ -27,7 +22,7 @@ ImageWidgetClass TextInputDialogRoot {
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   priority 0
+   priority 1
    style Colorable
    {
     ButtonWidgetClass btnLeave {
@@ -109,7 +104,7 @@ ImageWidgetClass TextInputDialogRoot {
    vexactpos 1
    hexactsize 0
    vexactsize 0
-   priority 3
+   priority 1
    style ToolbarWidget
    {
     WrapSpacerWidgetClass ConsoleToolbar {
@@ -189,6 +184,20 @@ ImageWidgetClass TextInputDialogRoot {
      }
     }
    }
+  }
+  ImageWidgetClass Background {
+   ignorepointer 1
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   imageTexture "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
   }
  }
 }

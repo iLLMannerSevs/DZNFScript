@@ -6,7 +6,8 @@ enum ActionConditionMask
 	ACM_SWIMMING		= 4,
 	ACM_RESTRAIN		= 8,
 	ACM_RAISED			= 16,
-	ACM_ON_BACK			= 32
+	ACM_ON_BACK			= 32,
+	ACM_THROWING		= 64,
 }
 class ActionReciveData
 {
@@ -107,6 +108,11 @@ class ActionBase : ActionBase_Basic
 		if (CanBeUsedOnBack())
 		{
 			m_ConditionMask |= ActionConditionMask.ACM_ON_BACK;
+		}
+		
+		if (CanBeUsedThrowing())
+		{
+			m_ConditionMask |= ActionConditionMask.ACM_THROWING;
 		}
 	}
 	
@@ -270,6 +276,11 @@ class ActionBase : ActionBase_Basic
 	}
 	
 	bool CanBeUsedRaised()
+	{
+		return false;
+	}
+	
+	bool CanBeUsedThrowing()
 	{
 		return false;
 	}
@@ -519,6 +530,11 @@ class ActionBase : ActionBase_Basic
 		if ( player.GetCommand_Move() && player.GetCommand_Move().IsOnBack() )
 		{
 			mask |= ActionConditionMask.ACM_ON_BACK;
+		}
+		
+		if ( player.GetThrowing().IsThrowingModeEnabled())
+		{
+			mask |= ActionConditionMask.ACM_THROWING;
 		}
 		
 		return mask;

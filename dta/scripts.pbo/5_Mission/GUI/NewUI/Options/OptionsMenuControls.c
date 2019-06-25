@@ -29,13 +29,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	
 	void OptionsMenuControls( Widget parent, Widget details_root, GameOptions options, OptionsMenu menu )
 	{
-		#ifdef PLATFORM_CONSOLE
-			m_Root									= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/options/xbox/controls_tab.layout", parent );
-		#else
-		#ifdef PLATFORM_WINDOWS
-			m_Root									= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/options/pc/controls_tab.layout", parent );
-		#endif
-		#endif
+		m_Root										= GetGame().GetWorkspace().CreateWidgets( GetLayoutName(), parent );
 		
 		m_DetailsRoot								= details_root;
 		m_DetailsLabel								= TextWidget.Cast( m_DetailsRoot.FindAnyWidget( "details_label" ) );
@@ -96,6 +90,17 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 		m_Root.FindAnyWidget( "controls_settings_scroll" ).SetAlpha( f );
 		
 		m_Root.SetHandler( this );
+	}
+	
+	string GetLayoutName()
+	{
+		#ifdef PLATFORM_CONSOLE
+			return "gui/layouts/new_ui/options/xbox/controls_tab.layout";
+		#else
+		#ifdef PLATFORM_WINDOWS
+			return "gui/layouts/new_ui/options/pc/controls_tab.layout";
+		#endif
+		#endif
 	}
 	
 	void EnterKeybindingMenu()

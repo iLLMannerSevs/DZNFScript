@@ -18,6 +18,8 @@ class CombinationLock extends ItemBase
 	
 	protected LockAction m_LockActionPerformed 		= LockAction.NONE;
 	
+	protected bool m_IsInitialized;
+	
 	//Sounds
 	//build
 	const string SOUND_LOCK_OPEN 			= "combinationlock_open_SoundSet";
@@ -26,7 +28,7 @@ class CombinationLock extends ItemBase
 	const string SOUND_LOCK_CHANGE_DIAL		= "combinationlock_changedial_SoundSet";
 
 	protected EffectSound m_Sound;
-		
+
 	void CombinationLock()
 	{
 		SetBaseLockValues();
@@ -51,8 +53,35 @@ class CombinationLock extends ItemBase
 	{
 		super.EEInit();
 		
+		GetGame().GetCallQueue( CALL_CATEGORY_GAMEPLAY ).CallLater( SetInitialized, 1000, false );
+		//SetInitialized();
+		
 		//set visual on init
 		UpdateVisuals();
+	}
+	
+	void SetInitialized()
+	{
+		m_IsInitialized = true;
+	}
+	
+	bool IsInitialized()
+	{
+		return m_IsInitialized;
+	}
+	
+	override void OnItemLocationChanged( EntityAI old_owner, EntityAI new_owner ) 
+	{
+		super.OnItemLocationChanged( old_owner, new_owner );
+		
+		//Check combination lock
+		if ( GetGame().IsServer() )
+		{
+			if ( IsInitialized() && new_owner && new_owner.IsInherited( BaseBuildingBase ) )
+			{
+				LockServer( new_owner );
+			}
+		}		
 	}	
 	
 	// --- EVENTS
@@ -101,6 +130,16 @@ class CombinationLock extends ItemBase
 	override void AfterStoreLoad()
 	{	
 		super.AfterStoreLoad();		
+		
+		//Check combination lock
+		if ( GetGame().IsServer() )
+		{
+			EntityAI parent = GetHierarchyParent();
+			if ( parent && parent.IsInherited( BaseBuildingBase ) )
+			{
+				LockServer( parent, true );
+			}
+		}		
 		
 		//synchronize
 		Synchronize();
@@ -222,20 +261,23 @@ class CombinationLock extends ItemBase
 	}	
 	
 	//Lock lock
-	void LockServer( EntityAI parent )
+	void LockServer( EntityAI parent, bool ignore_combination = false )
 	{
 		bsbDebugPrint("[bsb] CombinationLock.LockServer " + " m_Combination=" + m_Combination + " m_CombinationLocked=" + m_CombinationLocked);
 		if ( IsLockAttached() )
 		{
-			SetCombinationLocked( m_Combination );
+			if ( !ignore_combination )
+			{
+				SetCombinationLocked( m_Combination );
+			
+				//set slot lock
+				InventoryLocation inventory_location = new InventoryLocation;
+				GetInventory().GetCurrentInventoryLocation( inventory_location );		
+				parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), true );
+			
+				m_LockActionPerformed = LockAction.LOCKED;
+			}
 			ShuffleLock();
-			
-			//set slot lock
-			InventoryLocation inventory_location = new InventoryLocation;
-			GetInventory().GetCurrentInventoryLocation( inventory_location );		
-			parent.GetInventory().SetSlotLock( inventory_location.GetSlot(), true );
-			
-			m_LockActionPerformed = LockAction.LOCKED;
 			
 			//synchronize
 			Synchronize();
@@ -265,7 +307,7 @@ class CombinationLock extends ItemBase
 			m_LockActionPerformed = LockAction.UNLOCKED;
 			
 			//synchronize
-			Synchronize();			
+			Synchronize();
 		}
 		
 		//reset performed action

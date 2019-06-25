@@ -30,13 +30,7 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 	
 	void OptionsMenuGame( Widget parent, Widget details_root, GameOptions options, OptionsMenu menu )
 	{
-		#ifdef PLATFORM_CONSOLE
-			m_Root					= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/options/xbox/game_tab.layout", parent );
-		#else
-		#ifdef PLATFORM_WINDOWS
-			m_Root					= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/options/pc/game_tab.layout", parent );
-		#endif
-		#endif
+		m_Root						= GetGame().GetWorkspace().CreateWidgets( GetLayoutName(), parent );
 		
 		m_DetailsRoot				= details_root;
 		m_DetailsLabel				= TextWidget.Cast( m_DetailsRoot.FindAnyWidget( "details_label" ) );
@@ -120,6 +114,17 @@ class OptionsMenuGame extends ScriptedWidgetEventHandler
 			m_FOVOption.Revert();
 			g_Game.SetUserFOV( m_FOVOption.ReadValue() );
 		}
+	}
+	
+	string GetLayoutName()
+	{
+		#ifdef PLATFORM_CONSOLE
+			return "gui/layouts/new_ui/options/xbox/game_tab.layout";
+		#else
+		#ifdef PLATFORM_WINDOWS
+			return "gui/layouts/new_ui/options/pc/game_tab.layout";
+		#endif
+		#endif
 	}
 	
 	void Focus()

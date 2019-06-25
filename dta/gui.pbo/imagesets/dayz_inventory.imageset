@@ -98,12 +98,6 @@ ImageSetClass {
    Size 197 197
    Flags 0
   }
-  ImageSetDefClass melee {
-   Name "melee"
-   Pos 591 394
-   Size 197 197
-   Flags 0
-  }
   ImageSetDefClass grenade {
    Name "grenade"
    Pos 1379 394
@@ -272,9 +266,9 @@ ImageSetClass {
    Size 197 197
    Flags 0
   }
-  ImageSetDefClass shoulder {
-   Name "shoulder"
-   Pos 1182 1970
+  ImageSetDefClass shoulderright {
+   Name "shoulderright"
+   Pos 591 788
    Size 197 197
    Flags 0
   }
@@ -446,16 +440,10 @@ ImageSetClass {
    Size 197 197
    Flags 0
   }
-  ImageSetDefClass weaponmuzzleak {
-   Name "weaponmuzzleak"
-   Pos 1592 656
-   Size 64 32
-   Flags 3
-  }
-  ImageSetDefClass weaponmuzzlemp5 {
-   Name "weaponmuzzlemp5"
-   Pos 1592 606
-   Size 64 32
+  ImageSetDefClass weaponmuzzle {
+   Name "weaponmuzzle"
+   Pos 1379 197
+   Size 197 197
    Flags 3
   }
   ImageSetDefClass bayonet {
@@ -533,6 +521,42 @@ ImageSetClass {
   ImageSetDefClass barbedwireup {
    Name "barbedwireup"
    Pos 591 1576
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass knifeholster {
+   Name "knifeholster"
+   Pos 985 1379
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass chemlight {
+   Name "chemlight"
+   Pos 788 985
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass walkietalkie {
+   Name "walkietalkie"
+   Pos 197 788
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass vestholster {
+   Name "vestholster"
+   Pos 985 1182
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass shoulderleft {
+   Name "shoulderleft"
+   Pos 591 394
+   Size 197 197
+   Flags 0
+  }
+  ImageSetDefClass canteen {
+   Name "canteen"
+   Pos 788 788
    Size 197 197
    Flags 0
   }

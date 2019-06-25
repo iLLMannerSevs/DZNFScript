@@ -64,7 +64,8 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 	
 	void OptionsMenuVideo( Widget parent, Widget details_root, GameOptions options, OptionsMenu menu )
 	{
-		m_Root							= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/options/pc/video_tab.layout", parent );
+		m_Root							= GetGame().GetWorkspace().CreateWidgets( GetLayoutName(), parent );
+		
 		m_DetailsRoot					= details_root;
 		m_DetailsLabel					= TextWidget.Cast( m_DetailsRoot.FindAnyWidget( "details_label" ) );
 		m_DetailsText					= RichTextWidget.Cast( m_DetailsRoot.FindAnyWidget( "details_content" ) );
@@ -179,6 +180,11 @@ class OptionsMenuVideo extends ScriptedWidgetEventHandler
 	void ~OptionsMenuVideo()
 	{
 		GetGame().EndOptionsVideo();
+	}
+	
+	string GetLayoutName()
+	{
+		return "gui/layouts/new_ui/options/pc/video_tab.layout";
 	}
 	
 	void Focus()

@@ -561,6 +561,14 @@ class ZombieBase extends DayZInfected
 	{
 		// always update target - it can be destroyed		
 		m_ActualTarget = pInputController.GetTargetEntity();
+		
+		//! do not attack players in vehicle - hotfix
+		PlayerBase pb = PlayerBase.Cast(m_ActualTarget);
+		if( pb && pb.GetCommand_Vehicle() )
+		{
+			return false;
+		}
+
 		if( m_ActualTarget == NULL )
 			return false;
 	
@@ -594,6 +602,13 @@ class ZombieBase extends DayZInfected
 	{
 		// always update target - it can be destroyed		
 		m_ActualTarget = pInputController.GetTargetEntity();
+		
+		//! do not attack players in vehicle - hotfix
+		PlayerBase pb = PlayerBase.Cast(m_ActualTarget);
+		if( pb && pb.GetCommand_Vehicle() )
+		{
+			return false;
+		}
 
 		if( m_AttackCooldownTime > 0 )
 		{

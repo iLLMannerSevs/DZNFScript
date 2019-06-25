@@ -127,6 +127,13 @@ class DayZPlayerImplementThrowing
 		if( movementState.IsInProne() )
 			return false;
 		
+		PlayerBase playerPB = PlayerBase.Cast(m_Player);
+		if( playerPB && playerPB.GetEmoteManager().IsEmotePlaying() )
+			return false;
+		
+		if( playerPB && playerPB.GetActionManager().GetRunningAction() != NULL )
+			return false;
+		
 		return true;
 	}
 	

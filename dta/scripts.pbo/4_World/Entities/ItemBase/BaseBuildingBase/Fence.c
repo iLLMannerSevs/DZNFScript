@@ -280,22 +280,7 @@ class Fence extends BaseBuildingBase
 			
 		return true;
 	}
-	
-	override void EEItemAttached( EntityAI item, string slot_name )
-	{
-		super.EEItemAttached( item, slot_name );
 		
-		//Check combination lock
-		if ( GetGame().IsServer() )
-		{
-			if ( item.IsInherited( CombinationLock ) )
-			{
-				CombinationLock combination_lock = CombinationLock.Cast( item );
-				combination_lock.LockServer( this );
-			}
-		}
-	}
-	
 	//hands
 	override bool CanPutIntoHands( EntityAI parent )
 	{

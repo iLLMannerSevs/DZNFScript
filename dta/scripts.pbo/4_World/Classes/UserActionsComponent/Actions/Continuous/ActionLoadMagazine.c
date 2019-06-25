@@ -120,7 +120,11 @@ class ActionLoadMagazineQuick: ActionContinuousBase
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		return player.GetWeaponManager().GetPreparedMagazine() != null;
+		Magazine mag = Magazine.Cast( item );
+		if ( mag )
+			return player.GetWeaponManager().GetPreparedMagazine() != null && mag.GetAmmoCount() < mag.GetAmmoMax();
+		
+		return false;
 	}
 	
 	override void OnExecuteServer( ActionData action_data )

@@ -820,14 +820,6 @@ class EmoteManager
 				break;
 				
 				case ID_EMOTE_VOMIT :
-					/*if (!m_Player.IsPlayerInStance(DayZPlayerConstants.STANCEMASK_PRONE))
-					{
-						CreateEmoteCallback(EmoteCB,DayZPlayerConstants.CMD_GESTUREMOD_SHRUG,DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT,false);
-					}
-					else
-					{
-						CreateEmoteCallback(EmoteCB,DayZPlayerConstants.CMD_GESTUREFB_SHRUG,DayZPlayerConstants.STANCEMASK_PRONE,true);
-					}*/
 					if ( m_Player.GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_SERVER || !GetGame().IsMultiplayer() )
 					{
 						ref SymptomBase symptom = m_Player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
@@ -1146,7 +1138,7 @@ class EmoteManager
 			return false;
 		}
 		
-		if ( !m_Player || m_Player.GetCommand_Action() || m_Player.GetCommandModifier_Action() )
+		if ( !m_Player || m_Player.GetCommand_Action() || m_Player.GetCommandModifier_Action() || m_Player.GetThrowing().IsThrowingModeEnabled())
 		{	
 			return false;
 		}
