@@ -417,9 +417,13 @@ class MainMenu extends UIScriptedMenu
 		EnterScriptedMenu(MENU_SERVER_BROWSER);
 				
 		//saves demounit for further use
-		if (m_ScenePC && m_ScenePC.GetIntroCharacter() && m_ScenePC.GetIntroCharacter().GetCharacterObj().GetInventory().FindAttachment(InventorySlots.BODY) && m_ScenePC.GetIntroCharacter().GetCharacterID() == -1)
+		if (m_ScenePC && m_ScenePC.GetIntroCharacter() && m_ScenePC.GetIntroCharacter().GetCharacterID() == -1 )
 		{
-			m_ScenePC.GetIntroCharacter().SaveCharacterSetup();
+			PlayerBase player = m_ScenePC.GetIntroCharacter().GetCharacterObj();
+			if(player && player.GetInventory() && player.GetInventory().FindAttachment(InventorySlots.BODY))
+			{
+				m_ScenePC.GetIntroCharacter().SaveCharacterSetup();
+			}
 		}
 	}
 	

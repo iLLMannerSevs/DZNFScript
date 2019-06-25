@@ -69,4 +69,17 @@ class ActionRaiseMegaphone: ActionContinuousBase
 		ItemMegaphone megaphone = ItemMegaphone.Cast( action_data.m_MainItem );
 		megaphone.SetCanSpeak( false );
 	}
+	
+	override void OnStartClient( ActionData action_data )
+	{
+		ItemMegaphone megaphone = ItemMegaphone.Cast( action_data.m_MainItem );
+		megaphone.SetCanSpeak( true );
+	}
+		
+	override void OnEndClient( ActionData action_data )
+	{
+		ItemMegaphone megaphone = ItemMegaphone.Cast( action_data.m_MainItem );
+		megaphone.SetCanSpeak( false );
+	}
+	
 }

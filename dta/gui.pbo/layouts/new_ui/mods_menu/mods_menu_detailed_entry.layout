@@ -47,6 +47,10 @@ GridSpacerWidgetClass Mod {
      fixaspect fixwidth
      priority 150
      draggable 0
+     mode blend
+     "src alpha" 1
+     "no wrap" 1
+     stretch 1
     }
     RichTextWidgetClass Name {
      clipchildren 0

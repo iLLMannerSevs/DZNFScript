@@ -5,6 +5,7 @@ ImageWidgetClass Icon {
  vexactpos 1
  hexactsize 1
  vexactsize 1
+ imageTexture ""
  mode blend
  "src alpha" 1
  "no wrap" 1
