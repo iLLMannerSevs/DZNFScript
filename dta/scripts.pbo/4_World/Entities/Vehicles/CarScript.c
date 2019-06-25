@@ -897,9 +897,10 @@ class CarScript extends Car
 				{
 					DashboardShineOn();
 					
-					if (!m_Headlight  &&  !m_HeadlightsState == CarHeadlightBulbsState.NONE)
+					if (!m_Headlight  &&  m_HeadlightsState != CarHeadlightBulbsState.NONE)
 					{
 						m_Headlight = CreateFrontLight();
+						TailLightsShineOn();
 					}
 					
 					if (m_HeadlightsState == CarHeadlightBulbsState.LEFT)
@@ -934,10 +935,12 @@ class CarScript extends Car
 						m_Headlight = null;
 						LeftFrontLightShineOff();
 						RightFrontLightShineOff();
+						TailLightsShineOff();
 					}
 				}
 				else
 				{
+					TailLightsShineOff();
 					DashboardShineOff();
 					LeftFrontLightShineOff();
 					RightFrontLightShineOff();
@@ -953,8 +956,6 @@ class CarScript extends Car
 			
 				if ( EngineIsOn() )
 				{
-					TailLightsShineOn();
-					
 					int reverse_light_state = CarRearLightType.NONE;
 					
 					// reverse
@@ -990,7 +991,7 @@ class CarScript extends Car
 						}
 					}
 					
-					if (reverse_light_state != CarRearLightType.NONE  &&  !m_RearLight)
+					if (reverse_light_state != CarRearLightType.NONE    &&  m_HeadlightsState != CarHeadlightBulbsState.NONE  &&  !m_RearLight)
 					{
 						m_RearLight = CreateRearLight();
 						vector local_pos = GetMemoryPointPos(m_ReverseLightPoint);
@@ -1002,21 +1003,33 @@ class CarScript extends Car
 						if (reverse_light_state == CarRearLightType.REVERSE_ONLY)
 						{
 							m_RearLight.SetAsSegregatedReverseLight();
-							ReverseLightsShineOn();
-							BrakeLightsShineOff();
+
+							if (m_HeadlightsState != CarHeadlightBulbsState.NONE)
+							{
+								ReverseLightsShineOn();
+								BrakeLightsShineOff();
+							}
 						}
 						else if (reverse_light_state == CarRearLightType.BRAKES_ONLY)
 						{
 							m_RearLight.SetAsSegregatedBrakeLight();
-							ReverseLightsShineOff();
-							BrakeLightsShineOn();
+							
+							if (m_HeadlightsState != CarHeadlightBulbsState.NONE)
+							{
+								ReverseLightsShineOff();
+								BrakeLightsShineOn();
+							}
 						}
 						else if (reverse_light_state == CarRearLightType.BRAKES_AND_REVERSE)
 						{
 							m_RearLight.AggregateLight();
 							m_RearLight.SetFadeOutTime(1);
-							BrakeLightsShineOn();
-							ReverseLightsShineOn();
+							
+							if (m_HeadlightsState != CarHeadlightBulbsState.NONE)
+							{
+								BrakeLightsShineOn();
+								ReverseLightsShineOn();
+							}
 						}
 						else if (reverse_light_state == CarRearLightType.NONE)
 						{
@@ -1031,14 +1044,9 @@ class CarScript extends Car
 						BrakeLightsShineOff();
 					}
 				}
-				else
-				{
-					TailLightsShineOff();
-				}
 			}
 			else
 			{
-				TailLightsShineOff();
 				LeftFrontLightShineOff();
 				RightFrontLightShineOff();
 				DashboardShineOff();
@@ -1482,7 +1490,7 @@ class CarScript extends Car
 	
 	void SetActions()
 	{
-		AddAction(ActionAnimateCarSelection);
+		//AddAction(ActionAnimateCarSelection); not needed now
 		AddAction(ActionGetInTransport);
 		AddAction(ActionSwitchLights);
 	}

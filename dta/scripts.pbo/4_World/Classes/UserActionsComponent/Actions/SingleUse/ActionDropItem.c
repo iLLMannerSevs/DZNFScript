@@ -58,6 +58,11 @@ class ActionDropItem: ActionSingleUseBase
 		return true;
 	}
 	
+	override bool CanBeUsedThrowing()
+	{
+		return true;
+	}
+	
 	override bool HasTarget()
 	{
 		return false;

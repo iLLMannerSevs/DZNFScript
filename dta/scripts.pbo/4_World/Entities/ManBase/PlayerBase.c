@@ -540,25 +540,27 @@ class PlayerBase extends ManBase
 
 	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
 	{
-		if ( m_AdminLog )
+		if( m_AdminLog )
 		{
 			m_AdminLog.PlayerHitBy( damageResult, damageType, this, source, component, dmgZone, ammo );
 		}
 		
 		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos);
 		
-		/*Print("damage player = " + damageResult.GetDamage(dmgZone, "Health"));
-		if (dmgZone == "")
-			Print("NO DAMAGE ZONE HIT");*/
-		
 		if( damageResult != null && damageResult.GetDamage(dmgZone, "Shock") > 0)
 		{
 			m_LastShockHitTime = GetGame().GetTime();
 		}
 		
+		 //! DT_STUN & FlashGrenade
+		if( damageType == 3 && ammo == "FlashGrenade_Ammo" )
+		{
+			GetStaminaHandler().DepleteStamina(EStaminaModifiers.OVERALL_DRAIN);
+		}
+		
 		//new bleeding computation
 		//---------------------------------------
-		if ( damageResult != null && GetBleedingManagerServer() )
+		if( damageResult != null && GetBleedingManagerServer() )
 		{
 			float dmg = damageResult.GetDamage(dmgZone, "Blood");
 			GetBleedingManagerServer().ProcessHit(dmg, source, component, dmgZone, ammo, modelPos);
@@ -577,10 +579,10 @@ class PlayerBase extends ManBase
 			plugin_remote_server.OnDamageEvent(this, damageResult);
 		}
 		#endif
-		if (GetGame().IsDebugMonitor())
+		if( GetGame().IsDebugMonitor() )
 			m_DebugMonitorValues.SetLastDamage(source.GetDisplayName());
 		
-		if (m_ActionManager)
+		if( m_ActionManager )
 			m_ActionManager.Interrupt();
 		
 		//analytics

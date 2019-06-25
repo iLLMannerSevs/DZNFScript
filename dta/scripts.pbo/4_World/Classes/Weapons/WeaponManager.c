@@ -986,14 +986,31 @@ class WeaponManager
 			
 			for(i = 0; i < m_MagazineStorageInInventory.Count(); i++ )
 			{
-				if( m_WeaponInHand.TestAttachMagazine(mi, m_MagazineStorageInInventory[i], false, true))
-					m_SuitableMagazines.Insert(m_MagazineStorageInInventory[i]);	
+				MagazineStorage s_mag = m_MagazineStorageInInventory[i];
+				
+				if(!s_mag)	
+				{
+					m_MagazineStorageInInventory.RemoveOrdered(i);
+					i--;
+					continue;
+				}
+				
+				if( m_WeaponInHand.TestAttachMagazine(mi, s_mag, false, true))
+					m_SuitableMagazines.Insert(s_mag);
 			}
 			
 			for(i = 0; i < m_MagazinePilesInInventory.Count(); i++ )
 			{
-				if(m_WeaponInHand.CanChamberFromMag(mi, m_MagazinePilesInInventory[i]))
-					m_SuitableMagazines.Insert(m_MagazinePilesInInventory[i]);	
+				Magazine mag = m_MagazinePilesInInventory[i];
+				if(!mag)	
+				{
+					m_MagazinePilesInInventory.RemoveOrdered(i);
+					i--;
+					continue;
+				}
+				
+				if(m_WeaponInHand.CanChamberFromMag(mi, mag))
+					m_SuitableMagazines.Insert(mag);	
 			}
 //TODO m_MagazineStorageInInventory and m_MagazinePilesInInventory always sort
 		}
@@ -1001,8 +1018,15 @@ class WeaponManager
 		{
 			for(i = 0; i < m_MagazinePilesInInventory.Count(); i++ )
 			{
-				if(m_MagazineInHand.IsCompatiableAmmo( m_MagazinePilesInInventory[i] ))
-					m_SuitableMagazines.Insert(m_MagazinePilesInInventory[i]);
+				Magazine m_mag = m_MagazinePilesInInventory[i];
+				if(!m_mag)	
+				{
+					m_MagazinePilesInInventory.RemoveOrdered(i);
+					i--;
+					continue;
+				}
+				if(m_MagazineInHand.IsCompatiableAmmo( m_mag ))
+					m_SuitableMagazines.Insert(m_mag);
 			}
 		}
 		else

@@ -51,9 +51,9 @@ class Object extends IEntity
 	TStringArray GetHiddenSelectionsMaterials()
 	{
 		string garden_type = this.GetType();
-		TStringArray textures = new TStringArray;
-		GetGame().ConfigGetTextArray( "CfgVehicles " + garden_type + " hiddenSelectionsTextures", textures );
-		return textures;
+		TStringArray materials = new TStringArray;
+		GetGame().ConfigGetTextArray( "CfgVehicles " + garden_type + " hiddenSelectionsMaterials", materials );
+		return materials;
 	}
 	
 	//! Creates an explosion on this object by its ammoType in config.

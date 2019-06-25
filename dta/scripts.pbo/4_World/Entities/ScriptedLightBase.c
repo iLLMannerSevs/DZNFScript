@@ -102,7 +102,7 @@ class ScriptedLightBase extends EntityLightSource
 	//! Attaches this light on the parent entity's memory point, with optional direction target memory point.
 	void AttachOnMemoryPoint(Object parent, string memory_point_start, string memory_point_target = "")
 	{
-		vector local_pos = parent.GetMemoryPointPos(memory_point_start);
+		m_LocalPos = parent.GetMemoryPointPos(memory_point_start);
 		vector local_ori;
 		if (memory_point_target != "")
 		{
@@ -111,7 +111,7 @@ class ScriptedLightBase extends EntityLightSource
 			local_ori = target_pos.VectorToAngles();
 		}
 		
-		AttachOnObject(parent, local_pos, local_ori);
+		AttachOnObject(parent, m_LocalPos, local_ori);
 	}
 	
 	//! Detaches this light from its parent entity.

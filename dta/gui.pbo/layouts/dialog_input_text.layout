@@ -1,5 +1,6 @@
-ImageWidgetClass TextInputDialogRoot {
+WindowWidgetClass TextInputDialogRoot {
  clipchildren 0
+ ignorepointer 1
  position 0 0
  size 1.6 0.9
  halign center_ref
@@ -10,16 +11,10 @@ ImageWidgetClass TextInputDialogRoot {
  vexactsize 0
  fixaspect outside
  priority 1001
- imageTexture "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.edds"
- mode blend
- "src alpha" 1
- "no wrap" 0
- stretch 1
- "flip u" 0
- filter 1
  {
   WindowWidgetClass TextInputDialogWindow {
    clipchildren 0
+   ignorepointer 1
    color 0.1176 0.1176 0.1176 0.9804
    position 0 0
    size 540 223.5
@@ -29,8 +24,8 @@ ImageWidgetClass TextInputDialogRoot {
    vexactpos 1
    hexactsize 1
    vexactsize 1
+   priority 1
    style Colorable
-   "title visible" 0
    {
     ButtonWidgetClass ButtonOk {
      visible 1
@@ -45,6 +40,10 @@ ImageWidgetClass TextInputDialogRoot {
      vexactsize 1
      userID 1
      style EmptyHighlight
+     "next left" "ButtonCancel"
+     "next right" "ButtonCancel"
+     "next up" "PrimaryEditBox"
+     "next down" "PrimaryEditBox"
      text "#menu_ok"
      text_proportion 0.5
      font "gui/fonts/sdf_MetronBook24"
@@ -62,6 +61,10 @@ ImageWidgetClass TextInputDialogRoot {
      vexactsize 1
      userID 2
      style EmptyHighlight
+     "next left" "ButtonOk"
+     "next right" "ButtonOk"
+     "next up" "PrimaryEditBox"
+     "next down" "PrimaryEditBox"
      text "#menu_cancel"
      text_proportion 0.5
      font "gui/fonts/sdf_MetronBook24"
@@ -69,6 +72,7 @@ ImageWidgetClass TextInputDialogRoot {
     }
     TextWidgetClass WindowLabel {
      disabled 0
+     ignorepointer 1
      position 0 20
      size 512 30
      halign center_ref
@@ -91,11 +95,16 @@ ImageWidgetClass TextInputDialogRoot {
      hexactsize 1
      vexactsize 1
      style Default
+     "next left" "PrimaryEditBox"
+     "next right" "PrimaryEditBox"
+     "next up" "ButtonOk"
+     "next down" "ButtonOk"
      "exact text" 0
      font "gui/fonts/sdf_MetronLight24"
     }
     MultilineTextWidgetClass MessageText {
      clipchildren 0
+     ignorepointer 1
      color 1 1 1 1
      position 0 72.5
      size 512 30
@@ -114,6 +123,7 @@ ImageWidgetClass TextInputDialogRoot {
      wrap 1
     }
     TextWidgetClass PrimaryLabel {
+     ignorepointer 1
      position 14 108.5
      size 110 20
      hexactpos 1
@@ -130,6 +140,7 @@ ImageWidgetClass TextInputDialogRoot {
     }
     TextWidgetClass SecondaryLabel {
      visible 1
+     ignorepointer 1
      position 14 138
      size 110 20
      hexactpos 1
@@ -146,6 +157,7 @@ ImageWidgetClass TextInputDialogRoot {
     }
     EditBoxWidgetClass SecondaryEditBox {
      visible 1
+     disabled 0
      position 134 138
      size 392 20
      hexactpos 1
@@ -157,6 +169,7 @@ ImageWidgetClass TextInputDialogRoot {
      font "gui/fonts/sdf_MetronLight24"
     }
     PanelWidgetClass SeparatorPanel {
+     ignorepointer 1
      color 0.7569 0.0941 0.0941 0.7843
      position 0 60
      size 0.85 3
@@ -170,6 +183,20 @@ ImageWidgetClass TextInputDialogRoot {
      style rover_sim_colorable
     }
    }
+  }
+  ImageWidgetClass Background {
+   ignorepointer 1
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 0
+   imageTexture "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.edds"
+   mode blend
+   "src alpha" 1
+   "no wrap" 1
+   stretch 1
   }
  }
 }
