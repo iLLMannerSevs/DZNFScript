@@ -189,12 +189,18 @@ class Grenade_Base extends InventoryItemSuper
 	protected void OnActivateStarted() {}
 	protected void OnActivateFinished()
 	{
-		ExplodeGrenade(m_GrenadeType);
+		if( GetGame().IsServer() )
+		{
+			SetHealth("", "", 0.0); // causes explosion when grenade is destroyed
+		}
 	}
 	
 	protected void OnActivateImmediate()
 	{
-		ExplodeGrenade(m_GrenadeType);
+		if( GetGame().IsServer() )
+		{
+			SetHealth("", "", 0.0); // causes explosion when grenade is destroyed
+		}
 	}
 	
 	protected void OnDeactivate() {}
@@ -246,7 +252,8 @@ class Grenade_Base extends InventoryItemSuper
 	{
 		super.EEKilled(killer);
 
-	 	ExplodeGrenade(m_GrenadeType);
+		//! should be called only here to avoid multiple explosion calculations, call SetHealth("","",0.0) instead
+	 	ExplodeGrenade(m_GrenadeType); 
 	}
 
 	override bool CanExplodeInFire()

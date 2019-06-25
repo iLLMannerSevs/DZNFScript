@@ -4862,13 +4862,14 @@ class PlayerBase extends ManBase
 		int agents;
 		if( consume_type == EConsumeType.ENVIRO_POND || consume_type == EConsumeType.ENVIRO_WELL )
 		{
-			agents = agents | eAgents.CHOLERA;
-			m_PlayerStomach.AddToStomach(Liquid.GetLiquidClassname(LIQUID_WATER), amount, 0 , agents );
-			/*
 			if ( consume_type == EConsumeType.ENVIRO_POND )
 			{
-				plugin.TransmitAgents(NULL, this, AGT_WATER_POND, amount);
-			}*/
+				agents = agents | eAgents.CHOLERA;
+				//plugin.TransmitAgents(NULL, this, AGT_WATER_POND, amount);
+			}
+			m_PlayerStomach.AddToStomach(Liquid.GetLiquidClassname(LIQUID_WATER), amount, 0 , agents );
+			
+			
 			return true;
 		}
 		

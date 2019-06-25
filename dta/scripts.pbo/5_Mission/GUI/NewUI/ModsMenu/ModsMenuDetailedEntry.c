@@ -85,7 +85,7 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 	void LoadData()
 	{
 		string picture = m_Data.GetPicture();
-		string logo = m_Data.GetLogo();
+		string logo = m_Data.GetLogoSmall();
 		string name = m_Data.GetName();
 		string description = m_Data.GetOverview();
 		string author = m_Data.GetAuthor();

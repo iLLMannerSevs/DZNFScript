@@ -18,18 +18,6 @@ class ActiondeployObjectCB : ActionContinuousBaseCB
 		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.DEFAULT_DEPLOY);
 	}
 
-	override void EndActionComponent()
-	{
-		super.EndActionComponent();
-	
-		if (m_ActionData.m_State == UA_CANCEL )
-		{
-			m_Canceled = true;
- 			SetCommand(DayZPlayerConstants.CMD_ACTIONINT_FINISH);
-			return;
-		}
-	}
-
 	override void OnAnimationEvent(int pEventID)	
 	{
 		super.OnAnimationEvent( pEventID );
@@ -76,7 +64,9 @@ class ActiondeployObjectCB : ActionContinuousBaseCB
 		
 		Math3D.YawPitchRollMatrix( orientation, rotation_matrix );
 		Math3D.MatrixToQuat( rotation_matrix, direction );
-	
+			
+		position[1] = GetGame().SurfaceY(position[0],position[2]);
+		
 		if ( entity_for_placing.GetInventory().GetCurrentInventoryLocation( source ) )
 		{
 			destination.SetGroundEx( entity_for_placing, position, direction );
@@ -108,6 +98,11 @@ class ActionDeployObject: ActionContinuousBase
 	}
 
 	override bool HasProgress()
+	{
+		return true;
+	}
+	
+	override bool HasAlternativeInterrupt()
 	{
 		return true;
 	}
@@ -216,8 +211,7 @@ class ActionDeployObject: ActionContinuousBase
 		EntityAI entity_for_placing = action_data.m_MainItem;
 		vector position = action_data.m_Player.GetLocalProjectionPosition();
 		vector orientation = action_data.m_Player.GetLocalProjectionOrientation();
-		
-		MoveEntityToFinalPosition( action_data, position, orientation );
+
 		poActionData.m_AlreadyPlaced = true;
 		
 		entity_for_placing.OnPlacementComplete( action_data.m_Player );
@@ -252,6 +246,7 @@ class ActionDeployObject: ActionContinuousBase
 			entity_for_placing.OnPlacementComplete( action_data.m_Player );
 		}
 		
+		MoveEntityToFinalPosition( action_data, position, orientation );
 		GetGame().ClearJuncture( action_data.m_Player, entity_for_placing );
 		action_data.m_MainItem.SetIsBeingPlaced( false );
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
@@ -266,9 +261,6 @@ class ActionDeployObject: ActionContinuousBase
 		if ( !poActionData.m_AlreadyPlaced )
 		{
 			action_data.m_Player.PlacingCancelLocal();
-		
-			EntityAI entity_for_placing = action_data.m_MainItem;
-			action_data.m_Player.PredictiveTakeEntityToHands( entity_for_placing );
 		}
 	}
 	
@@ -285,7 +277,7 @@ class ActionDeployObject: ActionContinuousBase
 			if ( GetGame().IsMultiplayer() )
 			{	
 				action_data.m_Player.PlacingCancelServer();
-				
+				action_data.m_Player.ServerTakeEntityToHands( entity_for_placing );
 				action_data.m_MainItem.SoundSynchRemoteReset();
 			}
 			else
@@ -369,7 +361,7 @@ class ActionDeployObject: ActionContinuousBase
 			if ( entity_for_placing.GetInventory().GetCurrentInventoryLocation( source ) )
 			{
 				destination.SetGroundEx( entity_for_placing, position, direction );
-				action_data.m_Player.PredictiveTakeToDst(source, destination);
+				action_data.m_Player.ServerTakeToDst(source, destination);
 			}
 		}
 		
