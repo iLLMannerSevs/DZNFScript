@@ -3880,7 +3880,8 @@ class PlayerBase extends ManBase
 				}
 			}
 			
-			GetGame().GetMission().PlayerControlEnable();
+			if( !GetGame().GetUIManager().GetMenu() )
+				GetGame().GetMission().PlayerControlEnable();
 			
 			m_PresenceNotifier = PluginPresenceNotifier.Cast( GetPlugin( PluginPresenceNotifier ) );
 			m_PresenceNotifier.Init(this);

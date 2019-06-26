@@ -733,11 +733,6 @@ class MissionGameplay extends MissionBase
 			case INPUT_EXCLUDE_MOUSE_RADIAL:
 			{
 				GetUApi().ActivateExclude("radialmenu");
-#ifdef PLATOFRM_CONSOLE
-				GetUApi().ActivateExclude("inventory_console");
-#else
-				GetUApi().ActivateExclude("inventory");
-#endif
 				break;
 			}
 		}

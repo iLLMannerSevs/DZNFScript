@@ -122,6 +122,9 @@ class ActionAdvencedDetachMagazine : ActionSequentialBase
 				break;
 			
 			case 1:
+				//TODO MW Remove after fix
+				End( action_data );
+				break;
 				ClearInventoryReservation(action_data);
 				
 				wpn = Weapon_Base.Cast(action_data.m_MainItem);

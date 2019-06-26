@@ -2,7 +2,7 @@
 //DeRap: bin\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Wed Jun 26 00:27:01 2019 : 'file' last modified on Tue Jun 25 15:47:39 2019
+//'now' is Thu Jun 27 00:27:59 2019 : 'file' last modified on Wed Jun 26 13:47:46 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -422,6 +422,7 @@ class CfgAmmo
 		initSpeed = 100.0;
 		maxLeadSpeed = 50.0;
 		typicalSpeed = 900.0;
+		slowdownThreshold = 500.0;
 		initTime = 0.0;
 		explosionTime = 0.0;
 		fuseDistance = 0.0;

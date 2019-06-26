@@ -104,8 +104,11 @@ class FlashbangEffect
 		PPEffects.FlashbangEffect(val);
 		PPEffects.UpdateColor();
 		PPEffects.SetBlurFlashbang(val);
-		g_Game.SetEVValue(val*5);
-		//PPEffects.SetVignette(val, 1, 1, 1);	
+		float daynight_toggle = 1; //! -1: night; 1: day
+		if( g_Game.GetDayTime() >= 22.0 || g_Game.GetDayTime() < 7.0)
+			daynight_toggle = -1;
+		g_Game.SetEVValue(val * 5 * daynight_toggle);
+		//PPEffects.SetVignette(val, 1, 1, 1);
 	}
 	
 	void Update(float deltatime)
