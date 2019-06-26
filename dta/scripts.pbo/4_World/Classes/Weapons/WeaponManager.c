@@ -920,6 +920,7 @@ class WeaponManager
 		
 		if(mag)
 		{
+
 			for(i = 0; i < m_MagazinePilesInInventory.Count(); i++ ) 
 			{
 				Magazine mag_i = m_MagazinePilesInInventory[i];
@@ -935,7 +936,6 @@ class WeaponManager
 				{
 					break;
 				}
-				Magazine mag2 = m_MagazineStorageInInventory[i];
 			}
 			m_MagazinePilesInInventory.InsertAt(mag,i);
 			SetSutableMagazines(); //TODO optimalize

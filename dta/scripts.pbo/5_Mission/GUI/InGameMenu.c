@@ -5,7 +5,7 @@ class InGameMenu extends UIScriptedMenu
 	protected Widget m_RestartButton;
 	protected Widget m_RestartDeadButton;
 	protected Widget m_OptionsButton;
-	protected Widget m_Root;
+	
 	protected ref UiHintPanel m_HintPanel;
 	
 	void ~InGameMenu()
@@ -15,14 +15,14 @@ class InGameMenu extends UIScriptedMenu
 
 	override Widget Init()
 	{
-		m_Root = GetGame().GetWorkspace().CreateWidgets("gui/layouts/day_z_ingamemenu.layout");
+		layoutRoot = GetGame().GetWorkspace().CreateWidgets("gui/layouts/day_z_ingamemenu.layout");
 				
-		m_ContinueButton	= m_Root.FindAnyWidget( "continuebtn" );
-		m_ExitButton		= m_Root.FindAnyWidget( "exitbtn" );
-		m_RestartButton		= m_Root.FindAnyWidget( "restartbtn" );
-		m_RestartDeadButton	= m_Root.FindAnyWidget( "restartdeadbtn" );
-		m_OptionsButton		= m_Root.FindAnyWidget( "optionsbtn" );
-		m_HintPanel			= new UiHintPanel(m_Root.FindAnyWidget( "hint_frame" ));
+		m_ContinueButton	= layoutRoot.FindAnyWidget( "continuebtn" );
+		m_ExitButton		= layoutRoot.FindAnyWidget( "exitbtn" );
+		m_RestartButton		= layoutRoot.FindAnyWidget( "restartbtn" );
+		m_RestartDeadButton	= layoutRoot.FindAnyWidget( "restartdeadbtn" );
+		m_OptionsButton		= layoutRoot.FindAnyWidget( "optionsbtn" );
+		m_HintPanel			= new UiHintPanel(layoutRoot.FindAnyWidget( "hint_frame" ));
 		
 		
 		if (GetGame().IsMultiplayer())
@@ -44,12 +44,12 @@ class InGameMenu extends UIScriptedMenu
 		
 		//m_Root.SetHandler( this );
 		
-		return m_Root;
+		return layoutRoot;
 	}
 	
 	protected void SetGameVersion()
 	{
-		TextWidget version_widget = TextWidget.Cast( m_Root.FindAnyWidget("version") );
+		TextWidget version_widget = TextWidget.Cast( layoutRoot.FindAnyWidget("version") );
 		string version;
 		GetGame().GetVersion( version );
 		version_widget.SetText( "#main_menu_version" + " " + version );
@@ -123,7 +123,6 @@ class InGameMenu extends UIScriptedMenu
 		if ( !GetGame().IsMultiplayer() )
 		{
 			GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().RestartMission);
-			GetGame().GetMission().PlayerControlEnable();
 		}
 		else
 		{
@@ -132,7 +131,6 @@ class InGameMenu extends UIScriptedMenu
 			if ( player && player.IsUnconscious() )
 			{
 				GetGame().GetUIManager().ShowDialog("#main_menu_respawn", "#main_menu_respawn_question", IDC_INT_RETRY, DBT_YESNO, DBB_YES, DMT_QUESTION, this);
-				GetGame().GetMission().PlayerControlEnable();
 			}
 			else
 			{
@@ -237,6 +235,7 @@ class InGameMenu extends UIScriptedMenu
 		missionGP.DestroyAllMenus();
 		//---------------------------------------------------
 		GetGame().GetCallQueue(CALL_CATEGORY_GUI).Call(GetGame().GetMission().Continue);
+		Close();
 	}	
 	
 	protected void ColorHighlight( Widget w )
