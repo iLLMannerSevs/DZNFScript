@@ -1231,6 +1231,8 @@ class DayZGame extends CGame
 		//! Display login queue position dialog
 		if (!m_LoginQueue && pos > 0)
 		{		
+			GetUIManager().CloseAll();
+			
 			if(GetMission())
 			{
 				UIScriptedMenu parent = GetUIManager().GetMenu();
@@ -1271,6 +1273,8 @@ class DayZGame extends CGame
 		{	
 			if (!m_LoginTimeScreen)
 			{
+				GetUIManager().CloseAll();
+				
 				if (GetMission())
 				{
 					UIScriptedMenu parent = GetUIManager().GetMenu();
