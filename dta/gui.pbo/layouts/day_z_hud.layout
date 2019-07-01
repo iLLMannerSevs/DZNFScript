@@ -4731,6 +4731,7 @@ FrameWidgetClass HudFrameWidget {
            style blank
            {
             ImageWidgetClass TemperatureDialLow {
+             visible 0
              color 0 0 1 1
              position 0 0
              size 68 56
@@ -4767,9 +4768,9 @@ FrameWidgetClass HudFrameWidget {
              "flip u" 1
              Mask "{48BFB4B086E16C62}Gui/textures/cardial_small_mask.edds"
              "Transition width" 0
-             Progress 0.7
             }
             ImageWidgetClass TemperatureDialHigh {
+             visible 0
              color 1 0 0 1
              position 0 0
              size 68 56

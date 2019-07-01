@@ -9,6 +9,21 @@ class ActionBuildPartSwitch: ActionSingleUseBase
 		m_ConditionItem = new CCINonRuined;
 		m_ConditionTarget = new CCTNonRuined(UAMaxDistances.BASEBUILDING);
 	}
+		
+	override bool IsInstant()
+	{
+		return true;
+	}
+	
+	override bool RemoveForceTargetAfterUse()
+	{
+		return false;
+	}
+	
+	override bool UseAcknowledgment()
+	{
+		return true;
+	}		
 	
 	override string GetText()
 	{
@@ -57,14 +72,4 @@ class ActionBuildPartSwitch: ActionSingleUseBase
 		ConstructionActionData construction_action_data = action_data.m_Player.GetConstructionActionData();
 		construction_action_data.SetNextIndex();
 	}	
-		
-	override bool IsInstant()
-	{
-		return true;
-	}
-	
-	override bool RemoveForceTargetAfterUse()
-	{
-		return false;
-	}
 }

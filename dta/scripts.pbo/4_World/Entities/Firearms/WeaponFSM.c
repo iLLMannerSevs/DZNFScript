@@ -237,7 +237,7 @@ class WeaponFSM extends HFSMBase<WeaponStateBase, WeaponEventBase, WeaponActionB
 	void OnStoreSave (ParamsWriteContext ctx)
 	{
 		int id = GetCurrentStableStateID();
-		wpnDebugPrint("[wpnfsm] OnStoreSave - saving current state=" + GetCurrentState() + " id=" + id);
+		wpnDebugSpamALot("[wpnfsm] OnStoreSave - saving current state=" + GetCurrentState() + " id=" + id);
 		ctx.Write(id);
 	}
 

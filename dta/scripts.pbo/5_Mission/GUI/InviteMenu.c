@@ -2,7 +2,6 @@ class InviteMenu extends UIScriptedMenu
 {	
 	private TextWidget		m_LogoutTimetext;
 	private TextWidget		m_Info;
-	private ButtonWidget	m_bCancel;
 	private int m_iTime;
 
 	void InviteMenu()
@@ -16,7 +15,6 @@ class InviteMenu extends UIScriptedMenu
 		
 		m_LogoutTimetext = TextWidget.Cast( layoutRoot.FindAnyWidget("logoutTimeText") );
 		m_Info = TextWidget.Cast( layoutRoot.FindAnyWidget("txtInfo") );
-		m_bCancel = ButtonWidget.Cast( layoutRoot.FindAnyWidget("bCancel") );
 		m_LogoutTimetext.SetText(m_iTime.ToString());
 		
 		// player should sit down if possible
@@ -30,23 +28,9 @@ class InviteMenu extends UIScriptedMenu
 		return layoutRoot;
 	}
 	
-	override bool OnClick(Widget w, int x, int y, int button)
-	{
-		super.OnClick(w, x, y, button);
-		
-		if (w == m_bCancel)
-		{
-			Cancel();
-			return true;
-		}
-
-		return false;
-	}
-	
 	override void OnShow()
 	{
 		super.OnShow();
-		SetFocus( m_bCancel );
 	}
 
 	override void Update( float timeslice )

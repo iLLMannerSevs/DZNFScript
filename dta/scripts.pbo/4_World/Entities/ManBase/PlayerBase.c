@@ -1262,6 +1262,14 @@ class PlayerBase extends ManBase
 		return m_ConstructionActionData;
 	}
 	
+	void ResetConstructionActionData()
+	{
+		if ( m_ConstructionActionData )
+		{
+			m_ConstructionActionData.ResetActionIndexes();
+		}
+	}
+	
 	// --------------------------------------------------
 	// Action data for fireplace (indoor)
 	//---------------------------------------------------	
@@ -4831,6 +4839,17 @@ class PlayerBase extends ManBase
 		m_PlayerOldPos = GetPosition();
 		if( m_AnalyticsTimer )
 			m_AnalyticsTimer.Run( 60, this, "UpdatePlayerMeasures", null, true );
+		
+		//construction action data
+		ResetConstructionActionData();
+	}
+	
+	void OnReconnect()
+	{
+		Debug.Log("Player reconnected:"+this.ToString(),"Reconnect");
+		
+		//construction action data
+		ResetConstructionActionData();	
 	}
 	
 	void OnDisconnect()

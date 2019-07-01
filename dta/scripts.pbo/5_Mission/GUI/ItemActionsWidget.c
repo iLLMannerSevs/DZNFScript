@@ -92,13 +92,13 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		SetSingleXboxIcon("xbox_buttons", "RT");
 		SetContinuousXboxIcon("xbox_buttons", "RT");
 		SetInteractXboxIcon("xbox_buttons", "X");
-		SetContinuousXboxIcon("xbox_buttons", "X");
+		SetContinuousInteractXboxIcon("xbox_buttons", "X");
 #endif
 #ifdef PLATFORM_PS4
 		SetSingleXboxIcon("playstation_buttons", "R2");
 		SetContinuousXboxIcon("playstation_buttons", "R2");
 		SetInteractXboxIcon("playstation_buttons", "square");
-		SetContinuousXboxIcon("playstation_buttons", "square");
+		SetContinuousInteractXboxIcon("playstation_buttons", "square");
 #endif
 	}
 

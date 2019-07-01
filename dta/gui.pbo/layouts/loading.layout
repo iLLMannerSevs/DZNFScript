@@ -12,7 +12,7 @@ FrameWidgetClass LoadingFrame {
   PanelWidgetClass PanelWidget1 {
    clipchildren 0
    color 0 0 0 1
-   position 0.00089 0
+   position 0 0
    size 1 1
    halign center_ref
    valign center_ref
