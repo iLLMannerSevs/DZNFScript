@@ -107,7 +107,8 @@ class TentBase extends ItemBase
 		
 		if ( new_owner || old_owner )
 		{
-			Pack( false );
+			if (GetInventory().CountInventory() == 1) // refuse to pack tent with anything inside
+				Pack( false );
 		}
 	}
 	

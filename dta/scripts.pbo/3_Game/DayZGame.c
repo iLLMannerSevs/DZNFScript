@@ -93,10 +93,8 @@ class LoginQueueBase extends UIScriptedMenu
 	
 	void Leave()
 	{
-#ifdef PLATFORM_CONSOLE
 		g_Game.SetGameState( DayZGameState.MAIN_MENU );
 		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_START );
-#endif
 		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
 		
 		Close();
@@ -201,10 +199,8 @@ class LoginTimeBase extends UIScriptedMenu
 	
 	void Leave()
 	{
-#ifdef PLATFORM_CONSOLE
 		g_Game.SetGameState( DayZGameState.MAIN_MENU );
 		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_START );
-#endif
 		g_Game.GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().DisconnectSessionForce);
 		
 		Close();

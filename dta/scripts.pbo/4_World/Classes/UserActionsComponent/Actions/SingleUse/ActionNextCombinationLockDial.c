@@ -25,6 +25,11 @@ class ActionNextCombinationLockDial: ActionSingleUseBase
 		return false;
 	}
 	
+	override bool UseAcknowledgment()
+	{
+		return true;
+	}	
+	
 	override string GetText()
 	{
 		return "#next_combination_lock_dial";

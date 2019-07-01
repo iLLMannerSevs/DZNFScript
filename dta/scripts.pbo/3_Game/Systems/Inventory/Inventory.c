@@ -44,17 +44,25 @@ class GameInventory
 	 * traversed recursively from root to leafs.
 	 *
 	 * @param[in]	item	\p		item to be found in inventory
-	 * @return	true if found, false otherwise
+	 * @return		true if found, false otherwise
 	 **/
 	proto native bool HasEntityInInventory (notnull EntityAI item);
 
 	/**
-	 * @brief		EnumerateInventory
+	 * @fn		EnumerateInventory
+	 * @brief		enumerate inventory using traversal type and filling items array
 	 * @param[in]	tt		used traversal type
 	 * @param[out]	items		items in inventory (in order determined by traversal)
 	 * @return	true if found any, false otherwise
 	 **/	
 	proto native bool EnumerateInventory (InventoryTraversalType tt, out array<EntityAI> items);
+
+	/**
+	 * @fn		CountInventory
+	 * @brief	almost identical to EnumerateInventory except it does not return items
+	 * @return	number of items
+	 **/		
+	proto native int CountInventory ();
 
 
 	///@{ cargo

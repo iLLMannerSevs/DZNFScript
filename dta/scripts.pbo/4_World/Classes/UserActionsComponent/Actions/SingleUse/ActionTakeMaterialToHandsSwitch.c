@@ -9,7 +9,22 @@ class ActionTakeMaterialToHandsSwitch: ActionSingleUseBase
 		m_ConditionItem = new CCINotPresent;
 		m_ConditionTarget = new CCTNonRuined( UAMaxDistances.BASEBUILDING );
 	}
+		
+	override bool IsInstant()
+	{
+		return true;
+	}
 	
+	override bool RemoveForceTargetAfterUse()
+	{
+		return false;
+	}
+	
+	override bool UseAcknowledgment()
+	{
+		return true;
+	}
+		
 	override string GetText()
 	{
 		return "#switch_to_next_material";
@@ -47,14 +62,4 @@ class ActionTakeMaterialToHandsSwitch: ActionSingleUseBase
 		ConstructionActionData construction_action_data = action_data.m_Player.GetConstructionActionData();
 		construction_action_data.SetNextAttachmentIndex();
 	}	
-		
-	override bool IsInstant()
-	{
-		return true;
-	}
-	
-	override bool RemoveForceTargetAfterUse()
-	{
-		return false;
-	}
 }

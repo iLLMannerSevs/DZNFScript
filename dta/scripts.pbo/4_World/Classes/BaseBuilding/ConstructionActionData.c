@@ -21,6 +21,7 @@ class ConstructionActionData
 	void ConstructionActionData()
 	{
 		m_BuildParts = new ref array<ConstructionPart>;
+		m_PartIndex = 0;
 		
 		m_Attachments = new ref array<EntityAI>;
 		m_AttachmentsIndex = 0;
@@ -319,5 +320,14 @@ class ConstructionActionData
 		}
 
 		return NULL;
+	}
+	
+	//************************************************/
+	//  Common
+	//************************************************/
+	void ResetActionIndexes()
+	{
+		m_PartIndex = 0;
+		m_AttachmentsIndex = 0;
 	}
 }

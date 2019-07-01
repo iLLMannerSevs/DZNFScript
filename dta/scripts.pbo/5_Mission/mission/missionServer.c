@@ -409,6 +409,10 @@ class MissionServer extends MissionBase
 	
 	void OnClientReconnectEvent(PlayerIdentity identity, PlayerBase player)
 	{
+		if ( player )
+		{
+			player.OnReconnect();
+		}
 	}	
 	
 	void OnClientDisconnectedEvent(PlayerIdentity identity, PlayerBase player, int logoutTime, bool authFailed)

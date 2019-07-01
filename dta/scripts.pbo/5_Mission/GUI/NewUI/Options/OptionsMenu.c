@@ -274,6 +274,8 @@ class OptionsMenu extends UIScriptedMenu
 			}
 		#endif
 		#endif
+		
+		m_Tabber.AlignTabbers();
 	}
 	
 	void Reset()

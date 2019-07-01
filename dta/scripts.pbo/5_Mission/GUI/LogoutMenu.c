@@ -32,12 +32,11 @@ class LogoutMenu extends UIScriptedMenu
 		m_bCancel.Show( false );
 		m_bLogoutNow.Show( false );
 		
-		m_bCancel = ButtonWidget.Cast( layoutRoot.FindAnyWidget("bCancelConsole") );
-		m_bCancel.Show( true );
+		layoutRoot.FindAnyWidget("toolbar_bg").Show( true );
 #else
 		m_bCancel.Show( true );
 		m_bLogoutNow.Show( true );
-		layoutRoot.FindAnyWidget("bCancelConsole").Show( false );
+		layoutRoot.FindAnyWidget("toolbar_bg").Show( false );
 #endif
 		
 		UpdateInfo();
