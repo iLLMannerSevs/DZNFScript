@@ -12,5 +12,11 @@ class Epinephrine: Inventory_Base
 	{
 		player.GiveShock(100);
 		player.GetStaminaHandler().SetStamina(100);
+		
+		if( player.GetModifiersManager().IsModifierActive(eModifiers.MDF_EPINEPHRINE ) )//effectively resets the timer
+		{
+			player.GetModifiersManager().DeactivateModifier( eModifiers.MDF_EPINEPHRINE );
+		}
+		player.GetModifiersManager().ActivateModifier( eModifiers.MDF_EPINEPHRINE );
 	}
 };

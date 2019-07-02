@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.16
 //https://armaservices.maverick-applications.com/Products/MikerosDosTools/default
-//'now' is Mon Jul 01 15:39:18 2019 : 'file' last modified on Mon Jun 10 10:05:51 2019
+//'now' is Tue Jul 02 16:10:01 2019 : 'file' last modified on Tue Jul 02 13:39:47 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -78,7 +78,7 @@ class CfgWorlds
 				class C_Night
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -18;
 					sunOrMoon = 0.0;
 					diffuse[] = {0.05,0.075,0.15};
@@ -106,7 +106,7 @@ class CfgWorlds
 				class C_Astro1
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -17;
 					sunOrMoon = 0.5;
 					diffuse[] = {0.0,0.0,0.0};
@@ -134,7 +134,7 @@ class CfgWorlds
 				class C_Astro2
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -16;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.0,0.0,0.0};
@@ -162,7 +162,7 @@ class CfgWorlds
 				class C_Astro3
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -14;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.0,0.0,0.0};
@@ -190,7 +190,7 @@ class CfgWorlds
 				class C_Nautical1
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -12;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.0,0.0,0.0};
@@ -218,7 +218,7 @@ class CfgWorlds
 				class C_Nautical2
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -10;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.1011,0.1063,0.0926};
@@ -246,7 +246,7 @@ class CfgWorlds
 				class C_Nautical3
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -8;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.2311,0.2112,0.184};
@@ -274,7 +274,7 @@ class CfgWorlds
 				class C_Civil1
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -6;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.346,0.1803,0.0836};
@@ -302,7 +302,7 @@ class CfgWorlds
 				class C_Civil2
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -4;
 					sunOrMoon = 1.0;
 					diffuse[] = {{0.446,0.1803,0.0836},0.2};
@@ -330,7 +330,7 @@ class CfgWorlds
 				class C_Civil3
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = -2;
 					sunOrMoon = 1.0;
 					diffuse[] = {1.3,0.404,0.294};
@@ -358,7 +358,7 @@ class CfgWorlds
 				class C_Day0
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 0;
 					sunOrMoon = 1.0;
 					diffuse[] = {1.3,0.404,0.294};
@@ -386,7 +386,7 @@ class CfgWorlds
 				class C_Day4
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 4;
 					sunOrMoon = 1;
 					diffuse[] = {{1.2,0.404,0.294},7.4};
@@ -414,7 +414,7 @@ class CfgWorlds
 				class C_Day8
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 8;
 					sunOrMoon = 1;
 					diffuse[] = {{1.0,0.604,0.294},10.4};
@@ -442,7 +442,7 @@ class CfgWorlds
 				class C_Day12
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 12;
 					sunOrMoon = 1;
 					diffuse[] = {{1.0,0.64,0.31},11.4};
@@ -470,7 +470,7 @@ class CfgWorlds
 				class C_Day16
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 16;
 					sunOrMoon = 1;
 					diffuse[] = {{1,0.87,0.85},11.8};
@@ -498,7 +498,7 @@ class CfgWorlds
 				class C_Day35
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 35;
 					sunOrMoon = 1;
 					diffuse[] = {{1,0.87,0.85},12.8};
@@ -526,7 +526,7 @@ class CfgWorlds
 				class C_Day60
 				{
 					height = 0;
-					overcast = 0.5;
+					overcast = 0.35;
 					sunAngle = 60;
 					sunOrMoon = 1;
 					diffuse[] = {{1,0.87,0.85},13.8};
@@ -554,7 +554,7 @@ class CfgWorlds
 				class O_Night
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = -18;
 					sunOrMoon = 0.0;
 					diffuse[] = {0.0,0.0,0.0};
@@ -582,7 +582,7 @@ class CfgWorlds
 				class O_Astro1
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = -17;
 					sunOrMoon = 0.5;
 					diffuse[] = {0.036,0.057,0.085};
@@ -610,7 +610,7 @@ class CfgWorlds
 				class O_Nautical1
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = -12;
 					sunOrMoon = 1.0;
 					diffuse[] = {0.036,0.057,0.085};
@@ -638,7 +638,7 @@ class CfgWorlds
 				class O_Civil1
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = -6;
 					sunOrMoon = 1;
 					diffuse[] = {0.018,0.018,0.018};
@@ -666,7 +666,7 @@ class CfgWorlds
 				class O_Civil2
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = -2;
 					sunOrMoon = 1;
 					diffuse[] = {0.018,0.018,0.018};
@@ -694,7 +694,7 @@ class CfgWorlds
 				class O_Day0
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 0;
 					sunOrMoon = 1;
 					diffuse[] = {0.27,0.27,0.27};
@@ -705,8 +705,8 @@ class CfgWorlds
 					ambientCloud[] = {0.145,0.227,0.349};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {0.1,0.14,0.22};
-					skyAroundSun[] = {0.1,0.14,0.22};
+					sky[] = {0.1,0.14,0.16};
+					skyAroundSun[] = {0.1,0.14,0.16};
 					desiredLuminanceCoef = 0.3;
 					desiredLuminanceCoefCloud = 0.3;
 					EVMin = -2.0;
@@ -722,7 +722,7 @@ class CfgWorlds
 				class O_Day4
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 4;
 					sunOrMoon = 1;
 					diffuse[] = {{0.27,0.27,0.29},4.4};
@@ -733,8 +733,8 @@ class CfgWorlds
 					ambientCloud[] = {{0.145,0.227,0.349},5.4};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {{0.1,0.18,0.29},6.415};
-					skyAroundSun[] = {{0.1,0.18,0.29},6.799};
+					sky[] = {{1.0,1.0,1.0},6.415};
+					skyAroundSun[] = {{1.0,1.0,1.0},6.799};
 					desiredLuminanceCoef = 0.4;
 					desiredLuminanceCoefCloud = 0.4;
 					EVMin = -2.0;
@@ -750,7 +750,7 @@ class CfgWorlds
 				class O_Day8
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 8;
 					sunOrMoon = 1;
 					diffuse[] = {{0.27,0.27,0.3},7.4};
@@ -778,7 +778,7 @@ class CfgWorlds
 				class O_Day12
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 12;
 					sunOrMoon = 1;
 					diffuse[] = {{0.27,0.27,0.3},8.2};
@@ -806,7 +806,7 @@ class CfgWorlds
 				class O_Day35
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 35;
 					sunOrMoon = 1;
 					diffuse[] = {{0.27,0.27,0.3},9.4};
@@ -834,7 +834,7 @@ class CfgWorlds
 				class O_Day60
 				{
 					height = 0;
-					overcast = 0.9;
+					overcast = 0.65;
 					sunAngle = 60;
 					sunOrMoon = 1;
 					diffuse[] = {{0.27,0.27,0.3},10.4};
@@ -845,7 +845,7 @@ class CfgWorlds
 					ambientCloud[] = {{0.2,0.24,0.29},12.4};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {{0.8,0.8,0.8},12};
+					sky[] = {{1,1,1},12};
 					skyAroundSun[] = {{1,1,1},12.8};
 					desiredLuminanceCoef = 0.6;
 					desiredLuminanceCoefCloud = 0.6;
@@ -1904,9 +1904,6 @@ class CfgVehicles
 		heavyItem = 0;
 		itemSize[] = {1,1};
 		attachments[] = {};
-		SingleUseActions[] = {};
-		ContinuousActions[] = {};
-		InteractActions[] = {};
 		repairableWithKits[] = {0};
 		repairCosts[] = {0.0};
 		ragQuantity = 0;
@@ -2047,8 +2044,6 @@ class CfgVehicles
 	class FishingRod_Base: Inventory_Base
 	{
 		scope = 0;
-		SingleUseActions[] = {540};
-		ContinuousActions[] = {166};
 	};
 	class Clothing_Base: Inventory_Base
 	{
@@ -2105,7 +2100,6 @@ class CfgVehicles
 	class Box_Base: Inventory_Base
 	{
 		iconType = 0;
-		ContinuousActions[] = {212};
 		isMeleeWeapon = 1;
 	};
 	class Bottle_Base: Edible_Base
@@ -2116,9 +2110,6 @@ class CfgVehicles
 		stackedRandom = 1;
 		stackedUnit = "ml";
 		itemSize[] = {1,2};
-		SingleUseActions[] = {507,505,544};
-		ContinuousActions[] = {108,106};
-		InteractActions[] = {};
 		varLiquidTypeInit = 512;
 	};
 	class ItemOptics: Inventory_Base
@@ -2126,8 +2117,6 @@ class CfgVehicles
 		scope = 1;
 		simulation = "itemoptics";
 		selectionFireAnim = "zasleh";
-		SingleUseActions[] = {};
-		ContinuousActions[] = {236};
 		class AnimationSources
 		{
 			class hide
@@ -2503,7 +2492,6 @@ class cfgWeapons
 		soundAttType = "Rifle";
 		cursor = "aimGunGhost";
 		cursorAim = "aimPistol";
-		SingleUseActions[] = {558,559,579,580};
 		itemSize[] = {6,3};
 		spawnDamageRange[] = {0.0,0.6};
 		damagePerShot = 0.05;
@@ -2600,7 +2588,6 @@ class cfgWeapons
 		cursor = "aimGunGhost";
 		cursorAim = "aimPistol";
 		type = 1;
-		SingleUseActions[] = {558,559,579,580};
 		itemSize[] = {4,2};
 		damagePerShot = 0.1;
 		barrelArmor = 400;
@@ -2668,7 +2655,6 @@ class cfgWeapons
 		cursor = "aimBowGhost";
 		cursorAim = "aimBow";
 		arrow1[] = {};
-		SingleUseActions[] = {559};
 		absorbency = 0.1;
 		itemSize[] = {7,3};
 		modelOptics = "-";
@@ -2732,7 +2718,6 @@ class cfgWeapons
 		reloadTime = 0;
 		initSpeed = 30;
 		canLock = 0;
-		SingleUseActions[] = {558,559};
 		rotationFlags = 17;
 		reloadAction = "ManActReloadAT";
 		autoReload = 0;
