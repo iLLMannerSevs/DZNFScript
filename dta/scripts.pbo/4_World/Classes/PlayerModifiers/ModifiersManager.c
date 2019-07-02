@@ -106,6 +106,7 @@ class ModifiersManager
 		AddModifier(new CharcoalMdfr);
 		AddModifier(new MorphineMdfr);
 		AddModifier(new PainKillersMdfr);
+		AddModifier(new EpinephrineMdfr);
 	}
 
 	void SetModifiers(bool enable)
