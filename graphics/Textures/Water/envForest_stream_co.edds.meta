@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{C0641DC4133AFA10}Graphics/Textures/Water/envForest_stream_co.edds"
+ Author "prague-pc"
+ ChangeDate 1628038409
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "envForest_stream_co.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

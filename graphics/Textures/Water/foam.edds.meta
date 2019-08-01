@@ -1,0 +1,14 @@
+MetaFileClass  {
+ Name "{A3B149218D8C5200}graphics/textures/water/foam.png"
+ Author "miva"
+ ChangeDate 360424286
+ Configurations {
+  PNGResourceClass PC {
+   SourceFile "foam.png"
+  }
+  PNGResourceClass XBOX_ONE : PC {
+  }
+  PNGResourceClass PS4 : PC {
+  }
+ }
+}

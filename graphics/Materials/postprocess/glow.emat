@@ -1,0 +1,11 @@
+material "graphics/materials/postprocess/glow": GlowEffect
+{
+	VisiblePercent 95
+	TargetBrightness 0.25
+	SpeedDarkToBright 6.0
+	SpeedBrightToDark 6.0
+	BloomThreshold 0.5
+	BloomSteepness 1.25
+	BloomIntensity 0.75
+	ToneMapping Filmic
+}

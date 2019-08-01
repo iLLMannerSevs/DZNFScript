@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{7A9D527477F99788}Graphics/Textures/Water/streams_flowmap.tga"
+ Author "inv1836"
+ ChangeDate 1939563785
+ Configurations {
+  TGAResourceClass PC {
+   SourceFile "streams_flowmap.tga"
+  }
+  TGAResourceClass XBOX_ONE : PC {
+  }
+  TGAResourceClass PS4 : PC {
+  }
+  TGAResourceClass LINUX : PC {
+  }
+ }
+}

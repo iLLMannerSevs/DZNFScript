@@ -2,7 +2,7 @@
 //DeRap: vehicles_parts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:29:49 2019 : 'file' last modified on Tue May 14 12:12:07 2019
+//'now' is Thu Aug 01 14:59:59 2019 : 'file' last modified on Tue May 14 12:12:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

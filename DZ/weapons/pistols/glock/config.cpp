@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\glock\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:30:15 2019 : 'file' last modified on Wed Jun 12 15:00:48 2019
+//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:48 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

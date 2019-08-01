@@ -2,7 +2,7 @@
 //DeRap: characters_vests\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:26:18 2019 : 'file' last modified on Thu May 23 11:25:57 2019
+//'now' is Thu Aug 01 14:56:31 2019 : 'file' last modified on Thu May 23 11:25:57 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

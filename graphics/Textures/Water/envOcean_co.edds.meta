@@ -1,0 +1,14 @@
+MetaFileClass {
+ Name "{C458941836528F9F}Graphics/Textures/Water/envOcean_co.edds"
+ Author "fido"
+ ChangeDate -154918362
+ Configurations {
+  DDSResourceClass PC {
+   SourceFile "envOcean_co.dds"
+  }
+  DDSResourceClass XBOX_ONE : PC {
+  }
+  DDSResourceClass PS4 : PC {
+  }
+ }
+}

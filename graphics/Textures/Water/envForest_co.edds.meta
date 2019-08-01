@@ -1,0 +1,14 @@
+MetaFileClass {
+ Name "{1392F222D3EC22}Graphics/Textures/Water/envForest_co.edds"
+ Author "fido"
+ ChangeDate -154918362
+ Configurations {
+  DDSResourceClass PC {
+   SourceFile "envForest_co.dds"
+  }
+  DDSResourceClass XBOX_ONE : PC {
+  }
+  DDSResourceClass PS4 : PC {
+  }
+ }
+}

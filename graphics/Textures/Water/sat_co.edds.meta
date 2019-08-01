@@ -1,0 +1,16 @@
+MetaFileClass {
+ Name "{0DE9ACA1E3D366FB}Graphics/Textures/Water/sat_co.dds"
+ Author "inv1836"
+ ChangeDate 156509306
+ Configurations {
+  DDSResourceClass PC {
+   SourceFile "sat_co.dds"
+  }
+  DDSResourceClass XBOX_ONE : PC {
+  }
+  DDSResourceClass PS4 : PC {
+  }
+  DDSResourceClass LINUX : PC {
+  }
+ }
+}
