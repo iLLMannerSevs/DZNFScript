@@ -2,7 +2,7 @@
 //DeRap: structures_specific\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:59:42 2019 : 'file' last modified on Tue Jun 11 08:16:20 2019
+//'now' is Thu Aug 15 15:49:15 2019 : 'file' last modified on Fri Aug 09 07:57:14 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -39,7 +39,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Land_Radio_PanelBig0";
 		descriptionShort = "$STR_CfgVehicles_Land_Radio_PanelBig1";
 		model = "\dz\structures\Specific\Radio\Radio_PanelBig.p3d";
-		InteractActions[] = {1018,1019,1020,1037};
 		oldpower = 0;
 		simulation = "statictransmitter";
 		inputRange = 8;
@@ -60,7 +59,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Land_Radio_PanelPAS0";
 		descriptionShort = "$STR_CfgVehicles_Land_Radio_PanelPAS1";
 		model = "\dz\structures\Specific\Radio\Radio_PanelPAS.p3d";
-		InteractActions[] = {1018,1019,1037};
 		oldpower = 0;
 		simulation = "pasbroadcaster";
 		inputRange = 8;

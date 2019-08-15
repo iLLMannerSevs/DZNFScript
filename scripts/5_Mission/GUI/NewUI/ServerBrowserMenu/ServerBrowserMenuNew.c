@@ -1,7 +1,7 @@
 const int MAX_FAVORITES = 50;
 
 #ifdef PLATFORM_CONSOLE
-const int SERVER_BROWSER_PAGE_SIZE = 50;
+const int SERVER_BROWSER_PAGE_SIZE = 22;
 #else
 const int SERVER_BROWSER_PAGE_SIZE = 5;
 #endif
@@ -39,8 +39,10 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 #ifdef PLATFORM_CONSOLE
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/xbox/server_browser.layout" );
-		m_OfficialTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
-		m_CommunityTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
+		//m_OfficialTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
+		//m_CommunityTab	= new ServerBrowserTabConsole( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
+		m_OfficialTab	= new ServerBrowserTabConsolePages( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
+		m_CommunityTab	= new ServerBrowserTabConsolePages( layoutRoot.FindAnyWidget( "Tab_1" ), this, TabType.COMMUNITY );
 #else
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/server_browser/pc/server_browser.layout" );
 		m_OfficialTab	= new ServerBrowserTabPc( layoutRoot.FindAnyWidget( "Tab_0" ), this, TabType.OFFICIAL );
@@ -366,9 +368,33 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 				GetSelectedTab().Left();
 			}
 			
+			// LEFT HOLD
+			if( GetGame().GetInput().LocalHold("UAUILeft",false) )
+			{
+				GetSelectedTab().LeftHold();
+			}
+			
+			// LEFT RELEASE
+			if( GetGame().GetInput().LocalRelease("UAUILeft",false) )
+			{
+				GetSelectedTab().LeftRelease();
+			}
+			
 			if( GetGame().GetInput().LocalPress("UAUIRight",false) )
 			{
 				GetSelectedTab().Right();
+			}
+			
+			// RIGHT HOLD
+			if( GetGame().GetInput().LocalHold("UAUIRight",false) )
+			{
+				GetSelectedTab().RightHold();
+			}
+			
+			// RIGHT RELEASE
+			if( GetGame().GetInput().LocalRelease("UAUIRight",false) )
+			{
+				GetSelectedTab().RightRelease();
 			}
 			
 			if( GetGame().GetInput().LocalPress("UAUIUp",false) )
@@ -385,6 +411,11 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 			{
 				Back();
 			}
+		}
+		else
+		{
+			Print( "GetGame().GetUIManager().IsDialogVisible() = " + GetGame().GetUIManager().IsDialogVisible() );
+			Print( "GetDayZGame().IsConnecting() = " + GetDayZGame().IsConnecting() );
 		}
 		
 		super.Update( timeslice );

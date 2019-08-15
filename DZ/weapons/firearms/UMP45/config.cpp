@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\UMP45\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:21 2019 : 'file' last modified on Thu Jun 20 10:23:40 2019
+//'now' is Thu Aug 15 15:49:46 2019 : 'file' last modified on Tue Aug 13 08:23:05 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -128,6 +128,7 @@ class cfgWeapons
 				};
 				class SmokingBarrelHot1
 				{
+					ignoreIfSuppressed = 1;
 					overrideParticle = "smoking_barrel";
 					positionOffset[] = {0.1,0,0};
 					onlyWithinOverheatLimits[] = {0.3,0.9};
@@ -135,6 +136,7 @@ class cfgWeapons
 				};
 				class SmokingBarrelHot2
 				{
+					ignoreIfSuppressed = 1;
 					overrideParticle = "smoking_barrel_heavy";
 					positionOffset[] = {0.1,0,0};
 					onlyWithinOverheatLimits[] = {0.9,1};
@@ -367,7 +369,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_UMP450";
 		descriptionShort = "$STR_cfgWeapons_UMP451";
 		model = "\dz\weapons\firearms\UMP45\ump.p3d";
-		attachments[] = {"weaponFlashlight","weaponOptics","pistolMuzzle","weaponWrap","suppressorImpro"};
+		attachments[] = {"weaponFlashlight","weaponOptics","pistolMuzzle","weaponWrap"};
 		itemSize[] = {6,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\UMP45\data\ump45_co.paa"};
 		hiddenSelectionsMaterials[] = {"DZ\weapons\firearms\UMP45\data\ump45.rvmat"};

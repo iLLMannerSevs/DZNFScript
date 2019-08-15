@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\Red9\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:33 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:34 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -86,7 +86,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Red91";
 		model = "\dz\weapons\pistols\Red9\Red9.p3d";
 		attachments[] = {"suppressorImpro","weaponButtstockRed9"};
-		itemSize[] = {3,3};
+		itemSize[] = {4,2};
 		hiddenSelectionsTextures[] = {"dz\weapons\pistols\Red9\data\red9_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\pistols\Red9\data\red9.rvmat"};
 		class DamageSystem

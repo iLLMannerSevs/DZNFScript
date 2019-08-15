@@ -649,7 +649,10 @@ class ComponentEnergyManager : Component
 	{
 		if ( m_AutoSwitchOffWhenInCargo )
 		{
-			SwitchOff();
+			if (IsSwitchedOn())
+			{
+				SwitchOff();
+			}
 		}
 	}
 	
@@ -719,9 +722,44 @@ class ComponentEnergyManager : Component
 			return false;
 		}
 		
+		int five_hundred = 500; // safe check to prevent a mysterious infinite cycle (DZ-1412)
+		
 		while ( gathered_energy < energy_usage ) // Look for energy source if we don't have enough stored energy
 		{
-			if ( energy_source  &&  !energy_source.IsRuined()  &&  energy_source.GetCompEM().IsSwitchedOn()  &&  energy_source.GetCompEM().CheckWetness() )
+			// Safetycheck!
+			if (five_hundred > 0)
+			{
+				five_hundred--;
+			}
+			else
+			{
+				DPrint("Energy Manager ERROR: The 'five_hundred' safety check had to be activated to prevent game freeze. Dumping debug information...");
+				Print(m_ThisEntityAI);
+				Print(this);
+				Print(energy_source);
+				
+				if (energy_source.GetCompEM())
+				{
+					Print(energy_source.GetCompEM());
+				}
+				
+				Print(gathered_energy);
+				Print(energy_usage);
+				
+				Print(m_ThisEntityAI.GetPosition());
+				
+				if (energy_source)
+				{
+					Print(energy_source.GetPosition());
+				}
+				
+				Print("End of the 'five_hundred' safety ^ ");
+				
+				return false;
+			}
+			// ^ Safetycheck!
+			
+			if ( energy_source  &&  !energy_source.IsRuined()  &&  energy_source.GetCompEM()  &&  energy_source.GetCompEM().IsSwitchedOn()  &&  energy_source.GetCompEM().CheckWetness() )
 			{
 				gathered_energy = gathered_energy + energy_source.GetCompEM().GetEnergy();
 				energy_source = energy_source.GetCompEM().GetEnergySource();
@@ -1478,9 +1516,9 @@ class ComponentEnergyManager : Component
 		{
 			m_EnergySource.GetNetworkID( m_EnergySourceNetworkIDLow, m_EnergySourceNetworkIDHigh );
 			
-			Print(m_EnergySource);
-			Print(m_EnergySourceNetworkIDLow);
-			Print(m_EnergySourceNetworkIDHigh);
+			//Print(m_EnergySource);
+			//Print(m_EnergySourceNetworkIDLow);
+			//Print(m_EnergySourceNetworkIDHigh);
 		}
 		
 		Synch();

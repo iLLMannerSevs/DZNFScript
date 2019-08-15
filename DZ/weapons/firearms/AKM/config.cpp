@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\AKM\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:22:19 2019
+//'now' is Thu Aug 15 15:49:44 2019 : 'file' last modified on Tue Aug 13 08:21:45 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -291,7 +291,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_AKM0";
 		descriptionShort = "$STR_cfgWeapons_AKM1";
 		model = "\dz\weapons\firearms\AKM\AKM.p3d";
-		attachments[] = {"weaponButtstockAK","WeaponHandguardAK","weaponOpticsAK","weaponFlashlight","weaponBipod","weaponWrap","weaponBayonetAK","suppressorImpro","weaponMuzzleAK"};
+		attachments[] = {"weaponButtstockAK","WeaponHandguardAK","weaponOpticsAK","weaponFlashlight","weaponWrap","weaponBayonetAK","weaponMuzzleAK"};
 		itemSize[] = {8,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\AKM\data\akm_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\AKM\data\AKM.rvmat"};

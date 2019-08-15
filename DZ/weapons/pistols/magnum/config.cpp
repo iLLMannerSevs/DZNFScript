@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\magnum\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:48 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:49 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -94,7 +94,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_Magnum0";
 		descriptionShort = "$STR_cfgWeapons_Magnum1""Combat Magnum"""". It was first introduced in 1955, the same year as Smith & Wesson's M29 .44 Magnum.""";
 		model = "\dz\weapons\pistols\magnum\magnum.p3d";
-		itemSize[] = {4,3};
+		itemSize[] = {4,2};
 		class Damage
 		{
 			tex[] = {};

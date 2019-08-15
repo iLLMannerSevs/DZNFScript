@@ -2,7 +2,7 @@
 //DeRap: weapon_magazines\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:29 2019 : 'file' last modified on Wed Jun 12 15:34:24 2019
+//'now' is Thu Aug 15 15:49:54 2019 : 'file' last modified on Thu Aug 01 16:53:56 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -50,6 +50,7 @@ class CfgMagazines
 		value = 1;
 		modelSpecial = "";
 		spawnDamageRange[] = {0.0,0.6};
+		enlargeInventoryView = 0;
 		useAction = 0;
 		useActionTitle = "";
 		reloadAction = "";
@@ -3223,7 +3224,7 @@ class CfgMagazines
 		scope = 2;
 		displayName = "$STR_CfgMagazines_Mag_AK101_30Rnd0";
 		descriptionShort = "$STR_CfgMagazines_Mag_AK101_30Rnd1";
-		model = "\DZ\weapons\attachments\magazine\magazine_ak74_30rnd.p3d";
+		model = "\DZ\weapons\attachments\magazine\magazine_ak101_30rnd.p3d";
 		weight = 400;
 		itemSize[] = {1,3};
 		count = 30;
@@ -3231,8 +3232,8 @@ class CfgMagazines
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
 		tracersEvery = 0;
 		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.15,0.15,0.15,1.0,CO)"};
-		hiddenSelectionsMaterials[] = {"DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"};
+		hiddenSelectionsTextures[] = {"DZ\weapons\firearms\AK101\data\ak101_co.paa"};
+		hiddenSelectionsMaterials[] = {"DZ\weapons\firearms\AK101\data\ak101.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -3240,7 +3241,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\magazine_ak74_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\magazine_ak74_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\magazine_ak74_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.7,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.5,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\AK101\data\ak101_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -3450,9 +3451,17 @@ class CfgMagazines
 		ammo = "Bullet_762x54";
 		ammoItems[] = {"Ammo_762x54","Ammo_762x54Tracer"};
 		tracersEvery = 0;
-		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {"DZ\weapons\attachments\data\svd_mag_co.paa"};
-		hiddenSelectionsMaterials[] = {"DZ\weapons\attachments\data\svd_mag.rvmat"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"dz\weapons\attachments\data\svd_mag.rvmat"}},{0.7,{"dz\weapons\attachments\data\svd_mag.rvmat"}},{0.5,{"dz\weapons\attachments\data\svd_mag_damage.rvmat"}},{0.3,{"dz\weapons\attachments\data\svd_mag_damage.rvmat"}},{0.0,{"dz\weapons\attachments\data\svd_mag_destruct.rvmat"}}};
+				};
+			};
+		};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -3797,6 +3806,17 @@ class CfgMagazines
 		ammo = "Bullet_9x39";
 		ammoItems[] = {"Ammo_9x39","Ammo_9x39AP"};
 		tracersEvery = 0;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\vss_mag.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\vss_mag.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\vss_mag_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\vss_mag_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\vss_mag_destruct.rvmat"}}};
+				};
+			};
+		};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -4776,31 +4796,31 @@ class CfgNonAIVehicles
 	class ProxyMagazine_STANAG30: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_STANAG30.p3d";
 	};
 	class ProxyMagazine_PMAG_10: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_pmag_10.p3d";
 	};
 	class ProxyMagazine_PMAG_20: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_pmag_20.p3d";
 	};
 	class ProxyMagazine_PMAG_30: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_pmag_30.p3d";
 	};
 	class ProxyMagazine_PMAG_40: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_pmag_40.p3d";
 	};
 	class ProxyMagazine_FNP45: ProxyAttachment
@@ -4812,13 +4832,13 @@ class CfgNonAIVehicles
 	class ProxyMagazine_ruger1022_10: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_ruger1022_10.p3d";
 	};
 	class ProxyMagazine_ruger1022_30: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_ruger1022_30.p3d";
 	};
 	class ProxyMagazine_mk2: ProxyAttachment
@@ -4848,13 +4868,13 @@ class CfgNonAIVehicles
 	class ProxyMagazine_akm_drum: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_akm_drum.p3d";
 	};
 	class ProxyMagazine_akm_palm30: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_akm_palm30.p3d";
 	};
 	class ProxyArrow_Composite
@@ -4869,43 +4889,43 @@ class CfgNonAIVehicles
 	class ProxyMagazine_mp5_15rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_mp5_15rnd.p3d";
 	};
 	class ProxyMagazine_mp5_30rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_mp5_30rnd.p3d";
 	};
 	class ProxyMagazine_pm73_15rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_pm73_15rnd.p3d";
 	};
 	class ProxyMagazine_pm73_25rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_pm73_25rnd.p3d";
 	};
 	class Proxymagazine_cz527: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_cz527.p3d";
 	};
 	class Proxymagazine_ij70: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine3";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_ij70.p3d";
 	};
 	class ProxyMagazine_ak101_30rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_ak101_30rnd.p3d";
 	};
 	class Proxymagazine_p1: ProxyAttachment
@@ -4917,25 +4937,25 @@ class CfgNonAIVehicles
 	class Proxymagazine_ak74_30rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_ak74_30rnd.p3d";
 	};
 	class Proxymagazine_aug30: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_aug30.p3d";
 	};
 	class Proxymagazine_svd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_svd.p3d";
 	};
 	class Proxymagazine_Vss: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_vss.p3d";
 	};
 	class ProxyMagazine_DE: ProxyAttachment
@@ -4947,7 +4967,7 @@ class CfgNonAIVehicles
 	class ProxyMagazine_ump45_25rnd: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_ump45_25rnd.p3d";
 	};
 	class Proxymagazine_glock19: ProxyAttachment
@@ -4959,7 +4979,7 @@ class CfgNonAIVehicles
 	class Proxymagazine_fal: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\DZ\weapons\attachments\magazine\magazine_fal.p3d";
 	};
 	class Proxyshockpistol_cartridge: ProxyAttachment
@@ -4979,37 +4999,43 @@ class CfgNonAIVehicles
 	class ProxyMagazine_saiga_mag5: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_saiga_mag5.p3d";
 	};
 	class ProxyMagazine_saiga_mag8: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_saiga_mag8.p3d";
 	};
 	class ProxyMagazine_saiga_drum: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_saiga_drum.p3d";
 	};
 	class ProxyMagazine_m249_ammobox: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_m249_ammobox.p3d";
 	};
 	class ProxyMagazine_scout: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_scout.p3d";
 	};
 	class ProxyMagazine_ots14: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "magazine2";
+		inventorySlot = "magazine";
 		model = "\dz\weapons\attachments\magazine\magazine_ots14.p3d";
+	};
+	class ProxyMagazine_cz61: ProxyAttachment
+	{
+		scope = 2;
+		inventorySlot = "magazine";
+		model = "\DZ\weapons\attachments\magazine\magazine_cz61.p3d";
 	};
 };

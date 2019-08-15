@@ -2,7 +2,7 @@
 //DeRap: weapon_lights\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:29 2019 : 'file' last modified on Tue May 07 11:36:56 2019
+//'now' is Thu Aug 15 15:49:54 2019 : 'file' last modified on Sat Jul 20 11:10:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -41,7 +41,6 @@ class cfgVehicles
 		model = "\DZ\weapons\attachments\light\weaponlight_universal.p3d";
 		rotationFlags = 17;
 		reversed = 1;
-		SingleUseActions[] = {509,510};
 		weight = 80;
 		itemSize[] = {2,1};
 		inventorySlot[] = {"weaponFlashlight","helmetFlashlight"};
@@ -79,7 +78,6 @@ class cfgVehicles
 		model = "\DZ\weapons\attachments\light\weaponlight_TLR.p3d";
 		rotationFlags = 17;
 		reversed = 1;
-		SingleUseActions[] = {509,510};
 		weight = 118;
 		itemSize[] = {1,1};
 		inventorySlot[] = {"pistolFlashlight"};

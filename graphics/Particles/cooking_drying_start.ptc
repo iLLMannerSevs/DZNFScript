@@ -12,7 +12,7 @@ EffectDef {
    RandomRotDir 1
    RotMultiplier 45
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Sort 0
    Velocity 0.4
    VelocityRND 0.2

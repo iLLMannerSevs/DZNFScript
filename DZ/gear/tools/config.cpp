@@ -2,7 +2,7 @@
 //DeRap: gear_tools\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:57:01 2019 : 'file' last modified on Wed Jun 26 16:32:43 2019
+//'now' is Thu Aug 15 15:46:33 2019 : 'file' last modified on Fri Jul 19 22:07:53 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -206,6 +206,7 @@ class CfgVehicles
 		rotationFlags = 12;
 		isMeleeWeapon = 1;
 		itemSize[] = {1,2};
+		weight = 150;
 		fragility = 0.01;
 		openItemSpillRange[] = {0,0};
 		class DamageSystem
@@ -2531,7 +2532,6 @@ class CfgVehicles
 		model = "\dz\gear\tools\handsaw.p3d";
 		repairableWithKits[] = {5,4};
 		repairCosts[] = {30.0,25.0};
-		ContinuousActions[] = {"AT_UNRESTRAIN_T","AT_MINE_BUSH","AT_SAW_PLANKS","AT_DESTROY_COMBINATION_LOCK","AT_DESTROY_PART"};
 		itemInfo[] = {"Knife"};
 		rotationFlags = 17;
 		RestrainUnlockType = 1;

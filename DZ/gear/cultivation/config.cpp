@@ -2,7 +2,7 @@
 //DeRap: gear_cultivation\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:52 2019 : 'file' last modified on Thu Apr 25 12:28:18 2019
+//'now' is Thu Aug 15 15:46:23 2019 : 'file' last modified on Fri Jul 19 21:35:14 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -115,7 +115,6 @@ class CfgVehicles
 		itemSize[] = {1,1};
 		spawnOffset = 0;
 		lootCategory = "Crafted";
-		SingleUseActions[] = {531};
 		inventorySlot[] = {"SeedBase_1","SeedBase_2","SeedBase_3","SeedBase_4","SeedBase_5","SeedBase_6","SeedBase_7","SeedBase_8","SeedBase_9","SeedBase_10","SeedBase_11","SeedBase_12","SeedBase_13"};
 		class DamageSystem
 		{
@@ -223,7 +222,6 @@ class CfgVehicles
 		model = "\dz\gear\cultivation\tomato_seeds_pack.p3d";
 		rotationFlags = 17;
 		quantityBar = 1;
-		SingleUseActions[] = {552};
 		itemSize[] = {1,1};
 		weight = 10;
 		spawnOffset = 0;
@@ -278,7 +276,6 @@ class CfgVehicles
 		model = "\dz\gear\cultivation\pepper_seeds_pack.p3d";
 		rotationFlags = 17;
 		quantityBar = 1;
-		SingleUseActions[] = {552};
 		itemSize[] = {1,1};
 		weight = 10;
 		spawnOffset = 0;
@@ -334,7 +331,6 @@ class CfgVehicles
 		itemSize[] = {1,1};
 		rotationFlags = 17;
 		quantityBar = 1;
-		SingleUseActions[] = {552};
 		weight = 10;
 		spawnOffset = 0;
 		lootCategory = "Materials";
@@ -388,7 +384,6 @@ class CfgVehicles
 		model = "\dz\gear\cultivation\Zucchini_seeds_pack.p3d";
 		rotationFlags = 17;
 		quantityBar = 1;
-		SingleUseActions[] = {552};
 		itemSize[] = {1,1};
 		weight = 10;
 		spawnOffset = 0;
@@ -443,7 +438,6 @@ class CfgVehicles
 		model = "\dz\gear\cultivation\cannabis_seeds_pack.p3d";
 		rotationFlags = 17;
 		quantityBar = 1;
-		SingleUseActions[] = {552};
 		itemSize[] = {1,1};
 		weight = 10;
 		spawnOffset = 0;
@@ -502,7 +496,6 @@ class CfgVehicles
 		rotationFlags = 12;
 		weight = 10;
 		spawnOffset = 0;
-		ContinuousActions[] = {161};
 		canBeSplit = 1;
 		varQuantityInit = 300;
 		varQuantityMin = 0.0;
@@ -558,8 +551,6 @@ class CfgVehicles
 		varQuantityDestroyOnMin = 1;
 		quantityBar = 1;
 		varLiquidTypeInit = 32768;
-		SingleUseActions[] = {534};
-		ContinuousActions[] = {162,108,106};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -584,7 +575,6 @@ class CfgVehicles
 	{
 		storageCategory = 1;
 		lootCategory = "Crafted";
-		InteractActions[] = {1006,1005};
 		hiddenSelections[] = {"infestedParts"};
 		hiddenSelectionsTextures[] = {""};
 		hiddenSelectionsMaterials[] = {""};

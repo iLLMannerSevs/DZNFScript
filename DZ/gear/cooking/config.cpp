@@ -2,7 +2,7 @@
 //DeRap: gear_cooking\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:51 2019 : 'file' last modified on Wed May 22 14:32:34 2019
+//'now' is Thu Aug 15 15:46:21 2019 : 'file' last modified on Fri Jul 19 21:29:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -53,6 +53,7 @@ class CfgVehicles
 		varQuantityMax = 100.0;
 		varQuantityDestroyOnMin = 0;
 		varTemperatureMax = 1000;
+		absorbency = 0.3;
 		forceFarBubble = "true";
 		itemBehaviour = 2;
 		class AnimationSources
@@ -147,8 +148,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Fireplace1";
 		model = "\dz\gear\cooking\Fireplace.p3d";
 		overrideDrawArea = "8.0";
-		SingleUseActions[] = {563,547,527};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		physLayer = "item_large";
 		openable = 0;
@@ -206,7 +205,6 @@ class CfgVehicles
 		model = "\dz\gear\cooking\FireplaceIndoor.p3d";
 		overrideDrawArea = "8.0";
 		rotationFlags = 64;
-		InteractActions[] = {1030};
 		openable = 0;
 		lootCategory = "Crafted";
 		itemSize[] = {4,4};
@@ -237,26 +235,6 @@ class CfgVehicles
 			};
 		};
 		hiddenSelections[] = {"ashes"};
-		class PointLights
-		{
-			class PointLight
-			{
-				color[] = {1.0,0.5,0.3,1.0};
-				brightness = 4.75;
-				radius = 15;
-				dayLight = 1;
-				position = "light";
-				hitpoint = "bulb";
-				selection = "bulb";
-				flarePos = "flare_pos";
-				heatHazeRadius = 0.55;
-				heatHazePower = 0.01;
-				fireEffect = 1;
-				fireEffectOctaves = 4;
-				fireEffectPersistence = 0.97342;
-				fireEffectFract = 0.3333;
-			};
-		};
 	};
 	class BarrelHoles_ColorBase: FireplaceBase
 	{
@@ -264,9 +242,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_BarrelHoles_ColorBase1";
 		model = "\dz\gear\cooking\barrel_holes.p3d";
 		overrideDrawArea = "3.0";
-		SingleUseActions[] = {527};
-		InteractActions[] = {1028,1029,1041};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		lootCategory = "Crafted";
 		itemSize[] = {10,15};
@@ -308,25 +283,6 @@ class CfgVehicles
 			itemsCargoSize[] = {10,15};
 			openable = 0;
 			allowOwnedCargoManipulation = 1;
-		};
-		class PointLights
-		{
-			class PointLight
-			{
-				color[] = {1.0,0.5,0.3,1.0};
-				brightness = 1.0;
-				radius = 15;
-				dayLight = 1;
-				position = "light";
-				hitpoint = "bulb";
-				selection = "bulb";
-				heatHazeRadius = 0.6;
-				heatHazePower = 0.01;
-				fireEffect = 1;
-				fireEffectOctaves = 4;
-				fireEffectPersistence = 0.97342;
-				fireEffectFract = 0.3333;
-			};
 		};
 		class AnimEvents
 		{
@@ -509,7 +465,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Pot0";
 		descriptionShort = "$STR_CfgVehicles_Pot1";
 		model = "\dz\gear\cooking\CookingPot.p3d";
-		ContinuousActions[] = {182,176,169,189,160,108,225,226,238,227};
 		weight = 440;
 		itemSize[] = {4,3};
 		itemsCargoSize[] = {4,3};
@@ -605,7 +560,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_PortableGasStove1";
 		model = "\dz\gear\cooking\GasCooker.p3d";
 		overrideDrawArea = "3.0";
-		InteractActions[] = {1002,1003};
 		openable = 0;
 		lootTag[] = {"Camping"};
 		lootCategory = "Tools";
@@ -659,8 +613,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_PortableGasLamp1";
 		model = "\dz\gear\cooking\GasLight.p3d";
 		overrideDrawArea = "8.0";
-		SingleUseActions[] = {509,510};
-		InteractActions[] = {1002,1003};
 		weight = 330;
 		itemSize[] = {4,3};
 		lootTag[] = {"Camping"};

@@ -2,7 +2,7 @@
 //DeRap: characters_data\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:08 2019 : 'file' last modified on Wed Jun 19 12:52:11 2019
+//'now' is Thu Aug 15 15:45:13 2019 : 'file' last modified on Thu Aug 15 09:07:42 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -193,7 +193,7 @@ class CfgVehicles
 		};
 		displayName = "$STR_cfgvehicles_survivor0";
 		descriptionShort = "$STR_cfgvehicles_survivor1";
-		directSpeakRange = 30;
+		VoNRanges[] = {8.0,30.0,60.0};
 		faction = "dz_Civ_US";
 		rarityUrban = -1;
 		Icon = "\dz\Characters\data\UI\icons\soldier_CA.paa";
@@ -1054,6 +1054,21 @@ class CfgVehicles
 		class NoiseLandHeavy
 		{
 			strength = 16;
+			type = "sound";
+		};
+		class NoiseWhisper
+		{
+			strength = 5;
+			type = "sound";
+		};
+		class NoiseTalk
+		{
+			strength = 13;
+			type = "sound";
+		};
+		class NoiseShout
+		{
+			strength = 20;
 			type = "sound";
 		};
 		class AnimEvents
@@ -2080,6 +2095,26 @@ class CfgVehicles
 					soundSet = "AK_charge_close_release_SoundSet";
 					id = 254;
 				};
+				class AK_charge_open_47
+				{
+					soundSet = "AK_charge_open_47_SoundSet";
+					id = 267;
+				};
+				class AK_charge_open_release_47
+				{
+					soundSet = "AK_charge_open_release_47_SoundSet";
+					id = 268;
+				};
+				class AK_charge_close_47
+				{
+					soundSet = "AK_charge_close_47_SoundSet";
+					id = 269;
+				};
+				class AK_charge_close_release_47
+				{
+					soundSet = "AK_charge_close_release_47_SoundSet";
+					id = 270;
+				};
 				class AK_chamber_load2
 				{
 					soundSet = "AK_chamber_load2_SoundSet";
@@ -2099,6 +2134,16 @@ class CfgVehicles
 				{
 					soundSet = "AK_mag_remove_SoundSet";
 					id = 258;
+				};
+				class AK_mag_load_47
+				{
+					soundSet = "AK_mag_load_47_SoundSet";
+					id = 229;
+				};
+				class AK_mag_remove_47
+				{
+					soundSet = "AK_mag_remove_47_SoundSet";
+					id = 230;
 				};
 				class AK_jamming
 				{
@@ -3365,6 +3410,256 @@ class CfgVehicles
 					soundSet = "VSS_jam_SoundSet";
 					id = 654;
 				};
+				class AmphibianS_charge_open
+				{
+					soundSet = "AmphibianS_charge_open_SoundSet";
+					id = 1121;
+				};
+				class AmphibianS_charge_open_release
+				{
+					soundSet = "AmphibianS_charge_open_release_SoundSet";
+					id = 1122;
+				};
+				class AmphibianS_charge_close
+				{
+					soundSet = "AmphibianS_charge_close_SoundSet";
+					id = 1123;
+				};
+				class AmphibianS_charge_close_release
+				{
+					soundSet = "AmphibianS_charge_close_release_SoundSet";
+					id = 1124;
+				};
+				class AmphibianS_chamber_load
+				{
+					soundSet = "AmphibianS_chamber_load_SoundSet";
+					id = 1125;
+				};
+				class AmphibianS_mag_in
+				{
+					soundSet = "AmphibianS_mag_in_SoundSet";
+					id = 1126;
+				};
+				class AmphibianS_mag_load
+				{
+					soundSet = "AmphibianS_mag_load_SoundSet";
+					id = 1127;
+				};
+				class AmphibianS_mag_remove
+				{
+					soundSet = "AmphibianS_mag_remove_SoundSet";
+					id = 1128;
+				};
+				class AmphibianS_dry
+				{
+					soundSet = "AmphibianS_dry_SoundSet";
+					id = 1130;
+				};
+				class AmphibianS_pullout
+				{
+					soundSet = "AmphibianS_pullout_SoundSet";
+					id = 1131;
+				};
+				class AmphibianS_dry_uncock
+				{
+					soundSet = "AmphibianS_dry_uncock_SoundSet";
+					id = 1132;
+				};
+				class AmphibianS_jamming1
+				{
+					soundSet = "AmphibianS_jamming1_SoundSet";
+					id = 1133;
+				};
+				class AmphibianS_jamming2
+				{
+					soundSet = "AmphibianS_jamming2_SoundSet";
+					id = 1134;
+				};
+				class AmphibianS_jamming3
+				{
+					soundSet = "AmphibianS_jamming3_SoundSet";
+					id = 1135;
+				};
+				class AmphibianS_jamming4
+				{
+					soundSet = "AmphibianS_jamming4_SoundSet";
+					id = 1136;
+				};
+				class AmphibianS_jamming5
+				{
+					soundSet = "AmphibianS_jamming5_SoundSet";
+					id = 1137;
+				};
+				class AmphibianS_jamming6
+				{
+					soundSet = "AmphibianS_jamming6_SoundSet";
+					id = 1138;
+				};
+				class AmphibianS_jamming7
+				{
+					soundSet = "AmphibianS_jamming7_SoundSet";
+					id = 1139;
+				};
+				class AmphibianS_jamming8
+				{
+					soundSet = "AmphibianS_jamming8_SoundSet";
+					id = 1140;
+				};
+				class AmphibianS_jamming9
+				{
+					soundSet = "AmphibianS_jamming9_SoundSet";
+					id = 1141;
+				};
+				class AmphibianS_jamming10
+				{
+					soundSet = "AmphibianS_jamming10_SoundSet";
+					id = 1142;
+				};
+				class AmphibianS_jamming11
+				{
+					soundSet = "AmphibianS_jamming11_SoundSet";
+					id = 1143;
+				};
+				class AmphibianS_jamming12
+				{
+					soundSet = "AmphibianS_jamming12_SoundSet";
+					id = 1144;
+				};
+				class AmphibianS_jamming13
+				{
+					soundSet = "AmphibianS_jamming13_SoundSet";
+					id = 1145;
+				};
+				class AmphibianS_jam
+				{
+					soundSet = "AmphibianS_jam_SoundSet";
+					id = 1146;
+				};
+				class Glock19_charge_open
+				{
+					soundSet = "Glock19_charge_open_SoundSet";
+					id = 1221;
+				};
+				class Glock19_charge_open_release
+				{
+					soundSet = "Glock19_charge_open_release_SoundSet";
+					id = 1222;
+				};
+				class Glock19_charge_close
+				{
+					soundSet = "Glock19_charge_close_SoundSet";
+					id = 1223;
+				};
+				class Glock19_charge_close_release
+				{
+					soundSet = "Glock19_charge_close_release_SoundSet";
+					id = 1224;
+				};
+				class Glock19_chamber_load
+				{
+					soundSet = "Glock19_chamber_load_SoundSet";
+					id = 1225;
+				};
+				class Glock19_mag_in
+				{
+					soundSet = "Glock19_mag_in_SoundSet";
+					id = 1226;
+				};
+				class Glock19_mag_load
+				{
+					soundSet = "Glock19_mag_load_SoundSet";
+					id = 1227;
+				};
+				class Glock19_mag_remove
+				{
+					soundSet = "Glock19_mag_remove_SoundSet";
+					id = 1228;
+				};
+				class Glock19_dry
+				{
+					soundSet = "Glock19_dry_SoundSet";
+					id = 1230;
+				};
+				class Glock19_pullout
+				{
+					soundSet = "Glock19_pullout_SoundSet";
+					id = 1231;
+				};
+				class Glock19_dry_uncock
+				{
+					soundSet = "Glock19_dry_uncock_SoundSet";
+					id = 1232;
+				};
+				class Glock19_jamming1
+				{
+					soundSet = "Glock19_jamming1_SoundSet";
+					id = 1233;
+				};
+				class Glock19_jamming2
+				{
+					soundSet = "Glock19_jamming2_SoundSet";
+					id = 1234;
+				};
+				class Glock19_jamming3
+				{
+					soundSet = "Glock19_jamming3_SoundSet";
+					id = 1235;
+				};
+				class Glock19_jamming4
+				{
+					soundSet = "Glock19_jamming4_SoundSet";
+					id = 1236;
+				};
+				class Glock19_jamming5
+				{
+					soundSet = "Glock19_jamming5_SoundSet";
+					id = 1237;
+				};
+				class Glock19_jamming6
+				{
+					soundSet = "Glock19_jamming6_SoundSet";
+					id = 1238;
+				};
+				class Glock19_jamming7
+				{
+					soundSet = "Glock19_jamming7_SoundSet";
+					id = 1239;
+				};
+				class Glock19_jamming8
+				{
+					soundSet = "Glock19_jamming8_SoundSet";
+					id = 1240;
+				};
+				class Glock19_jamming9
+				{
+					soundSet = "Glock19_jamming9_SoundSet";
+					id = 1241;
+				};
+				class Glock19_jamming10
+				{
+					soundSet = "Glock19_jamming10_SoundSet";
+					id = 1242;
+				};
+				class Glock19_jamming11
+				{
+					soundSet = "Glock19_jamming11_SoundSet";
+					id = 1243;
+				};
+				class Glock19_jamming12
+				{
+					soundSet = "Glock19_jamming12_SoundSet";
+					id = 1244;
+				};
+				class Glock19_jamming13
+				{
+					soundSet = "Glock19_jamming13_SoundSet";
+					id = 1245;
+				};
+				class Glock19_jam
+				{
+					soundSet = "Glock19_jam_SoundSet";
+					id = 1246;
+				};
 				class MagRifle_fill_loop
 				{
 					soundSet = "MagRifle_fill_loop_SoundSet";
@@ -3789,6 +4084,81 @@ class CfgVehicles
 				{
 					soundset = "Hatchback_02_switchSeat_hand_SoundSet";
 					id = 2322;
+				};
+				class Sedan_02_Gear
+				{
+					soundset = "Sedan_02_Gear_SoundSet";
+					id = 2400;
+				};
+				class Sedan_02_Key_On
+				{
+					soundset = "Sedan_02_Key_On_SoundSet";
+					id = 2401;
+				};
+				class Sedan_02_Key_Off
+				{
+					soundset = "Sedan_02_Key_Off_SoundSet";
+					id = 2402;
+				};
+				class Sedan_02_lights
+				{
+					soundset = "Sedan_02_lights_SoundSet";
+					id = 2403;
+				};
+				class Sedan_02_DriverGetIn
+				{
+					soundset = "Sedan_02_DriverGetIn_SoundSet";
+					id = 2404;
+				};
+				class Sedan_02_DriverGetOut
+				{
+					soundset = "Sedan_02_DriverGetOut_SoundSet";
+					id = 2405;
+				};
+				class Sedan_02_DriverJumpOut
+				{
+					soundset = "Sedan_02_DriverJumpOut_SoundSet";
+					id = 2406;
+				};
+				class Sedan_02_CoDriverGetIn
+				{
+					soundset = "Sedan_02_CoDriverGetIn_SoundSet";
+					id = 2407;
+				};
+				class Sedan_02_CoDriverGetOut
+				{
+					soundset = "Sedan_02_CoDriverGetOut_SoundSet";
+					id = 2408;
+				};
+				class Sedan_02_CoDriverJumpOut
+				{
+					soundset = "Sedan_02_CoDriverJumpOut_SoundSet";
+					id = 2409;
+				};
+				class Sedan_02_PassengerGetIn
+				{
+					soundset = "Sedan_02_PassengerGetIn_SoundSet";
+					id = 2410;
+				};
+				class Sedan_02_PassengerGetOut
+				{
+					soundset = "Sedan_02_PassengerGetOut_SoundSet";
+					id = 2411;
+				};
+				class Sedan_02_driver_switchSeat
+				{
+					soundset = "Sedan_02_driver_switchSeat_SoundSet";
+					id = 2420;
+				};
+				class Sedan_02_passanger_switchSeat
+				{
+					soundset = "Sedan_02_passanger_switchSeat_SoundSet";
+					id = 2421;
+				};
+				class Sedan_02_switchSeat_hand
+				{
+					soundset = "Sedan_02_switchSeat_hand_SoundSet";
+					id = 2422;
 				};
 				class p_1hd_cro_suicide_out
 				{
@@ -5341,6 +5711,7 @@ class CfgVehicles
 	{
 		scope = 0;
 		model = "\dz\characters\bodies\bodyparts_above0.p3d";
+		hiddenSelections[] = {"decay_preload"};
 		simpleHiddenSelections[] = {"slot_melee_rifle","slot_melee_melee","slot_shoulder_rifle","slot_shoulder_melee"};
 		woman = 0;
 		voiceType = 1;
@@ -5368,6 +5739,7 @@ class CfgVehicles
 	{
 		scope = 0;
 		model = "\dz\characters\bodies\bodyparts_above0.p3d";
+		hiddenSelections[] = {"decay_preload"};
 		simpleHiddenSelections[] = {"slot_melee_rifle","slot_melee_melee","slot_shoulder_rifle","slot_shoulder_melee"};
 		woman = 1;
 		voiceType = 1;
@@ -5400,6 +5772,7 @@ class CfgVehicles
 		emptyFeet = "MaleAdamFeet";
 		emptyGloves = "MaleAdamHands";
 		faceType = "MaleAdamHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Adam\hhl_m_Adam_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_adam\hhl_m_adam_body_shaved.rvmat";
@@ -5428,6 +5801,7 @@ class CfgVehicles
 		emptyFeet = "MaleBorisFeet";
 		emptyGloves = "MaleBorisHands";
 		faceType = "MaleBorisHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Boris\hhl_m_Boris_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_boris\hhl_m_boris_body_shaved.rvmat";
@@ -5456,6 +5830,7 @@ class CfgVehicles
 		emptyFeet = "MaleCyrilFeet";
 		emptyGloves = "MaleCyrilHands";
 		faceType = "MaleCyrilHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Cyril\hhl_m_Cyril_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_cyril\hhl_m_cyril_body_shaved.rvmat";
@@ -5484,6 +5859,7 @@ class CfgVehicles
 		emptyFeet = "MaleDenisFeet";
 		emptyGloves = "MaleDenisHands";
 		faceType = "MaleDenisHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Denis_2\hhl_m_Denis_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_denis_2\hhl_m_denis_body_shaved.rvmat";
@@ -5512,6 +5888,7 @@ class CfgVehicles
 		emptyFeet = "MaleEliasFeet";
 		emptyGloves = "MaleEliasHands";
 		faceType = "MaleEliasHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Elias\hhl_m_Elias_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_elias\hhl_m_elias_body_shaved.rvmat";
@@ -5540,6 +5917,7 @@ class CfgVehicles
 		emptyFeet = "MaleFrancisFeet";
 		emptyGloves = "MaleFrancisHands";
 		faceType = "MaleFrancisHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Francis\hhl_m_Francis_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_francis\hhl_m_francis_body_shaved.rvmat";
@@ -5568,6 +5946,7 @@ class CfgVehicles
 		emptyFeet = "MaleGuoFeet";
 		emptyGloves = "MaleGuoHands";
 		faceType = "MaleGuoHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Guo\hhl_m_Guo_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_guo\hhl_m_guo_body_shaved.rvmat";
@@ -5596,6 +5975,7 @@ class CfgVehicles
 		emptyFeet = "MaleHassanFeet";
 		emptyGloves = "MaleHassanHands";
 		faceType = "MaleHassanHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Hassan\hhl_m_Hassan_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_hassan\hhl_m_hassan_body_shaved.rvmat";
@@ -5624,6 +6004,7 @@ class CfgVehicles
 		emptyFeet = "MaleIndarFeet";
 		emptyGloves = "MaleIndarHands";
 		faceType = "MaleIndarHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Indar\hhl_m_Indar_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_indar\hhl_m_indar_body_shaved.rvmat";
@@ -5652,6 +6033,7 @@ class CfgVehicles
 		emptyFeet = "MaleJoseFeet";
 		emptyGloves = "MaleJoseHands";
 		faceType = "MaleJoseHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Jose\hhl_m_Jose_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_jose\hhl_m_jose_body_shaved.rvmat";
@@ -5680,6 +6062,7 @@ class CfgVehicles
 		emptyFeet = "MaleKaitoFeet";
 		emptyGloves = "MaleKaitoHands";
 		faceType = "MaleKaitoHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Kaito\hhl_m_Kaito_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_kaito\hhl_m_kaito_body_shaved.rvmat";
@@ -5708,6 +6091,7 @@ class CfgVehicles
 		emptyFeet = "MaleLewisFeet";
 		emptyGloves = "MaleLewisHands";
 		faceType = "MaleLewisHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Lewis\hhl_m_Lewis_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_lewis\hhl_m_lewis_body_shaved.rvmat";
@@ -5736,6 +6120,7 @@ class CfgVehicles
 		emptyFeet = "MaleManuaFeet";
 		emptyGloves = "MaleManuaHands";
 		faceType = "MaleManuaHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Manua\hhl_m_Manua_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_manua\hhl_m_manua_body_shaved.rvmat";
@@ -5764,6 +6149,7 @@ class CfgVehicles
 		emptyFeet = "MaleNikiFeet";
 		emptyGloves = "MaleNikiHands";
 		faceType = "MaleNikiHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Niki_2\hhl_m_Niki_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_niki_2\hhl_m_niki_body_shaved.rvmat";
@@ -5792,6 +6178,7 @@ class CfgVehicles
 		emptyFeet = "MaleOliverFeet";
 		emptyGloves = "MaleOliverHands";
 		faceType = "MaleOliverHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Oliver\hhl_m_Oliver_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_oliver\hhl_m_oliver_body_shaved.rvmat";
@@ -5820,6 +6207,7 @@ class CfgVehicles
 		emptyFeet = "MalePeterFeet";
 		emptyGloves = "MalePeterHands";
 		faceType = "MalePeterHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Peter\hhl_m_Peter_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_peter\hhl_m_peter_body_shaved.rvmat";
@@ -5848,6 +6236,7 @@ class CfgVehicles
 		emptyFeet = "MaleQuinnFeet";
 		emptyGloves = "MaleQuinnHands";
 		faceType = "MaleQuinnHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Quinn\hhl_m_Quinn_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_quinn\hhl_m_quinn_body_shaved.rvmat";
@@ -5876,6 +6265,7 @@ class CfgVehicles
 		emptyFeet = "MaleRolfFeet";
 		emptyGloves = "MaleRolfHands";
 		faceType = "MaleRolfHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Rolf\hhl_m_Rolf_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_rolf\hhl_m_rolf_body_shaved.rvmat";
@@ -5904,6 +6294,7 @@ class CfgVehicles
 		emptyFeet = "MaleSethFeet";
 		emptyGloves = "MaleSethHands";
 		faceType = "MaleSethHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Seth\hhl_m_Seth_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_seth\hhl_m_seth_body_shaved.rvmat";
@@ -5932,6 +6323,7 @@ class CfgVehicles
 		emptyFeet = "MaleTaikiFeet";
 		emptyGloves = "MaleTaikiHands";
 		faceType = "MaleTaikiHead";
+		decayedTexture = "\DZ\characters\heads\data\m_Taiki\hhl_m_Taiki_body_shaved_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\m_taiki\hhl_m_taiki_body_shaved.rvmat";
@@ -5960,6 +6352,7 @@ class CfgVehicles
 		emptyFeet = "FemaleEvaFeet";
 		emptyGloves = "FemaleEvaHands";
 		faceType = "FemaleEvaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Eva_2\hhl_f_Eva_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_eva_2\hhl_f_eva_body.rvmat";
@@ -5988,6 +6381,7 @@ class CfgVehicles
 		emptyFeet = "FemaleFridaFeet";
 		emptyGloves = "FemaleFridaHands";
 		faceType = "FemaleFridaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Frida_2\hhl_f_Frida_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_frida_2\hhl_f_frida_body.rvmat";
@@ -6016,6 +6410,7 @@ class CfgVehicles
 		emptyFeet = "FemaleGabiFeet";
 		emptyGloves = "FemaleGabiHands";
 		faceType = "FemaleGabiHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Gabi_2\hhl_f_Gabi_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_gabi_2\hhl_f_gabi_body.rvmat";
@@ -6044,6 +6439,7 @@ class CfgVehicles
 		emptyFeet = "FemaleHelgaFeet";
 		emptyGloves = "FemaleHelgaHands";
 		faceType = "FemaleHelgaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Helga\hhl_f_Helga_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_helga\hhl_f_helga_body.rvmat";
@@ -6072,6 +6468,7 @@ class CfgVehicles
 		emptyFeet = "FemaleIrenaFeet";
 		emptyGloves = "FemaleIrenaHands";
 		faceType = "FemaleIrenaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Irena_2\hhl_f_Irena_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_irena_2\hhl_f_irena_body.rvmat";
@@ -6100,6 +6497,7 @@ class CfgVehicles
 		emptyFeet = "FemaleJudyFeet";
 		emptyGloves = "FemaleJudyHands";
 		faceType = "FemaleJudyHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Judy\hhl_f_Judy_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_judy\hhl_f_judy_body.rvmat";
@@ -6128,6 +6526,7 @@ class CfgVehicles
 		emptyFeet = "FemaleKeikoFeet";
 		emptyGloves = "FemaleKeikoHands";
 		faceType = "FemaleKeikoHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Keiko\hhl_f_Keiko_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_keiko\hhl_f_keiko_body.rvmat";
@@ -6156,6 +6555,7 @@ class CfgVehicles
 		emptyFeet = "FemaleLindaFeet";
 		emptyGloves = "FemaleLindaHands";
 		faceType = "FemaleLindaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Linda_2\hhl_f_Linda_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_linda_2\hhl_f_linda_body.rvmat";
@@ -6184,6 +6584,7 @@ class CfgVehicles
 		emptyFeet = "FemaleMariaFeet";
 		emptyGloves = "FemaleMariaHands";
 		faceType = "FemaleMariaHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Maria_2\hhl_f_Maria_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_maria_2\hhl_f_maria_body.rvmat";
@@ -6212,6 +6613,7 @@ class CfgVehicles
 		emptyFeet = "FemaleNaomiFeet";
 		emptyGloves = "FemaleNaomiHands";
 		faceType = "FemaleNaomiHead";
+		decayedTexture = "\DZ\characters\heads\data\f_Naomi\hhl_f_Naomi_body_decayed_co.paa";
 		class BloodyHands
 		{
 			mat_normal = "dz\characters\heads\data\f_naomi\hhl_f_naomi_body.rvmat";

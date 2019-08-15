@@ -73,6 +73,7 @@ class OptionSelectorSlider extends OptionSelectorBase
 	{
 		if( m_ParentClass )
 		{
+			m_ParentClass.OnFocus( m_Root.GetParent(), -1, m_SelectorType );
 			m_ParentClass.OnMouseEnter( m_Root.GetParent().GetParent(), x, y );
 			ColorHighlight(w);
 		}

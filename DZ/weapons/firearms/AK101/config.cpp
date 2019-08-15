@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\AK101\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:22:18 2019
+//'now' is Thu Aug 15 15:49:44 2019 : 'file' last modified on Tue Aug 13 08:21:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -44,6 +44,7 @@ class CfgWeapons
 		absorbency = 0;
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};
+		PPDOFProperties[] = {1,0.5,50,160,4,10};
 		WeaponLength = 0.56;
 		chamberSize = 1;
 		chamberedRound = "";
@@ -71,7 +72,7 @@ class CfgWeapons
 					overrideParticle = "weapon_shot_ak101_01";
 					ignoreIfSuppressed = 1;
 					illuminateWorld = 1;
-					positionOffset[] = {-0.05,0,0};
+					positionOffset[] = {-0.1,0,0};
 				};
 				class ChamberSmokeBurst
 				{
@@ -402,7 +403,7 @@ class CfgWeapons
 		displayName = "$STR_CfgWeapons_AK1010";
 		descriptionShort = "$STR_CfgWeapons_AK1011";
 		model = "\dz\weapons\firearms\AK101\ak101.p3d";
-		attachments[] = {"weaponButtstockAK","weaponHandguardAK","weaponOpticsAK","weaponFlashlight","weaponBipod","weaponWrap","weaponMuzzleAK","weaponBayonetAK","suppressorImpro"};
+		attachments[] = {"weaponButtstockAK","weaponHandguardAK","weaponOpticsAK","weaponFlashlight","weaponWrap","weaponMuzzleAK","weaponBayonetAK"};
 		itemSize[] = {8,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\AK101\data\ak101_co.paa","#(argb,8,8,3)color(0.15,0.15,0.15,1.0,CO)"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\AK101\data\ak101.rvmat","DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"};

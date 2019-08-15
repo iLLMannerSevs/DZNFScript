@@ -127,12 +127,12 @@ EffectDef {
    Material "{E5E389220151D838}Graphics/Particles/materials/smoke/smoke_cloud_01_b_trans_M18_05.emat"
    SizeMultiplier 2
    SizeRND 2
-   RandomRotDir 0
-   RotMultiplier 0
+   RandomRotDir 1
+   RotMultiplier 45
    StretchMultiplier 1
    StreakFullUV 0
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Sort 0
    Velocity 10
    VelocityRND 10
@@ -152,7 +152,7 @@ EffectDef {
     0 1 0.05 0.5 1 0
    }
    RotationSpeed {
-    0 0.18354 1 0.1962
+    0 1 1 0.1962
    }
    Size {
     0 0 0.025 0.75 1 1
@@ -183,11 +183,11 @@ EffectDef {
    Material "{E5E389220151D838}Graphics/Particles/materials/smoke/smoke_cloud_01_b_trans_M18_05.emat"
    SizeMultiplier 10
    SizeRND 6
-   RandomRotDir 0
-   RotMultiplier 0
+   RandomRotDir 1
+   RotMultiplier 20
    StreakFullUV 0
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Sort 0
    Velocity 1
    VelocityRND 1
@@ -206,7 +206,7 @@ EffectDef {
     0 0 0.05 0.75 0.625 0.75 1 0
    }
    RotationSpeed {
-    0 0.18354 1 0.1962
+    0 1 1 0.1962
    }
    Size {
     0 0.1 1 1

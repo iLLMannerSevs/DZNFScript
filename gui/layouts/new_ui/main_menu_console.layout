@@ -64,8 +64,8 @@ FrameWidgetClass main_menu_root {
        "no focus" 0
        "next left" "play"
        "next right" "play"
-       "next up" "choose_server"
-       "next down" "play_video"
+       "next up" ""
+       "next down" ""
        {
         PanelWidgetClass play_panel {
          ignorepointer 1
@@ -147,10 +147,10 @@ FrameWidgetClass main_menu_root {
        vexactsize 1
        style DayZDefaultButtonTop
        "no focus" 0
-       "next left" "play_video"
-       "next right" "play_video"
-       "next up" "play"
-       "next down" "tutorials"
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
        text_proportion 0.55
        font "gui/fonts/sdf_MetronLight24"
        switch normal
@@ -198,10 +198,10 @@ FrameWidgetClass main_menu_root {
        vexactsize 1
        style DayZDefaultButtonSides
        "no focus" 0
-       "next left" "tutorials"
-       "next right" "tutorials"
-       "next up" "play_video"
-       "next down" "controls"
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
        text_proportion 0.55
        font "gui/fonts/sdf_MetronLight24"
        switch normal
@@ -247,10 +247,10 @@ FrameWidgetClass main_menu_root {
        vexactsize 1
        style Default
        "no focus" 0
-       "next left" "controls"
-       "next right" "controls"
-       "next up" "tutorials"
-       "next down" "options"
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
        {
         PanelWidgetClass controls_panel {
          ignorepointer 1
@@ -293,10 +293,10 @@ FrameWidgetClass main_menu_root {
        vexactsize 1
        style Default
        "no focus" 0
-       "next left" "options"
-       "next right" "options"
-       "next up" "controls"
-       "next down" "play"
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
        {
         PanelWidgetClass options_panel {
          ignorepointer 1

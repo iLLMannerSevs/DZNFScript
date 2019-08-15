@@ -2,7 +2,7 @@
 //DeRap: gear_crafting\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:51 2019 : 'file' last modified on Mon Jun 24 09:04:46 2019
+//'now' is Thu Aug 15 15:46:22 2019 : 'file' last modified on Wed Aug 07 11:06:23 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -344,7 +344,7 @@ class CfgVehicles
 		model = "\dz\gear\crafting\bp_wooden_stick.p3d";
 		inventorySlot = "WoodenStick";
 		weight = 220;
-		itemSize[] = {1,5};
+		itemSize[] = {5,1};
 		canBeSplit = 1;
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
@@ -385,24 +385,19 @@ class CfgVehicles
 		{
 			class SoundWeapon
 			{
-				class rope_untie
+				class TorchKindle
 				{
-					soundSet = "rope_untie_SoundSet";
-					id = 202;
+					soundSet = "Torch_kindle_SoundSet";
+					id = 201;
 				};
-				class rope_struggle
+				class pickup
 				{
-					soundSet = "rope_struggle_SoundSet";
-					id = 203;
-				};
-				class pickUpItem
-				{
-					soundSet = "pickUpBarbedWire_SoundSet";
+					soundSet = "hatchet_pickup_SoundSet";
 					id = 797;
 				};
-				class drop
+				class woodenlog_drop
 				{
-					soundset = "barbedwire_drop_SoundSet";
+					soundset = "baseballbat_drop_SoundSet";
 					id = 898;
 				};
 			};
@@ -416,12 +411,13 @@ class CfgVehicles
 		model = "\dz\gear\crafting\Torch.p3d";
 		overrideDrawArea = "8.0";
 		rotationFlags = 17;
-		ContinuousActions[] = {"AT_LIGHT_ITEM_ON_FIRE"};
 		absorbency = 0.5;
 		isMeleeWeapon = 1;
 		burnTimePerRag = 120;
 		burnTimePerFullLardDose = 900;
-		maxConsumableLardDose = 100;
+		burnTimePerFullFuelDose = 600;
+		maxConsumableLardDose = 200;
+		maxConsumableFuelDose = 200;
 		canBeSplit = 0;
 		stackedUnit = "w";
 		quantityBar = 1;

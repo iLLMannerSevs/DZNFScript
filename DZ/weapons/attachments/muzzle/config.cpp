@@ -2,7 +2,7 @@
 //DeRap: weapon_muzzles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:31 2019 : 'file' last modified on Wed Jun 12 15:35:49 2019
+//'now' is Thu Aug 15 15:49:55 2019 : 'file' last modified on Tue Aug 06 08:08:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -56,8 +56,8 @@ class cfgVehicles
 		model = "\dz\weapons\attachments\muzzle\bayonet_ak.p3d";
 		repairableWithKits[] = {5,4};
 		repairCosts[] = {30.0,25.0};
-		ContinuousActions[] = {"AT_UNRESTRAIN_T","AT_BURN_SEW_T","AT_MINE_BUSH","AT_MINE_TREE_BRANCH","AT_SKINNING","AT_BURN_SEW_S","AT_SHAVE_T","AT_SHAVE"};
 		animClass = "Knife";
+		suicideAnim = "onehanded";
 		rotationFlags = 17;
 		reversed = 0;
 		weight = 426;
@@ -71,6 +71,7 @@ class cfgVehicles
 		dispersionCondition = "true";
 		canSkinBodies = 1;
 		recoilModifier[] = {1,1,1};
+		itemInfo[] = {"Knife"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -120,8 +121,8 @@ class cfgVehicles
 		model = "\dz\weapons\attachments\muzzle\bayonet_m9a1.p3d";
 		repairableWithKits[] = {5,4};
 		repairCosts[] = {30.0,25.0};
-		ContinuousActions[] = {"AT_UNRESTRAIN_T","AT_BURN_SEW_T","AT_MINE_BUSH","AT_MINE_TREE_BRANCH","AT_SKINNING","AT_BURN_SEW_S","AT_SHAVE_T","AT_SHAVE"};
 		animClass = "Knife";
+		suicideAnim = "onehanded";
 		rotationFlags = 17;
 		reversed = 0;
 		weight = 400;
@@ -135,6 +136,7 @@ class cfgVehicles
 		dispersionCondition = "true";
 		canSkinBodies = 1;
 		recoilModifier[] = {1,1,1};
+		itemInfo[] = {"Knife"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -184,8 +186,8 @@ class cfgVehicles
 		model = "\dz\weapons\attachments\muzzle\bayonet_mosin.p3d";
 		repairableWithKits[] = {5,4};
 		repairCosts[] = {30.0,25.0};
-		ContinuousActions[] = {"AT_UNRESTRAIN_T","AT_BURN_SEW_T","AT_BURN_SEW_S"};
 		animClass = "Knife";
+		suicideAnim = "onehanded";
 		rotationFlags = 12;
 		reversed = 0;
 		weight = 350;
@@ -199,6 +201,7 @@ class cfgVehicles
 		dispersionCondition = "true";
 		canSkinBodies = 1;
 		recoilModifier[] = {1,1,1};
+		itemInfo[] = {"Knife"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -248,8 +251,8 @@ class cfgVehicles
 		model = "\dz\weapons\attachments\muzzle\bayonet_sks.p3d";
 		repairableWithKits[] = {5,4};
 		repairCosts[] = {30.0,25.0};
-		ContinuousActions[] = {"AT_UNRESTRAIN_T","AT_BURN_SEW_T","AT_MINE_BUSH","AT_MINE_TREE_BRANCH","AT_SKINNING","AT_BURN_SEW_S","AT_SHAVE_T","AT_SHAVE"};
 		animClass = "Knife";
+		suicideAnim = "onehanded";
 		rotationFlags = 17;
 		reversed = 0;
 		weight = 400;
@@ -263,6 +266,7 @@ class cfgVehicles
 		dispersionCondition = "true";
 		canSkinBodies = 1;
 		recoilModifier[] = {1,1,1};
+		itemInfo[] = {"Knife"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -397,7 +401,7 @@ class cfgVehicles
 		itemSize[] = {3,1};
 		itemModelLength = 0.24;
 		lootCategory = "Attachments";
-		inventorySlot = "suppressorImpro";
+		inventorySlot[] = {"suppressorImpro","weaponMuzzleAK","weaponMuzzleM4","pistolMuzzle"};
 		simulation = "ItemSuppressor";
 		dispersionModifier = -0.0001;
 		noiseShootModifier = -0.4;
@@ -435,9 +439,8 @@ class cfgVehicles
 				};
 				class SmokeHot
 				{
-					overrideParticle = "cooking_boiling_start";
+					overrideParticle = "smoking_barrel_heavy";
 					onlyWithinOverheatLimits[] = {0.7,2};
-					overrideDirectionVector[] = {0,180,90};
 				};
 			};
 		};

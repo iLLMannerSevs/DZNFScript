@@ -68,7 +68,7 @@ EffectDef {
    RotMultiplier 20
    StreakFullUV 0
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Sort 0
    Velocity 20
    VelocityRND 10
@@ -111,7 +111,7 @@ EffectDef {
    RotMultiplier 20
    StreakFullUV 0
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Sort 0
    Velocity 20
    VelocityRND 30
@@ -140,7 +140,7 @@ EffectDef {
   }
   EmitorDef explo_dust_05_big_ring {
    ShapeType Ellipse
-   ShapeSize 20 0 20
+   ShapeSize 12 0 12
    ConeAngle 360 100 10
    MaxNum 50
    BirthRate 6000

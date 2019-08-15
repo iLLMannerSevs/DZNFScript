@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\FNX45\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:31 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -265,7 +265,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_FNX451";
 		model = "\dz\weapons\pistols\fnx45\fnp45.p3d";
 		attachments[] = {"pistolMuzzle","pistolOptics","pistolFlashlight"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -497,7 +497,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_FNX451";
 		model = "\dz\weapons\pistols\fnx45\fnp45.p3d";
 		attachments[] = {"pistolMuzzle","pistolOptics","pistolFlashlight"};
-		itemSize[] = {4,3};
+		itemSize[] = {3,2};
 		chamberSize = 1;
 		chamberedRound = "";
 		magazines[] = {"Mag_FNX45_15Rnd"};

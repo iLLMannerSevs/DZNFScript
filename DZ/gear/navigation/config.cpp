@@ -2,7 +2,7 @@
 //DeRap: gear_navigation\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:58 2019 : 'file' last modified on Fri Apr 05 10:55:24 2019
+//'now' is Thu Aug 15 15:46:30 2019 : 'file' last modified on Fri Jul 19 21:55:48 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -511,7 +511,6 @@ class CfgVehicles
 		rotationFlags = 17;
 		itemSize[] = {1,2};
 		weight = 40;
-		SingleUseActions[] = {574};
 		world = "ChernarusPlus";
 		selectionPaper = "paper";
 		simulation = "ItemMap";
@@ -557,8 +556,6 @@ class CfgVehicles
 		model = "\dz\gear\navigation\compass.p3d";
 		animClass = "Compass";
 		itemSize[] = {1,2};
-		SingleUseActions[] = {501,538};
-		ContinuousActions[] = {230};
 		weight = 190;
 		simulation = "ItemCompass";
 		class DamageSystem

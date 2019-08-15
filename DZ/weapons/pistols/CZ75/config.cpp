@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\CZ75\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:24 2019 : 'file' last modified on Wed Jun 12 15:00:30 2019
+//'now' is Thu Aug 15 15:49:50 2019 : 'file' last modified on Wed Aug 14 11:04:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -301,7 +301,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_CZ751";
 		model = "\dz\weapons\pistols\CZ75\cz75.p3d";
 		attachments[] = {"pistolMuzzle","pistolFlashlight","pistolOptics"};
-		itemSize[] = {4,2};
+		itemSize[] = {3,2};
 		class DamageSystem
 		{
 			class GlobalHealth

@@ -2,7 +2,7 @@
 //DeRap: weapons_launchers\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:22 2019 : 'file' last modified on Mon Apr 08 17:59:30 2019
+//'now' is Thu Aug 15 15:49:47 2019 : 'file' last modified on Sat Jul 20 11:54:52 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

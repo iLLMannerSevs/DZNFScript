@@ -2,7 +2,7 @@
 //DeRap: weapon_supports\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:32 2019 : 'file' last modified on Tue Jun 11 14:07:05 2019
+//'now' is Thu Aug 15 15:49:57 2019 : 'file' last modified on Tue Aug 13 08:19:54 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -470,7 +470,7 @@ class cfgVehicles
 		reversed = 0;
 		inventorySlot = "weaponButtstockAK";
 		weight = 450;
-		itemSize[] = {3,1};
+		itemSize[] = {2,1};
 		dispersionModifier = -5e-005;
 		dispersionCondition = "true";
 		recoilModifier[] = {0.8,0.8,0.8};
@@ -484,7 +484,7 @@ class cfgVehicles
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_wood_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"dz\weapons\firearms\AK74\data\aks74u.rvmat"}},{0.7,{"dz\weapons\firearms\AK74\data\aks74u.rvmat"}},{0.5,{"dz\weapons\firearms\AK74\data\aks74u_damage.rvmat"}},{0.3,{"dz\weapons\firearms\AK74\data\aks74u_damage.rvmat"}},{0.0,{"dz\weapons\firearms\AK74\data\aks74u_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -578,7 +578,7 @@ class cfgVehicles
 		reversed = 0;
 		inventorySlot = "weaponButtstockRed9";
 		weight = 400;
-		itemSize[] = {1,3};
+		itemSize[] = {3,1};
 		dispersionModifier = -0.00025;
 		dispersionCondition = "true";
 		recoilModifier[] = {0.8,0.8,0.8};
@@ -721,7 +721,7 @@ class cfgVehicles
 		reversed = 0;
 		inventorySlot = "weaponButtstockSaiga";
 		weight = 1300;
-		itemSize[] = {1,3};
+		itemSize[] = {3,1};
 		dispersionModifier = -0.0002;
 		dispersionCondition = "true";
 		recoilModifier[] = {0.8,0.8,0.8};

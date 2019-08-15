@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\mosin9130\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:21 2019 : 'file' last modified on Thu Jun 20 10:24:36 2019
+//'now' is Thu Aug 15 15:49:45 2019 : 'file' last modified on Tue Aug 13 08:24:19 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -336,6 +336,7 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_762x54","Ammo_762x54Tracer","Mag_CLIP762x54_5Rnd"};
 		ejectType = 0;
 		recoilModifier[] = {1,1,1};
+		DisplayMagazine = 0;
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\mosin9130\mosin_dry",0.5,1};
 		reloadSkips[] = {0.32,0.41,0.5,0.59,0.69,0.77};
@@ -555,7 +556,7 @@ class cfgWeapons
 		scope = 2;
 		model = "\dz\weapons\firearms\mosin9130\mosin9130.p3d";
 		itemSize[] = {10,3};
-		attachments[] = {"weaponMuzzleMosin","weaponBayonetMosin","weaponOpticsMosin","weaponBipod","weaponWrap","suppressorImpro"};
+		attachments[] = {"weaponMuzzleMosin","weaponBayonetMosin","weaponOpticsMosin","weaponWrap","suppressorImpro"};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\mosin9130\data\mosin_9130_co.paa"};
 		class AnimEvents
 		{

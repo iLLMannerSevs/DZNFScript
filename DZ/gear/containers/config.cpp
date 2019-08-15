@@ -2,7 +2,7 @@
 //DeRap: gear_containers\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:49 2019 : 'file' last modified on Fri May 31 11:42:37 2019
+//'now' is Thu Aug 15 15:46:20 2019 : 'file' last modified on Fri Jul 19 21:24:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -41,9 +41,6 @@ class CfgVehicles
 		model = "\dz\gear\containers\55galDrum.p3d";
 		overrideDrawArea = "8.0";
 		forceFarBubble = "true";
-		SingleUseActions[] = {527};
-		InteractActions[] = {1025,1026};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		attachments[] = {"BerryR","BerryB","Plant","OakBark","BirchBark","Lime","Disinfectant","Guts"};
 		destroyOnEmpty = 0;

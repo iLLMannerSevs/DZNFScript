@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\cz61\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:24:26 2019
+//'now' is Thu Aug 15 15:49:45 2019 : 'file' last modified on Tue Aug 13 08:24:10 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -340,7 +340,7 @@ class CfgWeapons
 		displayName = "$STR_CfgWeapons_CZ610";
 		descriptionShort = "$STR_CfgWeapons_CZ611";
 		model = "\dz\weapons\firearms\cz61\CZ61.p3d";
-		attachments[] = {"suppressorImpro","weaponMuzzleAK"};
+		attachments[] = {"pistolMuzzle"};
 		itemSize[] = {4,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\cz61\data\cz61_main_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\cz61\data\cz61.rvmat"};

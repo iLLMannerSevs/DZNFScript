@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\M4\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:22:44 2019
+//'now' is Thu Aug 15 15:49:45 2019 : 'file' last modified on Tue Aug 13 08:22:10 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -294,7 +294,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_M4A10";
 		descriptionShort = "$STR_cfgWeapons_M4A11";
 		model = "\dz\weapons\firearms\m4\m4a1.p3d";
-		attachments[] = {"weaponMuzzleM4","weaponBayonet","weaponFlashlight","weaponBipod","weaponOptics","weaponButtstockM4","WeaponHandguardM4","weaponWrap","suppressorImpro","weaponUnderSlugM4"};
+		attachments[] = {"weaponMuzzleM4","weaponBayonet","weaponOptics","weaponButtstockM4","WeaponHandguardM4","weaponWrap","weaponFlashlight"};
 		itemSize[] = {8,3};
 		spawnDamageRange[] = {0.0,0.6};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\m4\data\m4_body_co.paa"};

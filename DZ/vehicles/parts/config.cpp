@@ -2,7 +2,7 @@
 //DeRap: vehicles_parts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:59:59 2019 : 'file' last modified on Tue May 14 12:12:07 2019
+//'now' is Thu Aug 15 15:49:29 2019 : 'file' last modified on Sat Jul 20 10:27:57 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -41,8 +41,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_TruckBattery1";
 		model = "\dz\vehicles\parts\battery_truck.p3d";
 		attachments[] = {"MetalWire"};
-		InteractActions[] = {573};
-		SingleUseActions[] = {577,555,548,550};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 50;
@@ -100,8 +98,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_CarBattery1";
 		model = "\dz\vehicles\parts\battery_car.p3d";
 		attachments[] = {"MetalWire"};
-		InteractActions[] = {573};
-		SingleUseActions[] = {577,555,548,550};
 		weight = 10000;
 		itemSize[] = {3,3};
 		absorbency = 0.1;
@@ -159,8 +155,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AirCraftBattery1";
 		model = "\dz\vehicles\parts\aircraft_battery.p3d";
 		attachments[] = {"MetalWire"};
-		InteractActions[] = {573};
-		SingleUseActions[] = {577,555,548,550};
 		weight = 10000;
 		itemSize[] = {2,2};
 		absorbency = 0;
@@ -195,8 +189,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_TruckExhaust0";
 		descriptionShort = "$STR_CfgVehicles_TruckExhaust1";
 		model = "\dz\vehicles\parts\exhaust_truck.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 12500;
 		itemSize[] = {7,3};
 		absorbency = 0;
@@ -219,8 +211,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_EngineBelt0";
 		descriptionShort = "$STR_CfgVehicles_EngineBelt1";
 		model = "\dz\vehicles\parts\belt.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 500;
 		itemSize[] = {2,1};
 		absorbency = 0;
@@ -243,7 +233,6 @@ class CfgVehicles
 		scope = 2;
 		displayName = "$STR_CfgVehicles_BrakeFluid0";
 		descriptionShort = "$STR_CfgVehicles_BrakeFluid1";
-		ContinuousActions[] = {223};
 		model = "\dz\vehicles\parts\Brake_Fluid.p3d";
 		varQuantityInit = 1000;
 		varQuantityMin = 0;
@@ -288,7 +277,6 @@ class CfgVehicles
 		scope = 2;
 		displayName = "$STR_CfgVehicles_EngineOil0";
 		descriptionShort = "$STR_CfgVehicles_EngineOil1";
-		ContinuousActions[] = {224};
 		model = "\dz\vehicles\parts\oil_bottle.p3d";
 		varQuantityInit = 1000;
 		varQuantityMin = 0;
@@ -334,8 +322,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_CarRadiator0";
 		descriptionShort = "$STR_CfgVehicles_CarRadiator1";
 		model = "\dz\vehicles\parts\radiator_car.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 2000;
 		itemSize[] = {5,4};
 		absorbency = 0;
@@ -380,8 +366,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_TruckRadiator0";
 		descriptionShort = "$STR_CfgVehicles_TruckRadiator1";
 		model = "\dz\vehicles\parts\radiator_truck.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 2000;
 		itemSize[] = {7,5};
 		absorbency = 0;
@@ -470,8 +454,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_HeadlightH70";
 		descriptionShort = "$STR_CfgVehicles_HeadlightH71";
 		model = "\dz\vehicles\parts\Replacement_Headlight.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 150;
 		itemSize[] = {1,1};
 		absorbency = 0;
@@ -550,7 +532,6 @@ class CfgVehicles
 		weight = 4000;
 		itemSize[] = {5,6};
 		absorbency = 0;
-		ContinuousActions[] = {222,221,182,176,169,189,160,108,225,226,234,106};
 		canBeSplit = 0;
 		stackedRandom = 1;
 		destroyOnEmpty = 0;
@@ -599,8 +580,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_GlowPlug0";
 		descriptionShort = "$STR_CfgVehicles_GlowPlug1";
 		model = "\dz\vehicles\parts\GlowPlug.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577};
 		weight = 200;
 		itemSize[] = {1,1};
 		absorbency = 0;
@@ -624,8 +603,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_SparkPlug0";
 		descriptionShort = "$STR_CfgVehicles_SparkPlug1";
 		model = "\dz\vehicles\parts\sparkplug.p3d";
-		InteractActions[] = {573};
-		SingleUseActions[] = {577,551};
 		weight = 180;
 		itemSize[] = {1,1};
 		absorbency = 0;

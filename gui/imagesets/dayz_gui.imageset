@@ -732,6 +732,18 @@ ImageSetClass {
    Size 60 60
    Flags 0
   }
+  ImageSetDefClass reserved {
+   Name "reserved"
+   Pos 691 323
+   Size 10 10
+   Flags 3
+  }
+  ImageSetDefClass tutorials {
+   Name "tutorials"
+   Pos 557 41
+   Size 37 37
+   Flags 0
+  }
  }
  Groups {
   ImageSetGroupClass UI {

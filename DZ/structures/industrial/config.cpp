@@ -2,7 +2,7 @@
 //DeRap: structures_industrial\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:58:47 2019 : 'file' last modified on Mon Jul 01 16:01:32 2019
+//'now' is Thu Aug 15 15:48:21 2019 : 'file' last modified on Wed Aug 14 23:21:54 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

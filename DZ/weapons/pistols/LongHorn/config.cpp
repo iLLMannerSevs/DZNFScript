@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\LongHorn\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:31 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

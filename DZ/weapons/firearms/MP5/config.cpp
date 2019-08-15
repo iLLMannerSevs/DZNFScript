@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\MP5\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:21 2019 : 'file' last modified on Thu Jun 20 10:23:08 2019
+//'now' is Thu Aug 15 15:49:45 2019 : 'file' last modified on Tue Aug 13 08:22:33 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -345,7 +345,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_MP5K0";
 		descriptionShort = "$STR_cfgWeapons_MP5K1";
 		model = "\dz\weapons\firearms\MP5\MP5K.p3d";
-		attachments[] = {"weaponFlashlight","weaponOptics","weaponButtstockMP5","weaponMuzzleMP5","WeaponHandguardMP5","pistolMuzzle"};
+		attachments[] = {"weaponOptics","weaponButtstockMP5","weaponMuzzleMP5","WeaponHandguardMP5","weaponFlashlight","pistolMuzzle"};
 		itemSize[] = {5,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\MP5\data\mp5k_body_CO.paa"};
 		hiddenSelectionsMaterials[] = {"DZ\weapons\firearms\MP5\data\mp5k_body.rvmat"};

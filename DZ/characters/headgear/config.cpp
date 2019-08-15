@@ -2,7 +2,7 @@
 //DeRap: characters_headgear\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:10 2019 : 'file' last modified on Mon Jun 24 13:25:45 2019
+//'now' is Thu Aug 15 15:45:15 2019 : 'file' last modified on Thu Aug 15 00:17:39 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1173,12 +1173,104 @@ class CfgVehicles
 			};
 		};
 	};
+	class BandanaHybrid_ColorBase: Clothing
+	{
+		scope = 0;
+		displayName = "$STR_cfgvehicles_bandana_colorbase0";
+		descriptionShort = "$STR_cfgvehicles_bandana_colorbase1";
+		model = "\DZ\characters\headgear\BandanaHybrid_g.p3d";
+		inventorySlot[] = {"Headgear","Mask"};
+		simulation = "clothing";
+		vehicleClass = "Clothing";
+		rotationFlags = 16;
+		weight = 120;
+		itemSize[] = {3,1};
+		ragQuantity = 1;
+		absorbency = 0.9;
+		heatIsolation = 0.6;
+		repairableWithKits[] = {5,2};
+		repairCosts[] = {30.0,25.0};
+		headSelectionsToHide[] = {"Clipping_BandanaHead","Clipping_BandanaFace"};
+		hiddenSelections[] = {"camoGround","camoMale_H","camoMale_M","camoFemale_H","camoFemale_M"};
+		simpleHiddenSelections[] = {"hide_headgear","hide_mask"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\characters\headgear\data\BandanaH.rvmat"}},{0.7,{"DZ\characters\headgear\data\BandanaH.rvmat"}},{0.5,{"DZ\characters\headgear\data\BandanaH_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\BandanaH_damage.rvmat"}},{0.0,{"DZ\characters\headgear\data\BandanaH_destruct.rvmat"}}};
+				};
+			};
+		};
+		class ClothingTypes
+		{
+			male = "\DZ\characters\headgear\BandanaHybrid_m.p3d";
+			female = "\DZ\characters\headgear\BandanaHybrid_f.p3d";
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem
+				{
+					soundSet = "Shirt_pickup_SoundSet";
+					id = 797;
+				};
+				class drop
+				{
+					soundset = "Shirt_drop_SoundSet";
+					id = 898;
+				};
+			};
+		};
+	};
+	class BandanaHybrid_RedPattern: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa","DZ\characters\headgear\data\BandanaH_redpattern_co.paa","DZ\characters\headgear\data\BandanaF_redpattern_co.paa","DZ\characters\headgear\data\BandanaH_redpattern_co.paa","DZ\characters\headgear\data\BandanaF_redpattern_co.paa"};
+	};
+	class BandanaHybrid_BlackPattern: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"DZ\characters\headgear\data\BandanaFH_ground_blackpattern_co.paa","DZ\characters\headgear\data\BandanaH_blackpattern_co.paa","DZ\characters\headgear\data\BandanaF_blackpattern_co.paa","DZ\characters\headgear\data\BandanaH_blackpattern_co.paa","DZ\characters\headgear\data\BandanaF_blackpattern_co.paa"};
+	};
+	class BandanaHybrid_PolkaPattern: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_karkulka_co.paa","DZ\characters\headgear\data\BandanaH_karkulka_co.paa","DZ\characters\headgear\data\BandanaF_karkulka_co.paa","DZ\characters\headgear\data\BandanaH_karkulka_co.paa","DZ\characters\headgear\data\BandanaF_karkulka_co.paa"};
+	};
+	class BandanaHybrid_Greenpattern: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa"};
+	};
+	class BandanaHybrid_CamoPattern: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa"};
+	};
+	class BandanaHybrid_Blue: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_blue_co.paa","DZ\characters\headgear\data\BandanaH_blue_co.paa","DZ\characters\headgear\data\BandanaF_blue_co.paa","DZ\characters\headgear\data\BandanaH_blue_co.paa","DZ\characters\headgear\data\BandanaF_blue_co.paa"};
+	};
+	class BandanaHybrid_Pink: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_pink_co.paa","DZ\characters\headgear\data\BandanaH_pink_co.paa","DZ\characters\headgear\data\BandanaF_pink_co.paa","DZ\characters\headgear\data\BandanaH_pink_co.paa","DZ\characters\headgear\data\BandanaF_pink_co.paa"};
+	};
+	class BandanaHybrid_Yellow: BandanaHybrid_ColorBase
+	{
+		scope = 2;
+		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_yellow_co.paa","DZ\characters\headgear\data\BandanaH_yellow_co.paa","DZ\characters\headgear\data\BandanaF_yellow_co.paa","DZ\characters\headgear\data\BandanaH_yellow_co.paa","DZ\characters\headgear\data\BandanaF_yellow_co.paa"};
+	};
 	class BandanaHead_ColorBase: Clothing
 	{
 		displayName = "$STR_cfgvehicles_bandana_colorbase0";
 		descriptionShort = "$STR_cfgvehicles_bandana_colorbase1";
 		model = "\DZ\characters\headgear\BandanaHead_g.p3d";
-		SingleUseActions[] = {"AT_BANDANA_UNFOLD"};
 		inventorySlot[] = {"Headgear"};
 		ChangeInventorySlot[] = {"Headgear"};
 		simulation = "clothing";
@@ -1717,7 +1809,6 @@ class CfgVehicles
 		rotationFlags = 16;
 		weight = 170;
 		itemSize[] = {3,2};
-		attachments[] = {"Hook"};
 		absorbency = 0.7;
 		heatIsolation = 0.3;
 		repairableWithKits[] = {5,2};

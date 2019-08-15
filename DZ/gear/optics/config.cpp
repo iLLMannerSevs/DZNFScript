@@ -2,7 +2,7 @@
 //DeRap: gear_optics\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:57:00 2019 : 'file' last modified on Mon Feb 25 13:44:32 2019
+//'now' is Thu Aug 15 15:46:32 2019 : 'file' last modified on Fri Jul 19 21:57:59 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -40,8 +40,6 @@ class CfgVehicles
 		model = "\dz\gear\optics\Rangefinder.p3d";
 		simulation = "itemoptics";
 		animClass = "Binoculars";
-		SingleUseActions[] = {};
-		ContinuousActions[] = {237};
 		itemSize[] = {2,1};
 		weight = 270;
 		rotationFlags = 17;
@@ -106,8 +104,6 @@ class CfgVehicles
 		model = "\dz\gear\optics\binoculars.p3d";
 		simulation = "itemoptics";
 		animClass = "Binoculars";
-		SingleUseActions[] = {};
-		ContinuousActions[] = {237};
 		itemSize[] = {3,3};
 		weight = 980;
 		rotationFlags = 17;

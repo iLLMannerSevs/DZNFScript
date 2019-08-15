@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\svd\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:21 2019 : 'file' last modified on Thu Jun 20 10:25:02 2019
+//'now' is Thu Aug 15 15:49:46 2019 : 'file' last modified on Tue Aug 13 08:24:45 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -363,7 +363,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_SVD0";
 		descriptionShort = "$STR_cfgWeapons_SVD1";
 		model = "\dz\weapons\firearms\svd\svd.p3d";
-		attachments[] = {"weaponWrap","suppressorImpro","weaponOpticsAK"};
+		attachments[] = {"weaponWrap","weaponOpticsAK","weaponMuzzleAK"};
 		itemSize[] = {10,3};
 		class DamageSystem
 		{

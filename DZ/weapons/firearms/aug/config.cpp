@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\aug\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:23:55 2019
+//'now' is Thu Aug 15 15:49:44 2019 : 'file' last modified on Tue Aug 13 08:23:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -108,7 +108,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_AugSteyr0";
 		descriptionShort = "$STR_cfgWeapons_AugSteyr1";
 		model = "\dz\weapons\firearms\aug\aug.p3d";
-		attachments[] = {"weaponMuzzleM4","suppressorImpro","weaponBarrelAug"};
+		attachments[] = {"weaponMuzzleM4","weaponBarrelAug"};
 		itemSize[] = {9,6};
 		spawnDamageRange[] = {0.0,0.6};
 		class Damage

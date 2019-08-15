@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\Izh18\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:20 2019 : 'file' last modified on Thu Jun 20 10:22:38 2019
+//'now' is Thu Aug 15 15:49:45 2019 : 'file' last modified on Tue Aug 13 08:22:04 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -290,7 +290,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_Izh180";
 		descriptionShort = "$STR_cfgWeapons_Izh181";
 		model = "\dz\weapons\firearms\Izh18\Izh18.p3d";
-		attachments[] = {"weaponWrap"};
+		attachments[] = {"weaponWrap","suppressorImpro"};
 		itemSize[] = {9,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\Izh18\data\Izh18_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\Izh18\data\Izh18.rvmat"};

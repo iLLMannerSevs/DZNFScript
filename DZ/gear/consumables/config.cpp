@@ -2,7 +2,7 @@
 //DeRap: gear_consumables\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:47 2019 : 'file' last modified on Wed Jun 12 13:46:35 2019
+//'now' is Thu Aug 15 15:46:18 2019 : 'file' last modified on Mon Aug 05 13:33:05 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -140,6 +140,10 @@ class CfgVehicles
 		model = "\dz\gear\consumables\DuctTape_tied.p3d";
 		OnRestrainChange = "DuctTape";
 		StruggleLength = 10;
+		varQuantityInit = 100.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 100.0;
+		quantityShow = 0;
 		rotationFlags = 17;
 		CanBeUnrestrainedBy[] = {"Sickle",3,"Hacksaw",3,"KitchenKnife",3,"SteakKnife",3,"HayHook",3,"StoneKnife",3,"Cleaver",3,"CombatKnife",3,"HuntingKnife",3,"Machete",3,"Screwdriver",3,"Crowbar",3,"Pickaxe",3,"WoodAxe",3,"Hatchet",3,"FirefighterAxe",3,"Sword",3,"AK_Bayonet",3,"M9A1_Bayonet",3,"Mosin_Bayonet",3,"SKS_Bayonet",3};
 		class DamageSystem
@@ -484,9 +488,6 @@ class CfgVehicles
 		inventorySlot = "BatteryD";
 		armAction = "Disarm";
 		lootCategory = "Tools";
-		InteractActions[] = {};
-		SingleUseActions[] = {"AT_MEASURE_BATTERY"};
-		ContinuousActions[] = {};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 50;
@@ -829,7 +830,6 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 20;
 		varQuantityDestroyOnMin = 0;
-		SingleUseActions[] = {"AT_TURN_ON_WHILE_IN_HANDS"};
 		rotationFlags = 17;
 		itemSize[] = {1,3};
 		weight = 50;
@@ -940,7 +940,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\Road_flare.rvmat"}},{0.7,{"DZ\gear\consumables\data\Road_flare.rvmat"}},{0.5,{"DZ\gear\consumables\data\Road_flare_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\Road_flare_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\Road_flare_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\"""".rvmat"}},{0.7,{"DZ\gear\consumables\data\"""".rvmat"}},{0.5,{"DZ\gear\consumables\data\""""_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\""""_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\""""_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -1409,7 +1409,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Nail0";
 		descriptionShort = "$STR_CfgVehicles_Nail1";
 		model = "\dz\gear\consumables\Nails_loose_10.p3d";
-		SingleUseActions[] = {"AT_ATTACH_TO_CONSTRUCTION"};
 		itemSize[] = {1,1};
 		weight = 36.28;
 		canBeSplit = 1;
@@ -1686,7 +1685,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_MetalPlate1";
 		model = "\dz\gear\consumables\Single_Metal_Sheet.p3d";
 		rotationFlags = 34;
-		SingleUseActions[] = {"AT_ATTACH_TO_CONSTRUCTION"};
 		weight = 400;
 		itemSize[] = {10,10};
 		canBeSplit = 1;
@@ -1705,7 +1703,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_WoodenLog0";
 		descriptionShort = "$STR_CfgVehicles_WoodenLog1";
 		model = "\dz\gear\camping\wooden_log.p3d";
-		SingleUseActions[] = {"AT_ATTACH_TO_CONSTRUCTION"};
 		weight = 400;
 		itemSize[] = {3,11};
 		varQuantityDestroyOnMin = 1;

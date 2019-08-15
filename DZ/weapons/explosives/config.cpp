@@ -2,7 +2,7 @@
 //DeRap: weapons_explosives\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:18 2019 : 'file' last modified on Thu Jul 04 11:53:52 2019
+//'now' is Thu Aug 15 15:49:42 2019 : 'file' last modified on Sat Jul 20 11:35:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -105,6 +105,7 @@ class CfgAmmo
 		explosive = 1;
 		typicalSpeed = 3;
 		initSpeed = 3;
+		slowdownThreshold = 100;
 		simulation = "shotShell";
 		simulationStep = 0.05;
 		soundSetExplosion[] = {"Flashgrenade_Explosion_SoundSet","Flashgrenade_Explosion_Tail_SoundSet"};
@@ -130,6 +131,38 @@ class CfgAmmo
 			type = "shot";
 		};
 	};
+	class LandFuelFeed_Ammo: DefaultAmmo
+	{
+		indirectHit = 1;
+		indirectHitRange = 5;
+		explosive = 1;
+		typicalSpeed = 3;
+		initSpeed = 3;
+		simulation = "shotShell";
+		simulationStep = 0.05;
+		soundSetExplosion[] = {"Grenade_explosion_SoundSet","Grenade_Tail_SoundSet"};
+		class DamageApplied
+		{
+			type = "FragGrenade";
+			class Health
+			{
+				damage = 50;
+			};
+			class Blood
+			{
+				damage = 0;
+			};
+			class Shock
+			{
+				damage = 0;
+			};
+		};
+		class NoiseExplosion
+		{
+			strength = 100;
+			type = "shot";
+		};
+	};
 };
 class CfgVehicles
 {
@@ -141,7 +174,7 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_RGD5Grenade0";
 		descriptionShort = "$STR_CfgVehicles_RGD5Grenade1";
 		model = "\dz\weapons\explosives\frag_RGD5.p3d";
-		weight = 310;
+		weight = 350;
 		lootTag[] = {"Military_east"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\frag_RGD5_CO.paa"};
@@ -180,7 +213,7 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_M67Grenade0";
 		descriptionShort = "$STR_CfgVehicles_M67Grenade1";
 		model = "\dz\weapons\explosives\grenade.p3d";
-		weight = 397;
+		weight = 400;
 		lootTag[] = {"Military_west"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\grenade_co.paa"};
@@ -220,6 +253,7 @@ class CfgVehicles
 		model = "\dz\weapons\explosives\smokegrenade.p3d";
 		rotationFlags = 17;
 		lootTag[] = {"Military_west"};
+		weight = 500;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\smokegrenade.rvmat"};
 		class DamageSystem
@@ -283,6 +317,7 @@ class CfgVehicles
 		model = "\dz\weapons\explosives\smokegrenade_rdg2.p3d";
 		rotationFlags = 17;
 		lootTag[] = {"Military_east","Police"};
+		weight = 300;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\smokegrenade_rdg2.rvmat"};
 		class DamageSystem
@@ -331,7 +366,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_FlashGrenade1";
 		model = "\dz\weapons\explosives\flashbang.p3d";
 		rotationFlags = 17;
-		weight = 236;
+		weight = 300;
 		lootTag[] = {"Military_east","Military_west","Police"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\flashbang_co.paa"};

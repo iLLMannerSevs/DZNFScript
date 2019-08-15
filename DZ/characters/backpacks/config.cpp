@@ -2,7 +2,7 @@
 //DeRap: characters_backpacks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:06 2019 : 'file' last modified on Thu May 23 11:23:03 2019
+//'now' is Thu Aug 15 15:45:09 2019 : 'file' last modified on Thu Aug 15 00:05:26 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1329,5 +1329,74 @@ class cfgVehicles
 		scope = 2;
 		visibilityModifier = 0.5;
 		hiddenSelectionsTextures[] = {"\dz\characters\backpacks\data\alicebackpack_camo_co.paa","\dz\characters\backpacks\data\alicebackpack_camo_co.paa","\dz\characters\backpacks\data\alicebackpack_camo_co.paa"};
+	};
+	class LargeTentBackPack: Clothing
+	{
+		scope = 2;
+		displayName = "$str_cfgvehicles_largetent_backpack0";
+		descriptionShort = "$str_cfgvehicles_largetent_backpack1";
+		model = "DZ\gear\camping\proxies\LargeTentPackProxy.p3d";
+		inventorySlot = "Back";
+		itemInfo[] = {"Clothing","Back"};
+		weight = 1300;
+		itemSize[] = {4,5};
+		absorbency = 0.3;
+		heatIsolation = 0.1;
+		repairableWithKits[] = {5,3};
+		repairCosts[] = {30.0,25.0};
+		soundAttType = "Outdoor";
+		visibilityModifier = 0.95;
+		class ClothingTypes
+		{
+			male = "\DZ\gear\camping\large_tent_backpack.p3d";
+			female = "\DZ\gear\camping\large_tent_backpack.p3d";
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\gear\camping\Data\large_tent.rvmat"}},{0.7,{"DZ\gear\camping\Data\large_tent.rvmat"}},{0.5,{"DZ\gear\camping\Data\large_tent_damage.rvmat"}},{0.3,{"DZ\gear\camping\Data\large_tent_damage.rvmat"}},{0.0,{"DZ\gear\camping\Data\large_tent_destruct.rvmat"}}};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class movement_walk
+				{
+					soundSet = "mediumtent_movement_walk_SoundSet";
+					id = 1;
+				};
+				class movement_run
+				{
+					soundSet = "mediumtent_movement_run_SoundSet";
+					id = 3;
+				};
+				class movement_sprint
+				{
+					soundSet = "mediumtent_movement_sprint_SoundSet";
+					id = 5;
+				};
+				class pickUpItem_Light
+				{
+					soundSet = "pickUpTentLight_SoundSet";
+					id = 796;
+				};
+				class pickUpItem
+				{
+					soundSet = "pickUpTent_SoundSet";
+					id = 797;
+				};
+				class mediumtent_drop
+				{
+					soundset = "mediumtent_drop_SoundSet";
+					id = 898;
+				};
+			};
+		};
 	};
 };

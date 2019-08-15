@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\1911\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:24 2019 : 'file' last modified on Wed Jun 12 15:00:30 2019
+//'now' is Thu Aug 15 15:49:50 2019 : 'file' last modified on Wed Aug 14 11:04:31 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -73,6 +73,182 @@ class cfgWeapons
 			beginSilenced_HomeMade[] = {"dz\sounds\weapons\firearms\colt1911\1911Silenced",1,1,100};
 			soundBeginExt[] = {{"beginSilenced_Pro",1},{"beginSilenced_HomeMade",1}};
 		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class walkErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
+					id = 1;
+				};
+				class walkErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_walkErc_R_SoundSet";
+					id = 2;
+				};
+				class runErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 3;
+				};
+				class runErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_R_SoundSet";
+					id = 4;
+				};
+				class sprintErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
+					id = 5;
+				};
+				class sprintErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
+					id = 6;
+				};
+				class walkCro_L
+				{
+					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
+					id = 21;
+				};
+				class walkCro_R
+				{
+					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
+					id = 22;
+				};
+				class runCro_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
+					id = 23;
+				};
+				class runCro_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
+					id = 24;
+				};
+				class walkProne_L
+				{
+					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
+					id = 31;
+				};
+				class walkProne_R
+				{
+					soundSet = "Weapon_Movement_Pistol_walkCro_SoundSet";
+					id = 32;
+				};
+				class runProne_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
+					id = 33;
+				};
+				class runProne_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runCro_SoundSet";
+					id = 34;
+				};
+				class jumpErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 35;
+				};
+				class jumpErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 36;
+				};
+				class landFootErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
+					id = 37;
+				};
+				class landFootErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_landFootErc_SoundSet";
+					id = 38;
+				};
+				class walkRasErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
+					id = 51;
+				};
+				class walkRasErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_walkRasErc_SoundSet";
+					id = 52;
+				};
+				class runRasErc_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
+					id = 53;
+				};
+				class runRasErc_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runRasErc_SoundSet";
+					id = 54;
+				};
+				class HandStep_L
+				{
+					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
+					id = 61;
+				};
+				class HandStep_R
+				{
+					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
+					id = 62;
+				};
+				class HandStep_Hard_L
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 63;
+				};
+				class HandStep_Hard_R
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 64;
+				};
+				class landFeetErc
+				{
+					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
+					id = 100;
+				};
+				class Weapon_Movement_Pistol_Walk
+				{
+					soundSet = "Weapon_Movement_Pistol_walkErc_L_SoundSet";
+					id = 101;
+				};
+				class Weapon_Movement_Pistol_Run
+				{
+					soundSet = "Weapon_Movement_Pistol_runErc_L_SoundSet";
+					id = 102;
+				};
+				class Weapon_Movement_Pistol_Sprint
+				{
+					soundSet = "Weapon_Movement_Pistol_sprintErc_SoundSet";
+					id = 103;
+				};
+				class Weapon_Movement_Pistol_Land
+				{
+					soundSet = "Weapon_Movement_Pistol_landFeetErc_SoundSet";
+					id = 104;
+				};
+				class pickup
+				{
+					soundSet = "pickUpPistol_SoundSet";
+					id = 797;
+				};
+				class drop
+				{
+					soundset = "pistol_drop_SoundSet";
+					id = 898;
+				};
+				class bodyfall_pistol
+				{
+					soundSet = "pickUpPistol_SoundSet";
+					id = 13400;
+				};
+			};
+		};
 	};
 	class Colt1911: Colt1911_Base
 	{
@@ -82,7 +258,7 @@ class cfgWeapons
 		hiddenSelections[] = {"camoGround"};
 		model = "\dz\weapons\pistols\1911\1911.p3d";
 		attachments[] = {"pistolFlashlight","pistolMuzzle"};
-		itemSize[] = {3,3};
+		itemSize[] = {3,2};
 		hiddenSelectionsTextures[] = {"dz\weapons\pistols\1911\data\1911_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\pistols\1911\data\1911.rvmat"};
 		class DamageSystem
@@ -104,7 +280,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Engraved19111";
 		model = "\dz\weapons\pistols\1911\1911_engraved.p3d";
 		attachments[] = {"pistolFlashlight","pistolMuzzle"};
-		itemSize[] = {4,3};
+		itemSize[] = {3,2};
 		hiddenSelectionsTextures[] = {"dz\weapons\pistols\1911\data\1911_engraved_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\pistols\1911\data\1911_engraved.rvmat"};
 		class DamageSystem

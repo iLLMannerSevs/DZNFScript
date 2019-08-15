@@ -228,9 +228,10 @@ class IntroSceneCharacter extends Managed
 		}
 		else
 		{
+			string default_name = Widget.TranslateString( GameConstants.DEFAULT_CHARACTER_NAME );
 			CreateNewCharacterRandom();
 			m_CharacterDta.SaveDefaultCharacter( m_CharacterObj );
-			m_CharacterDta.SetCharacterName(GameConstants.DEFAULT_CHARACTER_MENU_ID, GameConstants.DEFAULT_CHARACTER_NAME);
+			m_CharacterDta.SetCharacterName(GameConstants.DEFAULT_CHARACTER_MENU_ID, default_name);
 		}
 	}
 	

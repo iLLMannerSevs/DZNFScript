@@ -2,7 +2,7 @@
 //DeRap: weapon_optics\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:31 2019 : 'file' last modified on Fri Jun 14 16:07:34 2019
+//'now' is Thu Aug 15 15:49:55 2019 : 'file' last modified on Sat Jul 20 11:25:33 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -183,7 +183,7 @@ class cfgVehicles
 			PPMaskProperties[] = {0.5,0.5,0.4,0.05};
 			PPLensProperties[] = {1,0.15,0,0};
 			PPBlurProperties = 0.2;
-			opticSightTexture = "dz\weapons\attachments\data\collimdot_red_ca.paa";
+			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
 		repairableWithKits[] = {5,7};
 		repairCosts[] = {30.0,25.0};
@@ -244,7 +244,7 @@ class cfgVehicles
 			PPMaskProperties[] = {0.5,0.5,0.4,0.05};
 			PPLensProperties[] = {1,0.15,0,0};
 			PPBlurProperties = 0.2;
-			opticSightTexture = "dz\weapons\attachments\data\collimdot_red_ca.paa";
+			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
 		repairableWithKits[] = {5,7};
 		repairCosts[] = {30.0,25.0};
@@ -306,7 +306,7 @@ class cfgVehicles
 			PPLensProperties[] = {1,0.15,0,0};
 			PPBlurProperties = 0.2;
 			PPDOFProperties[] = {1,0.2,20,185,4,10};
-			opticSightTexture = "dz\weapons\attachments\data\collimdot_red_ca.paa";
+			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 		};
 		repairableWithKits[] = {5,7};
 		repairCosts[] = {30.0,25.0};
@@ -358,7 +358,7 @@ class cfgVehicles
 			opticsDisablePeripherialVision = 0.67;
 			opticsFlare = 1;
 			opticsPPEffects[] = {};
-			opticSightTexture = "dz\weapons\attachments\data\collimdot_red_ca.paa";
+			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 			opticsZoomMin = 0.5236;
 			opticsZoomMax = 0.5236;
 			opticsZoomInit = 0.5236;
@@ -421,7 +421,7 @@ class cfgVehicles
 			opticsDisablePeripherialVision = 0.67;
 			opticsFlare = 1;
 			opticsPPEffects[] = {};
-			opticSightTexture = "dz\weapons\attachments\data\collimdot_red_ca.paa";
+			opticSightTexture = "dz\weapons\attachments\optics\data\collimdot_red_ca.paa";
 			opticsZoomMin = 0.5236;
 			opticsZoomMax = 0.5236;
 			opticsZoomInit = 0.5236;
@@ -496,6 +496,9 @@ class cfgVehicles
 		{
 			memoryPointCamera = "eyeIronsights";
 			cameraDir = "cameraDirIronsights";
+			opticsZoomMin = 0.5236;
+			opticsZoomMax = 0.5236;
+			opticsZoomInit = 0.5236;
 			distanceZoomMin = 200;
 			distanceZoomMax = 200;
 			discreteDistance[] = {200,600};

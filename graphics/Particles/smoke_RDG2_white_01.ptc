@@ -243,7 +243,7 @@ EffectDef {
    SizeMultiplier 2
    SizeRND 2
    RandomRotDir 1
-   RotMultiplier 180
+   RotMultiplier 30
    StretchMultiplier 1
    StreakFullUV 0
    VelAngle 0
@@ -267,7 +267,7 @@ EffectDef {
     0 1 0.05 0.5 1 0
    }
    RotationSpeed {
-    0 0.18354 1 0.1962
+    0 1 1 0.1962
    }
    Size {
     0 0 0.025 0.75 1 1
@@ -299,7 +299,7 @@ EffectDef {
    SizeMultiplier 2
    SizeRND 2
    RandomRotDir 1
-   RotMultiplier 180
+   RotMultiplier 30
    StretchMultiplier 1
    StreakFullUV 0
    VelAngle 0
@@ -323,7 +323,7 @@ EffectDef {
     0 1 0.05 0.5 1 0
    }
    RotationSpeed {
-    0 0.18354 1 0.1962
+    0 1 1 0.1962
    }
    Size {
     0 0 0.025 0.75 1 1
@@ -352,7 +352,7 @@ EffectDef {
    SizeMultiplier 10
    SizeRND 6
    RandomRotDir 1
-   RotMultiplier 90
+   RotMultiplier 30
    StreakFullUV 0
    VelAngle 0
    RandomAngle 1
@@ -374,7 +374,7 @@ EffectDef {
     0 0 0.05 0.75 0.625 0.75 1 0
    }
    RotationSpeed {
-    0 0.18354 1 0.1962
+    0 1 1 0.1962
    }
    Size {
     0 0.1 1 1

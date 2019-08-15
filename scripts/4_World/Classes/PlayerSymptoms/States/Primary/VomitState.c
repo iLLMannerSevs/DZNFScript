@@ -26,6 +26,7 @@ class VomitSymptom extends SymptomBase
 	{
 		m_Player.GetStatToxicity().Set(0);
 		m_Player.m_PlayerStomach.ClearContents();
+		m_Player.m_AgentPool.RemoveAgent(eAgents.FOOD_POISON);
 		Print("------------ vomit start -------------");
 	}
 	

@@ -2,7 +2,7 @@
 //DeRap: weapons_melee\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:23 2019 : 'file' last modified on Mon Jun 24 09:06:53 2019
+//'now' is Thu Aug 15 15:49:49 2019 : 'file' last modified on Wed Aug 14 13:10:34 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3010,7 +3010,8 @@ class CfgAmmo
 			type = "Melee";
 			class Health
 			{
-				damage = 10;
+				damage = 7;
+				armorDamage = 0.1;
 			};
 			class Blood
 			{
@@ -3018,7 +3019,7 @@ class CfgAmmo
 			};
 			class Shock
 			{
-				damage = 15;
+				damage = 10;
 			};
 		};
 		soundGroundSoft1[] = {"dz\sounds\weapons\meleehits\fist_hits\fist_dirt_hit_01",0.31622776,1,60};
@@ -3135,7 +3136,8 @@ class CfgAmmo
 			type = "Melee";
 			class Health
 			{
-				damage = 13;
+				damage = 14;
+				armorDamage = 0.1;
 			};
 			class Blood
 			{
@@ -10913,11 +10915,11 @@ class CfgAmmo
 		class DamageApplied
 		{
 			type = "Infected";
-			bleedThreshold = 0.25;
+			bleedThreshold = 0.27;
 			additionAnimalMeleeMultiplier = 1;
 			class Health
 			{
-				damage = 10;
+				damage = 5;
 			};
 			class Blood
 			{
@@ -10925,7 +10927,7 @@ class CfgAmmo
 			};
 			class Shock
 			{
-				damage = 15;
+				damage = 10;
 			};
 		};
 		soundGroundSoft1[] = {"dz\sounds\weapons\meleehits\fist_hits\fist_dirt_hit_01",0.31622776,1,60};

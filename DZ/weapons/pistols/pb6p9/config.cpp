@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\pb6p9\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:25 2019 : 'file' last modified on Wed Jun 12 15:00:50 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:51 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -86,7 +86,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_MakarovPB1";
 		model = "\DZ\weapons\pistols\pb6p9\pb6p9.p3d";
 		attachments[] = {"pistolMuzzle"};
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		class DamageSystem
 		{
 			class GlobalHealth

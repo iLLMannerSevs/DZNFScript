@@ -2,7 +2,7 @@
 //DeRap: gear_camping\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:45 2019 : 'file' last modified on Sun Jun 09 00:37:31 2019
+//'now' is Thu Aug 15 15:46:15 2019 : 'file' last modified on Tue Aug 13 15:01:54 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -61,9 +61,6 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		attachments[] = {"CamoNet","Lights"};
-		SingleUseActions[] = {527};
-		InteractActions[] = {1021,1022};
-		ContinuousActions[] = {231};
 		rotationFlags = 2;
 		class DamageSystem
 		{
@@ -81,15 +78,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -309,9 +306,6 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		attachments[] = {"CamoNet","Lights"};
-		SingleUseActions[] = {527};
-		InteractActions[] = {1021,1022};
-		ContinuousActions[] = {231};
 		minPlacingDist = 10;
 		rotationFlags = 2;
 		class DamageSystem
@@ -330,15 +324,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -642,9 +636,6 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		attachments[] = {"CamoNet","Lights"};
-		SingleUseActions[] = {527};
-		InteractActions[] = {1021,1022};
-		ContinuousActions[] = {231};
 		minPlacingDist = 10;
 		rotationFlags = 2;
 		class DamageSystem
@@ -663,15 +654,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -865,9 +856,6 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		attachments[] = {"CamoNet"};
-		SingleUseActions[] = {527};
-		InteractActions[] = {1022};
-		ContinuousActions[] = {231};
 		minPlacingDist = 10;
 		rotationFlags = 2;
 		class DamageSystem
@@ -886,15 +874,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -992,15 +980,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -1113,15 +1101,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -1229,15 +1217,15 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Blood
 					{
-						damage = 0;
+						damage = 1;
 					};
 					class Shock
 					{
-						damage = 0;
+						damage = 1;
 					};
 				};
 			};
@@ -1249,8 +1237,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_FenceKit0";
 		descriptionShort = "$STR_CfgVehicles_FenceKit1";
 		model = "\DZ\gear\camping\fence_kit.p3d";
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231};
 		rotationFlags = 17;
 		itemSize[] = {1,5};
 		weight = 280;
@@ -1323,8 +1309,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_WatchtowerKit0";
 		descriptionShort = "$STR_CfgVehicles_WatchtowerKit1";
 		model = "\DZ\gear\camping\watchtower_kit.p3d";
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231};
 		rotationFlags = 17;
 		itemSize[] = {1,5};
 		weight = 280;
@@ -1369,9 +1353,7 @@ class CfgVehicles
 		bounding = "BSphere";
 		overrideDrawArea = "3.0";
 		forceFarBubble = "true";
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {155,239};
-		InteractActions[] = {1051};
+		handheld = "false";
 		lootCategory = "Crafted";
 		carveNavmesh = 1;
 		weight = 10000;
@@ -1801,8 +1783,6 @@ class CfgVehicles
 		model = "\DZ\gear\camping\watchtower.p3d";
 		overrideDrawArea = "3.0";
 		forceFarBubble = "true";
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {155,239};
 		lootCategory = "Crafted";
 		carveNavmesh = 1;
 		weight = 60000;
@@ -3698,8 +3678,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_BarbedWire1";
 		model = "\dz\gear\camping\Barbed_wire.p3d";
 		OnRestrainChange = "BarbedWireLocked";
-		SingleUseActions[] = {575};
-		ContinuousActions[] = {109,117};
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\camping\data\Barbed_wire_CO.paa"};
 		hiddenSelectionsMaterials[] = {"dz\gear\camping\data\Barbed_wire.rvmat"};
@@ -3785,8 +3763,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_CombinationLock0";
 		descriptionShort = "$STR_CfgVehicles_CombinationLock1";
 		model = "\DZ\gear\camping\combination_lock3.p3d";
-		SingleUseActions[] = {575,582};
-		ContinuousActions[] = {172};
 		inventorySlot = "Att_CombinationLock";
 		rotationFlags = 34;
 		itemSize[] = {3,3};
@@ -3821,7 +3797,6 @@ class CfgVehicles
 		model = "\dz\gear\camping\Barbed_wire_tied.p3d";
 		OnRestrainChange = "BarbedWire";
 		StruggleLength = 20;
-		ContinuousActions[] = {116};
 		rotationFlags = 17;
 		CanBeUnrestrainedBy[] = {"Hacksaw","15","Pliers","25"};
 		class DamageSystem
@@ -3868,7 +3843,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_CamoNet0";
 		descriptionShort = "$STR_CfgVehicles_CamoNet1";
 		model = "\dz\gear\camping\camo_net_p.p3d";
-		SingleUseActions[] = {575,578};
 		itemSize[] = {7,3};
 		weight = 400;
 		lootTag[] = {"Police","Military_east"};
@@ -3980,7 +3954,7 @@ class CfgVehicles
 	{
 		scope = 2;
 		displayName = "$STR_CfgVehicles_Wooden_Case0";
-		descriptionShort = "$STR_CfgVehicles_Wooden_Case0";
+		descriptionShort = "$STR_CfgVehicles_Wooden_Case1";
 		model = "\DZ\gear\camping\wooden_case.p3d";
 		weight = 10000;
 		itemSize[] = {10,5};
@@ -4096,9 +4070,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Spotlight0";
 		descriptionShort = "$STR_CfgVehicles_Spotlight1";
 		model = "\dz\gear\camping\spotlight.p3d";
-		SingleUseActions[] = {560,525,527};
-		InteractActions[] = {1013,1014,1015,1016};
-		ContinuousActions[] = {231};
 		slopeTolerance = 0.3;
 		hiddenSelections[] = {"placing","cord_folded","cord_plugged","glass_unfolded","reflector_unfolded"};
 		hiddenSelectionsTextures[] = {"dz\gear\camping\data\spotlight_co.paa","dz\gear\camping\data\plug_yellow_co.paa","dz\gear\camping\data\plug_yellow_co.paa","dz\gear\camping\data\spotlight_glass_ca.paa"};
@@ -4244,8 +4215,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_XmasLights0";
 		descriptionShort = "$STR_CfgVehicles_XmasLights1";
 		model = "\dz\gear\camping\christmas_lights.p3d";
-		SingleUseActions[] = {525,578};
-		InteractActions[] = {1013};
 		hiddenSelections[] = {"glass_r","glass_g","glass_b","glass_y"};
 		hiddenSelectionsTextures[] = {};
 		hiddenSelectionsMaterials[] = {};
@@ -4324,9 +4293,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Refridgerator1";
 		model = "\DZ\gear\containers\fridge.p3d";
 		canBeDigged = 1;
-		SingleUseActions[] = {525,527};
-		InteractActions[] = {1013,1002,1003,1016};
-		ContinuousActions[] = {155};
 		weight = 1700;
 		itemSize[] = {7,10};
 		rotationFlags = 2;
@@ -4354,9 +4320,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_PowerGenerator1";
 		model = "\DZ\gear\camping\power_generator.p3d";
 		rotationFlags = 2;
-		SingleUseActions[] = {550,527};
-		InteractActions[] = {1001,1011,1012};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		weight = 45000;
 		itemSize[] = {10,10};
@@ -4392,7 +4355,7 @@ class CfgVehicles
 			reduceMaxEnergyByDamageCoef = 0.5;
 			energyAtSpawn = 5000;
 			powerSocketsCount = 4;
-			compatiblePlugTypes[] = {2,"PLUG_PAS_TERMINAL",6};
+			compatiblePlugTypes[] = {2,6};
 		};
 		class AnimationSources
 		{
@@ -4448,7 +4411,7 @@ class CfgVehicles
 			{
 				source = "user";
 				animPeriod = 1;
-				initPhase = 1;
+				initPhase = 0;
 			};
 		};
 		class AnimEvents
@@ -4488,9 +4451,6 @@ class CfgVehicles
 		weight = 5000;
 		itemSize[] = {3,4};
 		itemBehaviour = 2;
-		SingleUseActions[] = {560,525,550,527};
-		InteractActions[] = {1001,1013,1016};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		rotationFlags = 2;
 		hiddenSelections[] = {"socket_1_plugged","cord_plugged","cord_folded","placing"};
@@ -4586,9 +4546,6 @@ class CfgVehicles
 		hiddenSelectionsMaterials[] = {"dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat","dz\gear\camping\data\battery_charger.rvmat"};
 		hologramMaterial = "battery_charger";
 		hologramMaterialPath = "dz\gear\camping\data";
-		SingleUseActions[] = {525,527};
-		InteractActions[] = {1013,1002,1003};
-		ContinuousActions[] = {155};
 		slopeTolerance = 0.3;
 		ChargeEnergyPerSecond = 1;
 		class DamageSystem
@@ -4717,9 +4674,6 @@ class CfgVehicles
 		createProxyPhysicsOnInit = "false";
 		createdProxiesOnInit[] = {"Deployed"};
 		physLayer = "item_large";
-		SingleUseActions[] = {527};
-		InteractActions[] = {1007};
-		ContinuousActions[] = {231};
 		slopeTolerance = 0.3;
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\camping\data\hbox_filled_co.paa"};

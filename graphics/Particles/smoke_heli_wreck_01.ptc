@@ -51,7 +51,7 @@ EffectDef {
    RandomRotDir 1
    RotMultiplier 40
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Velocity 2
    VelocityRND 0.5
    AirResistance 0
@@ -89,7 +89,7 @@ EffectDef {
    RandomRotDir 1
    RotMultiplier 40
    VelAngle 0
-   RandomAngle 0
+   RandomAngle 1
    Velocity 2
    VelocityRND 0.5
    AirResistance 0

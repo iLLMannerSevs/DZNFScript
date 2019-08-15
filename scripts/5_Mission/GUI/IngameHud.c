@@ -875,7 +875,7 @@ class IngameHud extends Hud
 		{
 			HumanCommandVehicle hcv = player.GetCommand_Vehicle();
 			
-			if ( hcv && hcv.GetVehicleSeat() == DayZPlayerConstants.VEHICLESEAT_DRIVER )
+			if ( hcv )
 			{
 				CarScript car = CarScript.Cast( hcv.GetTransport() );
 				if( car )

@@ -16,21 +16,24 @@ class EntityAI extends Entity
 	ref array<EntityAI> 	m_AttachmentsWithAttachments;
 	ref InventoryLocation 	m_OldLocation;
 	
-	//Please call the relevant Item***_InitCallbacks() before attempting to add anything to these callbacks.
-	//Called on item attached to this item
+	//Called on item attached to this item (EntityAI item, string slot, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemAttached;
-	//Called on item detached from this item
+	//Called on item detached from this item (EntityAI item, string slot, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemDetached;
-	//Called when an item is added to the cargo of this item
+	//Called when an item is added to the cargo of this item (EntityAI item, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemAddedIntoCargo;
-	//Called when an item is removed from the cargo of this item
+	//Called when an item is removed from the cargo of this item (EntityAI item, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemRemovedFromCargo;
-	//Called when an item is moved around in the cargo of this item
+	//Called when an item is moved around in the cargo of this item (EntityAI item, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemMovedInCargo;
-	//Called when an item is moved around in the cargo of this item
+	//Called when an item is flipped around in cargo (bool flip)
 	protected ref ScriptInvoker		m_OnItemFlipped;
-	//Called when an item is moved around in the cargo of this item
+	//Called when an items view index is changed 
 	protected ref ScriptInvoker		m_OnViewIndexChanged;
+	//Called when an location in this item is reserved (EntityAI item)
+	protected ref ScriptInvoker		m_OnSetLock;
+	//Called when this item is unreserved (EntityAI item)
+	protected ref ScriptInvoker		m_OnReleaseLock;
 	
 	void EntityAI ()
 	{
@@ -403,12 +406,25 @@ class EntityAI extends Entity
 
 	void EEHealthLevelChanged(int oldLevel, int newLevel, string zone)
 	{
+		// Notify potential parent that this item was ruined
+		EntityAI parent = GetHierarchyParent();
+		
+		if (parent)
+		{
+			parent.OnAttachmentRuined(this);
+		}
 	}
 
 	void EEKilled(Object killer)
 	{
 		//analytics
 		GetGame().GetAnalyticsServer().OnEntityKilled( killer, this );
+	}
+	
+	//! Called when some attachment of this parent is ruined. Called on server and client side.
+	void OnAttachmentRuined(EntityAI attachment)
+	{
+		// ...
 	}
 	
 	void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
@@ -566,6 +582,20 @@ class EntityAI extends Entity
 		if( !m_OnViewIndexChanged )
 			m_OnViewIndexChanged = new ScriptInvoker;
 		return m_OnViewIndexChanged;
+	}
+	
+	ScriptInvoker GetOnSetLock()
+	{
+		if( !m_OnSetLock )
+			m_OnSetLock = new ScriptInvoker;
+		return m_OnSetLock;
+	}
+	
+	ScriptInvoker GetOnReleaseLock()
+	{
+		if( !m_OnReleaseLock )
+			m_OnReleaseLock = new ScriptInvoker;
+		return m_OnReleaseLock;
 	}
 	
 	//! Called when this item enters cargo of some container
@@ -821,6 +851,11 @@ class EntityAI extends Entity
 	{
 		return true;
 	}
+	
+	bool CanSaveItemInHands (EntityAI item_in_hands)
+	{
+		return true;
+	}
 
 	/**@fn		CanPutIntoHands
 	 * @brief calls this->CanPutIntoHands(parent)
@@ -1002,17 +1037,17 @@ class EntityAI extends Entity
 		return GetInventory().TakeEntityToCargoEx(InventoryMode.LOCAL, item, idx, row, col);
 	}
 
-	bool PredictiveTakeEntityToTargetCargoEx (notnull EntityAI target, notnull EntityAI item, int idx, int row, int col)
+	bool PredictiveTakeEntityToTargetCargoEx (notnull CargoBase cargo, notnull EntityAI item, int row, int col)
 	{
-		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.PREDICTIVE, target, item, idx, row, col);
+		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.PREDICTIVE, cargo, item, row, col);
 	}
-	bool LocalTakeEntityToTargetCargoEx (notnull EntityAI target, notnull EntityAI item, int idx, int row, int col)
+	bool LocalTakeEntityToTargetCargoEx (notnull CargoBase cargo, notnull EntityAI item, int row, int col)
 	{
-		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.LOCAL, target, item, idx, row, col);
+		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.LOCAL, cargo, item, row, col);
 	}
-	bool ServerTakeEntityToTargetCargoEx (notnull EntityAI target, notnull EntityAI item, int idx, int row, int col)
+	bool ServerTakeEntityToTargetCargoEx (notnull CargoBase cargo, notnull EntityAI item, int row, int col)
 	{
-		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.SERVER, target, item, idx, row, col);
+		return GetInventory().TakeEntityToTargetCargoEx(InventoryMode.SERVER, cargo, item, row, col);
 	}
 	/**
 	\brief Returns if item can be added as attachment on specific slot. Note that slot index IS NOT slot ID! Slot ID is defined in DZ/data/config.cpp
@@ -1479,6 +1514,8 @@ class EntityAI extends Entity
 	//! This id stays the same even after server restart.
 	proto void GetPersistentID( out int b1, out int b2, out int b3, out int b4 );
 
+	//! Set (override) remaining economy lifetime (seconds)
+	proto native void SetLifetime( float fLifeTime );
 	//! Get remaining economy lifetime (seconds)
 	proto native float GetLifetime();
 	//! Reset economy lifetime to default (seconds)
@@ -1712,11 +1749,108 @@ class EntityAI extends Entity
 	string ChangeIntoOnAttach(string slot) {}
 	string ChangeIntoOnDetach() {}
 	
-	void OnDebugSpawn() {};
+	void OnDebugSpawn() 
+	{
+		array<string> slots = new array<string>;
+		ConfigGetTextArray("Attachments", slots);
+		
+		array<string> mags = new array<string>;
+		ConfigGetTextArray("magazines", mags);
+		
+		//-------
+		
+		TStringArray all_paths = new TStringArray;
+		
+		all_paths.Insert(CFG_VEHICLESPATH);
+		all_paths.Insert(CFG_MAGAZINESPATH);
+		all_paths.Insert(CFG_WEAPONSPATH);
+		
+		string config_path;
+		string child_name;
+		int scope;
+		string path;
+		int consumable_count;
+		
+		for(int i = 0; i < all_paths.Count(); i++)
+		{
+			config_path = all_paths.Get(i);
+			int children_count = GetGame().ConfigGetChildrenCount(config_path);
+			
+			for(int x = 0; x < children_count; x++)
+			{
+				GetGame().ConfigGetChildName(config_path, x, child_name);
+				path = config_path + " " + child_name;
+				scope = GetGame().ConfigGetInt( config_path + " " + child_name + " scope" );
+				bool should_check = 1;
+				if( config_path == "CfgVehicles" && scope == 0)
+				{
+					should_check = 0;
+				}
+				
+				if ( should_check )
+				{
+					string inv_slot;
+					GetGame().ConfigGetText( config_path + " " + child_name + " inventorySlot",inv_slot );
+					for(int z = 0; z < slots.Count(); z++)
+					{
+						if(slots.Get(z) == inv_slot)
+						{
+							this.GetInventory().CreateInInventory( child_name );
+							continue;
+							//Print("matching attachment: " + child_name + " for inv. slot name:" +inv_slot);
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+	};
 
 	void SetBayonetAttached(bool pState) {};
 	bool HasBayonetAttached() {};
 	
 	void SetButtstockAttached(bool pState) {};
 	bool HasButtstockAttached() {};
+	
+	void SetInvisibleRecursive(bool invisible, EntityAI parent = null, array<int> attachments = null)
+	{
+		array<int> childrenAtt = new array<int>;
+		array<int> attachmentsArray = new array<int>;
+		if (attachments)
+			attachmentsArray.Copy(attachments);
+		else
+		{
+			for (int i = 0; i < GetInventory().GetAttachmentSlotsCount(); i++)
+			{
+				attachmentsArray.Insert(GetInventory().GetAttachmentSlotId(i));
+			}
+		}
+		
+		EntityAI item;
+		
+		foreach( int slot : attachmentsArray )
+		{
+			if( parent )
+				item = parent.GetInventory().FindAttachment(slot);
+			else
+				item = this;//GetInventory().FindAttachment(slot);
+			
+			if( item )
+			{
+				if( item.GetInventory().AttachmentCount() > 0 )
+				{
+					for(i = 0; i < item.GetInventory().GetAttachmentSlotsCount(); i++)
+					{
+						childrenAtt.Insert(item.GetInventory().GetAttachmentSlotId(i));
+					}
+					
+					SetInvisibleRecursive(invisible,item,childrenAtt);
+				}
+				
+				item.SetInvisible(invisible);
+			}
+		}
+	}
 };

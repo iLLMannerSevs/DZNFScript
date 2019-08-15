@@ -11,10 +11,6 @@ class HandsPreview: LayoutHolder
 	{
 		GetGame().GetPlayer().GetOnItemAddedToHands().Insert( CreateNewIcon );
 		GetGame().GetPlayer().GetOnItemRemovedFromHands().Insert( DeleteIcon );
-		
-		m_Item = ItemBase.Cast( GetGame().GetPlayer().GetHumanInventory().GetEntityInHands() );
-		if( m_Item )
-			CreateNewIcon( ItemBase.Cast( m_Item ) );
 	}
 	
 	void ~HandsPreview()

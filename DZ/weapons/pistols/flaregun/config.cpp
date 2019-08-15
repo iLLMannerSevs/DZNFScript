@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\flaregun\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:24 2019 : 'file' last modified on Wed Jun 12 15:00:48 2019
+//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Wed Aug 14 11:04:49 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -78,7 +78,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Flaregun1";
 		model = "\dz\weapons\pistols\flaregun\flaregun.p3d";
 		attachments[] = {};
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		class Damage
 		{
 			tex[] = {};

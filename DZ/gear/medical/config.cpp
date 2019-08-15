@@ -2,7 +2,7 @@
 //DeRap: gear_medical\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:56 2019 : 'file' last modified on Wed Jun 12 12:20:16 2019
+//'now' is Thu Aug 15 15:46:28 2019 : 'file' last modified on Wed Aug 14 13:07:06 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -530,9 +530,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Epinephrine1";
 		model = "\dz\gear\medical\Epinephrine.p3d";
 		rotationFlags = 17;
-		varQuantityInit = 1;
-		varQuantityMin = 0;
-		varQuantityMax = 1;
 		itemSize[] = {1,2};
 		weight = 60;
 		class DamageSystem
@@ -554,9 +551,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Morphine1";
 		model = "\dz\gear\medical\Morphine.p3d";
 		rotationFlags = 17;
-		varQuantityInit = 1;
-		varQuantityMin = 0;
-		varQuantityMax = 1;
 		itemSize[] = {1,2};
 		weight = 60;
 		class DamageSystem
@@ -778,13 +772,6 @@ class CfgVehicles
 		rotationFlags = 17;
 		itemSize[] = {2,2};
 		weight = 100;
-		stackedUnit = "ml";
-		quantityBar = 1;
-		varQuantityInit = 250.0;
-		varQuantityMin = 0.0;
-		varQuantityMax = 250.0;
-		varLiquidTypeInit = 256;
-		liquidContainerType = "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256";
 		isMeleeWeapon = 1;
 		class DamageSystem
 		{
@@ -911,13 +898,6 @@ class CfgVehicles
 		rotationFlags = 17;
 		itemSize[] = {2,2};
 		weight = 360;
-		stackedUnit = "ml";
-		quantityBar = 1;
-		varQuantityInit = 250.0;
-		varQuantityMin = 0.0;
-		varQuantityMax = 250.0;
-		varLiquidTypeInit = 256;
-		liquidContainerType = "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256";
 		isMeleeWeapon = 1;
 		class DamageSystem
 		{

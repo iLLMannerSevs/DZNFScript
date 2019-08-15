@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\SKS\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:21 2019 : 'file' last modified on Thu Jun 20 10:23:24 2019
+//'now' is Thu Aug 15 15:49:46 2019 : 'file' last modified on Tue Aug 13 08:22:49 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

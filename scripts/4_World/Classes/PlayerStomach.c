@@ -162,8 +162,8 @@ class PlayerStomach
 	{
 		int hash = classname.Hash();
 		CHECKSUM = (CHECKSUM & ~hash) | (~CHECKSUM & hash); //xor hash vs current checksum
-		Print(classname);
-		Print(CHECKSUM);
+//		Print(classname);
+//		Print(CHECKSUM);
 		m_NamesToIDs.Insert(classname, id);
 		m_IDsToNames.Insert(id, classname);
 	}

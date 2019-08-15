@@ -2,7 +2,7 @@
 //DeRap: characters_gloves\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:08 2019 : 'file' last modified on Tue Jun 11 21:03:55 2019
+//'now' is Thu Aug 15 15:45:13 2019 : 'file' last modified on Thu Aug 15 00:11:59 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -374,7 +374,7 @@ class CfgVehicles
 		itemInfo[] = {"Clothing","Gloves"};
 		rotationFlags = 17;
 		weight = 130;
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		absorbency = 0.4;
 		heatIsolation = 0.3;
 		repairableWithKits[] = {5,2};
@@ -386,7 +386,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\Characters\gloves\data\WorkingGloves.rvmat"}},{0.7,{"DZ\Characters\gloves\data\WorkingGloves.rvmat"}},{0.5,{"DZ\Characters\gloves\data\WorkingGloves_damage.rvmat"}},{0.3,{"DZ\Characters\gloves\data\WorkingGloves_damage.rvmat"}},{0.0,{"DZ\Characters\gloves\data\WorkingGloves_destruct.rvmat"}}};
 				};
 			};
@@ -445,7 +445,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
 		weight = 454;
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		absorbency = 0.4;
 		heatIsolation = 0.25;
 		repairableWithKits[] = {5,2};
@@ -512,7 +512,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
 		weight = 454;
-		itemSize[] = {3,2};
+		itemSize[] = {2,3};
 		absorbency = 0.4;
 		heatIsolation = 0.25;
 		repairableWithKits[] = {5,2};
@@ -528,7 +528,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\Characters\gloves\data\NBC_Gloves.rvmat"}},{0.7,{"DZ\Characters\gloves\data\NBC_Gloves.rvmat"}},{0.5,{"DZ\Characters\gloves\data\NBC_Gloves_damage.rvmat"}},{0.3,{"DZ\Characters\gloves\data\NBC_Gloves_damage.rvmat"}},{0.0,{"DZ\Characters\gloves\data\NBC_Gloves_destruct.rvmat"}}};
 				};
 			};
@@ -567,7 +567,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
 		weight = 100;
-		itemSize[] = {3,1};
+		itemSize[] = {1,1};
 		absorbency = 1;
 		heatIsolation = 0.25;
 		repairableWithKits[] = {5};
@@ -579,7 +579,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\Characters\gloves\data\Surgical_Gloves.rvmat","DZ\Characters\gloves\data\Surgical_Gloves_g.rvmat"}},{0.7,{"DZ\Characters\gloves\data\Surgical_Gloves.rvmat","DZ\Characters\gloves\data\Surgical_Gloves_g.rvmat"}},{0.5,{"DZ\Characters\gloves\data\Surgical_Gloves_damage.rvmat","DZ\Characters\gloves\data\Surgical_Gloves_g_damage.rvmat"}},{0.3,{"DZ\Characters\gloves\data\Surgical_Gloves_damage.rvmat","DZ\Characters\gloves\data\Surgical_Gloves_g_damage.rvmat"}},{0.0,{"DZ\Characters\gloves\data\Surgical_Gloves_destruct.rvmat","DZ\Characters\gloves\data\Surgical_Gloves_g_destruct.rvmat"}}};
 				};
 			};
@@ -636,7 +636,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
 		weight = 200;
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		absorbency = 1;
 		heatIsolation = 0.5;
 		repairableWithKits[] = {5};
@@ -653,7 +653,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
 				};
 			};
@@ -753,7 +753,7 @@ class CfgVehicles
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
 		weight = 450;
-		itemSize[] = {3,2};
+		itemSize[] = {2,2};
 		absorbency = 0.4;
 		heatIsolation = 0.6;
 		repairableWithKits[] = {5,2};
@@ -770,7 +770,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 75;
 					healthLevels[] = {{1.0,{"DZ\Characters\gloves\data\OMNOGloves.rvmat"}},{0.7,{"DZ\Characters\gloves\data\OMNOGloves.rvmat"}},{0.5,{"DZ\Characters\gloves\data\OMNOGloves_damage.rvmat"}},{0.3,{"DZ\Characters\gloves\data\OMNOGloves_damage.rvmat"}},{0.0,{"DZ\Characters\gloves\data\OMNOGloves_destruct.rvmat"}}};
 				};
 			};

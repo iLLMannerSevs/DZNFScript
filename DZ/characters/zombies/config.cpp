@@ -2,7 +2,7 @@
 //DeRap: characters_zombies\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:35 2019 : 'file' last modified on Tue Jun 25 14:03:06 2019
+//'now' is Thu Aug 15 15:45:55 2019 : 'file' last modified on Fri Jul 19 20:37:51 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -59,7 +59,6 @@ class CfgVehicles
 		displayName = "$STR_cfgvehicles_infected0";
 		descriptionShort = "$STR_cfgvehicles_infected1";
 		vehicleClass = "Zombie";
-		model = "\DZ\characters\zombies\hermit_newbindpose.p3d";
 		zombieLoot = "civilian";
 		storageCategory = 3;
 		attackSounds = "zombie_attack";
@@ -315,6 +314,8 @@ class CfgVehicles
 		scope = 0;
 		meleeAmmo = "MeleeZombieFemale";
 		aiAgentTemplate = "InfectedFemale";
+		woman = 1;
+		clothingType = "female";
 		class Wounds: Wounds
 		{
 			tex[] = {};
@@ -415,6 +416,8 @@ class CfgVehicles
 		scope = 0;
 		meleeAmmo = "MeleeZombieMale";
 		aiAgentTemplate = "InfectedMale";
+		woman = 0;
+		clothingType = "male";
 		class Wounds: Wounds
 		{
 			tex[] = {};
@@ -11339,265 +11342,6 @@ class CfgVehicles
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\villager_old_f_white_CO.paa"};
 	};
-	class ZmbM_Soldier: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-		class AnimEvents
-		{
-			class Steps
-			{
-				class Walk1
-				{
-					soundLookupTable = "walkErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 1;
-				};
-				class Walk2
-				{
-					soundLookupTable = "walkErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 2;
-				};
-				class Walk3
-				{
-					soundLookupTable = "walkErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 3;
-				};
-				class Walk4
-				{
-					soundLookupTable = "walkErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 4;
-				};
-				class Run1
-				{
-					soundLookupTable = "runErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 5;
-				};
-				class Run2
-				{
-					soundLookupTable = "runErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 6;
-				};
-				class Run3
-				{
-					soundLookupTable = "runErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 7;
-				};
-				class Run4
-				{
-					soundLookupTable = "runErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 8;
-				};
-				class Sprint1
-				{
-					soundLookupTable = "sprintErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 9;
-				};
-				class Sprint2
-				{
-					soundLookupTable = "sprintErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 10;
-				};
-				class Sprint3
-				{
-					soundLookupTable = "sprintErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 11;
-				};
-				class Sprint4
-				{
-					soundLookupTable = "sprintErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 12;
-				};
-				class Scuff1
-				{
-					soundLookupTable = "scuffErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 17;
-				};
-				class Scuff2
-				{
-					soundLookupTable = "scuffErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 18;
-				};
-				class Sccuff3
-				{
-					soundLookupTable = "scuffErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 19;
-				};
-				class Scuff4
-				{
-					soundLookupTable = "scuffErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 20;
-				};
-				class landFeetErc
-				{
-					soundLookupTable = "landFeetErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 21;
-				};
-				class landFootErc
-				{
-					soundLookupTable = "landFootErc_Boots_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 22;
-				};
-				class Bodyfall
-				{
-					soundLookupTable = "bodyfall_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 23;
-				};
-				class Bodyfall_Hand
-				{
-					soundLookupTable = "bodyfall_hand_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 24;
-				};
-				class Bodyfall_Slide
-				{
-					soundLookupTable = "bodyfall_slide_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 25;
-				};
-				class Prone_Walk_L
-				{
-					soundLookupTable = "walkProne_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 27;
-				};
-				class Prone_Walk_R
-				{
-					soundLookupTable = "walkProne_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 28;
-				};
-				class Prone_Run_L
-				{
-					soundLookupTable = "runProne_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 29;
-				};
-				class Prone_Run_R
-				{
-					soundLookupTable = "runProne_Zmb_LookupTable";
-					noise = "ZombieStepNoise";
-					id = 30;
-				};
-			};
-			class Sounds
-			{
-				class Attack_Light1
-				{
-					soundSet = "Zmb_Attack_Light1_SoundSet";
-					id = 1;
-				};
-				class Attack_Light2
-				{
-					soundSet = "Zmb_Attack_Light2_SoundSet";
-					id = 2;
-				};
-				class Attack_Heavy1
-				{
-					soundSet = "Zmb_Attack_Heavy1_SoundSet";
-					id = 3;
-				};
-				class Attack_Heavy2
-				{
-					soundSet = "Zmb_Attack_Heavy2_SoundSet";
-					id = 4;
-				};
-				class TwoHands
-				{
-					soundSet = "Zmb_Attack_TwoHands_SoundSet";
-					id = 5;
-				};
-			};
-			class SoundVoice
-			{
-				class LightHit
-				{
-					soundSet = "ZmbM_Normal2_LightHit_Soundset";
-					id = 1;
-				};
-				class HeavyHit
-				{
-					soundSet = "ZmbM_Normal2_HeavyHit_Soundset";
-					id = 2;
-				};
-				class Attack
-				{
-					soundSet = "ZmbM_Normal2_Attack_Soundset";
-					id = 5;
-				};
-				class Jump
-				{
-					soundSet = "ZmbM_Normal2_Jump_Soundset";
-					id = 10;
-				};
-				class Land
-				{
-					soundSet = "ZmbM_Normal2_Land_Soundset";
-					id = 11;
-				};
-				class CallToArmsShort
-				{
-					soundSet = "ZmbM_Normal2_CallToArmsShort_Soundset";
-					id = 20;
-				};
-			};
-		};
-	};
-	class ZmbM_SoldierAlice: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_alice_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-	};
-	class ZmbM_SoldierHelmet: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_helmet_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-	};
-	class ZmbM_SoldierVest: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_vest_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-	};
-	class ZmbM_SoldierAliceHelmet: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_helmet_alice_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-	};
-	class ZmbM_SoldierVestHelmet: ZmbM_SoldierNormal_Base
-	{
-		scope = 2;
-		model = "\DZ\characters\zombies\z_soldier_helmet_vest_above0.p3d";
-		hiddenSelectionsMaterials[] = {"dz\characters\zombies\data\soldier.rvmat"};
-		hiddenSelectionsTextures[] = {"dz\characters\zombies\data\soldier_co.paa"};
-	};
 	class ZmbF_MilkMaidOld_Base: ZombieFemaleBase
 	{
 		scope = 0;
@@ -12810,11 +12554,6 @@ class CfgNonAIVehicles
 	class ProxyBackpack_DZ: ProxyBack
 	{
 		model = "\dz\Characters\Proxies\Backpack_DZ.p3d";
-	};
-	class ProxyEyewear;
-	class ProxyEyewear_DZ: ProxyEyewear
-	{
-		model = "\dz\Characters\Proxies\Eyewear_DZ.p3d";
 	};
 	class ProxyHeadgear;
 	class ProxyHeadgear_DZ: ProxyHeadgear

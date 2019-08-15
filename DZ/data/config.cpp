@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:38 2019 : 'file' last modified on Tue Jul 02 13:39:47 2019
+//'now' is Thu Aug 15 15:46:10 2019 : 'file' last modified on Fri Aug 09 07:09:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -421,8 +421,8 @@ class CfgWorlds
 					diffuseCloud[] = {{1.0,0.604,0.294},10.4};
 					bidirect[] = {0.03,0.03,0.03};
 					bidirectCloud[] = {0.03,0.03,0.03};
-					ambient[] = {{0.12,0.18,0.37},10.2};
-					ambientCloud[] = {{0.12,0.18,0.37},10.2};
+					ambient[] = {{0.12,0.18,0.28},10.2};
+					ambientCloud[] = {{0.12,0.18,0.28},10.2};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},10.4};
@@ -449,8 +449,8 @@ class CfgWorlds
 					diffuseCloud[] = {{1.0,0.64,0.31},11.4};
 					bidirect[] = {0.03,0.03,0.03};
 					bidirectCloud[] = {0.03,0.03,0.03};
-					ambient[] = {{0.12,0.18,0.34},10.6};
-					ambientCloud[] = {{0.12,0.18,0.34},10.6};
+					ambient[] = {{0.12,0.18,0.28},10.6};
+					ambientCloud[] = {{0.12,0.18,0.28},10.6};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},10.8};
@@ -477,8 +477,8 @@ class CfgWorlds
 					diffuseCloud[] = {{1,0.87,0.85},11.8};
 					bidirect[] = {0.08,0.08,0.07};
 					bidirectCloud[] = {0.08,0.08,0.07};
-					ambient[] = {{0.12,0.18,0.32},10.8};
-					ambientCloud[] = {{0.12,0.18,0.32},10.8};
+					ambient[] = {{0.12,0.18,0.24},10.8};
+					ambientCloud[] = {{0.12,0.18,0.24},10.8};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},11.0};
@@ -505,8 +505,8 @@ class CfgWorlds
 					diffuseCloud[] = {{1,0.87,0.85},12.8};
 					bidirect[] = {0.08,0.08,0.07};
 					bidirectCloud[] = {0.08,0.08,0.07};
-					ambient[] = {{0.12,0.18,0.32},11.0};
-					ambientCloud[] = {{0.12,0.18,0.32},11.0};
+					ambient[] = {{0.12,0.18,0.24},12.0};
+					ambientCloud[] = {{0.12,0.18,0.24},12.0};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},11.7};
@@ -533,8 +533,8 @@ class CfgWorlds
 					diffuseCloud[] = {{1,0.87,0.85},13.8};
 					bidirect[] = {0.08,0.08,0.07};
 					bidirectCloud[] = {0.08,0.08,0.07};
-					ambient[] = {{0.12,0.18,0.32},11.8};
-					ambientCloud[] = {{0.12,0.18,0.32},11.8};
+					ambient[] = {{0.12,0.18,0.24},12.8};
+					ambientCloud[] = {{0.12,0.18,0.24},12.8};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},12.6};
@@ -1924,6 +1924,7 @@ class CfgVehicles
 		canBeSplit = 0;
 		stackedUnit = "pc.";
 		quantity = "";
+		quantityShow = 1;
 		quantityBar = 0;
 		animated = 0;
 		reversed = 1;
@@ -1934,6 +1935,7 @@ class CfgVehicles
 		hiddenSelectionsTextures[] = {};
 		recoilModifier[] = {1,1,1};
 		isMeleeWeapon = 1;
+		soundImpactType = "default";
 		destroyOnEmpty = 1;
 		varQuantityDestroyOnMin = 1;
 		varWetInit = 0;
@@ -1949,6 +1951,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 100;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
 				};
 			};
 		};
@@ -2488,6 +2491,7 @@ class cfgWeapons
 		targetCategory = "loot";
 		weaponInfoType = "RscWeaponZeroing";
 		inventorySlot[] = {"Shoulder","Melee"};
+		sightMisalignmentModifier[] = {1,1,0};
 		rotationFlags = 17;
 		soundAttType = "Rifle";
 		cursor = "aimGunGhost";
@@ -2583,6 +2587,7 @@ class cfgWeapons
 		storageCategory = 1;
 		targetCategory = "loot";
 		inventorySlot = "Pistol";
+		sightMisalignmentModifier[] = {0.4,1.5,0};
 		rotationFlags = 17;
 		soundAttType = "None";
 		cursor = "aimGunGhost";

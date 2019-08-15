@@ -2,7 +2,7 @@
 //DeRap: characters_masks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:56:20 2019 : 'file' last modified on Wed Jun 19 14:42:58 2019
+//'now' is Thu Aug 15 15:45:31 2019 : 'file' last modified on Tue Jul 23 15:30:18 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -84,8 +84,6 @@ class CfgVehicles
 		displayName = "$STR_cfgvehicles_bandana_colorbase0";
 		descriptionShort = "$STR_cfgvehicles_bandana_colorbase1";
 		model = "\DZ\characters\masks\BandanaFace_g.p3d";
-		SingleUseActions[] = {"AT_BANDANA_UNFOLD"};
-		ContinuousActions[] = {"AT_WRING_CLOTHES"};
 		inventorySlot[] = {"Mask"};
 		ChangeInventorySlot[] = {"Mask"};
 		itemInfo[] = {"Clothing","Mask"};
@@ -241,7 +239,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_BalaclavaMask_ColorBase0";
 		descriptionShort = "$STR_CfgVehicles_BalaclavaMask_ColorBase1";
 		model = "\DZ\characters\masks\Balaclava_g.p3d";
-		ContinuousActions[] = {"AT_WRING_CLOTHES"};
 		inventorySlot = "Mask";
 		itemInfo[] = {"Clothing","Mask"};
 		rotationFlags = 1;
@@ -427,7 +424,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Balaclava3Holes_ColorBase0";
 		descriptionShort = "$STR_CfgVehicles_Balaclava3Holes_ColorBase1";
 		model = "\DZ\characters\masks\Balaclava_3holes_g.p3d";
-		ContinuousActions[] = {"AT_WRING_CLOTHES"};
 		inventorySlot = "Mask";
 		itemInfo[] = {"Clothing","Mask"};
 		rotationFlags = 17;
@@ -503,7 +499,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_SantasBeard0";
 		descriptionShort = "$STR_CfgVehicles_SantasBeard1";
 		model = "\DZ\characters\masks\SantasBeard_g.p3d";
-		ContinuousActions[] = {"AT_WRING_CLOTHES"};
 		inventorySlot = "Mask";
 		itemInfo[] = {"Clothing","Mask"};
 		weight = 220;

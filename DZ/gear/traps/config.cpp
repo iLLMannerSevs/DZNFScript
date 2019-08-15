@@ -2,7 +2,7 @@
 //DeRap: gear_traps\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:57:03 2019 : 'file' last modified on Thu May 30 13:11:16 2019
+//'now' is Thu Aug 15 15:46:34 2019 : 'file' last modified on Fri Jul 19 22:10:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -84,8 +84,6 @@ class CfgVehicles
 		weight = 12000;
 		itemBehaviour = 2;
 		lootTag[] = {"Hunting","Forester","Work"};
-		SingleUseActions[] = {560,527};
-		ContinuousActions[] = {231};
 		slopeTolerance = 0.3;
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\traps\data\beartrap_CO.paa"};
@@ -165,9 +163,6 @@ class CfgVehicles
 		weight = 1670;
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
-		SingleUseActions[] = {527};
-		InteractActions[] = {233};
-		ContinuousActions[] = {231};
 		slopeTolerance = 0.3;
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\traps\data\landmine_CO.paa"};
@@ -236,8 +231,6 @@ class CfgVehicles
 		itemsCargoSize[] = {1,2};
 		allowOwnedCargoManipulation = 1;
 		itemBehaviour = 1;
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231,182,176,169,189,160,108,225,226,234,106};
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\drinks\Data\Loot_WaterBottle_CA.paa"};
 		hiddenSelectionsMaterials[] = {"dz\gear\drinks\Data\Loot_WaterBottle.rvmat"};
@@ -290,8 +283,6 @@ class CfgVehicles
 		itemsCargoSize[] = {2,3};
 		allowOwnedCargoManipulation = 1;
 		itemBehaviour = 1;
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231};
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\traps\data\fishnettrap_CO.paa"};
 		hiddenSelectionsMaterials[] = {"dz\gear\traps\data\fishnettrap.rvmat"};
@@ -336,8 +327,6 @@ class CfgVehicles
 		weight = 60;
 		itemSize[] = {2,3};
 		itemBehaviour = 1;
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231};
 		slopeTolerance = 0.3;
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\crafting\data\rabbit_snare_co.paa"};
@@ -408,8 +397,6 @@ class CfgVehicles
 		weight = 240;
 		itemSize[] = {2,2};
 		itemBehaviour = 1;
-		SingleUseActions[] = {527};
-		ContinuousActions[] = {231};
 		hiddenSelections[] = {"placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\crafting\data\rabbit_snare_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\gear\crafting\data\rabbit_snare.rvmat"};

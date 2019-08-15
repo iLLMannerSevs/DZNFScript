@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 15:00:06 2019 : 'file' last modified on Mon Jun 24 12:05:40 2019
+//'now' is Thu Aug 15 15:49:33 2019 : 'file' last modified on Tue Aug 13 16:23:36 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -473,7 +473,6 @@ class CfgVehicles
 		displayName = "$STR_OffroadHatchback0";
 		descriptionShort = "$STR_OffroadHatchback1";
 		model = "\dz\vehicles\wheeled\OffroadHatchback\OffroadHatchback.p3d";
-		InteractActions[] = {"AT_ANIMATE_SEATS","AT_GETIN_TRANSPORT"};
 		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","SparkPlug","NivaDriverDoors","NivaCoDriverDoors","NivaHood","NivaTrunk","NivaWheel_1_1","NivaWheel_1_2","NivaWheel_2_1","NivaWheel_2_2","NivaWheel_Spare_1"};
 		hiddenSelections[] = {"light_left","light_right","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
 		hiddenSelectionsTextures[] = {"","","","","","","","",""};
@@ -1982,14 +1981,26 @@ class CfgVehicles
 	class Sedan_02_Wheel: CarWheel
 	{
 		scope = 2;
-		displayName = "Sarka Wheel";
+		displayName = "$STR_Sedan_02_Wheel0";
+		descriptionShort = "$STR_Sedan_02_Wheel1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Wheel.p3d";
 		inventorySlot[] = {"Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
 		rotationFlags = 4;
-		radiusByDamage[] = {0,0.34,0.3,0.3,0.9998,0.25,0.9999,0.2};
-		radius = 0.34;
-		friction = 0.96;
+		radiusByDamage[] = {0,0.33,0.3,0.28,0.9998,0.24,0.9999,0.2};
+		radius = 0.33;
+		friction = 0.97;
 		width = 0.16;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 200;
+					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_wheel.rvmat"}},{0.7,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_wheel.rvmat"}},{0.5,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_wheel_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_wheel_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_wheel_destruct.rvmat"}}};
+				};
+			};
+		};
 	};
 	class Sedan_02_Wheel_Ruined: Sedan_02_Wheel
 	{
@@ -2001,62 +2012,159 @@ class CfgVehicles
 	class Sedan_02_Door_1_1: CarDoor
 	{
 		scope = 2;
-		displayName = "Sarka Left Doors";
+		displayName = "$STR_Sedan_02_Door_1_10";
+		descriptionShort = "$STR_Sedan_02_Door_1_11";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_1_1.p3d";
 		inventorySlot = "Sedan_02_Door_1_1";
 		rotationFlags = 8;
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+					};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
 	};
 	class Sedan_02_Door_2_1: Sedan_02_Door_1_1
 	{
-		displayName = "Sarka Right Doors";
+		displayName = "$STR_Sedan_02_Door_2_10";
+		descriptionShort = "$STR_Sedan_02_Door_2_11";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_2_1.p3d";
 		inventorySlot = "Sedan_02_Door_2_1";
 		rotationFlags = 4;
 	};
 	class Sedan_02_Door_1_2: Sedan_02_Door_1_1
 	{
-		displayName = "Sarka Back Left Doors";
+		displayName = "$STR_Sedan_02_Door_1_20";
+		descriptionShort = "$STR_Sedan_02_Door_1_21";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_1_2.p3d";
 		inventorySlot = "Sedan_02_Door_1_2";
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+					};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
 	};
 	class Sedan_02_Door_2_2: Sedan_02_Door_1_1
 	{
-		displayName = "Sarka Back Right Doors";
+		displayName = "$STR_Sedan_02_Door_2_20";
+		descriptionShort = "$STR_Sedan_02_Door_2_21";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_2_2.p3d";
 		inventorySlot = "Sedan_02_Door_2_2";
 		rotationFlags = 4;
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+					};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
 	};
 	class Sedan_02_Hood: CarDoor
 	{
 		scope = 2;
-		displayName = "Sarka Hood";
+		displayName = "$STR_Sedan_02_Hood0";
+		descriptionShort = "$STR_Sedan_02_Hood1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Hood.p3d";
 		inventorySlot = "Sedan_02_Hood";
 		rotationFlags = 4;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 500;
+					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood.rvmat"}},{0.7,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood.rvmat"}},{0.5,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
 	};
 	class Sedan_02_Trunk: CarDoor
 	{
 		scope = 2;
-		displayName = "Sarka Trunk";
+		displayName = "$STR_Sedan_02_Trunk0";
+		descriptionShort = "$STR_Sedan_02_Trunk1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Trunk.p3d";
 		inventorySlot = "Sedan_02_Trunk";
 		rotationFlags = 4;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 500;
+					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk.rvmat"}},{0.7,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk.rvmat"}},{0.5,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_destruct.rvmat"}}};
+				};
+			};
+		};
 	};
 	class Sedan_02: CarScript
 	{
 		scope = 2;
-		displayName = "Sarka";
+		displayName = "$STR_Sedan_020";
 		model = "\DZ\vehicles\wheeled\Sedan_02\Sedan_02.p3d";
-		attachments[] = {"CarBattery","CarRadiator","LightBulb","EngineBelt","SparkPlug","Sedan_02_Hood","Sedan_02_Trunk","Sedan_02_Door_1_1","Sedan_02_Door_2_1","Sedan_02_Door_1_2","Sedan_02_Door_2_2","Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
-		dashboardMatOn = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_int2e_.rvmat";
-		dashboardMatOff = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_int2e_off.rvmat";
-		frontReflectorMatOn = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_lights.rvmat";
-		frontReflectorMatOff = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_cr.rvmat";
-		frontReflectorMatDamaged = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_damage.rvmat";
-		frontReflectorMatRuined = "dz\vehicles\wheeled\Sedan_02\data\Sedan_02_destruct.rvmat";
-		fuelCapacity = 55;
-		fuelConsumption = 15;
-		airDragCoefficient = 0.75;
+		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","EngineBelt","SparkPlug","Sedan_02_Hood","Sedan_02_Trunk","Sedan_02_Door_1_1","Sedan_02_Door_2_1","Sedan_02_Door_1_2","Sedan_02_Door_2_2","Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
+		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
+		hiddenSelectionsTextures[] = {"","","","","","","","",""};
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
+		dashboardMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2e.rvmat";
+		dashboardMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2.rvmat";
+		frontReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
+		frontReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
+		brakeReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
+		brakeReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
+		ReverseReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
+		ReverseReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
+		TailReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
+		TailReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
+		fuelCapacity = 38;
+		fuelConsumption = 7;
 		class Crew: Crew
 		{
 			class Driver: Driver{};
@@ -2079,41 +2187,41 @@ class CfgVehicles
 		class SimulationModule: SimulationModule
 		{
 			drive = "DRIVE_RWD";
-			airDragCoefficient = 1.195;
+			airDragCoefficient = 0.815;
 			class Steering
 			{
-				increaseSpeed[] = {0,45,60,25,100,15};
-				decreaseSpeed[] = {0,90,60,45,100,15};
-				centeringSpeed[] = {0,0,15,28,60,45,100,60};
+				increaseSpeed[] = {0,45,60,25,100,10};
+				decreaseSpeed[] = {0,80,60,40,100,15};
+				centeringSpeed[] = {0,0,15,25,60,40,100,60};
 			};
 			class Throttle
 			{
-				reactionTime = 1.0;
-				defaultThrust = 0.85;
-				gentleThrust = 0.7;
-				turboCoef = 2.5;
-				gentleCoef = 0.75;
+				reactionTime = 0.8;
+				defaultThrust = 0.8;
+				gentleThrust = 0.6;
+				turboCoef = 1.8;
+				gentleCoef = 0.4;
 			};
 			class Engine
 			{
-				inertia = 0.15;
-				torqueMax = 114;
-				torqueRpm = 3400;
-				powerMax = 53.7;
-				powerRpm = 5400;
-				rpmIdle = 850;
-				rpmMin = 900;
-				rpmClutch = 1350;
-				rpmRedline = 6000;
-				rpmMax = 8000;
+				inertia = 0.2;
+				torqueMax = 82;
+				torqueRpm = 3000;
+				powerMax = 37.0;
+				powerRpm = 5000;
+				rpmIdle = 900;
+				rpmMin = 1000;
+				rpmClutch = 1250;
+				rpmRedline = 5750;
+				rpmMax = 7000;
 			};
 			class Gearbox
 			{
-				reverse = 3.54;
-				ratios[] = {3.5,2.26,1.45,1.0};
-				timeToUncoupleClutch = 0.2;
-				timeToCoupleClutch = 0.1;
-				maxClutchTorque = 75;
+				reverse = 3.27;
+				ratios[] = {3.8,2.12,1.41,0.96};
+				timeToUncoupleClutch = 0.1;
+				timeToCoupleClutch = 0.3;
+				maxClutchTorque = 164;
 			};
 			class Axles: Axles
 			{
@@ -2127,12 +2235,12 @@ class CfgVehicles
 					wheelHubRadius = 0.12;
 					class Suspension
 					{
-						swayBar = 1700;
-						stiffness = 42000;
-						compression = 2100;
-						damping = 7500;
-						travelMaxUp = 0.0882;
-						travelMaxDown = 0.0833;
+						swayBar = 1000;
+						stiffness = 20000;
+						compression = 1200;
+						damping = 4800;
+						travelMaxUp = 0.07;
+						travelMaxDown = 0.08;
 					};
 					class Wheels: Wheels
 					{
@@ -2151,19 +2259,19 @@ class CfgVehicles
 				class Rear: Rear
 				{
 					maxSteeringAngle = 0;
-					finalRatio = 4.1;
+					finalRatio = 4.22;
 					brakeBias = 0.4;
 					brakeForce = 3800;
 					wheelHubMass = 5;
 					wheelHubRadius = 0.15;
 					class Suspension
 					{
-						swayBar = 1800;
-						stiffness = 43000;
-						compression = 2300;
-						damping = 7900;
-						travelMaxUp = 0.1587;
-						travelMaxDown = 0.1059;
+						swayBar = 1100;
+						stiffness = 22000;
+						compression = 1400;
+						damping = 5000;
+						travelMaxUp = 0.1;
+						travelMaxDown = 0.1;
 					};
 					class Wheels: Wheels
 					{
@@ -2200,6 +2308,192 @@ class CfgVehicles
 				source = "user";
 				initPhase = 0;
 				animPeriod = 0.5;
+			};
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+				};
+			};
+			class DamageZones
+			{
+				class Chassis
+				{
+					class Health
+					{
+						hitpoints = 3000;
+						transferToGlobalCoef = 0;
+					};
+					componentNames[] = {"dmgZone_chassis"};
+					fatalInjuryCoef = -1;
+					inventorySlots[] = {};
+				};
+				class Front
+				{
+					class Health
+					{
+						hitpoints = 1500;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_destruct.rvmat"}}};
+					};
+					transferToZonesNames[] = {"Fender_1_1","Fender_2_1"};
+					transferToZonesThreshold[] = {0.5,0.5};
+					transferToZonesCoefs[] = {0.7,0.7};
+					memoryPoints[] = {"dmgZone_front"};
+					componentNames[] = {"dmgZone_front","dmgZone_bumper_1"};
+					fatalInjuryCoef = -1;
+					inventorySlotsCoefs[] = {0.3,0.3};
+					inventorySlots[] = {"CivSedanHood","CarRadiator"};
+				};
+				class Reflector_1_1
+				{
+					class Health
+					{
+						hitpoints = 10;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\headlights_glass.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\glass_i_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\glass_i_destruct.rvmat"}}};
+					};
+					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
+					memoryPoints[] = {"dmgZone_lights_1_1"};
+					componentNames[] = {"dmgZone_lights_1_1"};
+					fatalInjuryCoef = -1;
+					inventorySlotsCoefs[] = {1.0};
+					inventorySlots[] = {"Reflector_1_1"};
+				};
+				class Reflector_2_1: Reflector_1_1
+				{
+					transferToZonesNames[] = {"Front","Fender_2_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
+					memoryPoints[] = {"dmgZone_lights_2_1"};
+					componentNames[] = {"dmgZone_lights_2_1"};
+					inventorySlotsCoefs[] = {1.0};
+					inventorySlots[] = {"Reflector_2_1"};
+				};
+				class Back
+				{
+					class Health
+					{
+						hitpoints = 1500;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+					};
+					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","Engine"};
+					transferToZonesCoefs[] = {0.3,0.3,0.1};
+					memoryPoints[] = {"dmgZone_back"};
+					componentNames[] = {"dmgZone_back","dmgZone_bumper_1"};
+					fatalInjuryCoef = -1;
+					inventorySlots[] = {"CivSedanTrunk"};
+				};
+				class Roof
+				{
+					class Health
+					{
+						hitpoints = 700;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+					};
+					memoryPoints[] = {"dmgZone_roof"};
+					componentNames[] = {"dmgZone_roof"};
+					fatalInjuryCoef = -1;
+					inventorySlots[] = {};
+				};
+				class Fender_1_1
+				{
+					class Health
+					{
+						hitpoints = 1200;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+					};
+					transferToZonesNames[] = {"Front","Reflector_1_1","WindowFront"};
+					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5};
+					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4};
+					memoryPoints[] = {"dmgZone_fender_1_1"};
+					componentNames[] = {"dmgZone_fender_1_1"};
+					fatalInjuryCoef = -1;
+					inventorySlotsCoefs[] = {0.3,0.3,0.3};
+					inventorySlots[] = {"Sedan_02_Hood","Sedan_02_Wheel_1_1","Sedan_02_Door_1_1"};
+				};
+				class Fender_1_2: Fender_1_1
+				{
+					transferToZonesNames[] = {"Back","Engine","FuelTank","WindowBack"};
+					transferToZonesThreshold[] = {0.2,0.2,0.2};
+					transferToZonesCoefs[] = {0.3,0.2,0.7};
+					memoryPoints[] = {"dmgZone_fender_1_2"};
+					componentNames[] = {"dmgZone_fender_1_2"};
+					inventorySlotsCoefs[] = {0.3,0.1};
+					inventorySlots[] = {"Sedan_02_Trunk","Sedan_02_Door_1_2"};
+				};
+				class Fender_2_1: Fender_1_1
+				{
+					transferToZonesNames[] = {"Front","Reflector_2_1","WindowFront","Battery"};
+					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5,0.5};
+					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4,0.7};
+					memoryPoints[] = {"dmgZone_fender_2_1"};
+					componentNames[] = {"dmgZone_fender_2_1"};
+					inventorySlotsCoefs[] = {0.3,0.2,31};
+					inventorySlots[] = {"Sedan_02_Hood","Sedan_02_Wheel_2_1","Sedan_02_Door_2_1"};
+				};
+				class Fender_2_2: Fender_1_1
+				{
+					transferToZonesNames[] = {"Back","Engine","FuelTank","WindowBack"};
+					transferToZonesThreshold[] = {0.2,0.2,0.2};
+					transferToZonesCoefs[] = {0.3,0.2,0.7};
+					memoryPoints[] = {"dmgZone_fender_2_2"};
+					componentNames[] = {"dmgZone_fender_2_2"};
+					inventorySlotsCoefs[] = {0.3,0.1};
+					inventorySlots[] = {"Sedan_02_Trunk","Sedan_02_Wheel_2_2"};
+				};
+				class WindowFront
+				{
+					class Health
+					{
+						hitpoints = 150;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\glass.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\glass_damage.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\glass_destruct.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
+					};
+					memoryPoints[] = {"dmgZone_windowFront"};
+					componentNames[] = {"dmgZone_windowFront"};
+					fatalInjuryCoef = -1;
+					inventorySlots[] = {};
+				};
+				class WindowBack: WindowFront
+				{
+					componentNames[] = {"dmgZone_windowBack"};
+					memoryPoints[] = {"dmgZone_windowBack"};
+				};
+				class Engine
+				{
+					class Health
+					{
+						hitpoints = 1000;
+						transferToGlobalCoef = 1;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02.rvmat"}},{0.7,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02.rvmat"}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_destruct.rvmat"}}};
+					};
+					memoryPoints[] = {"dmgZone_engine"};
+					componentNames[] = {"dmgZone_engine"};
+					fatalInjuryCoef = 0.001;
+					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
+					inventorySlots[] = {"CarBattery","SparkPlug","EngineBelt","CarRadiator"};
+				};
+				class FuelTank
+				{
+					class Health
+					{
+						hitpoints = 600;
+						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+					};
+					componentNames[] = {"dmgZone_fuelTank"};
+					fatalInjuryCoef = -1;
+					inventorySlots[] = {};
+				};
 			};
 		};
 		class ObstacleGenerator

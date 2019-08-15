@@ -125,7 +125,7 @@ EffectDef {
    SizeMultiplier 2
    SizeRND 2
    RandomRotDir 1
-   RotMultiplier 180
+   RotMultiplier 45
    StretchMultiplier 1
    StreakFullUV 0
    VelAngle 0

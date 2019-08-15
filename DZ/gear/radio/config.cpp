@@ -2,7 +2,7 @@
 //DeRap: gear_radio\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 01 14:57:00 2019 : 'file' last modified on Mon Jun 03 09:55:14 2019
+//'now' is Thu Aug 15 15:46:33 2019 : 'file' last modified on Tue Aug 13 15:10:47 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -44,8 +44,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_PersonalRadio1";
 		lootTag[] = {"Police","Hunting","Camping","Military_east"};
 		model = "\dz\gear\radio\WalkieTalkie.p3d";
-		SingleUseActions[] = {542,543};
-		ContinuousActions[] = {170};
 		weight = 2400;
 		absorbency = 0.5;
 		itemSize[] = {1,3};
@@ -72,7 +70,7 @@ class CfgVehicles
 			};
 		};
 		simulation = "itemTransmitter";
-		inputRange = 8;
+		inputRange[] = {2.0,5.0,10.0};
 		range = 5000;
 		attachments[] = {"BatteryD"};
 		repairableWithKits[] = {5,7};
@@ -121,9 +119,7 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_BaseRadio0";
 		descriptionShort = "$STR_CfgVehicles_BaseRadio1";
 		model = "\dz\gear\radio\Base_radio_station_g.p3d";
-		SingleUseActions[] = {542,543};
-		ContinuousActions[] = {170};
-		weight = 2400;
+		weight = 14500;
 		absorbency = 0.5;
 		itemSize[] = {5,5};
 		inventorySlot = "Back";
@@ -158,6 +154,7 @@ class CfgVehicles
 				};
 			};
 		};
+		soundAttType = "Small";
 	};
 	class Megaphone: Inventory_Base
 	{
@@ -166,8 +163,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Megaphone1";
 		lootTag[] = {"Police","Military_east"};
 		model = "\dz\gear\radio\megaphone.p3d";
-		SingleUseActions[] = {542,543};
-		ContinuousActions[] = {232};
 		weight = 2400;
 		absorbency = 0.5;
 		itemSize[] = {3,4};
@@ -223,8 +218,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Radio1";
 		model = "\dz\gear\radio\unitra_wilga.p3d";
 		animClass = "Knife";
-		SingleUseActions[] = {542,543};
-		ContinuousActions[] = {171};
 		weight = 1700;
 		itemSize[] = {2,3};
 		fragility = 0.01;

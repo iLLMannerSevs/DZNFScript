@@ -71,20 +71,22 @@ class CharacterCreationMenu extends UIScriptedMenu
 		if( m_Scene && m_Scene.GetIntroCharacter() )
 		{
 			PlayerBase scene_char = m_Scene.GetIntroCharacter().GetCharacterObj();
-			
-			Object obj = scene_char.GetInventory().FindAttachment(InventorySlots.BODY);
-			if( obj )
-				m_TopSelector.SetValue( obj.GetType() );
-			
-			obj = scene_char.GetInventory().FindAttachment(InventorySlots.LEGS);
-			if( obj )
-				m_BottomSelector.SetValue( obj.GetType() );
-			
-			obj = scene_char.GetInventory().FindAttachment(InventorySlots.FEET);
-			if( obj )
-				m_ShoesSelector.SetValue( obj.GetType() );
-			
-			m_SkinSelector.SetValue( scene_char.GetType() );
+			if( scene_char )
+			{
+				Object obj = scene_char.GetInventory().FindAttachment(InventorySlots.BODY);
+				if( obj )
+					m_TopSelector.SetValue( obj.GetType() );
+				
+				obj = scene_char.GetInventory().FindAttachment(InventorySlots.LEGS);
+				if( obj )
+					m_BottomSelector.SetValue( obj.GetType() );
+				
+				obj = scene_char.GetInventory().FindAttachment(InventorySlots.FEET);
+				if( obj )
+					m_ShoesSelector.SetValue( obj.GetType() );
+				
+				m_SkinSelector.SetValue( scene_char.GetType() );
+			}
 		}
 		
 		m_GenderSelector.m_OptionChanged.Insert( GenderChanged );
