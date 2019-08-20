@@ -11,7 +11,7 @@ class Bandana_ColorBase: ItemBase
 	
 	void Bandana_ColorBase()
 	{
-		InsertAgent(eAgents.WOUND_AGENT);
+
 	}
 };
 class BatteryD: ItemBase {};

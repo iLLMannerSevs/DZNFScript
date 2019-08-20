@@ -10,7 +10,7 @@ class BandanaHybrid_ColorBase extends Clothing
 	
 	void BandanaHybrid_ColorBase()
 	{
-		InsertAgent(eAgents.WOUND_AGENT);
+
 	}
 };
 class BandanaHybrid_RedPattern extends BandanaHybrid_ColorBase {};

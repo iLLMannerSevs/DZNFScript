@@ -1,10 +1,13 @@
 class PoisoningMdfr: ModifierBase
 {
-	const int AGENT_THRESHOLD_ACTIVATE = 180;
-	const int AGENT_THRESHOLD_DEACTIVATE = 0;
+	static const int AGENT_THRESHOLD_ACTIVATE = 150;
+	static const int AGENT_THRESHOLD_DEACTIVATE = 0;
 	
-	const float VOMIT_OCCURRENCES_PER_HOUR_MIN = 150;
-	const float VOMIT_OCCURRENCES_PER_HOUR_MAX = 400;
+	static const int VOMIT_OCCURRENCES_PER_HOUR_MIN = 60;
+	static const int VOMIT_OCCURRENCES_PER_HOUR_MAX = 120;
+
+	static const int WATER_DRAIN_FROM_VOMIT = 70;
+	static const int ENERGY_DRAIN_FROM_VOMIT = 55;
 	
 	override void Init()
 	{
@@ -13,7 +16,6 @@ class PoisoningMdfr: ModifierBase
 		m_ID 					= eModifiers.MDF_POISONING;
 		m_TickIntervalInactive 	= DEFAULT_TICK_TIME_INACTIVE;
 		m_TickIntervalActive 	= DEFAULT_TICK_TIME_ACTIVE;
-		
 	}
 	
 	override string GetDebugText()
@@ -66,12 +68,6 @@ class PoisoningMdfr: ModifierBase
 		float chance = Math.Lerp(VOMIT_OCCURRENCES_PER_HOUR_MIN, VOMIT_OCCURRENCES_PER_HOUR_MAX, eased_value );
 		chance = (chance / 3600) * deltaT;
 		
-		/*
-		Print(norm_value);
-		Print(eased_value);
-		Print(chance);
-		*/
-		
 		if( Math.RandomFloat01() < chance )
 		{
 			SymptomBase symptom = player.GetSymptomManager().QueueUpPrimarySymptom(SymptomIDs.SYMPTOM_VOMIT);
@@ -79,6 +75,11 @@ class PoisoningMdfr: ModifierBase
 			if( symptom )
 			{
 				symptom.SetDuration(5);
+
+				if (m_Player.GetStatWater().Get() > (WATER_DRAIN_FROM_VOMIT))
+					m_Player.GetStatWater().Add(-1 * WATER_DRAIN_FROM_VOMIT);
+				if (m_Player.GetStatEnergy().Get() > (ENERGY_DRAIN_FROM_VOMIT))
+					m_Player.GetStatEnergy().Add(-1 * ENERGY_DRAIN_FROM_VOMIT);
 			}
 		}
 	}

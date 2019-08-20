@@ -2,7 +2,7 @@
 //DeRap: gear_consumables\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:46:18 2019 : 'file' last modified on Mon Aug 05 13:33:05 2019
+//'now' is Tue Aug 20 16:33:11 2019 : 'file' last modified on Mon Aug 05 13:33:05 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:49:33 2019 : 'file' last modified on Tue Aug 13 16:23:36 2019
+//'now' is Tue Aug 20 16:37:03 2019 : 'file' last modified on Mon Aug 19 16:29:21 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1456,7 +1456,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackWheel0";
 		descriptionShort = "$STR_CivHatchbackWheel1";
 		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Wheel.p3d";
-		rotationFlags = 4;
+		rotationFlags = 8;
 		inventorySlot[] = {"Hatchback_02_Wheel_1_1","Hatchback_02_Wheel_1_2","Hatchback_02_Wheel_2_1","Hatchback_02_Wheel_2_2"};
 		radiusByDamage[] = {0,0.34,0.3,0.3,0.9998,0.25,0.9999,0.2};
 		radius = 0.304;
@@ -1483,7 +1483,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CivHatchbackDoors_Driver1";
 		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Door_1_1.p3d";
 		inventorySlot = "Hatchback_02_Door_1_1";
-		rotationFlags = 2;
+		rotationFlags = 8;
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1512,6 +1512,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackDoors_CoDriver0";
 		descriptionShort = "$STR_CivHatchbackDoors_CoDriver1";
 		inventorySlot = "Hatchback_02_Door_2_1";
+		rotationFlags = 4;
 	};
 	class Hatchback_02_Door_1_2: Hatchback_02_Door_1_1
 	{
@@ -1519,6 +1520,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackDoors_RearLeft0";
 		descriptionShort = "$STR_CivHatchbackDoors_RearLeft1";
 		inventorySlot = "Hatchback_02_Door_1_2";
+		rotationFlags = 8;
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1547,6 +1549,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackDoors_RearRight0";
 		descriptionShort = "$STR_CivHatchbackDoors_RearRight1";
 		inventorySlot = "Hatchback_02_Door_2_2";
+		rotationFlags = 4;
 	};
 	class Hatchback_02_Hood: Hatchback_02_Door_1_1
 	{
@@ -1554,6 +1557,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackDoors_Hood0";
 		descriptionShort = "$STR_CivHatchbackDoors_Hood1";
 		inventorySlot = "Hatchback_02_Hood";
+		rotationFlags = 2;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1572,6 +1576,7 @@ class CfgVehicles
 		displayName = "$STR_CivHatchbackDoors_Trunk0";
 		descriptionShort = "$STR_CivHatchbackDoors_Trunk1";
 		inventorySlot = "Hatchback_02_Trunk";
+		rotationFlags = 2;
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1985,11 +1990,13 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Wheel1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Wheel.p3d";
 		inventorySlot[] = {"Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
-		rotationFlags = 4;
-		radiusByDamage[] = {0,0.33,0.3,0.28,0.9998,0.24,0.9999,0.2};
+		rotationFlags = 8;
+		radiusByDamage[] = {0,0.33,0.3,0.29,0.9998,0.25,0.9999,0.21};
 		radius = 0.33;
-		friction = 0.97;
+		friction = 0.96;
 		width = 0.16;
+		tyreRollResistance = 0.01;
+		tyreTread = 0.95;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2005,9 +2012,13 @@ class CfgVehicles
 	class Sedan_02_Wheel_Ruined: Sedan_02_Wheel
 	{
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Wheel_ruined.p3d";
-		radius = 0.15;
+		radius = 0.22;
 		friction = -1.0;
 		width = 0.2;
+		tyreRollResistance = 1;
+		tyreRollDrag = 80;
+		tyreRoughness = 1.2;
+		tyreTread = 0.4;
 	};
 	class Sedan_02_Door_1_1: CarDoor
 	{
@@ -2026,7 +2037,7 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
 				};
 				class Doors: Doors
@@ -2045,7 +2056,6 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Door_2_11";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_2_1.p3d";
 		inventorySlot = "Sedan_02_Door_2_1";
-		rotationFlags = 4;
 	};
 	class Sedan_02_Door_1_2: Sedan_02_Door_1_1
 	{
@@ -2062,7 +2072,7 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
 				};
 				class Doors: Doors
@@ -2081,7 +2091,6 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Door_2_21";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_2_2.p3d";
 		inventorySlot = "Sedan_02_Door_2_2";
-		rotationFlags = 4;
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -2091,7 +2100,7 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{"hidden"}},{0.5,{"hidden"}},{0.3,{"hidden"}},{0.0,"hidden"}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
 				};
 				class Doors: Doors
@@ -2111,7 +2120,7 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Hood1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Hood.p3d";
 		inventorySlot = "Sedan_02_Hood";
-		rotationFlags = 4;
+		rotationFlags = 8;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2131,7 +2140,7 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Trunk1";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Trunk.p3d";
 		inventorySlot = "Sedan_02_Trunk";
-		rotationFlags = 4;
+		rotationFlags = 8;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2155,8 +2164,8 @@ class CfgVehicles
 		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
 		dashboardMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2e.rvmat";
 		dashboardMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2.rvmat";
-		frontReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
-		frontReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
+		frontReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\Sedan_02_chrome_e.rvmat";
+		frontReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_chrome.rvmat";
 		brakeReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
 		brakeReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
 		ReverseReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
@@ -2187,7 +2196,7 @@ class CfgVehicles
 		class SimulationModule: SimulationModule
 		{
 			drive = "DRIVE_RWD";
-			airDragCoefficient = 0.815;
+			airDragCoefficient = 0.73;
 			class Steering
 			{
 				increaseSpeed[] = {0,45,60,25,100,10};
@@ -2197,23 +2206,23 @@ class CfgVehicles
 			class Throttle
 			{
 				reactionTime = 0.8;
-				defaultThrust = 0.8;
-				gentleThrust = 0.6;
-				turboCoef = 1.8;
-				gentleCoef = 0.4;
+				defaultThrust = 0.9;
+				gentleThrust = 0.8;
+				turboCoef = 2.8;
+				gentleCoef = 0.5;
 			};
 			class Engine
 			{
-				inertia = 0.2;
+				inertia = 0.23;
 				torqueMax = 82;
 				torqueRpm = 3000;
 				powerMax = 37.0;
 				powerRpm = 5000;
 				rpmIdle = 900;
 				rpmMin = 1000;
-				rpmClutch = 1250;
 				rpmRedline = 5750;
 				rpmMax = 7000;
+				rpmClutch = 1500;
 			};
 			class Gearbox
 			{
@@ -2221,7 +2230,7 @@ class CfgVehicles
 				ratios[] = {3.8,2.12,1.41,0.96};
 				timeToUncoupleClutch = 0.1;
 				timeToCoupleClutch = 0.3;
-				maxClutchTorque = 164;
+				maxClutchTorque = 165;
 			};
 			class Axles: Axles
 			{
@@ -2229,16 +2238,16 @@ class CfgVehicles
 				{
 					maxSteeringAngle = 30;
 					finalRatio = 4.1;
-					brakeBias = 0.5;
-					brakeForce = 4500;
+					brakeBias = 0.6;
+					brakeForce = 3400;
 					wheelHubMass = 5;
-					wheelHubRadius = 0.12;
+					wheelHubRadius = 0.17;
 					class Suspension
 					{
-						swayBar = 1000;
-						stiffness = 20000;
-						compression = 1200;
-						damping = 4800;
+						swayBar = 800;
+						stiffness = 25000;
+						compression = 1600;
+						damping = 5200;
 						travelMaxUp = 0.07;
 						travelMaxDown = 0.08;
 					};
@@ -2261,15 +2270,15 @@ class CfgVehicles
 					maxSteeringAngle = 0;
 					finalRatio = 4.22;
 					brakeBias = 0.4;
-					brakeForce = 3800;
+					brakeForce = 3200;
 					wheelHubMass = 5;
-					wheelHubRadius = 0.15;
+					wheelHubRadius = 0.17;
 					class Suspension
 					{
-						swayBar = 1100;
-						stiffness = 22000;
-						compression = 1400;
-						damping = 5000;
+						swayBar = 600;
+						stiffness = 21500;
+						compression = 1800;
+						damping = 5600;
 						travelMaxUp = 0.1;
 						travelMaxDown = 0.1;
 					};
@@ -2456,7 +2465,7 @@ class CfgVehicles
 					{
 						hitpoints = 150;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\glass.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\glass_damage.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\glass_destruct.rvmat","dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
 					memoryPoints[] = {"dmgZone_windowFront"};
 					componentNames[] = {"dmgZone_windowFront"};

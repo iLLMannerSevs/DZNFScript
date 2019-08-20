@@ -639,15 +639,15 @@ class EntityAI extends Entity
 			// To avoid issues, these items must be excluded from this system of restoring plug state so they don't unintentionally plug to incorrect devices through these invalid IDs.
 			// Therefore their plug state is being restored withing the EEItemAttached() event while being excluded by the following 'if' conditions...
 			
-			bool IsAttachment = false;
+			bool is_attachment = false;
 			
 			if (potential_energy_source)
-				IsAttachment = GetInventory().HasAttachment(potential_energy_source);
+				is_attachment = GetInventory().HasAttachment(potential_energy_source);
 			
-			if ( !IsAttachment	&&	potential_energy_source )
-				IsAttachment = potential_energy_source.GetInventory().HasAttachment(this);
+			if ( !is_attachment	&&	potential_energy_source )
+				is_attachment = potential_energy_source.GetInventory().HasAttachment(this);
 			
-			if ( potential_energy_source  &&  potential_energy_source.HasEnergyManager()  &&  !IsAttachment )
+			if ( potential_energy_source  &&  potential_energy_source.GetCompEM()  &&  potential_energy_source.HasEnergyManager()  &&  !is_attachment )
 			{
 				GetCompEM().PlugThisInto(potential_energy_source); // restore connection
 			}

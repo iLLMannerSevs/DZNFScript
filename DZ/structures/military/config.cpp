@@ -2,7 +2,7 @@
 //DeRap: structures_military\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:48:35 2019 : 'file' last modified on Wed Aug 14 23:42:03 2019
+//'now' is Tue Aug 20 16:35:55 2019 : 'file' last modified on Mon Aug 19 08:41:33 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

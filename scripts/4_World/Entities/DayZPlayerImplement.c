@@ -15,13 +15,17 @@ class DayZPlayerCommandDeathCallback : HumanCommandDeathCallback
 	override void 	OnSimulationEnd()
 	{
 		syncDebugPrint("DZPI::OnSimulationEnd - trying to drop item");
-		EntityAI itemInHands = m_pPlayer.GetHumanInventory().GetEntityInHands();
-		if( itemInHands )
+		
+		if (GetGame().IsServer() || !GetGame().IsMultiplayer())
 		{
-			if( m_pPlayer.CanDropEntity(itemInHands) )
+			EntityAI itemInHands = m_pPlayer.GetHumanInventory().GetEntityInHands();
+			if (itemInHands)
 			{
-				string item_name = itemInHands.GetType();
-				m_pPlayer.ServerReplaceItemInHandsWithNewElsewhere(new DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(itemInHands, item_name, m_pPlayer, true));
+				if (m_pPlayer.CanDropEntity(itemInHands))
+				{
+					string item_name = itemInHands.GetType();
+					m_pPlayer.ServerReplaceItemInHandsWithNewElsewhere(new DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(itemInHands, item_name, m_pPlayer, false));
+				}
 			}
 		}
 	}

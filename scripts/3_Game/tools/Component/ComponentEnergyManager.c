@@ -722,18 +722,18 @@ class ComponentEnergyManager : Component
 			return false;
 		}
 		
-		int five_hundred = 500; // safe check to prevent a mysterious infinite cycle (DZ-1412)
+		int cycle_limit = 500; // Sanity check to definitely avoid infinite cycles
 		
 		while ( gathered_energy < energy_usage ) // Look for energy source if we don't have enough stored energy
 		{
 			// Safetycheck!
-			if (five_hundred > 0)
+			if (cycle_limit > 0)
 			{
-				five_hundred--;
+				cycle_limit--;
 			}
 			else
 			{
-				DPrint("Energy Manager ERROR: The 'five_hundred' safety check had to be activated to prevent game freeze. Dumping debug information...");
+				DPrint("Energy Manager ERROR: The 'cycle_limit' safety break had to be activated to prevent possible game freeze. Dumping debug information...");
 				Print(m_ThisEntityAI);
 				Print(this);
 				Print(energy_source);
@@ -753,13 +753,13 @@ class ComponentEnergyManager : Component
 					Print(energy_source.GetPosition());
 				}
 				
-				Print("End of the 'five_hundred' safety ^ ");
+				Print("End of the 'cycle_limit' safety break ^ ");
 				
 				return false;
 			}
 			// ^ Safetycheck!
 			
-			if ( energy_source  &&  !energy_source.IsRuined()  &&  energy_source.GetCompEM()  &&  energy_source.GetCompEM().IsSwitchedOn()  &&  energy_source.GetCompEM().CheckWetness() )
+			if ( energy_source  &&  energy_source != m_ThisEntityAI  &&  !energy_source.IsRuined()  &&  energy_source.GetCompEM()  &&  energy_source.GetCompEM().IsSwitchedOn()  &&  energy_source.GetCompEM().CheckWetness() )
 			{
 				gathered_energy = gathered_energy + energy_source.GetCompEM().GetEnergy();
 				energy_source = energy_source.GetCompEM().GetEnergySource();
@@ -829,7 +829,7 @@ class ComponentEnergyManager : Component
 	//! Energy manager: Consumes the given amount of energy. If there is not enough of stored energy in this device, then it tries to take it from its power source, if any exists. Returns true if the requested amount of energy was consumed. Otherwise it returns false.
 	bool ConsumeEnergy(float amount)
 	{
-		return FindAndConsumeEnergy(amount, true);
+		return FindAndConsumeEnergy(m_ThisEntityAI, amount, true);
 	}
 
 	//! Energy manager: Returns true if this device is working right now.
@@ -1588,7 +1588,7 @@ class ComponentEnergyManager : Component
 	}
 	
 	// Tries to consume the given amount of energy. If there is none in this device, then it tries to take it from some power source.
-	protected bool FindAndConsumeEnergy(float amount, bool ignore_switch_state = false)
+	protected bool FindAndConsumeEnergy(EntityAI original_caller, float amount, bool ignore_switch_state = false)
 	{
 		if ( (ignore_switch_state  ||  IsSwitchedOn())  &&  !m_ThisEntityAI.IsRuined() )
 		{
@@ -1597,7 +1597,12 @@ class ComponentEnergyManager : Component
 			if ( available_energy < 0  &&  IsPlugged() )
 			{
 				// This devices does not has enough of stored energy, therefore it will take it from its power source (which can be a chain of cable reels)
-				return GetEnergySource().GetCompEM().FindAndConsumeEnergy( -available_energy );
+				EntityAI next_power_source = GetEnergySource();
+				
+				if (next_power_source  &&  next_power_source != original_caller) // Prevents infinite loop if the power source is the original caller itself
+				{
+					return next_power_source.GetCompEM().FindAndConsumeEnergy( original_caller, -available_energy );
+				}
 			}
 			
 			if ( available_energy >= 0)

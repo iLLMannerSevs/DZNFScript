@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:46:10 2019 : 'file' last modified on Fri Aug 09 07:09:07 2019
+//'now' is Tue Aug 20 16:33:02 2019 : 'file' last modified on Tue Aug 20 10:51:14 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1298,6 +1298,7 @@ class cfgLiquidDefinitions
 			nutritionalIndex = 55;
 			toxicity = 0.3;
 			digestibility = 2;
+			agents = 16;
 		};
 	};
 	class Vodka
@@ -1337,12 +1338,13 @@ class cfgLiquidDefinitions
 		flammability = 50;
 		class Nutrition
 		{
-			fullnessIndex = 100;
+			fullnessIndex = 1;
 			energy = 5;
 			water = 0;
 			nutritionalIndex = 75;
 			toxicity = 1;
 			digestibility = 2;
+			agents = 16;
 		};
 	};
 	class Diesel
@@ -1358,6 +1360,7 @@ class cfgLiquidDefinitions
 			nutritionalIndex = 75;
 			toxicity = 1;
 			digestibility = 2;
+			agents = 16;
 		};
 	};
 	class Saline

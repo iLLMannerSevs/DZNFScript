@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\AKM\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:49:44 2019 : 'file' last modified on Tue Aug 13 08:21:45 2019
+//'now' is Tue Aug 20 16:37:17 2019 : 'file' last modified on Tue Aug 13 08:21:45 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

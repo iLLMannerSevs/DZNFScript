@@ -938,7 +938,7 @@ class EmoteManager
 				syncDebugPrint("EmoteManager::KillPlayer - char already dead, using alternative drop method");
 				string item_name = itemInHands.GetType();
 				
-				m_Player.ServerReplaceItemInHandsWithNewElsewhere(new DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(itemInHands, item_name, m_Player, true));
+				m_Player.ServerReplaceItemInHandsWithNewElsewhere(new DestroyItemInCorpsesHandsAndCreateNewOnGndLambda(itemInHands, item_name, m_Player, false));
 			}
 			else
 			{

@@ -52,6 +52,8 @@ class PlayerConstants
 	static const float LOW_WATER_THRESHOLD 						= PlayerConstants.SL_WATER_LOW;	//threshold from which water affects health
 
 	static const float LOW_ENERGY_THRESHOLD 					= 200;	//threshold from which energy affects health
+	static const float WATER_DRAIN_FROM_VOMIT					= -150;
+	static const float ENERGY_DRAIN_FROM_VOMIT					= -150;
 
 	//--------------------------------------------------------
 	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle
@@ -140,7 +142,7 @@ class PlayerConstants
 	
 	static const float UNCONSCIOUS_IN_WATER_TIME_LIMIT_TO_DEATH	= 20;	// how long can player survive while unconscious when in water in secs 
 	//----------------------------------------------------------
-	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -12; 		// amount of blood loss per second from one bleeding source 
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -24; 		// amount of blood loss per second from one bleeding source 
 	static const float BLEEDING_SOURCE_FLOW_MODIFIER_MEDIUM = 0.6; 		// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
 	static const float BLEEDING_SOURCE_FLOW_MODIFIER_LOW	= 0.1; 	// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
 	static const int BLEEDING_SOURCE_DURATION_NORMAL = 300; 	// in seconds, how long will bleeding source exist until disapearing

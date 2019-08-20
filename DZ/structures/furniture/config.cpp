@@ -2,7 +2,7 @@
 //DeRap: structures_furniture\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:48:11 2019 : 'file' last modified on Wed Aug 14 23:07:13 2019
+//'now' is Tue Aug 20 16:35:24 2019 : 'file' last modified on Tue Aug 20 14:03:52 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -29,11 +29,5 @@ class CfgNonAIVehicles
 		shadow = "false";
 		proxyDisplayName = "Wardrobe";
 		simulation = "alwaysshow";
-		class Cargo
-		{
-			itemsCargoSize[] = {6,3};
-			allowOwnedCargoManipulation = 1;
-			openable = "true";
-		};
 	};
 };

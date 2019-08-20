@@ -2,7 +2,7 @@
 //DeRap: weapons_projectiles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 15 15:49:51 2019 : 'file' last modified on Sat Jul 20 12:12:22 2019
+//'now' is Tue Aug 20 16:37:25 2019 : 'file' last modified on Fri Aug 16 13:01:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1150,7 +1150,7 @@ class CfgAmmo
 			bleedThreshold = 1.0;
 			class Health
 			{
-				damage = 45;
+				damage = 18;
 			};
 			class Blood
 			{
@@ -1158,7 +1158,7 @@ class CfgAmmo
 			};
 			class Shock
 			{
-				damage = 0;
+				damage = 25;
 			};
 		};
 		class NoiseHit

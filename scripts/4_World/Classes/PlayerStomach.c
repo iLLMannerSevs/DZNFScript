@@ -146,6 +146,7 @@ class PlayerStomach
 		{
 			m_StomachContents.Remove(m_StomachContents.Count() - 1);
 		}
+		m_StomachVolume = 0.0;
 	}
 	
 	void SetAgentTransferFilter(int filter_agents)
