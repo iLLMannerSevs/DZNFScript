@@ -2,7 +2,7 @@
 //DeRap: gear_books\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Aug 20 16:33:06 2019 : 'file' last modified on Mon Aug 05 13:31:08 2019
+//'now' is Thu Aug 22 23:15:48 2019 : 'file' last modified on Mon Aug 05 22:31:08 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

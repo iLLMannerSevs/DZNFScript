@@ -2,7 +2,7 @@
 //DeRap: characters_pants\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Aug 20 16:32:44 2019 : 'file' last modified on Mon Jul 29 15:56:29 2019
+//'now' is Thu Aug 22 23:15:31 2019 : 'file' last modified on Tue Jul 30 00:56:29 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

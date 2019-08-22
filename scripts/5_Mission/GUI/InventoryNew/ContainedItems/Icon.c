@@ -934,9 +934,9 @@ class Icon: LayoutHolder
 					ToRefresh( this, icon );
 				}
 			}
-			else if( GameInventory.CanForceSwapEntities( receiver_entity, w_entity, forceswap_loc ) )
+			else if( GameInventory.CanForceSwapEntities( w_entity, receiver_entity, forceswap_loc ) )
 			{
-				GetGame().GetPlayer().PredictiveForceSwapEntities( receiver_entity, w_entity, forceswap_loc );
+				GetGame().GetPlayer().PredictiveForceSwapEntities( w_entity, receiver_entity, forceswap_loc );
 			}
 			else
 			{

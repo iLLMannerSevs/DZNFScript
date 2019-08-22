@@ -2,7 +2,7 @@
 //DeRap: animals\gallus_gallus_domesticus\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Aug 20 16:31:50 2019 : 'file' last modified on Tue Aug 20 13:53:28 2019
+//'now' is Thu Aug 22 23:14:56 2019 : 'file' last modified on Tue Aug 20 22:53:28 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

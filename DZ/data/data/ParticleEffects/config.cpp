@@ -2,7 +2,7 @@
 //DeRap: dz\data\ParticleEffects\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Aug 20 16:33:05 2019 : 'file' last modified on Tue Aug 20 10:51:22 2019
+//'now' is Thu Aug 22 23:15:47 2019 : 'file' last modified on Tue Aug 20 19:51:22 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

@@ -55,7 +55,10 @@ class DayZPlayerImplementThrowing
 				float ud = pHcw.GetBaseAimingAngleUD();
 				vector aimOrientation = m_Player.GetOrientation();
 				aimOrientation[0] = aimOrientation[0] + lr;
-				aimOrientation[1] = aimOrientation[1] + ud;
+				
+				//add 5 deg 
+				aimOrientation[1] = aimOrientation[1] + ud + 5;
+
 
 				m_Player.GetHumanInventory().ThrowEntity(pEntityInHands, aimOrientation.AnglesToVector(), c_fThrowingForceMin + m_fThrowingForce01 * (c_fThrowingForceMax - c_fThrowingForceMin));
 				return;
@@ -166,6 +169,6 @@ class DayZPlayerImplementThrowing
 	private float m_fThrowingForce01;
 	
 	private const float c_fThrowingForceMin = 20.0;
-	private const float c_fThrowingForceMax = 75.0;
+	private const float c_fThrowingForceMax = 90.0;
 	private const float c_fThrowingForceCoef = 1.0;
 }

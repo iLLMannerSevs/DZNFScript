@@ -2,7 +2,7 @@ class WaterBottle extends Bottle_Base
 {
 	void WaterBottle()
 	{
-
+		InsertAgent(eAgents.CHOLERA, 1);
 	}
 	
 	void ~WaterBottle()
@@ -64,5 +64,14 @@ class WaterBottle extends Bottle_Base
 	override bool IsOpen()
 	{
 		return true;
+	}
+	
+	override void EEOnCECreate()
+	{
+		int rand = Math.RandomInt(0, 10);
+		if (rand > 5)
+		{
+			InsertAgent(eAgents.CHOLERA, 1);
+		}
 	}
 }

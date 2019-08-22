@@ -2,7 +2,7 @@
 //DeRap: weapons_shotguns\saiga\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Aug 20 16:37:26 2019 : 'file' last modified on Mon Aug 12 12:21:58 2019
+//'now' is Thu Aug 22 23:18:44 2019 : 'file' last modified on Mon Aug 12 21:21:58 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
