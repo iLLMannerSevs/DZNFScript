@@ -31,13 +31,18 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		ref array<string> sort_options = { "#server_browser_column_host A-Z", "#server_browser_column_host Z-A", "#server_browser_entry_empty - #server_details_popularity_full", "#server_details_popularity_full - #server_browser_entry_empty" };
 		ref array<string> ping_options = { "#server_browser_disabled", "<30", "<50", "<100", "<200", "<300", "<500" };
 		ref array<string> three_options = { "#server_browser_disabled", "#server_browser_show", "#server_browser_hide" };
+		ref array<string> two_options = { "#server_browser_disabled", "#server_browser_show" };
 		
 		m_SearchByName				= EditBoxWidget.Cast( root.FindAnyWidget( "search_name_setting_option" ) );
 		m_SearchByIP				= EditBoxWidget.Cast( root.FindAnyWidget( "search_ip_setting_option" ) );
 		
 		m_RegionFilter				= new OptionSelectorMultistate( root.FindAnyWidget( "region_setting_option" ), 0, this, false, region_options );
 		m_PingFilter				= new OptionSelectorMultistate( root.FindAnyWidget( "ping_setting_option" ), 0, this, false, ping_options );
+		#ifdef PLATFORM_CONSOLE
+		m_FavoritedFilter			= new OptionSelectorMultistate( root.FindAnyWidget( "favorites_setting_option" ), 0, this, false, two_options );
+		#else
 		m_FavoritedFilter			= new OptionSelector( root.FindAnyWidget( "favorites_setting_option" ), 0, this, false );
+		#endif
 		m_FriendsPlayingFilter		= new OptionSelector( root.FindAnyWidget( "friends_setting_option" ), 0, this, false );
 		m_PreviouslyPlayedFilter	= new OptionSelector( root.FindAnyWidget( "prev_played_setting_option" ), 0, this, false );
 		m_FullServerFilter			= new OptionSelector( root.FindAnyWidget( "full_server_setting_option" ), 0, this, false );
@@ -540,15 +545,9 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		}
 		if( m_FavoritedFilter.IsSet() )
 		{
-			Print("m_FavoritedFilter: "+ m_FavoritedFilter.GetStringValue());
-			if ( m_FavoritedFilter.GetStringValue() == "Show" )
-			{
-				input.SetFavorited( true );
-			}
-			else
-			{
-				input.SetFavorited( false );
-			}
+			#ifdef PLATFORM_CONSOLE
+			m_Tab.AddFavoritesToFilter( input );
+			#endif
 		}
 		if( m_FriendsPlayingFilter.IsSet() )
 		{

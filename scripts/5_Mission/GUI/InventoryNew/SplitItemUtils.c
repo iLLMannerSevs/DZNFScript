@@ -38,7 +38,7 @@ class SplitItemUtils
 		}
 		else if( stackable != 0 && stackable < item_base.GetQuantity() )
 		{
-			item_base.SplitIntoStackMaxToInventoryLocation( dst );
+			item_base.SplitIntoStackMaxToInventoryLocationClient( dst );
 		}
 	}
 }

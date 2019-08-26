@@ -1950,6 +1950,7 @@ class DayZGame extends CGame
 			{
 				OnlineServices.SetBiosUser(selected_user);
 				SetPlayerName( selected_user.GetName() );
+				m_UserFOV = GetUserFOVFromConfig();
 				#ifdef PLATFORM_CONSOLE
 				SetPlayerGameName( selected_user.GetName() );
 				user_manager.GetUserDatabaseIdAsync();

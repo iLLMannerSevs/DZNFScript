@@ -73,9 +73,12 @@ class OptionSelectorSlider extends OptionSelectorBase
 	{
 		if( m_ParentClass )
 		{
+			OnFocus( w, x, y );
 			m_ParentClass.OnFocus( m_Root.GetParent(), -1, m_SelectorType );
+			#ifdef PLATFORM_WINDOWS
 			m_ParentClass.OnMouseEnter( m_Root.GetParent().GetParent(), x, y );
 			ColorHighlight(w);
+			#endif
 		}
 		
 		return true;
@@ -85,8 +88,12 @@ class OptionSelectorSlider extends OptionSelectorBase
 	{
 		if( m_ParentClass )
 		{
+			#ifdef PLATFORM_WINDOWS
 			m_ParentClass.OnMouseLeave( m_Root.GetParent().GetParent(), enterW, x, y );
 			ColorNormal( w );
+			#endif
+			OnFocusLost( w, x, y );
+			SetFocus( null );
 		}
 			
 		return true;
@@ -123,7 +130,6 @@ class OptionSelectorSlider extends OptionSelectorBase
 	override bool OnFocus( Widget w, int x, int y )
 	{
 		#ifdef PLATFORM_CONSOLE
-		Print("Slider Option OnFocus: "+ w.GetName());
 		if( GetFocus() != m_Slider )
 		{
 			SetFocus( m_Slider );

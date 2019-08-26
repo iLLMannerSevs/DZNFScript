@@ -556,6 +556,7 @@ class Hud: Managed
 	void Show(bool show) {}
 	void UpdateBloodName() {}
 	void SetTemperature( string temp );
+	void SetStaminaBarVisibility( bool show );
 	void Update( float timeslice ){}
 	bool IsXboxDebugCursorEnabled();
 	void ShowVehicleInfo();

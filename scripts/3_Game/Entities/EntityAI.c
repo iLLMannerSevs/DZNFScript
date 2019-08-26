@@ -726,7 +726,7 @@ class EntityAI extends Entity
 	 **/
 	bool CanPutAsAttachment (EntityAI parent)
 	{
-		return true;
+		return !IsHologram();
 	}
 	/**@fn		CanReleaseAttachment
 	 * @brief calls this->CanReleaseAttachment(attachment)
@@ -780,7 +780,7 @@ class EntityAI extends Entity
 	 **/
 	bool CanPutInCargo (EntityAI parent)
 	{
-		return true;
+		return !IsHologram();
 	}
 
 	/**@fn		CanSwapItemInCargo
@@ -852,6 +852,16 @@ class EntityAI extends Entity
 		return true;
 	}
 	
+	bool IsBeingPlaced()
+	{
+		return false;
+	}
+	
+	bool IsHologram()
+	{
+		return false;
+	}
+	
 	bool CanSaveItemInHands (EntityAI item_in_hands)
 	{
 		return true;
@@ -865,7 +875,7 @@ class EntityAI extends Entity
 	 **/
 	bool CanPutIntoHands (EntityAI parent)
 	{
-		return true;
+		return !IsHologram();
 	}
 
 	/**@fn		CanReleaseFromHands

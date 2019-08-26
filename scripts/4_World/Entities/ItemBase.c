@@ -145,6 +145,7 @@ class ItemBase extends InventoryItem
 		
 		RegisterNetSyncVariableBool("m_IsBeingPlaced");
 		RegisterNetSyncVariableBool("m_IsTakeable");
+		RegisterNetSyncVariableBool("m_IsHologram");
 	}
 
 	void InitializeActions()
@@ -656,7 +657,7 @@ class ItemBase extends InventoryItem
 		return false;
 	}
 	
-	bool IsBeingPlaced()
+	override bool IsBeingPlaced()
 	{
 		return m_IsBeingPlaced;
 	}
@@ -667,7 +668,7 @@ class ItemBase extends InventoryItem
 		SetSynchDirty();
 	}
 	
-	bool IsHologram()
+	override bool IsHologram()
 	{
 		return m_IsHologram;
 	}
@@ -680,6 +681,7 @@ class ItemBase extends InventoryItem
 	void SetIsHologram( bool is_hologram )
 	{
 		m_IsHologram = is_hologram;
+		SetSynchDirty();
 	}
 	/*
 	protected float GetNutritionalEnergy()

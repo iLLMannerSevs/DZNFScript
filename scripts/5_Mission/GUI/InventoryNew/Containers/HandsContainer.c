@@ -1217,7 +1217,7 @@ class HandsContainer: Container
 			return false;
 		}
 		EntityAI item = GetItemPreviewItem( w );
-		if( !item )
+		if( !item || !item_in_hands )
 		{
 			return false;
 		}

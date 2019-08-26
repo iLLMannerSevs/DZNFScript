@@ -635,7 +635,7 @@ class GameInventory
 	bool CanAddEntityInto (notnull EntityAI item, FindInventoryLocationType flags = FindInventoryLocationType.ANY)
 	{
 		InventoryLocation loc = new InventoryLocation;
-		return FindFreeLocationFor(item, flags, loc);
+		return FindFreeLocationFor(item, flags, loc)  &&  !item.IsHologram();
 	}
 	
 	/**

@@ -47,16 +47,29 @@ class StaminaConsumers
 		{
 			StaminaConsumer sc = m_StaminaConsumers.Get(consumer);
 			
-			if( isDepleted && curStamina < sc.GetThreshold() )
+			if ( consumer != EStaminaConsumers.SPRINT )
 			{
-				sc.SetState(false);
-				return false;
+				if( (isDepleted || curStamina < sc.GetThreshold()) )
+				{
+					sc.SetState(false);
+					return false;
+				}
 			}
-
-			if( (curStamina >= sc.GetThreshold() && sc.GetState()) || (!isDepleted && sc.GetState()) )
+			else
 			{
-				sc.SetState(true);
-				return true;
+				if( !isDepleted )
+				{
+					if ( sc.GetState() )
+					{
+						sc.SetState(true);
+						return true;
+					}
+				}
+				else
+				{
+					sc.SetState(false);
+					return false;
+				}
 			}
 
 			if( curStamina > sc.GetThreshold() )
@@ -425,7 +438,7 @@ class StaminaHandler
 		//! stamina consumers registration
 		m_StaminaConsumers = new StaminaConsumers;
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.HOLD_BREATH, GameConstants.STAMINA_HOLD_BREATH_THRESHOLD);
-		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.SPRINT, GameConstants.STAMINA_MIN_CAP - 1);
+		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.SPRINT, GameConstants.STAMINA_MIN_CAP + 15);
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.JUMP, GameConstants.STAMINA_JUMP_THRESHOLD);
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.VAULT, GameConstants.STAMINA_VAULT_THRESHOLD);
 		m_StaminaConsumers.RegisterConsumer(EStaminaConsumers.CLIMB, GameConstants.STAMINA_CLIMB_THRESHOLD);

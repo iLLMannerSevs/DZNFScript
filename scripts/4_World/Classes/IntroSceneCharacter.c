@@ -24,6 +24,11 @@ class IntroSceneCharacter extends Managed
 		m_CharacterId = GameConstants.DEFAULT_CHARACTER_MENU_ID;
 	}
 	
+	void ~IntroSceneCharacter()
+	{
+		CharacterUnload();
+	}
+	
 	bool IsDefaultCharacter()
 	{
 		return m_CharacterId == GameConstants.DEFAULT_CHARACTER_MENU_ID;
@@ -219,7 +224,8 @@ class IntroSceneCharacter extends Managed
 	void CreateDefaultCharacter()
 	{
 		CharacterUnload();
-		m_CharacterObj = PlayerBase.Cast( m_CharacterDta.CreateCharacterPerson( -1 ) );
+		Man man = m_CharacterDta.CreateCharacterPerson( -1 );
+		m_CharacterObj = PlayerBase.Cast( man );
 		if(m_CharacterObj)
 		{
 			m_CharacterObj.PlaceOnSurface();
@@ -272,8 +278,6 @@ class IntroSceneCharacter extends Managed
 	void LoadCharacterData(vector char_pos, vector char_rot)
 	{
 		m_CharacterDta = g_Game.GetMenuData();
-		m_CharacterDta.ClearCharacters();
-		m_CharacterDta.LoadCharactersLocal();
 		m_CharacterPos = char_pos;
 		m_CharacterRot = char_rot;
 		

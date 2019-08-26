@@ -564,22 +564,25 @@ class MissionGameplay extends MissionBase
 					PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
 					//GetUApi().GetInputByName("UAUIGesturesOpen")->Unlock();
 				}
-				else if( IsPaused() && !g_Game.GetUIManager().ScreenFadeVisible() )
+				else if( IsPaused() )
 				{
-					if( input.LocalPress("UAUIMenu",false) )
+					if( !g_Game.GetUIManager().ScreenFadeVisible() )
 					{
-						Continue();
+						if( input.LocalPress("UAUIMenu",false) )
+						{
+							Continue();
+						}
+						else if( input.LocalPress( "UAUIBack", false ) )
+						{
+							Continue();
+						}
 					}
-					if( input.LocalPress( "UAUIBack", false ) )
+					else if( input.LocalPress( "UAUIBack", false ) )
 					{
 						InGameMenuXbox	menu_xb	= InGameMenuXbox.Cast( GetGame().GetUIManager().GetMenu() );
 						if( menu_xb && menu_xb.IsOnlineOpen() )
 						{
 							menu_xb.CloseOnline();
-						}
-						else
-						{
-							Continue();
 						}
 					}
 				}

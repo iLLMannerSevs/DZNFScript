@@ -114,6 +114,8 @@ class VicinityItemManager
 			if ( entity_ai == player ){continue;}			
 			if ( entity_ai.IsParticle() ){continue;}			
 			if ( entity_ai.IsScriptedLight() ){continue;}
+			if ( entity_ai.IsBeingPlaced() ){continue;}
+			if ( entity_ai.IsHologram() ){continue;}
 			
 			if ( entity_ai.IsMan() || entity_ai.IsZombie() || entity_ai.IsZombieMilitary() )
 			{
@@ -161,6 +163,8 @@ class VicinityItemManager
 			if ( entity_ai == player ){continue;}	
 			if ( entity_ai.IsParticle() ){continue;}			
 			if ( entity_ai.IsScriptedLight() ){continue;}
+			if ( entity_ai.IsBeingPlaced() ){continue;}
+			if ( entity_ai.IsHologram() ){continue;}
 			if ( !Class.CastTo( item, object_in_radius) ){continue;}
 			if ( !item.IsTakeable() ){continue;}
 			if ( filtered_objects.Find( object_in_radius ) == INDEX_NOT_FOUND )
@@ -190,7 +194,9 @@ class VicinityItemManager
 			if ( entity_ai == player ){continue;}	
 			if ( entity_ai.IsParticle() ){continue;}			
 			if ( entity_ai.IsScriptedLight() ){continue;}
-			if ( !Class.CastTo( item, object_in_cone) && !object_in_cone.IsTransport() ){continue;}
+			if ( entity_ai.IsBeingPlaced() ){continue;}
+			if ( entity_ai.IsHologram() ){continue;}
+			if ( !Class.CastTo( item, object_in_cone) && !object_in_cone.IsTransport() && !PASBroadcaster.Cast( object_in_cone ) ){continue;}
 			if ( item && !item.IsTakeable() ){continue;}
 			if ( filtered_objects.Find( object_in_cone ) == INDEX_NOT_FOUND )
 			{

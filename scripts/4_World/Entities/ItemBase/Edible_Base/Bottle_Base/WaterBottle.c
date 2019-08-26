@@ -2,7 +2,7 @@ class WaterBottle extends Bottle_Base
 {
 	void WaterBottle()
 	{
-		InsertAgent(eAgents.CHOLERA, 1);
+
 	}
 	
 	void ~WaterBottle()

@@ -2731,6 +2731,12 @@ class PlayerBase extends ManBase
 		}
 	}
 
+	void StaminaHUDNotifier( bool show )
+	{
+		if (m_Hud)
+			m_Hud.SetStaminaBarVisibility( show );
+	}
+	
 	override void DepleteStamina(EStaminaModifiers modifier)
 	{
 		if( GetStaminaHandler() )
@@ -2741,7 +2747,12 @@ class PlayerBase extends ManBase
 	{
 		if(!GetStaminaHandler()) return false;
 		
-		return (GetStaminaHandler().HasEnoughStaminaFor(consumer) /*&& !IsOverloaded()*/ && !IsRestrained() && !IsInFBEmoteState());
+		bool val = (GetStaminaHandler().HasEnoughStaminaFor(consumer) /*&& !IsOverloaded()*/ && !IsRestrained() && !IsInFBEmoteState());
+		
+		if (!val)
+			StaminaHUDNotifier( false );
+
+		return val;
 	}
 	
 	override bool CanClimb( int climbType )

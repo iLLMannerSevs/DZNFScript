@@ -2,7 +2,7 @@
 //DeRap: characters_gloves\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 22 23:15:22 2019 : 'file' last modified on Thu Aug 15 09:11:59 2019
+//'now' is Mon Aug 26 15:27:48 2019 : 'file' last modified on Thu Aug 15 00:11:59 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

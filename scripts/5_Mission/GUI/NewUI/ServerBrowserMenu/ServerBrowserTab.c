@@ -316,6 +316,11 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	
 	}
 	
+	void AddFavoritesToFilter( ref GetServersInput input )
+	{
+		m_Menu.AddFavoritesToFilter( input );
+	}
+	
 	void RefreshList()
 	{
 		m_Menu.SetServersLoadingTab( m_TabType );
@@ -435,14 +440,10 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			}
 		}
 		
+		#ifndef PLATFORM_CONSOLE
 		if( m_Filters.FavoriteIsSet() )
 		{
-			#ifdef PLATFORM_CONSOLE
-			string server_id = result.m_HostIp + ":" + result.m_HostPort;
-			bool is_fav = m_Menu.IsFavorited( server_id );
-			#else
 			bool is_fav = result.m_Favorite;
-			#endif
 			
 			if ( !is_fav && m_Filters.m_Options["m_FavoritedFilter"] == "#server_browser_show" )
 			{
@@ -454,7 +455,8 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 				return false;
 			}
 		}
-		
+		#endif
+
 		if( m_Filters.PreviouslyIsSet() )
 		{
 			bool is_visited = g_Game.IsVisited( result.m_HostIp, result.m_HostPort );
@@ -464,7 +466,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 				return false;
 			}
 			
-			if ( is_fav && m_Filters.m_Options["m_FavoritedFilter"] == "#server_browser_hide" )
+			if ( is_visited && m_Filters.m_Options["m_PreviouslyPlayedFilter"] == "#server_browser_hide" )
 			{
 				return false;
 			}
