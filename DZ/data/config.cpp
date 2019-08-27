@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:28:15 2019 : 'file' last modified on Tue Aug 20 10:51:14 2019
+//'now' is Tue Aug 27 16:02:47 2019 : 'file' last modified on Mon Aug 26 16:15:22 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2099,6 +2099,21 @@ class CfgVehicles
 						damage = 1;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 1;
+					};
+					class Blood
+					{
+						damage = 1;
+					};
+					class Shock
+					{
+						damage = 1;
+					};
+				};
 			};
 		};
 	};
@@ -2268,6 +2283,21 @@ class CfgNonAIVehicles
 			class GlobalArmor
 			{
 				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class FragGrenade
 				{
 					class Health
 					{

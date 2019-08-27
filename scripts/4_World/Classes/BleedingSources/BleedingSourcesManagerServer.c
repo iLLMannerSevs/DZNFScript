@@ -209,4 +209,8 @@ class BleedingSourcesManagerServer extends BleedingSourcesManagerBase
 		return true;
 	}
 	
+	void ~BleedingSourcesManagerServer()
+	{
+		RemoveAllSources();
+	}
 }

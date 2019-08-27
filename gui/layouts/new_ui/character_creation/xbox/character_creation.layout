@@ -666,7 +666,7 @@ FrameWidgetClass character_creation_root {
          inheritalpha 0
          ignorepointer 1
          position 0 0
-         size 36 36
+         size 38 38
          valign center_ref
          hexactpos 1
          vexactpos 1
@@ -694,9 +694,9 @@ FrameWidgetClass character_creation_root {
          hexactsize 1
          vexactsize 1
          text "#layout_character_creation_toolbar_randomize"
-         font "gui/fonts/sdf_MetronBook24"
+         font "gui/fonts/sdf_MetronLight24"
          "exact text" 1
-         "exact text size" 30
+         "exact text size" 22
          "size to text h" 1
          "size to text v" 0
          "text halign" center
@@ -730,7 +730,7 @@ FrameWidgetClass character_creation_root {
          clipchildren 0
          inheritalpha 0
          ignorepointer 1
-         size 36 36
+         size 38 38
          valign center_ref
          hexactpos 1
          vexactpos 1
@@ -758,9 +758,9 @@ FrameWidgetClass character_creation_root {
          hexactsize 1
          vexactsize 1
          text "#layout_character_creation_toolbar_select"
-         font "gui/fonts/sdf_MetronBook24"
+         font "gui/fonts/sdf_MetronLight24"
          "exact text" 1
-         "exact text size" 30
+         "exact text size" 22
          "size to text h" 1
          "size to text v" 0
          "text halign" center
@@ -793,7 +793,7 @@ FrameWidgetClass character_creation_root {
          clipchildren 0
          inheritalpha 0
          ignorepointer 1
-         size 36 36
+         size 38 38
          valign center_ref
          hexactpos 1
          vexactpos 1
@@ -821,9 +821,9 @@ FrameWidgetClass character_creation_root {
          hexactsize 1
          vexactsize 1
          text "#layout_character_creation_toolbar_back"
-         font "gui/fonts/sdf_MetronBook24"
+         font "gui/fonts/sdf_MetronLight24"
          "exact text" 1
-         "exact text size" 30
+         "exact text size" 22
          "size to text h" 1
          "size to text v" 0
          "text halign" center

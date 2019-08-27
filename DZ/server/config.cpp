@@ -2,7 +2,7 @@
 //DeRap: server_data\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:28:55 2019 : 'file' last modified on Fri Jul 19 23:31:47 2019
+//'now' is Tue Aug 27 16:03:22 2019 : 'file' last modified on Fri Jul 19 23:31:47 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

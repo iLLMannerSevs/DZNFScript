@@ -2,7 +2,7 @@
 //DeRap: weapons_projectiles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:32:06 2019 : 'file' last modified on Fri Aug 16 13:01:41 2019
+//'now' is Tue Aug 27 16:06:38 2019 : 'file' last modified on Tue Aug 27 10:43:59 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -268,6 +268,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 99;
@@ -512,6 +513,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 99;
@@ -566,6 +568,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 34;
@@ -675,6 +678,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 110;
@@ -720,6 +724,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 55;
@@ -765,6 +770,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 55;
@@ -818,6 +824,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 110;
@@ -873,6 +880,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 110;
@@ -925,6 +933,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 55;
@@ -977,6 +986,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 34;
@@ -1017,6 +1027,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 80;
@@ -1060,6 +1071,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 26;
@@ -1103,6 +1115,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 21;
@@ -1148,6 +1161,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 18;
@@ -1190,6 +1204,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 55;
@@ -1233,6 +1248,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 55;
@@ -1280,6 +1296,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1321,6 +1338,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1362,6 +1380,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1404,6 +1423,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1443,6 +1463,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1482,6 +1503,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1521,6 +1543,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 50;
@@ -1559,6 +1582,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 1.0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 35;
@@ -1621,6 +1645,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 10;
@@ -1661,6 +1686,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.75;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 99;
@@ -1710,6 +1736,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.8;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 150;
@@ -1743,6 +1770,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.8;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 150;
@@ -1776,6 +1804,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.8;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 150;
@@ -1826,6 +1855,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.8;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 150;
@@ -1859,6 +1889,7 @@ class CfgAmmo
 			type = "Projectile";
 			dispersion = 0.0;
 			bleedThreshold = 0.8;
+			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
 				damage = 150;

@@ -1,7 +1,7 @@
 ﻿///<'graphics.pbo' properties via Mikero's dos tools, dll version 7.27>///
 product=dayz
 prefix=graphics
-version=80953
+version=80998
 //Pbo Type is: Arma Unknown pbo typ (no config).
-//Sha: 'A8183CCF4C33B43ABA78DFEA080E4AF80DC80C03'
+//Sha: 'D839D10D0289140EA4D162952FA2A46AF6288B1D'
 //////</properties>//////

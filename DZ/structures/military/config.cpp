@@ -2,7 +2,7 @@
 //DeRap: structures_military\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:30:44 2019 : 'file' last modified on Wed Aug 21 13:04:42 2019
+//'now' is Tue Aug 27 16:05:16 2019 : 'file' last modified on Tue Aug 27 07:56:19 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -241,6 +241,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -275,6 +290,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -328,6 +358,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door8
@@ -361,6 +406,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -414,6 +474,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door10
@@ -447,6 +522,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -500,6 +590,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door12
@@ -533,6 +638,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -586,6 +706,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door14
@@ -619,6 +754,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -672,6 +822,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door16
@@ -715,6 +880,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door17
@@ -748,6 +928,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1144,6 +1339,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -1178,6 +1388,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -1231,6 +1456,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -1264,6 +1504,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1317,6 +1572,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -1350,6 +1620,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -1403,6 +1688,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door9
@@ -1436,6 +1736,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1489,6 +1804,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door11
@@ -1522,6 +1852,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1575,6 +1920,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door13
@@ -1608,6 +1968,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1661,6 +2036,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door16
@@ -1694,6 +2084,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1747,6 +2152,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door18
@@ -1780,6 +2200,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1833,6 +2268,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door20
@@ -1866,6 +2316,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -1919,6 +2384,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door22
@@ -1952,6 +2432,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2005,6 +2500,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door24
@@ -2038,6 +2548,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2091,6 +2616,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door26
@@ -2124,6 +2664,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2200,6 +2755,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -2234,6 +2804,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2388,6 +2973,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -2422,6 +3022,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2475,6 +3090,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -2508,6 +3138,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2561,6 +3206,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -2594,6 +3254,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2647,6 +3322,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -2680,6 +3370,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2808,6 +3513,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -2842,6 +3562,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2895,6 +3630,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door4
@@ -2928,6 +3678,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -2981,6 +3746,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door6
@@ -3014,6 +3794,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3129,6 +3924,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -3163,6 +3973,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3216,6 +4041,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -3259,6 +4099,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door4
@@ -3292,6 +4147,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3407,6 +4277,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -3441,6 +4326,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3494,6 +4394,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door4
@@ -3537,6 +4452,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -3570,6 +4500,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -3919,6 +4864,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -3953,6 +4913,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4006,6 +4981,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -4039,6 +5029,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4092,6 +5097,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -4125,6 +5145,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4178,6 +5213,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -4211,6 +5261,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4264,6 +5329,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door9
@@ -4297,6 +5377,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4350,6 +5445,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door11
@@ -4383,6 +5493,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4436,6 +5561,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door13
@@ -4469,6 +5609,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4522,6 +5677,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door15
@@ -4555,6 +5725,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4608,6 +5793,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door17
@@ -4641,6 +5841,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4694,6 +5909,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door19
@@ -4727,6 +5957,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4780,6 +6025,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door21
@@ -4823,6 +6083,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door22
@@ -4856,6 +6131,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -4932,6 +6222,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -4966,6 +6271,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5068,6 +6388,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -5102,6 +6437,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5155,6 +6505,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -5188,6 +6553,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5277,6 +6657,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -5321,6 +6716,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -5354,6 +6764,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -5619,6 +7044,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -5653,6 +7093,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -5706,6 +7161,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -5739,6 +7209,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5792,6 +7277,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -5825,6 +7325,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -5878,6 +7393,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -5911,6 +7441,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6208,6 +7753,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -6242,6 +7802,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6295,6 +7870,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door4
@@ -6328,6 +7918,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -6381,6 +7986,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door6
@@ -6414,6 +8034,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6467,6 +8102,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door8
@@ -6500,6 +8150,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6553,6 +8218,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door10
@@ -6586,6 +8266,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6639,6 +8334,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door12
@@ -6672,6 +8382,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6725,6 +8450,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door14
@@ -6758,6 +8498,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6811,6 +8566,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door16
@@ -6844,6 +8614,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -6897,6 +8682,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door18
@@ -6940,6 +8740,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door19
@@ -6973,6 +8788,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -7088,6 +8918,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -7122,6 +8967,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -7175,6 +9035,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -7218,6 +9093,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door6
@@ -7251,6 +9141,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7535,6 +9440,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -7569,6 +9489,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7622,6 +9557,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -7655,6 +9605,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7708,6 +9673,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -7741,6 +9721,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7794,6 +9789,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -7827,6 +9837,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7880,6 +9905,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door9
@@ -7913,6 +9953,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -7966,6 +10021,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door11
@@ -7999,6 +10069,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8052,6 +10137,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door13
@@ -8085,6 +10185,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8138,6 +10253,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door15
@@ -8171,6 +10301,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8224,6 +10369,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door17
@@ -8257,6 +10417,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8382,6 +10557,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -8416,6 +10606,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8469,6 +10674,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -8512,6 +10732,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door4
@@ -8545,6 +10780,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8756,6 +11006,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -8790,6 +11055,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8843,6 +11123,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -8876,6 +11171,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -8929,6 +11239,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -8962,6 +11287,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9015,6 +11355,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -9048,6 +11403,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9101,6 +11471,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door9
@@ -9134,6 +11519,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -9187,6 +11587,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class twin1
@@ -9220,6 +11635,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9465,6 +11895,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -9499,6 +11944,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -9552,6 +12012,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -9585,6 +12060,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9638,6 +12128,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -9671,6 +12176,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9724,6 +12244,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door7
@@ -9757,6 +12292,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -9810,6 +12360,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door9
@@ -9843,6 +12408,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9896,6 +12476,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door11
@@ -9929,6 +12524,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -9982,6 +12592,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door13
@@ -10025,6 +12650,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class twin1
@@ -10058,6 +12698,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10199,6 +12854,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -10233,6 +12903,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -10286,6 +12971,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -10319,6 +13019,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
 							};
 							class Blood
 							{
@@ -10372,6 +13087,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door5
@@ -10415,6 +13145,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door6
@@ -10448,6 +13193,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -10560,6 +13320,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 			class DamageZones
 			{
@@ -10594,6 +13369,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{
@@ -10647,6 +13437,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 				};
 				class door3
@@ -10680,6 +13485,21 @@ class CfgVehicles
 							class Health
 							{
 								damage = 2.5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
 							};
 							class Blood
 							{

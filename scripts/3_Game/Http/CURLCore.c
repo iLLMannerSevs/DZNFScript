@@ -3,7 +3,8 @@
 
 
 // -------------------------------------------------------------------------
-/// tree traversal type, for more see http://en.wikipedia.org/wiki/Tree_traversal
+// states, (result + error) codes
+// defined in C++
 enum ECURLResultState
 {
 	ECURL_EMPTY,				// not initialized
@@ -20,6 +21,19 @@ enum ECURLResultState
 	ECURL_ERROR_NOTIMPLEMENTED,
 	ECURL_ERROR_UNKNOWN,
 };
+
+// -------------------------------------------------------------------------
+// options
+// defined in C++
+enum ECURLOption
+{
+	ECURLOPT_UNKNOWN,					// invalid option
+	ECURLOPT_TIMEOUT_READOPERATION,		// read operation timeout (default 10sec)
+	ECURLOPT_TIMEOUT_CONNECTION,		// connection timeout (default 10sec)
+};
+
+// note: limit for timeout is between <3 .. 120> seconds, you cannot exceed this value
+
 
 // -------------------------------------------------------------------------
 // object to be used from script for result binding
@@ -84,7 +98,7 @@ class CURLContext
 	/**
 	\brief Pushes POST request and returns result (ECURLResultState) and/ or data (timeout, error) when finished
 	*/
-	proto native int POST( string request, string data );
+	proto native int POST( CURLCallback cb, string request, string data );
 
 	/**
 	\brief Processes POST request and returns data immediately (thread blocking operation!)
@@ -122,6 +136,12 @@ class CURLCore
 	\brief List of all currently active contexes and processed (pending) requests
 	*/
 	proto native void DebugList();
+
+
+	/**
+	\brief Set specific option
+	*/
+	proto native void SetOption( int option, int value );
 
 };
 

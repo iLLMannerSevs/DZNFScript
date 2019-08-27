@@ -2,7 +2,7 @@
 //DeRap: characters_zombies\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:28:11 2019 : 'file' last modified on Fri Jul 19 20:37:51 2019
+//'now' is Tue Aug 27 16:02:43 2019 : 'file' last modified on Mon Aug 26 15:54:54 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -152,6 +152,13 @@ class CfgVehicles
 								damage = 3;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+						};
 					};
 					componentNames[] = {"Head"};
 					fatalInjuryCoef = 0.1;
@@ -167,6 +174,13 @@ class CfgVehicles
 					class ArmorType
 					{
 						class Projectile
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
@@ -194,6 +208,13 @@ class CfgVehicles
 								damage = 2;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
 					};
 					componentNames[] = {"LeftArm","LeftForeArm"};
 					fatalInjuryCoef = -1;
@@ -214,6 +235,13 @@ class CfgVehicles
 								damage = 2;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
 					};
 					componentNames[] = {"RightArm","RightForeArm"};
 					fatalInjuryCoef = -1;
@@ -228,6 +256,13 @@ class CfgVehicles
 					class ArmorType
 					{
 						class Projectile
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
@@ -255,6 +290,13 @@ class CfgVehicles
 								damage = 2;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
 					};
 					componentNames[] = {"RightLeg","RightUpLeg"};
 					fatalInjuryCoef = -1;
@@ -270,6 +312,13 @@ class CfgVehicles
 					class ArmorType
 					{
 						class Projectile
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
@@ -293,6 +342,13 @@ class CfgVehicles
 					class ArmorType
 					{
 						class Projectile
+						{
+							class Health
+							{
+								damage = 2;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{

@@ -2,7 +2,7 @@
 //DeRap: gear_camping\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:28:22 2019 : 'file' last modified on Tue Aug 13 15:01:54 2019
+//'now' is Tue Aug 27 16:02:52 2019 : 'file' last modified on Mon Aug 26 16:22:58 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1388,6 +1388,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 		};
 		attachments[] = {"Wall_Barbedwire_1","Wall_Barbedwire_2","Wall_Camonet","Att_CombinationLock","Material_Nails","Material_WoodenPlanks","Material_MetalSheets","Material_WoodenLogs","Material_MetalWire"};
@@ -1803,6 +1818,21 @@ class CfgVehicles
 			class GlobalArmor
 			{
 				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class FragGrenade
 				{
 					class Health
 					{
@@ -3915,6 +3945,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 		};
 		class Cargo
@@ -3988,6 +4033,21 @@ class CfgVehicles
 						damage = 0;
 					};
 				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
 			};
 		};
 		class Cargo
@@ -4041,6 +4101,21 @@ class CfgVehicles
 			class GlobalArmor
 			{
 				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class FragGrenade
 				{
 					class Health
 					{
@@ -4699,6 +4774,21 @@ class CfgVehicles
 			class GlobalArmor
 			{
 				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class FragGrenade
 				{
 					class Health
 					{

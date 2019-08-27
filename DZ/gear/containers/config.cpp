@@ -2,7 +2,7 @@
 //DeRap: gear_containers\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:28:26 2019 : 'file' last modified on Fri Jul 19 21:24:44 2019
+//'now' is Tue Aug 27 16:02:58 2019 : 'file' last modified on Tue Aug 27 09:18:52 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -42,7 +42,6 @@ class CfgVehicles
 		overrideDrawArea = "8.0";
 		forceFarBubble = "true";
 		slopeTolerance = 0.3;
-		attachments[] = {"BerryR","BerryB","Plant","OakBark","BirchBark","Lime","Disinfectant","Guts"};
 		destroyOnEmpty = 0;
 		varQuantityDestroyOnMin = 0;
 		quantityBar = 1;
@@ -64,37 +63,6 @@ class CfgVehicles
 		allowOwnedCargoManipulation = 1;
 		lootTag[] = {"Work"};
 		hiddenSelections[] = {"camoGround"};
-		class GUIInventoryAttachmentsProps
-		{
-			class TanLeather
-			{
-				name = "$STR_attachment_TanLeather0";
-				description = "";
-				attachmentSlots[] = {"Lime"};
-				icon = "cat_tan_leather";
-			};
-			class BleachCotton
-			{
-				name = "$STR_attachment_BleachCotton0";
-				description = "";
-				attachmentSlots[] = {"Disinfectant"};
-				icon = "cat_bleach_cotton";
-			};
-			class ColorLeatherClothes
-			{
-				name = "$STR_attachment_ColorLeatherClothes0";
-				description = "";
-				attachmentSlots[] = {"BirchBark","OakBark"};
-				icon = "cat_color_leather";
-			};
-			class ColorCottonClothes
-			{
-				name = "$STR_attachment_ColorCottonClothes0";
-				description = "";
-				attachmentSlots[] = {"BerryR","BerryB"};
-				icon = "cat_color_cotton";
-			};
-		};
 		class Cargo
 		{
 			itemsCargoSize[] = {10,15};

@@ -2,7 +2,7 @@
 //DeRap: animals\capra_hircus_fem\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Aug 26 15:27:15 2019 : 'file' last modified on Fri Aug 23 13:52:14 2019
+//'now' is Tue Aug 27 16:01:47 2019 : 'file' last modified on Mon Aug 26 15:09:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -111,6 +111,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 0.66;
+							};
+							class Blood
+							{
+								damage = 5;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 					componentNames[] = {"Zone_Belly"};
 					transferToZonesNames[] = {};
@@ -153,6 +168,21 @@ class CfgVehicles
 							};
 						};
 						class Projectile
+						{
+							class Health
+							{
+								damage = 2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
@@ -223,6 +253,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 1;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 					componentNames[] = {"Zone_Head"};
 					transferToZonesNames[] = {};
@@ -265,6 +310,21 @@ class CfgVehicles
 							};
 						};
 						class Projectile
+						{
+							class Health
+							{
+								damage = 0.1;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
@@ -335,6 +395,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 0.66;
+							};
+							class Blood
+							{
+								damage = 5;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 					componentNames[] = {"Zone_Neck"};
 					transferToZonesNames[] = {};
@@ -391,6 +466,21 @@ class CfgVehicles
 								damage = 0;
 							};
 						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 0.2;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
 					};
 					componentNames[] = {"Zone_Pelvis"};
 					transferToZonesNames[] = {"Zone_Spine"};
@@ -433,6 +523,21 @@ class CfgVehicles
 							};
 						};
 						class Projectile
+						{
+							class Health
+							{
+								damage = 0.66;
+							};
+							class Blood
+							{
+								damage = 1;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
 						{
 							class Health
 							{
