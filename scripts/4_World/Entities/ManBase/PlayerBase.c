@@ -3923,10 +3923,11 @@ class PlayerBase extends ManBase
 			
 			GetSoftSkillsManager().InitSpecialty( GetStatSpecialty().Get() );
 			GetModifiersManager().SetModifiers(true);
-			CheckForGag();
 			
 			SetSynchDirty();
 		}
+		
+		CheckForGag();
 		
 		if(GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_SERVER)
 		{
@@ -4014,9 +4015,16 @@ class PlayerBase extends ManBase
 	{
 		MouthRag attachment;
 		Class.CastTo(attachment, GetInventory().FindAttachment(InventorySlots.MASK));
-		if ( attachment && GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_SERVER )
+		if ( attachment )
 		{
 			attachment.MutePlayerByGag(this,true);
+		}
+		else 
+		{
+			if (( GetGame().IsServer() && GetGame().IsMultiplayer() ) || ( GetGame().GetPlayer() == this ))
+			{
+				GetGame().SetVoiceEffect(this, VoiceEffectMumbling, false);
+			}
 		}
 	}
 	

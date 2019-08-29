@@ -108,8 +108,8 @@ class ActionGetInTransport: ActionInteractBase
 		}
 	}
 	
-	override bool IsInstant()
+	/*override bool IsInstant()
 	{
 		return true;
-	}
+	}*/
 };

@@ -1,7 +1,7 @@
 ﻿///<'gui.pbo' properties via Mikero's dos tools, dll version 7.27>///
 product=dayz
 prefix=gui
-version=80998
+version=81093
 //Pbo Type is: Arma Unknown pbo typ (no config).
-//Sha: 'B894CE164DEB51918058F29E9EA21D6B331A1344'
+//Sha: 'B0B9C14CF76359FD5B5C796CAD3714F3EABB75E1'
 //////</properties>//////

@@ -25,7 +25,7 @@ class PoisoningMdfr: ModifierBase
 	
 	override bool ActivateCondition(PlayerBase player)
 	{
-		if(player.GetSingleAgentCount(eAgents.FOOD_POISON) > AGENT_THRESHOLD_ACTIVATE) 
+		if(player.GetSingleAgentCount(eAgents.FOOD_POISON) >= AGENT_THRESHOLD_ACTIVATE) 
 		{
 			return true;
 		}

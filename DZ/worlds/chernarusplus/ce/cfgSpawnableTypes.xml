@@ -1616,7 +1616,7 @@
 		<cargo preset="toolsVillage" />
 		<attachments preset="glassesVillage" />
 		<attachments preset="hatsFarm" />
-		<attachments preset="bagsVillage" />>
+		<attachments preset="bagsVillage" />
 	</type>
 	<type name="ZmbF_VillagerOld_Green">
 		<cargo preset="foodVillage" />

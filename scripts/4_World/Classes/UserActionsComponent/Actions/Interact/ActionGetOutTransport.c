@@ -121,8 +121,8 @@ class ActionGetOutTransport: ActionInteractBase
 		return true;
 	}
 	
-	override bool IsInstant()
+	/*override bool IsInstant()
 	{
 		return true;
-	}
+	}*/
 };
