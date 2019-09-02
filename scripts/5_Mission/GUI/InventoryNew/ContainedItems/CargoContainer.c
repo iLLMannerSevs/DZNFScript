@@ -62,11 +62,7 @@ class CargoContainer extends Container
 		InventoryLocation il = new InventoryLocation;
 		item.GetInventory().GetCurrentInventoryLocation( il );
 		int x = il.GetCol();
-		#ifdef PLATFORM_CONSOLE
-		int y = il.GetRow() - 1;
-		#else
 		int y = il.GetRow();
-		#endif
 		
 		if( m_ShowedItemPositions.Contains( item ) )
 		{
@@ -137,7 +133,7 @@ class CargoContainer extends Container
 	{
 		InventoryLocation il = new InventoryLocation;
 		item.GetInventory().GetCurrentInventoryLocation( il );
-		Print( "Removing from cargo" );
+		Print( "Moved in cargo" );
 		int x = il.GetCol();
 		#ifdef PLATFORM_CONSOLE
 		int y = il.GetRow() - 1;
@@ -468,9 +464,9 @@ class CargoContainer extends Container
 				m_Rows.Insert( row );
 			}
 			m_MainWidget	= m_ItemsContainer;
-			m_Resizer2.ResizeParentToChild();
-			m_Resizer1.ResizeParentToChild();
 		}
+		m_Resizer2.ResizeParentToChild();
+		m_Resizer1.ResizeParentToChild();
 	}
 	
 	override void UpdateInterval()

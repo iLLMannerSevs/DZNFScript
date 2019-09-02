@@ -2,7 +2,7 @@
 //DeRap: anims_anm_player\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:45:05 2019 : 'file' last modified on Wed Aug 28 11:30:02 2019
+//'now' is Tue Sep 03 00:25:22 2019 : 'file' last modified on Wed Aug 28 11:30:02 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

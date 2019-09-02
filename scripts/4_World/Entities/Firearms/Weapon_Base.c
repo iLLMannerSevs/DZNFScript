@@ -549,21 +549,6 @@ class Weapon_Base extends Weapon
 			return true;
 		return false;
 	}
-	
-	override int GetItemWeight ()
-	{
-		int AttachmentWeight = 0;
-		float item_wetness = GetWet();
-		int AttachmentsCount = GetInventory().AttachmentCount();
-		int ConfWeight = ConfigGetInt("weight");
-		
-		for (int i = 0; i < AttachmentsCount; i++)
-		{
-			AttachmentWeight += GetInventory().GetAttachmentFromIndex(i).GetItemWeight();
-		}
-		
-		return Math.Round((item_wetness + 1) * (ConfWeight + AttachmentWeight));
-	}
 			
 	bool CanEnterIronsights ()
 	{

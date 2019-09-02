@@ -2,7 +2,7 @@
 //DeRap: characters_heads\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:45:36 2019 : 'file' last modified on Wed Aug 14 19:12:49 2019
+//'now' is Tue Sep 03 00:26:18 2019 : 'file' last modified on Wed Aug 14 19:12:49 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

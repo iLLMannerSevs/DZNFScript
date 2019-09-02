@@ -10,8 +10,8 @@ class ItemBase extends InventoryItem
 	TInputActionMap m_InputActionMap;
 	bool	m_ActionsInitialize;
 	
-	static int		m_DebugActionsMask;
-	bool	m_RecipesInitialized;
+	static int	m_DebugActionsMask;
+	bool		m_RecipesInitialized;
 	// ============================================
 	// Variable Manipulation System
 	// ============================================
@@ -815,6 +815,7 @@ class ItemBase extends InventoryItem
 				owner_player_old = Man.Cast( old_owner.GetHierarchyRootPlayer() );
 			}
 		}
+		
 		if (new_owner)
 		{
 			if ( new_owner.IsMan() )
@@ -826,6 +827,7 @@ class ItemBase extends InventoryItem
 				owner_player_new = Man.Cast( new_owner.GetHierarchyRootPlayer() );
 			}
 		}
+		
 		if ( owner_player_old != owner_player_new )
 		{
 			if ( owner_player_old )
@@ -837,10 +839,6 @@ class ItemBase extends InventoryItem
 					ItemBase item_exit = ItemBase.Cast(subItemsExit.Get(i));
 					item_exit.OnInventoryExit(owner_player_old);
 				}
-				
-				PlayerBase player_exit = PlayerBase.Cast(owner_player_old);
-				player_exit.OnItemInventoryExit(this);
-				// Debug.Log("Item dropped from inventory");
 			}
 
 			if ( owner_player_new )
@@ -852,24 +850,8 @@ class ItemBase extends InventoryItem
 					ItemBase item_enter = ItemBase.Cast(subItemsEnter.Get(j));
 					item_enter.OnInventoryEnter(owner_player_new);
 				}
-				
-				PlayerBase player_enter = PlayerBase.Cast(owner_player_new);
-				player_enter.OnItemInventoryEnter(this);
-				
 			}
-				// Debug.Log("Item taken to inventory");
 		}
-	//will not work, item location not yet specified
-	/*	if ( owner_player_new && owner_player_old && (owner_player_new == owner_player_old) )
-		{
-			PlayerBase playerOPN;
-			Class.CastTo(playerOPN, owner_player_new);
-			if (playerOPN && playerOPN.ItemToInventory)
-			{
-				playerOPN.ItemToInventory = false;
-				playerOPN.SwitchBandana(this);
-			}
-		}*/
 	}
 
 	// -------------------------------------------------------------------------------
@@ -1632,7 +1614,7 @@ class ItemBase extends InventoryItem
 			
 			if( action_id == EActions.GET_TOTAL_WEIGHT ) //Prints total weight of item + its contents
 			{
-				Print(GetItemWeight());
+				Print(GetWeight());
 			}
 	
 			/*
@@ -2399,9 +2381,8 @@ class ItemBase extends InventoryItem
 		}
 		return Math.Round(Weight);
 	}
-
-	//calculates total weight of item
-	override int GetItemWeight()
+	
+	override void UpdateWeight()
 	{
 		int i = 0;
 		float totalWeight;
@@ -2418,7 +2399,7 @@ class ItemBase extends InventoryItem
 		{
 			for (i = 0; i < AttachmentsCount; i++)
 			{
-				totalWeight += GetInventory().GetAttachmentFromIndex(i).GetItemWeight();
+				totalWeight += GetInventory().GetAttachmentFromIndex(i).GetWeight();
 			}
 		}
 		
@@ -2427,7 +2408,7 @@ class ItemBase extends InventoryItem
 		{
 			for (i = 0; i < cargo.GetItemCount(); i++)
 			{
-				totalWeight += cargo.GetItem(i).GetItemWeight();
+				totalWeight += cargo.GetItem(i).GetWeight();
 			}
 		}
 
@@ -2448,9 +2429,8 @@ class ItemBase extends InventoryItem
 			}
 		}
 		
-		return Math.Round(totalWeight);
+		m_Weight = Math.Round(totalWeight);
 	}
-
 
 	//! Returns the number of items in cargo, otherwise returns 0(non-cargo objects). Recursive.
 	int GetNumberOfItems()

@@ -2,7 +2,7 @@
 //DeRap: characters_headgear\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:45:32 2019 : 'file' last modified on Mon Aug 26 15:13:07 2019
+//'now' is Tue Sep 03 00:26:12 2019 : 'file' last modified on Fri Aug 30 10:04:39 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1248,7 +1248,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class BandanaHybrid_ColorBase: Clothing
+	class Bandana_ColorBase: Clothing
 	{
 		scope = 0;
 		displayName = "$STR_cfgvehicles_bandana_colorbase0";
@@ -1301,42 +1301,42 @@ class CfgVehicles
 			};
 		};
 	};
-	class BandanaHybrid_RedPattern: BandanaHybrid_ColorBase
+	class Bandana_RedPattern: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa","DZ\characters\headgear\data\BandanaH_redpattern_co.paa","DZ\characters\headgear\data\BandanaF_redpattern_co.paa","DZ\characters\headgear\data\BandanaH_redpattern_co.paa","DZ\characters\headgear\data\BandanaF_redpattern_co.paa"};
 	};
-	class BandanaHybrid_BlackPattern: BandanaHybrid_ColorBase
+	class Bandana_BlackPattern: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"DZ\characters\headgear\data\BandanaFH_ground_blackpattern_co.paa","DZ\characters\headgear\data\BandanaH_blackpattern_co.paa","DZ\characters\headgear\data\BandanaF_blackpattern_co.paa","DZ\characters\headgear\data\BandanaH_blackpattern_co.paa","DZ\characters\headgear\data\BandanaF_blackpattern_co.paa"};
 	};
-	class BandanaHybrid_PolkaPattern: BandanaHybrid_ColorBase
+	class Bandana_PolkaPattern: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_karkulka_co.paa","DZ\characters\headgear\data\BandanaH_karkulka_co.paa","DZ\characters\headgear\data\BandanaF_karkulka_co.paa","DZ\characters\headgear\data\BandanaH_karkulka_co.paa","DZ\characters\headgear\data\BandanaF_karkulka_co.paa"};
 	};
-	class BandanaHybrid_Greenpattern: BandanaHybrid_ColorBase
+	class Bandana_Greenpattern: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa","DZ\characters\headgear\data\BandanaFHG_olive_co.paa"};
 	};
-	class BandanaHybrid_CamoPattern: BandanaHybrid_ColorBase
+	class Bandana_CamoPattern: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa","DZ\characters\headgear\data\BandanaFHG_TTsKO_co.paa"};
 	};
-	class BandanaHybrid_Blue: BandanaHybrid_ColorBase
+	class Bandana_Blue: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_blue_co.paa","DZ\characters\headgear\data\BandanaH_blue_co.paa","DZ\characters\headgear\data\BandanaF_blue_co.paa","DZ\characters\headgear\data\BandanaH_blue_co.paa","DZ\characters\headgear\data\BandanaF_blue_co.paa"};
 	};
-	class BandanaHybrid_Pink: BandanaHybrid_ColorBase
+	class Bandana_Pink: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_pink_co.paa","DZ\characters\headgear\data\BandanaH_pink_co.paa","DZ\characters\headgear\data\BandanaF_pink_co.paa","DZ\characters\headgear\data\BandanaH_pink_co.paa","DZ\characters\headgear\data\BandanaF_pink_co.paa"};
 	};
-	class BandanaHybrid_Yellow: BandanaHybrid_ColorBase
+	class Bandana_Yellow: Bandana_ColorBase
 	{
 		scope = 2;
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_yellow_co.paa","DZ\characters\headgear\data\BandanaH_yellow_co.paa","DZ\characters\headgear\data\BandanaF_yellow_co.paa","DZ\characters\headgear\data\BandanaH_yellow_co.paa","DZ\characters\headgear\data\BandanaF_yellow_co.paa"};

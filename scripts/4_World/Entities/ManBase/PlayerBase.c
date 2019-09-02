@@ -64,6 +64,7 @@ class PlayerBase extends ManBase
 	ref PlayerSoundManagerServer	m_PlayerSoundManagerServer;
 	ref PlayerSoundManagerClient	m_PlayerSoundManagerClient;
 	ref HeatComfortAnimHandler		m_HCAnimHandler;
+	ref EffectSound					m_SoundFliesEffect;
 	bool 							m_QuickBarHold;
 	Hud 							m_Hud;
 	protected float 				m_dT;
@@ -553,6 +554,12 @@ class PlayerBase extends ManBase
 
 	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
 	{
+		/*
+		Print("ProjectileDebugging | Damage Health: " + damageResult.GetDamage(dmgZone,"Health") + " | Zone: " + dmgZone);
+		Print("ProjectileDebugging | Damage Blood: " + damageResult.GetDamage(dmgZone,"Blood") + " | Zone: " + dmgZone);
+		Print("ProjectileDebugging | speedCoef: " + speedCoef);
+		Print("-----------------------------------------------");*/
+		
 		if( m_AdminLog )
 		{
 			m_AdminLog.PlayerHitBy( damageResult, damageType, this, source, component, dmgZone, ammo );
@@ -1711,6 +1718,8 @@ class PlayerBase extends ManBase
 			ClientData.RemovePlayerBase( this );
 		if( m_FliesEff )
 			m_FliesEff.Stop();
+		if( m_SoundFliesEffect )
+			SEffectManager.DestroySound(m_SoundFliesEffect);
 	}
 
 	void OnCameraChanged(DayZPlayerCameraBase new_camera)
@@ -3248,8 +3257,8 @@ class PlayerBase extends ManBase
 		}
 		return false;
 	}
-
-	void CalculatePlayerLoad()
+	
+	override void UpdateWeight()
 	{
 		EntityAI attachment;
 		ItemBase itemHands;
@@ -3263,14 +3272,13 @@ class PlayerBase extends ManBase
 			attachment = GetInventory().GetAttachmentFromIndex(att);
 			if( attachment )
 			{
-				total_load += attachment.GetItemWeight();
+				total_load += attachment.GetWeight();
 			}
 		}
 
 		if ( itemHands ) // adds weight of item carried in hands
-			total_load += itemHands.GetItemWeight();
-
-		SetPlayerLoad(total_load);
+			total_load += itemHands.GetWeight();
+		m_Weight = total_load;
 	}
 
 	void CalculateVisibilityForAI()
@@ -3603,16 +3611,6 @@ class PlayerBase extends ManBase
 	void EndFighting()
 	{
 		m_IsFighting = false;
-	}
-	
-	void OnItemInventoryEnter(EntityAI item)
-	{
-		CalculatePlayerLoad();
-	}
-	
-	void OnItemInventoryExit(EntityAI item)
-	{
-		CalculatePlayerLoad();
 	}
 	
 	// -------------------------------------------------------------------------
@@ -6305,7 +6303,7 @@ class PlayerBase extends ManBase
 	
 	void AdjustBandana(EntityAI item, string slot_name)
 	{
-		if (BandanaHybrid_ColorBase.Cast(item))
+		if (Bandana_ColorBase.Cast(item))
 		{
 			if (slot_name == "Headgear")
 			{
@@ -6386,7 +6384,7 @@ class PlayerBase extends ManBase
 					m_FliesIndex = SEffectManager.PlayOnObject(m_FliesEff,this,"0 0.25 0");
 					p = m_FliesEff.GetParticle();
 					AddChild(p, boneIdx);
-					SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
+					m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
 				}
 			break;
 			case PlayerConstants.CORPSE_STATE_DECAYED :
@@ -6400,7 +6398,7 @@ class PlayerBase extends ManBase
 					m_FliesIndex = SEffectManager.PlayOnObject(m_FliesEff,this,"0 0.25 0");
 					p = m_FliesEff.GetParticle();
 					AddChild(p, boneIdx);
-					SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
+					m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
 				}
 			break;
 			
@@ -6410,6 +6408,8 @@ class PlayerBase extends ManBase
 					m_FliesEff.Stop();
 					SEffectManager.Stop(m_FliesIndex);
 				}
+				if ( m_SoundFliesEffect )
+					SEffectManager.DestroySound(m_SoundFliesEffect);
 		}
 	}
 	
@@ -6422,8 +6422,9 @@ class PlayerBase extends ManBase
 		if (idx > -1)
 		{
 			this.SetObjectTexture(idx,m_DecayedTexture);
+			//Print("'decay_preload' loaded on " + this);
 		}
 		else
-			Print("No 'decay_preload' selection found on " + this);
+			//Print("No 'decay_preload' selection found on " + this);
 	}
 }

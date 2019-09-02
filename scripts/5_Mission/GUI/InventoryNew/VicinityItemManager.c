@@ -328,7 +328,8 @@ class VicinityItemManager
 				EntityAI eai;
 				if ( Class.CastTo( eai, hit_object ) )
 				{
-					if ( eai.GetItemWeight() >= OBJECT_OBSTRUCTION_WEIGHT )
+					
+					if ( eai.GetWeight() >= OBJECT_OBSTRUCTION_WEIGHT )
 					{
 						if ( eai != filtered_object )
 						{

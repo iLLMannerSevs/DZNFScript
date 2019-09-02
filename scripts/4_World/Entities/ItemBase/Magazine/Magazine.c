@@ -269,7 +269,7 @@ class Magazine : InventoryItemSuper
 	}
 
 	//TODO add functionality for multiple ammo types (does not exist yet)
-	override int GetItemWeight()
+	override int GetWeight()
 	{
 		float item_wetness = GetWet();
 		int ConfWeight = ConfigGetInt("weight");

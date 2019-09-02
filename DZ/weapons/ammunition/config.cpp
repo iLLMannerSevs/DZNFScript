@@ -2,7 +2,7 @@
 //DeRap: weapons_ammunition\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:49:32 2019 : 'file' last modified on Sat Jul 20 11:00:02 2019
+//'now' is Tue Sep 03 00:32:12 2019 : 'file' last modified on Sat Jul 20 11:00:02 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

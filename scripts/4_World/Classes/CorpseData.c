@@ -17,10 +17,18 @@ class CorpseData
 		//m_iMaxLifetime = player.GetLifetime(); //player.GetEconomyProfile().GetLifetime();
 		m_iCorpseState = PlayerConstants.CORPSE_STATE_FRESH;
 		m_Player = player;
+		
+		/*Print("CorpseData init value | player.GetLifetime(): " + player.GetLifetime() );
+		Print("CorpseData init value | player.GetEconomyProfile().GetLifetime(): " + player.GetEconomyProfile().GetLifetime() );
+		Print("---------------------");*/
 	}
 	
 	void UpdateCorpseState(bool force_check = false)
 	{
+		/*Print("CorpseData update value | player.GetLifetime(): " + m_Player.GetLifetime() );
+		Print("CorpseData update value | player.GetEconomyProfile().GetLifetime(): " + m_Player.GetEconomyProfile().GetLifetime() );
+		Print("---------------------");*/
+		
 		if (m_iMaxLifetime <= 0 )
 		{
 			if ( m_iCorpseState == PlayerConstants.CORPSE_STATE_DECAYED && !force_check )

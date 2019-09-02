@@ -16,6 +16,8 @@ class EntityAI extends Entity
 	ref array<EntityAI> 	m_AttachmentsWithAttachments;
 	ref InventoryLocation 	m_OldLocation;
 	
+	float					m_Weight;
+	
 	//Called on item attached to this item (EntityAI item, string slot, EntityAI parent)
 	protected ref ScriptInvoker		m_OnItemAttached;
 	//Called on item detached from this item (EntityAI item, string slot, EntityAI parent)
@@ -344,6 +346,7 @@ class EntityAI extends Entity
 					}
 				}
 			}
+			UpdateWeight();
 		}
 	}
 	
@@ -441,6 +444,8 @@ class EntityAI extends Entity
 	// !Called on PARENT when a child is attached to it.
 	void EEItemAttached(EntityAI item, string slot_name)
 	{
+		UpdateWeight();
+		
 		//Print (slot_name);
 		if ( m_ComponentsBank != NULL )
 		{
@@ -452,6 +457,8 @@ class EntityAI extends Entity
 				}
 			}
 		}
+		
+		
 		
 		// Energy Manager
 		if ( this.HasEnergyManager()  &&  item.HasEnergyManager() )
@@ -482,6 +489,8 @@ class EntityAI extends Entity
 	// !Called on PARENT when a child is detached from it.
 	void EEItemDetached(EntityAI item, string slot_name)
 	{
+		UpdateWeight();
+		
 		if ( m_ComponentsBank != NULL )
 		{
 			for ( int comp_key = 0; comp_key < COMP_TYPE_COUNT; ++comp_key )
@@ -509,6 +518,8 @@ class EntityAI extends Entity
 			m_AttachmentsWithAttachments.RemoveItem( item );
 		}
 		
+		
+		
 		if( m_OnItemDetached )
 			m_OnItemDetached.Invoke( item, slot_name, this );
 		//SwitchItemSelectionTexture(item, slot_name);
@@ -516,6 +527,8 @@ class EntityAI extends Entity
 
 	void EECargoIn(EntityAI item)
 	{
+		UpdateWeight();
+		
 		if( m_OnItemAddedIntoCargo )
 			m_OnItemAddedIntoCargo.Invoke( item, this );
 		item.OnMovedInsideCargo(this);
@@ -523,6 +536,8 @@ class EntityAI extends Entity
 
 	void EECargoOut(EntityAI item)
 	{
+		UpdateWeight();
+		
 		if( m_OnItemRemovedFromCargo )
 			m_OnItemRemovedFromCargo.Invoke( item, this );
 		item.OnRemovedFromCargo(this);
@@ -1626,9 +1641,13 @@ class EntityAI extends Entity
 	}
 	///@} energy manager
 	
-	int GetItemWeight()
+	//calculates total weight of item
+	int GetWeight()
 	{
+		return m_Weight;
 	}
+	
+	void UpdateWeight();
 	
 	///@{ view index
 	//! Item view index is used to setup which camera will be used in item view widget in inventory.

@@ -576,8 +576,9 @@ class Environment
 			ApplyWetnessToItem(m_Player.GetItemInHands());
 		}
 
-		//! force recalc of player's load (for stamina)		
-		m_Player.CalculatePlayerLoad();
+		//! force recalc of player's load (for stamina)
+		m_Player.UpdateWeight();
+		m_Player.SetPlayerLoad( m_Player.GetWeight() );
 	}
 
 	protected void ProcessItemsDryness()
@@ -603,7 +604,8 @@ class Environment
 		}
 
 		//! force recalc of player's load (for stamina)		
-		m_Player.CalculatePlayerLoad();
+		m_Player.UpdateWeight();
+		m_Player.SetPlayerLoad( m_Player.GetWeight() );
 	}
 	
 	

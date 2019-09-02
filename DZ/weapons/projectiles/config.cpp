@@ -2,7 +2,7 @@
 //DeRap: weapons_projectiles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:49:44 2019 : 'file' last modified on Tue Aug 27 10:43:59 2019
+//'now' is Tue Sep 03 00:32:23 2019 : 'file' last modified on Fri Aug 30 12:13:14 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -582,6 +582,11 @@ class CfgAmmo
 			{
 				damage = 33;
 			};
+		};
+		class NoiseHit
+		{
+			strength = 2;
+			type = "shot";
 		};
 	};
 	class Bullet_12GaugeSlug: Bullet_Base

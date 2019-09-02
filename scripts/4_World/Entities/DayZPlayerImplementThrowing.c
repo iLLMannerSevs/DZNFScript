@@ -65,41 +65,44 @@ class DayZPlayerImplementThrowing
 			}
 
 			//! handle throw force
-			if( pHic.IsUseButton() )
+			if( !m_bThrowingAnimationPlaying )
 			{
-				if( !m_bThrowingInProgress )
-					m_bThrowingInProgress = true;
-				
-				m_fThrowingForce01 += pDt * c_fThrowingForceCoef;
-				if( m_fThrowingForce01 > 1.0 )
-					m_fThrowingForce01 = 1.0;
-				
-				pHcw.SetActionProgressParams(m_fThrowingForce01, 0);
-			}
-			else
-			{
-				if( m_bThrowingInProgress )
+				if( pHic.IsUseButton() )
 				{
-					m_bThrowingInProgress = false;
+					if( !m_bThrowingInProgress )
+						m_bThrowingInProgress = true;
 					
-					int throwType = 1;
+					m_fThrowingForce01 += pDt * c_fThrowingForceCoef;
+					if( m_fThrowingForce01 > 1.0 )
+						m_fThrowingForce01 = 1.0;
 					
-					HumanItemBehaviorCfg itemCfg = m_Player.GetItemAccessor().GetItemInHandsBehaviourCfg();
-					itemCfg = m_Player.GetItemAccessor().GetItemInHandsBehaviourCfg();
-					if( itemCfg )
+					pHcw.SetActionProgressParams(m_fThrowingForce01, 0);
+				}
+				else
+				{
+					if( m_bThrowingInProgress )
 					{
-						switch( itemCfg.m_iType )
+						m_bThrowingInProgress = false;
+						
+						int throwType = 1;
+						
+						HumanItemBehaviorCfg itemCfg = m_Player.GetItemAccessor().GetItemInHandsBehaviourCfg();
+						itemCfg = m_Player.GetItemAccessor().GetItemInHandsBehaviourCfg();
+						if( itemCfg )
 						{
-						case ItemBehaviorType.TWOHANDED:
-							throwType = 2;
-							break;
-						case ItemBehaviorType.FIREARMS:
-							throwType = 3;
+							switch( itemCfg.m_iType )
+							{
+							case ItemBehaviorType.TWOHANDED:
+								throwType = 2;
+								break;
+							case ItemBehaviorType.FIREARMS:
+								throwType = 3;
+							}
 						}
+						
+						pHcw.ThrowItem(throwType);
+						m_bThrowingAnimationPlaying = true;
 					}
-					
-					pHcw.ThrowItem(throwType);
-					m_bThrowingAnimationPlaying = true;
 				}
 			}
 		}

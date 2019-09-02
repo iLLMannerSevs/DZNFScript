@@ -2,7 +2,7 @@
 //DeRap: gear_consumables\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:46:07 2019 : 'file' last modified on Mon Aug 05 13:33:05 2019
+//'now' is Tue Sep 03 00:27:07 2019 : 'file' last modified on Mon Sep 02 12:19:36 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -183,86 +183,6 @@ class CfgVehicles
 				};
 			};
 		};
-	};
-	class Bandana_ColorBase: Inventory_Base
-	{
-		displayName = "$STR_CfgVehicles_Bandana_ColorBase0";
-		descriptionShort = "$STR_CfgVehicles_Bandana_ColorBase1";
-		model = "\dz\gear\consumables\BandanaFH_ground.p3d";
-		inventorySlot[] = {};
-		ChangeInventorySlot[] = {"Headgear","Mask"};
-		weight = 119;
-		itemSize[] = {3,1};
-		absorbency = 0.3;
-		rotationFlags = 17;
-		repairableWithKits[] = {5,2};
-		repairCosts[] = {30.0,25.0};
-		lootTag[] = {"Civilian"};
-		lootCategory = "Materials";
-		hiddenSelections[] = {"camoGround","zbytek"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa","dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa"};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.7,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.5,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\duct_tape_destruct.rvmat"}}};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem_Light
-				{
-					soundSet = "pickUpCourierBag_Light_SoundSet";
-					id = 796;
-				};
-				class pickUpItem
-				{
-					soundSet = "pickUpCourierBag_SoundSet";
-					id = 797;
-				};
-			};
-		};
-	};
-	class Bandana_Redpattern: Bandana_ColorBase
-	{
-		scope = 2;
-		color = "redpattern";
-		ChangeIntoOnAttach[] = {"BandanaHead_RedPattern","BandanaMask_RedPattern"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa","dz\characters\headgear\data\BandanaFH_ground_redpattern_co.paa"};
-	};
-	class Bandana_Blackpattern: Bandana_ColorBase
-	{
-		scope = 2;
-		color = "blackpattern";
-		ChangeIntoOnAttach[] = {"BandanaHead_BlackPattern","BandanaMask_BlackPattern"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_ground_blackpattern_co.paa","dz\characters\headgear\data\BandanaFH_ground_blackpattern_co.paa"};
-	};
-	class Bandana_Polkapattern: Bandana_ColorBase
-	{
-		scope = 2;
-		color = "polkapattern";
-		ChangeIntoOnAttach[] = {"BandanaHead_PolkaPattern","BandanaMask_PolkaPattern"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFH_g_karkulka_co.paa","dz\characters\headgear\data\BandanaFH_g_karkulka_co.paa"};
-	};
-	class Bandana_Greenpattern: Bandana_ColorBase
-	{
-		scope = 2;
-		color = "greenpattern";
-		ChangeIntoOnAttach[] = {"BandanaHead_Greenpattern","BandanaMask_GreenPattern"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_olive_co.paa","dz\characters\headgear\data\BandanaFHG_olive_co.paa"};
-	};
-	class Bandana_Camopattern: Bandana_ColorBase
-	{
-		scope = 2;
-		color = "camopattern";
-		ChangeIntoOnAttach[] = {"BandanaHead_CamoPattern","BandanaMask_CamoPattern"};
-		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\BandanaFHG_TTsKO_co.paa","dz\characters\headgear\data\BandanaFHG_TTsKO_co.paa"};
 	};
 	class Rag: Inventory_Base
 	{
@@ -1687,6 +1607,7 @@ class CfgVehicles
 		rotationFlags = 34;
 		weight = 400;
 		itemSize[] = {10,10};
+		itemBehaviour = 0;
 		canBeSplit = 1;
 		varQuantityInit = 10.0;
 		varQuantityMin = 0.0;

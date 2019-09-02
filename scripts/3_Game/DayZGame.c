@@ -2621,7 +2621,7 @@ class DayZGame extends CGame
 			}
 			
 			ImpactMaterials.EvaluateImpactEffect(directHit, componentIndex, surface, pos, ImpactTypes.UNKNOWN, surfNormal, exitPos, inSpeed, outSpeed, deflected, ammoType, isWater);
-		}	
+		}
 		
 		// add hit noise
 		if ( IsServer() )
@@ -2630,7 +2630,11 @@ class DayZGame extends CGame
 			npar.LoadFromPath("cfgAmmo " + ammoType + " NoiseHit");
 			
 			float surfaceCoef = SurfaceGetNoiseMultiplier(pos[0], pos[2]);
-			GetNoiseSystem().AddNoisePos(EntityAI.Cast(source), pos, npar, surfaceCoef);
+			float coefAdjusted = surfaceCoef * inSpeed.Length() / ConfigGetFloat("cfgAmmo " + ammoType + " initSpeed");
+			GetNoiseSystem().AddNoisePos(EntityAI.Cast(source), pos, npar, coefAdjusted);
+			
+			//float noiseCfg = ConfigGetFloat("cfgAmmo " + ammoType + " NoiseHit strength");
+			//Print("noiseCfg: " + noiseCfg + "| surface: " + surface + "| surfaceCoef: " + surfaceCoef + "| coefAdjusted: " + coefAdjusted + "| total noise generated: " + (coefAdjusted * noiseCfg * 1.7) );
 		}
 	}
 	

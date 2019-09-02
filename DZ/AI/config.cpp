@@ -2,7 +2,7 @@
 //DeRap: ai\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Aug 29 19:44:55 2019 : 'file' last modified on Fri Jul 19 18:23:09 2019
+//'now' is Tue Sep 03 00:25:03 2019 : 'file' last modified on Fri Aug 30 12:11:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -5561,7 +5561,7 @@ class CfgAIBehaviours
 					disturbedVisionUtilityWeight = 1.0;
 					disturbedNoiseUtilityWeight = 1.0;
 					disturbedDamageUtilityWeight = 0.0;
-					attractedTargetHistoryLength = 40.0;
+					attractedTargetHistoryLength = 20.0;
 					attractedVisionUtilityWeight = 1.0;
 					attractedNoiseUtilityWeight = 1.0;
 					attractedDamageUtilityWeight = 1.0;
@@ -5595,7 +5595,7 @@ class CfgAIBehaviours
 				visionToAlertMultiplier = 20.0;
 				noiseToAlertMultiplier = 0.8;
 				damageToAlertMultiplier = 10000.0;
-				noiseShotToAlertMultiplier = 0.75;
+				noiseShotToAlertMultiplier = 1.7;
 				class Calm
 				{
 					DropSpeed = 3;
