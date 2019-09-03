@@ -100,9 +100,9 @@ class HandsPreview: LayoutHolder
 	void DeleteIcon()
 	{
 		RemoveItem();
-		( HandsContainer.Cast( m_Parent ) ).RemoveItem();
 		( HandsContainer.Cast( m_Parent ) ).DestroyAtt();
 		( HandsContainer.Cast( m_Parent ) ).DestroyCargo();
+		( HandsContainer.Cast( m_Parent ) ).RemoveItem();
 		m_AttachmentsInitialized = null;
 		m_RootWidget.SetColor( ARGB( 166, 80, 80, 80 ) );
 		m_Parent.GetParent().Refresh();

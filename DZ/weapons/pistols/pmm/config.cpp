@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\pmm\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 00:32:23 2019 : 'file' last modified on Wed Aug 14 11:04:51 2019
+//'now' is Tue Sep 03 15:36:45 2019 : 'file' last modified on Wed Aug 14 11:04:51 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

@@ -1,7 +1,7 @@
 ﻿///<'bin.pbo' properties via Mikero's dos tools, dll version 7.27>///
 product=dayz
 prefix=bin
-version=81139
+version=81175
 //Pbo Type is: Arma Addon
-//Sha: 'C00E1DAC38CCA50A045E25A6FEA53EF3CD3FA77D'
+//Sha: 'F5BAA1C9D2C1342EABA4D873DF874A1E8A62B053'
 //////</properties>//////

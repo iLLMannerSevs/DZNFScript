@@ -994,8 +994,8 @@ class HandsContainer: Container
 			
 			if( m_Entity )
 			{
-				m_Entity.GetOnItemAttached().Insert( AttachmentAdded );
-				m_Entity.GetOnItemDetached().Insert( AttachmentRemoved );
+				m_Entity.GetOnItemAttached().Remove( AttachmentAdded );
+				m_Entity.GetOnItemDetached().Remove( AttachmentRemoved );
 			}
 		}
 		
@@ -1199,7 +1199,7 @@ class HandsContainer: Container
 			
 			if( icon )
 			{
-				if( w )
+				if( w && w.FindAnyWidget("Selected") )
 					w.FindAnyWidget("Selected").SetColor( ColorManager.BASE_COLOR );
 				icon.Refresh();
 				Refresh();
@@ -1439,12 +1439,12 @@ class HandsContainer: Container
 		{
 			m_Body.RemoveItem( old_cont );
 			m_AttachmentCargos.Remove( item );
+			delete old_cont;
 			RecomputeOpenedContainers();
 			if( m_Parent )
 				m_Parent.Refresh();
 			Inventory.GetInstance().UpdateConsoleToolbar();
 		}
-				
 		
 		AttachmentsWrapper old_att_cont = m_AttachmentAttachmentsContainers.Get( item );
 		if( old_att_cont )
