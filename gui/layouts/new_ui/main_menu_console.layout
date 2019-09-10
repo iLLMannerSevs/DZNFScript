@@ -134,10 +134,79 @@ FrameWidgetClass main_menu_root {
        hexactsize 0
        vexactsize 1
       }
+      ButtonWidgetClass choose_account {
+       visible 0
+       color 0 0 0 1
+       position 0 0
+       size 1 38
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Default
+       "no focus" 0
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
+       {
+        PanelWidgetClass choose_account_panel {
+         ignorepointer 1
+         color 0 0 0 0
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style DayZDefaultPanel
+         {
+          TextWidgetClass choose_account_label {
+           ignorepointer 1
+           size 1 0.55
+           halign center_ref
+           valign center_ref
+           hexactpos 0
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "#layout_xbox_main_menu_toolbar_account"
+           font "gui/fonts/sdf_MetronLight24"
+           "text halign" center
+           "text valign" center
+          }
+          ImageWidgetClass ChooseAccountIcon0 {
+           clipchildren 0
+           inheritalpha 0
+           position 10 0
+           size 38 38
+           halign right_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 1
+           vexactsize 1
+           scaled 1
+           image0 "set:xbox_buttons image:Y"
+           mode blend
+           "src alpha" 1
+           "no wrap" 1
+           stretch 0
+           "flip u" 0
+           "flip v" 0
+           filter 1
+           nocache 0
+          }
+         }
+        }
+       }
+      }
       ButtonWidgetClass customize_character {
        color 0 0 0 1
        position 0 0
-       size 1 40
+       size 1 38
        halign center_ref
        valign bottom_ref
        hexactpos 1
@@ -164,13 +233,13 @@ FrameWidgetClass main_menu_root {
          {
           TextWidgetClass customize_character_label {
            ignorepointer 1
-           size 1 22
+           size 1 0.55
            halign center_ref
            valign center_ref
            hexactpos 0
            vexactpos 0
            hexactsize 0
-           vexactsize 1
+           vexactsize 0
            text "#layout_main_menu_customize_char"
            font "gui/fonts/sdf_MetronLight24"
            "text halign" center

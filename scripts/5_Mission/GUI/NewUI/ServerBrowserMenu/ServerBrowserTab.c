@@ -22,6 +22,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	//protected ref array<ref GetServersResultRow>			m_Entries;
 	
 	protected ref map<string, ref ServerBrowserEntry>		m_EntryWidgets;
+	protected ref map<string, ref array<string>>			m_EntryMods;
 
 	protected ref ServerBrowserFilterContainer				m_Filters;
 	
@@ -70,7 +71,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	{
 		m_SortInverted = new map<ESortType, ESortOrder>;
 		m_EntriesSorted = new map<ESortType, ref array<ref GetServersResultRow>>;
-		
+		m_EntryMods = new map<string, ref array<string>>;
 		m_LoadingText			= TextWidget.Cast( m_Root.FindAnyWidget( "loading_servers_info" ) );
 	}
 	
@@ -228,17 +229,22 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			RefreshList();
 	}
 	
-	void PressY(){}
-	void PressSholderLeft(){}
-	void PressSholderRight(){}
-	void Left(){}
-	void LeftHold(){}
-	void LeftRelease(){}
-	void Right(){}
-	void RightHold(){}
-	void RightRelease(){}
-	void Up(){}
-	void Down(){}
+	void PressY();
+	void PressSholderLeft();
+	void PressSholderRight();
+	void Left();
+	void LeftHold();
+	void LeftRelease();
+	void Right();
+	void RightHold();
+	void RightRelease();
+	void Up();
+	void Down();
+	
+	void OnLoadServerModsAsync(string server_id, array<string> mods)
+	{
+		m_EntryMods.Set( server_id, mods );
+	}
 	
 	void GetNextEntry()
 	{
@@ -432,7 +438,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			return false;
 		}
 		
-		if( m_Filters.PingIsSet() )
+		if( m_Filters.m_PingFilter.IsSet() )
 		{
 			if ( !IsPingInRange( result.m_Ping, m_Filters.m_PingFilter.GetStringValue() ) )
 			{
@@ -441,32 +447,32 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 		}
 		
 		#ifndef PLATFORM_CONSOLE
-		if( m_Filters.FavoriteIsSet() )
+		if( m_Filters.m_FavoritedFilter.IsSet() )
 		{
 			bool is_fav = result.m_Favorite;
 			
-			if ( !is_fav && m_Filters.m_Options["m_FavoritedFilter"] == "#server_browser_show" )
+			if ( !is_fav && m_Filters.m_FavoritedFilter.IsEnabled() )
 			{
 				return false;
 			}
 			
-			if ( is_fav && m_Filters.m_Options["m_FavoritedFilter"] == "#server_browser_hide" )
+			if ( is_fav && !m_Filters.m_FavoritedFilter.IsEnabled() )
 			{
 				return false;
 			}
 		}
 		#endif
 
-		if( m_Filters.PreviouslyIsSet() )
+		if( m_Filters.m_PreviouslyPlayedFilter.IsSet() )
 		{
 			bool is_visited = g_Game.IsVisited( result.m_HostIp, result.m_HostPort );
 			
-			if ( !is_visited && m_Filters.m_Options["m_PreviouslyPlayedFilter"] == "#server_browser_show" )
+			if ( !is_visited && m_Filters.m_PreviouslyPlayedFilter.IsEnabled() )
 			{
 				return false;
 			}
 			
-			if ( is_visited && m_Filters.m_Options["m_PreviouslyPlayedFilter"] == "#server_browser_hide" )
+			if ( is_visited && m_Filters.m_PreviouslyPlayedFilter.IsEnabled() )
 			{
 				return false;
 			}

@@ -95,6 +95,8 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	void LoadFilters()
 	{
 		string data;
+		if( m_Tab.GetTabType() == TabType.LAN )
+			return;
 		GetGame().GetProfileString( "SB_Filter_" + m_Tab.GetTabType(), data );
 		
 		m_Options.Clear();

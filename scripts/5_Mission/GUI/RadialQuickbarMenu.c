@@ -1,6 +1,16 @@
+enum RadialQuickbarCategory
+{
+	DEFAULT,
+	SPECIALIZED_LIGHTS
+}
+
 class RadialQuickbarItem
 {
+	protected bool 					m_IsLightSourceExtra;
+	protected bool 					m_IsNVG;
 	protected int 					m_Id;
+	protected int 					m_Category;
+	protected int 					m_CategorySwitchID;
 	protected EntityAI 				m_Item;
 	protected string 				m_ItemName;
 	
@@ -8,11 +18,20 @@ class RadialQuickbarItem
 	protected Widget 			m_RadialMenuSelector;
 	protected Widget			m_RadialMenuItemCard;
 	
-	void RadialQuickbarItem( int id, EntityAI item, string item_name )
+	void RadialQuickbarItem( int id, EntityAI item, string item_name, int category = RadialQuickbarCategory.DEFAULT, int category_switch = -1 )
 	{
-		m_Id			= id;
-		m_Item 			= item;
-		m_ItemName		= item_name;
+		m_Id				= id;
+		m_Item 				= item;
+		m_ItemName			= item_name;
+		m_Category 			= category;
+		m_CategorySwitchID 	= category_switch;
+		
+		//
+		if (ItemBase.Cast(m_Item))
+		{
+			m_IsNVG = ItemBase.Cast(m_Item).IsNVG();
+			m_IsLightSourceExtra = ItemBase.Cast(m_Item).IsLightSource();
+		}
 	}
 	
 	EntityAI GetItem()
@@ -25,9 +44,29 @@ class RadialQuickbarItem
 		m_Item = item;
 	}
 	
+	bool IsLightSourceExtra()
+	{
+		return m_IsLightSourceExtra;
+	}
+	
+	bool IsNVGExtra()
+	{
+		return m_IsNVG;
+	}
+	
 	int GetId()
 	{
 		return m_Id;
+	}
+	
+	int GetItemCategory()
+	{
+		return m_Category;
+	}
+	
+	int GetCategorySwitchID()
+	{
+		return m_CategorySwitchID;
 	}
 		
 	Widget GetRadialItemCard()
@@ -51,6 +90,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 	protected Widget 								m_ItemCardPanel;
 	protected ref array<ref RadialQuickbarItem> 	m_Items;
 	
+	protected int 									m_CurrentCategory;
 	//
 	const string 									TEXT_ITEM_NAME	= "ItemName";
 	const string 									TEXT_ITEM_TITLE	= "ItemTitle";
@@ -67,6 +107,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 	void RadialQuickbarMenu()
 	{
 		m_Items = new ref array<ref RadialQuickbarItem>;
+		m_CurrentCategory = RadialQuickbarCategory.DEFAULT;
 		
 		if ( !instance )
 		{
@@ -213,6 +254,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 		}
 		
 		GetItems( m_Items );
+		//CheckForLightsAndNVG( m_Items );
 		CreateContent( selected_item_id );
 	}	
 	
@@ -233,6 +275,74 @@ class RadialQuickbarMenu extends UIScriptedMenu
 			
 			items.Insert( new RadialQuickbarItem( i, entity, "" ) );
 		}
+		
+		CheckForLightsAndNVG(m_Items,i);
+	}
+	
+	protected void CheckForLightsAndNVG( out ref array<ref RadialQuickbarItem> items, int last_idx )
+	{
+		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+		int count = 0;
+		EntityAI entity;
+		ItemBase headgear = ItemBase.Cast(player.FindAttachmentBySlotName("Headgear"));
+		ItemBase eyewear = ItemBase.Cast(player.FindAttachmentBySlotName("Eyewear"));
+		
+		//nvg - headgear check
+		if ( headgear )
+		{
+			entity = headgear.FindAttachmentBySlotName("NVG");
+			if (entity)
+			{
+				items.Insert( new RadialQuickbarItem( count, entity, "", RadialQuickbarCategory.SPECIALIZED_LIGHTS ) );
+				count++;
+			}
+		}
+		//nvg - eyewear check
+		if ( eyewear )
+		{
+			entity = eyewear.FindAttachmentBySlotName("NVG");
+			if (entity)
+			{
+				items.Insert( new RadialQuickbarItem( count, entity, "", RadialQuickbarCategory.SPECIALIZED_LIGHTS ) );
+				count++;
+			}
+		}
+		//light
+		if ( headgear )
+		{
+			if ( headgear.IsLightSource() && headgear.HasEnergyManager() && headgear.GetCompEM().CanWork() )
+			{
+				entity = headgear;
+				items.Insert( new RadialQuickbarItem( count, entity, "", RadialQuickbarCategory.SPECIALIZED_LIGHTS ) );
+				count++;
+			}
+			else if ( headgear.GetInventory().AttachmentCount() > 0 )
+			{
+				ItemBase attachment;
+				for (int i = 0; i < headgear.GetInventory().AttachmentCount(); i++)
+				{
+					attachment = ItemBase.Cast(headgear.GetInventory().GetAttachmentFromIndex(i));
+					if ( attachment && attachment.IsLightSource() && attachment.HasEnergyManager() && attachment.GetCompEM().CanWork() )
+					{
+						entity = attachment;
+						items.Insert( new RadialQuickbarItem( count, entity, "", RadialQuickbarCategory.SPECIALIZED_LIGHTS ) );
+						count++;
+					}
+				}
+			}
+		}
+		
+		//Add a category switchers
+		if (m_CurrentCategory == RadialQuickbarCategory.DEFAULT && entity)
+		{
+			//items.Insert( new RadialQuickbarItem(last_idx + 1,null,"#toggle_lights",RadialQuickbarCategory.DEFAULT,RadialQuickbarCategory.SPECIALIZED_LIGHTS) );
+			items.InsertAt( new RadialQuickbarItem(32,null,"#toggle_lights",RadialQuickbarCategory.DEFAULT,RadialQuickbarCategory.SPECIALIZED_LIGHTS),0 );
+		}
+		else if (m_CurrentCategory == RadialQuickbarCategory.SPECIALIZED_LIGHTS)
+		{
+			//items.Insert( new RadialQuickbarItem(count,null,"#menu_back",RadialQuickbarCategory.SPECIALIZED_LIGHTS,RadialQuickbarCategory.DEFAULT) );
+			items.InsertAt( new RadialQuickbarItem(32,null,"#menu_back",RadialQuickbarCategory.SPECIALIZED_LIGHTS,RadialQuickbarCategory.DEFAULT),0 );
+		}
 	}
 	
 	protected void CreateContent( int selected_item_id = -1 )
@@ -240,29 +350,35 @@ class RadialQuickbarMenu extends UIScriptedMenu
 		//delete existing content
 		DeleteItems();
 		
+		int category_item_count;
+		
 		for ( int i = 0; i < m_Items.Count(); ++i )
 		{
 			RadialQuickbarItem quickbar_item = m_Items.Get( i );
 			
-			//create item card
-			Widget item_card_widget = Widget.Cast( GetGame().GetWorkspace().CreateWidgets( "gui/layouts/radial_menu/radial_quickbar/radial_quickbar_item_card.layout", m_ItemCardPanel ) );
-			quickbar_item.SetRadialItemCard( item_card_widget );
-			
-			//update item card widget
-			UpdateQuickbarItemCard( quickbar_item );
-			
-			//set data
-			item_card_widget.SetUserData( quickbar_item );
-			
-			//set selection
-			if ( quickbar_item.GetId() == selected_item_id )
+			if (quickbar_item.GetItemCategory() == m_CurrentCategory)
 			{
-				MarkSelected( quickbar_item.GetRadialItemCard() );
+				//create item card
+				Widget item_card_widget = Widget.Cast( GetGame().GetWorkspace().CreateWidgets( "gui/layouts/radial_menu/radial_quickbar/radial_quickbar_item_card.layout", m_ItemCardPanel ) );
+				quickbar_item.SetRadialItemCard( item_card_widget );
+				
+				//update item card widget
+				UpdateQuickbarItemCard( quickbar_item );
+				
+				//set data
+				item_card_widget.SetUserData( quickbar_item );
+				
+				//set selection
+				if ( quickbar_item.GetId() == selected_item_id )
+				{
+					MarkSelected( quickbar_item.GetRadialItemCard() );
+				}
+				category_item_count++;
 			}
 		}	
 
 		//adjust radial parameters for content
-		if ( m_Items.Count() > 0 ) 
+		if ( /*m_Items.Count()*/category_item_count > 0 ) 
 		{
 			RadialMenu radial_menu = RadialMenu.GetInstance();
 			radial_menu.SetRadiusOffset( 0 );
@@ -348,6 +464,13 @@ class RadialQuickbarMenu extends UIScriptedMenu
 			item_details.Show( true );
 			item_title.Show( false );
 		}
+		else if ( quickbar_item.GetCategorySwitchID() != -1 )
+		{
+			item_title.SetText( quickbar_item.GetItemName() );
+			
+			item_details.Show( false );
+			item_title.Show( true );	
+		}
 		else
 		{
 			item_title.SetText( "#empty" );
@@ -372,6 +495,12 @@ class RadialQuickbarMenu extends UIScriptedMenu
 			
 			delete child_to_destroy;
 		}		
+	}
+	
+	protected void ChangeCurrentCategory(int category)
+	{
+		m_CurrentCategory = category;
+		RefreshQuickbar(false);
 	}
 	
 	//============================================
@@ -411,9 +540,16 @@ class RadialQuickbarMenu extends UIScriptedMenu
 	void OnControllerPressBack( Widget w )
 	{
 		SecondaryAction( w );
-	}	
+	}
 
-	//Actions			
+	/*void OnMouseClick( Widget w )
+	{
+		MarkSelected( w );
+		PrimaryAction( w );
+		//SecondaryAction( w );
+	}*/
+	
+	//Actions
 	protected void MarkSelected( Widget w )
 	{
 		m_SelectedItem = w;
@@ -437,7 +573,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 				{
 					//alter item visual
 					TextWidget title_widget = TextWidget.Cast( quickbar_item.GetRadialItemCard().FindAnyWidget( TEXT_ITEM_TITLE ) );
-					title_widget.SetColor( ARGB( 255, 66, 175, 95 ) );		
+					title_widget.SetColor( ARGB( 255, 66, 175, 95 ) );
 				}				
 			}		
 		}
@@ -500,6 +636,22 @@ class RadialQuickbarMenu extends UIScriptedMenu
 							player.SetQuickBarEntityShortcut( GetItemToAssign(), quickbar_item.GetId() );
 						}
 					}
+					//LIGHTS
+					else if (m_CurrentCategory == RadialQuickbarCategory.SPECIALIZED_LIGHTS && quickbar_item.IsLightSourceExtra())
+					{
+						HandleLights(quickbar_item);
+					}
+					//NVG
+					else if (m_CurrentCategory == RadialQuickbarCategory.SPECIALIZED_LIGHTS && quickbar_item.IsNVGExtra())
+					{
+						HandleNVG(quickbar_item);
+					}
+					//change quickbar category
+					else if (quickbar_item.GetCategorySwitchID() != -1)
+					{
+						ChangeCurrentCategory(quickbar_item.GetCategorySwitchID());
+						return;
+					}
 					//SWAP
 					else
 					{
@@ -509,7 +661,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 						{
 							//swap
 							player.RadialQuickBarSingleUse( quickbar_item.GetId() + 1 );				//id must begin with 1 (simulating key press 1-9)
-						}	
+						}
 					}
 					
 					RefreshQuickbar( false );
@@ -520,7 +672,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 	
 	protected void SecondaryAction( Widget w )
 	{
-		if ( instance.m_SelectedItem )
+		if ( instance.m_SelectedItem && m_CurrentCategory == RadialQuickbarCategory.DEFAULT )
 		{
 			if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 			{
@@ -541,5 +693,54 @@ class RadialQuickbarMenu extends UIScriptedMenu
 				}
 			}
 		}
-	}	
+	}
+	
+	//-------------------------------------------
+	//NVG/Light handling extension
+	//-------------------------------------------
+	void HandleLights(RadialQuickbarItem quickbar_item)
+	{
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		ItemBase item = ItemBase.Cast(quickbar_item.GetItem());
+		ActionManagerClient mngr_client = ActionManagerClient.Cast(player.GetActionManager());
+		ActionTarget atrg;
+		
+		if ( Headtorch_ColorBase.Cast(item) )		
+		{
+			atrg = new ActionTarget(item,null,-1,vector.Zero,-1.0);
+			if ( mngr_client.GetAction(ActionTurnOnHeadtorch).Can(player,atrg,null) )
+			{
+				mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionTurnOnHeadtorch),atrg,null);
+			}
+			else if ( mngr_client.GetAction(ActionTurnOffHeadtorch).Can(player,atrg,null) )
+			{
+				mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionTurnOffHeadtorch),atrg,null);
+			}
+		}
+		else if ( Mich2001Helmet.Cast(item.GetHierarchyParent()) )
+		{
+			atrg = new ActionTarget(item.GetHierarchyParent(),null,-1,vector.Zero,-1.0);
+			if ( mngr_client.GetAction(ActionTurnOnHelmetFlashlight).Can(player,atrg,null) )
+			{
+				mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionTurnOnHelmetFlashlight),atrg,null);
+			}
+			else if ( mngr_client.GetAction(ActionTurnOffHelmetFlashlight).Can(player,atrg,null) )
+			{
+				mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionTurnOffHelmetFlashlight),atrg,null);
+			}
+		}
+	}
+	
+	void HandleNVG(RadialQuickbarItem quickbar_item)
+	{
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		ActionManagerClient mngr_client = ActionManagerClient.Cast(player.GetActionManager());
+		ActionTarget atrg;
+		
+		atrg = new ActionTarget(quickbar_item.GetItem().GetHierarchyParent(),null,-1,vector.Zero,-1.0);
+		if ( mngr_client.GetAction(ActionToggleNVG).Can(player,atrg,null) )
+		{
+			mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionToggleNVG),atrg,null);
+		}
+	}
 }

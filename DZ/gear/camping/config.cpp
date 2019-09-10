@@ -2,7 +2,7 @@
 //DeRap: gear_camping\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 15:30:34 2019 : 'file' last modified on Mon Sep 02 12:17:12 2019
+//'now' is Tue Sep 10 15:08:40 2019 : 'file' last modified on Fri Sep 06 19:27:29 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -78,15 +78,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -324,15 +339,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -654,15 +684,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -874,15 +919,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -980,15 +1040,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -1101,15 +1176,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -1217,15 +1307,30 @@ class CfgVehicles
 				{
 					class Health
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Blood
 					{
-						damage = 1;
+						damage = 0;
 					};
 					class Shock
 					{
-						damage = 1;
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
 					};
 				};
 			};
@@ -4638,6 +4743,7 @@ class CfgVehicles
 		weight = 5000;
 		itemSize[] = {3,3};
 		itemBehaviour = 0;
+		heavyItem = 1;
 		rotationFlags = 2;
 		hiddenSelections[] = {"light_stand_by","light_charging","light_charged","switch_on","clips_detached","clips_folded","cord_plugged","cord_folded","placing"};
 		hiddenSelectionsTextures[] = {"dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa","dz\gear\camping\data\battery_charger_co.paa"};

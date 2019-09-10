@@ -5,6 +5,7 @@ class OnlineServices
 	static ref ScriptInvoker												m_ServersAsyncInvoker		= new ScriptInvoker();
 	static ref ScriptInvoker												m_ServerAsyncInvoker		= new ScriptInvoker();
 	static ref ScriptInvoker												m_MuteUpdateAsyncInvoker	= new ScriptInvoker();
+	static ref ScriptInvoker												m_ServerModLoadAsyncInvoker	= new ScriptInvoker();
 	
 	static ref BiosClientServices											m_ClientServices;
 	static ref TrialService													m_TrialService				= new TrialService;
@@ -240,6 +241,21 @@ class OnlineServices
 					}
 				}
 			}
+			
+			// todo: remove
+			//foreach( GetServersResultRow res : result_list.m_Results )
+			//{
+			//	Print("OnLoadServersAsync: result id: " + res.m_Id + "modded: " + res.m_Modded);
+			//}
+			
+			// just for example execute the retrieving of extended info for the first server entry in the list
+			//if (result_list.m_Results.Count() > 0)
+			//{
+				//GetServersResultRow re = result_list.m_Results[0];
+				//EBiosError er = m_ClientServices.GetLobbyService().GetServerModList(re.m_Id);
+				//Print("OnLoadServersAsync GetServerModList returns:" + er);
+			//}
+			
 			m_ServersAsyncInvoker.Invoke( result_list, error, response );
 		}
 		else
@@ -705,6 +721,23 @@ class OnlineServices
 		else
 		{
 			GetGame().GetUIManager().ShowDialog( "#str_xbox_authentification_fail_title", "#xbox_authentification_fail", 232, DBT_OK, DBB_NONE, DMT_INFO, GetGame().GetUIManager().GetMenu() );
+		}
+	}
+	
+	static void GetServerModList( string server_id )
+	{
+		GetClientServices();
+		if( m_ClientServices )
+		{
+			m_ClientServices.GetLobbyService().GetServerModList( server_id );
+		}
+	}
+	
+	static void OnGetServerModList( ref GetServerModListResult result_list, EBiosError error )
+	{
+		if( !ErrorCaught( error ) )
+		{
+			m_ServerModLoadAsyncInvoker.Invoke( result_list );
 		}
 	}
 	

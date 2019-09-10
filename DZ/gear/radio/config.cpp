@@ -2,7 +2,7 @@
 //DeRap: gear_radio\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 15:31:27 2019 : 'file' last modified on Tue Aug 13 15:10:47 2019
+//'now' is Tue Sep 10 15:08:57 2019 : 'file' last modified on Tue Aug 13 15:10:47 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

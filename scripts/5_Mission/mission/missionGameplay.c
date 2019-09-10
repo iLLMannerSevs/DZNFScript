@@ -119,9 +119,9 @@ class MissionGameplay extends MissionBase
 		
 			if( m_VoiceLevels )
 			{
-				m_VoiceLevelsWidgets.Set(VoiceLevelWhisper, m_VoiceLevels.FindAnyWidget("Whisper"));
-				m_VoiceLevelsWidgets.Set(VoiceLevelTalk, m_VoiceLevels.FindAnyWidget("Talk"));
-				m_VoiceLevelsWidgets.Set(VoiceLevelShout, m_VoiceLevels.FindAnyWidget("Shout"));
+				m_VoiceLevelsWidgets.Set(VoiceLevelWhisper, ImageWidget.Cast( m_VoiceLevels.FindAnyWidget("Whisper") ));
+				m_VoiceLevelsWidgets.Set(VoiceLevelTalk, ImageWidget.Cast( m_VoiceLevels.FindAnyWidget("Talk") ));
+				m_VoiceLevelsWidgets.Set(VoiceLevelShout, ImageWidget.Cast( m_VoiceLevels.FindAnyWidget("Shout") ));
 				
 				m_VoiceLevelTimers.Set(VoiceLevelWhisper, new WidgetFadeTimer);
 				m_VoiceLevelTimers.Set(VoiceLevelTalk, new WidgetFadeTimer);

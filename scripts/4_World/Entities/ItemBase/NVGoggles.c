@@ -148,4 +148,9 @@ class NVGoggles extends PoweredOptic_Base
 				GetCompEM().SwitchOff();
 		}
 	}
+	
+	override bool IsNVG()
+	{
+		return true;
+	}
 }

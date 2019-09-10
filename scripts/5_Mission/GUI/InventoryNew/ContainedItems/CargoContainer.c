@@ -94,7 +94,7 @@ class CargoContainer extends Container
 		
 		m_FocusedItemPosition = Math.Min( m_ShowedItemPositions.Count() - 1, m_FocusedItemPosition );
 		
-		UpdateRowVisibility( m_ShowedItemPositions.Count() );
+		UpdateRowVisibility( m_Cargo.GetItemCount() );
 		UpdateSelection();
 		#endif
 	}
@@ -124,7 +124,7 @@ class CargoContainer extends Container
 		
 		m_FocusedItemPosition = Math.Min( m_ShowedItemPositions.Count() - 1, m_FocusedItemPosition );
 		
-		UpdateRowVisibility( m_ShowedItemPositions.Count() );
+		UpdateRowVisibility( m_Cargo.GetItemCount() );
 		UpdateSelection();
 		#endif
 	}
@@ -133,7 +133,7 @@ class CargoContainer extends Container
 	{
 		InventoryLocation il = new InventoryLocation;
 		item.GetInventory().GetCurrentInventoryLocation( il );
-		Print( "Moved in cargo" );
+		
 		int x = il.GetCol();
 		#ifdef PLATFORM_CONSOLE
 		int y = il.GetRow() - 1;
@@ -439,7 +439,7 @@ class CargoContainer extends Container
 	void UpdateRowVisibility( int count )
 	{
 		int i;
-		int rows = Math.Max( 1, Math.Ceil( count / ROWS_NUMBER_XBOX ) );
+		int rows = Math.Max( 1, Math.Ceil( (count + 1) / ROWS_NUMBER_XBOX ) );
 		int diff = rows - m_Rows.Count();
 		
 		if( diff < 0 )
@@ -448,8 +448,6 @@ class CargoContainer extends Container
 			{
 				m_Rows.Remove( i );
 			}
-			m_Resizer2.ResizeParentToChild();
-			m_Resizer1.ResizeParentToChild();
 		}
 		else if( diff > 0 )
 		{
@@ -465,6 +463,7 @@ class CargoContainer extends Container
 			}
 			m_MainWidget	= m_ItemsContainer;
 		}
+		
 		m_Resizer2.ResizeParentToChild();
 		m_Resizer1.ResizeParentToChild();
 	}

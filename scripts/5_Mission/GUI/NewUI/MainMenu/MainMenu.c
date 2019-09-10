@@ -21,7 +21,6 @@ class MainMenu extends UIScriptedMenu
 	protected Widget				m_MessageButton;
 	protected Widget				m_SettingsButton;
 	protected Widget				m_Exit;
-	protected Widget				m_NewsFeedOpen;
 	protected Widget				m_NewsFeedClose;
 	protected Widget				m_NewsMain;
 	protected Widget				m_NewsSec1;
@@ -55,7 +54,6 @@ class MainMenu extends UIScriptedMenu
 		m_MessageButton				= layoutRoot.FindAnyWidget( "message_button" );
 		m_SettingsButton			= layoutRoot.FindAnyWidget( "settings_button" );
 		m_Exit						= layoutRoot.FindAnyWidget( "exit_button" );
-		m_NewsFeedOpen				= layoutRoot.FindAnyWidget( "news_feed_open" );
 		m_NewsFeedClose				= layoutRoot.FindAnyWidget( "news_feed_close" );
 		m_PrevCharacter				= layoutRoot.FindAnyWidget( "prev_character" );
 		m_NextCharacter				= layoutRoot.FindAnyWidget( "next_character" );
@@ -132,7 +130,7 @@ class MainMenu extends UIScriptedMenu
 		{
 			m_ModdedWarning.Show( true );
 			m_ModsTooltip = new ModsMenuTooltip(layoutRoot);
-			m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"), m_ModsTooltip);
+			m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"), m_ModsTooltip, this);
 			
 			m_ModsSimple = new ModsMenuSimple(modArray, layoutRoot.FindAnyWidget("ModsSimple"), m_ModsDetailed);
 		}
@@ -218,11 +216,6 @@ class MainMenu extends UIScriptedMenu
 			else if ( w == m_NextCharacter )
 			{
 				NextCharacter();
-				return true;
-			}
-			else if ( w == m_NewsFeedOpen )
-			{
-				ShowNewsfeed();
 				return true;
 			}
 			else if ( w == m_NewsFeedClose )
@@ -317,7 +310,7 @@ class MainMenu extends UIScriptedMenu
 				return true;
 			}
 			
-			if( w == m_Exit || w == m_NewsFeedOpen || w == m_NewsFeedClose || w == m_PlayVideo );
+			if( w == m_Exit || w == m_NewsFeedClose || w == m_PlayVideo );
 			{
 				return true;
 			}
@@ -350,6 +343,7 @@ class MainMenu extends UIScriptedMenu
 		SetFocus( null );
 		OnChangeCharacter();
 		LoadMods();
+		ShowNewsfeed();
 		return;
 		/*
 		GetDayZGame().GetBacklit().MainMenu_OnShow();
@@ -515,13 +509,11 @@ class MainMenu extends UIScriptedMenu
 	void ShowNewsfeed()
 	{
 		m_Newsfeed.ShowNewsfeed();
-		m_NewsFeedOpen.Show( false );
 	}
 	
 	void HideNewsfeed()
 	{
 		m_Newsfeed.HideNewsfeed();
-		m_NewsFeedOpen.Show( true );
 	}
 	
 	void OpenSettings()

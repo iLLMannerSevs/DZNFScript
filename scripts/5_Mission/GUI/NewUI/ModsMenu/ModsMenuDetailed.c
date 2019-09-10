@@ -8,17 +8,19 @@ class ModsMenuDetailed extends ScriptedWidgetEventHandler
 	
 	protected ModInfo											m_Highlighted;
 	
+	protected MainMenu											m_Menu;
 	protected ModsMenuTooltip									m_Tooltip;
 	protected ref Timer											m_TooltipTimer;
 	protected ModInfo											m_TooltipMod;
 
-	void ModsMenuDetailed(array<ref ModInfo> data, Widget parent, ModsMenuTooltip tooltip)
+	void ModsMenuDetailed(array<ref ModInfo> data, Widget parent, ModsMenuTooltip tooltip, MainMenu menu_parent)
 	{
 		m_Root = GetGame().GetWorkspace().CreateWidgets("gui/layouts/new_ui/mods_menu/mods_menu_detailed.layout", parent);
 		m_Content = m_Root.FindAnyWidget("ModsDetailedContent");
 		m_Scroll = ScrollWidget.Cast(m_Root.FindAnyWidget("ModsDetailedScroller"));
 		m_CloseButton = m_Root.FindAnyWidget("ModsDetailedHeaderButton");
 		
+		m_Menu = menu_parent;
 		m_Data = new map<ref ModInfo, ref ModsMenuDetailedEntry>;
 		m_Tooltip = tooltip;
 		
@@ -37,12 +39,14 @@ class ModsMenuDetailed extends ScriptedWidgetEventHandler
 		if( !m_Root.IsVisible() )
 			m_Scroll.VScrollToPos( 0 );
 		m_Root.Show( true );
+		m_Menu.HideNewsfeed();
 	}
 	
 	void Close()
 	{
 		Highlight( null );
 		m_Root.Show( false );
+		m_Menu.ShowNewsfeed();
 	}
 	
 	bool IsOpen()

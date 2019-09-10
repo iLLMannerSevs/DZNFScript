@@ -342,7 +342,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
    clipchildren 1
    ignorepointer 1
    position 0 0
-   size 1 60
+   size 1 80
    hexactpos 1
    vexactpos 1
    hexactsize 0
@@ -375,14 +375,14 @@ GridSpacerWidgetClass server_browser_list_entry_root {
      vexactsize 0
      Padding 0
      Margin 4
-     "Size To Content H" 1
      Columns 2
+     Rows 4
      {
       FrameWidgetClass shard {
        clipchildren 0
        ignorepointer 1
-       position 4 0.125
-       size 0.65 0.25
+       position 0 0.125
+       size 0.65 0.2
        hexactpos 1
        vexactpos 0
        hexactsize 0
@@ -427,7 +427,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        clipchildren 0
        ignorepointer 1
        position 0.65 0.125
-       size 0.5 0.25
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -470,8 +470,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       FrameWidgetClass character_alive {
        clipchildren 0
        ignorepointer 1
-       position 4 0.375
-       size 0.65 0.25
+       position 0 0.375
+       size 0.65 0.2
        hexactpos 1
        vexactpos 0
        hexactsize 0
@@ -517,7 +517,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        clipchildren 0
        ignorepointer 1
        position 0.65 0.375
-       size 0.5 0.25
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -562,8 +562,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       FrameWidgetClass ip {
        clipchildren 0
        ignorepointer 1
-       position 4 0.625
-       size 0.65 0.25
+       position 0 0.625
+       size 0.65 0.2
        hexactpos 1
        vexactpos 0
        hexactsize 0
@@ -573,7 +573,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
          clipchildren 0
          ignorepointer 1
          position 0 0
-         size 128 1
+         size 32 1
          hexactpos 0
          vexactpos 0
          hexactsize 1
@@ -586,9 +586,9 @@ GridSpacerWidgetClass server_browser_list_entry_root {
          "text valign" center
         }
         TextWidgetClass ip_text {
-         clipchildren 0
+         clipchildren 1
          ignorepointer 1
-         position 128 0
+         position 32 0
          size 680 1
          hexactpos 1
          vexactpos 0
@@ -609,7 +609,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        clipchildren 0
        ignorepointer 1
        position 0.65 0.625
-       size 0.5 0.25
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -649,6 +649,18 @@ GridSpacerWidgetClass server_browser_list_entry_root {
         }
        }
       }
+      TextWidgetClass mods_text {
+       clipchildren 0
+       ignorepointer 1
+       position 0 0
+       size 0.875 1
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       font "gui/fonts/sdf_MetronLight24"
+      }
      }
     }
     FrameWidgetClass spacer_right {
@@ -675,6 +687,19 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        "exact text size" 16
        "text halign" center
        "text valign" center
+      }
+      ButtonWidgetClass mods_expand {
+       visible 1
+       position 0 0.75
+       size 0.6 0.2
+       halign right_ref
+       hexactpos 1
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       style Colorable
+       text "Expand"
+       font "gui/fonts/sdf_MetronLight24"
       }
      }
     }

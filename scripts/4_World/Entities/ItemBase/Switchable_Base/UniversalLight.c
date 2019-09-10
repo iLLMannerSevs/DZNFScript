@@ -113,4 +113,9 @@ class UniversalLight extends Switchable_Base
 		AddAction(ActionTurnOnWhileInHands);
 		AddAction(ActionTurnOffWhileInHands);
 	}
+	
+	override bool IsLightSource()
+	{
+		return true;
+	}
 }

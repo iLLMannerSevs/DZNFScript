@@ -2,7 +2,7 @@
 //DeRap: structures_ruins\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 15:35:35 2019 : 'file' last modified on Tue Jul 23 11:46:19 2019
+//'now' is Tue Sep 10 15:11:40 2019 : 'file' last modified on Tue Jul 23 11:46:19 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

@@ -6,18 +6,6 @@ const int SERVER_BROWSER_PAGE_SIZE = 22;
 const int SERVER_BROWSER_PAGE_SIZE = 5;
 #endif
 
-class DebugClass1
-{
-	string m_DebugString;
-	
-	
-}
-
-class DebugClass2 : Managed
-{
-	ref DebugClass1 m_Class1;
-}
-
 class ServerBrowserMenuNew extends UIScriptedMenu
 {
 	protected Widget				m_Play;
@@ -70,12 +58,18 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		
 #ifdef PLATFORM_CONSOLE
 		version = "#main_menu_version" + " " + version + " (" + g_Game.GetDatabaseID() + ")";
+		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
+		{
+			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( false );
+		}
 #else
 		version = "#main_menu_version" + " " + version;
 #endif
 		m_Version.SetText( version );
 		
 		OnlineServices.m_ServersAsyncInvoker.Insert( OnLoadServersAsync );
+		//OnlineServices.m_ServerModLoadAsyncInvoker.Insert( OnLoadServerModsAsync );
 		m_Tabber.m_OnTabSwitch.Insert( OnTabSwitch );
 				
 		m_OfficialTab.RefreshList();
@@ -120,6 +114,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		SaveFavoriteServersConsoles();
 #endif
 		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
+		//OnlineServices.m_ServerModLoadAsyncInvoker.Remove( OnLoadServerModsAsync );
 		m_Tabber.m_OnTabSwitch.Remove( OnTabSwitch );
 		PPEffects.SetBlurMenu( 0.0 );
 	}
@@ -425,11 +420,6 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 				Back();
 			}
 		}
-		else
-		{
-			Print( "GetGame().GetUIManager().IsDialogVisible() = " + GetGame().GetUIManager().IsDialogVisible() );
-			Print( "GetDayZGame().IsConnecting() = " + GetDayZGame().IsConnecting() );
-		}
 		
 		super.Update( timeslice );
 	}
@@ -543,6 +533,14 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		}
 		
 		GetSelectedTab().Focus();
+	}
+	
+	void OnLoadServerModsAsync( ref GetServerModListResult result_list )
+	{
+		if( GetSelectedTab() )
+		{
+			GetSelectedTab().OnLoadServerModsAsync( result_list.m_Id, result_list.m_Mods );
+		}
 	}
 	
 	void OnLoadServersAsync( ref GetServersResult result_list, EBiosError error, string response )

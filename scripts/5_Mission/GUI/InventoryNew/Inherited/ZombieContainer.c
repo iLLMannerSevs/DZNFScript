@@ -704,6 +704,7 @@ class ZombieContainer: CollapsibleContainer
 			WidgetEventHandler.GetInstance().RegisterOnMouseButtonUp( icon.GetGhostSlot(), this, "ToggleWidget" );
 			m_CargoGrid = new ContainerWithCargo( this );
 			m_CargoGrid.SetEntity( m_ZombieEntity );
+			m_CargoGrid.GetHeader().GetMainWidget().ClearFlags( WidgetFlags.DRAGGABLE );
 			m_ShowedItems.Insert( m_ZombieEntity, m_CargoGrid );
 		}
 	}

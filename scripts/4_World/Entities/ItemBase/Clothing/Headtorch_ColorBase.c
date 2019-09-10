@@ -213,4 +213,9 @@ class Headtorch_ColorBase extends Clothing
 		AddAction(ActionTurnOnHeadtorch);
 		AddAction(ActionTurnOffHeadtorch);
 	}
+	
+	override bool IsLightSource()
+	{
+		return true;
+	}
 };

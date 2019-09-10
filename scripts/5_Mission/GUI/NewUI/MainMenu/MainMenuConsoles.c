@@ -57,8 +57,10 @@ class MainMenuConsole extends UIScriptedMenu
 			}
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "SelectIcon" );
 			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "ChooseAccount" );
+			ImageWidget toolbar_y2 = layoutRoot.FindAnyWidget( "ChooseAccount" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:" + confirm );
 			toolbar_y.Show( false );
+			toolbar_y2.Show( false );
 		#endif
 		
 		Refresh();
@@ -160,6 +162,12 @@ class MainMenuConsole extends UIScriptedMenu
 			m_ScenePC.GetIntroCamera().LookAt( m_ScenePC.GetIntroCharacter().GetPosition() + Vector( 0, 1, 0 ) );
 		}
 		m_IsShown = true;
+		
+		super.OnShow();
+		#ifdef PLATFORM_CONSOLE
+			layoutRoot.FindAnyWidget( "choose_account" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		#endif
 	}
 	
 	override void OnHide()

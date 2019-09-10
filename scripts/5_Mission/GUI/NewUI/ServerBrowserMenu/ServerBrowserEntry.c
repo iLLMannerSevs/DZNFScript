@@ -23,6 +23,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	protected TextWidget				m_ServerAcceleration;
 	protected TextWidget				m_ServerMods;
 	protected ButtonWidget				m_ServerModsExpand;
+	protected ref array<string>			m_Mods;
 	
 	protected bool						m_IsExpanded;
 	protected bool						m_IsFavorited;
@@ -31,6 +32,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	protected int						m_Index;
 	protected ServerBrowserTab			m_Tab;
 	protected bool						m_Selected;
+	protected bool						m_FirstExpand = true;
 	
 	void ServerBrowserEntry( Widget parent, int index, ServerBrowserTab tab )
 	{
@@ -60,7 +62,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		m_ServerBattleye		= TextWidget.Cast( m_Root.FindAnyWidget( "battlleye_text" ) );
 		m_ServerIP				= TextWidget.Cast( m_Root.FindAnyWidget( "ip_text" ) );
 		m_ServerAcceleration	= TextWidget.Cast( m_Root.FindAnyWidget( "server_acceleration_text" ) );
-		m_ServerMods			= m_Root.FindAnyWidget( "mods_text" );
+		m_ServerMods			= TextWidget.Cast( m_Root.FindAnyWidget( "mods_text" ) );
 		m_ServerModsExpand		= ButtonWidget.Cast( m_Root.FindAnyWidget( "mods_expand" ) );
 		
 		m_Root.FindAnyWidget( "basic_info" ).Show( true );
@@ -106,7 +108,16 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		#endif
 		if( w == m_ServerModsExpand )
 		{
-			
+			string mods_text;
+			if( m_Mods && m_Mods.Count() > 0 )
+			{
+				mods_text = m_Mods[0];
+				for( int i = 1; i < m_Mods.Count(); i++ )
+				{
+					mods_text += "\n" + m_Mods[i];
+				}
+			}
+			GetGame().GetUIManager().ShowDialog( "MODS", mods_text, 0, 0, 0, 0, GetGame().GetUIManager().GetMenu() );
 		}
 		return false;
 	}
@@ -231,7 +242,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	void FillInfo( GetServersResultRow server_info )
 	{
 		m_ServerData = server_info;
-		
+		m_FirstExpand = true;
 		//Print( server_info.m_Priority );
 		
 #ifndef PLATFORM_CONSOLE
@@ -258,25 +269,13 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		
 		SetShard( pp );
 		
-		
 		SetCharacterAlive( server_info.m_CharactersAlive );
 		SetFriends( server_info.m_SteamFriends );
 		SetMode( server_info.m_Disable3rdPerson );
 		SetBattleye( server_info.m_AntiCheat );
 		SetIP( server_info.m_Id );
 		SetAcceleration( server_info.m_EnvironmentTimeMul );
-		if( server_info.m_Modded )
-		{
-			//SetMods( new array<string> );
-			//m_ServerModsExpand.Show( true );
-			m_ServerModIcon.Show( true );
-		}
-		else
-		{
-			//m_ServerMods.SetText( "" );
-			//m_ServerModsExpand.Show( false );
-			m_ServerModIcon.Show( false );
-		}
+		SetModded( server_info.m_Modded );
 #endif
 #endif
 	}
@@ -467,19 +466,28 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		}
 	}
 	
+	void SetModded( bool is_modded )
+	{
+		m_ServerModIcon.Show( is_modded );
+		//m_ServerModsExpand.Show( is_modded );
+	}
+	
 	void SetMods( array<string> mods )
 	{
-		string mods_text;
-		
-		if( mods.Count() > 0 )
+		m_Mods = mods;
+		if( mods )
 		{
-			mods_text = mods[0];
-			for( int i = 1; i < mods.Count(); i++ )
+			string mods_text;
+			if( mods.Count() > 0 )
 			{
-				mods_text += ", " + mods[i];
+				mods_text = mods[0];
+				for( int i = 1; i < mods.Count(); i++ )
+				{
+					mods_text += ", " + mods[i];
+				}
+				
+				m_ServerMods.SetText( mods_text );
 			}
-			
-			m_ServerMods.SetText( mods_text );
 		}
 	}
 	
@@ -497,7 +505,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		TStringArray server_id = new TStringArray;
 		data.m_Id.Split(":", server_id);
 		OnlineServices.SetServerFavorited(server_id[0], data.m_HostPort, data.m_SteamQueryPort, m_IsFavorited);
-#endif	
+#endif
 		
 		m_Root.FindAnyWidget( "unfavorite_image" ).Show( !m_IsFavorited );
 		m_Root.FindAnyWidget( "favorite_image" ).Show( m_IsFavorited );
@@ -521,6 +529,17 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		{
 			m_ServerData.m_IsExpanded = m_IsExpanded;
 		}
+		
+		/*
+		if ( expand && m_FirstExpand )
+		{
+			if( m_ServerData.m_Modded )
+				OnlineServices.GetServerModList( m_ServerData.m_Id );
+			else
+				m_ServerMods.SetText( "" );
+			m_FirstExpand = false;
+		}
+		*/
 		
 		return m_IsExpanded;
 	}

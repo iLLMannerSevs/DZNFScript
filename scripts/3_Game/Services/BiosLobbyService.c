@@ -17,6 +17,11 @@ enum ESortOrder
 	DESCENDING,
 };
 
+class GetServerModListResult
+{
+	string m_Id;	// server id (IP:Port)
+	array<string> m_Mods;
+}
 
 //! GetServersResultRow the output structure of the GetServers operation that represents one game server
 class GetServersResultRow
@@ -429,7 +434,11 @@ class BiosLobbyService
 	proto native void AddServerFavorite(string ipAddress, int port, int steamQueryPort);
 	proto native void RemoveServerFavorite(string ipAddress, int port, int steamQueryPort);
 
-
+	//! Async function to retrieve info about mods for specific server (only for PC)
+	//! @param serverId have to be an id returned by callbacks issued by last call to GetServers
+	//! if GetServers is used another time the id's must be upated
+	proto native EBiosError GetServerModList(string serverId);
+	
 	//! Async callback for GetServers
 	/*!
 		@param result_list result object
@@ -449,5 +458,16 @@ class BiosLobbyService
 	void OnGetFirstServerWithEmptySlot(ref GetFirstServerWithEmptySlotResult result_list, EBiosError error)
 	{
 		OnlineServices.OnAutoConnectToEmptyServer( result_list, error );
+	}
+	
+	//! Async callback for GetServerModList
+	void OnServerModList(ref GetServerModListResult result_list, EBiosError error)
+	{
+		//Print("OnServerModList: result id: " + result_list.m_Id + " response:" + error);
+		
+		//foreach( string mod : result_list.m_Mods )
+		//{
+		//	Print("OnServerModList: mod:" + mod);
+		//}
 	}
 };

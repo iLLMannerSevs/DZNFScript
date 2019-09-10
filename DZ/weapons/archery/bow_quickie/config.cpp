@@ -2,7 +2,7 @@
 //DeRap: weapons_archery\bow_quickie\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 15:36:34 2019 : 'file' last modified on Sat Jul 20 11:02:06 2019
+//'now' is Tue Sep 10 15:12:25 2019 : 'file' last modified on Sat Jul 20 11:02:06 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

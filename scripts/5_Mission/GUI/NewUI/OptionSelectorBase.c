@@ -34,6 +34,9 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseEnter( Widget w, int x, int y )
 	{
+		if( !IsFocusable( w ) )
+			return true;
+		
 		if( m_ParentClass )
 		{
 			m_ParentClass.OnFocus( m_Root.GetParent(), -1, m_SelectorType );
@@ -65,6 +68,9 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
+		if( IsFocusable( enterW ) )
+			return true;
+		
 		if( m_ParentClass )
 		{
 			m_ParentClass.OnFocus( null, x, y );
@@ -98,6 +104,7 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	{
 		if( IsFocusable( w ) )
 		{
+			Print( w.GetName() );
 			ColorHighlightConsole( w );
 			if( m_ParentClass )
 			{
@@ -110,16 +117,13 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	
 	override bool OnFocusLost( Widget w, int x, int y )
 	{
-		if( IsFocusable( w ) )
+		Print( w.GetName() );
+		ColorNormalConsole( w );
+		if( m_ParentClass )
 		{
-			ColorNormalConsole( w );
-			if( m_ParentClass )
-			{
-				m_ParentClass.OnFocusLost( w, x, y );
-			}
-			return true;
+			m_ParentClass.OnFocusLost( w, x, y );
 		}
-		return false;
+		return true;
 	}
 	
 	void Focus()

@@ -3,11 +3,11 @@ ImageSetClass {
  RefSize 1024 1024
  Textures {
   ImageSetTextureClass {
-   mpix 3
+   mpix 0
    path "{534691EE0479871C}Gui/imagesets/dayz_gui.edds"
   }
   ImageSetTextureClass {
-   mpix 7
+   mpix 1
    path "{C139E49FD0ECAF9E}Gui/imagesets/dayz_gui@2x.edds"
   }
  }
@@ -1031,18 +1031,6 @@ ImageSetClass {
      Size 50 50
      Flags 0
     }
-    ImageSetDefClass small_circle {
-     Name "small_circle"
-     Pos 499 491
-     Size 70 57
-     Flags 0
-    }
-    ImageSetDefClass large_circle {
-     Name "large_circle"
-     Pos 189 385
-     Size 197 165
-     Flags 0
-    }
     ImageSetDefClass large_pointer {
      Name "large_pointer"
      Pos 610 492
@@ -1157,12 +1145,6 @@ ImageSetClass {
      Size 13 40
      Flags 0
     }
-    ImageSetDefClass large_circle_half {
-     Name "large_circle_half"
-     Pos 804 519
-     Size 197 165
-     Flags 0
-    }
     ImageSetDefClass iconArrowUp {
      Name "iconArrowUp"
      Pos 730 499
@@ -1210,12 +1192,6 @@ ImageSetClass {
      Pos 26 661
      Size 41 152
      Flags 0
-    }
-    ImageSetDefClass inv_panel_bg2 {
-     Name "inv_panel_bg2"
-     Pos 80 772
-     Size 152 42
-     Flags 3
     }
     ImageSetDefClass iconPoisoned {
      Name "iconPoisoned"

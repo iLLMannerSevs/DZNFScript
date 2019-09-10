@@ -368,7 +368,7 @@ FrameWidgetClass ServerBrowserRoot {
    visible 1
    ignorepointer 1
    position 100 130
-   size 400 400
+   size 400 200
    halign right_ref
    valign bottom_ref
    hexactpos 1

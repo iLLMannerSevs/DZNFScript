@@ -327,7 +327,7 @@ GridSpacerWidgetClass server_browser_list_entry_root {
    visible 1
    ignorepointer 1
    position 0 0
-   size 1 60
+   size 1 80
    hexactpos 1
    vexactpos 1
    hexactsize 0
@@ -353,12 +353,12 @@ GridSpacerWidgetClass server_browser_list_entry_root {
      vexactpos 1
      hexactsize 0
      vexactsize 0
-     style dashed
+     style blank
      {
       FrameWidgetClass shard {
        ignorepointer 1
-       position 0 0.125
-       size 0.5 0.25
+       position 0 0.08
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -398,8 +398,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       }
       FrameWidgetClass character_alive {
        ignorepointer 1
-       position 0 0.375
-       size 0.5 0.25
+       position 0 0.28
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -440,8 +440,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       }
       FrameWidgetClass steam_friends {
        ignorepointer 1
-       position 0 0.625
-       size 0.5 0.25
+       position 0 0.48
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -482,8 +482,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       }
       FrameWidgetClass mode {
        ignorepointer 1
-       position 0.5 0.125
-       size 0.5 0.25
+       position 0.5 0.08
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -524,8 +524,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       }
       FrameWidgetClass battlleye {
        ignorepointer 1
-       position 0.5 0.375
-       size 0.5 0.25
+       position 0.5 0.28
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -568,8 +568,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
       }
       FrameWidgetClass ip {
        ignorepointer 1
-       position 0.5 0.625
-       size 0.5 0.25
+       position 0.5 0.48
+       size 0.5 0.2
        hexactpos 0
        vexactpos 0
        hexactsize 0
@@ -605,6 +605,38 @@ GridSpacerWidgetClass server_browser_list_entry_root {
          "bold text" 0
          "exact text" 0
          "text valign" center
+        }
+       }
+      }
+      PanelWidgetClass mods {
+       visible 1
+       ignorepointer 1
+       position 0 0.68
+       size 1 0.2
+       hexactpos 0
+       vexactpos 0
+       hexactsize 0
+       vexactsize 0
+       {
+        TextWidgetClass mods_text {
+         ignorepointer 1
+         size 0.875 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+        }
+        ButtonWidgetClass mods_expand {
+         position 0 0
+         size 0.1 1
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "Expand"
         }
        }
       }

@@ -385,6 +385,7 @@ const int LIQUID_BEER = 4096;
 const int LIQUID_GASOLINE = 8192;
 const int LIQUID_DIESEL = 16384;
 const int LIQUID_DISINFECTANT = 32768;
+const int LIQUID_SOLUTION = 65536;
 
 // these are groups which do not have to correspond with configs
 const int GROUP_LIQUID_BLOOD = 255;

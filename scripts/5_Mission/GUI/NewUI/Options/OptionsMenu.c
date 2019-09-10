@@ -85,12 +85,18 @@ class OptionsMenu extends UIScriptedMenu
 			}
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "ToggleIcon" );
 			ImageWidget toolbar_b = layoutRoot.FindAnyWidget( "BackIcon" );
+			ImageWidget toolbar_b2 = layoutRoot.FindAnyWidget( "BackIcon0" );
 			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "ApplyIcon" );
+			ImageWidget toolbar_x2 = layoutRoot.FindAnyWidget( "ApplyIcon0" );
 			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "ResetIcon" );
+			ImageWidget toolbar_y2 = layoutRoot.FindAnyWidget( "ResetIcon0" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:" + confirm );
+			toolbar_b2.LoadImageFile( 0, "set:playstation_buttons image:" + back );
 			toolbar_b.LoadImageFile( 0, "set:playstation_buttons image:" + back );
 			toolbar_x.LoadImageFile( 0, "set:playstation_buttons image:square" );
+			toolbar_x2.LoadImageFile( 0, "set:playstation_buttons image:square" );
 			toolbar_y.LoadImageFile( 0, "set:playstation_buttons image:triangle" );
+			toolbar_y2.LoadImageFile( 0, "set:playstation_buttons image:triangle" );
 		#endif
 		
 		OnChanged();
@@ -435,6 +441,10 @@ class OptionsMenu extends UIScriptedMenu
 	
 	override void OnShow()
 	{
+		#ifdef PLATFORM_CONSOLE
+			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		#endif
 		super.OnShow();
 		m_GameTab.Focus();
 		Refresh();

@@ -136,7 +136,7 @@ WindowWidgetClass DialogBox {
      vexactsize 1
      text "text"
      font "gui/fonts/sdf_MetronLight24"
-     "exact text" 0
+     "exact text" 1
      "exact text size" 22
      "size to text h" 1
      "size to text v" 1

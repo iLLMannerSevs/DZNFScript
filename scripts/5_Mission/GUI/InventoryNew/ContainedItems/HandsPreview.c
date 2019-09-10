@@ -51,13 +51,15 @@ class HandsPreview: LayoutHolder
 	{
 		bool show_combine_swap = ItemManager.GetInstance().IsDragging();
 
-		#ifndef PLATFORM_CONSOLE
+		#ifdef PLATFORM_CONSOLE
+		if( m_Icon && !m_Icon.IsDragged() && GetGame().GetInput().IsEnabledMouseAndKeyboard() )
+		#else
 		if( m_Icon && !m_Icon.IsDragged() )
+		#endif
 		{
 			m_Icon.GetMainWidget().FindAnyWidget( "Combine" ).Show(  show_combine_swap );
 			m_Icon.GetMainWidget().FindAnyWidget( "Swap" ).Show( show_combine_swap );
 		}
-		#endif
 		
 		if ( m_Icon )
 		{

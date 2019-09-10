@@ -103,7 +103,7 @@ FrameWidgetClass controls_tab_root {
          Rows 1
          {
           ButtonWidgetClass keyboard_button {
-           visible 1
+           visible 0
            ignorepointer 0
            position 0 0
            size 1 38
@@ -234,7 +234,7 @@ FrameWidgetClass controls_tab_root {
                  vexactpos 1
                  hexactsize 0
                  vexactsize 0
-                 text "#layout_options_aimhelper"
+                 text "#layout_xbox_options_aimhelper"
                  font "gui/fonts/sdf_MetronLight24"
                  "text offset" 8 0
                  "exact text" 0

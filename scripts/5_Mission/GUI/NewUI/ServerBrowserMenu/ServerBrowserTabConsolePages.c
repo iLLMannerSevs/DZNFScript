@@ -497,7 +497,7 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 	
 	void UpdatePageButtons()
 	{
-		TextWidget wgt_page_stat = m_Root.FindAnyWidget( "servers_navigation_page_status" );		
+		TextWidget wgt_page_stat = TextWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_page_status" ) );		
 		
 		wgt_page_stat.SetText( GetCurrentPage().ToString() +" / "+ m_PagesCount.ToString() );
 				

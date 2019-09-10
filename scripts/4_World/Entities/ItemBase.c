@@ -657,6 +657,16 @@ class ItemBase extends InventoryItem
 		return false;
 	}
 	
+	bool IsNVG()
+	{
+		return false;
+	}
+	
+	bool IsLightSource()
+	{
+		return false;
+	}
+	
 	override bool IsBeingPlaced()
 	{
 		return m_IsBeingPlaced;

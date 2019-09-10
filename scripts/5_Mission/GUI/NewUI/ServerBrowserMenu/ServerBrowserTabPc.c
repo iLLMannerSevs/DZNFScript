@@ -27,7 +27,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	protected ButtonWidget							m_BtnFilterReset;
 	
 	protected ref array<ButtonWidget>				m_BtnPages;
-	protected ref array<ref ServerBrowserEntry>		m_ServerListEntiers;
+	protected ref array<ref ServerBrowserEntry>		m_ServerListEntries;
 	
 	protected ref TStringArray m_TempTime = new TStringArray;
 	
@@ -45,10 +45,11 @@ class ServerBrowserTabPc extends ServerBrowserTab
 		m_ServerList			= SpacerBaseWidget.Cast( m_ServerListScroller.FindAnyWidget( "server_list_content" ) );
 		m_ServerListScroller.VScrollToPos01( 0 );
 				
-		m_ServerListEntiers		= new array<ref ServerBrowserEntry>;		
+		m_ServerListEntries		= new array<ref ServerBrowserEntry>;		
 		m_EntryWidgets			= new map<string, ref ServerBrowserEntry>;
 		m_SortInverted			= new map<ESortType, ESortOrder>;
 		m_EntriesSorted			= new map<ESortType, ref array<ref GetServersResultRow>>;
+		m_EntryMods				= new map<string, ref array<string>>;
 		
 		m_EntriesSorted[ESortType.HOST] 		= new array<ref GetServersResultRow>;
 		m_EntriesSorted[ESortType.TIME]			= new array<ref GetServersResultRow>;
@@ -224,7 +225,6 @@ class ServerBrowserTabPc extends ServerBrowserTab
 					if( PassFilter( result ) )
 					{
 						int sorted_index = AddSorted( result );
-						
 						if ( sorted_index < (m_PageIndex * SERVERS_VISIBLE_COUNT + SERVERS_VISIBLE_COUNT) )
 						{
 							UpdatePageButtons();
@@ -1011,7 +1011,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 				
 				entry.Show( true );
 				entry.FillInfo( server_info );
-				
+				//entry.SetMods( m_EntryMods.Get( server_info.m_Id ) );
 				m_TotalLoadedServers++;
 			}
 			else
@@ -1053,22 +1053,32 @@ class ServerBrowserTabPc extends ServerBrowserTab
 		}
 	}
 	
+	override void OnLoadServerModsAsync( string server_id, array<string> mods )
+	{
+		super.OnLoadServerModsAsync( server_id, mods );
+		
+		if( m_EntryWidgets.Contains( server_id ) )
+		{
+			m_EntryWidgets.Get( server_id ).SetMods( mods );
+		}
+	}
+	
 	protected ServerBrowserEntry GetServerEntryByIndex( int index, string server_id )
 	{
 		ref ServerBrowserEntry entry;
 		
 		if ( index >= 0 )
 		{
-			if ( index < m_ServerListEntiers.Count() )
+			if ( index < m_ServerListEntries.Count() )
 			{
-				entry = m_ServerListEntiers[index];
+				entry = m_ServerListEntries[index];
 			}
 			else
 			{
 				entry = new ServerBrowserEntry( null, index, this );
 				m_ServerList.AddChild( entry.GetRoot(), false );
 				
-				m_ServerListEntiers.Insert(entry);
+				m_ServerListEntries.Insert(entry);
 			}
 		}
 		else

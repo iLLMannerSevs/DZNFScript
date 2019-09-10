@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 03 15:36:19 2019 : 'file' last modified on Mon Sep 02 15:28:16 2019
+//'now' is Tue Sep 10 15:12:17 2019 : 'file' last modified on Wed Sep 04 15:57:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2420,9 +2420,9 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
 					};
-					transferToZonesNames[] = {"Front","Reflector_1_1","WindowFront"};
-					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5};
-					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4};
+					transferToZonesNames[] = {"Front","Reflector_1_1"};
+					transferToZonesThreshold[] = {0.2,0.5};
+					transferToZonesCoefs[] = {0.3,0.6};
 					memoryPoints[] = {"dmgZone_fender_1_1"};
 					componentNames[] = {"dmgZone_fender_1_1"};
 					fatalInjuryCoef = -1;
@@ -2431,7 +2431,7 @@ class CfgVehicles
 				};
 				class Fender_1_2: Fender_1_1
 				{
-					transferToZonesNames[] = {"Back","Engine","FuelTank","WindowBack"};
+					transferToZonesNames[] = {"Back","Engine","FuelTank"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
 					memoryPoints[] = {"dmgZone_fender_1_2"};
@@ -2441,9 +2441,9 @@ class CfgVehicles
 				};
 				class Fender_2_1: Fender_1_1
 				{
-					transferToZonesNames[] = {"Front","Reflector_2_1","WindowFront","Battery"};
-					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5,0.5};
-					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4,0.7};
+					transferToZonesNames[] = {"Front","Reflector_2_1"};
+					transferToZonesThreshold[] = {0.2,0.5};
+					transferToZonesCoefs[] = {0.3,0.6};
 					memoryPoints[] = {"dmgZone_fender_2_1"};
 					componentNames[] = {"dmgZone_fender_2_1"};
 					inventorySlotsCoefs[] = {0.3,0.2,31};
@@ -2451,7 +2451,7 @@ class CfgVehicles
 				};
 				class Fender_2_2: Fender_1_1
 				{
-					transferToZonesNames[] = {"Back","Engine","FuelTank","WindowBack"};
+					transferToZonesNames[] = {"Back","Engine","FuelTank"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
 					memoryPoints[] = {"dmgZone_fender_2_2"};

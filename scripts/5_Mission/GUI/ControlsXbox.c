@@ -305,6 +305,7 @@ class ControlsXbox extends UIScriptedMenu
 		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/xbox/control_mapping_info_screen.layout" );
 		
 		layoutRoot.FindAnyWidget("Tabber").GetScript( m_TabScript );
+		m_TabScript.m_OnTabSwitch.Insert( DrawConnectingLines );
 		
 		#ifdef PLATFORM_XBOX
 			layoutRoot.FindAnyWidget("XboxControlsImage").Show( true );
@@ -338,14 +339,12 @@ class ControlsXbox extends UIScriptedMenu
 		if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 		{
 			m_TabScript.PreviousTab();
-			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
 		//RIGHT BUMPER - TAB RIGHT
 		if( GetGame().GetInput().LocalPress("UAUITabRight",false) )
 		{
 			m_TabScript.NextTab();
-			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
 		if( GetGame().GetInput().LocalPress("UAUIBack",false) )

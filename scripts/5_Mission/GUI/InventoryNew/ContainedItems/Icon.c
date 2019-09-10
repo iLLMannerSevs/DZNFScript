@@ -891,12 +891,14 @@ class Icon: LayoutHolder
 		{
 			return;
 		}
-		
+		int index;
+		InventoryLocation loc_src;
+		InventoryLocation loc_dst;
 		if( m_Lock && receiver_entity == w_entity )
 		{
-			int index = GetGame().GetPlayer().GetHumanInventory().FindUserReservedLocationIndex( m_Item );
-			InventoryLocation loc_src = new InventoryLocation();
-			InventoryLocation loc_dst = new InventoryLocation();
+			index = GetGame().GetPlayer().GetHumanInventory().FindUserReservedLocationIndex( m_Item );
+			loc_src = new InventoryLocation();
+			loc_dst = new InventoryLocation();
 			
 			m_Item.GetInventory().GetCurrentInventoryLocation( loc_src );
 			GetGame().GetPlayer().GetHumanInventory().GetUserReservedLocation( index, loc_dst );
@@ -904,6 +906,20 @@ class Icon: LayoutHolder
 			GetGame().GetPlayer().GetHumanInventory().ClearUserReservedLocation( m_Item );
 			GetGame().GetPlayer().PredictiveTakeToDst( loc_src, loc_dst );
 			m_Item.GetOnReleaseLock().Invoke(m_Item);
+		}
+		else if( m_Lock )
+		{
+			index = GetGame().GetPlayer().GetHumanInventory().FindUserReservedLocationIndex( m_Item );
+			loc_src = new InventoryLocation();
+			loc_dst = new InventoryLocation();
+			
+			w_entity.GetInventory().GetCurrentInventoryLocation( loc_src );
+			GetGame().GetPlayer().GetHumanInventory().GetUserReservedLocation( index, loc_dst );
+			
+			GetGame().GetPlayer().GetHumanInventory().ClearUserReservedLocation( m_Item );
+			m_Item.GetOnReleaseLock().Invoke(m_Item);
+			
+			GetGame().GetPlayer().PredictiveTakeEntityToCargoEx( w_entity, loc_dst.GetIdx(), loc_dst.GetRow(), loc_dst.GetCol() );
 		}
 		else if( !m_Lock )
 		{

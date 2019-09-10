@@ -127,7 +127,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	void Focus()
 	{
 		#ifdef PLATFORM_CONSOLE
-			m_KeyboardSelector.Focus();
+			m_AimHelperSelector.Focus();
 		#endif
 	}
 	
@@ -254,7 +254,11 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	
 	void Apply()
 	{
+		#ifdef PLATFORM_CONSOLE
 		GetGame().GetInput().EnableMouseAndKeyboard( m_AimHelperSelector.IsEnabled() );
+		m_Menu.layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		m_Menu.layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		#endif
 	}
 	
 	void Revert()
@@ -384,7 +388,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_REVERSED_LOOK, new Param2<string, string>( "#ps4_options_controls_invert_vert_view_contr", "#ps4_options_controls_invert_vert_view_contr_desc" ) );
 		#else 
 		m_TextMap.Insert( AT_OPTIONS_MOUSE_AND_KEYBOARD, new Param2<string, string>( "#options_controls_aim_helper_contr", "#options_controls_aim_helper_contr_desc" ) );
-		m_TextMap.Insert( AT_OPTIONS_AIM_HELPER, new Param2<string, string>( "#options_controls_aim_helper_contr", "#options_controls_aim_helper_contr_desc" ) );
+		m_TextMap.Insert( AT_OPTIONS_AIM_HELPER, new Param2<string, string>( "#xbox_options_controls_aim_helper_contr", "#xbox_options_controls_aim_helper_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_YAXIS, new Param2<string, string>( "#options_controls_vertical_sens_contr", "#options_controls_vertical_sens_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_XAXIS, new Param2<string, string>( "#options_controls_horizontal_sens_contr", "#options_controls_horizontal_sens_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_REVERSED_LOOK, new Param2<string, string>( "#options_controls_invert_vert_view_contr", "#options_controls_invert_vert_view_contr_desc" ) );

@@ -17,7 +17,7 @@ class CCTNonRuined : CCTBase
 		Object targetObject = target.GetObject();
 		if ( player && targetObject && !targetObject.IsMan() && !targetObject.IsDamageDestroyed() )
 		{	
-			float distance = Math.AbsFloat(vector.DistanceSq(targetObject.GetPosition(),player.GetPosition()));
+			float distance = Math.AbsFloat(vector.Distance(targetObject.GetPosition(),player.GetPosition()));
 			if ( distance <= m_MaximalActionDistance )
 			{
 				return true;

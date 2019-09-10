@@ -44,6 +44,9 @@ class OptionSelectorEditbox extends OptionSelectorBase
 	
 	override bool OnMouseEnter( Widget w, int x, int y )
 	{
+		if( !IsFocusable( w ) )
+			return true;
+		
 		if( m_ParentClass )
 		{
 			m_ParentClass.OnFocus( m_Root.GetParent(), -1, m_SelectorType );
@@ -65,6 +68,9 @@ class OptionSelectorEditbox extends OptionSelectorBase
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
+		if( IsFocusable( enterW ) )
+			return true;
+		
 		if( m_ParentClass )
 		{
 			m_ParentClass.OnFocus( null, x, y );

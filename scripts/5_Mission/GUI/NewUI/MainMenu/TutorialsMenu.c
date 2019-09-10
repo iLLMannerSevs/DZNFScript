@@ -21,7 +21,7 @@ class TutorialsMenu extends UIScriptedMenu
 		layoutRoot	= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/tutorials/pc/tutorials.layout" );
 		#endif
 		
-		m_Back		= layoutRoot.FindAnyWidget( "back" );
+		m_Back		= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "back" ) );
 		layoutRoot.FindAnyWidget("Tabber").GetScript( m_TabScript );
 		m_TabScript.m_OnTabSwitch.Insert( DrawConnectingLines );
 		
@@ -41,7 +41,9 @@ class TutorialsMenu extends UIScriptedMenu
 				back = "cross";
 			}
 			ImageWidget toolbar_b = layoutRoot.FindAnyWidget( "BackIcon" );
+			ImageWidget toolbar_b2 = layoutRoot.FindAnyWidget( "BackIcon0" );
 			toolbar_b.LoadImageFile( 0, "set:playstation_buttons image:" + back );
+			toolbar_b2.LoadImageFile( 0, "set:playstation_buttons image:" + back );
 		#endif
 		
 		PPEffects.SetBlurMenu( 0.6 );
@@ -294,19 +296,26 @@ class TutorialsMenu extends UIScriptedMenu
 		return control_mapping_info;
 	}
 	
+	override void OnShow()
+	{
+		super.OnShow();
+		#ifdef PLATFORM_CONSOLE
+			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		#endif
+	}
+	
 	override void Update( float timeslice )
 	{
 		if( GetGame().GetInput().LocalPress("UAUITabLeft",false) )
 		{
 			m_TabScript.PreviousTab();
-			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
 		//RIGHT BUMPER - TAB RIGHT
 		if( GetGame().GetInput().LocalPress("UAUITabRight",false) )
 		{
 			m_TabScript.NextTab();
-			DrawConnectingLines( m_TabScript.GetSelectedIndex() );
 		}
 		
 		if( GetGame().GetInput().LocalPress("UAUIBack",false) )

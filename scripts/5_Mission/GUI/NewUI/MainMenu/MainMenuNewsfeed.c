@@ -2,52 +2,39 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 {
 	protected Widget		m_Root;
 	
-	protected Widget		m_NewsMain;
-	protected Widget		m_NewsSec1;
-	protected Widget		m_NewsSec2;
-	
+	protected Widget		m_DLDLC;
+	protected Widget		m_Discord;
 	protected Widget		m_Feedback;
 	protected Widget		m_DayZForum;
 	protected Widget		m_Twitter;
 	protected Widget		m_Youtube;
 	
-	protected ImageWidget	m_MainImage;
-	protected ImageWidget	m_SecImage1;
-	protected ImageWidget	m_SecImage2;
-	
 	protected TextWidget	m_MainText1;
 	protected TextWidget	m_MainText2;
+	protected TextWidget	m_MainText3;
 	protected TextWidget	m_SecText1;
 	protected TextWidget	m_SecText2;
+	protected TextWidget	m_SecText3;
 	
 	void MainMenuNewsfeed( Widget root )
 	{
 		m_Root			= root;
 		
-		m_NewsMain		= m_Root.FindAnyWidget( "news_main" );
-		m_NewsSec1		= m_Root.FindAnyWidget( "news_sec_1" );
-		m_NewsSec2		= m_Root.FindAnyWidget( "news_sec_2" );
-		
+		m_DLDLC			= m_Root.FindAnyWidget( "downloaddlc" );
+		m_Discord		= m_Root.FindAnyWidget( "discord" );
 		m_Feedback		= m_Root.FindAnyWidget( "feedback_tracker" );
 		m_DayZForum		= m_Root.FindAnyWidget( "dayz_forums" );
 		m_Twitter		= m_Root.FindAnyWidget( "twitter" );
 		m_Youtube		= m_Root.FindAnyWidget( "youtube" );
 		
-		m_MainImage		= ImageWidget.Cast( m_NewsMain.FindAnyWidget( "news_main_image" ) );
-		m_SecImage1		= ImageWidget.Cast( m_NewsSec1.FindAnyWidget( "news_sec_1_image" ) );
-		m_SecImage2		= ImageWidget.Cast( m_NewsSec2.FindAnyWidget( "news_sec_2_image" ) );
+		m_MainText1		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoT1" ) );
+		m_MainText2		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoT2" ) );
+		m_MainText3		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoT3" ) );
+		m_SecText1		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoC1" ) );
+		m_SecText2		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoC2" ) );
+		m_SecText3		= TextWidget.Cast( m_Root.FindAnyWidget( "SGInfoC3" ) );
 		
-		m_MainText1		= TextWidget.Cast( m_NewsMain.FindAnyWidget( "news_main_text" ) );
-		m_MainText2		= TextWidget.Cast( m_NewsMain.FindAnyWidget( "news_main_text_1" ) );
-		m_SecText1		= TextWidget.Cast( m_NewsSec1.FindAnyWidget( "news_sec_1_text" ) );
-		m_SecText2		= TextWidget.Cast( m_NewsSec2.FindAnyWidget( "news_sec_2_text" ) );
-		
-		if( g_Game.IsStressTest() )
-		{
-			m_MainImage.LoadImageFile( 0, "set:main_menu_newsfeed image:image_1_1" );
-			m_MainText1.SetText( "#main_menu_news" );
-			m_MainText2.SetText( "#main_menu_news_desc" );
-		}
+		ShowNewsfeed();
 		
 		m_Root.SetHandler( this );
 	}
@@ -55,6 +42,18 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 	void ShowNewsfeed()
 	{
 		m_Root.Show( true );
+		m_MainText1.SetText( "#layout_mainmenu_newsfeed_sgz_title_1" );
+		m_MainText1.Update();
+		m_MainText2.SetText( "#layout_mainmenu_newsfeed_sgz_title_2" );
+		m_MainText2.Update();
+		m_MainText3.SetText( "#layout_mainmenu_newsfeed_sgz_title_3" );
+		m_MainText3.Update();
+		m_SecText1.SetText( "#layout_mainmenu_newsfeed_sgz_text_1" );
+		m_SecText1.Update();
+		m_SecText2.SetText( "#layout_mainmenu_newsfeed_sgz_text_2" );
+		m_SecText2.Update();
+		m_SecText3.SetText( "#layout_mainmenu_newsfeed_sgz_text_3" );
+		m_SecText3.Update();
 	}
 	
 	void HideNewsfeed()
@@ -62,33 +61,14 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 		m_Root.Show( false );
 	}
 	
-	void OpenNewsMain()
+	void OpenDLC()
 	{
-		if( g_Game.IsStressTest() )
-		{
-			GetGame().OpenURL( "https://dayz.com/blog/0-63-stress-tests" );
-		}
-		else
-		{
-			GetGame().OpenURL( "https://dayz.com/experimental" );
-		}
+		GetGame().OpenURL( "https://store.steampowered.com/app/830660/Survivor_GameZ/" );
 	}
 	
-	void OpenNewsSec1()
+	void OpenDiscord()
 	{
-		if( g_Game.IsStressTest() )
-		{
-			GetGame().OpenURL( "https://forums.dayz.com/topic/238136-stress-test-reports" );
-		}
-		else
-		{
-			GetGame().OpenURL( "https://dayz.com/blog" );
-		}
-	}
-	
-	void OpenNewsSec2()
-	{
-		GetGame().OpenURL( "https://feedback.dayz.com" );
+		GetGame().OpenURL( "https://discord.gg/bXkyMNm" );
 	}
 	
 	void OpenFeedback()
@@ -115,19 +95,14 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 	{
 		if( button == MouseState.LEFT )
 		{
-			if( w == m_NewsMain )
+			if ( w == m_DLDLC )
 			{
-				OpenNewsMain();
+				OpenDLC();
 				return true;
 			}
-			else if ( w == m_NewsSec1 )
+			else if ( w == m_Discord )
 			{
-				OpenNewsSec1();
-				return true;
-			}
-			else if ( w == m_NewsSec2 )
-			{
-				OpenNewsSec2();
+				OpenDiscord();
 				return true;
 			}
 			else if ( w == m_Feedback )
@@ -198,7 +173,7 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 	{
 		if( w )
 		{
-			return ( w == m_NewsMain || w == m_NewsSec1 || w == m_NewsSec2 || w == m_Feedback || w == m_DayZForum || w == m_Twitter || w == m_Youtube );
+			return ( w == m_DLDLC || w == m_Discord || w == m_Feedback || w == m_DayZForum || w == m_Twitter || w == m_Youtube );
 		}
 		return false;
 	}
