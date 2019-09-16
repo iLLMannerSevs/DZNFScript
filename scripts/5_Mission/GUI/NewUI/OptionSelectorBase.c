@@ -68,8 +68,10 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
+		#ifdef PLATFORM_CONSOLE
 		if( IsFocusable( enterW ) )
 			return true;
+		#endif
 		
 		if( m_ParentClass )
 		{

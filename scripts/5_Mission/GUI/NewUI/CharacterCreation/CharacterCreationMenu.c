@@ -125,10 +125,10 @@ class CharacterCreationMenu extends UIScriptedMenu
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "SelectIcon" );
 			ImageWidget toolbar_b = layoutRoot.FindAnyWidget( "BackIcon" );
 			ImageWidget toolbar_b2 = layoutRoot.FindAnyWidget( "BackIcon0" );
-			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "ResetIcon" );
-			ImageWidget toolbar_x2 = layoutRoot.FindAnyWidget( "ResetIcon0" );
-			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "RandomizeIcon" );
-			ImageWidget toolbar_y2 = layoutRoot.FindAnyWidget( "RandomizeIcon0" );
+			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "RandomizeIcon" );
+			ImageWidget toolbar_x2 = layoutRoot.FindAnyWidget( "RandomizeIcon0" );
+			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "ResetIcon" );
+			ImageWidget toolbar_y2 = layoutRoot.FindAnyWidget( "ResetIcon0" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:" + confirm );
 			toolbar_b.LoadImageFile( 0, "set:playstation_buttons image:" + back );
 			toolbar_b2.LoadImageFile( 0, "set:playstation_buttons image:" + back );

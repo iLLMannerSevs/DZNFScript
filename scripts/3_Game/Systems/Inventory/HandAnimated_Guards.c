@@ -145,9 +145,15 @@ bool SelectAnimationOfForceSwapInHands (notnull Man player, notnull InventoryLoc
 		animType2 = SlotToAnimType(player, old_src, old_dst);
 		//Print("animType1 = " + animType1);
 		//Print("animType2 = " + animType2);
-		if (animType1 != -1 || animType2 != -1)
+		if (animType1 != -1 && animType2 != -1)
 		{
 			hndDebugPrint("[hndfsm] SelectAnimationOfForceSwapInHands guard - selected animType1=" + animType1 + " animType2=" + animType2 + " for old_item=" + old_src.GetItem() + " for new_item=" + new_src.GetItem());
+			return true;
+		}
+		else if (animType1 != -1 || animType2 != -1) //HACK
+		{
+			animType1 = -1;
+			animType2 = -1;
 			return true;
 		}
 	}

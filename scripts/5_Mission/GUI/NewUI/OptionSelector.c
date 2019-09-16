@@ -93,29 +93,32 @@ class OptionSelector extends OptionSelectorBase
 		return true;
 	}
 	
-	#ifdef PLATFORM_CONSOLE
+	
 	override bool OnMouseEnter( Widget w, int x, int y )
 	{
+		#ifdef PLATFORM_CONSOLE
 		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
 		{
 			m_NextOption.Show( true );
 			m_PreviousOption.Show( true );
 		}
+		#endif
 		
 		return super.OnMouseEnter( w, x, y );
 	}
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
+		#ifdef PLATFORM_CONSOLE
 		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
 		{
 			m_NextOption.Show( false );
 			m_PreviousOption.Show( false );
 		}
+		#endif
 		
 		return super.OnMouseLeave( w, enterW, x, y );
 	}
-	#endif
 	
 	void Reset()
 	{

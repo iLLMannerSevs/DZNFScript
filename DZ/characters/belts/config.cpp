@@ -2,7 +2,7 @@
 //DeRap: characters_belts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 10 15:08:04 2019 : 'file' last modified on Thu Aug 15 00:08:23 2019
+//'now' is Mon Sep 16 14:09:52 2019 : 'file' last modified on Thu Aug 15 00:08:23 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

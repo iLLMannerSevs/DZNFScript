@@ -2,7 +2,7 @@
 //DeRap: gear_camping\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 10 15:08:40 2019 : 'file' last modified on Fri Sep 06 19:27:29 2019
+//'now' is Mon Sep 16 14:10:25 2019 : 'file' last modified on Fri Sep 06 19:27:29 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

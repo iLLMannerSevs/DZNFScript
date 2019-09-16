@@ -1388,7 +1388,7 @@ FrameWidgetClass main_menu_root {
    stretch 0
   }
   MultilineTextWidgetClass ModdedWarning {
-   visible 1
+   visible 0
    inheritalpha 1
    position 100 286
    size 540 30

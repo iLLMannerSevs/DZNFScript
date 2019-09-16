@@ -80,6 +80,11 @@
       <event name="doubleclick" />
 		</btn>
 	</input>
+	
+	<!-- Head torch/light controlls -->
+	<input name="UAToggleHeadlight">
+		<btn name="x1Y"	/>
+	</input>
 
 	<!-- Switch to Iron Sights -->
 	<input name="UAADSToggle">

@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\Ruger1022\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Sep 10 15:12:28 2019 : 'file' last modified on Tue Aug 13 08:22:42 2019
+//'now' is Mon Sep 16 14:14:03 2019 : 'file' last modified on Tue Aug 13 08:22:42 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

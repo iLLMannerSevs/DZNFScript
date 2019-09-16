@@ -65,6 +65,7 @@
     <input name="UACarShiftGearDown" />
     <input name="UAVehicleTurbo" />
     <input name="UAVehicleSlow" />
+	<input name="UAToggleHeadlight" />
   </context>
 
   <context name="ui">
@@ -147,6 +148,7 @@
     <input name="UACarShiftGearDown" />
     <input name="UAVehicleTurbo" />
     <input name="UAVehicleSlow" />
+	<input name="UAToggleHeadlight" />
     <input name="UATrackLeft" />
     <input name="UATrackRight" />
     <input name="UATrackUp" />
