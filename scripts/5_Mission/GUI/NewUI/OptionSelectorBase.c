@@ -106,7 +106,6 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	{
 		if( IsFocusable( w ) )
 		{
-			Print( w.GetName() );
 			ColorHighlightConsole( w );
 			if( m_ParentClass )
 			{
@@ -119,7 +118,6 @@ class OptionSelectorBase extends ScriptedWidgetEventHandler
 	
 	override bool OnFocusLost( Widget w, int x, int y )
 	{
-		Print( w.GetName() );
 		ColorNormalConsole( w );
 		if( m_ParentClass )
 		{

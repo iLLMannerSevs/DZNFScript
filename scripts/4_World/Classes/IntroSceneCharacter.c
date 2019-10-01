@@ -275,13 +275,13 @@ class IntroSceneCharacter extends Managed
 	//==============================================
 	// LoadCharacterData
 	//==============================================
-	void LoadCharacterData(vector char_pos, vector char_rot)
+	void LoadCharacterData(vector char_pos, vector char_rot, bool default_char = false)
 	{
 		m_CharacterDta = g_Game.GetMenuData();
 		m_CharacterPos = char_pos;
 		m_CharacterRot = char_rot;
 		
-		if (m_CharacterDta.GetLastPlayedCharacter() > -1 )
+		if (!default_char && m_CharacterDta.GetLastPlayedCharacter() > -1 )
 		{
 			m_CharacterId = m_CharacterDta.GetLastPlayedCharacter();
 			m_CharacterDta.GetCharacterName(m_CharacterId, g_Game.GetPlayerGameName());

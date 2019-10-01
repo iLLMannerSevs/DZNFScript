@@ -134,6 +134,8 @@ class NotificationUI
 	static float m_VelArr[1];
 	void Update( float timeslice )
 	{
+		float x;
+		m_Spacer.GetScreenSize( x, m_TargetHeight );
 		bool is_near = ( m_CurrentHeight + 0.01 < m_TargetHeight || m_CurrentHeight - 0.01 > m_TargetHeight );
 		if( is_near )
 		{
@@ -147,28 +149,30 @@ class NotificationUI
 			m_VelArr[0] = 0;
 		}
 		
-		array<Widget> to_delete = new array<Widget>;
-		
 		for( int i = 0; i < m_WidgetTimers.Count(); )
 		{
-			Widget w = m_WidgetTimers.GetElement( i );
-			float new_alpha			= Math.Clamp( w.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
+			Widget w		= m_WidgetTimers.GetElement( i );
+			float new_alpha	= Math.Clamp( w.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
 			if( new_alpha > 0 )
 			{
 				w.SetAlpha( new_alpha );
 				Widget w_c = w.FindAnyWidget( "TopSpacer" );
 				Widget w_c2 = w.FindAnyWidget( "BottomSpacer" );
-				Widget w_c3 = w.FindAnyWidget( "Name" );
+				Widget w_c3 = w.FindAnyWidget( "Title" );
+				Widget w_c4 = w.FindAnyWidget( "Detail" );
+				Widget w_c5 = w.FindAnyWidget( "Name" );
 				if( w_c && w_c2 )
 				{
 					float new_alpha_cont	= Math.Clamp( w_c.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
 					w_c.SetAlpha( new_alpha_cont );
 					w_c2.SetAlpha( new_alpha_cont );
+					w_c3.SetAlpha( new_alpha_cont );
+					w_c4.SetAlpha( new_alpha_cont );
 				}
-				if( w_c3 )
+				if( w_c5 )
 				{
-					float new_alpha_voice	= Math.Clamp( w_c3.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
-					w_c3.SetAlpha(new_alpha_voice);
+					float new_alpha_voice	= Math.Clamp( w_c5.GetAlpha() - timeslice / NOTIFICATION_FADE_TIME, 0, 1 );
+					w_c5.SetAlpha(new_alpha_voice);
 				}
 				i++;
 			}

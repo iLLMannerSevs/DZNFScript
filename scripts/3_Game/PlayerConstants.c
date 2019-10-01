@@ -142,7 +142,7 @@ class PlayerConstants
 	
 	static const float UNCONSCIOUS_IN_WATER_TIME_LIMIT_TO_DEATH	= 20;	// how long can player survive while unconscious when in water in secs 
 	//----------------------------------------------------------
-	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -24; 		// amount of blood loss per second from one bleeding source 
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -16; 		// amount of blood loss per second from one bleeding source 
 	static const float BLEEDING_SOURCE_FLOW_MODIFIER_MEDIUM = 0.6; 		// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
 	static const float BLEEDING_SOURCE_FLOW_MODIFIER_LOW	= 0.1; 	// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
 	static const int BLEEDING_SOURCE_DURATION_NORMAL = 300; 	// in seconds, how long will bleeding source exist until disapearing

@@ -776,6 +776,12 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 		{
 			target_entity	= m_Entity;
 			target_cargo 	= m_Entity.GetInventory().GetCargo();
+			#ifdef PLATFORM_CONSOLE
+			if( m_CargoGrid.HasItem( item ) )
+			{
+				return;
+			}
+			#endif
 		}
 		else
 		{
@@ -783,6 +789,12 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			if( target_entity )
 			{
 				target_cargo 	= target_entity.GetInventory().GetCargo();
+				#ifdef PLATFORM_CONSOLE
+				if( cargo.HasItem( item ) )
+				{
+					return;
+				}
+				#endif
 			}
 			else
 				return;

@@ -296,7 +296,14 @@ class ContainerWithCargo: ClosableContainer
 		{
 			return;
 		}
-
+		
+		#ifdef PLATFORM_CONSOLE
+		if( m_CargoGrid.HasItem( item ) )
+		{
+			return;
+		}
+		#endif
+		
 		#ifdef PLATFORM_CONSOLE
 		int idx = -1;
 		#else

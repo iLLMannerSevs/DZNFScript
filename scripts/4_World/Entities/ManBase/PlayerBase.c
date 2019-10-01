@@ -6089,6 +6089,25 @@ class PlayerBase extends ManBase
 			return super.PredictiveSwapEntities( item1, item2);
 	}
 	
+	override bool PredictiveForceSwapEntities (notnull EntityAI item1, notnull EntityAI item2, notnull InventoryLocation item2_dst)
+	{
+		InventoryLocation il = new InventoryLocation;
+		if ( item1.IsHeavyBehaviour() && item1.GetInventory().GetCurrentInventoryLocation(il) && il.GetType() == InventoryLocationType.GROUND && !m_ActionManager.GetRunningAction() )
+		{
+			ActionManagerClient mngr_client;
+			CastTo(mngr_client,m_ActionManager);
+			
+			ActionTarget atrg = new ActionTarget(item1,null,-1,vector.Zero,-1.0);
+			if ( mngr_client.GetAction(ActionSwapItemToHands).Can(this,atrg,ItemBase.Cast(item2)) )
+			{
+				mngr_client.PerformActionStart(mngr_client.GetAction(ActionSwapItemToHands),atrg,ItemBase.Cast(item2));
+			}
+			return true;
+		}
+		else
+			return super.PredictiveForceSwapEntities( item1, item2, item2_dst );
+	}
+	
 	override void PredictiveTakeEntityToHands(EntityAI item)
 	{
 		if ( item.IsHeavyBehaviour() && !m_ActionManager.GetRunningAction() )

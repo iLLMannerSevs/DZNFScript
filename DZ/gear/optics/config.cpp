@@ -2,7 +2,7 @@
 //DeRap: gear_optics\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Sep 16 14:10:42 2019 : 'file' last modified on Fri Jul 19 21:57:59 2019
+//'now' is Tue Oct 01 13:54:29 2019 : 'file' last modified on Fri Jul 19 21:57:59 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

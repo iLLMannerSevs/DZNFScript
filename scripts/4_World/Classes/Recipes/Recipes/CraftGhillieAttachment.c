@@ -39,7 +39,7 @@ class CraftGhillieAttachment extends RecipeBase
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = -2;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
-		m_IngredientUseSoftSkills[1] = true;// set 'true' to allow modification of the values by softskills on this ingredient
+		m_IngredientUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this ingredient
 		//----------------------------------------------------------------------------------------------------------------------
 		
 		//result1

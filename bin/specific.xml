@@ -66,6 +66,7 @@
     <input name="UAVehicleTurbo" />
     <input name="UAVehicleSlow" />
 	<input name="UAToggleHeadlight" />
+	<input name="UAToggleNVG" />
   </context>
 
   <context name="ui">
@@ -92,6 +93,7 @@
     <input name="UAUIFastTransferToVicinity" />
     <input name="UAUIExpandCollapseContainer" />
     <input name="UAUISelectItem" />
+    <input name="UAUIInspectItem" />
   </context>
 
   <exclude name="gestures">
@@ -149,6 +151,7 @@
     <input name="UAVehicleTurbo" />
     <input name="UAVehicleSlow" />
 	<input name="UAToggleHeadlight" />
+	<input name="UAToggleNVG" />
     <input name="UATrackLeft" />
     <input name="UATrackRight" />
     <input name="UATrackUp" />
@@ -190,6 +193,7 @@
     <input name="UAUIQuickbarToggle" />
     <input name="UATempRaiseWeapon" />
     <input name="UAReloadMagazine" />
+    <input name="UAVoiceLevel" />
   </exclude>
 
   <!-- Inputs excluded when in inventory -->

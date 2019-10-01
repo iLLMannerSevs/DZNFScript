@@ -418,7 +418,7 @@ class MissionGameplay extends MissionBase
 					HideInventory();
 				}
 			}
-
+			#ifndef PLATFORM_CONSOLE
 			if( input.LocalPress("UAChat",false) )
 			{
 				ChatInputMenu chat = ChatInputMenu.Cast( m_UIManager.FindMenu(MENU_CHAT) );		
@@ -427,7 +427,7 @@ class MissionGameplay extends MissionBase
 					ShowChat();
 				}
 			}
-			
+			#endif
 			if( input.LocalPress("UAVoiceLevel",false) )
 			{
 				int oldLevel = GetGame().GetVoiceLevel();

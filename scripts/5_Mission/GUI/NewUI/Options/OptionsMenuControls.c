@@ -255,9 +255,13 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	void Apply()
 	{
 		#ifdef PLATFORM_CONSOLE
-		GetGame().GetInput().EnableMouseAndKeyboard( m_AimHelperSelector.IsEnabled() );
+		if( m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 0 )
+			m_KeyboardOption.Switch();
+		else if( !m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 1 )
+			m_KeyboardOption.Switch();
+		GetGame().GetInput().EnableMouseAndKeyboard( m_KeyboardSelector.IsEnabled() );
 		m_Menu.layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
-		m_Menu.layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		m_Menu.layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 		#endif
 	}
 	
@@ -292,7 +296,6 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 #ifdef PLATFORM_CONSOLE
 	void UpdateKeyboard( int index )
 	{
-		m_KeyboardOption.Switch();
 		m_Menu.OnChanged();
 	}
 #endif

@@ -198,8 +198,6 @@ class ZombieContainer: CollapsibleContainer
 	
 	override void DraggingOverHeader( Widget w, int x, int y, Widget receiver )
 	{
-		Print( "PP" );
-		
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( "Render" ) );
 		string name = receiver.GetName();
 		name.Replace( "PanelWidget", "Render" );

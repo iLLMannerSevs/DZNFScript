@@ -2718,8 +2718,7 @@ class DayZGame extends CGame
 		
 			return noa.ReadValue();
 		}
-		
-		return -1.0;
+		return 1.0;
 	}
 	
 	// Check if ammo is compatible with a weapon in hands 

@@ -34,6 +34,20 @@ class MainMenuVideo extends UIScriptedMenu
 	{
 	}
 	
+	//after show
+	override void OnShow()
+	{
+		super.OnShow();
+		GetGame().GetUIManager().ShowUICursor(false);
+	}
+
+	//after hide
+	override void OnHide()
+	{
+		super.OnHide();
+		GetGame().GetUIManager().ShowUICursor(true);
+	}
+	
 	void PlayVideoLoop()
 	{
 		if( m_Video && !m_IsPaused && !m_Video.Play( VideoCommand.ISPLAYING ) )

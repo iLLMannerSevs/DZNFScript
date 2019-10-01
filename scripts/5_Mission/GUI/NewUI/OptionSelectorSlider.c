@@ -103,7 +103,6 @@ class OptionSelectorSlider extends OptionSelectorBase
 	{
 		if( button == MouseState.LEFT && w == m_Slider )
 		{
-			Print( m_Slider.GetCurrent() );
 		}
 		return false;
 	}

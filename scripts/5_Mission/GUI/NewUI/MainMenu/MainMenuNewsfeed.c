@@ -41,7 +41,7 @@ class MainMenuNewsfeed extends ScriptedWidgetEventHandler
 	
 	void ShowNewsfeed()
 	{
-		m_Root.Show( true );
+		//m_Root.Show( true );
 		m_MainText1.SetText( "#layout_mainmenu_newsfeed_sgz_title_1" );
 		m_MainText1.Update();
 		m_MainText2.SetText( "#layout_mainmenu_newsfeed_sgz_title_2" );

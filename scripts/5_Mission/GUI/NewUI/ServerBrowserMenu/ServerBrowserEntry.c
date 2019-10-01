@@ -243,7 +243,6 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	{
 		m_ServerData = server_info;
 		m_FirstExpand = true;
-		//Print( server_info.m_Priority );
 		
 #ifndef PLATFORM_CONSOLE
 		m_Root.FindAnyWidget( "detailed_info" ).Show( server_info.m_IsExpanded );
@@ -596,8 +595,6 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	{
 		if( m_Selected )
 			return;
-		
-		Print("w: "+ w.GetName());
 		
 		if( w == m_Root || w == m_Favorite || w == m_Expand )
 		{

@@ -2,7 +2,7 @@
 //DeRap: gear_food\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Sep 16 14:10:34 2019 : 'file' last modified on Tue Aug 20 10:59:37 2019
+//'now' is Tue Oct 01 13:54:23 2019 : 'file' last modified on Tue Aug 20 10:59:37 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

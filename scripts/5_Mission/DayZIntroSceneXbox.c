@@ -14,6 +14,7 @@ class DayZIntroSceneXbox: Managed
 	protected ref IntroSceneCharacter	m_Character;
 	protected Camera					m_SceneCamera;
 	protected Weather					m_Weather;
+	protected Object					m_Clutter;
 	protected vector					m_CharacterPos;
 	protected vector					m_CharacterDir;
 	protected ref TIntArray				m_Date = new TIntArray;
@@ -37,6 +38,8 @@ class DayZIntroSceneXbox: Managed
 		Print("DayZIntroSceneXbox Start");
 		
 		m_MenuData = g_Game.GetMenuData();
+		m_MenuData.LoadCharactersLocal();
+		
 		m_LastPlayedCharacterID = m_MenuData.GetLastPlayedCharacter();
 		m_CharacterPos = "0 0 0";
 		m_CharacterDir = "0 0 0";
@@ -64,7 +67,7 @@ class DayZIntroSceneXbox: Managed
 		float camera_focus_streght	= 0.0;
 		
 		// Character
-		float character_distance = 2.1;
+		float character_distance = 2.25;
 		
 		// Camera Setup
 		m_SceneCamera = CameraCreate(camera_position, camera_rotation_h, camera_rotation_v, camera_fov, camera_focus_distance, camera_focus_streght);
@@ -85,6 +88,9 @@ class DayZIntroSceneXbox: Managed
 		m_TimerParticle.Run(0.1, this, "SetupParticles", null, false);
 		//m_TimerDate.Run(2.0, this, "SetupDate", null, false);
 		m_TimerUpdate.Run(0.5, this, "SetupCharacter", null, true);
+		
+		vector clut_pos = SnapToGround( m_CharacterPos + "-1 0 0" );
+		m_Clutter = GetGame().CreateObject( "ClutterCutter2x2", clut_pos, true );
 		
 		// Xbox check update
 		CheckXboxClientUpdateLoopStart();

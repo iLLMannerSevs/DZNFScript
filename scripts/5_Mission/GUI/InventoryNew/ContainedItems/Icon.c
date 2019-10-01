@@ -1013,14 +1013,7 @@ class Icon: LayoutHolder
 			player.GetHumanInventory().GetUserReservedLocation( index, il_fswap);
 		}
 		
-		if( player.GetInventory().CanForceSwapEntities( w_entity, receiver_entity, il_fswap ) )
-		{
-			if( m_HandsIcon && !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
-			{
-				GetGame().GetPlayer().PredictiveForceSwapEntities( w_entity, receiver_entity, il_fswap );
-			}
-		}
-		else if( GameInventory.CanSwapEntities( receiver_entity, w_entity ) )
+		if( GameInventory.CanSwapEntities( receiver_entity, w_entity ) )
 		{
 			if( !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
 			{
@@ -1031,6 +1024,13 @@ class Icon: LayoutHolder
 				{
 					ToRefresh( this, icon );
 				}
+			}
+		}
+		else if( player.GetInventory().CanForceSwapEntities( w_entity, receiver_entity, il_fswap ))
+		{
+			if( m_HandsIcon && !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
+			{
+				GetGame().GetPlayer().PredictiveForceSwapEntities( w_entity, receiver_entity, il_fswap );
 			}
 		}
 	}

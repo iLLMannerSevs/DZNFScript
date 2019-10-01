@@ -15,7 +15,6 @@ class SlotsContainer: LayoutHolder
 				Widget child = GetRootWidget().GetChildren();
 				while( child )
 				{
-					Print( child.GetName() );
 					child = child.GetSibling();
 				}
 			}

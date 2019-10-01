@@ -143,9 +143,12 @@ class MainMenuConsole extends UIScriptedMenu
 		GetGame().GetVersion( version );
 		m_Version.SetText( "#main_menu_version" + " " + version + " (" + g_Game.GetDatabaseID() + ")" );
 		
-		if ( m_Mission && !m_Mission.GetMenuMusic() )
+		if ( GetGame().GetMission() != null )	// if missionMainMenu still exist
 		{
-			m_Mission.PlayMusic();
+			if (m_Mission && !m_Mission.GetMenuMusic())
+			{
+				m_Mission.PlayMusic();
+			}
 		}
 	}	
 	

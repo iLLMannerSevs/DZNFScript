@@ -105,6 +105,8 @@ class MainMenu extends UIScriptedMenu
 	
 		g_Game.SetLoadState( DayZLoadState.MAIN_MENU_CONTROLLER_SELECT );
 		
+		HideNewsfeed();
+		
 		return layoutRoot;
 	}
 	
@@ -508,7 +510,7 @@ class MainMenu extends UIScriptedMenu
 	
 	void ShowNewsfeed()
 	{
-		m_Newsfeed.ShowNewsfeed();
+		//m_Newsfeed.ShowNewsfeed();
 	}
 	
 	void HideNewsfeed()

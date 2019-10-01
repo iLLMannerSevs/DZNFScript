@@ -83,6 +83,11 @@ class CharacterCreationMenu extends UIScriptedMenu
 		
 		if( m_Scene && m_Scene.GetIntroCharacter() )
 		{
+			#ifdef PLATFORM_CONSOLE
+			m_Scene.GetIntroCharacter().SetToDefaultCharacter();
+			m_Scene.GetIntroCharacter().LoadCharacterData( m_Scene.GetIntroCharacter().GetCharacterObj().GetPosition(), m_Scene.GetIntroCharacter().GetCharacterObj().GetDirection(), true );
+			#endif;
+			
 			PlayerBase scene_char = GetPlayerObj();
 			if( scene_char )
 			{
@@ -187,7 +192,9 @@ class CharacterCreationMenu extends UIScriptedMenu
 			m_Scene.GetIntroCharacter().SetAttachment( m_BottomSelector.GetStringValue(), InventorySlots.LEGS );
 			m_Scene.GetIntroCharacter().SetAttachment( m_ShoesSelector.GetStringValue(), InventorySlots.FEET );
 			
+			#ifndef PLATFORM_CONSOLE
 			if (g_Game.IsNewCharacter())
+			#endif
 			{
 				m_Scene.GetIntroCharacter().SetAttachment("", InventorySlots.SHOULDER);
 				m_Scene.GetIntroCharacter().SetAttachment("", InventorySlots.BOW);
@@ -427,7 +434,11 @@ class CharacterCreationMenu extends UIScriptedMenu
 	{
 		if ( GetGame().GetInput().LocalPress("UAUIBack",false) )
 		{
+			#ifdef PLATFORM_CONSOLE
+			Apply();
+			#else
 			Back();
+			#endif
 		}
 		
 		if ( GetGame().GetInput().LocalPress("UAUICtrlX",false) )
@@ -485,10 +496,12 @@ class CharacterCreationMenu extends UIScriptedMenu
 			option.SetColor( ARGB( 255, 255, 0, 0 ) );
 		}
 		
+		#ifndef PLATFORM_CONSOLE
 		if ( option_label )
 		{
 			option_label.SetColor( ARGB( 255, 255, 0, 0 ) );
 		}
+		#endif
 	}
 	
 	void ColorNormal( Widget w )
@@ -535,10 +548,12 @@ class CharacterCreationMenu extends UIScriptedMenu
 			option.SetColor( ARGB( 150, 255, 255, 255 ) );
 		}
 		
+		#ifndef PLATFORM_CONSOLE
 		if ( option_label )
 		{
 			option_label.SetColor( ARGB( 255, 255, 255, 255 ) );
 		}
+		#endif
 	}
 	
 	void ColorDisable( Widget w )

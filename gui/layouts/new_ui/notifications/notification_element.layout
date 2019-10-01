@@ -10,7 +10,6 @@ GridSpacerWidgetClass NotificationElementRoot {
  style DayZDefaultPanel
  Padding 0
  Margin 3
- "Size To Content H" 1
  "Size To Content V" 1
  Columns 1
  Rows 2
@@ -36,11 +35,11 @@ GridSpacerWidgetClass NotificationElementRoot {
     ImageWidgetClass Image {
      inheritalpha 1
      ignorepointer 1
-     size 1 0.1
+     size 32 32
      hexactpos 1
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
+     hexactsize 1
+     vexactsize 1
      fixaspect fixwidth
      mode blend
      "src alpha" 1
@@ -66,7 +65,7 @@ GridSpacerWidgetClass NotificationElementRoot {
    }
   }
   GridSpacerWidgetClass BottomSpacer {
-   visible 0
+   visible 1
    ignorepointer 1
    color 1 1 1 0.9961
    position 0 0
@@ -80,7 +79,6 @@ GridSpacerWidgetClass NotificationElementRoot {
    Margin 0
    "Size To Content H" 1
    "Size To Content V" 1
-   content_valign center
    Columns 2
    Rows 1
    {
@@ -88,12 +86,11 @@ GridSpacerWidgetClass NotificationElementRoot {
      inheritalpha 1
      ignorepointer 1
      position 0 0
-     size 1 0.1
+     size 32 32
      hexactpos 1
      vexactpos 1
-     hexactsize 0
-     vexactsize 0
-     fixaspect fixwidth
+     hexactsize 1
+     vexactsize 1
     }
     RichTextWidgetClass Detail {
      inheritalpha 1
@@ -108,7 +105,6 @@ GridSpacerWidgetClass NotificationElementRoot {
      "exact text" 1
      "exact text size" 18
      "size to text v" 1
-     "text valign" center
      wrap 1
     }
    }

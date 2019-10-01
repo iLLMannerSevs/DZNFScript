@@ -613,6 +613,7 @@ class InGameMenuXbox extends UIScriptedMenu
 	
 	override void OnShow()
 	{
+		super.OnShow();
 		Man player = GetGame().GetPlayer();
 		bool player_is_alive = false;
 

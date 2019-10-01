@@ -430,10 +430,6 @@ class CargoContainer extends Container
 				Inventory.GetInstance().UpdateConsoleToolbar();
 			}
 		}
-		else
-		{
-			Print( "Inactive container item selected." );
-		}
 	}
 	
 	void UpdateRowVisibility( int count )
@@ -506,6 +502,11 @@ class CargoContainer extends Container
 		#endif
 		icon.Init( item );
 		return icon;
+	}
+	
+	bool HasItem( EntityAI item )
+	{
+		return m_ShowedItemPositions.Contains( item );
 	}
 	
 	override bool TransferItemToVicinity()

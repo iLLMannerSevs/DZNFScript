@@ -1534,7 +1534,7 @@
                 <Item Name="RightBottom" Image="" />
                 <Item Name="Bottom" Image="" />
                 <Item Name="LeftBottom" Image="" />
-                <Item Name="Center" Image="DefaultButtonSelected" />
+                <Item Name="Center" Image="alpha_176" />
                 <Item Name="Left" Image="" />
             </State>
             <State Name="Highlight">
@@ -1556,7 +1556,7 @@
                 <Item Name="RightBottom" Image="" />
                 <Item Name="Bottom" Image="" />
                 <Item Name="LeftBottom" Image="" />
-                <Item Name="Center" Image="DefaultButtonHovered" />
+                <Item Name="Center" Image="alpha_128" />
                 <Item Name="Left" Image="" />
             </State>
             <State Name="Disabled">

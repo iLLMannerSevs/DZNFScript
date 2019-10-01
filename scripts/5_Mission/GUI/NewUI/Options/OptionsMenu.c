@@ -169,6 +169,8 @@ class OptionsMenu extends UIScriptedMenu
 	
 	void Apply()
 	{
+		m_ControlsTab.Apply();
+		
 		if( m_Options.IsChanged() || m_GameTab.IsChanged() )
 		{
 			m_Options.Test();
