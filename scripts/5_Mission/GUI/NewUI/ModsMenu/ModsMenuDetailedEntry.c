@@ -12,7 +12,8 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 	protected ImageWidget		m_IconBig;
 	protected TextWidget		m_Author;
 	protected TextWidget		m_Version;
-	protected RichTextWidget	m_Action;
+	protected RichTextWidget	m_ActionWebsite;
+	protected RichTextWidget	m_ActionPurchase;
 	
 	//Description Panel
 	protected RichTextWidget	m_Description;
@@ -34,10 +35,11 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 		m_IconBig = ImageWidget.Cast(m_Root.FindAnyWidget("IconBig"));
 		m_Author = TextWidget.Cast(m_Root.FindAnyWidget("Author"));
 		m_Version = TextWidget.Cast(m_Root.FindAnyWidget("Version"));
-		m_Action = RichTextWidget.Cast(m_Root.FindAnyWidget("Link"));
+		m_ActionWebsite = RichTextWidget.Cast(m_Root.FindAnyWidget("Link"));
+		m_ActionPurchase = RichTextWidget.Cast(m_Root.FindAnyWidget("Purchase"));
 		
 		m_Description = RichTextWidget.Cast(m_Root.FindAnyWidget("Description"));
-
+		
 		m_Data = data;
 		m_ParentMenu = parent_menu;
 		
@@ -136,9 +138,20 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 			m_Version.SetText(version);
 		}
 		
+		#ifdef PLATFORM_WINDOWS
 		if (action != "")
 		{
-			m_Action.Show( true );
+			m_ActionWebsite.Show( true );
+		}
+		#endif
+		
+		if( m_Data.GetIsDLC() )
+		{
+			m_Root.FindAnyWidget("ModOwnership").Show( true );
+			m_Root.FindAnyWidget("Owned").Show( m_Data.GetIsOwned() );
+			m_Root.FindAnyWidget("Unowned").Show( !m_Data.GetIsOwned() );
+			m_ActionPurchase.Show( true );
+			m_Version.Show( false );
 		}
 	}
 	
@@ -149,19 +162,29 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 			m_ParentMenu.Select( m_Data, !m_IsOpen );
 			return true;
 		}
-		else if( w == m_Action )
+		else if( w == m_ActionWebsite )
 		{
 			GetGame().OpenURL( m_Data.GetAction() );
+		}
+		else if( w == m_ActionPurchase )
+		{
+			m_Data.GoToStore();
 		}
 		return false;
 	}
 	
 	override bool OnMouseEnter(Widget w, int x, int y)
 	{
-		if( w == m_Action )
+		if( w == m_ActionWebsite )
 		{
-			m_Action.SetText( "<u>" + "Website" + "</u>" );
-			m_Action.SetBold( false );
+			m_ActionWebsite.SetBold( true );
+			m_ActionWebsite.SetText( "#mod_detail_info_website" );
+		}
+		
+		if( w == m_ActionPurchase )
+		{
+			m_ActionPurchase.SetBold( true );
+			m_ActionPurchase.SetText( "#mod_detail_info_store" );
 		}
 		
 		if( w == m_Root )
@@ -176,10 +199,16 @@ class ModsMenuDetailedEntry extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
 	{
-		if( w == m_Action )
+		if( w == m_ActionWebsite )
 		{
-			m_Action.SetText( "Website" );
-			m_Action.SetBold( true );
+			m_ActionWebsite.SetBold( false );
+			m_ActionWebsite.SetText( "#mod_detail_info_website" );
+		}
+		
+		if( w == m_ActionPurchase )
+		{
+			m_ActionPurchase.SetBold( false );
+			m_ActionPurchase.SetText( "#mod_detail_info_store" );
 		}
 		
 		if( enterW != m_Root )

@@ -145,7 +145,7 @@ class PlayerListScriptedWidget extends ScriptedWidgetEventHandler
 				m_Entries.Find( uid, player_widget );
 				if( player_widget )
 				{
-					player_widget.MutePlayer( muted );
+					player_widget.SetMute( muted );
 				}
 			}
 		}
@@ -216,6 +216,15 @@ class PlayerListScriptedWidget extends ScriptedWidgetEventHandler
 		}
 	}
 	
+	bool IsMuted( string UID )
+	{
+		if( m_Entries && m_Entries.Get( UID ) )
+		{
+			return m_Entries.Get( UID ).IsMuted();
+		}
+		return false;
+	}
+	
 	bool IsGloballyMuted( string UID )
 	{
 		if( m_Entries && m_Entries.Get( UID ) )
@@ -225,16 +234,31 @@ class PlayerListScriptedWidget extends ScriptedWidgetEventHandler
 		return false;
 	}
 	
-	void MutePlayer( string UID, bool mute )
+	void SetMute( string UID, bool mute )
 	{
-		if( m_Entries )
+		if( m_Entries && m_Entries.Get( UID ) )
 		{
-			m_Entries.Get( UID ).MutePlayer( mute );
+			m_Entries.Get( UID ).SetMute( mute );
 		}
+	}
+	
+	void ToggleMute( string UID )
+	{
+		if( m_Entries && m_Entries.Get( UID ) )
+		{
+			m_Entries.Get( UID ).ToggleMute();
+		}
+	}
+	
+	PlayerListEntryScriptedWidget GetSelectedPlayer()
+	{
+		return m_SelectedEntry;
 	}
 	
 	void SelectPlayer( PlayerListEntryScriptedWidget entry )
 	{
+		if( m_SelectedEntry )
+			m_SelectedEntry.Deselect();
 		m_SelectedEntry = entry;
 		ScrollToEntry( entry );
 	}

@@ -2,7 +2,7 @@ class CCTCursor : CCTBase
 {
 	protected float m_MaximalActionDistance;
 	
-	void CCTCursor ( float maximal_target_distance )
+	void CCTCursor ( float maximal_target_distance ) //distance measured from the center of the object!
 	{
 		m_MaximalActionDistance = maximal_target_distance;
 	}
@@ -26,16 +26,19 @@ class CCTCursor : CCTBase
 				distance = Math.AbsInt(vector.Distance(target.GetCursorHitPos(),player.GetPosition()));
 				if ( distance <= m_MaximalActionDistance ) 
 				{	
-					return true;			
+					return true;
 				}
 			}
 			else
 			{
+				/*
 				distance = Math.AbsInt(vector.Distance(targetObject.GetPosition(),player.GetPosition()));
 				if ( distance <= m_MaximalActionDistance )
 				{
 					return true;
 				}	
+				*/
+				return true;
 			}
 		}
 		return false;

@@ -95,9 +95,12 @@ class BleedingSourcesManagerServer extends BleedingSourcesManagerBase
 				m_DeleteList.Remove(0);
 			} 
 			
+			float blood_scale = Math.InverseLerp(PlayerConstants.BLOOD_THRESHOLD_FATAL, PlayerConstants.BLEEDING_LOW_PRESSURE_BLOOD, m_Player.GetHealth( "GlobalHealth", "Blood" ));
+			blood_scale = Math.Clamp( blood_scale, PlayerConstants.BLEEDING_LOW_PRESSURE_MIN_MOD, 1 );
+
 			for(int i = 0; i < m_BleedingSources.Count(); i++)
 			{
-				m_BleedingSources.GetElement(i).OnUpdateServer(delta_time, m_DisableBloodLoss);
+				m_BleedingSources.GetElement(i).OnUpdateServer(delta_time, blood_scale, m_DisableBloodLoss);
 			}
 		}
 	}

@@ -58,7 +58,7 @@ FrameWidgetClass game_tab_root {
          ignorepointer 1
          color 0 0 0 1
          position 0 0
-         size 1 36
+         size 1 40
          hexactpos 1
          vexactpos 1
          hexactsize 0

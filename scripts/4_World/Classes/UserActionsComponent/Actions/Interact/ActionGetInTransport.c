@@ -1,13 +1,9 @@
-class ActionGetInTransport: ActionInteractBase
+class ActionGetInTransport: ActionBase
 {
-	private Transport m_transport;
-	private int       m_crewIdx;
-
-
 	void ActionGetInTransport()
 	{
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_CROUCH | DayZPlayerConstants.STANCEMASK_ERECT;
-		m_HUDCursorIcon = "GetInDriver";
+		//m_HUDCursorIcon = "GetInDriver";
 	}
 
 
@@ -34,13 +30,13 @@ class ActionGetInTransport: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		m_transport = null;
-		m_crewIdx   = -1;
+ 		Transport trans = null;
+		int crew_index = -1;
 
 		if ( !target )
 			return false;
 
-		if ( !Class.CastTo(m_transport, target.GetObject()) )
+		if ( !Class.CastTo(trans, target.GetObject()) )
 			return false;
 
 		if ( player.GetCommand_Vehicle() )
@@ -48,24 +44,24 @@ class ActionGetInTransport: ActionInteractBase
 
 		int componentIndex = target.GetComponentIndex();
 		
-		m_crewIdx = m_transport.CrewPositionIndex(componentIndex);
-		if ( m_crewIdx < 0 )
+		crew_index = trans.CrewPositionIndex(componentIndex);
+		if ( crew_index < 0 )
 			return false;
 
-		Human crew = m_transport.CrewMember( m_crewIdx );
+		Human crew = trans.CrewMember( crew_index );
 		if ( crew )
 			return false;
 		
-		if ( !m_transport.CrewCanGetThrough( m_crewIdx ) )
+		if ( !trans.CrewCanGetThrough( crew_index ) )
 			return false;
 
 		array<string> selections = new array<string>();
 
-		m_transport.GetActionComponentNameList( componentIndex, selections );
+		trans.GetActionComponentNameList( componentIndex, selections );
 		
 		for ( int i = 0; i < selections.Count(); i++ )
 		{
-			if ( m_transport.CanReachSeatFromDoors(selections[i], player.GetPosition(), 1.0) )
+			if ( trans.CanReachSeatFromDoors(selections[i], player.GetPosition(), 1.0) )
 				return true;
 		}
 
@@ -75,14 +71,22 @@ class ActionGetInTransport: ActionInteractBase
 	override void Start( ActionData action_data )
 	{
 		super.Start( action_data );
-		int seat = m_transport.GetSeatAnimationType(m_crewIdx);
-		HumanCommandVehicle vehCommand = action_data.m_Player.StartCommand_Vehicle(m_transport, m_crewIdx, seat);
+		
+		Transport trans = Transport.Cast(action_data.m_Target.GetObject());
+		int componentIndex = action_data.m_Target.GetComponentIndex();
+		int crew_index = trans.CrewPositionIndex(componentIndex);
+		
+		
+		int seat = trans.GetSeatAnimationType(crew_index);
+		HumanCommandVehicle vehCommand = action_data.m_Player.StartCommand_Vehicle(trans, crew_index, seat);
 		if( vehCommand )
 		{
-			vehCommand.SetVehicleType(m_transport.GetAnimInstance());
+			vehCommand.SetVehicleType(trans.GetAnimInstance());
 			action_data.m_Player.GetItemAccessor().HideItemInHands(true);
 			
 			GetDayZGame().GetBacklit().OnEnterCar();
+			if ( action_data.m_Player.GetInventory() ) 
+				action_data.m_Player.GetInventory().LockInventory(LOCK_FROM_SCRIPT);
 		}
 	}
 
@@ -96,20 +100,27 @@ class ActionGetInTransport: ActionInteractBase
 
 		if(action_data.m_State == UA_START)
 		{
-			if( !action_data.m_Player.GetCommand_Vehicle().IsGettingIn() )
+			if( !action_data.m_Player.GetCommand_Vehicle() || !action_data.m_Player.GetCommand_Vehicle().IsGettingIn() )
 			{
 				End(action_data);
 			}
-			//TODO add some timed check for stuck possibility
-			/*else
-			{
-				End(action_data);
-			}*/
 		}
 	}
 	
-	/*override bool IsInstant()
+	override int GetActionCategory()
 	{
-		return true;
-	}*/
+		return AC_INTERACT;
+	}
+	
+	override void OnEndClient( ActionData action_data )
+	{
+		if ( action_data.m_Player.GetInventory() ) 
+				action_data.m_Player.GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
+	}
+	
+	override void OnEndServer( ActionData action_data )
+	{
+		if ( action_data.m_Player.GetInventory() ) 
+				action_data.m_Player.GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
+	}
 };

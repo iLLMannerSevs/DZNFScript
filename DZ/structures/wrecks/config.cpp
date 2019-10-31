@@ -2,7 +2,7 @@
 //DeRap: structures_wrecks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:30 2019 : 'file' last modified on Mon Aug 19 08:22:13 2019
+//'now' is Thu Oct 31 18:24:16 2019 : 'file' last modified on Wed Oct 30 21:07:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -410,6 +410,11 @@ class CfgVehicles
 		scope = 1;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Harverster.p3d";
 	};
+	class Land_Wreck_Harvester_head_trailer: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Harvester_head_trailer.p3d";
+	};
 	class Land_Wreck_C130J: HouseNoDestruct
 	{
 		scope = 1;
@@ -432,5 +437,125 @@ class CfgVehicles
 		scope = 2;
 		storageCategory = 4;
 		model = "\DZ\structures\Wrecks\Vehicles\Wreck_Volha_Police.p3d";
+	};
+	class Land_Wreck_hb01_aban1_blue: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban1_blue";
+	};
+	class Land_Wreck_hb01_aban1_green: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban1_green";
+	};
+	class Land_Wreck_hb01_aban1_white: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban1_white";
+	};
+	class Land_Wreck_hb01_aban2_blue: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban2_blue";
+	};
+	class Land_Wreck_hb01_aban2_green: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban2_green";
+	};
+	class Land_Wreck_hb01_aban2_white: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb01_aban2_white";
+	};
+	class Land_Wreck_hb02_aban1_black: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban1_black";
+	};
+	class Land_Wreck_hb02_aban1_blue: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban1_blue";
+	};
+	class Land_Wreck_hb02_aban1_red: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban1_red";
+	};
+	class Land_Wreck_hb02_aban2_black: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban2_black";
+	};
+	class Land_Wreck_hb02_aban2_blue: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban2_blue";
+	};
+	class Land_Wreck_hb02_aban2_red: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_hb02_aban2_red";
+	};
+	class Land_Wreck_sed01_aban1_black: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban1_black";
+	};
+	class Land_Wreck_sed01_aban1_white: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban1_white";
+	};
+	class Land_Wreck_sed01_aban1_wine: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban1_wine";
+	};
+	class Land_Wreck_sed01_aban2_black: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban2_black";
+	};
+	class Land_Wreck_sed01_aban2_white: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban2_white";
+	};
+	class Land_Wreck_sed01_aban2_wine: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed01_aban2_wine";
+	};
+	class Land_Wreck_sed02_aban1_grey: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban1_grey";
+	};
+	class Land_Wreck_sed02_aban1_red: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban1_red";
+	};
+	class Land_Wreck_sed02_aban1_yellow: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban1_yellow";
+	};
+	class Land_Wreck_sed02_aban2_grey: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban2_grey";
+	};
+	class Land_Wreck_sed02_aban2_red: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban2_red";
+	};
+	class Land_Wreck_sed02_aban2_yellow: HouseNoDestruct
+	{
+		scope = 1;
+		model = "DZ\structures\Wrecks\Vehicles\Wreck_sed02_aban2_yellow";
 	};
 };

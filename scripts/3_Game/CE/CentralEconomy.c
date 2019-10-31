@@ -16,9 +16,10 @@ const int ECE_ROTATIONFLAGS					= 512;	// enable rotation flags for object place
 const int ECE_CREATEPHYSICS					= 1024;	// create collision envelope and related physics data (if object has them)
 const int ECE_AIRBORNE						= 4096;	// create flying unit in the air
 
-const int ECE_EQUIP_ATTACHMENTS				= 8192;		// equip with configured attachments
-const int ECE_EQUIP_CARGO					= 16384;	// equip with configured cargo
-const int ECE_EQUIP							= 24576;	// equip with configured attachments + cargo
+const int ECE_EQUIP_ATTACHMENTS				= 8192;		// equip with configured ATTACHMENTS
+const int ECE_EQUIP_CARGO					= 16384;	// equip with configured CARGO
+const int ECE_EQUIP							= 24576;	// equip with configured (ATTACHMENTS + CARGO)
+const int ECE_EQUIP_CONTAINER				= 2097152;	// populate DE/ group CONTAINER during spawn
 
 const int ECE_NOSURFACEALIGN				= 262144;	// do not align object on surface/ terrain
 const int ECE_KEEPHEIGHT					= 524288;	// keep height when creating object (do not use trace or placement on surface)

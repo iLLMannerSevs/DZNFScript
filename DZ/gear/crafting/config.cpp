@@ -2,7 +2,7 @@
 //DeRap: gear_crafting\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:20 2019 : 'file' last modified on Wed Aug 07 11:06:23 2019
+//'now' is Thu Oct 31 18:20:56 2019 : 'file' last modified on Mon Oct 14 11:24:42 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -49,7 +49,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\bp_sack_burlap.rvmat"}},{0.7,{"DZ\gear\crafting\data\bp_sack_burlap.rvmat"}},{0.5,{"DZ\gear\crafting\data\bp_sack_burlap_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\bp_sack_burlap_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\bp_sack_burlap_destruct.rvmat"}}};
 				};
 			};
@@ -88,7 +88,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\bp_rope.rvmat"}},{0.7,{"DZ\gear\crafting\data\bp_rope.rvmat"}},{0.5,{"DZ\gear\crafting\data\bp_rope_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\bp_rope_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\bp_rope_destruct.rvmat"}}};
 				};
 			};
@@ -150,7 +150,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\bp_rope.rvmat"}},{0.7,{"DZ\gear\crafting\data\bp_rope.rvmat"}},{0.5,{"DZ\gear\crafting\data\bp_rope_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\bp_rope_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\bp_rope_destruct.rvmat"}}};
 				};
 			};
@@ -202,7 +202,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\String_MetalWire.rvmat"}},{0.7,{"DZ\gear\crafting\data\String_MetalWire.rvmat"}},{0.5,{"DZ\gear\crafting\data\String_MetalWire_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\String_MetalWire_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\String_MetalWire_destruct.rvmat"}}};
 				};
 			};
@@ -304,7 +304,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\String_MetalWire.rvmat"}},{0.7,{"DZ\gear\crafting\data\String_MetalWire.rvmat"}},{0.5,{"DZ\gear\crafting\data\String_MetalWire_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\String_MetalWire_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\String_MetalWire_destruct.rvmat"}}};
 				};
 			};
@@ -358,7 +358,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\bp_wooden_stick.rvmat"}},{0.7,{"DZ\gear\crafting\data\bp_wooden_stick.rvmat"}},{0.5,{"DZ\gear\crafting\data\bp_wooden_stick_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\bp_wooden_stick_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\bp_wooden_stick_destruct.rvmat"}}};
 				};
 			};
@@ -532,7 +532,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\weapons\projectiles\data\arrow_crafted_simple.rvmat"}},{0.7,{"DZ\weapons\projectiles\data\arrow_crafted_simple.rvmat"}},{0.5,{"DZ\weapons\projectiles\data\arrow_crafted_simple_damage.rvmat"}},{0.3,{"DZ\weapons\projectiles\data\arrow_crafted_simple_damage.rvmat"}},{0.0,{"DZ\weapons\projectiles\data\arrow_crafted_simple_destruct.rvmat"}}};
 				};
 			};
@@ -558,7 +558,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\Wooden_stick.rvmat"}},{0.7,{"DZ\gear\crafting\data\Wooden_stick.rvmat"}},{0.5,{"DZ\gear\crafting\data\Wooden_stick_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\Wooden_stick_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\Wooden_stick_destruct.rvmat"}}};
 				};
 			};
@@ -571,6 +571,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_GorkaHelmetVisor1";
 		model = "\dz\characters\headgear\Maska_glass_g.p3d";
 		rotationFlags = 16;
+		weight = 350;
 		itemSize[] = {3,2};
 		inventorySlot = "Glass";
 		class DamageSystem
@@ -600,7 +601,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\hand_drill_kit.rvmat"}},{0.7,{"DZ\gear\crafting\data\hand_drill_kit.rvmat"}},{0.5,{"DZ\gear\crafting\data\hand_drill_kit_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\hand_drill_kit_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\hand_drill_kit_destruct.rvmat"}}};
 				};
 			};

@@ -538,7 +538,7 @@ class ZombieBase extends DayZInfected
 								if( GetGame().IsServer() )
 								{
 									hitPosWS = m_ActualTarget.GetDefaultHitPosition(); //! override hit pos by pos defined in type
-									m_ActualTarget.EEHitBy(null, 0, this, -1, m_ActualTarget.GetDefaultHitComponent(), "Dummy_Light", hitPosWS);
+									m_ActualTarget.EEHitBy(null, 0, this, -1, m_ActualTarget.GetDefaultHitComponent(), "Dummy_Light", hitPosWS, 1.0);
 								}
 							}
 						}
@@ -800,9 +800,9 @@ class ZombieBase extends DayZInfected
 	//! Events from damage system
 	//! 
 
-	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
-		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos);
+		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos, speedCoef);
 		
 		m_TransportHitRegistered = false;
 		

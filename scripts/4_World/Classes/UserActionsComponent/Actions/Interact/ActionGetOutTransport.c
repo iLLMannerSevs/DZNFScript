@@ -1,13 +1,9 @@
 class ActionGetOutTransport: ActionInteractBase
 {
-	private Transport m_transport;
-	private int       m_crewIdx;
-
-
 	void ActionGetOutTransport()
 	{
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ALL;
-		m_HUDCursorIcon = "GetInDriver";
+		//m_HUDCursorIcon = "GetInDriver";
 	}
 
 
@@ -34,16 +30,17 @@ class ActionGetOutTransport: ActionInteractBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
- 		m_transport = null;
+ 		Transport trans = null;
+		int crew_index = -1;
 
 		HumanCommandVehicle vehCommand = player.GetCommand_Vehicle();
 		if ( vehCommand )
 		{
-			m_transport = vehCommand.GetTransport();
-			if ( m_transport )
+			trans = vehCommand.GetTransport();
+			if ( trans )
 			{
-				m_crewIdx = m_transport.CrewMemberIndex( player );
-				if ( m_crewIdx >= 0 && m_transport.CrewCanGetThrough( m_crewIdx ) )
+				crew_index = trans.CrewMemberIndex( player );
+				if ( crew_index >= 0 && trans.CrewCanGetThrough( crew_index ) )
 					return true;
 			}
 		}
@@ -76,7 +73,9 @@ class ActionGetOutTransport: ActionInteractBase
 					//action_data.m_Player.GetItemAccessor().HideItemInHands(false);
 					//action_data.m_Player.GetItemAccessor().OnItemInHandsChanged();
 					
-					GetDayZGame().GetBacklit().OnLeaveCar();									
+					GetDayZGame().GetBacklit().OnLeaveCar();		
+					if ( action_data.m_Player.GetInventory() ) 
+						action_data.m_Player.GetInventory().LockInventory(LOCK_FROM_SCRIPT);							
 				}
 			}
 		}
@@ -121,8 +120,20 @@ class ActionGetOutTransport: ActionInteractBase
 		return true;
 	}
 	
-	/*override bool IsInstant()
+	override int GetActionCategory()
 	{
-		return true;
-	}*/
+		return AC_INTERACT;
+	}
+	
+	override void OnEndClient( ActionData action_data )
+	{
+		if ( action_data.m_Player.GetInventory() ) 
+				action_data.m_Player.GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
+	}
+	
+	override void OnEndServer( ActionData action_data )
+	{
+		if ( action_data.m_Player.GetInventory() ) 
+				action_data.m_Player.GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
+	}
 };

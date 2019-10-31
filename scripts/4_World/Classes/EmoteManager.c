@@ -376,6 +376,9 @@ class EmoteManager
 		{
 			return false;
 		}
+		
+		actionDebugPrint("[emote] " + Object.GetDebugName(m_Player) + " play emote id=" + id + " IH=" + Object.GetDebugName(m_Player.GetItemInHands()));
+		
 		m_PreviousGestureID = m_CurrentGestureID;
 		m_CurrentGestureID = id;
 		if( id > 0)

@@ -2,7 +2,7 @@
 //DeRap: dz\aiconfigs\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:09 2019 : 'file' last modified on Mon Sep 02 12:14:57 2019
+//'now' is Thu Oct 31 18:20:44 2019 : 'file' last modified on Tue Oct 29 11:03:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -33,7 +33,7 @@ class AIParams
 		};
 		class Predator
 		{
-			friends[] = {"Predator","AmbientLife"};
+			friends[] = {"Predator","Zombies","AmbientLife"};
 		};
 		class BigGame
 		{
@@ -41,7 +41,7 @@ class AIParams
 		};
 		class Zombies
 		{
-			friends[] = {"Zombies","AmbientLife"};
+			friends[] = {"Zombies","Predator","AmbientLife"};
 		};
 		class AmbientLife
 		{

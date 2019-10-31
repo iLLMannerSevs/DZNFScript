@@ -375,11 +375,11 @@ class Bottle_Base extends Edible_Base
 		string surface_type = GetGame().GetPlayer().GetSurfaceType();
 		string sound_set = "";
 		
-		if ( GetGame().IsSurfaceHardGround( surface_type ) )
+		if ( !GetGame().IsSurfaceDigable( surface_type ) )
 		{
 			sound_set = GetEmptyingLoopSoundsetHard();
 		}
-		else if ( GetGame().IsSurfaceSoftGround( surface_type ) )
+		else if ( GetGame().IsSurfaceDigable( surface_type ) )
 		{
 			sound_set = GetEmptyingLoopSoundsetSoft();
 		}
@@ -397,11 +397,11 @@ class Bottle_Base extends Edible_Base
 		string surface_type = GetGame().GetPlayer().GetSurfaceType();
 		string sound_set = "";
 		
-		if ( GetGame().IsSurfaceHardGround( surface_type ) )
+		if ( !GetGame().IsSurfaceDigable( surface_type ) )
 		{
 			sound_set = GetEmptyingEndSoundsetHard();
 		}
-		else if ( GetGame().IsSurfaceSoftGround( surface_type ) )
+		else if ( GetGame().IsSurfaceDigable( surface_type ) )
 		{
 			sound_set = GetEmptyingEndSoundsetSoft();
 		}

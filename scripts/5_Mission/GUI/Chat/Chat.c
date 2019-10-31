@@ -8,6 +8,7 @@
 	CCMegaphone(8)
 	CCTransmitter(16)
 	CCPublicAddressSystem(32)
+	CCBattlEye(64)
 */
 
 class Chat
@@ -72,13 +73,19 @@ class Chat
 		int total_lenght = text_lenght + name_lenght;
 		int channel =  params.param1;
 
-		if( channel & CCSystem )
+		if( channel & CCSystem || channel & CCBattlEye) //TODO separate battleye bellow
  		{
 			if( g_Game.GetProfileOption( EDayZProfilesOptions.GAME_MESSAGES ) )
 				return;
 			
 			max_lenght = ChatMaxSystemLength; // system messages can be longer
  		}
+		//TODO add battleye filter to options
+		/*else if( channel & CCBattlEye ) 
+		{
+			if( g_Game.GetProfileOption( EDayZProfilesOptions.BATTLEYE_MESSAGES ) )
+				return;
+		}*/
 		else if( channel & CCAdmin )
 		{
 			if( g_Game.GetProfileOption( EDayZProfilesOptions.ADMIN_MESSAGES ) )

@@ -61,7 +61,8 @@ class CAContinuousRepeat : CAContinuousBase
 	
 	override float GetProgress()
 	{	
-		//float progress = m_TimeElpased/m_TimeToComplete;
-		return  m_TimeElpased/m_TimeToComplete;
+		float progress = m_TimeElpased/m_TimeToComplete;
+		//Print("progress: " + progress + " | m_TimeElpased: " + m_TimeElpased + " | m_TimeToComplete: " + m_TimeToComplete);
+		return  progress;
 	}
 };

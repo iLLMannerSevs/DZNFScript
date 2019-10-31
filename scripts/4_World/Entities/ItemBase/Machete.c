@@ -18,5 +18,6 @@ class Machete extends ToolBase
 		AddAction(ActionMineBush);
 		AddAction(ActionMineTreeBark);
 		AddAction(ActionBurnSewSelf);
+		AddAction(ActionDigWorms);
 	}
 }

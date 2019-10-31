@@ -2,7 +2,7 @@
 //DeRap: gear_tools\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:30 2019 : 'file' last modified on Fri Jul 19 22:07:53 2019
+//'now' is Thu Oct 31 18:21:09 2019 : 'file' last modified on Thu Oct 31 09:31:40 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -35,6 +35,7 @@ class CfgVehicles
 	class Switchable_Base;
 	class Powered_Base;
 	class FishingRod_Base;
+	class FishingRod_Base_New: FishingRod_Base{};
 	class Flashlight: Inventory_Base
 	{
 		scope = 2;
@@ -54,7 +55,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\flashlight_old.rvmat"}},{0.7,{"DZ\gear\tools\data\flashlight_old.rvmat"}},{0.5,{"DZ\gear\tools\data\flashlight_old_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\flashlight_old_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\flashlight_old_destruct.rvmat"}}};
 				};
 			};
@@ -152,7 +153,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 10;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\flashlight_old.rvmat"}},{0.7,{"DZ\gear\tools\data\flashlight_old.rvmat"}},{0.5,{"DZ\gear\tools\data\flashlight_old_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\flashlight_old_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\flashlight_old_destruct.rvmat"}}};
 				};
 			};
@@ -215,7 +216,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Loot_CanOpener.rvmat"}},{0.7,{"DZ\gear\tools\data\Loot_CanOpener.rvmat"}},{0.5,{"DZ\gear\tools\data\Loot_CanOpener_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Loot_CanOpener_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Loot_CanOpener_destruct.rvmat"}}};
 				};
 			};
@@ -242,7 +243,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\heat_pack.rvmat"}},{0.7,{"DZ\gear\tools\data\heat_pack.rvmat"}},{0.5,{"DZ\gear\tools\data\heat_pack_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\heat_pack_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\heat_pack_destruct.rvmat"}}};
 				};
 			};
@@ -390,7 +391,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Lockpick.rvmat"}},{0.7,{"DZ\gear\tools\data\Lockpick.rvmat"}},{0.5,{"DZ\gear\tools\data\Lockpick_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Lockpick_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Lockpick_destruct.rvmat"}}};
 				};
 			};
@@ -510,7 +511,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\sewing_kit.rvmat"}},{0.7,{"DZ\gear\tools\data\sewing_kit.rvmat"}},{0.5,{"DZ\gear\tools\data\sewing_kit_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\sewing_kit_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\sewing_kit_destruct.rvmat"}}};
 				};
 			};
@@ -605,7 +606,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Handcuff.rvmat"}},{0.7,{"DZ\gear\tools\data\Handcuff.rvmat"}},{0.5,{"DZ\gear\tools\data\Handcuff_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Handcuff_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Handcuff_destruct.rvmat"}}};
 				};
 			};
@@ -652,7 +653,7 @@ class CfgVehicles
 	};
 	class HandcuffsLocked: Inventory_Base
 	{
-		scope = 1;
+		scope = 2;
 		displayName = "$STR_CfgVehicles_HandcuffsLocked0";
 		model = "\dz\gear\tools\Handcuffs_locked.p3d";
 		animClass = "Knife";
@@ -669,7 +670,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Handcuff.rvmat"}},{0.7,{"DZ\gear\tools\data\Handcuff.rvmat"}},{0.5,{"DZ\gear\tools\data\Handcuff_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Handcuff_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Handcuff_destruct.rvmat"}}};
 				};
 			};
@@ -749,7 +750,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 10;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\cassette.rvmat"}},{0.7,{"DZ\gear\tools\data\cassette.rvmat"}},{0.5,{"DZ\gear\tools\data\cassette_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\cassette_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\cassette_destruct.rvmat"}}};
 				};
 			};
@@ -795,7 +796,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\shovel.rvmat"}},{0.7,{"DZ\gear\tools\data\shovel.rvmat"}},{0.5,{"DZ\gear\tools\data\shovel_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\shovel_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\shovel_destruct.rvmat"}}};
 				};
 			};
@@ -875,7 +876,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\CSLA_Field_Shovel.rvmat"}},{0.7,{"DZ\gear\tools\data\CSLA_Field_Shovel.rvmat"}},{0.5,{"DZ\gear\tools\data\CSLA_Field_Shovel_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\CSLA_Field_Shovel_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\CSLA_Field_Shovel_destruct.rvmat"}}};
 				};
 			};
@@ -960,7 +961,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Crowbar.rvmat"}},{0.7,{"DZ\gear\tools\data\Crowbar.rvmat"}},{0.5,{"DZ\gear\tools\data\Crowbar_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Crowbar_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Crowbar_destruct.rvmat"}}};
 				};
 			};
@@ -1029,7 +1030,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\fire_extinguisher.rvmat"}},{0.7,{"DZ\gear\tools\data\fire_extinguisher.rvmat"}},{0.5,{"DZ\gear\tools\data\fire_extinguisher_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\fire_extinguisher_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\fire_extinguisher_destruct.rvmat"}}};
 				};
 			};
@@ -1112,7 +1113,7 @@ class CfgVehicles
 				class WoodHammer_SoundSet
 				{
 					soundSet = "WoodHammer_SoundSet";
-					id = 1116;
+					id = 11161;
 				};
 			};
 		};
@@ -1250,7 +1251,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 400;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Lug_Wrench.rvmat"}},{0.7,{"DZ\gear\tools\data\Lug_Wrench.rvmat"}},{0.5,{"DZ\gear\tools\data\Lug_Wrench_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Lug_Wrench_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Lug_Wrench_destruct.rvmat"}}};
 				};
 			};
@@ -1304,7 +1305,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\metal_pipe.rvmat"}},{0.7,{"DZ\gear\tools\data\metal_pipe.rvmat"}},{0.5,{"DZ\gear\tools\data\metal_pipe_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\metal_pipe_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\metal_pipe_destruct.rvmat"}}};
 				};
 			};
@@ -1554,8 +1555,8 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\tools\data\hacksaw.rvmat"}},{0.7,{"DZ\gear\tools\data\hacksaw.rvmat"}},{0.5,{"DZ\gear\tools\data\hacksaw_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\hacksaw_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\hacksaw_destruct.rvmat"}}};
+					hitpoints = 80;
+					healthLevels[] = {{1.0,{"DZ\gear\tools\data\kitchenknife.rvmat"}},{0.7,{"DZ\gear\tools\data\kitchenknife.rvmat"}},{0.5,{"DZ\gear\tools\data\kitchenknife_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\kitchenknife_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\kitchenknife_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -1629,7 +1630,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\small_steak_knife.rvmat"}},{0.7,{"DZ\gear\tools\data\small_steak_knife.rvmat"}},{0.5,{"DZ\gear\tools\data\small_steak_knife_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\small_steak_knife_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\small_steak_knife_destruct.rvmat"}}};
 				};
 			};
@@ -1701,7 +1702,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Hay_Hook.rvmat"}},{0.7,{"DZ\gear\tools\data\Hay_Hook.rvmat"}},{0.5,{"DZ\gear\tools\data\Hay_Hook_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Hay_Hook_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Hay_Hook_destruct.rvmat"}}};
 				};
 			};
@@ -1748,7 +1749,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 25;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\stone.rvmat"}},{0.7,{"DZ\gear\tools\data\stone.rvmat"}},{0.5,{"DZ\gear\tools\data\stone_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\stone_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\stone_destruct.rvmat"}}};
 				};
 			};
@@ -1815,7 +1816,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Flanged_Mace.rvmat"}},{0.7,{"DZ\gear\tools\data\Flanged_Mace.rvmat"}},{0.5,{"DZ\gear\tools\data\Flanged_Mace_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Flanged_Mace_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Flanged_Mace_destruct.rvmat"}}};
 				};
 			};
@@ -1856,7 +1857,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Farming_Hoe.rvmat"}},{0.7,{"DZ\gear\tools\data\Farming_Hoe.rvmat"}},{0.5,{"DZ\gear\tools\data\Farming_Hoe_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Farming_Hoe_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Farming_Hoe_destruct.rvmat"}}};
 				};
 			};
@@ -1916,7 +1917,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class ImprovisedFishingRod: FishingRod_Base
+	class ImprovisedFishingRod: FishingRod_Base_New
 	{
 		scope = 2;
 		displayName = "$STR_CfgVehicles_ImprovisedFishingRod0";
@@ -1937,7 +1938,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\wooden_stick.rvmat"}},{0.7,{"DZ\gear\crafting\data\wooden_stick.rvmat"}},{0.5,{"DZ\gear\crafting\data\wooden_stick_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\wooden_stick_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\wooden_stick_destruct.rvmat"}}};
 				};
 			};
@@ -1946,31 +1947,6 @@ class CfgVehicles
 		{
 			class SoundWeapon
 			{
-				class Fishing_in_SoundSet
-				{
-					soundSet = "Fishing_in_SoundSet";
-					id = 201;
-				};
-				class Fishing_check_SoundSet
-				{
-					soundSet = "Fishing_check_SoundSet";
-					id = 202;
-				};
-				class Fishing_cancel_SoundSet
-				{
-					soundSet = "Fishing_cancel_SoundSet";
-					id = 203;
-				};
-				class FishingRod_extend_SoundSet
-				{
-					soundSet = "FishingRod_extend_SoundSet";
-					id = 204;
-				};
-				class FishingRod_retract_SoundSet
-				{
-					soundSet = "FishingRod_retract_SoundSet";
-					id = 205;
-				};
 				class Fishing_puddle_SoundSet
 				{
 					soundSet = "Fishing_puddle_SoundSet";
@@ -1993,8 +1969,17 @@ class CfgVehicles
 				};
 			};
 		};
+		class AnimationSources
+		{
+			class AnimateRod
+			{
+				source = "user";
+				initPhase = 0;
+				animPeriod = 2.5;
+			};
+		};
 	};
-	class ObsoleteFishingRod: FishingRod_Base
+	class ObsoleteFishingRod: FishingRod_Base_New
 	{
 		scope = 2;
 		displayName = "$STR_CfgVehicles_ObsoleteFishingRod0";
@@ -2072,7 +2057,7 @@ class CfgVehicles
 			};
 		};
 	};
-	class FishingRod: FishingRod_Base
+	class FishingRod: FishingRod_Base_New
 	{
 		scope = 2;
 		displayName = "$STR_CfgVehicles_FishingRod0";
@@ -2090,24 +2075,18 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\fishing_rod.rvmat"}},{0.7,{"DZ\gear\tools\data\fishing_rod.rvmat"}},{0.5,{"DZ\gear\tools\data\fishing_rod_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\fishing_rod_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\fishing_rod_destruct.rvmat"}}};
 				};
 			};
 		};
 		class AnimationSources
 		{
-			class CloseRod
-			{
-				source = "user";
-				initPhase = 1;
-				animPeriod = 0.001;
-			};
-			class OpenRod
+			class AnimateRod
 			{
 				source = "user";
 				initPhase = 0;
-				animPeriod = 0.001;
+				animPeriod = 0.7;
 			};
 		};
 		class MeleeModes
@@ -2200,7 +2179,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\Sledge_Hammer.rvmat"}},{0.7,{"DZ\gear\tools\data\Sledge_Hammer.rvmat"}},{0.5,{"DZ\gear\tools\data\Sledge_Hammer_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\Sledge_Hammer_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\Sledge_Hammer_destruct.rvmat"}}};
 				};
 			};
@@ -2287,7 +2266,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\gear\tools\data\IceAxe.rvmat"}},{0.7,{"DZ\gear\tools\data\IceAxe.rvmat"}},{0.5,{"DZ\gear\tools\data\IceAxe_damage.rvmat"}},{0.3,{"DZ\gear\tools\data\IceAxe_damage.rvmat"}},{0.0,{"DZ\gear\tools\data\IceAxe_destruct.rvmat"}}};
 				};
 			};
@@ -2482,7 +2461,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Whetstone1";
 		model = "\dz\gear\tools\whetstone.p3d";
 		animClass = "Knife";
-		rotationFlags = 17;
+		rotationFlags = 34;
 		stackedUnit = "percentage";
 		quantityBar = 1;
 		varQuantityInit = 100.0;

@@ -17,12 +17,11 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 	}
 	
 	override void CreateConditionComponents()  
-	{	
-		
+	{
 		m_ConditionItem = new CCINone;
 		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
 	}
-		
+	
 	override string GetText()
 	{
 		return "#uncover_players_head";
@@ -38,7 +37,7 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 		PlayerBase targetPlayer;
 		if( Class.CastTo(targetPlayer, target.GetObject()) )
 		{
-			if ( IsWearingBurlap(targetPlayer) ) 
+			if ( IsWearingBurlap(targetPlayer) )
 			{
 				return true;
 			}
@@ -64,14 +63,13 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 				action_data.m_Player.GetTransformWS(m4);
 				InventoryLocation target_gnd = new InventoryLocation;
 				target_gnd.SetGround(null, m4);
-				GameInventory.LocationCreateEntity(target_gnd, "BurlapSack",ECE_IN_INVENTORY,RF_DEFAULT);
+				item = GameInventory.LocationCreateEntity(target_gnd, "BurlapSack",ECE_IN_INVENTORY,RF_DEFAULT);
 			}
+			
+			MiscGameplayFunctions.TransferItemProperties(attachment,item);
+			
 			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
-		
-
-
-		
 	}
 
 	bool IsWearingBurlap( PlayerBase player )
@@ -82,6 +80,6 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 		{
 			return true;
 		}
-		return false;		
+		return false;
 	}
 };

@@ -231,24 +231,6 @@ FrameWidgetClass Icon {
    draggable 0
    style Outline
   }
-  ImageWidgetClass AmmoIcon {
-   visible 0
-   clipchildren 1
-   ignorepointer 1
-   position 3 3
-   size 17 35
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   priority 999
-   draggable 0
-   image0 "set:dayz_gui image:cartridge_fp"
-   mode blend
-   "src alpha" 1
-   "no wrap" 1
-   stretch 1
-  }
   ImageWidgetClass AmmoTypeIcon {
    visible 0
    clipchildren 1
@@ -279,11 +261,29 @@ FrameWidgetClass Icon {
    vexactsize 0
    priority 300
    image0 ""
-   imageTexture "{31884CE8620E2EEE}Gui/textures/reserved@2x.edds"
    mode blend
    "src alpha" 1
    "no wrap" 0
    stretch 0
+   {
+    ImageWidgetClass ReservedIcon {
+     visible 1
+     ignorepointer 1
+     size 17 17
+     halign right_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     fixaspect fixwidth
+     priority 300
+     image0 "set:dayz_inventory image:hands"
+     mode additive
+     "src alpha" 1
+     "no wrap" 0
+     stretch 0
+    }
+   }
   }
  }
 }

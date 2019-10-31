@@ -2,7 +2,7 @@
 //DeRap: weapons_melee\blade\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:57 2019 : 'file' last modified on Wed Aug 14 13:10:34 2019
+//'now' is Thu Oct 31 18:24:48 2019 : 'file' last modified on Thu Oct 24 15:04:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -76,7 +76,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\axe.rvmat","DZ\weapons\melee\blade\data\axe_view_metal.rvmat","DZ\weapons\melee\blade\data\axe_view_wood.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\axe.rvmat","DZ\weapons\melee\blade\data\axe_view_metal.rvmat","DZ\weapons\melee\blade\data\axe_view_wood.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\axe_damage.rvmat","DZ\weapons\melee\blade\data\axe_view_metal_damage.rvmat","DZ\weapons\melee\blade\data\axe_view_wood_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\axe_damage.rvmat","DZ\weapons\melee\blade\data\axe_view_metal_damage.rvmat","DZ\weapons\melee\blade\data\axe_view_wood_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\axe_destruct.rvmat","DZ\weapons\melee\blade\data\axe_view_metal_destruct.rvmat","DZ\weapons\melee\blade\data\axe_view_wood_destruct.rvmat"}}};
 				};
 			};
@@ -148,7 +148,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\hatchet.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\hatchet.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\hatchet_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\hatchet_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\hatchet_destruct.rvmat"}}};
 				};
 			};
@@ -202,11 +202,6 @@ class CfgVehicles
 					soundSet = "FirefighterAxe_end_SoundSet";
 					id = 1122;
 				};
-				class WoodHammer_SoundSet
-				{
-					soundSet = "WoodHammer_SoundSet";
-					id = 1116;
-				};
 				class ShoulderR_Hide
 				{
 					soundset = "ShoulderR_Hide_SoundSet";
@@ -216,6 +211,11 @@ class CfgVehicles
 				{
 					soundset = "ShoulderR_Show_SoundSet";
 					id = 1211;
+				};
+				class WoodHammer_SoundSet
+				{
+					soundSet = "WoodHammer_SoundSet";
+					id = 11161;
 				};
 			};
 		};
@@ -350,7 +350,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 120;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\meat_cleaver.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\meat_cleaver.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\meat_cleaver_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\meat_cleaver_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\meat_cleaver_destruct.rvmat"}}};
 				};
 			};
@@ -567,7 +567,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\combat_knife.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\combat_knife.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\combat_knife_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\combat_knife_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\combat_knife_destruct.rvmat"}}};
 				};
 			};
@@ -763,7 +763,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 130;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\Hunting_knife.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\Hunting_knife.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\Hunting_knife_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\Hunting_knife_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\Hunting_knife_destruct.rvmat"}}};
 				};
 			};
@@ -980,7 +980,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\machete.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\machete.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\machete_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\machete_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\machete_destruct.rvmat"}}};
 				};
 			};
@@ -1042,7 +1042,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\Hay_Fork.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\Hay_Fork.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\Hay_Fork_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\Hay_Fork_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\Hay_Fork_destruct.rvmat"}}};
 				};
 			};
@@ -1262,7 +1262,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\Pickaxe.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\Pickaxe.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\Pickaxe_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\Pickaxe_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\Pickaxe_destruct.rvmat"}}};
 				};
 			};
@@ -1358,7 +1358,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blade\data\medieval_sword.rvmat"}},{0.7,{"DZ\weapons\melee\blade\data\medieval_sword.rvmat"}},{0.5,{"DZ\weapons\melee\blade\data\medieval_sword_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blade\data\medieval_sword_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blade\data\medieval_sword_destruct.rvmat"}}};
 				};
 			};

@@ -140,7 +140,7 @@ class DropEquipAndDestroyRootLambda : ReplaceItemWithNewLambdaBase
 				
 				InventoryLocation child_dst = new InventoryLocation;
 				child_dst.Copy(child_src);
-				child_dst.CopyLocationFrom(understash_src);
+				child_dst.CopyLocationFrom(understash_src, true);
 				//@TODO: modify _dst with place on gnd?
 				
 				m_Player.LocalTakeToDst(child_src, child_dst);
@@ -235,7 +235,11 @@ class MiscGameplayFunctions
 			MiscGameplayFunctions.TransferItemVariables(source_ib, target_ib, exclude_quantity);
 		}
 
-		if( transfer_health ) target_ib.SetHealth("", "", source.GetHealth("",""));
+		if( !GetGame().IsClient())
+		{
+			if( transfer_health ) target_ib.SetHealth("", "", source.GetHealth("",""));
+			//target_ib.SetHealth("", "", source.GetHealth01("","") * target_ib.GetMaxHealth("",""));
+		}
 	}
 
 	static void TransferItemVariables(ItemBase source, ItemBase target, bool exclude_quantity = false)

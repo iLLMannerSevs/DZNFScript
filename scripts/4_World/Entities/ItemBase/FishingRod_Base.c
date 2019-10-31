@@ -1,3 +1,29 @@
+class FishingRod_Base_New : ItemBase
+{
+	void FishingRod_Base_New()
+	{
+	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		
+		AddAction(ActionFishingNew);
+	}
+	
+	float GetFishingEffectivityBonus()
+	{
+		return 0.0;
+	}
+	
+	override bool IsOpen()
+	{
+		return false;
+	}
+	
+	void AnimateFishingRod(bool state) {}
+}
+
 class FishingRod_Base : ItemBase
 {
 	const string    ANIM_PHASE_OPENED = "OpenRod";	
@@ -68,7 +94,7 @@ class FishingRod_Base : ItemBase
 	void ActivateFishing()
 	{
 		m_Fishing = true;
-		Init();
+		//Init();
 	}
 
 	void DeactivateFishing()
@@ -80,7 +106,6 @@ class FishingRod_Base : ItemBase
 
 	void FishPull()
 	{
-
 		if ( !m_IsFishPulling )
 		{
 			float rand = Math.RandomInt(1, FISH_PULL_CHANCE);
@@ -146,9 +171,6 @@ class FishingRod_Base : ItemBase
 		}
 	}
 
-
-
-
 	void Pulling()
 	{	
 		float agent_speed_distance = vector.Distance("0 0 0",m_Player.GetModelSpeed());
@@ -194,7 +216,6 @@ class FishingRod_Base : ItemBase
 			}
 		}
 	}
-
 
 	void End( int result )
 	{
@@ -311,7 +332,13 @@ class FishingRod_Base : ItemBase
 	{
 		super.SetActions();
 		
-		AddAction(ActionToggleFishing);
-		AddAction(ActionFishing);
+		//AddAction(ActionToggleFishing);
+		//AddAction(ActionFishing);
+		//AddAction(ActionFishingNew);
+	}
+	
+	float GetFishingEffectivityBonus()
+	{
+		return 0.0;
 	}
 }

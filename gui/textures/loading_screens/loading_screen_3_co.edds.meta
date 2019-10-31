@@ -1,7 +1,7 @@
 MetaFileClass {
  Name "{0DBE2630AF5047FD}Gui/textures/loading_screens/loading_screen_3_co.tga"
- Author "inv1967"
- ChangeDate 1367598681
+ Author "3672"
+ ChangeDate 884680540
  Configurations {
   TGAResourceClass PC {
    SourceFile "loading_screen_3_co.tga"

@@ -475,7 +475,7 @@ class ActionManagerClient: ActionManagerBase
 			{
 				if (!ScriptInputUserData.CanStoreInputUserData())
 				{
-					Error("ScriptInputUserData already posted - ActionManagerClient");
+					DPrint("ScriptInputUserData already posted - ActionManagerClient");
 					return;
 				}
 			}

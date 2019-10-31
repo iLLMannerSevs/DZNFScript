@@ -274,6 +274,9 @@ class ItemPreviewWidget: Widget
 	proto native vector GetModelOrientation();
 	proto native void		SetModelPosition(vector vPos);
 	proto native vector GetModelPosition();
+	
+	proto native void SetForceFlipEnable(bool enable);
+	proto native void SetForceFlip(bool value);
 };
 
 //-----------------------------------------------------------------------------
@@ -387,6 +390,8 @@ typedef Param1<bool> VONStateEventParams;
 typedef Param2<string, string> VONStartSpeakingEventParams;
 //! player name, player id
 typedef Param2<string, string> VONStopSpeakingEventParams;
+//! world name
+typedef Param1<string> DLCOwnerShipFailedParams;
 //! Camera
 typedef Param1<FreeDebugCamera> SetFreeCameraEventParams;
 //! Duration
@@ -462,6 +467,8 @@ enum EventType
 	//! params: \ref VONStopSpeakingEventParams
 	VONStopSpeakingEventTypeID,
 	//! params: \ref SetFreeCameraEventParams
+	DLCOwnerShipFailedEventTypeID,
+	//! params: \ref DLCOwnerShipFailedParams
 	SetFreeCameraEventTypeID,
 	//! params: \ref MPConnectionLostEventParams
 	MPConnectionLostEventTypeID,
@@ -656,7 +663,7 @@ class Mission
 	
 	bool IsControlDisabled() {}
 	
-	void PlayerControlEnable() {}
+	void PlayerControlEnable( bool bForceSupress ) {}
 	void PlayerControlDisable(int mode) {}
 
 	void ShowInventory() {}

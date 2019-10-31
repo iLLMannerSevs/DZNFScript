@@ -2,7 +2,7 @@
 //DeRap: weapons_explosives\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:51 2019 : 'file' last modified on Sat Jul 20 11:35:25 2019
+//'now' is Thu Oct 31 18:24:41 2019 : 'file' last modified on Wed Sep 25 16:44:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -185,7 +185,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\weapons\explosives\data\frag_RGD5.rvmat"}},{0.7,{"DZ\weapons\explosives\data\frag_RGD5.rvmat"}},{0.5,{"DZ\weapons\explosives\data\frag_RGD5_damage.rvmat"}},{0.3,{"DZ\weapons\explosives\data\frag_RGD5_damage.rvmat"}},{0.0,{"DZ\weapons\explosives\data\frag_RGD5_destruct.rvmat"}}};
 				};
 			};
@@ -224,7 +224,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\weapons\explosives\data\grenade.rvmat"}},{0.7,{"DZ\weapons\explosives\data\grenade.rvmat"}},{0.5,{"DZ\weapons\explosives\data\grenade_damage.rvmat"}},{0.3,{"DZ\weapons\explosives\data\grenade_damage.rvmat"}},{0.0,{"DZ\weapons\explosives\data\grenade_destruct.rvmat"}}};
 				};
 			};
@@ -262,7 +262,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\weapons\explosives\data\smokegrenade.rvmat"}},{0.7,{"DZ\weapons\explosives\data\smokegrenade.rvmat"}},{0.5,{"DZ\weapons\explosives\data\smokegrenade_damage.rvmat"}},{0.3,{"DZ\weapons\explosives\data\smokegrenade_damage.rvmat"}},{0.0,{"DZ\weapons\explosives\data\smokegrenade_destruct.rvmat"}}};
 				};
 			};
@@ -326,7 +326,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\weapons\explosives\data\smokegrenade_rdg2.rvmat"}},{0.7,{"DZ\weapons\explosives\data\smokegrenade_rdg2.rvmat"}},{0.5,{"DZ\weapons\explosives\data\smokegrenade_rdg2_damage.rvmat"}},{0.3,{"DZ\weapons\explosives\data\smokegrenade_rdg2_damage.rvmat"}},{0.0,{"DZ\weapons\explosives\data\smokegrenade_rdg2_destruct.rvmat"}}};
 				};
 			};
@@ -377,7 +377,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\weapons\explosives\data\flashbang.rvmat"}},{0.7,{"DZ\weapons\explosives\data\flashbang.rvmat"}},{0.5,{"DZ\weapons\explosives\data\flashbang_damage.rvmat"}},{0.3,{"DZ\weapons\explosives\data\flashbang_damage.rvmat"}},{0.0,{"DZ\weapons\explosives\data\flashbang_destruct.rvmat"}}};
 				};
 			};

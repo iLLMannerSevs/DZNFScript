@@ -12,6 +12,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	protected ImageWidget				m_ServerTime;
 	protected ImageWidget				m_ServerLock;
 	protected ImageWidget				m_ServerModIcon;
+	protected ImageWidget				m_ServerMaKIcon;
 	
 	//Detailed info
 	protected TextWidget				m_ServerShard;
@@ -54,6 +55,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		m_ServerTime			= ImageWidget.Cast( m_Root.FindAnyWidget( "server_time" ) );
 		m_ServerLock			= ImageWidget.Cast( m_Root.FindAnyWidget( "lock_icon" ) );
 		m_ServerModIcon			= ImageWidget.Cast( m_Root.FindAnyWidget( "modded_icon" ) );
+		m_ServerMaKIcon			= ImageWidget.Cast( m_Root.FindAnyWidget( "mandk_icon" ) );
 		
 		m_ServerShard			= TextWidget.Cast( m_Root.FindAnyWidget( "shard_text" ) );
 		m_ServerCharacterAlive	= TextWidget.Cast( m_Root.FindAnyWidget( "character_alive_text" ) );
@@ -117,7 +119,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 					mods_text += "\n" + m_Mods[i];
 				}
 			}
-			GetGame().GetUIManager().ShowDialog( "MODS", mods_text, 0, 0, 0, 0, GetGame().GetUIManager().GetMenu() );
+			GetGame().GetUIManager().ShowDialog( "#main_menu_mods", mods_text, 0, 0, 0, 0, GetGame().GetUIManager().GetMenu() );
 		}
 		return false;
 	}
@@ -255,6 +257,12 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		SetPing( server_info.m_Ping );
 		SetTime( server_info.m_TimeOfDay, server_info.m_EnvironmentTimeMul );
 		SetFavorite( server_info.m_Favorite );
+		SetModded( server_info.m_Modded );
+		SetMapName( server_info.m_MapNameToRun );
+		
+		#ifdef PLATFORM_CONSOLE
+		SetMouseAndKeyboard( server_info.m_MouseAndKeyboardEnabled );
+		#endif
 		
 #ifdef PLATFORM_WINDOWS
 #ifndef PLATFORM_CONSOLE
@@ -267,14 +275,12 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		}
 		
 		SetShard( pp );
-		
 		SetCharacterAlive( server_info.m_CharactersAlive );
 		SetFriends( server_info.m_SteamFriends );
 		SetMode( server_info.m_Disable3rdPerson );
 		SetBattleye( server_info.m_AntiCheat );
 		SetIP( server_info.m_Id );
 		SetAcceleration( server_info.m_EnvironmentTimeMul );
-		SetModded( server_info.m_Modded );
 #endif
 #endif
 	}
@@ -382,6 +388,21 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		m_ServerShard.SetText( text );
 	}
 	
+	void SetMapName( string mapName )
+	{
+		if( GetMapToRun() == "Livonia" )
+		{
+			bool own = GetGame().VerifyWorldOwnership( mapName );
+			m_ServerModIcon.Show( true );
+			m_ServerModIcon.FindWidget( "Owned" ).Show( own );
+			m_ServerModIcon.FindWidget( "Unowned" ).Show( !own );
+		}
+		
+		#ifdef PLATFORM_WINDOWS
+		m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapToRun() );
+		#endif
+	}
+	
 	void SetCharacterAlive( string char_alive )
 	{
 		m_ServerCharacterAlive.SetText( char_alive );
@@ -445,6 +466,17 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		return m_ServerData.m_Id;
 	}
 	
+	string GetMapToRun()
+	{
+		string map_name = m_ServerData.m_MapNameToRun;
+		map_name.ToLower();
+		if( map_name == "enoch" )
+			return "Livonia";
+		if( map_name == "chernarusplus" )
+			return "Chernarus";
+		return m_ServerData.m_MapNameToRun;
+	}
+	
 	void SetFavorite( bool favorite )
 	{
 		m_IsFavorited = favorite;
@@ -468,7 +500,9 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	void SetModded( bool is_modded )
 	{
 		m_ServerModIcon.Show( is_modded );
-		//m_ServerModsExpand.Show( is_modded );
+		#ifdef PLATFORM_WINDOWS
+		m_ServerModsExpand.Show( is_modded );
+		#endif
 	}
 	
 	void SetMods( array<string> mods )
@@ -476,10 +510,10 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		m_Mods = mods;
 		if( mods )
 		{
-			string mods_text;
+			string mods_text = "#STR_USRACT_MAP" + ": " + GetMapToRun() + " | ";
 			if( mods.Count() > 0 )
 			{
-				mods_text = mods[0];
+				mods_text += "#main_menu_mods_lower" + ": " + mods[0];
 				for( int i = 1; i < mods.Count(); i++ )
 				{
 					mods_text += ", " + mods[i];
@@ -488,6 +522,11 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 				m_ServerMods.SetText( mods_text );
 			}
 		}
+	}
+	
+	void SetMouseAndKeyboard( bool is_mkenabled )
+	{
+		m_ServerMaKIcon.Show( is_mkenabled );
 	}
 	
 	bool ToggleFavorite()
@@ -529,16 +568,14 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 			m_ServerData.m_IsExpanded = m_IsExpanded;
 		}
 		
-		/*
 		if ( expand && m_FirstExpand )
 		{
 			if( m_ServerData.m_Modded )
 				OnlineServices.GetServerModList( m_ServerData.m_Id );
 			else
-				m_ServerMods.SetText( "" );
+				m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapToRun() );
 			m_FirstExpand = false;
 		}
-		*/
 		
 		return m_IsExpanded;
 	}

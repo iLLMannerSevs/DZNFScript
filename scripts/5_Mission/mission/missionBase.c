@@ -26,7 +26,24 @@ class MissionBase extends MissionBaseWorld
 
 		if (GetGame().IsServer())
 		{
-			m_WorldData = new WorldData;
+			string worldName = "empty";
+			GetGame().GetWorldName(worldName);
+			worldName.ToLower();
+
+			switch ( worldName )
+			{
+				case "chernarusplus":
+					m_WorldData = new ChernarusPlusData;
+					break;
+
+				case "enoch":
+					m_WorldData = new EnochData;
+					break;
+
+				default:
+					m_WorldData = new ChernarusPlusData;
+					break;
+			}
 		}
 		else
 		{

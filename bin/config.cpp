@@ -2,7 +2,7 @@
 //DeRap: bin\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:51 2019 : 'file' last modified on Mon Sep 30 15:51:28 2019
+//'now' is Thu Oct 31 18:25:41 2019 : 'file' last modified on Thu Oct 31 11:54:26 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -472,7 +472,8 @@ class CfgAmmo
 		damageBarrelDestroyed = 5.0;
 		jamChance = 0.0;
 		jamChanceDestroyed = 0.0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		proxyShape = "";
 	};
 	class BulletCore: DefaultAmmo

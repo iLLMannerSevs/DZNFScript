@@ -175,14 +175,14 @@ class Hologram
 		{
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(m_Player.TogglePlacingLocal);
 			
-			return
+			return;
 		}
 		
-		if ( m_Player.IsSwimming() || m_Player.IsClimbingLadder() || m_Player.IsRaised() || m_Player.IsClimbing() )
+		if ( m_Player.IsSwimming() || m_Player.IsClimbingLadder() || m_Player.IsRaised() || m_Player.IsClimbing() || m_Player.IsRestrained() || m_Player.IsUnconscious() )
 		{
 			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(m_Player.TogglePlacingLocal);
 			
-			return
+			return;
 		}
 		
 		EvaluateCollision();
@@ -304,8 +304,6 @@ class Hologram
 
 	void EvaluateCollision()
 	{	
-		bool is_surface_water = IsSurfaceWater( m_Projection.GetPosition() );		
-		
 		if ( IsHidden() || IsCollidingBBox() || IsCollidingPlayer() || IsCollidingBase() || IsCollidingGPlot() || IsCollidingZeroPos() || IsBehindObstacle() || IsCollidingAngle() )
 		{
 			SetIsColliding( true );							
@@ -329,7 +327,7 @@ class Hologram
 			}
 			else
 			{
-				if( is_surface_water )
+				if( IsSurfaceWater( m_Projection.GetPosition() ) )
 				{
 					SetIsColliding( true );
 				}

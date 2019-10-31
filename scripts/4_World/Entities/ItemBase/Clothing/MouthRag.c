@@ -13,7 +13,7 @@ class MouthRag extends Clothing
 		Class.CastTo(player, GetHierarchyRootPlayer());
 		if( player )
 		{
-			MutePlayerByGag(player,false);
+			MutePlayer(player,false);
 		}
 		
 	}
@@ -32,11 +32,7 @@ class MouthRag extends Clothing
 
 		if ( player && slot_id == InventorySlots.MASK )
 		{
-			//GetGame().GetSoundScene().SetSpeechExVolume(0,1);
-			//GetGame().GetSoundScene().SetVOIPVolume(0,1);
-			//GetGame().GetSoundScene().SetRadioVolume(0,1);
-			
-			MutePlayerByGag(player,true);
+			MutePlayer(player,true);
 		}
 	}
 
@@ -48,20 +44,25 @@ class MouthRag extends Clothing
 		
 		if ( player )
 		{
-			MutePlayerByGag(player,false);
+			MutePlayer(player,false);
 		}
 	}
 	
 	//! Enables/disables player's VON; false DISABLES VON
-	void MutePlayerByGag(PlayerBase player, bool state)
+	override void MutePlayer(PlayerBase player, bool state)
 	{
-		//GetGame().GetSoundScene().SetSpeechExVolume(g_Game.m_volume_speechEX,1);
-		//GetGame().GetSoundScene().SetVOIPVolume(g_Game.m_volume_VOIP,1);
-		//GetGame().GetSoundScene().SetRadioVolume(g_Game.m_volume_radio,1);
-		if (( GetGame().IsServer() && GetGame().IsMultiplayer() ) || ( GetGame().GetPlayer() == player ))
-		{
-			GetGame().SetVoiceEffect(player, VoiceEffectMumbling, state);
+		if( GetGame() )
+		{	
+			if (( GetGame().IsServer() && GetGame().IsMultiplayer() ) || ( GetGame().GetPlayer() == player ))
+			{
+				GetGame().SetVoiceEffect(player, VoiceEffectMumbling, state);
+			}
 		}
+	}
+	
+	override bool IsObstructingVoice()
+	{
+		return true;
 	}
 	
 	void SetIncomingLambaBool(bool state)

@@ -2,7 +2,7 @@
 //DeRap: gear_optics\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:29 2019 : 'file' last modified on Fri Jul 19 21:57:59 2019
+//'now' is Thu Oct 31 18:21:08 2019 : 'file' last modified on Wed Sep 25 14:13:39 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -63,7 +63,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\optics\data\Rangefinder.rvmat"}},{0.7,{"DZ\gear\optics\data\Rangefinder.rvmat"}},{0.5,{"DZ\gear\optics\data\Rangefinder_damage.rvmat"}},{0.3,{"DZ\gear\optics\data\Rangefinder_damage.rvmat"}},{0.0,{"DZ\gear\optics\data\Rangefinder_destruct.rvmat"}}};
 				};
 			};
@@ -126,7 +126,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\optics\data\binoculars.rvmat"}},{0.7,{"DZ\gear\optics\data\binoculars.rvmat"}},{0.5,{"DZ\gear\optics\data\binoculars_damage.rvmat"}},{0.3,{"DZ\gear\optics\data\binoculars_damage.rvmat"}},{0.0,{"DZ\gear\optics\data\binoculars_destruct.rvmat"}}};
 				};
 			};

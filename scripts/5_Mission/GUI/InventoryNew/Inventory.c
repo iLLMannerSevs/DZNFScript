@@ -120,12 +120,11 @@ class Inventory: LayoutHolder
 		m_HandsArea = new HandsArea( this );
 		m_PlayerPreview = new PlayerPreview( this );
 		
-#ifdef PLATFORM_CONSOLE
-#else
+
 		m_QuickbarWidget = GetMainWidget().FindAnyWidget( "QuickbarGrid" );
 		m_Quickbar = new InventoryQuickbar( m_QuickbarWidget );
 		m_Quickbar.UpdateItems( m_QuickbarWidget );
-#endif
+		
 		m_SpecializationPanel = GetMainWidget().FindAnyWidget("SpecializationPanelPanel");
 		m_SpecializationIcon = GetMainWidget().FindAnyWidget("SpecializationIcon");
 		
@@ -1175,17 +1174,21 @@ class Inventory: LayoutHolder
 		m_HandsArea.Refresh();
 		m_RightArea.Refresh();
 		
+		RefreshQuickbar();
 		UpdateConsoleToolbar();
 	}
 	
 	void RefreshQuickbar()
 	{
+		m_QuickbarWidget.Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 #ifdef PLATFORM_WINDOWS
 		if ( m_Quickbar )
+#else
+		if ( m_Quickbar && GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() )
+#endif
 		{
 			m_Quickbar.UpdateItems( m_QuickbarWidget );
 		}
-#endif
 	}
 	
 	#ifdef PLATFORM_XBOX

@@ -225,11 +225,13 @@ class RecipeBase
 	void ApplyModificationsResults(ItemBase sorted[], array<ItemBase> results, ItemBase result, PlayerBase player)
 	{
 		float all_ingredients_health = 0;//this is used later in results
+		float all_ingredients_health01 = 0;//combined damage % of ingredients
 		int value_delta;
 		for(int i = 0; i < MAX_NUMBER_OF_INGREDIENTS; i++)
 		{
 			ItemBase ingrd = ItemBase.Cast(sorted[i]);
-			all_ingredients_health += ingrd.GetHealth("", "");//accumulate health of all ingredients, used in results	
+			all_ingredients_health += ingrd.GetHealth("", "");//accumulate health of all ingredients, used in results
+			all_ingredients_health01 += ingrd.GetHealth01("", "");
 		}
 		//------------------- results ----------------------
 		for(i = 0; i < m_NumberOfResults; i++)
@@ -295,15 +297,17 @@ class RecipeBase
 					
 					if( ing )
 					{
-						float ing_health = ing.GetHealth("","");
-						res.SetHealth("", "", ing_health);
+						//float ing_health = ing.GetHealth("","");
+						float ing_health01 = ing.GetHealth01("","");
+						res.SetHealth("", "", ing_health01 * res.GetMaxHealth("",""));
 						Debug.Log("Inheriting health from ingredient:"+m_ResultInheritsHealth[i].ToString(),"recipes");
 					}
 				}
 				else if( m_ResultInheritsHealth[i] == -2 )
 				{
-					float average_health = all_ingredients_health / MAX_NUMBER_OF_INGREDIENTS;
-					res.SetHealth("", "", average_health);
+					//float average_health = all_ingredients_health / MAX_NUMBER_OF_INGREDIENTS;
+					float average_health01 = all_ingredients_health01 / MAX_NUMBER_OF_INGREDIENTS;
+					res.SetHealth("", "", average_health01 * res.GetMaxHealth("",""));
 				}
 			}
 

@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:42 2019 : 'file' last modified on Wed Sep 04 15:57:20 2019
+//'now' is Thu Oct 31 18:24:28 2019 : 'file' last modified on Tue Oct 29 11:44:29 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -72,6 +72,7 @@ class CfgVehicles
 		physLayer = "item_large";
 		itemSize[] = {10,10};
 		weight = 20000;
+		hiddenSelections[] = {"dmgZone_doors"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -308,11 +309,8 @@ class CfgVehicles
 		descriptionShort = "$STR_hatchbackwheel1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaWheel.p3d";
 		weight = 15000;
-		itemSize[] = {6,6};
-		itemBehaviour = 0;
 		inventorySlot[] = {"NivaWheel_1_1","NivaWheel_1_2","NivaWheel_2_1","NivaWheel_2_2","NivaWheel_Spare_1"};
 		rotationFlags = 4;
-		physLayer = "item_large";
 		repairableWithKits[] = {6};
 		repairCosts[] = {30.0};
 		radiusByDamage[] = {0,0.362,0.3,0.3,0.9998,0.25,0.9999,0.2};
@@ -339,11 +337,8 @@ class CfgVehicles
 		descriptionShort = "$STR_hatchbackwheel1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaWheel_destroyed.p3d";
 		weight = 10000;
-		itemSize[] = {6,6};
-		itemBehaviour = 0;
 		inventorySlot[] = {"NivaWheel_1_1","NivaWheel_1_2","NivaWheel_2_1","NivaWheel_2_2","NivaWheel_Spare_1"};
 		rotationFlags = 4;
-		physLayer = "item_large";
 		radius = 0.2;
 		width = 0.17;
 		tyreRollResistance = 1;
@@ -358,11 +353,9 @@ class CfgVehicles
 		descriptionShort = "$STR_HatchbackDoors_Driver1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaDoors_Driver.p3d";
 		weight = 15000;
-		itemSize[] = {10,10};
-		itemBehaviour = 0;
 		inventorySlot = "NivaDriverDoors";
 		rotationFlags = 8;
-		physLayer = "item_large";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green\niva_door.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -379,7 +372,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_door.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_door_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_door_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -390,7 +384,6 @@ class CfgVehicles
 		displayName = "$STR_HatchbackDoors_CoDriver0";
 		descriptionShort = "$STR_HatchbackDoors_CoDriver1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaDoors_coDriver.p3d";
-		itemBehaviour = 0;
 		inventorySlot = "NivaCoDriverDoors";
 		rotationFlags = 4;
 	};
@@ -401,11 +394,9 @@ class CfgVehicles
 		descriptionShort = "$STR_HatchbackHood1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaDoors_Hood.p3d";
 		weight = 15000;
-		itemSize[] = {10,10};
-		itemBehaviour = 0;
 		inventorySlot = "NivaHood";
 		rotationFlags = 2;
-		physLayer = "item_large";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green\niva_hood.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -413,7 +404,8 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_hood.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_hood_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_hood_destruct.rvmat"}}};
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -441,11 +433,9 @@ class CfgVehicles
 		descriptionShort = "$STR_HatchbackTrunk1";
 		model = "\DZ\vehicles\wheeled\OffroadHatchback\proxy\nivaDoors_Trunk.p3d";
 		weight = 15000;
-		itemSize[] = {10,10};
-		itemBehaviour = 0;
 		inventorySlot = "NivaTrunk";
 		rotationFlags = 1;
-		physLayer = "item_large";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green\niva_trunk.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class DamageZones: DamageZones
@@ -461,7 +451,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_backdoor.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_backdoor_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_backdoor_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -474,13 +465,13 @@ class CfgVehicles
 		descriptionShort = "$STR_OffroadHatchback1";
 		model = "\dz\vehicles\wheeled\OffroadHatchback\OffroadHatchback.p3d";
 		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","SparkPlug","NivaDriverDoors","NivaCoDriverDoors","NivaHood","NivaTrunk","NivaWheel_1_1","NivaWheel_1_2","NivaWheel_2_1","NivaWheel_2_2","NivaWheel_Spare_1"};
-		hiddenSelections[] = {"light_left","light_right","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
-		hiddenSelectionsTextures[] = {"","","","","","","","",""};
-		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
+		hiddenSelections[] = {"light_left","light_right","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard","dmgZone_chassis","dmgZone_front","dmgZone_back","dmgZone_roof","dmgZone_fender_1_1","dmgZone_fender_1_2","dmgZone_fender_2_1","dmgZone_fender_2_2"};
+		hiddenSelectionsTextures[] = {"","","","","","","","","","","","","","","","","","",""};
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat","dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
 		dashboardMatOn = "dz\vehicles\wheeled\offroadhatchback\data\niva_dashboard_light.rvmat";
 		dashboardMatOff = "dz\vehicles\wheeled\offroadhatchback\data\niva_dashboard.rvmat";
 		frontReflectorMatOn = "dz\vehicles\wheeled\offroadhatchback\data\niva_lights.rvmat";
-		frontReflectorMatOff = "dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat";
+		frontReflectorMatOff = "dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat";
 		brakeReflectorMatOn = "dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights_e.rvmat";
 		brakeReflectorMatOff = "dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat";
 		ReverseReflectorMatOn = "dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights_e.rvmat";
@@ -667,8 +658,8 @@ class CfgVehicles
 						hitpoints = 3000;
 						transferToGlobalCoef = 0;
 					};
-					componentNames[] = {"dmgZone_chassis"};
 					fatalInjuryCoef = -1;
+					componentNames[] = {"dmgZone_chassis"};
 					inventorySlots[] = {};
 				};
 				class Front
@@ -677,16 +668,16 @@ class CfgVehicles
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_front"};
+					componentNames[] = {"dmgZone_front"};
 					transferToZonesNames[] = {"Fender_1_1","Fender_2_1","Engine","WindowFront"};
 					transferToZonesThreshold[] = {0.5,0.5,0.5,0.1};
 					transferToZonesCoefs[] = {0.7,0.7,0.5,0.05};
-					memoryPoints[] = {"dmgZone_front"};
-					componentNames[] = {"dmgZone_front"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {0.3,0.3};
 					inventorySlots[] = {"NivaHood","CarRadiator"};
+					inventorySlotsCoefs[] = {0.3,0.3};
 				};
 				class Reflector_1_1
 				{
@@ -696,13 +687,13 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\headlights_glass.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_destruct.rvmat"}}};
 					};
-					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
-					transferToZonesCoefs[] = {0.1,0.15,0.05};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_lights_1_1"};
 					componentNames[] = {"dmgZone_lights_1_1"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {1.0};
+					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					inventorySlots[] = {"Reflector_1_1"};
+					inventorySlotsCoefs[] = {1.0};
 				};
 				class Reflector_2_1: Reflector_1_1
 				{
@@ -710,8 +701,8 @@ class CfgVehicles
 					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					memoryPoints[] = {"dmgZone_lights_2_1"};
 					componentNames[] = {"dmgZone_lights_2_1"};
-					inventorySlotsCoefs[] = {1.0};
 					inventorySlots[] = {"Reflector_2_1"};
+					inventorySlotsCoefs[] = {1.0};
 				};
 				class Back
 				{
@@ -719,14 +710,15 @@ class CfgVehicles
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_destruct.rvmat"}}};
 					};
-					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","WindowLR","WindowRR"};
-					transferToZonesCoefs[] = {0.3,0.3,0.2,0.2};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_back"};
 					componentNames[] = {"dmgZone_back"};
-					fatalInjuryCoef = -1;
+					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","WindowLR","WindowRR"};
+					transferToZonesCoefs[] = {0.3,0.3,0.2,0.2};
 					inventorySlots[] = {"NivaTrunk"};
+					inventorySlotsCoefs[] = {0.8};
 				};
 				class Roof
 				{
@@ -734,11 +726,12 @@ class CfgVehicles
 					{
 						hitpoints = 700;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_roof"};
 					componentNames[] = {"dmgZone_roof"};
-					fatalInjuryCoef = -1;
+					inventorySlotsCoefs[] = {0.0};
 					inventorySlots[] = {};
 				};
 				class Fender_1_1
@@ -747,46 +740,46 @@ class CfgVehicles
 					{
 						hitpoints = 1200;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_fender_1_1"};
+					componentNames[] = {"dmgZone_fender_1_1"};
 					transferToZonesNames[] = {"Front","Engine","Reflector_1_1","WindowFront"};
 					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5};
 					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4};
-					memoryPoints[] = {"dmgZone_fender_1_1"};
-					componentNames[] = {"dmgZone_fender_1_1"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {0.3,0.3,0.3};
 					inventorySlots[] = {"NivaHood","NivaWheel_1_1","NivaDriverDoors"};
+					inventorySlotsCoefs[] = {0.3,0.3,0.3};
 				};
 				class Fender_1_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_1_2"};
+					componentNames[] = {"dmgZone_fender_1_2"};
 					transferToZonesNames[] = {"Back","FuelTank","WindowLR"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_1_2"};
-					componentNames[] = {"dmgZone_fender_1_2"};
-					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"NivaTrunk","NivaWheel_1_2"};
+					inventorySlotsCoefs[] = {0.3,0.1};
 				};
 				class Fender_2_1: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_1"};
+					componentNames[] = {"dmgZone_fender_2_1"};
 					transferToZonesNames[] = {"Front","Engine","Reflector_2_1","WindowFront","Battery"};
 					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5,0.5};
 					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4,0.7};
-					memoryPoints[] = {"dmgZone_fender_2_1"};
-					componentNames[] = {"dmgZone_fender_2_1"};
-					inventorySlotsCoefs[] = {0.3,0.2,31};
 					inventorySlots[] = {"NivaHood","NivaWheel_2_1","NivaDriverDoors"};
+					inventorySlotsCoefs[] = {0.3,0.2,3};
 				};
 				class Fender_2_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_2"};
+					componentNames[] = {"dmgZone_fender_2_2"};
 					transferToZonesNames[] = {"Back","FuelTank","WindowRR"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_2_2"};
-					componentNames[] = {"dmgZone_fender_2_2"};
-					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"NivaTrunk","NivaWheel_2_2"};
+					inventorySlotsCoefs[] = {0.3,0.1};
 				};
 				class WindowFront
 				{
@@ -796,9 +789,9 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"}},{0.0,"hidden"}};
 					};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_windowFront"};
 					componentNames[] = {"dmgZone_windowFront"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class WindowLR
@@ -809,9 +802,9 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\niva_glass_destruct.rvmat"}},{0.0,"hidden"}};
 					};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_windowLeft"};
 					componentNames[] = {"dmgZone_windowLeft"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class WindowRR: WindowLR
@@ -827,11 +820,11 @@ class CfgVehicles
 						transferToGlobalCoef = 1;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = 0.001;
 					memoryPoints[] = {"dmgZone_engine"};
 					componentNames[] = {"dmgZone_engine"};
-					fatalInjuryCoef = 0.001;
-					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
 					inventorySlots[] = {"CarBattery","SparkPlug","EngineBelt","CarRadiator"};
+					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
 				};
 				class FuelTank
 				{
@@ -841,8 +834,8 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
 					};
-					componentNames[] = {"dmgZone_fuelTank"};
 					fatalInjuryCoef = -1;
+					componentNames[] = {"dmgZone_fuelTank"};
 					inventorySlots[] = {};
 				};
 			};
@@ -896,6 +889,614 @@ class CfgVehicles
 			};
 		};
 	};
+	class OffroadHatchback_Blue: OffroadHatchback
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Front: Front
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Back: Back
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_body_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_Driver_Blue: HatchbackDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_CoDriver_Blue: HatchbackDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackHood_Blue: HatchbackHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class HatchbackTrunk_Blue: HatchbackTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue\niva_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue\niva_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class OffroadHatchback_White: OffroadHatchback
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat","dz\vehicles\wheeled\OffroadHatchback\data\white\niva_body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Front: Front
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Back: Back
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_body_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_Driver_White: HatchbackDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_CoDriver_White: HatchbackDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackHood_White: HatchbackHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white\niva_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class HatchbackTrunk_White: HatchbackTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white\niva_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white\niva_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_Driver_GreenRust: HatchbackDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_CoDriver_GreenRust: HatchbackDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackHood_GreenRust: HatchbackHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green_rust\niva_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class HatchbackTrunk_GreenRust: HatchbackTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\green_rust\niva_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\green_rust\niva_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_Driver_BlueRust: HatchbackDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_CoDriver_BlueRust: HatchbackDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackHood_BlueRust: HatchbackHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue_rust\niva_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class HatchbackTrunk_BlueRust: HatchbackTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\blue_rust\niva_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\blue_rust\niva_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_Driver_WhiteRust: HatchbackDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackDoors_CoDriver_WhiteRust: HatchbackDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white_rust\niva_door.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_door.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_door_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class HatchbackHood_WhiteRust: HatchbackHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white_rust\niva_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class HatchbackTrunk_WhiteRust: HatchbackTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\OffroadHatchback\data\white_rust\niva_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\offroadhatchback\data\green\niva_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\white_rust\niva_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
 	class CivSedanWheel: CarWheel
 	{
 		scope = 2;
@@ -917,7 +1518,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 200;
-					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\OffroadHatchback\data\gaz_wheel.rvmat"}},{0.7,{"DZ\vehicles\wheeled\OffroadHatchback\data\gaz_wheel.rvmat"}},{0.5,{"DZ\vehicles\wheeled\OffroadHatchback\data\gaz_wheel_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\OffroadHatchback\data\gaz_wheel_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\OffroadHatchback\data\gaz_wheel_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\civiliansedan\data\gaz_wheel.rvmat"}},{0.7,{"DZ\vehicles\wheeled\civiliansedan\data\gaz_wheel.rvmat"}},{0.5,{"DZ\vehicles\wheeled\civiliansedan\data\gaz_wheel_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\civiliansedan\data\gaz_wheel_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\civiliansedan\data\gaz_wheel_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -942,6 +1543,7 @@ class CfgVehicles
 		model = "\DZ\vehicles\wheeled\civilianSedan\proxy\sedanDoors_Driver.p3d";
 		inventorySlot = "CivSedanDriverDoors";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -958,7 +1560,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -999,6 +1602,7 @@ class CfgVehicles
 		inventorySlot = "CivSedanHood";
 		rotationFlags = 4;
 		physLayer = "item_large";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1006,7 +1610,8 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_destruct.rvmat"}}};
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -1023,6 +1628,7 @@ class CfgVehicles
 		inventorySlot = "CivSedanTrunk";
 		rotationFlags = 4;
 		physLayer = "item_large";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1030,7 +1636,8 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_destruct.rvmat"}}};
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -1042,13 +1649,13 @@ class CfgVehicles
 		descriptionShort = "$STR_CivilianSedan1";
 		model = "\DZ\vehicles\wheeled\civiliansedan\CivilianSedan.p3d";
 		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","SparkPlug","CivSedanDriverDoors","CivSedanCoDriverDoors","CivSedanCargo1Doors","CivSedanCargo2Doors","CivSedanHood","CivSedanTrunk","CivSedanWheel_1_1","CivSedanWheel_1_2","CivSedanWheel_2_1","CivSedanWheel_2_2"};
-		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
-		hiddenSelectionsTextures[] = {"","","","","","","","",""};
-		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
+		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard","dmgZone_chassis","dmgZone_front","dmgZone_back","dmgZone_roof","dmgZone_fender_1_1","dmgZone_fender_1_2","dmgZone_fender_2_1","dmgZone_fender_2_2"};
+		hiddenSelectionsTextures[] = {"","","","","","","","","","","","","","","","","","",""};
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
 		dashboardMatOn = "dz\vehicles\wheeled\civiliansedan\data\civiliansedan_int2e_.rvmat";
 		dashboardMatOff = "dz\vehicles\wheeled\civiliansedan\data\civiliansedan_int2e_off.rvmat";
 		frontReflectorMatOn = "dz\vehicles\wheeled\civiliansedan\data\civiliansedan_lights.rvmat";
-		frontReflectorMatOff = "dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat";
+		frontReflectorMatOff = "dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat";
 		brakeReflectorMatOn = "dz\vehicles\wheeled\civiliansedan\data\Sedan_TailLights_e.rvmat";
 		brakeReflectorMatOff = "dz\vehicles\wheeled\civiliansedan\data\Sedan_TailLights.rvmat";
 		ReverseReflectorMatOn = "dz\vehicles\wheeled\civiliansedan\data\Sedan_TailLights_e.rvmat";
@@ -1244,16 +1851,17 @@ class CfgVehicles
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_front"};
+					componentNames[] = {"dmgZone_front"};
 					transferToZonesNames[] = {"Fender_1_1","Fender_2_1","Engine","WindowFront"};
 					transferToZonesThreshold[] = {0.5,0.5,0.5,0.1};
 					transferToZonesCoefs[] = {0.7,0.7,0.5,0.05};
-					memoryPoints[] = {"dmgZone_front"};
-					componentNames[] = {"dmgZone_front"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {0.3,0.3};
 					inventorySlots[] = {"CivSedanHood","CarRadiator"};
+					inventorySlotsCoefs[] = {0.3,0.3};
 				};
 				class Reflector_1_1
 				{
@@ -1261,22 +1869,22 @@ class CfgVehicles
 					{
 						hitpoints = 10;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\headlights_glass.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\headlights_glass.rvmat"},{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_damage.rvmat"},{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr_damage.rvmat"}},{0.3,{}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\glass_i_destruct.rvmat"},{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr_destruct.rvmat"}}};
 					};
-					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
-					transferToZonesCoefs[] = {0.1,0.15,0.05};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_lights_1_1"};
 					componentNames[] = {"dmgZone_lights_1_1"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {1.0};
+					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					inventorySlots[] = {"Reflector_1_1"};
+					inventorySlotsCoefs[] = {1.0};
 				};
 				class Reflector_2_1: Reflector_1_1
 				{
-					transferToZonesNames[] = {"Front","Fender_2_1","Engine"};
-					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					memoryPoints[] = {"dmgZone_lights_2_1"};
 					componentNames[] = {"dmgZone_lights_2_1"};
+					transferToZonesNames[] = {"Front","Fender_2_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					inventorySlotsCoefs[] = {1.0};
 					inventorySlots[] = {"Reflector_2_1"};
 				};
@@ -1286,13 +1894,13 @@ class CfgVehicles
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_cr.rvmat"};
 					};
-					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","WindowBack"};
-					transferToZonesCoefs[] = {0.3,0.3,0.2};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_back"};
 					componentNames[] = {"dmgZone_back"};
-					fatalInjuryCoef = -1;
+					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","WindowBack"};
+					transferToZonesCoefs[] = {0.3,0.3,0.2};
 					inventorySlots[] = {"CivSedanTrunk"};
 				};
 				class Roof
@@ -1301,11 +1909,11 @@ class CfgVehicles
 					{
 						hitpoints = 700;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_roof"};
 					componentNames[] = {"dmgZone_roof"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class Fender_1_1
@@ -1314,46 +1922,46 @@ class CfgVehicles
 					{
 						hitpoints = 1200;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\civiliansedan_multi_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = -1;
 					transferToZonesNames[] = {"Front","Engine","Reflector_1_1","WindowFront"};
 					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5};
 					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4};
 					memoryPoints[] = {"dmgZone_fender_1_1"};
 					componentNames[] = {"dmgZone_fender_1_1"};
-					fatalInjuryCoef = -1;
-					inventorySlotsCoefs[] = {0.3,0.3,0.3};
 					inventorySlots[] = {"CivSedanHood","CivSedanWheel_1_1","CivSedanDriverDoors"};
+					inventorySlotsCoefs[] = {0.3,0.3,0.3};
 				};
 				class Fender_1_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_1_2"};
+					componentNames[] = {"dmgZone_fender_1_2"};
 					transferToZonesNames[] = {"Back","FuelTank","WindowBack"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_1_2"};
-					componentNames[] = {"dmgZone_fender_1_2"};
 					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"CivSedanTrunk","CivSedanWheel_1_2"};
 				};
 				class Fender_2_1: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_1"};
+					componentNames[] = {"dmgZone_fender_2_1"};
 					transferToZonesNames[] = {"Front","Engine","Reflector_2_1","WindowFront","Battery"};
 					transferToZonesThreshold[] = {0.2,0.5,0.9,0.5,0.5};
 					transferToZonesCoefs[] = {0.3,0.6,0.6,0.4,0.7};
-					memoryPoints[] = {"dmgZone_fender_2_1"};
-					componentNames[] = {"dmgZone_fender_2_1"};
-					inventorySlotsCoefs[] = {0.3,0.2,31};
 					inventorySlots[] = {"CivSedanHood","CivSedanWheel_2_1","CivSedanDriverDoors"};
+					inventorySlotsCoefs[] = {0.3,0.2,31};
 				};
 				class Fender_2_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_2"};
+					componentNames[] = {"dmgZone_fender_2_2"};
 					transferToZonesNames[] = {"Back","FuelTank","WindowBack"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_2_2"};
-					componentNames[] = {"dmgZone_fender_2_2"};
-					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"CivSedanTrunk","CivSedanWheel_2_2"};
+					inventorySlotsCoefs[] = {0.3,0.1};
 				};
 				class WindowFront
 				{
@@ -1363,9 +1971,9 @@ class CfgVehicles
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\glass.rvmat","dz\vehicles\wheeled\civiliansedan\data\glass_i.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\glass.rvmat","dz\vehicles\wheeled\civiliansedan\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\glass_destruct.rvmat","dz\vehicles\wheeled\civiliansedan\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
+					fatalInjuryCoef = -1;
 					memoryPoints[] = {"dmgZone_windowFront"};
 					componentNames[] = {"dmgZone_windowFront"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class WindowBack: WindowFront
@@ -1381,11 +1989,11 @@ class CfgVehicles
 						transferToGlobalCoef = 1;
 						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva.rvmat"}},{0.7,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva.rvmat"}},{0.5,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\offroadhatchback\data\engine_niva_destruct.rvmat"}}};
 					};
+					fatalInjuryCoef = 0.001;
 					memoryPoints[] = {"dmgZone_engine"};
 					componentNames[] = {"dmgZone_engine"};
-					fatalInjuryCoef = 0.001;
-					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
 					inventorySlots[] = {"CarBattery","SparkPlug","EngineBelt","CarRadiator"};
+					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
 				};
 				class FuelTank
 				{
@@ -1450,6 +2058,772 @@ class CfgVehicles
 			};
 		};
 	};
+	class CivilianSedan_Wine: CivilianSedan
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+				};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class WindowBack: WindowBack
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_Driver_Wine: CivSedanDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_CoDriver_Wine: CivSedanDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackLeft_Wine: CivSedanDoors_BackLeft
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackRight_Wine: CivSedanDoors_BackRight
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanHood_Wine: CivSedanHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanTrunk_Wine: CivSedanTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivilianSedan_Black: CivilianSedan
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\civiliansedan.rvmat_cr","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat","dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+				};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class WindowBack: WindowBack
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_Driver_Black: CivSedanDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_CoDriver_Black: CivSedanDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackLeft_Black: CivSedanDoors_BackLeft
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackRight_Black: CivSedanDoors_BackRight
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanHood_Black: CivSedanHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanTrunk_Black: CivSedanTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_Driver_WhiteRust: CivSedanDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_CoDriver_WhiteRust: CivSedanDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackLeft_WhiteRust: CivSedanDoors_BackLeft
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackRight_WhiteRust: CivSedanDoors_BackRight
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanHood_WhiteRust: CivSedanHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanTrunk_WhiteRust: CivSedanTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\white_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_Driver_WineRust: CivSedanDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_CoDriver_WineRust: CivSedanDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackLeft_WineRust: CivSedanDoors_BackLeft
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackRight_WineRust: CivSedanDoors_BackRight
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanHood_WineRust: CivSedanHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanTrunk_WineRust: CivSedanTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\wine_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_Driver_BlackRust: CivSedanDoors_Driver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_CoDriver_BlackRust: CivSedanDoors_CoDriver
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackLeft_BlackRust: CivSedanDoors_BackLeft
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanDoors_BackRight_BlackRust: CivSedanDoors_BackRight
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class CivSedanHood_BlackRust: CivSedanHood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class CivSedanTrunk_BlackRust: CivSedanTrunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\civiliansedan\data\white\civiliansedan.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\black_rust\civiliansedan_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
 	class Hatchback_02_Wheel: CarWheel
 	{
 		scope = 2;
@@ -1484,6 +2858,7 @@ class CfgVehicles
 		model = "\DZ\vehicles\wheeled\Hatchback_02\proxy\Hatchback_02_Door_1_1.p3d";
 		inventorySlot = "Hatchback_02_Door_1_1";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1500,7 +2875,7 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_frontdoor_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -1521,6 +2896,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CivHatchbackDoors_RearLeft1";
 		inventorySlot = "Hatchback_02_Door_1_2";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1537,7 +2913,7 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_backdoor_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -1558,6 +2934,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CivHatchbackDoors_Hood1";
 		inventorySlot = "Hatchback_02_Hood";
 		rotationFlags = 2;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1565,7 +2942,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_hood_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -1577,6 +2954,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CivHatchbackDoors_Trunk1";
 		inventorySlot = "Hatchback_02_Trunk";
 		rotationFlags = 2;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -1593,7 +2971,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_trunk_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -1610,9 +2989,9 @@ class CfgVehicles
 		fuelCapacity = 55;
 		fuelConsumption = 6.5;
 		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","SparkPlug","Hatchback_02_Door_1_1","Hatchback_02_Door_1_2","Hatchback_02_Door_2_1","Hatchback_02_Door_2_2","Hatchback_02_Trunk","Hatchback_02_Hood","Hatchback_02_Wheel_1_1","Hatchback_02_Wheel_1_2","Hatchback_02_Wheel_2_1","Hatchback_02_Wheel_2_2"};
-		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
-		hiddenSelectionsTextures[] = {"","","","","","","","",""};
-		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
+		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard","camo_chassi"};
+		hiddenSelectionsTextures[] = {"","","","","","","","","",""};
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
 		dashboardMatOn = "dz\vehicles\wheeled\Hatchback_02\data\Hatchback_02_gauges_e.rvmat";
 		dashboardMatOff = "dz\vehicles\wheeled\Hatchback_02\data\Hatchback_02_gauges.rvmat";
 		frontReflectorMatOn = "dz\vehicles\wheeled\Hatchback_02\data\hatchback_02_lights.rvmat";
@@ -1804,6 +3183,7 @@ class CfgVehicles
 					{
 						hitpoints = 500;
 						transferToGlobalCoef = 0;
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_destruct.rvmat"}}};
 					};
 					componentNames[] = {"dmgZone_front"};
 					memoryPoints[] = {"dmgZone_front","dmgZone_bumper_1"};
@@ -1873,7 +3253,7 @@ class CfgVehicles
 					{
 						hitpoints = 500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_destruct.rvmat"}}};
 					};
 					componentNames[] = {"dmgZone_roof"};
 					memoryPoints[] = {"dmgZone_roof"};
@@ -1886,7 +3266,7 @@ class CfgVehicles
 					{
 						hitpoints = 500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\hatchback_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body_destruct.rvmat"}}};
 					};
 					componentNames[] = {"dmgZone_fender_1_1"};
 					memoryPoints[] = {"dmgZone_fender_1_1"};
@@ -1983,6 +3363,836 @@ class CfgVehicles
 			};
 		};
 	};
+	class Hatchback_02_Black: Hatchback_02
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+				};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Front: Front
+				{
+					class Health: Health{};
+				};
+				class Back: Back
+				{
+					class Health: Health{};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_1_Black: Hatchback_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_1_Black: Hatchback_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_2_Black: Hatchback_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_2_Black: Hatchback_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Hood_Black: Hatchback_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Trunk_Black: Hatchback_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black\Hatchback_02_Trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\hatchback_02\data\black\hatchback_02_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Blue: Hatchback_02
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
+				};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Front: Front
+				{
+					class Health: Health{};
+				};
+				class Back: Back
+				{
+					class Health: Health{};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1
+				{
+					class Health: Health{};
+				};
+				class WindowFront: WindowFront
+				{
+					class Health: Health{};
+				};
+				class Engine: Engine
+				{
+					class Health: Health{};
+				};
+				class FuelTank: FuelTank
+				{
+					class Health: Health{};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Body_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_1_Blue: Hatchback_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_1_Blue: Hatchback_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_2_Blue: Hatchback_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_2_Blue: Hatchback_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Hood_Blue: Hatchback_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Trunk_Blue: Hatchback_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_Trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue\Hatchback_02_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_1_RedRust: Hatchback_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_1_RedRust: Hatchback_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_2_RedRust: Hatchback_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_2_RedRust: Hatchback_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Hood_RedRust: Hatchback_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_Hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Trunk_RedRust: Hatchback_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_Trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\red_rust\Hatchback_02_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_1_BlackRust: Hatchback_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_1_BlackRust: Hatchback_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_2_BlackRust: Hatchback_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_2_BlackRust: Hatchback_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Hood_BlackRust: Hatchback_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_Hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Trunk_BlackRust: Hatchback_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_Trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\black_rust\Hatchback_02_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_1_BlueRust: Hatchback_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_1_BlueRust: Hatchback_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\hatchback_02_frontdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_frontdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_frontdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_1_2_BlueRust: Hatchback_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Door_2_2_BlueRust: Hatchback_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\hatchback_02_backdoor.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_backdoor.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_backdoor_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Hood_BlueRust: Hatchback_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_Hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Hatchback_02_Trunk_BlueRust: Hatchback_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_Trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\hatchback_02\data\red\hatchback_02_trunk.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Hatchback_02\data\blue_rust\Hatchback_02_trunk_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
 	class Sedan_02_Wheel: CarWheel
 	{
 		scope = 2;
@@ -2028,6 +4238,7 @@ class CfgVehicles
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_1_1.p3d";
 		inventorySlot = "Sedan_02_Door_1_1";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -2044,7 +4255,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_fore_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -2063,6 +4275,7 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Door_1_21";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_1_2.p3d";
 		inventorySlot = "Sedan_02_Door_1_2";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -2079,7 +4292,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -2091,6 +4305,7 @@ class CfgVehicles
 		descriptionShort = "$STR_Sedan_02_Door_2_21";
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Door_2_2.p3d";
 		inventorySlot = "Sedan_02_Door_2_2";
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
 		class DamageSystem: DamageSystem
 		{
 			class GlobalHealth: GlobalHealth{};
@@ -2107,7 +4322,8 @@ class CfgVehicles
 				{
 					class Health: Health
 					{
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_door_aft_destruct.rvmat"}}};
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft_destruct.rvmat"}}};
 					};
 				};
 			};
@@ -2121,6 +4337,7 @@ class CfgVehicles
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Hood.p3d";
 		inventorySlot = "Sedan_02_Hood";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2128,7 +4345,8 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood.rvmat"}},{0.7,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood.rvmat"}},{0.5,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_hood_destruct.rvmat"}}};
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -2141,6 +4359,7 @@ class CfgVehicles
 		model = "\DZ\vehicles\wheeled\Sedan_02\proxy\Sedan_02_Trunk.p3d";
 		inventorySlot = "Sedan_02_Trunk";
 		rotationFlags = 8;
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -2148,7 +4367,8 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 500;
-					healthLevels[] = {{1.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk.rvmat"}},{0.7,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk.rvmat"}},{0.5,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_damage.rvmat"}},{0.3,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_damage.rvmat"}},{0.0,{"DZ\vehicles\wheeled\Sedan_02\data\Sedan_02_trunk_destruct.rvmat"}}};
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -2159,12 +4379,12 @@ class CfgVehicles
 		displayName = "$STR_Sedan_020";
 		model = "\DZ\vehicles\wheeled\Sedan_02\Sedan_02.p3d";
 		attachments[] = {"CarBattery","Reflector_1_1","Reflector_2_1","CarRadiator","EngineBelt","SparkPlug","Sedan_02_Hood","Sedan_02_Trunk","Sedan_02_Door_1_1","Sedan_02_Door_2_1","Sedan_02_Door_1_2","Sedan_02_Door_2_2","Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
-		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard"};
-		hiddenSelectionsTextures[] = {"","","","","","","","",""};
-		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat"};
+		hiddenSelections[] = {"light_1_1","light_2_1","light_brake_1_2","light_brake_2_2","light_reverse_1_2","light_reverse_2_2","light_1_2","light_2_2","light_dashboard","dmgZone_chassis","dmgZone_front","dmgZone_back","dmgZone_roof","dmgZone_fender_1_1","dmgZone_fender_1_2","dmgZone_fender_2_1","dmgZone_fender_2_2"};
+		hiddenSelectionsTextures[] = {"","","","","","","","","","","","","","","","",""};
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
 		dashboardMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2e.rvmat";
 		dashboardMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_int2.rvmat";
-		frontReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\Sedan_02_chrome_e.rvmat";
+		frontReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_chrome_e.rvmat";
 		frontReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_chrome.rvmat";
 		brakeReflectorMatOn = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights_e.rvmat";
 		brakeReflectorMatOff = "dz\vehicles\wheeled\sedan_02\data\sedan_02_lights.rvmat";
@@ -2333,34 +4553,37 @@ class CfgVehicles
 			{
 				class Chassis
 				{
+					fatalInjuryCoef = -1;
+					componentNames[] = {"dmgZone_chassis"};
 					class Health
 					{
 						hitpoints = 3000;
 						transferToGlobalCoef = 0;
 					};
-					componentNames[] = {"dmgZone_chassis"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class Front
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_front"};
+					componentNames[] = {"dmgZone_front","dmgZone_bumper_1"};
 					class Health
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\sedan_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\civiliansedan\data\yellow\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\civiliansedan\data\yellow\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\civiliansedan\data\yellow\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\civiliansedan\data\yellow\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\civiliansedan\data\yellow\sedan_02_body_destruct.rvmat"}}};
 					};
 					transferToZonesNames[] = {"Fender_1_1","Fender_2_1"};
 					transferToZonesThreshold[] = {0.5,0.5};
 					transferToZonesCoefs[] = {0.7,0.7};
-					memoryPoints[] = {"dmgZone_front"};
-					componentNames[] = {"dmgZone_front","dmgZone_bumper_1"};
-					fatalInjuryCoef = -1;
 					inventorySlotsCoefs[] = {0.3,0.3};
 					inventorySlots[] = {"CivSedanHood","CarRadiator"};
 				};
 				class Reflector_1_1
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_lights_1_1"};
+					componentNames[] = {"dmgZone_lights_1_1"};
 					class Health
 					{
 						hitpoints = 10;
@@ -2369,108 +4592,104 @@ class CfgVehicles
 					};
 					transferToZonesNames[] = {"Front","Fender_1_1","Engine"};
 					transferToZonesCoefs[] = {0.1,0.15,0.05};
-					memoryPoints[] = {"dmgZone_lights_1_1"};
-					componentNames[] = {"dmgZone_lights_1_1"};
-					fatalInjuryCoef = -1;
 					inventorySlotsCoefs[] = {1.0};
 					inventorySlots[] = {"Reflector_1_1"};
 				};
 				class Reflector_2_1: Reflector_1_1
 				{
-					transferToZonesNames[] = {"Front","Fender_2_1","Engine"};
-					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					memoryPoints[] = {"dmgZone_lights_2_1"};
 					componentNames[] = {"dmgZone_lights_2_1"};
+					transferToZonesNames[] = {"Front","Fender_2_1","Engine"};
+					transferToZonesCoefs[] = {0.1,0.15,0.05};
 					inventorySlotsCoefs[] = {1.0};
 					inventorySlots[] = {"Reflector_2_1"};
 				};
 				class Back
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_back"};
+					componentNames[] = {"dmgZone_back"};
 					class Health
 					{
 						hitpoints = 1500;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_destruct.rvmat"}}};
 					};
 					transferToZonesNames[] = {"Fender_1_2","Fender_2_2","Engine"};
 					transferToZonesCoefs[] = {0.3,0.3,0.1};
-					memoryPoints[] = {"dmgZone_back"};
-					componentNames[] = {"dmgZone_back","dmgZone_bumper_1"};
-					fatalInjuryCoef = -1;
-					inventorySlots[] = {"CivSedanTrunk"};
+					inventorySlots[] = {"Sedan_02_Trunk"};
 				};
 				class Roof
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_roof"};
+					componentNames[] = {"dmgZone_roof"};
 					class Health
 					{
 						hitpoints = 700;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_destruct.rvmat"}}};
 					};
-					memoryPoints[] = {"dmgZone_roof"};
-					componentNames[] = {"dmgZone_roof"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 				class Fender_1_1
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_fender_1_1"};
+					componentNames[] = {"dmgZone_fender_1_1"};
 					class Health
 					{
 						hitpoints = 1200;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\sedan_02_body_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body_destruct.rvmat"}}};
 					};
 					transferToZonesNames[] = {"Front","Reflector_1_1"};
 					transferToZonesThreshold[] = {0.2,0.5};
 					transferToZonesCoefs[] = {0.3,0.6};
-					memoryPoints[] = {"dmgZone_fender_1_1"};
-					componentNames[] = {"dmgZone_fender_1_1"};
-					fatalInjuryCoef = -1;
 					inventorySlotsCoefs[] = {0.3,0.3,0.3};
 					inventorySlots[] = {"Sedan_02_Hood","Sedan_02_Wheel_1_1","Sedan_02_Door_1_1"};
 				};
 				class Fender_1_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_1_2"};
+					componentNames[] = {"dmgZone_fender_1_2"};
 					transferToZonesNames[] = {"Back","Engine","FuelTank"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_1_2"};
-					componentNames[] = {"dmgZone_fender_1_2"};
 					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"Sedan_02_Trunk","Sedan_02_Door_1_2"};
 				};
 				class Fender_2_1: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_1"};
+					componentNames[] = {"dmgZone_fender_2_1"};
 					transferToZonesNames[] = {"Front","Reflector_2_1"};
 					transferToZonesThreshold[] = {0.2,0.5};
 					transferToZonesCoefs[] = {0.3,0.6};
-					memoryPoints[] = {"dmgZone_fender_2_1"};
-					componentNames[] = {"dmgZone_fender_2_1"};
-					inventorySlotsCoefs[] = {0.3,0.2,31};
+					inventorySlotsCoefs[] = {0.3,0.2,0.3};
 					inventorySlots[] = {"Sedan_02_Hood","Sedan_02_Wheel_2_1","Sedan_02_Door_2_1"};
 				};
 				class Fender_2_2: Fender_1_1
 				{
+					memoryPoints[] = {"dmgZone_fender_2_2"};
+					componentNames[] = {"dmgZone_fender_2_2"};
 					transferToZonesNames[] = {"Back","Engine","FuelTank"};
 					transferToZonesThreshold[] = {0.2,0.2,0.2};
 					transferToZonesCoefs[] = {0.3,0.2,0.7};
-					memoryPoints[] = {"dmgZone_fender_2_2"};
-					componentNames[] = {"dmgZone_fender_2_2"};
 					inventorySlotsCoefs[] = {0.3,0.1};
 					inventorySlots[] = {"Sedan_02_Trunk","Sedan_02_Wheel_2_2"};
 				};
 				class WindowFront
 				{
+					fatalInjuryCoef = -1;
+					memoryPoints[] = {"dmgZone_windowFront"};
+					componentNames[] = {"dmgZone_windowFront"};
 					class Health
 					{
 						hitpoints = 150;
 						transferToGlobalCoef = 0;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\glass_interior.rvmat"}},{0.7,{}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\glass_i_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\glass_i_destruct.rvmat"}},{0.0,"hidden"}};
 					};
-					memoryPoints[] = {"dmgZone_windowFront"};
-					componentNames[] = {"dmgZone_windowFront"};
-					fatalInjuryCoef = -1;
-					inventorySlots[] = {};
 				};
 				class WindowBack: WindowFront
 				{
@@ -2479,28 +4698,28 @@ class CfgVehicles
 				};
 				class Engine
 				{
+					fatalInjuryCoef = 0.001;
+					memoryPoints[] = {"dmgZone_engine"};
+					componentNames[] = {"dmgZone_engine"};
 					class Health
 					{
 						hitpoints = 1000;
 						transferToGlobalCoef = 1;
-						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02.rvmat"}},{0.7,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02.rvmat"}},{0.5,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\Sedan_02\data\engine_sedan_02_destruct.rvmat"}}};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\engine_sedan_02.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\engine_sedan_02.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\engine_sedan_02_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\engine_sedan_02_destruct.rvmat"}}};
 					};
-					memoryPoints[] = {"dmgZone_engine"};
-					componentNames[] = {"dmgZone_engine"};
-					fatalInjuryCoef = 0.001;
 					inventorySlotsCoefs[] = {0.2,0.2,0.01,0.4};
 					inventorySlots[] = {"CarBattery","SparkPlug","EngineBelt","CarRadiator"};
 				};
 				class FuelTank
 				{
+					fatalInjuryCoef = -1;
+					componentNames[] = {"dmgZone_fuelTank"};
 					class Health
 					{
 						hitpoints = 600;
 						transferToGlobalCoef = 0;
 						healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
 					};
-					componentNames[] = {"dmgZone_fuelTank"};
-					fatalInjuryCoef = -1;
 					inventorySlots[] = {};
 				};
 			};
@@ -2551,6 +4770,795 @@ class CfgVehicles
 				description = "";
 				icon = "cat_vehicle_chassis";
 				attachmentSlots[] = {"Sedan_02_Wheel_1_1","Sedan_02_Wheel_1_2","Sedan_02_Wheel_2_1","Sedan_02_Wheel_2_2"};
+			};
+		};
+	};
+	class Sedan_02_Red: Sedan_02
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\Sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health{};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Front: Front
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1{};
+				class Back: Back
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class WindowFront: WindowFront{};
+				class WindowBack: WindowBack{};
+				class Engine: Engine
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\engine_sedan_02.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\engine_sedan_02.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\engine_sedan_02_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\engine_sedan_02_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\engine_sedan_02_destruct.rvmat"}}};
+					};
+				};
+				class FuelTank: FuelTank{};
+			};
+		};
+	};
+	class Sedan_02_Door_1_1_Red: Sedan_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_1_Red: Sedan_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_2_Red: Sedan_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_2_Red: Sedan_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Hood_Red: Sedan_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Trunk_Red: Sedan_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red\sedan_02_trunk_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Grey: Sedan_02
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\offroadhatchback\data\offroadhatchback_lights.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat","dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health{};
+			};
+			class DamageZones: DamageZones
+			{
+				class Chassis: Chassis
+				{
+					class Health: Health{};
+				};
+				class Front: Front
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Reflector_1_1: Reflector_1_1
+				{
+					class Health: Health{};
+				};
+				class Reflector_2_1: Reflector_2_1{};
+				class Back: Back
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Roof: Roof
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_1: Fender_1_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_1_2: Fender_1_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_1: Fender_2_1
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class Fender_2_2: Fender_2_2
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_body.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_body_destruct.rvmat"}}};
+					};
+				};
+				class WindowFront: WindowFront{};
+				class WindowBack: WindowBack{};
+				class Engine: Engine
+				{
+					class Health: Health
+					{
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\engine_sedan_02.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\engine_sedan_02.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\engine_sedan_02_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\engine_sedan_02_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\engine_sedan_02_destruct.rvmat"}}};
+					};
+				};
+				class FuelTank: FuelTank{};
+			};
+		};
+	};
+	class Sedan_02_Door_1_1_Grey: Sedan_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_1_Grey: Sedan_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_2_Grey: Sedan_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_2_Grey: Sedan_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Hood_Grey: Sedan_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Trunk_Grey: Sedan_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey\sedan_02_trunk_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_1_YellowRust: Sedan_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_1_YellowRust: Sedan_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_2_YellowRust: Sedan_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_2_YellowRust: Sedan_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Hood_YellowRust: Sedan_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Trunk_YellowRust: Sedan_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\yellow_rust\sedan_02_trunk_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_1_RedRust: Sedan_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_1_RedRust: Sedan_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_2_RedRust: Sedan_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_2_RedRust: Sedan_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Hood_RedRust: Sedan_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Trunk_RedRust: Sedan_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\red_rust\sedan_02_trunk_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_1_GreyRust: Sedan_02_Door_1_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_1_GreyRust: Sedan_02_Door_2_1
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_fore.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_fore_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_1_2_GreyRust: Sedan_02_Door_1_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Door_2_2_GreyRust: Sedan_02_Door_2_2
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth{};
+			class DamageZones: DamageZones
+			{
+				class Window: Window
+				{
+					class Health: Health{};
+				};
+				class Doors: Doors
+				{
+					class Health: Health
+					{
+						RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_door_aft.rvmat"};
+						healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_door_aft_destruct.rvmat"}}};
+					};
+				};
+			};
+		};
+	};
+	class Sedan_02_Hood_GreyRust: Sedan_02_Hood
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_hood.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_hood_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class Sedan_02_Trunk_GreyRust: Sedan_02_Trunk
+	{
+		hiddenSelectionsMaterials[] = {"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk.rvmat"};
+		class DamageSystem: DamageSystem
+		{
+			class GlobalHealth: GlobalHealth
+			{
+				class Health: Health
+				{
+					RefTexsMats[] = {"dz\vehicles\wheeled\sedan_02\data\yellow\sedan_02_trunk.rvmat"};
+					healthLevels[] = {{1.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk.rvmat"}},{0.7,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk.rvmat"}},{0.5,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk_damage.rvmat"}},{0.3,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk_damage.rvmat"}},{0.0,{"dz\vehicles\wheeled\sedan_02\data\grey_rust\sedan_02_trunk_destruct.rvmat"}}};
+				};
 			};
 		};
 	};

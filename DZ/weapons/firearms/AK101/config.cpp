@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\AK101\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:53 2019 : 'file' last modified on Tue Aug 13 08:21:44 2019
+//'now' is Thu Oct 31 18:24:43 2019 : 'file' last modified on Thu Oct 31 09:51:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -54,6 +54,7 @@ class CfgWeapons
 		drySound[] = {"dz\sounds\weapons\firearms\SKS\SKS_dry",0.5,1,20};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel","magazine"};
 		reloadAction = "ReloadAKM";
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\akm\Akm_reload",0.8,1,20};
@@ -413,7 +414,7 @@ class CfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\AK101\Data\ak101.rvmat"}},{0.7,{"DZ\weapons\firearms\AK101\Data\ak101.rvmat"}},{0.5,{"DZ\weapons\firearms\AK101\Data\ak101_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\AK101\Data\ak101_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\AK101\Data\ak101_destruct.rvmat"}}};
 				};
 			};

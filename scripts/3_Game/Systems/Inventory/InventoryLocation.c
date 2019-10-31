@@ -208,7 +208,7 @@ class InventoryLocation
 	 *
 	 * @NOTE	it does NOT do a copy of m_item member!
 	 **/
-	proto native InventoryLocation CopyLocationFrom (notnull InventoryLocation rhs);
+	proto native InventoryLocation CopyLocationFrom (notnull InventoryLocation rhs, bool copyFlip);
 	
 	static string DumpToStringNullSafe (InventoryLocation loc)
 	{

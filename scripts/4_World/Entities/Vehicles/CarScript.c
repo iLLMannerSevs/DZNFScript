@@ -32,6 +32,9 @@ class CarScript extends Car
 
 	protected float m_Time;
 
+	static float DROWN_ENGINE_THRESHOLD = 0.5;
+	static float DROWN_ENGINE_DAMAGE = 350.0;
+	
 	//! keeps ammount of each fluid
 	protected float m_FuelAmmount;
 	protected float m_CoolantAmmount;
@@ -41,6 +44,9 @@ class CarScript extends Car
 	//!
 	protected float m_dmgContactCoef;
 	protected float m_EnviroHeatComfortOverride;
+
+	//!
+	protected float m_DrownTime;
 
 	//!
 	protected float m_EngineHealth;
@@ -65,6 +71,8 @@ class CarScript extends Car
 	
 	protected vector m_fuelPos;
 	
+	static vector m_DrownEnginePos;
+	
 	//!Sounds
 	protected bool m_PlayCrashSoundLight;
 	protected bool m_PlayCrashSoundHeavy;
@@ -82,6 +90,8 @@ class CarScript extends Car
 	static string m_RightHeadlightPoint = "light_right";
 	static string m_LeftHeadlightTargetPoint = "light_left_dir";
 	static string m_RightHeadlightTargetPoint = "light_right_dir";
+	
+	static string m_DrownEnginePoint = "drown_engine";
 	
 	// Model selection IDs for texture/material changes
 	// If each car needs different IDs, then feel free to remove the 'static' flag and overwrite these numbers down the hierarchy
@@ -148,26 +158,34 @@ class CarScript extends Car
 			m_exhaustPtcDir = "1 1 1";
 		}
 	
-		if 	( MemoryPointExists("ptcEnginePos") )
+		if ( MemoryPointExists("ptcEnginePos") )
 			m_enginePtcPos = GetMemoryPointPos("ptcEnginePos");
 		else
 			m_enginePtcPos = "0 0 0";		
 
 		
-		if 	( MemoryPointExists("ptcCoolantPos") )
+		if ( MemoryPointExists("ptcCoolantPos") )
 			m_coolantPtcPos = GetMemoryPointPos("ptcCoolantPos");
 		else
 			m_coolantPtcPos = "0 0 0";
 
-		if 	( MemoryPointExists("refill") )
+		if ( MemoryPointExists("refill") )
 			m_fuelPos = GetMemoryPointPos("refill");
 		else
 			m_fuelPos = "0 0 0";
 		
-		m_ActionsInitialize = false;
+		if ( MemoryPointExists("drown_engine") )
+			m_DrownEnginePos = GetMemoryPointPos("drown_engine");
+		else
+			m_DrownEnginePos = "0 0 0";
 
 	}
 
+	vector GetEnginePosWS()
+	{
+		return ModelToWorld( m_DrownEnginePos );
+	}
+	
 	vector GetCoolantPtcPosWS()
 	{
 		return ModelToWorld( m_coolantPtcPos );
@@ -406,9 +424,6 @@ class CarScript extends Car
 				{
 					float dmg;
 
-					float test1 = EngineGetRPM();
-					float test2 = EngineGetRPMRedline();
-					
 					if ( EngineGetRPM() >= EngineGetRPMRedline() )
 					{
 						if ( EngineGetRPM() > EngineGetRPMMax() )
@@ -520,44 +535,6 @@ class CarScript extends Car
 				}
 			}
 		}
-
-		//FX only on Client and in Single
-		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
-		{
-			if ( IsDamageDestroyed() )
-			{
-				if ( !SEffectManager.IsEffectExist( m_enginePtcFx ) )
-				{
-					m_engineFx = new EffEngineSmoke();
-					m_enginePtcFx = SEffectManager.PlayOnObject( m_engineFx, this, m_enginePtcPos, Vector(0,0,0), true );
-					//m_engineFx.SetParticleStateLight();
-					m_engineFx.SetParticleStateHeavy();
-				}
-			}
-		}
-		
-		
-		// Visualisation of brake lights for all players
-		float brake_coef = GetController().GetBrake();
-		
-		if (brake_coef > 0)
-		{
-			if (!m_BrakesArePressed)
-			{
-				m_BrakesArePressed = true;
-				SetSynchDirty();
-				OnBrakesPressed();
-			}
-		}
-		else
-		{
-			if (m_BrakesArePressed)
-			{
-				m_BrakesArePressed = false;
-				SetSynchDirty();
-				OnBrakesReleased();
-			}
-		}
 	}
 	
 	void OnBrakesPressed()
@@ -569,6 +546,99 @@ class CarScript extends Car
 	{
 		UpdateLights();
 	}
+	
+	
+	override void OnUpdate( float dt )
+    {
+/*
+//-----------------------------------------------------/
+//------PREARATION FOR DROWNING PLAYRS IN THE CARS-----/
+//-----------------------------------------------------/
+        int crewCnt = CrewSize();
+        if ( crewCnt > 0 )
+        {
+            for( int i = 0; i < CrewSize(); i++ )
+            {
+                Human crew = CrewMember( i );
+                if ( !crew )
+                    continue;
+                
+                int boneIdx = crew.GetBoneIndexByName("Head");
+                if( boneIdx != -1 )
+                {
+                    vector pos1 = crew.GetBonePositionLS( boneIdx );
+                    vector pos2 = crew.GetBonePositionMS( boneIdx );
+                    vector pos3 = crew.GetBonePositionWS( boneIdx );
+
+                    if ( IsPointUnderWater( pos1 ) )
+                        Debug.DrawSphere(pos1, 0.03, COLOR_RED);
+                    
+					if ( IsPointUnderWater( pos2 ) )
+                        Debug.DrawSphere(pos2, 0.03, COLOR_GREEN);
+                    
+                    if ( IsPointUnderWater( pos3 ) )
+                        Debug.DrawSphere(pos3, 0.03, COLOR_YELLOW, ShapeFlags.NOZBUFFER | ShapeFlags.NOZWRITE);
+
+                }
+            }
+        }
+*/
+		
+		if ( GetGame().IsServer() )
+		{
+			if ( IsPointUnderWater( GetEnginePosWS() ) )
+			{
+				m_DrownTime += dt;
+				if ( m_DrownTime > DROWN_ENGINE_THRESHOLD )
+				{
+					// *dt to get damage per second
+					AddHealth( "Engine", "Health", -DROWN_ENGINE_DAMAGE * dt);
+				}
+				//Debug.DrawSphere(GetCoolantPtcPosWS(), 0.2, COLOR_RED, ShapeFlags.NOZBUFFER | ShapeFlags.NOZWRITE);
+			}
+			else
+			{
+				m_DrownTime = 0;
+			}
+		}
+		
+		//FX only on Client and in Single
+		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
+		{
+			if ( IsDamageDestroyed() && !IsPointUnderWater( GetEnginePosWS() ))
+			{
+				if ( !SEffectManager.IsEffectExist( m_enginePtcFx ) )
+				{
+					m_engineFx = new EffEngineSmoke();
+					m_enginePtcFx = SEffectManager.PlayOnObject( m_engineFx, this, m_enginePtcPos, Vector(0,0,0), true );
+					//m_engineFx.SetParticleStateLight();
+					m_engineFx.SetParticleStateHeavy();
+				}
+			}
+		}
+		
+		// Visualisation of brake lights for all players
+		float brake_coef = GetController().GetBrake();
+		
+		if ( brake_coef > 0 )
+		{
+			if ( !m_BrakesArePressed )
+			{
+				m_BrakesArePressed = true;
+				SetSynchDirty();
+				OnBrakesPressed();
+			}
+		}
+		else
+		{
+			if ( m_BrakesArePressed )
+			{
+				m_BrakesArePressed = false;
+				SetSynchDirty();
+				OnBrakesReleased();
+			}
+		}
+    }
 	
 	
 	override void OnContact( string zoneName, vector localPos, IEntity other, Contact data )
@@ -1598,5 +1668,14 @@ class CarScript extends Car
 				break;
 			}
 		}
+	}
+	
+	override void EEOnCECreate()
+	{
+
+		float maxVolume = GetFluidCapacity( CarFluid.FUEL );
+		float amount = Math.RandomFloat(0.0, maxVolume * 0.35 );
+
+		Fill( CarFluid.FUEL, amount );
 	}
 };

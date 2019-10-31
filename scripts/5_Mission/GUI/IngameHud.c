@@ -911,28 +911,31 @@ class IngameHud extends Hud
 					GetGame().ConfigGetFloatArray( "CfgVehicles " + m_CurrentVehicle.GetType() + " SimulationModule Gearbox ratios" , gears );
 					
 					m_VehicleGearCount	= gears.Count() + 1;
-					
+
 					//m_VehicleHasOil		= GetGame().ConfigGetFloat( "CfgVehicles " + m_CurrentVehicle.GetType() + " SimulationModule Engine rpmRedline" );
 					//m_VehicleHasCoolant	= GetGame().ConfigGetFloat( "CfgVehicles " + m_CurrentVehicle.GetType() + " SimulationModule Engine rpmRedline" );
-					
+
 					if( !m_VehicleHasOil )
 					{
 						m_VehicleBatteryLight.Show( false );
 					}
-					
+
+					// no oil indication( and also no harm to engine) before engine reparing
+					m_VehicleOilLight.Show( false );
+/*
 					if( !m_VehicleHasCoolant )
 					{
 						m_VehicleOilLight.Show( false );
 					}
-					
+*/
 					float rpm_value_red = ( m_CurrentVehicle.EngineGetRPMRedline() / m_CurrentVehicle.EngineGetRPMMax() ) ;
 					m_VehicleRPMDial.SetMaskProgress( rpm_value_red );
 					m_VehicleRPMRedline.SetMaskProgress( 1 - rpm_value_red );
-					
+
 					m_HudPanelWidget.FindAnyWidget("PlayerPanel").Show( false );
 					m_Presence.Show( false );
 					m_StancePanel.Show( false );
-					
+
 					m_VehiclePanel.Show( true );
 				}
 			}
@@ -984,8 +987,9 @@ class IngameHud extends Hud
 			bool newHealth = false;
 			
 			int health = m_CurrentVehicle.GetHealthLevel( "Engine" );
+			float oilAmount = m_CurrentVehicle.GetFluidFraction( CarFluid.OIL );
 			int color;
-			if( m_CurrentVehicle.EngineGetRPM() > m_CurrentVehicle.EngineGetRPMRedline() )
+			if( m_CurrentVehicle.EngineGetRPM() > m_CurrentVehicle.EngineGetRPMRedline() /*|| (m_CurrentVehicle.EngineIsOn() && oilAmount < 0.25)*/ )
 			{
 				if( m_TimeSinceLastEngineLightChange > 0.35 )
 				{
@@ -1009,7 +1013,34 @@ class IngameHud extends Hud
 			{
 				m_VehicleEngineLight.Show( false );
 			}
-				
+			// no oil indication( and also no harm) before engine reparing		
+/*
+			if ( oilAmount <= 0 )
+			{
+				m_VehicleOilLight.SetColor( Colors.COLOR_RUINED );
+				m_VehicleOilLight.SetAlpha( 1 );
+				m_VehicleOilLight.Show( true );
+			}
+			else if ( oilAmount < 0.25 )
+			{
+				//m_VehicleOilLight.SetColor( color );
+				m_VehicleOilLight.SetColor( Colors.COLOR_BADLY_DAMAGED );
+				m_VehicleOilLight.SetAlpha( 1 );
+				m_VehicleOilLight.Show( true );
+			}
+			else if ( oilAmount < 0.5 )
+			{
+				//m_VehicleOilLight.SetColor( color );
+				m_VehicleOilLight.SetColor( Colors.COLOR_DAMAGED );
+				m_VehicleOilLight.SetAlpha( 1 );
+				m_VehicleOilLight.Show( true );
+			}
+			else
+			{
+				m_VehicleOilLight.Show( false );
+			}
+*/
+
 			// refresh backlit
 			GetDayZGame().GetBacklit().RefreshVehicleLayout( engaged_gear, newHealth );
 			

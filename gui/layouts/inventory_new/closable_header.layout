@@ -132,6 +132,7 @@ WrapSpacerWidgetClass closable_header_root {
        fixaspect fixwidth
        priority 150
        draggable 0
+       "force flip enable" 1
       }
      }
     }

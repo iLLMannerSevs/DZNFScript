@@ -10,4 +10,8 @@ class ModInfo
 	proto native owned string GetAction();
 	proto native owned string GetAuthor();
 	proto native owned string GetVersion();
+	proto native bool GetDefault();
+	proto native bool GetIsDLC();
+	proto native bool GetIsOwned();
+	proto native void GoToStore();
 }

@@ -9,6 +9,12 @@ class BoonieHat_ColorBase extends Clothing
 		}
 		return false;
 	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
 }
 
 class BoonieHat_Black extends BoonieHat_ColorBase {};

@@ -2,7 +2,7 @@
 //DeRap: gear_cooking\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:19 2019 : 'file' last modified on Fri Jul 19 21:29:44 2019
+//'now' is Thu Oct 31 18:20:56 2019 : 'file' last modified on Wed Sep 25 13:55:50 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -488,7 +488,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\cooking\data\cooking_pot.rvmat"}},{0.7,{"DZ\gear\cooking\data\cooking_pot.rvmat"}},{0.5,{"DZ\gear\cooking\data\cooking_pot_damage.rvmat"}},{0.3,{"DZ\gear\cooking\data\cooking_pot_damage.rvmat"}},{0.0,{"DZ\gear\cooking\data\cooking_pot_destruct.rvmat"}}};
 				};
 			};
@@ -547,7 +547,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\cooking\data\frying_pan.rvmat"}},{0.7,{"DZ\gear\cooking\data\frying_pan.rvmat"}},{0.5,{"DZ\gear\cooking\data\frying_pan_damage.rvmat"}},{0.3,{"DZ\gear\cooking\data\frying_pan_damage.rvmat"}},{0.0,{"DZ\gear\cooking\data\frying_pan_destruct.rvmat"}}};
 				};
 			};
@@ -696,7 +696,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\cooking\data\petrol_lighter.rvmat"}},{0.7,{"DZ\gear\cooking\data\petrol_lighter.rvmat"}},{0.5,{"DZ\gear\cooking\data\petrol_lighter_damage.rvmat"}},{0.3,{"DZ\gear\cooking\data\petrol_lighter_damage.rvmat"}},{0.0,{"DZ\gear\cooking\data\petrol_lighter_destruct.rvmat"}}};
 				};
 			};

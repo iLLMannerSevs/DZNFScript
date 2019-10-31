@@ -2,7 +2,7 @@
 //DeRap: weapon_magazines\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:05 2019 : 'file' last modified on Mon Sep 02 17:34:51 2019
+//'now' is Thu Oct 31 18:24:55 2019 : 'file' last modified on Thu Oct 24 14:42:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -35,13 +35,13 @@ class CfgMagazines
 	class Magazine_Base: DefaultMagazine
 	{
 		scope = 0;
-		lootCategory = "Magazines";
 		storageCategory = 1;
 		inventorySlot[] = {"magazine","magazine2","magazine3"};
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};
 		handheld = "true";
 		armAction = "Disarm";
+		isMeleeWeapon = 1;
 		rotationFlags = 17;
 		quantityBar = 0;
 		itemSize[] = {1,2};
@@ -75,7 +75,6 @@ class CfgMagazines
 				};
 			};
 		};
-		isMeleeWeapon = 1;
 		class MeleeModes
 		{
 			class Default
@@ -197,7 +196,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_357Speedloader_6Rnd1";
 		model = "\dz\weapons\attachments\magazine\357_SpeedLoader.p3d";
 		weight = 25;
-		itemSize[] = {1,2};
+		itemSize[] = {1,1};
 		count = 6;
 		ammo = "Bullet_357";
 		ammoItems[] = {"Ammo_357"};
@@ -1469,9 +1468,8 @@ class CfgMagazines
 		displayName = "$STR_CfgMagazines_Mag_Ruger1022_10Rnd0";
 		descriptionShort = "$STR_CfgMagazines_Mag_Ruger1022_10Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_ruger1022_10.p3d";
-		lootTag[] = {"Civilian","Hunting"};
 		weight = 80;
-		itemSize[] = {2,1};
+		itemSize[] = {1,2};
 		count = 10;
 		ammo = "Bullet_22";
 		ammoItems[] = {"Ammo_22"};
@@ -2181,7 +2179,7 @@ class CfgMagazines
 		model = "\DZ\weapons\attachments\magazine\magazine_akm_drum.p3d";
 		rotationFlags = 12;
 		weight = 14;
-		itemSize[] = {3,4};
+		itemSize[] = {3,3};
 		count = 75;
 		ammo = "Bullet_762x39";
 		ammoItems[] = {"Ammo_762x39","Ammo_762x39Tracer"};
@@ -2272,7 +2270,6 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AKM_Drum75Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -2345,7 +2342,6 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AKM_Drum75Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"DZ\weapons\attachments\data\magazine_drum_green_co.paa"};
 		class AnimEvents
 		{
@@ -2511,14 +2507,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AKM_Palm30Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_AKM_Palm30Rnd_Green: Mag_AKM_Palm30Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AKM_Palm30Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\akm_accessories_green_co.paa"};
 	};
 	class Mag_CZ527_5rnd: Magazine_Base
@@ -2708,7 +2702,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_STANAGCoupled_30Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_stanag30_coupled.p3d";
 		weight = 180;
-		itemSize[] = {3,3};
+		itemSize[] = {2,3};
 		count = 60;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -2798,7 +2792,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_10Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_pmag_10.p3d";
 		weight = 30;
-		itemSize[] = {2,2};
+		itemSize[] = {1,2};
 		count = 10;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -2888,14 +2882,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_10Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_CMAG_10Rnd_Green: Mag_CMAG_10Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_10Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\pmag_co.paa"};
 	};
 	class Mag_CMAG_20Rnd: Magazine_Base
@@ -2905,7 +2897,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_20Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_pmag_20.p3d";
 		weight = 60;
-		itemSize[] = {2,2};
+		itemSize[] = {1,2};
 		count = 20;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -2995,14 +2987,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_20Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_CMAG_20Rnd_Green: Mag_CMAG_20Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_20Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\pmag_co.paa"};
 	};
 	class Mag_CMAG_30Rnd: Magazine_Base
@@ -3012,7 +3002,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_30Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_pmag_30.p3d";
 		weight = 90;
-		itemSize[] = {2,3};
+		itemSize[] = {1,3};
 		count = 30;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -3102,14 +3092,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_30Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_CMAG_30Rnd_Green: Mag_CMAG_30Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_30Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\pmag_co.paa"};
 	};
 	class Mag_CMAG_40Rnd: Magazine_Base
@@ -3119,7 +3107,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_40Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_pmag_40.p3d";
 		weight = 100;
-		itemSize[] = {2,4};
+		itemSize[] = {1,4};
 		count = 40;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -3209,14 +3197,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_40Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_CMAG_40Rnd_Green: Mag_CMAG_40Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_CMAG_40Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\pmag_co.paa"};
 	};
 	class Mag_AK101_30Rnd: Magazine_Base
@@ -3317,14 +3303,12 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AK101_30Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 	};
 	class Mag_AK101_30Rnd_Green: Mag_AK101_30Rnd
 	{
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AK101_30Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.35,0.36,0.28,1.0,CO)"};
 	};
 	class Mag_AK74_30Rnd: Magazine_Base
@@ -3425,7 +3409,6 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AK74_30Rnd_Black0";
 		color = "Black";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.15,0.15,0.15,1.0,CO)"};
 		hiddenSelectionsMaterials[] = {"DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"};
 	};
@@ -3434,7 +3417,6 @@ class CfgMagazines
 		scope = 2;
 		descriptionShort = "$STR_CfgMagazines_Mag_AK74_30Rnd_Green0";
 		color = "Green";
-		lootCategory = "Crafted";
 		hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.35,0.36,0.28,1.0,CO)"};
 		hiddenSelectionsMaterials[] = {"DZ\weapons\attachments\magazine\data\magazine_ak74.rvmat"};
 	};
@@ -3444,7 +3426,6 @@ class CfgMagazines
 		displayName = "$STR_CfgMagazines_Mag_SVD_10Rnd0";
 		descriptionShort = "$STR_CfgMagazines_Mag_SVD_10Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_svd.p3d";
-		lootTag[] = {"Military_east"};
 		weight = 120;
 		itemSize[] = {1,2};
 		count = 10;
@@ -3536,7 +3517,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_FAL_20Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_fal.p3d";
 		weight = 120;
-		itemSize[] = {1,3};
+		itemSize[] = {1,2};
 		count = 20;
 		ammo = "Bullet_308Win";
 		ammoItems[] = {"Ammo_308Win","Ammo_308WinTracer"};
@@ -3628,7 +3609,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_Scout_5Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_scout.p3d";
 		weight = 40;
-		itemSize[] = {1,2};
+		itemSize[] = {1,1};
 		count = 5;
 		ammo = "Bullet_308Win";
 		ammoItems[] = {"Ammo_308Win","Ammo_308WinTracer"};
@@ -3719,7 +3700,6 @@ class CfgMagazines
 		displayName = "$STR_CfgMagazines_Mag_UMP_25Rnd0";
 		descriptionShort = "$STR_CfgMagazines_Mag_UMP_25Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_ump45_25rnd.p3d";
-		lootTag[] = {"Military_west_DEvent"};
 		weight = 350;
 		itemSize[] = {1,3};
 		count = 25;
@@ -3799,7 +3779,6 @@ class CfgMagazines
 		displayName = "$STR_CfgMagazines_Mag_VSS_10Rnd0";
 		descriptionShort = "$STR_CfgMagazines_Mag_VSS_10Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_vss.p3d";
-		lootTag[] = {"Military_east_DEvent"};
 		weight = 350;
 		itemSize[] = {1,2};
 		count = 10;
@@ -3891,9 +3870,8 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_M249_Box200Rnd1";
 		model = "\DZ\weapons\attachments\magazine\magazine_m249_ammobox.p3d";
 		rotationFlags = 12;
-		lootTag[] = {"Military_west"};
 		weight = 2000;
-		itemSize[] = {5,3};
+		itemSize[] = {5,4};
 		count = 200;
 		ammo = "Bullet_556x45";
 		ammoItems[] = {"Ammo_556x45","Ammo_556x45Tracer"};
@@ -4065,14 +4043,14 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_Saiga_5Rnd1";
 		model = "\dz\weapons\attachments\magazine\magazine_saiga_mag5.p3d";
 		weight = 200;
-		itemSize[] = {1,2};
+		itemSize[] = {1,1};
 		count = 5;
 		ammo = "Bullet_12GaugePellets";
 		ammoItems[] = {"Ammo_12gaPellets","Ammo_12gaSlug"};
 		tracersEvery = 0;
 		mass = 10;
 		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {};
+		hiddenSelectionsTextures[] = {"dz\weapons\attachments\magazine\data\saiga_mag5_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -4080,7 +4058,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\saiga_mag5.rvmat"}},{0.7,{"DZ\weapons\attachments\data\saiga_mag5.rvmat"}},{0.5,{"DZ\weapons\attachments\data\saiga_mag5_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\saiga_mag5_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\saiga_mag5_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\saiga_mag5.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\saiga_mag5.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\saiga_mag5_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\saiga_mag5_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\saiga_mag5_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -4163,7 +4141,7 @@ class CfgMagazines
 		ammo = "Bullet_12GaugePellets";
 		ammoItems[] = {"Ammo_12gaPellets","Ammo_12gaSlug"};
 		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {};
+		hiddenSelectionsTextures[] = {"dz\weapons\attachments\magazine\data\saiga_mag8_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -4171,7 +4149,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\saiga_mag5.rvmat"}},{0.7,{"DZ\weapons\attachments\data\saiga_mag5.rvmat"}},{0.5,{"DZ\weapons\attachments\data\saiga_mag5_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\saiga_mag5_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\saiga_mag5_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\saiga_mag8.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\saiga_mag8.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\saiga_mag8_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\saiga_mag8_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\saiga_mag8_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -4250,12 +4228,12 @@ class CfgMagazines
 		model = "\dz\weapons\attachments\magazine\magazine_saiga_drum.p3d";
 		rotationFlags = 12;
 		weight = 260;
-		itemSize[] = {4,3};
+		itemSize[] = {2,2};
 		count = 20;
 		ammo = "Bullet_12GaugePellets";
 		ammoItems[] = {"Ammo_12gaPellets","Ammo_12gaSlug"};
 		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {};
+		hiddenSelectionsTextures[] = {"dz\weapons\attachments\magazine\data\saiga_drum_co.paa"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -4263,7 +4241,7 @@ class CfgMagazines
 				class Health
 				{
 					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\saiga_drum.rvmat"}},{0.7,{"DZ\weapons\attachments\data\saiga_drum.rvmat"}},{0.5,{"DZ\weapons\attachments\data\saiga_drum_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\saiga_drum_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\saiga_drum_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\magazine\data\saiga_drum.rvmat"}},{0.7,{"DZ\weapons\attachments\magazine\data\saiga_drum.rvmat"}},{0.5,{"DZ\weapons\attachments\magazine\data\saiga_drum_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\magazine\data\saiga_drum_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\magazine\data\saiga_drum_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -4341,8 +4319,6 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_Arrows_Quiver1";
 		model = "\dz\weapons\attachments\magazine\magazine_quiver.p3d";
 		rotationFlags = 1;
-		lootTag[] = {"Hunting"};
-		lootCategory = "Crafted";
 		weight = 150;
 		itemSize[] = {2,3};
 		count = 5;
@@ -4429,8 +4405,6 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_Bolts_Quiver1";
 		model = "\dz\weapons\attachments\magazine\magazine_quiver.p3d";
 		rotationFlags = 1;
-		lootTag[] = {"Hunting"};
-		lootCategory = "Crafted";
 		weight = 150;
 		itemSize[] = {2,3};
 		count = 5;
@@ -4606,7 +4580,7 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Mag_Groza_20Rnd1";
 		model = "\dz\weapons\attachments\magazine\magazine_ots14.p3d";
 		weight = 410;
-		itemSize[] = {2,2};
+		itemSize[] = {1,2};
 		count = 20;
 		ammo = "Bullet_9x39AP";
 		ammoItems[] = {"Ammo_9x39","Ammo_9x39AP"};
@@ -4992,6 +4966,14 @@ class CfgNonAIVehicles
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\shotgunshell_pellets.p3d";
+		autocenter = 1;
+		shadow = 1;
+		simulation = "proxyprojectile";
+	};
+	class ProxyShotgunShell_slug
+	{
+		scope = 2;
+		model = "\dz\weapons\projectiles\shotgunshell_slug.p3d";
 		autocenter = 1;
 		shadow = 1;
 		simulation = "proxyprojectile";

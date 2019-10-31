@@ -2,7 +2,7 @@
 //DeRap: characters_tops\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:56 2019 : 'file' last modified on Fri Jul 19 19:47:31 2019
+//'now' is Thu Oct 31 18:20:33 2019 : 'file' last modified on Thu Sep 19 22:12:53 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -751,7 +751,7 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		soundAttType = "WoolShirt";
-		hiddenSelections[] = {"injury_body","injury_hand_l","injury_hand_r","injury_hands","camoGround","camoMale","camoFemale"};
+		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -822,36 +822,36 @@ class CfgVehicles
 	{
 		scope = 2;
 		visibilityModifier = 0.95;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\hoodie_m_grd_blue_co.paa","\dz\characters\tops\data\hoodie_blue_co.paa","\dz\characters\tops\data\hoodie_f_blue_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\hoodie_m_grd_blue_co.paa","\dz\characters\tops\data\hoodie_blue_co.paa","\dz\characters\tops\data\hoodie_f_blue_co.paa"};
 	};
 	class Hoodie_Black: Hoodie_ColorBase
 	{
 		scope = 2;
 		visibilityModifier = 0.85;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\hoodie_m_grd_black_co.paa","\dz\characters\tops\data\hoodie_black_co.paa","\dz\characters\tops\data\hoodie_f_black_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\hoodie_m_grd_black_co.paa","\dz\characters\tops\data\hoodie_black_co.paa","\dz\characters\tops\data\hoodie_f_black_co.paa"};
 	};
 	class Hoodie_Brown: Hoodie_ColorBase
 	{
 		scope = 2;
 		visibilityModifier = 0.85;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\hoodie_m_grd_brown_co.paa","\dz\characters\tops\data\hoodie_brown_co.paa","\dz\characters\tops\data\hoodie_f_brown_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\hoodie_m_grd_brown_co.paa","\dz\characters\tops\data\hoodie_brown_co.paa","\dz\characters\tops\data\hoodie_f_brown_co.paa"};
 	};
 	class Hoodie_Green: Hoodie_ColorBase
 	{
 		scope = 2;
 		visibilityModifier = 0.9;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\hoodie_m_grd_green_co.paa","\dz\characters\tops\data\hoodie_green_co.paa","\dz\characters\tops\data\hoodie_f_green_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\hoodie_m_grd_green_co.paa","\dz\characters\tops\data\hoodie_green_co.paa","\dz\characters\tops\data\hoodie_f_green_co.paa"};
 	};
 	class Hoodie_Grey: Hoodie_ColorBase
 	{
 		scope = 2;
 		visibilityModifier = 0.85;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\hoodie_m_grd_grey_co.paa","\dz\characters\tops\data\hoodie_grey_co.paa","\dz\characters\tops\data\hoodie_f_grey_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\hoodie_m_grd_grey_co.paa","\dz\characters\tops\data\hoodie_grey_co.paa","\dz\characters\tops\data\hoodie_f_grey_co.paa"};
 	};
 	class Hoodie_Red: Hoodie_ColorBase
 	{
 		scope = 2;
-		hiddenSelectionsTextures[] = {"","","","","\dz\characters\tops\data\Hoodie_m_grd_red_co.paa","\dz\characters\tops\data\hoodie_red_co.paa","\dz\characters\tops\data\hoodie_f_red_co.paa"};
+		hiddenSelectionsTextures[] = {"\dz\characters\tops\data\Hoodie_m_grd_red_co.paa","\dz\characters\tops\data\hoodie_red_co.paa","\dz\characters\tops\data\hoodie_f_red_co.paa"};
 	};
 	class TacticalShirt_ColorBase: Clothing
 	{

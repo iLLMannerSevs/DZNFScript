@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\cz527\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:23:52 2019
+//'now' is Thu Oct 31 18:24:43 2019 : 'file' last modified on Thu Oct 31 09:53:27 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -61,6 +61,7 @@ class cfgWeapons
 		barrelArmor = 900;
 		ejectType = 0;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\mosin9130\mosin_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\CR527\cz527_reload_0",1,1,20};
@@ -327,7 +328,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\cz527\Data\cz527.rvmat"}},{0.7,{"DZ\weapons\firearms\cz527\Data\cz527.rvmat"}},{0.5,{"DZ\weapons\firearms\cz527\Data\cz527_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\cz527\Data\cz527_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\cz527\Data\cz527_destruct.rvmat"}}};
 				};
 			};

@@ -96,6 +96,8 @@ class InventoryMenu extends UIScriptedMenu
 		super.OnShow();
 		m_IsOpened = true;
 		PPEffects.SetBlurInventory(0.5);
+		VicinityItemManager.GetInstance().RefreshVicinityItems();
+		
 		if(m_Inventory)
 			m_Inventory.OnShow();
 		

@@ -1,5 +1,6 @@
 class ModsMenuSimpleEntry extends ScriptedWidgetEventHandler
 {
+	protected ButtonWidget		m_ModButton;
 	protected ImageWidget		m_Icon;
 	protected Widget			m_Hover;
 
@@ -7,21 +8,35 @@ class ModsMenuSimpleEntry extends ScriptedWidgetEventHandler
 	protected ModInfo			m_Data;
 	protected ModsMenuSimple	m_ParentMenu;
 
-	void ModsMenuSimpleEntry(ModInfo data, Widget parent, ModsMenuSimple parent_menu)
+	void ModsMenuSimpleEntry(ModInfo data, int index, Widget parent, ModsMenuSimple parent_menu)
 	{
-		m_Icon			= ImageWidget.Cast(GetGame().GetWorkspace().CreateWidgets("gui/layouts/new_ui/mods_menu/mods_menu_simple_entry.layout", parent));
-		m_Hover			= m_Icon.FindAnyWidget("Overlay");
+		m_ModButton		= ButtonWidget.Cast(GetGame().GetWorkspace().CreateWidgets("gui/layouts/new_ui/mods_menu/mods_menu_simple_entry.layout", parent));
+		m_Icon			= ImageWidget.Cast(m_ModButton.FindAnyWidget("Icon"));
+		m_Hover			= m_ModButton.FindAnyWidget("Overlay");
 		m_Data			= data;
 		m_ParentMenu	= parent_menu;
 		
-		m_Icon.SetHandler(this);
+		if( data.GetIsDLC() )
+		{
+			m_ModButton.SetSort( index );
+			m_ModButton.FindAnyWidget("ModOwnership").Show( true );
+			m_ModButton.FindAnyWidget("Owned").Show( data.GetIsOwned() );
+			m_ModButton.FindAnyWidget("Unowned").Show( !data.GetIsOwned() );
+		}
+		else
+		{
+			m_ModButton.SetSort( index + 5 );
+		}
+		
+		
+		m_ModButton.SetHandler(this);
 
 		LoadData();
 	}
 	
 	void ~ModsMenuSimpleEntry()
 	{
-		delete m_Icon;
+		delete m_ModButton;
 	}
 
 	void LoadData()
@@ -45,9 +60,9 @@ class ModsMenuSimpleEntry extends ScriptedWidgetEventHandler
 		}
 	}
 	
-	override bool OnMouseButtonUp(Widget w, int x, int y, int button)
+	override bool OnClick(Widget w, int x, int y, int button)
 	{
-		if( w == m_Icon )
+		if( w == m_ModButton )
 		{
 			m_ParentMenu.Select( m_Data );
 			return true;
@@ -57,7 +72,7 @@ class ModsMenuSimpleEntry extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseEnter(Widget w, int x, int y)
 	{
-		if( w == m_Icon )
+		if( w == m_ModButton )
 		{
 			if( m_HasLogoOver )
 				m_Icon.SetImage( 1 );
@@ -69,7 +84,31 @@ class ModsMenuSimpleEntry extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseLeave(Widget w, Widget enterW, int x, int y)
 	{
-		if( enterW != m_Icon )
+		if( enterW != m_ModButton )
+		{
+			if( m_HasLogoOver )
+				m_Icon.SetImage( 0 );
+			m_Hover.Show( false );
+			return true;
+		}
+		return false;
+	}
+	
+	override bool OnFocus( Widget w, int x, int y )
+	{
+		if( w == m_ModButton )
+		{
+			if( m_HasLogoOver )
+				m_Icon.SetImage( 1 );
+			m_Hover.Show( true );
+			return true;
+		}
+		return false;
+	}
+	
+	override bool OnFocusLost( Widget w, int x, int y )
+	{
+		if( w == m_ModButton )
 		{
 			if( m_HasLogoOver )
 				m_Icon.SetImage( 0 );

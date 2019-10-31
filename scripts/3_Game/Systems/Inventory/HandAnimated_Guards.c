@@ -236,7 +236,7 @@ class HandSelectAnimationOfForceSwapInHandsEvent extends HandGuardBase
 				allow = true; // allow if ordinary swap
 			else if (es.m_Dst2)
 			{
-				if (!GameInventory.LocationTestAddEntity(es.m_Dst2, false, true, true, true, true))
+				if (!GameInventory.CanForceSwapEntities(es.GetSrc().GetItem(), null, es.m_Src2.GetItem(), es.m_Dst2))
 					Error("[hndfsm] HandSelectAnimationOfForceSwapInHandsEvent - no room at dst=" + InventoryLocation.DumpToStringNullSafe(es.m_Dst2));
 				allow = true;
 			}

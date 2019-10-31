@@ -3,6 +3,9 @@ class ActionUngagSelf: ActionContinuousBase
 	void ActionUngagSelf()
 	{
 		m_CallbackClass = ActionUncoverHeadSelfCB;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_COVERHEAD_SELF;
+		//m_FullBody = true;
+		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 	}
 
 	override void CreateConditionComponents()  

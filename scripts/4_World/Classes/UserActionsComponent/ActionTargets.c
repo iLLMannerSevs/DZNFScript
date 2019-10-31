@@ -267,7 +267,7 @@ class ActionTargets
 		if ( object )
 		{
 			//! quick distance check
-			if (vector.DistanceSq(m_Player.GetPosition(), object.GetPosition()) > c_MaxActionDistance * c_MaxActionDistance)
+			if (/*m_HitPos != vector.Zero && */vector.DistanceSq(m_Player.GetPosition(), m_HitPos) > c_MaxActionDistance * c_MaxActionDistance)
 				return true;
 
 			// use CE_CENTER mem point for obstruction check
@@ -365,7 +365,7 @@ class ActionTargets
 					return 0.25;
 
 				if( pTarget.IsTransport() )
-					return 0.01;
+					return 0.25;
 
 				if( pTarget.IsWell() )
 					return 0.9;

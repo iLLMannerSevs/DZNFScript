@@ -2,7 +2,7 @@
 //DeRap: gear_consumables\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:17 2019 : 'file' last modified on Mon Sep 02 12:19:36 2019
+//'now' is Thu Oct 31 18:20:53 2019 : 'file' last modified on Fri Oct 25 09:07:09 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -42,18 +42,16 @@ class CfgVehicles
 		isMeleeWeapon = 1;
 		weight = 2;
 		absorbency = 1;
-		rotationFlags = 16;
 		itemSize[] = {1,1};
+		rotationFlags = 16;
 		inventorySlot = "Paper";
-		lootTag[] = {"Civilian","Office"};
-		lootCategory = "Materials";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 15;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\Loot_Paper.rvmat"}},{0.7,{"DZ\gear\consumables\data\Loot_Paper.rvmat"}},{0.5,{"DZ\gear\consumables\data\Loot_Paper_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\Loot_Paper_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\Loot_Paper_destruct.rvmat"}}};
 				};
 			};
@@ -88,15 +86,13 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 100.0;
 		repairKitType = 5;
-		lootTag[] = {"Civilian","Office"};
-		lootCategory = "Materials";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.7,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.5,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\duct_tape_destruct.rvmat"}}};
 				};
 			};
@@ -152,7 +148,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.7,{"DZ\gear\consumables\data\duct_tape.rvmat"}},{0.5,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\duct_tape_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\duct_tape_destruct.rvmat"}}};
 				};
 			};
@@ -190,9 +186,9 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Rag0";
 		descriptionShort = "$STR_CfgVehicles_Rag1";
 		model = "\dz\gear\consumables\Rags.p3d";
-		itemSize[] = {1,3};
 		weight = 20;
 		absorbency = 1;
+		itemSize[] = {1,3};
 		inventorySlot[] = {"Rags"};
 		ChangeInventorySlot[] = {"Mask"};
 		ChangeIntoOnAttach[] = {"","MouthRag"};
@@ -201,7 +197,6 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 6.0;
 		varQuantityDestroyOnMin = 1;
-		lootCategory = "Crafted";
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		rotationFlags = 17;
@@ -211,7 +206,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\rags_bandages.rvmat"}},{0.7,{"DZ\gear\consumables\data\rags_bandages.rvmat"}},{0.5,{"DZ\gear\consumables\data\rags_bandages_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\rags_bandages_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\rags_bandages_destruct.rvmat"}}};
 				};
 			};
@@ -264,7 +259,6 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_BurlapStrip0";
 		descriptionShort = "$STR_CfgVehicles_BurlapStrip1";
 		model = "\DZ\gear\crafting\sackcloth_rag.p3d";
-		lootCategory = "Crafted";
 		weight = 50;
 		itemSize[] = {1,3};
 		canBeSplit = 1;
@@ -291,7 +285,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Stone1";
 		model = "\dz\gear\consumables\Stone.p3d";
 		animClass = "NoFireClass";
-		lootCategory = "Crafted";
 		weight = 1000;
 		itemSize[] = {3,3};
 		canBeSplit = 1;
@@ -307,7 +300,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\stone.rvmat"}},{0.7,{"DZ\gear\consumables\data\stone.rvmat"}},{0.5,{"DZ\gear\consumables\data\stone_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\stone_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\stone_destruct.rvmat"}}};
 				};
 			};
@@ -338,7 +331,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_SmallStone1";
 		model = "\dz\gear\consumables\SmallStone.p3d";
 		animClass = "NoFireClass";
-		lootCategory = "Crafted";
 		weight = 500;
 		itemSize[] = {1,2};
 		canBeSplit = 1;
@@ -365,16 +357,15 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Firewood1";
 		model = "\dz\gear\cooking\log01.p3d";
 		animClass = "NoFireClass";
-		lootCategory = "Crafted";
+		weight = 2000;
+		absorbency = 0.3;
+		itemSize[] = {2,5};
 		canBeSplit = 1;
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 6.0;
 		varQuantityDestroyOnMin = 1;
 		varStackMax = 1.0;
-		absorbency = 0.3;
-		weight = 2000;
-		itemSize[] = {2,5};
 		inventorySlot = "Firewood";
 		class DamageSystem
 		{
@@ -382,7 +373,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\log01.rvmat"}},{0.7,{"DZ\gear\consumables\data\log01.rvmat"}},{0.5,{"DZ\gear\consumables\data\log01_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\log01_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\log01_destruct.rvmat"}}};
 				};
 			};
@@ -405,20 +396,17 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Battery9V0";
 		descriptionShort = "$STR_CfgVehicles_Battery9V1";
 		model = "\dz\gear\consumables\9v_battery.p3d";
-		inventorySlot = "BatteryD";
-		armAction = "Disarm";
-		lootCategory = "Tools";
+		isMeleeWeapon = 1;
+		weight = 10;
+		absorbency = 0.8;
+		itemSize[] = {1,1};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 50;
 		varQuantityMin = 0.0;
 		varQuantityMax = 50;
 		varQuantityDestroyOnMin = 0;
-		isMeleeWeapon = 1;
-		itemSize[] = {1,1};
-		weight = 10;
-		absorbency = 0.8;
-		lootTag[] = {"Civilian","Work","Medic"};
+		inventorySlot = "BatteryD";
 		rotationFlags = 17;
 		class EnergyManager
 		{
@@ -447,7 +435,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\9v.rvmat"}},{0.7,{"DZ\gear\consumables\data\9v.rvmat"}},{0.5,{"DZ\gear\consumables\data\9v_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\9v_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\9v_destruct.rvmat"}}};
 				};
 			};
@@ -462,15 +450,24 @@ class CfgVehicles
 		overrideDrawArea = "8.0";
 		weight = 340;
 		itemSize[] = {4,3};
-		inventorySlot = "GasCanister";
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping"};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 20;
 		varQuantityMin = 0.0;
 		varQuantityMax = 20;
 		varQuantityDestroyOnMin = 0;
+		inventorySlot = "GasCanister";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 20;
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterLarge.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterLarge.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterLarge_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterLarge_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterLarge_destruct.rvmat"}}};
+				};
+			};
+		};
 		class EnergyManager
 		{
 			switchOnAtSpawn = 1;
@@ -482,17 +479,6 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterLarge.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterLarge.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterLarge_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterLarge_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterLarge_destruct.rvmat"}}};
-				};
-			};
-		};
 	};
 	class MediumGasCanister: Inventory_Base
 	{
@@ -503,15 +489,24 @@ class CfgVehicles
 		overrideDrawArea = "8.0";
 		weight = 220;
 		itemSize[] = {4,3};
-		inventorySlot = "GasCanister";
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping"};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 20;
 		varQuantityMin = 0.0;
 		varQuantityMax = 20;
 		varQuantityDestroyOnMin = 0;
+		inventorySlot = "GasCanister";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 20;
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterMedium.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterMedium.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterMedium_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterMedium_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterMedium_destruct.rvmat"}}};
+				};
+			};
+		};
 		class EnergyManager
 		{
 			switchOnAtSpawn = 1;
@@ -523,17 +518,6 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterMedium.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterMedium.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterMedium_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterMedium_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterMedium_destruct.rvmat"}}};
-				};
-			};
-		};
 	};
 	class SmallGasCanister: Inventory_Base
 	{
@@ -542,17 +526,26 @@ class CfgVehicles
 		descriptionShort = "$STR_cfgvehicles_portablegascanister1";
 		model = "\dz\gear\consumables\GasCannisterSmall.p3d";
 		overrideDrawArea = "8.0";
-		itemSize[] = {4,3};
 		weight = 160;
-		inventorySlot = "GasCanister";
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping"};
+		itemSize[] = {4,3};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 20;
 		varQuantityMin = 0.0;
 		varQuantityMax = 20;
 		varQuantityDestroyOnMin = 0;
+		inventorySlot = "GasCanister";
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 20;
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterSmall.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterSmall.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterSmall_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterSmall_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterSmall_destruct.rvmat"}}};
+				};
+			};
+		};
 		class EnergyManager
 		{
 			switchOnAtSpawn = 1;
@@ -564,17 +557,6 @@ class CfgVehicles
 			compatiblePlugTypes[] = {7};
 			convertEnergyToQuantity = 1;
 		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\LootGasCannisterSmall.rvmat"}},{0.7,{"DZ\gear\consumables\data\LootGasCannisterSmall.rvmat"}},{0.5,{"DZ\gear\consumables\data\LootGasCannisterSmall_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\LootGasCannisterSmall_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\LootGasCannisterSmall_destruct.rvmat"}}};
-				};
-			};
-		};
 	};
 	class ButaneCanister: Inventory_Base
 	{
@@ -585,17 +567,15 @@ class CfgVehicles
 		overrideDrawArea = "8.0";
 		weight = 120;
 		itemSize[] = {2,3};
-		inventorySlot = "ButaneTorchCanister";
 		quantityBar = 1;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping"};
+		inventorySlot = "ButaneTorchCanister";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\butane_canister.rvmat"}},{0.7,{"DZ\gear\consumables\data\butane_canister.rvmat"}},{0.5,{"DZ\gear\consumables\data\butane_canister_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\butane_canister_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\butane_canister_destruct.rvmat"}}};
 				};
 			};
@@ -609,12 +589,10 @@ class CfgVehicles
 		weight = 100;
 		itemSize[] = {2,3};
 		stackedUnit = "ml";
+		quantityBar = 1;
 		varQuantityInit = 100.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 100.0;
-		quantityBar = 1;
-		lootTag[] = {"Work"};
-		lootCategory = "Materials";
 		hiddenSelections[] = {"camo"};
 		class DamageSystem
 		{
@@ -622,7 +600,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\butane_canister.rvmat"}},{0.7,{"DZ\gear\consumables\data\butane_canister.rvmat"}},{0.5,{"DZ\gear\consumables\data\butane_canister_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\butane_canister_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\butane_canister_destruct.rvmat"}}};
 				};
 			};
@@ -649,9 +627,8 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Matchbox1";
 		model = "\dz\gear\consumables\Matchbox.p3d";
 		isMeleeWeapon = 1;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Kitchen","Camping","Work","Farm"};
 		itemSize[] = {1,1};
+		absorbency = 0.8;
 		weight = 0;
 		quantityBar = 1;
 		varQuantityInit = 100.0;
@@ -659,14 +636,13 @@ class CfgVehicles
 		varQuantityMax = 100.0;
 		varQuantityDestroyOnMin = 0;
 		destroyOnEmpty = 0;
-		absorbency = 0.8;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 80;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\matchbox.rvmat"}},{0.7,{"DZ\gear\consumables\data\matchbox.rvmat"}},{0.5,{"DZ\gear\consumables\data\matchbox_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\matchbox_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\matchbox_destruct.rvmat"}}};
 				};
 			};
@@ -699,18 +675,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_NailBox0";
 		descriptionShort = "$STR_CfgVehicles_NailBox1";
 		model = "\dz\gear\consumables\Nails_box.p3d";
-		itemSize[] = {1,1};
 		weight = 2540;
 		absorbency = 0.8;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping","Work","Farm","Forester"};
+		itemSize[] = {1,1};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 80;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\Box_of_Nails.rvmat"}},{0.7,{"DZ\gear\consumables\data\Box_of_Nails.rvmat"}},{0.5,{"DZ\gear\consumables\data\Box_of_Nails_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\Box_of_Nails_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\Box_of_Nails_destruct.rvmat"}}};
 				};
 			};
@@ -742,20 +716,17 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Roadflare1";
 		model = "\dz\gear\consumables\road_flare.p3d";
 		overrideDrawArea = "8.0";
-		armAction = "Disarm";
-		inventorySlot = "tripWireAttachment";
+		weight = 50;
+		absorbency = 0.5;
+		itemSize[] = {1,3};
 		stackedUnit = "w";
 		quantityBar = 1;
 		varQuantityInit = 20;
 		varQuantityMin = 0.0;
 		varQuantityMax = 20;
 		varQuantityDestroyOnMin = 0;
+		inventorySlot = "tripWireAttachment";
 		rotationFlags = 17;
-		itemSize[] = {1,3};
-		weight = 50;
-		absorbency = 0.5;
-		lootTag[] = {"Military_east","Military_west","Police"};
-		lootCategory = "Tools";
 		hiddenSelections[] = {"Burning","Burned_out","Pristine","All"};
 		hiddenSelectionsTextures[] = {"dz\gear\consumables\data\road_flare_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\gear\consumables\data\Road_flare.rvmat"};
@@ -839,7 +810,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Chemlight_ColorBase1";
 		model = "\dz\gear\consumables\Chemlight.p3d";
 		overrideDrawArea = "8.0";
-		rotationFlags = 17;
 		itemSize[] = {1,2};
 		weight = 30;
 		stackedUnit = "w";
@@ -849,8 +819,7 @@ class CfgVehicles
 		varQuantityMax = 100;
 		varQuantityDestroyOnMin = 0;
 		inventorySlot = "Chemlight";
-		lootTag[] = {"Military_east","Military_west","Firefighters","Police"};
-		lootCategory = "Materials";
+		rotationFlags = 17;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\gear\consumables\data\chemlight_ca.paa"};
 		class DamageSystem
@@ -859,7 +828,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\"""".rvmat"}},{0.7,{"DZ\gear\consumables\data\"""".rvmat"}},{0.5,{"DZ\gear\consumables\data\""""_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\""""_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\""""_destruct.rvmat"}}};
 				};
 			};
@@ -913,10 +882,9 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Pelt_Base0";
 		descriptionShort = "";
 		animClass = "NoFireClass";
-		lootCategory = "Crafted";
+		absorbency = 0.3;
 		repairableWithKits[] = {5,3};
 		repairCosts[] = {30.0,25.0};
-		absorbency = 0.3;
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -949,7 +917,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_wildboar.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_wildboar.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_wildboar_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_wildboar_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_wildboar_destruct.rvmat"}}};
 				};
 			};
@@ -960,8 +928,8 @@ class CfgVehicles
 		scope = 2;
 		descriptionShort = "$STR_CfgVehicles_RabbitPelt1";
 		model = "\dz\gear\consumables\Pelt_Rabbit.p3d";
-		itemSize[] = {3,2};
 		weight = 220;
+		itemSize[] = {3,2};
 		peltGain = 1;
 		class DamageSystem
 		{
@@ -969,7 +937,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_rabbit.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_rabbit.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_rabbit_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_rabbit_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_rabbit_destruct.rvmat"}}};
 				};
 			};
@@ -981,16 +949,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_CowPelt0";
 		descriptionShort = "$STR_CfgVehicles_CowPelt1";
 		model = "\dz\gear\consumables\Pelt_Cow.p3d";
-		peltGain = 12;
-		itemSize[] = {7,3};
 		weight = 960;
+		itemSize[] = {7,3};
+		peltGain = 12;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_cow.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_cow.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_cow_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_cow_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_cow_destruct.rvmat"}}};
 				};
 			};
@@ -1002,16 +970,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_PigPelt0";
 		descriptionShort = "$STR_CfgVehicles_PigPelt1";
 		model = "\dz\gear\consumables\Pelt_Pig.p3d";
-		peltGain = 6;
 		weight = 420;
 		itemSize[] = {5,3};
+		peltGain = 6;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_cow.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_cow.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_cow_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_cow_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_cow_destruct.rvmat"}}};
 				};
 			};
@@ -1023,16 +991,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_DeerPelt0";
 		descriptionShort = "$STR_CfgVehicles_DeerPelt1";
 		model = "\dz\gear\consumables\Pelt_Deer.p3d";
-		peltGain = 8;
-		itemSize[] = {6,3};
 		weight = 420;
+		itemSize[] = {6,3};
+		peltGain = 8;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_deer.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_deer.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_deer_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_deer_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_deer_destruct.rvmat"}}};
 				};
 			};
@@ -1044,16 +1012,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_GoatPelt0";
 		descriptionShort = "$STR_CfgVehicles_GoatPelt1";
 		model = "\dz\gear\consumables\Pelt_Goat.p3d";
-		peltGain = 4;
 		weight = 380;
 		itemSize[] = {5,3};
+		peltGain = 4;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_goat.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_goat.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_goat_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_goat_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_goat_destruct.rvmat"}}};
 				};
 			};
@@ -1062,18 +1030,19 @@ class CfgVehicles
 	class BearPelt: Pelt_Base
 	{
 		scope = 2;
+		displayName = "$STR_CfgVehicles_BearPelt0";
 		descriptionShort = "$STR_CfgVehicles_BearPelt1";
 		model = "\dz\gear\consumables\Pelt_Bear.p3d";
-		peltGain = 10;
 		weight = 1200;
 		itemSize[] = {8,4};
+		peltGain = 10;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_bear.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_bear.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_bear_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_bear_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_bear_destruct.rvmat"}}};
 				};
 			};
@@ -1085,16 +1054,16 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_WolfPelt0";
 		descriptionShort = "$STR_CfgVehicles_WolfPelt1";
 		model = "\dz\gear\consumables\Pelt_Wolf.p3d";
-		peltGain = 6;
 		weight = 1200;
 		itemSize[] = {5,3};
+		peltGain = 6;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_wolf.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_wolf.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_wolf_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_wolf_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_wolf_destruct.rvmat"}}};
 				};
 			};
@@ -1115,7 +1084,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_sheep.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_sheep.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_sheep_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_sheep_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_sheep_destruct.rvmat"}}};
 				};
 			};
@@ -1126,16 +1095,16 @@ class CfgVehicles
 		scope = 2;
 		descriptionShort = "$STR_CfgVehicles_MouflonPelt1";
 		model = "\dz\gear\consumables\Pelt_Mouflon.p3d";
-		peltGain = 10;
 		weight = 1200;
 		itemSize[] = {4,3};
+		peltGain = 10;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_sheep.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_sheep.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_sheep_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_sheep_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_sheep_destruct.rvmat"}}};
 				};
 			};
@@ -1146,16 +1115,16 @@ class CfgVehicles
 		scope = 2;
 		descriptionShort = "$STR_CfgVehicles_FoxPelt1";
 		model = "\dz\gear\consumables\Pelt_Fox.p3d";
-		peltGain = 2;
 		weight = 600;
 		itemSize[] = {4,3};
+		peltGain = 2;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pelt_fox.rvmat"}},{0.7,{"DZ\gear\consumables\data\pelt_fox.rvmat"}},{0.5,{"DZ\gear\consumables\data\pelt_fox_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pelt_fox_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pelt_fox_destruct.rvmat"}}};
 				};
 			};
@@ -1167,7 +1136,8 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_TannedLeather0";
 		descriptionShort = "$STR_CfgVehicles_TannedLeather1";
 		model = "\dz\gear\consumables\tanned_leather.p3d";
-		lootCategory = "Crafted";
+		weight = 500;
+		absorbency = 0.3;
 		itemSize[] = {5,2};
 		canBeSplit = 1;
 		varQuantityInit = 8.0;
@@ -1176,14 +1146,13 @@ class CfgVehicles
 		varQuantityDestroyOnMin = 1;
 		repairableWithKits[] = {5,3};
 		repairCosts[] = {30.0,25.0};
-		absorbency = 0.3;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\tanned_leather.rvmat"}},{0.7,{"DZ\gear\consumables\data\tanned_leather.rvmat"}},{0.5,{"DZ\gear\consumables\data\tanned_leather_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\tanned_leather_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\tanned_leather_destruct.rvmat"}}};
 				};
 			};
@@ -1213,18 +1182,16 @@ class CfgVehicles
 		model = "\dz\gear\consumables\bait_hook.p3d";
 		rotationFlags = 12;
 		weight = 1;
-		itemSize[] = {2,2};
 		absorbency = 0.8;
+		itemSize[] = {1,1};
 		inventorySlot = "Hook";
-		lootTag[] = {"Fishing","Farm"};
-		lootCategory = "Materials";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\bait.rvmat"}},{0.7,{"DZ\gear\consumables\data\bait.rvmat"}},{0.5,{"DZ\gear\consumables\data\bait_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\bait_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\bait_destruct.rvmat"}}};
 				};
 			};
@@ -1236,19 +1203,18 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_BoneHook0";
 		descriptionShort = "$STR_CfgVehicles_BoneHook1";
 		model = "\dz\gear\crafting\bone_hook.p3d";
-		rotationFlags = 17;
-		itemSize[] = {2,2};
 		weight = 1;
 		absorbency = 0.8;
+		itemSize[] = {1,1};
 		inventorySlot = "Hook";
-		lootCategory = "Crafted";
+		rotationFlags = 17;
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 10;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\bone_hook.rvmat"}},{0.7,{"DZ\gear\consumables\data\bone_hook.rvmat"}},{0.5,{"DZ\gear\consumables\data\bone_hook_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\bone_hook_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\bone_hook_destruct.rvmat"}}};
 				};
 			};
@@ -1259,15 +1225,14 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Bark_ColorBase0";
 		descriptionShort = "$STR_CfgVehicles_Bark_ColorBase1";
 		model = "\dz\gear\consumables\oak_bark.p3d";
-		itemSize[] = {1,4};
 		weight = 20;
 		absorbency = 0.3;
+		itemSize[] = {1,4};
 		canBeSplit = 1;
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 8.0;
 		varQuantityDestroyOnMin = 1;
-		lootCategory = "Materials";
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1298,7 +1263,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 10;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\oak_bark.rvmat"}},{0.7,{"DZ\gear\consumables\data\oak_bark.rvmat"}},{0.5,{"DZ\gear\consumables\data\oak_bark_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\oak_bark_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\oak_bark_destruct.rvmat"}}};
 				};
 			};
@@ -1317,7 +1282,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 10;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\birch_bark.rvmat"}},{0.7,{"DZ\gear\consumables\data\birch_bark.rvmat"}},{0.5,{"DZ\gear\consumables\data\birch_bark_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\birch_bark_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\birch_bark_destruct.rvmat"}}};
 				};
 			};
@@ -1329,26 +1294,25 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Nail0";
 		descriptionShort = "$STR_CfgVehicles_Nail1";
 		model = "\dz\gear\consumables\Nails_loose_10.p3d";
-		itemSize[] = {1,1};
 		weight = 36.28;
+		itemSize[] = {1,1};
 		canBeSplit = 1;
 		varQuantityInit = 70.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 99.0;
 		varQuantityDestroyOnMin = 1;
-		lootCategory = "Crafted";
-		inventorySlot[] = {"Material_Nails","Material_L1_Nails","Material_L1W1_Nails","Material_L1W2_Nails","Material_L1W3_Nails","Material_L2_Nails","Material_L2W1_Nails","Material_L2W2_Nails","Material_L2W3_Nails","Material_L3_Nails","Material_L3W1_Nails","Material_L3W2_Nails","Material_L3W3_Nails"};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 80;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\Pile of Nails.rvmat"}},{0.7,{"DZ\gear\consumables\data\Pile of Nails.rvmat"}},{0.5,{"DZ\gear\consumables\data\Pile of Nails_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\Pile of Nails_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\Pile of Nails_destruct.rvmat"}}};
 				};
 			};
 		};
+		inventorySlot[] = {"Material_Nails","Material_L1_Nails","Material_L1W1_Nails","Material_L1W2_Nails","Material_L1W3_Nails","Material_L2_Nails","Material_L2W1_Nails","Material_L2W2_Nails","Material_L2W3_Nails","Material_L3_Nails","Material_L3W1_Nails","Material_L3W2_Nails","Material_L3W3_Nails"};
 	};
 	class Bone: Inventory_Base
 	{
@@ -1364,14 +1328,13 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 10.0;
 		varQuantityDestroyOnMin = 1;
-		lootCategory = "Materials";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\pile_of_bones.rvmat"}},{0.7,{"DZ\gear\consumables\data\pile_of_bones.rvmat"}},{0.5,{"DZ\gear\consumables\data\pile_of_bones_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\pile_of_bones_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\pile_of_bones_destruct.rvmat"}}};
 				};
 			};
@@ -1388,25 +1351,19 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_Bait0";
 		descriptionShort = "$STR_CfgVehicles_Bait1";
 		model = "\dz\gear\consumables\bait_worm_pinned.p3d";
-		lootCategory = "Crafted";
-		rotationFlags = 17;
-		itemSize[] = {1,2};
 		weight = 15;
 		absorbency = 0.8;
+		itemSize[] = {1,1};
 		inventorySlot = "Bait";
-		armAction = "Disarm";
-		class Damage
-		{
-			tex[] = {};
-			mat[] = {"DZ\gear\consumables\data\bait.rvmat","DZ\gear\consumables\data\bait_damage.rvmat","DZ\gear\consumables\data\bait_destruct.rvmat"};
-		};
+		rotationFlags = 17;
+		hookType = "Hook";
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\bait.rvmat"}},{0.7,{"DZ\gear\consumables\data\bait.rvmat"}},{0.5,{"DZ\gear\consumables\data\bait_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\bait_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\bait_destruct.rvmat"}}};
 				};
 			};
@@ -1427,17 +1384,22 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_BoneBait0";
 		descriptionShort = "$STR_CfgVehicles_BoneBait1";
 		model = "\dz\gear\crafting\bone_bait.p3d";
-		lootCategory = "Crafted";
-		inventorySlot = "Bait";
-		armAction = "Disarm";
-		itemSize[] = {1,2};
-		rotationFlags = 17;
 		weight = 15;
 		absorbency = 0.8;
-		class Damage
+		itemSize[] = {1,1};
+		inventorySlot = "Bait";
+		rotationFlags = 17;
+		hookType = "BoneHook";
+		class DamageSystem
 		{
-			tex[] = {};
-			mat[] = {"DZ\data\data\default.rvmat","DZ\characters\data\Generic_damage.rvmat","DZ\characters\data\Generic_destruct.rvmat"};
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 10;
+					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\bone_hook.rvmat"}},{0.7,{"DZ\gear\crafting\data\bone_hook.rvmat"}},{0.5,{"DZ\gear\crafting\data\bone_hook_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\bone_hook_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\bone_hook_destruct.rvmat"}}};
+				};
+			};
 		};
 		class AnimationSources
 		{
@@ -1460,8 +1422,6 @@ class CfgVehicles
 		itemSize[] = {3,5};
 		stackedUnit = "g";
 		quantityBar = 1;
-		lootCategory = "Materials";
-		lootTag[] = {"Farm","Work"};
 		inventorySlot = "Lime";
 		varQuantityInit = 5000.0;
 		varQuantityMin = 0.0;
@@ -1512,17 +1472,26 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_Netting1";
 		model = "\dz\gear\consumables\Netting.p3d";
 		animClass = "NoFireClass";
-		rotationFlags = 17;
-		absorbency = 0.3;
-		itemSize[] = {2,3};
 		weight = 400;
+		itemSize[] = {2,3};
+		absorbency = 0.3;
 		canBeSplit = 1;
 		varQuantityInit = 1.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 4.0;
 		varQuantityDestroyOnMin = 1;
-		lootCategory = "Tools";
-		lootTag[] = {"Fishing"};
+		rotationFlags = 17;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 200;
+					healthLevels[] = {{1.0,{"DZ\gear\consumables\data\netting.rvmat"}},{0.7,{"DZ\gear\consumables\data\netting.rvmat"}},{0.5,{"DZ\gear\consumables\data\netting_damage.rvmat"}},{0.3,{"DZ\gear\consumables\data\netting_damage.rvmat"}},{0.0,{"DZ\gear\consumables\data\netting_destruct.rvmat"}}};
+				};
+			};
+		};
 	};
 	class WoodenPlank: Inventory_Base
 	{
@@ -1538,9 +1507,18 @@ class CfgVehicles
 		varQuantityMax = 20.0;
 		varQuantityDestroyOnMin = 1;
 		varStackMax = 10.0;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping","Work","Farm","Forester"};
 		inventorySlot[] = {"Material_WoodenPlanks","Material_L1_WoodenPlanks","Material_L1W1_WoodenPlanks","Material_L1W2_WoodenPlanks","Material_L1W3_WoodenPlanks","Material_L2_WoodenPlanks","Material_L2W1_WoodenPlanks","Material_L2W2_WoodenPlanks","Material_L2W3_WoodenPlanks","Material_L3_WoodenPlanks","Material_L3W1_WoodenPlanks","Material_L3W2_WoodenPlanks","Material_L3W3_WoodenPlanks"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"dz\gear\consumables\data\pile_of_planks.rvmat"}},{0.7,{"dz\gear\consumables\data\pile_of_planks.rvmat"}},{0.5,{"dz\gear\consumables\data\pile_of_planks_damage.rvmat"}},{0.3,{"dz\gear\consumables\data\pile_of_planks_damage.rvmat"}},{0.0,{"dz\gear\consumables\data\pile_of_planks_destruct.rvmat"}}};
+				};
+			};
+		};
 		class AnimEvents
 		{
 			class SoundWeapon
@@ -1564,18 +1542,29 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_PileOfWoodenPlanks0";
 		descriptionShort = "$STR_CfgVehicles_PileOfWoodenPlanks1";
 		model = "\dz\gear\consumables\pile_of_planks.p3d";
+		weight = 5000;
+		itemSize[] = {7,20};
 		canBeSplit = 0;
 		varQuantityInit = 84.0;
 		varQuantityMin = 0.0;
 		varQuantityMax = 84.0;
 		varQuantityDestroyOnMin = 1;
-		itemSize[] = {7,20};
-		weight = 5000;
+		rotationFlags = 256;
 		physLayer = "item_large";
 		useEntityHierarchy = "true";
-		rotationFlags = 256;
 		hiddenSelectionsTextures[] = {};
 		hiddenSelectionsMaterials[] = {};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"dz\gear\consumables\data\pile_of_planks.rvmat"}},{0.7,{"dz\gear\consumables\data\pile_of_planks.rvmat"}},{0.5,{"dz\gear\consumables\data\pile_of_planks_damage.rvmat"}},{0.3,{"dz\gear\consumables\data\pile_of_planks_damage.rvmat"}},{0.0,{"dz\gear\consumables\data\pile_of_planks_destruct.rvmat"}}};
+				};
+			};
+		};
 		class AnimationSources
 		{
 			class stage_1
@@ -1605,7 +1594,7 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_MetalPlate1";
 		model = "\dz\gear\consumables\Single_Metal_Sheet.p3d";
 		rotationFlags = 34;
-		weight = 400;
+		weight = 1200;
 		itemSize[] = {10,10};
 		itemBehaviour = 0;
 		canBeSplit = 1;
@@ -1614,9 +1603,18 @@ class CfgVehicles
 		varQuantityMax = 20.0;
 		varQuantityDestroyOnMin = 1;
 		varStackMax = 10.0;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping","Work","Farm","Forester"};
 		inventorySlot[] = {"Material_MetalSheets","Material_L3_MetalSheets","Material_L1W1_MetalSheets","Material_L1W2_MetalSheets","Material_L1W3_MetalSheets","Material_L2W1_MetalSheets","Material_L2W2_MetalSheets","Material_L2W3_MetalSheets","Material_L3W1_MetalSheets","Material_L3W2_MetalSheets","Material_L3W3_MetalSheets"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"dz\gear\consumables\data\metalsheets.rvmat"}},{0.7,{"dz\gear\consumables\data\metalsheets.rvmat"}},{0.5,{"dz\gear\consumables\data\metalsheets_damage.rvmat"}},{0.3,{"dz\gear\consumables\data\metalsheets_damage.rvmat"}},{0.0,{"dz\gear\consumables\data\metalsheets_destruct.rvmat"}}};
+				};
+			};
+		};
 	};
 	class WoodenLog: Inventory_Base
 	{
@@ -1624,7 +1622,7 @@ class CfgVehicles
 		displayName = "$STR_CfgVehicles_WoodenLog0";
 		descriptionShort = "$STR_CfgVehicles_WoodenLog1";
 		model = "\dz\gear\camping\wooden_log.p3d";
-		weight = 400;
+		weight = 20000;
 		itemSize[] = {3,11};
 		varQuantityDestroyOnMin = 1;
 		itemBehaviour = 0;
@@ -1633,9 +1631,18 @@ class CfgVehicles
 		varQuantityMin = 0.0;
 		varQuantityMax = 4.0;
 		varStackMax = 1.0;
-		lootCategory = "Tools";
-		lootTag[] = {"Civilian","Camping","Work","Farm","Forester"};
 		inventorySlot[] = {"Material_WoodenLogs","Material_L1_WoodenLogs","Material_L2_WoodenLogs","Material_L3_WoodenLogs"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 500;
+					healthLevels[] = {{1.0,{"dz\gear\camping\data\wooden_log.rvmat"}},{0.7,{"dz\gear\camping\data\wooden_log.rvmat"}},{0.5,{"dz\gear\camping\data\wooden_log_damage.rvmat"}},{0.3,{"dz\gear\camping\data\wooden_log_damage.rvmat"}},{0.0,{"dz\gear\camping\data\wooden_log_destruct.rvmat"}}};
+				};
+			};
+		};
 		class AnimEvents
 		{
 			class SoundWeapon

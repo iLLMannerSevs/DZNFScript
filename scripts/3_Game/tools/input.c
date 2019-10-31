@@ -94,8 +94,13 @@ class Input
 	
 	//! Enable mouse and keyboard (on consoles)
 	proto native void	EnableMouseAndKeyboard(bool enable);
-	//! return state of support mouse and keyboard (on consoles)
+	//! @return state of support mouse and keyboard (on consoles)
 	proto native bool	IsEnabledMouseAndKeyboard();
+	/*!
+	@return state of support mouse and keyboard. If client playing on server 
+	where mouse and keyboard is disabled, then return false. (on consoles)
+	*/
+	proto native bool	IsEnabledMouseAndKeyboardEvenOnServer();
 	
 	//! gets currently selected profile
 	proto native int	GetCurrentProfile();
@@ -150,6 +155,13 @@ class Input
 			g_Game.DeleteGamepadDisconnectMenu();
 		}
 		#endif
+		
+		#ifdef PLATFORM_XBOX
+		if( IsEnabledMouseAndKeyboardEvenOnServer() && gamepad == g_Game.GetPreviousGamepad() )
+		{
+			SelectActiveGamepad(g_Game.GetPreviousGamepad());
+		}
+		#endif
 	}
 	
 	//! callback that is fired when gamepad is disconnected
@@ -170,7 +182,8 @@ class Input
 				}
 				
 				#ifdef PLATFORM_XBOX
-				IdentifyGamepad( GetEnterButton() );
+				if( !IsEnabledMouseAndKeyboardEvenOnServer() )
+					IdentifyGamepad( GetEnterButton() );
 				#endif
 			}
 		}
@@ -186,7 +199,7 @@ class Input
 			g_Game.DeleteGamepadDisconnectMenu();
 			SelectActiveGamepad( gamepad );
 			g_Game.SelectUser( gamepad );
-			
+			g_Game.SetPreviousGamepad( gamepad );
 			if( state == DayZLoadState.MAIN_MENU_START || state == DayZLoadState.MAIN_MENU_USER_SELECT )
 			{
 				if( GetGame().GetMission() )

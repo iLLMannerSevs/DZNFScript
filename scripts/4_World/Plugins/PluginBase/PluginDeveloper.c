@@ -453,7 +453,7 @@ class PluginDeveloper extends PluginBase
 			else if ( g_Game.GetUIManager().IsMenuOpen(MENU_SCRIPTCONSOLE) )
 			{
 				g_Game.GetUIManager().Back();
-				GetGame().GetMission().PlayerControlEnable();
+				GetGame().GetMission().PlayerControlEnable(true);
 			}
 		}
 	}

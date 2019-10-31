@@ -143,8 +143,8 @@ class WeaponAttachMagazine extends WeaponStateBase
 		m_fsm.AddTransition(new WeaponTransition(   m_start, __ms_, m_attach));
 		m_fsm.AddTransition(new WeaponTransition(   m_start, __so_, m_eject));
 		m_fsm.AddTransition(new WeaponTransition(   m_eject, __ms_, m_attach));
-		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_chamber, NULL, new GuardAnd(new WeaponGuardChamberEmpty(m_weapon), new WeaponGuardHasAmmo(m_weapon)))); // when opened, there is no __be_ event
-		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_onCK, NULL, new GuardAnd(new WeaponGuardChamberEmpty(m_weapon), new GuardNot(new WeaponGuardHasAmmo(m_weapon)))));
+		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_chamber, NULL, new GuardAnd(new WeaponGuardCurrentChamberEmpty(m_weapon), new WeaponGuardHasAmmo(m_weapon)))); // when opened, there is no __be_ event
+		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_onCK, NULL, new GuardAnd(new WeaponGuardCurrentChamberEmpty(m_weapon), new GuardNot(new WeaponGuardHasAmmo(m_weapon)))));
 		m_fsm.AddTransition(new WeaponTransition(  m_attach, _fin_, NULL));
 		m_fsm.AddTransition(new WeaponTransition( m_chamber, _fin_, NULL));
 		m_fsm.AddTransition(new WeaponTransition( m_onCK, _fin_, NULL));

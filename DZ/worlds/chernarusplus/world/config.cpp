@@ -2,7 +2,7 @@
 //DeRap: worlds_chernarusplus\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:10 2019 : 'file' last modified on Tue Aug 20 04:56:48 2019
+//'now' is Thu Oct 31 18:25:01 2019 : 'file' last modified on Thu Oct 24 20:16:31 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -171,6 +171,12 @@ class CfgWorlds
 		};
 		longitude = 30;
 		latitude = -56;
+		mapDisplayNameKey = "#STR_CfgVehicles_ChernarusMap0";
+		mapDescriptionKey = "#STR_CfgVehicles_ChernarusMap1";
+		mapTextureClosed = "dz\gear\navigation\data\map_chernarus_co.paa";
+		mapTextureOpened = "dz\structures\signs\tourist\data\karta_co.paa";
+		mapTextureLegend = "dz\structures\signs\tourist\data\karta_side_co.paa";
+		userMapPath = "dz\gear\navigation\data\usermap";
 		class OutsideTerrain
 		{
 			satellite = "DZ\worlds\chernarusplus\data\outside_sat_co.paa";

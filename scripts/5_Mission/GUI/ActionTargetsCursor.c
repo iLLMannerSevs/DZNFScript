@@ -925,10 +925,10 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		widget = m_Root.FindAnyWidget(actionWidget);
 		
 #ifdef PLATFORM_XBOX
-		ShowXboxHidePCIcons( actionWidget, true );
+		ShowXboxHidePCIcons( actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 #else
 #ifdef PLATFORM_PS4
-		ShowXboxHidePCIcons( actionWidget, true );
+		ShowXboxHidePCIcons( actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 #else
 		ShowXboxHidePCIcons( actionWidget, false );
 #endif
@@ -1008,9 +1008,6 @@ class ActionTargetsCursor extends ScriptedWidgetEventHandler
 		// uses text in floating widget
 		iconWidget.Show(false);
 		textWidget.SetText(keyName);
-#ifdef X1_TODO_TEMP_GUI
-		textWidget.SetText("X");
-#endif
 		//frameWidget.Show(true);
 		textWidget.Show(true);
 	}

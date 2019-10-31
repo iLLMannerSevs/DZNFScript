@@ -29,28 +29,4 @@ class ToolBase extends ItemBase
 			break;
 		}
 	}
-	
-	void SoundHardTreeFallingPlay()
-	{
-		EffectSound sound =	SEffectManager.PlaySound( "hardTreeFall_SoundSet", GetPosition() );
-		sound.SetSoundAutodestroy( true );
-	}
-		
-	void SoundSoftTreeFallingPlay()
-	{
-		EffectSound sound =	SEffectManager.PlaySound( "softTreeFall_SoundSet", GetPosition() );
-		sound.SetSoundAutodestroy( true );
-	}
-		
-	void SoundHardBushFallingPlay()
-	{
-		EffectSound sound =	SEffectManager.PlaySound( "hardBushFall_SoundSet", GetPosition() );
-		sound.SetSoundAutodestroy( true );
-	}
-		
-	void SoundSoftBushFallingPlay()
-	{
-		EffectSound sound =	SEffectManager.PlaySound( "softBushFall_SoundSet", GetPosition() );
-		sound.SetSoundAutodestroy( true );
-	}
 }

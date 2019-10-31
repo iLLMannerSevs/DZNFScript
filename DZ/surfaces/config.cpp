@@ -2,7 +2,7 @@
 //DeRap: surfaces\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:35 2019 : 'file' last modified on Sat Jul 20 10:05:26 2019
+//'now' is Thu Oct 31 18:24:22 2019 : 'file' last modified on Mon Sep 02 16:23:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -395,6 +395,9 @@ class CfgSurfaces
 		friction = 0.8;
 		restitution = 0.3;
 		footDamage = 0.023;
+		isDigable = 0;
+		isFertile = 0;
+		chanceForCatch = 0.0;
 		class Visible
 		{
 			prone = 1;
@@ -409,6 +412,9 @@ class CfgSurfaces
 		friction = 0.5;
 		restitution = 0.1;
 		footDamage = 0.023;
+		isDigable = 1;
+		isFertile = 1;
+		chanceForCatch = 1.0;
 		class Visible
 		{
 			prone = 1;
@@ -428,6 +434,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.8;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class cp_concrete2: DZ_SurfacesExt
@@ -442,6 +450,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.8;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class cp_dirt: DZ_SurfacesExt
@@ -456,6 +466,8 @@ class CfgSurfaces
 		footDamage = 0.058;
 		audibility = 0.7;
 		impact = "Hit_Dirt";
+		isDigable = 1;
+		isFertile = 1;
 		vpSurface = "Dirt";
 	};
 	class cp_broadleaf_dense1: DZ_SurfacesExt
@@ -476,6 +488,8 @@ class CfgSurfaces
 			stand = 0.6;
 		};
 		impact = "Hit_Foliage";
+		isDigable = 1;
+		isFertile = 1;
 		vpSurface = "Forest";
 	};
 	class cp_broadleaf_dense2: cp_broadleaf_dense1
@@ -511,6 +525,8 @@ class CfgSurfaces
 			stand = 0.5;
 		};
 		impact = "Hit_Foliage";
+		isDigable = 1;
+		isFertile = 1;
 		vpSurface = "Forest";
 	};
 	class cp_conifer_common2: cp_conifer_common1
@@ -546,6 +562,8 @@ class CfgSurfaces
 			stand = 0.8;
 		};
 		impact = "Hit_Grass";
+		isDigable = 1;
+		isFertile = 1;
 		vpSurface = "Grass";
 	};
 	class cp_grass_tall: DZ_SurfacesExt
@@ -566,6 +584,8 @@ class CfgSurfaces
 			stand = 0.75;
 		};
 		impact = "Hit_Grass";
+		isDigable = 1;
+		isFertile = 1;
 		vpSurface = "Grass";
 	};
 	class cp_gravel: DZ_SurfacesExt
@@ -580,6 +600,8 @@ class CfgSurfaces
 		audibility = 1.2;
 		footDamage = 0.234;
 		impact = "Hit_Gravel";
+		isDigable = 1;
+		isFertile = 0;
 		vpSurface = "Gravel";
 	};
 	class cp_rock: DZ_SurfacesExt
@@ -594,6 +616,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.502;
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class asphalt_ext: DZ_SurfacesExt
 	{
@@ -606,6 +630,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.7;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class asphalt_int: DZ_SurfacesInt
@@ -619,6 +645,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.7;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class asphalt_destroyed_ext: DZ_SurfacesExt
@@ -632,6 +660,8 @@ class CfgSurfaces
 		footDamage = 0.234;
 		audibility = 0.9;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class asphalt_destroyed_int: DZ_SurfacesInt
@@ -645,6 +675,8 @@ class CfgSurfaces
 		footDamage = 0.234;
 		audibility = 0.9;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class concrete_ext: DZ_SurfacesExt
@@ -658,6 +690,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.8;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class concrete_int: DZ_SurfacesInt
@@ -671,6 +705,8 @@ class CfgSurfaces
 		footDamage = 0.117;
 		audibility = 0.8;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class stone_ext: DZ_SurfacesExt
@@ -684,6 +720,8 @@ class CfgSurfaces
 		footDamage = 0.502;
 		audibility = 0.7;
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class stone_int: DZ_SurfacesInt
@@ -697,6 +735,8 @@ class CfgSurfaces
 		footDamage = 0.502;
 		audibility = 0.7;
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class gravel_large_ext: DZ_SurfacesExt
@@ -716,6 +756,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Gravel";
 	};
 	class gravel_large_int: DZ_SurfacesInt
@@ -735,6 +777,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Gravel";
 	};
 	class gravel_small_ext: DZ_SurfacesExt
@@ -754,6 +798,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Gravel";
 	};
 	class gravel_small_int: DZ_SurfacesInt
@@ -773,6 +819,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Gravel";
 	};
 	class sand_ext: DZ_SurfacesExt
@@ -786,6 +834,8 @@ class CfgSurfaces
 		footDamage = 0.058;
 		audibility = 0.4;
 		impact = "Hit_Sand";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class sand_int: DZ_SurfacesInt
 	{
@@ -798,6 +848,8 @@ class CfgSurfaces
 		footDamage = 0.058;
 		audibility = 0.4;
 		impact = "Hit_Sand";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class dirt_ext: DZ_SurfacesExt
 	{
@@ -810,6 +862,8 @@ class CfgSurfaces
 		footDamage = 0.058;
 		audibility = 0.4;
 		impact = "Hit_Dirt";
+		isDigable = 1;
+		isFertile = 0;
 		vpSurface = "Dirt";
 	};
 	class dirt_int: DZ_SurfacesInt
@@ -823,6 +877,8 @@ class CfgSurfaces
 		footDamage = 0.058;
 		audibility = 0.4;
 		impact = "Hit_Dirt";
+		isDigable = 1;
+		isFertile = 0;
 		vpSurface = "Dirt";
 	};
 	class rubble_large_ext: DZ_SurfacesExt
@@ -842,6 +898,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class rubble_large_int: DZ_SurfacesInt
 	{
@@ -860,6 +918,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class rubble_small_ext: DZ_SurfacesExt
 	{
@@ -878,6 +938,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class rubble_small_int: DZ_SurfacesInt
 	{
@@ -896,6 +958,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Gravel";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class trash_ext: DZ_SurfacesExt
 	{
@@ -914,6 +978,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Metal";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class trash_int: DZ_SurfacesInt
 	{
@@ -932,6 +998,8 @@ class CfgSurfaces
 			stand = 1;
 		};
 		impact = "Hit_Metal";
+		isDigable = 1;
+		isFertile = 0;
 	};
 	class grass_dry_ext: DZ_SurfacesExt
 	{
@@ -950,6 +1018,8 @@ class CfgSurfaces
 			stand = 0.8;
 		};
 		impact = "Hit_Glass";
+		isDigable = 1;
+		isFertile = 0;
 		vpSurface = "Grass";
 	};
 	class grass_dry_int: DZ_SurfacesInt
@@ -969,6 +1039,8 @@ class CfgSurfaces
 			stand = 0.8;
 		};
 		impact = "Hit_Glass";
+		isDigable = 1;
+		isFertile = 0;
 		vpSurface = "Grass";
 	};
 	class metal_thick_ext: DZ_SurfacesExt
@@ -982,6 +1054,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_thick_int: DZ_SurfacesInt
 	{
@@ -994,6 +1068,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_thin_ext: DZ_SurfacesExt
 	{
@@ -1006,6 +1082,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_thin_int: DZ_SurfacesInt
 	{
@@ -1018,6 +1096,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_thin_mesh_ext: DZ_SurfacesExt
 	{
@@ -1030,6 +1110,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_thin_mesh_int: DZ_SurfacesInt
 	{
@@ -1042,6 +1124,8 @@ class CfgSurfaces
 		audibility = 1.0;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class asphalt_felt_ext: DZ_SurfacesExt
 	{
@@ -1054,6 +1138,8 @@ class CfgSurfaces
 		audibility = 0.9;
 		footDamage = 0.058;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class asphalt_felt_int: DZ_SurfacesInt
@@ -1067,6 +1153,8 @@ class CfgSurfaces
 		audibility = 0.9;
 		footDamage = 0.058;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 		vpSurface = "Asphalt";
 	};
 	class ceramic_tiles_ext: DZ_SurfacesExt
@@ -1080,6 +1168,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.058;
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class ceramic_tiles_int: DZ_SurfacesInt
 	{
@@ -1092,6 +1182,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.058;
 		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class ceramic_tiles_roof_ext: DZ_SurfacesExt
 	{
@@ -1103,6 +1195,9 @@ class CfgSurfaces
 		character = "Empty";
 		audibility = 1.0;
 		footDamage = 0.058;
+		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class ceramic_tiles_roof_int: DZ_SurfacesInt
 	{
@@ -1114,6 +1209,9 @@ class CfgSurfaces
 		character = "Empty";
 		audibility = 1.0;
 		footDamage = 0.058;
+		impact = "Hit_Gravel";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class lino_ext: DZ_SurfacesExt
 	{
@@ -1126,6 +1224,8 @@ class CfgSurfaces
 		audibility = 0.4;
 		footDamage = 0.023;
 		impact = "Hit_Rubber";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class lino_int: DZ_SurfacesInt
 	{
@@ -1138,6 +1238,8 @@ class CfgSurfaces
 		audibility = 0.4;
 		footDamage = 0.023;
 		impact = "Hit_Rubber";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class textile_carpet_ext: DZ_SurfacesExt
 	{
@@ -1150,6 +1252,8 @@ class CfgSurfaces
 		audibility = 0.4;
 		footDamage = 0.058;
 		impact = "Hit_Textile";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class textile_carpet_int: DZ_SurfacesInt
 	{
@@ -1162,6 +1266,8 @@ class CfgSurfaces
 		audibility = 0.4;
 		footDamage = 0.058;
 		impact = "Hit_Textile";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_parquet_ext: DZ_SurfacesExt
 	{
@@ -1174,6 +1280,8 @@ class CfgSurfaces
 		audibility = 0.4;
 		footDamage = 0.023;
 		impact = "Hit_Wood";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_parquet_int: DZ_SurfacesInt
 	{
@@ -1186,6 +1294,8 @@ class CfgSurfaces
 		audibility = 0.5;
 		footDamage = 0.023;
 		impact = "Hit_Wood";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_planks_ext: DZ_SurfacesExt
 	{
@@ -1198,6 +1308,8 @@ class CfgSurfaces
 		impact = "Hit_Wood";
 		audibility = 0.6;
 		footDamage = 0.023;
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_planks_int: DZ_SurfacesInt
 	{
@@ -1210,6 +1322,8 @@ class CfgSurfaces
 		audibility = 0.6;
 		footDamage = 0.023;
 		impact = "Hit_Wood";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class concrete_stairs_ext: DZ_SurfacesExt
 	{
@@ -1223,6 +1337,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.117;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class concrete_stairs_int: DZ_SurfacesInt
 	{
@@ -1236,6 +1352,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.117;
 		impact = "Hit_Concrete";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_stairs_ext: DZ_SurfacesExt
 	{
@@ -1249,6 +1367,8 @@ class CfgSurfaces
 		audibility = 0.9;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class metal_stairs_int: DZ_SurfacesInt
 	{
@@ -1262,6 +1382,8 @@ class CfgSurfaces
 		audibility = 0.9;
 		footDamage = 0.058;
 		impact = "Hit_Metal";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_planks_stairs_ext: DZ_SurfacesExt
 	{
@@ -1275,6 +1397,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.058;
 		impact = "Hit_Wood";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class wood_planks_stairs_int: DZ_SurfacesInt
 	{
@@ -1288,6 +1412,8 @@ class CfgSurfaces
 		audibility = 0.7;
 		footDamage = 0.058;
 		impact = "Hit_Wood";
+		isDigable = 0;
+		isFertile = 0;
 	};
 	class fresh_water_ext: DZ_SurfacesExt
 	{
@@ -1299,6 +1425,8 @@ class CfgSurfaces
 		soundEnviron = "water";
 		character = "Empty";
 		impact = "Hit_Water";
+		isDigable = 0;
+		isFertile = 0;
 		audibility = 0.7;
 	};
 	class fresh_water_int: DZ_SurfacesInt
@@ -1311,6 +1439,8 @@ class CfgSurfaces
 		soundEnviron = "water";
 		character = "Empty";
 		impact = "Hit_Water";
+		isDigable = 0;
+		isFertile = 0;
 		audibility = 0.7;
 	};
 };

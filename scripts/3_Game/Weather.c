@@ -114,201 +114,22 @@ class WeatherPhenomenon
 
 	bool OnBeforeChange( float change, float time )
 	{
+		// check if mission forces use of custom weather
 		Weather weather = g_Game.GetWeather();
 		
 		if ( weather.GetMissionWeather() )
 			return false;
 		
-		float rainMin;
-		float rainMax;
-		float rainTime;
-		float rainTimeDur;
+		// check for active worlddata with custom onbeforechange behaviour
+		Mission currentMission = g_Game.GetMission();
 
-		float rainActual = weather.GetRain().GetActual();
-		
-		float overcastActual = weather.GetOvercast().GetActual();
-		float overcastForecast = weather.GetOvercast().GetForecast();
-		float overcastNextChange = weather.GetOvercast().GetNextChange();
-		
-		float overcastInverted = 1.0 - overcastActual;
-
-		weather.SetRainThresholds( 0.75, 1.0, 30 );
-		weather.SetWindMaximumSpeed( 30 );
-
-		switch( GetType() )
+		if ( currentMission )
 		{
-			case EWeatherPhenomenon.OVERCAST:
-				Print( "COMPUTING NEW OVERCAST" );
-
-				float rangeMin = 0.15;
-				float rangeHigh = 0.85;
-			
-				float timeChangeLow = 1800.0;
-				float timeChangeMid = 1.5 * timeChangeLow;
-				float timeChangeHigh = 2 * timeChangeLow;
-
-				float timeRange = timeChangeLow;
-			
-				float overcastMid = 0.5;
-				float overcastRange = 0.1;
-
-				float rand = Math.RandomFloatInclusive( 0.0, 1.0 );
-
-				if ( rand > rangeMin && rand < rangeHigh )
-				{
-					overcastMid = 0.5;
-					overcastRange = 0.2;
-				
-					weather.SetWindFunctionParams( 0.1, 0.4, 30 );
-
-					//m_clrCounter += 0.1;
-					//m_badCounter -= 0.1;
-				}
-				else if ( rand <= rangeMin )
-				{
-					overcastMid = 0.25;
-					overcastRange = 0.12;
-				
-					weather.SetWindFunctionParams( 0.02, 0.2, 30 );
-
-					if ( GetActual() > rangeHigh )
-					{
-						timeRange = timeChangeHigh;
-						weather.SetWindFunctionParams( 0.2, 0.6, 40 );
-					}
-					else if ( GetActual() > rangeMin )
-					{
-						timeRange = timeChangeMid;
-						weather.SetWindFunctionParams( 0.1, 0.4, 30 );
-					}
-					else
-					{
-						timeRange = timeChangeLow;
-						weather.SetWindFunctionParams( 0.02, 0.1, 20 );
-					}
-
-					//m_clrCounter -= 0.1;
-					//m_badCounter -= 0.1;
-				}
-				else
-				{
-					overcastMid = 0.8;
-					overcastRange = 0.2;
-
-					if ( GetActual() < rangeMin )
-					{
-						timeRange = timeChangeHigh;
-						weather.SetWindFunctionParams( 0.2, 0.8, 50 );
-					}
-					else if ( GetActual() > rangeHigh )
-					{
-						timeRange = timeChangeLow;
-						float maxWind = Math.RandomFloatInclusive( 0.7, 1.0 );
-						weather.SetWindFunctionParams( 0.7, maxWind, 50 );
-					}
-					else
-					{
-						timeRange = timeChangeMid;
-						weather.SetWindFunctionParams( 0.4, 0.8, 50 );
-					}
-
-					//m_clrCounter += 0.1;
-					//m_badCounter += 0.1;
-				}
-			
-				float nextOvercast = Math.RandomFloatInclusive( overcastMid - overcastRange, overcastMid + overcastRange );
-				Set( nextOvercast, timeRange, 0 );
-				//SetNextChange( timeRange );
-
-				Print( "Actual " + "( " + g_Game.GetDayTime() + " )" + " overcast: " + GetActual() );
-				Print( "Actual " + "( " + g_Game.GetDayTime() + " )" + " rain: " + rainActual );
-				Print( "-----------------------------------------------------------" );	
-
-				return true;
-
-			case EWeatherPhenomenon.FOG:
-				Print( "COMPUTING NEW FOG" );
-				Print( "Actual " + "( " + g_Game.GetDayTime() + " )" + " fog: " + GetActual() );
-				Print( "-----------------------------------------------------------" );
-				
-				float fogMin = 0.0;
-				float fogMax = 0.15;
-				float fogTime = 1800.0;
-
-				float fogyMorning = Math.RandomFloatInclusive( 0.0, 1.0 );
-
-				if (  fogyMorning > 0.85 )
-				{
-					if ( (g_Game.GetDayTime() > 4 && g_Game.GetDayTime() < 7 ) )
-					{
-						fogMin = 0.10;
-						fogMax = 0.35;
-						fogTime = 300;
-					}
-				}
-
-				if ( overcastActual < 0.3 )
-				{
-					fogMin = 0.0;
-					fogMax = 0.08;
-					fogTime = 900.0;
-				}
-
-				Set( Math.RandomFloatInclusive( fogMin, fogMax ), fogTime, 0);
-				return true;
-			
-			case EWeatherPhenomenon.RAIN:
-				Print( "COMPUTING NEW RAIN" );
-
-				if ( GetActual() > 0.1 && overcastActual <= 0.95 )
-				{
-					rainMin = 0.0;
-					rainMax	= 0.05;
-					rainTime = Math.RandomFloatInclusive( overcastActual*20, overcastActual*60 );	// *10 converting to seconds *2-12 muting rain 
-					rainTimeDur = Math.RandomFloatInclusive( overcastInverted*1200, overcastInverted*1800 );
-				}
-				else if ( overcastActual > 0.8 )
-				{
-					rainMin = 0.1;
-					rainMax	= 0.4;
-					rainTime = Math.RandomFloatInclusive( 120, 240 );
-					rainTimeDur = Math.RandomFloatInclusive( 30, 60 );
-				}
-				else if ( overcastActual > 0.9 )
-				{
-					rainMin = 0.4;
-					rainMax	= 0.7;
-					rainTime = Math.RandomFloatInclusive( 60, 120 );
-					rainTimeDur = Math.RandomFloatInclusive( 60, 120 );
-				}
-				else if ( overcastActual > 0.95 )
-				{
-					rainMin = 0.5;
-					rainMax	= 0.8;
-					rainTime = Math.RandomFloatInclusive( 10, 60 );
-					rainTimeDur = Math.RandomFloatInclusive( 120, 240 );
-				}
-				else
-				{
-					rainMin = 0.0;
-					rainMax	= 0.3;
-					rainTime = Math.RandomFloatInclusive( 240, 300 );
-					rainTimeDur = Math.RandomFloatInclusive( 90, 120 );
-				}
-				
-				Set( Math.RandomFloatInclusive(rainMin, rainMax), rainTime, rainTimeDur );
-/*
-				if ( overcastNextChange < rainTime + rainTimeDur )
-					SetNextChange( overcastNextChange );
-				else
-*/
-				//SetNextChange(rainTime + rainTimeDur);
-
-				
-				Print( "Actual " + "( " + g_Game.GetDayTime() + " )" + " rain: " + GetActual() );
-				Print( "-----------------------------------------------------------" );
-				
-				return true;
+			WorldData worldData = currentMission.GetWorldData();
+			if ( worldData )
+			{
+				return worldData.WeatherOnBeforeChange( GetType(), GetActual(), change, time );
+			}
 		}
 
 		return false;

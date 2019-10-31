@@ -8,7 +8,7 @@ class VicinitySlotsContainer: Container
 	void VicinitySlotsContainer( LayoutHolder parent )
 	{
 		m_Container = new Container( this );
-		ref SlotsContainer con = new SlotsContainer( m_Container );
+		ref SlotsContainer con = new SlotsContainer( m_Container, null );
 		m_Container.Insert( con );
 		m_Body.Insert( m_Container );
 		for( int j = 0; j < ITEMS_IN_ROW; j++ )
@@ -335,6 +335,8 @@ class VicinitySlotsContainer: Container
 		icon_y = x_content / 10;
 		
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(false);
+		
 		InventoryItem i_item = InventoryItem.Cast( ipw.GetItem() );
 		if( i_item )
 		{
@@ -368,7 +370,13 @@ class VicinitySlotsContainer: Container
 		w.ClearFlags( WidgetFlags.EXACTSIZE );
 		w.SetSize( 1, 1 );
 		string name = w.GetName();
-		name.Replace( "PanelWidget", "Col" );
+		
+		name.Replace( "PanelWidget", "Render" );
+		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(true);
+		ipw.SetForceFlip(false);
+		
+		name.Replace( "Render", "Col" );
 		w.FindAnyWidget( name ).Show(false);
 		name.Replace( "Col", "RadialIcon" );
 		w.GetParent().FindAnyWidget( name ).Show( true );
@@ -380,6 +388,19 @@ class VicinitySlotsContainer: Container
 	int GetRowSlotCount()
 	{
 		return SlotsContainer.Cast( m_Container.Get( m_FocusedRow ) ).GetColumnCount();
+	}
+	
+	bool ExcludeFromContainer (EntityAI item)
+	{
+		if ( item.IsInherited(DayZAnimal) && item.IsAlive() )
+		{
+			return true;
+		}
+		else if ( item.IsInherited( DayZInfected ) || item.IsInherited( SurvivorBase ) || item.IsInherited( Car ) || item.IsInherited( GardenBase ) || item.IsInherited(DayZAnimal) || item.IsInherited( BaseBuildingBase ) )
+		{
+			return true;
+		}	
+		return false;
 	}
 	
 	void ShowItemsInContainers( array<EntityAI> items )
@@ -394,14 +415,10 @@ class VicinitySlotsContainer: Container
 		for( x = 0; x < items.Count(); x++ )
 		{
 			item = items.Get( x );
-			if( item.IsInherited(DayZAnimal) && item.IsAlive() )
-			{
+			
+			if (ExcludeFromContainer(item))
 				continue;
-			}
-			else if( item.IsInherited( DayZInfected ) || item.IsInherited( SurvivorBase ) || item.IsInherited( Car ) || item.IsInherited( GardenBase ) || item.IsInherited(DayZAnimal) || item.IsInherited( BaseBuildingBase ) )
-			{
-				continue;
-			}
+
 			visible_items.Insert( item );
 			visible_items_count++;
 		}
@@ -738,7 +755,7 @@ class VicinitySlotsContainer: Container
 			{
 				for( int g = 0; g < difference; g++ )
 				{
-					SlotsContainer con = new SlotsContainer( m_Container );
+					SlotsContainer con = new SlotsContainer( m_Container, null );
 					m_Container.Insert( con );
 					for( int j = 0; j < ITEMS_IN_ROW; j++ )
 					{

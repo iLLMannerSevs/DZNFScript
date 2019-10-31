@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\AK74\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:53 2019 : 'file' last modified on Tue Aug 13 08:21:45 2019
+//'now' is Thu Oct 31 18:24:43 2019 : 'file' last modified on Thu Oct 31 09:51:42 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -53,6 +53,7 @@ class cfgWeapons
 		magazineSwitchTime = 0.2;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel","magazine"};
 		drySound[] = {"dz\sounds\weapons\firearms\SKS\SKS_dry",0.5,1,20};
 		reloadAction = "ReloadAKM";
@@ -413,7 +414,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\AK101\Data\ak101.rvmat"}},{0.7,{"DZ\weapons\firearms\AK101\Data\ak101.rvmat"}},{0.5,{"DZ\weapons\firearms\AK101\Data\ak101_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\AK101\Data\ak101_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\AK101\Data\ak101_destruct.rvmat"}}};
 				};
 			};
@@ -441,6 +442,8 @@ class cfgWeapons
 		itemSize[] = {6,3};
 		PPDOFProperties[] = {1,0.5,50,175,4,10};
 		WeaponLength = 0.476735;
+		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1.5,1.5,1};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\AK74\data\aks74u_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\AK74\data\aks74u.rvmat"};
 		class FullAuto: Mode_FullAuto
@@ -483,7 +486,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\ak74\Data\aks74u.rvmat"}},{0.7,{"DZ\weapons\firearms\ak74\Data\aks74u.rvmat"}},{0.5,{"DZ\weapons\firearms\ak74\Data\aks74u_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\ak74\Data\aks74u_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\ak74\Data\aks74u_destruct.rvmat"}}};
 				};
 			};

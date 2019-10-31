@@ -1,4 +1,11 @@
-class Breeches_ColorBase extends Clothing {};
+class Breeches_ColorBase extends Clothing
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
+};
 class Breeches_Pink extends Breeches_ColorBase {};
 class Breeches_Red extends Breeches_ColorBase {};
 class Breeches_White extends Breeches_ColorBase {};

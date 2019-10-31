@@ -3,7 +3,7 @@ class ImprovisedSuppressor extends SuppressorBase
 	
 	const int SLOTS_ARRAY = 9;
 	
-	string slot_names[SLOTS_ARRAY] = { "weaponMuzzleAK", "weaponBayonetAK", "weaponBayonet", "weaponBayonetMosin", "weaponBayonetSKS", "weaponMuzzleM4", "weaponMuzzleMosin", "pistolMuzzle", "weaponMuzzleMP5" };
+	string slot_names[SLOTS_ARRAY] = { /*"weaponMuzzleAK", */"weaponBayonetAK", "weaponBayonet", "weaponBayonetMosin", "weaponBayonetSKS",/* "weaponMuzzleM4",*/ "weaponMuzzleMosin", /*"pistolMuzzle",*/ "weaponMuzzleMP5" };
 		
 
 	override bool CanPutAsAttachment( EntityAI parent )

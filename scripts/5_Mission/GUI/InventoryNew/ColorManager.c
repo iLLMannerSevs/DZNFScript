@@ -16,6 +16,7 @@ class ColorManager
 	static int RED_COLOR = ARGB( 150, 255, 1, 1 );
 	static int GREEN_COLOR = ARGB( 150, 1, 255, 1 );
 	static int SWAP_COLOR = ARGB( 150, 135, 206, 250 );
+	static int FSWAP_COLOR = ARGB( 150, 35, 106, 150 );
 	static int COMBINE_COLOR = ARGB( 150, 255, 165, 0 );
 	
 	void ColorManager()

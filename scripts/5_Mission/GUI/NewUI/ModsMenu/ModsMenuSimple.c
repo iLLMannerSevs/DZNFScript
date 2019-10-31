@@ -24,9 +24,9 @@ class ModsMenuSimple extends ScriptedWidgetEventHandler
 	void LoadEntries(array<ref ModInfo> data)
 	{
 		int count;
-		if( data.Count() > 5 )
+		if( data.Count() > 13 )
 		{
-			count = 4;
+			count = 13;
 			m_Root.FindAnyWidget("ModMore").Show(true);
 		}
 		else
@@ -35,11 +35,15 @@ class ModsMenuSimple extends ScriptedWidgetEventHandler
 			m_Root.FindAnyWidget("ModMore").Show(false);
 		}
 		
+		bool has_mods = false;
 		for (int i = count - 1; i >= 0; i--)
 		{
-			ref ModsMenuSimpleEntry entry = new ModsMenuSimpleEntry(data.Get(i), m_Root, this);
+			ref ModsMenuSimpleEntry entry = new ModsMenuSimpleEntry(data.Get(i), i, m_Root, this);
 			m_Data.Insert(data.Get(i), entry);
+			has_mods = ( has_mods || !data.Get(i).GetIsDLC() );
 		}
+		
+		m_Root.FindAnyWidget("mods_separator_panel").Show( has_mods );
 	}
 	
 	void Select( ModInfo mod )

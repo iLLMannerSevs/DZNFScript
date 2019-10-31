@@ -117,21 +117,27 @@ class MainMenu extends UIScriptedMenu
 	
 	void LoadMods()
 	{
-		ref array<ref ModInfo> modArray = new array<ref ModInfo>;
-		
+		ref array<ref ModInfo> modArray = new array<ref ModInfo>;		
 		GetGame().GetModInfos( modArray );
-		modArray.Remove( modArray.Count() - 1 );
-		modArray.Invert();
+
+		if( modArray.Count() > 0 )
+		{
+			modArray.Remove( modArray.Count() - 1 );
+			modArray.Invert();
+		}
 		
 		if( m_ModsSimple )
 			delete m_ModsSimple;
 		if( m_ModsDetailed )
 			delete m_ModsDetailed;
 		
+		m_ModdedWarning.Show( GetGame().GetModToBeReported() );
+		
 		if( modArray.Count() > 0 )
 		{
-			m_ModdedWarning.Show( true );
+			layoutRoot.FindAnyWidget("ModsSimple").Show( true );
 			m_ModsTooltip = new ModsMenuTooltip(layoutRoot);
+
 			m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"), m_ModsTooltip, this);
 			
 			m_ModsSimple = new ModsMenuSimple(modArray, layoutRoot.FindAnyWidget("ModsSimple"), m_ModsDetailed);

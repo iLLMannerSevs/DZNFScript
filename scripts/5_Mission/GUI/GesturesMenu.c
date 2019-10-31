@@ -112,16 +112,19 @@ class GesturesMenu extends UIScriptedMenu
 		//register gestures menu
 		RadialMenu.GetInstance().RegisterClass( this );
 		
+		//delay updates until fully initialized
+		RadialMenu.GetInstance().SetWidgetInitialized(false);
+		
 		//set radial menu properties
 		RadialMenu.GetInstance().SetWidgetProperties( "gui/layouts/radial_menu/radial_gestures/day_z_gesture_delimiter.layout" );
 		
 		//create content (widgets) for items
 		RefreshGestures();
 		
-		#ifdef PLATFORM_WINDOWS
-			Widget toolbar_panel = layoutRoot.FindAnyWidget( "toolbar_bg" );
-			toolbar_panel.Show( !RadialMenu.GetInstance().IsUsingMouse() );
-		#endif		
+#ifdef PLATFORM_WINDOWS
+		Widget toolbar_panel = layoutRoot.FindAnyWidget( "toolbar_bg" );
+		toolbar_panel.Show( !RadialMenu.GetInstance().IsUsingMouse() );
+#endif	
 		
 		//clear category name text
 		UpdateCategoryName( "" );
@@ -182,7 +185,7 @@ class GesturesMenu extends UIScriptedMenu
 		CreateGestureContent();
 		
 		UpdateToolbar();
-	}		
+	}
 	
 	protected void GetGestureItems( out ref array<ref GestureMenuItem> gesture_items, GestureCategories category )
 	{
@@ -252,6 +255,7 @@ class GesturesMenu extends UIScriptedMenu
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_CLAP, 		"#STR_USRACT_ID_EMOTE_CLAP", 		GestureCategories.CATEGORY_4 ) );
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_TAUNTKISS, 	"#STR_USRACT_ID_EMOTE_TAUNTKISS", 	GestureCategories.CATEGORY_4 ) );
 			gesture_items.Insert( new GestureMenuItem( ID_EMOTE_SALUTE, 	"#STR_USRACT_ID_EMOTE_SALUTE", 		GestureCategories.CATEGORY_4 ) );
+			//gesture_items.Insert( new GestureMenuItem( ID_EMOTE_DEBUG, 		"ID_EMOTE_DEBUG", 					GestureCategories.CATEGORY_4 ) );
 		}
 	}
 	
@@ -381,11 +385,13 @@ class GesturesMenu extends UIScriptedMenu
 		Widget toolbar_panel = layoutRoot.FindAnyWidget( "toolbar_bg" );
 		if ( type == RadialMenuControlType.CONTROLLER )
 		{
+#ifdef PLATFORM_CONSOLE
 			toolbar_panel.Show( true );
+#endif
 		}
 		else
 		{
-			toolbar_panel.Show( true );
+			toolbar_panel.Show( false );
 		}
 	}
 	

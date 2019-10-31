@@ -1,10 +1,11 @@
 MetaFileClass {
- Name "{DDFE50FB35D3B037}Gui/fonts/sdf_MetronLight30.edds"
- Author "inv3672"
- ChangeDate 116123011
+ Name "{DDFE50FB35D3B037}Enfusion/Gui/fonts/sdf_MetronLight30.edds"
+ Author "4780"
+ ChangeDate 1784964953
  Configurations {
   TGAResourceClass PC {
    SourceFile "sdf_MetronLight30.tga"
+   Conversion ColorHQCompression
   }
   TGAResourceClass XBOX_ONE : PC {
   }

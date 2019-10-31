@@ -2,7 +2,7 @@
 //DeRap: characters_vests\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:00 2019 : 'file' last modified on Mon Aug 26 15:18:48 2019
+//'now' is Thu Oct 31 18:20:36 2019 : 'file' last modified on Mon Sep 23 09:38:39 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1039,7 +1039,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\orange_vest.rvmat"}},{0.7,{"DZ\characters\vests\Data\orange_vest.rvmat"}},{0.5,{"DZ\characters\vests\Data\orange_vest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\orange_vest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\orange_vest_destruct.rvmat"}}};
 				};
 			};

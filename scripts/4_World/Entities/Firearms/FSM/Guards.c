@@ -171,7 +171,25 @@ class WeaponGuardHasMag extends WeaponGuardBase
 class WeaponGuardChamberEmpty extends WeaponGuardBase
 {
 	protected Weapon_Base m_weapon;
-	void WeaponGuardChamberEmpty (Weapon_Base w = NULL) { m_weapon = w; }
+	protected int m_muzzle;
+	void WeaponGuardChamberEmpty (Weapon_Base w = NULL, int muzzle_index = 0 ) { m_weapon = w; m_muzzle = muzzle_index; }
+
+	override bool GuardCondition (WeaponEventBase e)
+	{
+		if (m_weapon.IsChamberEmpty(m_muzzle))
+		{
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") empty");
+			return true;
+		}
+		wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") not empty");
+		return false;
+	}
+};
+
+class WeaponGuardCurrentChamberEmpty extends WeaponGuardBase
+{
+	protected Weapon_Base m_weapon;
+	void WeaponGuardCurrentChamberEmpty (Weapon_Base w = NULL) { m_weapon = w; }
 
 	override bool GuardCondition (WeaponEventBase e)
 	{
@@ -189,7 +207,25 @@ class WeaponGuardChamberEmpty extends WeaponGuardBase
 class WeaponGuardChamberFull extends WeaponGuardBase
 {
 	protected Weapon_Base m_weapon;
-	void WeaponGuardChamberFull (Weapon_Base w = NULL) { m_weapon = w; }
+	protected int m_muzzle;
+	void WeaponGuardChamberFull (Weapon_Base w = NULL, int muzzle_index = 0 ) { m_weapon = w; m_muzzle = muzzle_index; }
+
+	override bool GuardCondition (WeaponEventBase e)
+	{
+		if (m_weapon.IsChamberFull(m_muzzle))
+		{
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") full");
+			return true;
+		}
+		wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") not full");
+		return false;
+	}
+};
+
+class WeaponGuardCurrentChamberFull extends WeaponGuardBase
+{
+	protected Weapon_Base m_weapon;
+	void WeaponGuardCurrentChamberFull (Weapon_Base w = NULL) { m_weapon = w; }
 
 	override bool GuardCondition (WeaponEventBase e)
 	{
@@ -242,11 +278,28 @@ class WeaponGuardInnerMagazineFullShareChamber extends WeaponGuardBase
 	}
 }; 
 
-
 class WeaponGuardChamberFiredOut extends WeaponGuardBase
 {
 	protected Weapon_Base m_weapon;
-	void WeaponGuardChamberFiredOut (Weapon_Base w = NULL) { m_weapon = w; }
+	protected int m_muzzle;
+	void WeaponGuardChamberFiredOut (Weapon_Base w = NULL, int muzzle_index = 0 ) { m_weapon = w; m_muzzle = muzzle_index; }
+
+	override bool GuardCondition (WeaponEventBase e)
+	{
+		if (m_weapon.IsChamberFiredOut(m_muzzle))
+		{
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") fireout");
+			return true;
+		}
+		wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber (" + m_muzzle + ") not fireout");
+		return false;
+	}
+};
+
+class WeaponGuardCurrentChamberFiredOut extends WeaponGuardBase
+{
+	protected Weapon_Base m_weapon;
+	void WeaponGuardCurrentChamberFiredOut (Weapon_Base w = NULL) { m_weapon = w; }
 
 	override bool GuardCondition (WeaponEventBase e)
 	{
@@ -348,6 +401,27 @@ class WeaponGuardChamberHasRoomForOne extends WeaponGuardBase
 			return true;
 		}
 		wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber has no room for 1b");
+		return false;
+	}
+};
+
+class WeaponGuardChamberMultiHasRoomBulltet extends WeaponGuardBase
+{
+	protected Weapon_Base m_weapon;
+	void WeaponGuardChamberMultiHasRoomBulltet (Weapon_Base w = NULL) { m_weapon = w; }
+
+	override bool GuardCondition (WeaponEventBase e)
+	{
+		int i = m_weapon.GetMuzzleCount() - 1;
+		for ( ; i >= 0; i--)
+		{
+			if (m_weapon.GetTotalMaxCartridgeCount(i) - m_weapon.GetTotalCartridgeCount(i) >= 1)
+			{
+				wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber has room for 1b");
+				return true;
+			}
+			wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " guard - chamber has no room for 1b");
+		}
 		return false;
 	}
 };

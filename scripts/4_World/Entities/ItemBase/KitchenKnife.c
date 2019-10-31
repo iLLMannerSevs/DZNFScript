@@ -17,5 +17,6 @@ class KitchenKnife extends ToolBase
 		AddAction(ActionBurnSewSelf);
 		AddAction(ActionShaveTarget);
 		AddAction(ActionShave);
+		AddAction(ActionDigWorms);
 	}
 }

@@ -2,7 +2,7 @@
 //DeRap: weapons_melee\blunt\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:57 2019 : 'file' last modified on Wed Aug 14 13:10:36 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:04:02 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -44,8 +44,6 @@ class CfgVehicles
 		itemSize[] = {1,7};
 		itemBehaviour = 2;
 		fragility = 0.02;
-		lootTag[] = {"Civilian","Work"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {40,80};
 		isMeleeWeapon = 1;
 		class MeleeModes
@@ -72,7 +70,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\BaseballBat.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\BaseballBat.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\BaseballBat_damage.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\BaseballBat_damage.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\BaseballBat_destruct.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_destruct.rvmat"}}};
 				};
 			};
@@ -111,8 +109,6 @@ class CfgVehicles
 		itemSize[] = {1,7};
 		itemBehaviour = 2;
 		fragility = 0.02;
-		lootTag[] = {"Civilian","Work"};
-		lootCategory = "Crafted";
 		openItemSpillRange[] = {40,70};
 		isMeleeWeapon = 1;
 		class MeleeModes
@@ -139,7 +135,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\BaseballBat.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\BaseballBat.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\BaseballBat_damage.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\BaseballBat_damage.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\BaseballBat_destruct.rvmat","DZ\weapons\melee\blunt\Data\BaseballBat_View_destruct.rvmat"}}};
 				};
 			};
@@ -178,8 +174,6 @@ class CfgVehicles
 		itemSize[] = {2,5};
 		itemBehaviour = 1;
 		fragility = 0.002;
-		lootTag[] = {"Work"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {30,60};
 		isMeleeWeapon = 1;
 		class MeleeModes
@@ -206,7 +200,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 400;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\pipewrench.rvmat","DZ\weapons\melee\blunt\Data\pipewrench_view.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\pipewrench.rvmat","DZ\weapons\melee\blunt\Data\pipewrench_view.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\pipewrench_damage.rvmat","DZ\weapons\melee\blunt\Data\pipewrench_view_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\pipewrench_damage.rvmat","DZ\weapons\melee\blunt\Data\pipewrench_view_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\pipewrench_destruct.rvmat","DZ\weapons\melee\blunt\Data\pipewrench_view_destruct.rvmat"}}};
 				};
 			};
@@ -222,8 +216,6 @@ class CfgVehicles
 		weight = 142;
 		itemSize[] = {1,2};
 		fragility = 0.002;
-		lootTag[] = {"Civilian","Military_east","Military_west"};
-		lootCategory = "Tools";
 		hiddenSelections[] = {"camo"};
 		isMeleeWeapon = 1;
 		class MeleeModes
@@ -256,7 +248,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 400;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\brassknuckles_dull.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\brassknuckles_dull.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\brassknuckles_dull_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\brassknuckles_dull_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\brassknuckles_dull_destruct.rvmat"}}};
 				};
 			};
@@ -274,7 +266,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 400;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\Brassknuckles_shiny.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\Brassknuckles_shiny.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\Brassknuckles_shiny_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\Brassknuckles_shiny_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\Brassknuckles_shiny_destruct.rvmat"}}};
 				};
 			};
@@ -292,8 +284,6 @@ class CfgVehicles
 		itemSize[] = {2,5};
 		itemBehaviour = 1;
 		fragility = 0.002;
-		lootTag[] = {"Police","Civilian"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {35,55};
 		class DamageSystem
 		{
@@ -301,7 +291,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\TelescopingBaton.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\TelescopingBaton.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\TelescopingBaton_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\TelescopingBaton_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\TelescopingBaton_destruct.rvmat"}}};
 				};
 			};
@@ -378,8 +368,6 @@ class CfgVehicles
 		itemSize[] = {2,10};
 		itemBehaviour = 2;
 		fragility = 0.02;
-		lootTag[] = {"Civilian"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {40,80};
 		class DamageSystem
 		{
@@ -387,7 +375,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\Hockey_Stick.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\Hockey_Stick.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_destruct.rvmat"}}};
 				};
 			};
@@ -424,8 +412,6 @@ class CfgVehicles
 		itemSize[] = {2,10};
 		itemBehaviour = 2;
 		fragility = 0.02;
-		lootTag[] = {"Civilian"};
-		lootCategory = "Tools";
 		isMeleeWeapon = 1;
 		class MeleeModes
 		{
@@ -451,7 +437,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\Hockey_Stick.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\Hockey_Stick.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\Hockey_Stick_destruct.rvmat"}}};
 				};
 			};
@@ -469,8 +455,6 @@ class CfgVehicles
 		itemSize[] = {2,5};
 		itemBehaviour = 1;
 		fragility = 0.002;
-		lootTag[] = {"Police"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {35,55};
 		class DamageSystem
 		{
@@ -478,7 +462,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\blunt\Data\baton.rvmat"}},{0.7,{"DZ\weapons\melee\blunt\Data\baton.rvmat"}},{0.5,{"DZ\weapons\melee\blunt\Data\baton_damage.rvmat"}},{0.3,{"DZ\weapons\melee\blunt\Data\baton_damage.rvmat"}},{0.0,{"DZ\weapons\melee\blunt\Data\baton_destruct.rvmat"}}};
 				};
 			};

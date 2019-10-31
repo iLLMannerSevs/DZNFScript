@@ -14,8 +14,6 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	protected TextWidget							m_PnlPagesLoadingText;
 	protected ButtonWidget							m_BtnPagesFirst;
 	protected ButtonWidget							m_BtnPagesLast;
-	protected ButtonWidget							m_BtnPagePrev;
-	protected ButtonWidget							m_BtnPageNext;
 	
 	protected Widget								m_FilterSearchText;
 	protected Widget								m_FilterSearchTextBox;
@@ -23,8 +21,6 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	protected Widget								m_FilterSearchIPBox;
 	protected Widget								m_FilterPanelPing;
 	protected Widget								m_FilterPanelAccTime;
-	
-	protected ButtonWidget							m_BtnFilterReset;
 	
 	protected ref array<ButtonWidget>				m_BtnPages;
 	protected ref array<ref ServerBrowserEntry>		m_ServerListEntries;
@@ -124,7 +120,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 			page_button = ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_page"+ page_button_num ) );
 		}		
 		
-		m_BtnFilterReset		= ButtonWidget.Cast( m_Root.FindAnyWidget( "reset_filter_button" ) ) ;
+		m_ResetFilters			= ButtonWidget.Cast( m_Root.FindAnyWidget( "reset_filter_button" ) ) ;
 		
 		m_PnlPagesPanel			= m_Root.FindAnyWidget( "servers_navigation_spacer" );
 		m_BtnPagePrev			= ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_prev" ) ) ;
@@ -275,7 +271,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 		
 		if( button == MouseState.LEFT )
 		{
-			if ( w == m_BtnFilterReset )
+			if ( w == m_ResetFilters )
 			{
 				ResetFilters();
 			}
@@ -1011,7 +1007,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 				
 				entry.Show( true );
 				entry.FillInfo( server_info );
-				//entry.SetMods( m_EntryMods.Get( server_info.m_Id ) );
+				entry.SetMods( m_EntryMods.Get( server_info.m_Id ) );
 				m_TotalLoadedServers++;
 			}
 			else
@@ -1106,7 +1102,7 @@ class ServerBrowserTabPc extends ServerBrowserTab
 				return true;
 			}
 			
-			if ( w == m_ApplyFilter || w == m_RefreshList || w == m_BtnFilterReset || m_FilterSearchText || m_FilterSearchIP )
+			if ( w == m_ApplyFilter || w == m_RefreshList || w == m_ResetFilters || m_FilterSearchText || m_FilterSearchIP )
 			{				
 				return true;
 			}

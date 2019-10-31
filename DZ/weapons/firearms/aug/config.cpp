@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\aug\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:53 2019 : 'file' last modified on Tue Aug 13 08:23:20 2019
+//'now' is Thu Oct 31 18:24:43 2019 : 'file' last modified on Thu Oct 31 09:53:15 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -40,7 +40,6 @@ class cfgWeapons
 	class AugSteyr_Base: Rifle_Base
 	{
 		scope = 0;
-		lootTag[] = {"Military_west"};
 		weight = 3600;
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
@@ -109,7 +108,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_AugSteyr1";
 		model = "\dz\weapons\firearms\aug\aug.p3d";
 		attachments[] = {"weaponMuzzleM4","weaponBarrelAug"};
-		itemSize[] = {9,6};
+		itemSize[] = {8,3};
 		spawnDamageRange[] = {0.0,0.6};
 		class Damage
 		{

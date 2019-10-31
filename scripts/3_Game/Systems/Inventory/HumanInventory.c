@@ -48,6 +48,7 @@ class HumanInventory : GameInventory
 	proto native void SetUserReservedLocation (notnull EntityAI eai, notnull InventoryLocation dst);
 	proto native void ClearUserReservedLocation (notnull EntityAI eai);
 	proto native bool ClearUserReservedLocationAtIndex (int index);
+	proto native bool GetDebugFlag ();
 
 	/**
 	 * @fn		CreateInInventory
@@ -324,8 +325,8 @@ class HumanInventory : GameInventory
 
 	override bool ForceSwapEntities (InventoryMode mode, notnull EntityAI item1, notnull EntityAI item2, notnull InventoryLocation item2_dst)
 	{
-		InventoryLocation src1, src2, dst1, dst2;
-		if (GameInventory.MakeSrcAndDstForSwap(item1, item2, src1, src2, dst1, dst2))
+		InventoryLocation src1, src2, dst1;
+		if (GameInventory.MakeSrcAndDstForForceSwap(item1, item2, src1, src2, dst1, item2_dst))
 		{
 			Print("[inv] HumanInventory::FSwap(" + typename.EnumToString(InventoryMode, mode) + ") src1=" + InventoryLocation.DumpToStringNullSafe(src1) + " src2=" + InventoryLocation.DumpToStringNullSafe(src2));
 			bool handled = false;

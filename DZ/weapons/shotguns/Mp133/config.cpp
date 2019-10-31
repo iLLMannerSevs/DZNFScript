@@ -2,7 +2,7 @@
 //DeRap: weapons_shotguns\Mp133\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:01 2019 : 'file' last modified on Mon Aug 12 12:21:51 2019
+//'now' is Thu Oct 31 18:24:52 2019 : 'file' last modified on Thu Oct 24 15:11:30 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -52,6 +52,7 @@ class cfgWeapons
 		WeaponLength = 1.03525;
 		ejectType = 0;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		cartridgeCreateTime[] = {0.55,0.82};
 		reloadSkips[] = {0.26,0.4,0.53,0.64,0.735};
 		drySound[] = {"dz\sounds\weapons\shotguns\Izh43\izh43_dry",0.5,1,20};
@@ -334,7 +335,6 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Mp133Shotgun1";
 		model = "\dz\weapons\shotguns\mp133\mp133.p3d";
 		animName = "ShotgunMp133";
-		lootTag[] = {"Civilian"};
 		attachments[] = {"pistolOptics"};
 		itemSize[] = {9,3};
 		weight = 3300;
@@ -346,7 +346,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\shotguns\Mp133\data\mp133.rvmat"}},{0.7,{"DZ\weapons\shotguns\Mp133\data\mp133.rvmat"}},{0.5,{"DZ\weapons\shotguns\Mp133\data\mp133_damage.rvmat"}},{0.3,{"DZ\weapons\shotguns\Mp133\data\mp133_damage.rvmat"}},{0.0,{"DZ\weapons\shotguns\Mp133\data\mp133_destruct.rvmat"}}};
 				};
 			};
@@ -359,10 +359,9 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Mp133Shotgun_PistolGrip1";
 		model = "\dz\weapons\shotguns\mp133\mp133_pistol_grip.p3d";
 		animName = "ShotgunMp133_Pistol_Grip";
-		lootTag[] = {"Police","Military_east","Military_west"};
 		attachments[] = {"pistolOptics"};
-		itemSize[] = {8,6};
-		weight = 3200;
+		itemSize[] = {8,3};
+		weight = 2800;
 		chamberSize = 4;
 		reloadAction = "ReloadMP133_grip";
 		shotAction = "ReloadMP133_grip_shot";
@@ -373,7 +372,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\shotguns\Mp133\data\mp133_pistol_grip.rvmat"}},{0.7,{"DZ\weapons\shotguns\Mp133\data\mp133_pistol_grip.rvmat"}},{0.5,{"DZ\weapons\shotguns\Mp133\data\mp133_pistol_grip_damage.rvmat"}},{0.3,{"DZ\weapons\shotguns\Mp133\data\mp133_pistol_grip_damage.rvmat"}},{0.0,{"DZ\weapons\shotguns\Mp133\data\mp133_pistol_grip_destruct.rvmat"}}};
 				};
 			};

@@ -449,3 +449,68 @@ class OffroadHatchback extends CarScript
 		AddAction(ActionAnimateSeats);
 	}
 }
+
+class OffroadHatchback_White extends OffroadHatchback
+{
+
+	override void OnDebugSpawn()
+	{
+		EntityAI entity;
+		
+		if ( Class.CastTo(entity, this) )
+		{
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+
+			entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_White" );
+			entity.GetInventory().CreateInInventory( "HatchbackDoors_CoDriver_White" );
+			entity.GetInventory().CreateInInventory( "HatchbackHood_White" );
+			entity.GetInventory().CreateInInventory( "HatchbackTrunk_White" );
+
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+		};
+
+		Fill( CarFluid.FUEL, 50 );
+		Fill( CarFluid.COOLANT, 6.0 );
+		Fill( CarFluid.OIL, 4.0 );
+	}
+};
+class OffroadHatchback_Blue extends OffroadHatchback
+{
+
+	override void OnDebugSpawn()
+	{
+		EntityAI entity;
+		
+		if ( Class.CastTo(entity, this) )
+		{
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+			entity.GetInventory().CreateInInventory( "HatchbackWheel" );
+
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+
+			entity.GetInventory().CreateInInventory( "HatchbackDoors_Driver_Blue" );
+			entity.GetInventory().CreateInInventory( "HatchbackDoors_CoDriver_Blue" );
+			entity.GetInventory().CreateInInventory( "HatchbackHood_Blue" );
+			entity.GetInventory().CreateInInventory( "HatchbackTrunk_Blue" );
+
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+		};
+
+		Fill( CarFluid.FUEL, 50 );
+		Fill( CarFluid.COOLANT, 6.0 );
+		Fill( CarFluid.OIL, 4.0 );
+	}
+};

@@ -159,7 +159,7 @@ class OptionsMenu extends UIScriptedMenu
 			}
 			case 3:
 			{
-				#ifdef PLATFORM_WINDOWS
+				#ifndef PLATFORM_CONSOLE
 					m_ControlsTab.Focus();
 				#endif
 				break;
@@ -244,7 +244,7 @@ class OptionsMenu extends UIScriptedMenu
 	void OnChanged()
 	{
 		bool changed = false;
-		if( m_Options.IsChanged() || m_GameTab.IsChanged() || m_SoundsTab.IsChanged() )
+		if( m_Options.IsChanged() || m_GameTab.IsChanged() || m_SoundsTab.IsChanged() || m_ControlsTab.IsChanged() )
 		{
 			changed = true;
 		}
@@ -438,15 +438,17 @@ class OptionsMenu extends UIScriptedMenu
 		#else
 			version = "#main_menu_version" + " " + version;
 		#endif
+		
 		m_Version.SetText( version );
+		
+		#ifdef PLATFORM_CONSOLE
+			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
+		#endif
 	}
 	
 	override void OnShow()
 	{
-		#ifdef PLATFORM_CONSOLE
-			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
-			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
-		#endif
 		super.OnShow();
 		m_GameTab.Focus();
 		Refresh();

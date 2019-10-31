@@ -18,6 +18,7 @@ class LongWoodenStick: Inventory_Base
 		
 		AddAction(ActionClapBearTrapWithThisItem);
 		AddAction(ActionCookOnStick);
+		AddAction(ActionBreakLongWoodenStick);
 	}
 };
 class Rope: Inventory_Base

@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\1911\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:59 2019 : 'file' last modified on Wed Aug 14 11:04:31 2019
+//'now' is Thu Oct 31 18:24:50 2019 : 'file' last modified on Thu Oct 24 15:07:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -33,6 +33,7 @@ class Mode_Safe;
 class Mode_SemiAuto;
 class Mode_Burst;
 class Mode_FullAuto;
+class OpticsInfoPistol;
 class cfgWeapons
 {
 	class Pistol_Base;
@@ -43,9 +44,8 @@ class cfgWeapons
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};
-		modelOptics = "-";
-		distanceZoomMin = 100;
-		distanceZoomMax = 100;
+		PPDOFProperties[] = {1,0.9,10,250,4,10};
+		WeaponLength = 0.634148;
 		chamberSize = 1;
 		chamberedRound = "";
 		magazines[] = {"Mag_1911_7Rnd"};
@@ -53,6 +53,7 @@ class cfgWeapons
 		magazineSwitchTime = 0.24;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1.2,1.2,1};
 		drySound[] = {"dz\sounds\weapons\firearms\colt1911\Colt1911_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\colt1911\Colt1911_reload",0.8,1,20};
 		hiddenSelections[] = {"camoGround"};
@@ -72,6 +73,15 @@ class cfgWeapons
 			beginSilenced_Pro[] = {"dz\sounds\weapons\firearms\colt1911\1911Silenced",1,1,60};
 			beginSilenced_HomeMade[] = {"dz\sounds\weapons\firearms\colt1911\1911Silenced",1,1,100};
 			soundBeginExt[] = {{"beginSilenced_Pro",1},{"beginSilenced_HomeMade",1}};
+		};
+		class OpticsInfo: OpticsInfoPistol
+		{
+			memoryPointCamera = "eye";
+			discreteDistance[] = {25};
+			discreteDistanceInitIndex = 0;
+			modelOptics = "-";
+			distanceZoomMin = 100;
+			distanceZoomMax = 100;
 		};
 		class AnimEvents
 		{
@@ -249,6 +259,42 @@ class cfgWeapons
 				};
 			};
 		};
+		class Particles
+		{
+			class OnFire
+			{
+				class MuzzleFlashForward
+				{
+					ignoreIfSuppressed = 1;
+					illuminateWorld = 1;
+					overrideParticle = "weapon_shot_fnx_01";
+				};
+				class SmokeCloud
+				{
+					overrideParticle = "weapon_shot_winded_smoke_small";
+				};
+			};
+			class OnOverheating
+			{
+				shotsToStartOverheating = 1;
+				maxOverheatingValue = 7;
+				overheatingDecayInterval = 1;
+				class OpenChamberSmoke
+				{
+					onlyIfBoltIsOpen = 1;
+					overrideParticle = "smoking_barrel_small";
+					overridePoint = "Nabojnicestart";
+				};
+			};
+			class OnBulletCasingEject
+			{
+				class ChamberSmokeRaise
+				{
+					overrideParticle = "weapon_shot_chamber_smoke_raise";
+					overridePoint = "Nabojnicestart";
+				};
+			};
+		};
 	};
 	class Colt1911: Colt1911_Base
 	{
@@ -267,7 +313,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\pistols\1911\data\1911.rvmat"}},{0.7,{"DZ\weapons\pistols\1911\data\1911.rvmat"}},{0.5,{"DZ\weapons\pistols\1911\data\1911_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\1911\data\1911_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\1911\data\1911_destruct.rvmat"}}};
 				};
 			};
@@ -276,9 +322,9 @@ class cfgWeapons
 	class Engraved1911: Colt1911_Base
 	{
 		scope = 2;
-		displayName = "$STR_cfgWeapons_Engraved19110";
-		descriptionShort = "$STR_cfgWeapons_Engraved19111";
-		model = "\dz\weapons\pistols\1911\1911_engraved.p3d";
+		displayName = "$STR_cfgweapons_engraved19110";
+		descriptionShort = "$STR_cfgweapons_engraved19111";
+		model = "\dz\weapons\pistols\1911\1911.p3d";
 		attachments[] = {"pistolFlashlight","pistolMuzzle"};
 		itemSize[] = {3,2};
 		hiddenSelectionsTextures[] = {"dz\weapons\pistols\1911\data\1911_engraved_co.paa"};
@@ -289,8 +335,8 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\pistols\1911\data\1911_engraved.rvmat"}},{0.7,{"DZ\weapons\pistols\1911\data\1911_engraved.rvmat"}},{0.5,{"DZ\weapons\pistols\1911\data\1911_engraved_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\1911\data\1911_engraved_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\1911\data\1911_engraved_destruct.rvmat"}}};
+					hitpoints = 200;
+					healthLevels[] = {{1.0,{"DZ\weapons\pistols\1911\data\1911.rvmat"}},{0.7,{"DZ\weapons\pistols\1911\data\1911_engraved.rvmat"}},{0.5,{"DZ\weapons\pistols\1911\data\1911_engraved_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\1911\data\1911_engraved_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\1911\data\1911_engraved_destruct.rvmat"}}};
 				};
 			};
 		};

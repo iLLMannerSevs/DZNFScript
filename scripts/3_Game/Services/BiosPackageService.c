@@ -25,6 +25,11 @@ class BiosPackageService
 	proto native EBiosError PromptUpdateAsync();
 	
 	
+	//! Show store for current title (system GUI). Only on Xbox.
+	/*!
+		@return EBiosError indicating if the async operation is pending.
+	*/
+	proto native EBiosError ShowStoreAsync();
 	
 	//! Callback function for CheckUpdateAsync()
 	/*!
@@ -51,4 +56,15 @@ class BiosPackageService
 	{
 		OnlineServices.ErrorCaught( error );
 	}
+	
+	
+	//! Callback function for ShowStoreAsync()
+	/*!
+		@param error indicating success or fail of the async operation.
+	*/
+	void OnShowStore(EBiosError error)
+	{
+		OnlineServices.ErrorCaught( error );
+	}
+	
 };

@@ -14,7 +14,7 @@ class SKS_Bayonet extends Inventory_Base
 	{
 		if( parent.IsWeapon() )
 		{
-			parent.SetBayonetAttached(true);
+			parent.SetBayonetAttached(true,slot_id);
 		}		
 	}
 	
@@ -38,5 +38,6 @@ class SKS_Bayonet extends Inventory_Base
 		AddAction(ActionBurnSewSelf);
 		AddAction(ActionShaveTarget);
 		AddAction(ActionShave);
+		AddAction(ActionDigWorms);
 	}
 }

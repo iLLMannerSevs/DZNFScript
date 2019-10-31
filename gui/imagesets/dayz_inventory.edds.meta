@@ -1,10 +1,11 @@
 MetaFileClass {
  Name "{00021F55AF578D77}Gui/imagesets/dayz_inventory.tga"
  Author "3672"
- ChangeDate 1713546963
+ ChangeDate 1984161628
  Configurations {
   TGAResourceClass PC {
    SourceFile "dayz_inventory.tga"
+   Conversion DXTCompression
   }
   TGAResourceClass XBOX_ONE : PC {
   }

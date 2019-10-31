@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\Trumpet\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:55 2019 : 'file' last modified on Tue Aug 13 08:23:05 2019
+//'now' is Thu Oct 31 18:24:46 2019 : 'file' last modified on Thu Oct 31 09:53:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -88,7 +88,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Trumpet1";
 		model = "\dz\weapons\firearms\Trumpet\trumpet.p3d";
 		attachments[] = {"suppressorImpro","weaponOpticsHunting"};
-		itemSize[] = {8,4};
+		itemSize[] = {9,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\Trumpet\data\trombone_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\Trumpet\data\trumpet.rvmat"};
 		class DamageSystem

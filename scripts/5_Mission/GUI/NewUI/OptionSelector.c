@@ -36,11 +36,6 @@ class OptionSelector extends OptionSelectorBase
 		m_NextOption				= m_Root.FindAnyWidget( "next_option" );
 		
 		#ifdef PLATFORM_CONSOLE
-			if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
-			{
-				m_NextOption.Show( false );
-				m_PreviousOption.Show( false );
-			}
 			m_NextOption.Show( false );
 			m_PreviousOption.Show( false );
 		#endif
@@ -96,27 +91,11 @@ class OptionSelector extends OptionSelectorBase
 	
 	override bool OnMouseEnter( Widget w, int x, int y )
 	{
-		#ifdef PLATFORM_CONSOLE
-		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
-		{
-			m_NextOption.Show( true );
-			m_PreviousOption.Show( true );
-		}
-		#endif
-		
 		return super.OnMouseEnter( w, x, y );
 	}
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
-		#ifdef PLATFORM_CONSOLE
-		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
-		{
-			m_NextOption.Show( false );
-			m_PreviousOption.Show( false );
-		}
-		#endif
-		
 		return super.OnMouseLeave( w, enterW, x, y );
 	}
 	

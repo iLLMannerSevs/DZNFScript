@@ -9,6 +9,8 @@ class SlotsIcon: LayoutHolder
 	
 	protected EntityAI				m_Obj;
 	protected ItemBase				m_Item;
+	protected EntityAI				m_SlotParent;
+	protected int					m_SlotID;
 	protected bool					m_IsDragged;
 	
 	protected Widget				m_PanelWidget;
@@ -18,6 +20,7 @@ class SlotsIcon: LayoutHolder
 	protected Widget				m_SelectedWidget
 	protected Widget				m_MountedWidget;
 	protected Widget				m_OutOfReachWidget;
+	protected Widget				m_ReservedWidget;
 	
 	protected ItemPreviewWidget		m_ItemPreview;
 	protected ImageWidget			m_GhostSlot;
@@ -38,8 +41,10 @@ class SlotsIcon: LayoutHolder
 	protected Widget				m_RadialIconPanel;
 	protected Widget				m_RadialIconClosed;
 	protected Widget				m_RadialIcon;
+	
+	protected bool					m_Reserved;
 
-	void SlotsIcon( LayoutHolder parent, Widget root, int index )
+	void SlotsIcon( LayoutHolder parent, Widget root, int index, EntityAI slot_parent )
 	{
 		m_MainWidget			= root;
 		
@@ -50,8 +55,11 @@ class SlotsIcon: LayoutHolder
 		m_SelectedWidget		= m_MainWidget.FindAnyWidget( "Selected" + index );
 		m_MountedWidget			= m_MainWidget.FindAnyWidget( "Mounted" + index );
 		m_OutOfReachWidget		= m_MainWidget.FindAnyWidget( "OutOfReach" + index );
-		
+
 		m_ItemPreview			= ItemPreviewWidget.Cast( m_MainWidget.FindAnyWidget( "Render" + index ) );
+		m_ItemPreview.SetForceFlipEnable(true);
+		m_ItemPreview.SetForceFlip(false);
+		
 		m_GhostSlot				= ImageWidget.Cast( m_MainWidget.FindAnyWidget( "GhostSlot" + index ) );
 		
 		m_ColorWidget			= m_MainWidget.FindAnyWidget( "Color" + index );
@@ -71,8 +79,23 @@ class SlotsIcon: LayoutHolder
 		m_RadialIconClosed		= m_MainWidget.FindAnyWidget( "RadialIconClosed" + index );
 		m_RadialIcon			= m_MainWidget.FindAnyWidget( "RadialIcon" + index );
 		
+		m_ReservedWidget = Widget.Cast( GetGame().GetWorkspace().CreateWidgets( "gui/layouts/inventory_new/reserved_icon.layout", m_MainWidget ) );
+		m_ReservedWidget.Show(false);
+		
 		WidgetEventHandler.GetInstance().RegisterOnMouseEnter( m_PanelWidget,  this, "MouseEnter" );
 		WidgetEventHandler.GetInstance().RegisterOnMouseLeave( m_PanelWidget,  this, "MouseLeave" );
+		
+		//WidgetEventHandler.GetInstance().RegisterOnMouseEnter( m_ReservedWidget,  this, "MouseEnter" );
+		//WidgetEventHandler.GetInstance().RegisterOnMouseLeave( m_ReservedWidget,  this, "MouseLeave" );
+		
+		m_Reserved 				= false;
+		
+		m_SlotParent			= slot_parent;
+		
+		m_PanelWidget.SetUserData(this);
+		m_ItemPreview.SetUserData(this);
+		m_GhostSlot.SetUserData(this);
+		m_MainWidget.SetUserData(this);
 		
 		SetActive( false );
 	}
@@ -84,6 +107,26 @@ class SlotsIcon: LayoutHolder
 			m_Obj.GetOnItemFlipped().Remove( UpdateFlip );
 			m_Obj.GetOnViewIndexChanged().Remove( SetItemPreview );
 		}
+	}
+	
+	EntityAI GetSlotParent()
+	{
+		return m_SlotParent;
+	}
+	
+	int GetSlotID()
+	{
+		return m_SlotID;
+	}
+	
+	void SetSlotID(int slot_ID)
+	{
+		m_SlotID = slot_ID;
+	}
+	
+	bool IsReserved()
+	{
+		return m_Reserved;
 	}
 	
 	Widget GetPanelWidget()
@@ -99,6 +142,11 @@ class SlotsIcon: LayoutHolder
 	Widget GetColWidget()
 	{
 		return m_ColWidget;
+	}
+	
+	Widget GetReservedWidget()
+	{
+		return m_ReservedWidget;
 	}
 	
 	Widget GetSelectedWidget()
@@ -313,12 +361,15 @@ class SlotsIcon: LayoutHolder
 	
 	void UpdateFlip( bool flipped )
 	{
-		float x_content, y_content;
-		GetPanelWidget().GetScreenSize( x_content, y_content );
-		GetPanelWidget().SetSize( y_content, x_content );
+		if( !m_Reserved )
+		{
+			float x_content, y_content;
+			GetPanelWidget().GetScreenSize( x_content, y_content );
+			GetPanelWidget().SetSize( y_content, x_content );
+		}
 	}
 
-	void Init( EntityAI obj )
+	void Init( EntityAI obj, bool reservation = false )
 	{
 		if( m_Obj != obj )
 		{
@@ -327,14 +378,30 @@ class SlotsIcon: LayoutHolder
 			m_Item	= ItemBase.Cast( m_Obj );
 			m_Obj.GetOnItemFlipped().Insert( UpdateFlip );
 			m_Obj.GetOnViewIndexChanged().Insert( SetItemPreview );
+			m_Reserved = reservation;
+			
+			if(reservation)
+			{
+				ItemManager.GetInstance().SetWidgetDraggable( m_PanelWidget, false );
+				
+				m_IsWeapon = false;
+				m_IsMagazine = false;
+				m_HasTemperature = false;
+				m_HasQuantity = false;
+				m_HasItemSize = false;
+			}
+			else
+			{
+				CheckIsWeapon();
+				CheckIsMagazine();
+				CheckHasTemperature();
+				CheckHasQuantity();
+				CheckHasItemSize();
+			}
+
+			m_ReservedWidget.Show(reservation);
 
 			SetItemPreview();
-			
-			CheckIsWeapon();
-			CheckIsMagazine();
-			CheckHasTemperature();
-			CheckHasQuantity();
-			CheckHasItemSize();
 			
 			m_GhostSlot.Show( false );
 			m_PanelWidget.Show( true );
@@ -373,6 +440,7 @@ class SlotsIcon: LayoutHolder
 		m_SelectedWidget.Show( false );
 		m_MountedWidget.Show( false );
 		m_OutOfReachWidget.Show( false );
+		m_ReservedWidget.Show( false );
 		
 		if( m_ItemSizePanel )
 			m_ItemSizePanel.Show( false );
@@ -430,6 +498,9 @@ class SlotsIcon: LayoutHolder
 	
 	bool MouseEnter(Widget w, int x, int y)
 	{
+		if( m_Reserved )
+			return true;
+		
 		ItemManager.GetInstance().PrepareTooltip( m_Item, x, y );
 		if( GetDragWidget() != m_PanelWidget && !IsOutOfReach() )
 		{
@@ -440,6 +511,9 @@ class SlotsIcon: LayoutHolder
 
 	bool MouseLeave( Widget w, Widget s, int x, int y	)
 	{
+		if( m_Reserved )
+			return true;
+		
 		ItemManager.GetInstance().HideTooltip();
 		if( GetDragWidget() != m_PanelWidget )
 		{

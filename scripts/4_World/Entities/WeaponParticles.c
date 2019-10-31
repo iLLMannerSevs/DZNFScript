@@ -9,6 +9,7 @@ class WeaponParticlesBase // This class represents every particle effect you see
 	bool			m_IlluminateWorld;
 	bool			m_IgnoreIfSuppressed;
 	bool			m_OnlyIfBoltIsOpen;
+	int 			m_MuzzleIndex;
 	int 			m_OverrideParticle;
 	int 			m_OnlyWithinHealthLabelMin;
 	int 			m_OnlyWithinHealthLabelMax;
@@ -37,6 +38,12 @@ class WeaponParticlesBase // This class represents every particle effect you see
 		
 		// illuminateWorld
 		m_IlluminateWorld = GetGame().ConfigGetFloat(config_OnFire_entry + " " + "illuminateWorld");
+		
+		m_MuzzleIndex = -1;
+		if(GetGame().ConfigIsExisting(config_OnFire_entry + " " + "muzzleIndex"))
+		{
+			m_MuzzleIndex = GetGame().ConfigGetInt(config_OnFire_entry + " " + "muzzleIndex");
+		}
 		
 		// onlyIfWeaponIs
 		m_OnlyIfWeaponIs = "";
@@ -159,45 +166,48 @@ class WeaponParticlesBase // This class represents every particle effect you see
 	//======================================
 	// It is important to know that this block of script is called for weapons and muzzle attachments alike.
 	// Thus weapon == muzzle_owner when this is called for a weapon, and weapon != muzzle_owner when this is called for a suppressor.
-	void OnActivate(ItemBase weapon, string ammoType, ItemBase muzzle_owner, ItemBase suppressor, string config_to_search)
+	void OnActivate(ItemBase weapon, int muzzle_index, string ammoType, ItemBase muzzle_owner, ItemBase suppressor, string config_to_search)
 	{
 		if ( !GetGame().IsServer()  ||  !GetGame().IsMultiplayer() )
 		{
 			// Handle effect's parameters
 			if ( PrtTest.m_GunParticlesState ) // Check if particles are enabled by debug
 			{
-				if ( CheckBoltStateCondition(weapon) ) // onlyIfBoltIsOpen
+				if ( m_MuzzleIndex == -1 || m_MuzzleIndex == muzzle_index )
 				{
-					if ( !suppressor  ||  !(m_IgnoreIfSuppressed) ) // ignoreIfSuppressed
+					if ( CheckBoltStateCondition(weapon) ) // onlyIfBoltIsOpen
 					{
-						if ( CheckHealthCondition( muzzle_owner.GetHealthLevel() ) ) // onlyWithinHealthLabel
+						if ( !suppressor  ||  !(m_IgnoreIfSuppressed) ) // ignoreIfSuppressed
 						{
-							if (CheckOverheatingCondition( muzzle_owner.GetOverheatingCoef() ) ) // onlyWithinOverheatLimits
+							if ( CheckHealthCondition( muzzle_owner.GetHealthLevel() ) ) // onlyWithinHealthLabel
 							{
-								if (CheckRainCondition( GetGame().GetWeather().GetRain().GetActual() ) ) // onlyWithinRainLimits
+								if (CheckOverheatingCondition( muzzle_owner.GetOverheatingCoef() ) ) // onlyWithinOverheatLimits
 								{
-									if ( m_OnlyIfBulletIs == ""  ||  m_OnlyIfBulletIs == ammoType ) // onlyIfBulletIs
+									if (CheckRainCondition( GetGame().GetWeather().GetRain().GetActual() ) ) // onlyWithinRainLimits
 									{
-										if ( m_OnlyIfWeaponIs == ""  ||  m_OnlyIfWeaponIs == weapon.GetType() ) // onlyIfWeaponIs
+										if ( m_OnlyIfBulletIs == ""  ||  m_OnlyIfBulletIs == ammoType ) // onlyIfBulletIs
 										{
-											// Get particle ID
-											int particle_id = CheckParticleOverride(ammoType);
-											
-											// Get position of the particle
-											vector local_pos = muzzle_owner.GetSelectionPositionLS(m_OverridePoint);
-											local_pos += m_PositionOffset;
-											
-											// Set orientation of the particle
-											vector particle_ori = CheckOrientationOverride(local_pos, muzzle_owner);
-											
-											Particle p = Particle.PlayOnObject( particle_id, muzzle_owner, local_pos, particle_ori );
-											
-											OnParticleCreated(weapon, ammoType, muzzle_owner, suppressor, config_to_search, p);
-											
-											if (m_IlluminateWorld)
+											if ( m_OnlyIfWeaponIs == ""  ||  m_OnlyIfWeaponIs == weapon.GetType() ) // onlyIfWeaponIs
 											{
-												vector global_pos = muzzle_owner.ModelToWorld(local_pos + Vector(-0.2, 0, 0));
-												ScriptedLightBase.CreateLight(MuzzleFlashLight, global_pos);
+												// Get particle ID
+												int particle_id = CheckParticleOverride(ammoType);
+											
+												// Get position of the particle
+												vector local_pos = muzzle_owner.GetSelectionPositionLS(m_OverridePoint);
+												local_pos += m_PositionOffset;
+											
+												// Set orientation of the particle
+												vector particle_ori = CheckOrientationOverride(local_pos, muzzle_owner);
+											
+												Particle p = Particle.PlayOnObject( particle_id, muzzle_owner, local_pos, particle_ori );
+											
+												OnParticleCreated(weapon, ammoType, muzzle_owner, suppressor, config_to_search, p);
+											
+												if (m_IlluminateWorld)
+												{
+													vector global_pos = muzzle_owner.ModelToWorld(local_pos + Vector(-0.2, 0, 0));
+													ScriptedLightBase.CreateLight(MuzzleFlashLight, global_pos);
+												}
 											}
 										}
 									}
@@ -372,7 +382,7 @@ class WeaponParticlesOnOverheating: WeaponParticlesBase
 	
 	override void OnUpdate(ItemBase weapon, string ammoType, ItemBase muzzle_owner, ItemBase suppressor, string config_to_search)
 	{
-		OnActivate(weapon, ammoType, muzzle_owner, suppressor, config_to_search);
+		OnActivate(weapon, 0, ammoType, muzzle_owner, suppressor, config_to_search);
 	}
 }
 

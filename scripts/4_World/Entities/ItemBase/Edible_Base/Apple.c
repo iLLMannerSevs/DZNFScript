@@ -26,13 +26,11 @@ class Apple : Edible_Base
 	override void EEOnCECreate()
 	{
 		int rand = Math.RandomInt(0,10);
-		float hp = GetMaxHealth()*0.1;
-		Print( hp );
-		
+
 		if ( rand > 6 )
 		{
 			ChangeFoodStage( FoodStageType.ROTTEN );
-			SetHealth( "", "", hp );
+			SetHealth( "", "", GetMaxHealth()*0.1 );
 		}
 		else if ( rand > 2 )
 		{

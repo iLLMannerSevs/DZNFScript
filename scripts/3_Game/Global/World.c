@@ -112,6 +112,11 @@ class World: Managed
 	proto native bool IsCrosshairDisabled();
 	
 	/*!
+	checks if mouse and keyboard is enabled from server (only on console)
+	*/
+	proto native bool IsMouseAndKeyboardEnabledOnServer();
+	
+	/*!
 	enable/disable transmiting voice over network globally
 	\param disable	if true, then VoN is no more usable for transmiting voice
 	*/

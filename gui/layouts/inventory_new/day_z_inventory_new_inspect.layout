@@ -53,6 +53,7 @@ FrameWidgetClass rootFrame {
          vexactpos 1
          hexactsize 0
          vexactsize 0
+         "force flip enable" 1
         }
        }
       }

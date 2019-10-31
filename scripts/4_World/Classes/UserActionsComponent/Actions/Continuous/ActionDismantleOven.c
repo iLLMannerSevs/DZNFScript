@@ -72,6 +72,9 @@ class ActionDismantleOven: ActionContinuousBase
 			//set oven state
 			fireplace_target.SetOvenState( false );
 			
+			// extend lifetime
+			fireplace_target.IncreaseLifetime();
+			
 			//add specialty to soft skills
 			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}

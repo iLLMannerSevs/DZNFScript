@@ -17,13 +17,11 @@ class ActionEatFruit: ActionEat
 		
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{	
-		Edible_Base food_item = Edible_Base.Cast( item );
+		Edible_Base food_item;
 		
-		if( food_item.IsFruit() )
-		{	
+		if ( Class.CastTo(food_item, item) && food_item.IsFruit() )
 			return true;
-		}
-		
+
 		return false;
 	}
 }

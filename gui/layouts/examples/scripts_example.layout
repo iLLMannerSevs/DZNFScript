@@ -72,7 +72,7 @@ FrameWidgetClass TabsWidget {
      halign center_ref
      valign center_ref
      scriptclass "Bouncer"
-     image0 "Gui/textures/dayz_logo_small_ca"
+     image0 "set:dayz_gui image:DayZLogo"
      mode blend
      "src alpha" 1
      "no wrap" 1
@@ -100,7 +100,7 @@ FrameWidgetClass TabsWidget {
        position 23.9998 24
        size 220 104
        scriptclass "HoverEffect"
-       image0 "Gui/textures/dayz_logo_small_ca"
+       image0 "set:dayz_gui image:DayZLogo"
        mode blend
        "src alpha" 1
        "no wrap" 1
@@ -118,7 +118,7 @@ FrameWidgetClass TabsWidget {
        position 23.9998 138
        size 220 104
        scriptclass "HoverEffect"
-       image0 "Gui/textures/dayz_logo_small_ca"
+       image0 "set:dayz_gui image:DayZLogo"
        mode blend
        "src alpha" 1
        "no wrap" 1
@@ -136,7 +136,7 @@ FrameWidgetClass TabsWidget {
        position 23.9998 252
        size 220 104
        scriptclass "HoverEffect"
-       image0 "Gui/textures/dayz_logo_small_ca"
+       image0 "set:dayz_gui image:DayZLogo"
        mode blend
        "src alpha" 1
        "no wrap" 1
@@ -164,8 +164,7 @@ FrameWidgetClass TabsWidget {
      halign center_ref
      valign center_ref
      scriptclass "Rotator"
-     image0 ""
-     imageTexture "{07EC9681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
+     image0 "set:dayz_gui image:DayZLogo"
      mode blend
      "src alpha" 1
      "no wrap" 1

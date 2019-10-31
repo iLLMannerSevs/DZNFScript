@@ -294,6 +294,7 @@ class IntroSceneCharacter extends Managed
 		g_Game.ConfigGetTextArray("cfgCharacterCreation" + " shoe",		m_CharShoesList);
 
 		// Init character table
+		m_Characters.Clear();
 		m_Characters.Insert( ECharGender.Male,		new array<string> );
 		m_Characters.Insert( ECharGender.Female,	new array<string> );
 		

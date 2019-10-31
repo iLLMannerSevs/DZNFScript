@@ -55,8 +55,6 @@ class PumpShotgunJammed extends WeaponStateJammed
  **/
 class Mp133Shotgun_Base : Rifle_Base
 {
-	//ref Magazine m_InnerMagazine;
-	
 	ref WeaponStateBase E;
 	ref WeaponStateBase F;
 	ref WeaponStateBase L;
@@ -64,8 +62,6 @@ class Mp133Shotgun_Base : Rifle_Base
 	
 	void Mp133Shotgun ()
 	{
-		//m_InnerMagazine = new Magazine;
-		//m_InnerMagazine.m_ChanceToJam = 
 	}
 	
 	override RecoilBase SpawnRecoilObject()
@@ -109,15 +105,8 @@ class Mp133Shotgun_Base : Rifle_Base
 		WeaponStateBase		Trigger_J = new WeaponDryFire(this, NULL, WeaponActions.FIRE, WeaponActionFireTypes.FIRE_DRY);
 		
 		WeaponStateBase		Trigger_LJ = new WeaponFire(this, NULL, WeaponActions.FIRE, WeaponActionFireTypes.FIRE_JAM);
-		// extend Rifle_Base fsm
-		/*LoopedChambering lch = new LoopedChambering(this, NULL, WeaponActions.CHAMBERING, WeaponActionChamberingTypes.CHAMBERING_STARTLOOPABLE_CLOSED, WeaponActionChamberingTypes.CHAMBERING_ENDLOOPABLE);
-		LoopedChambering psh = new LoopedChambering(this, NULL, WeaponActions.CHAMBERING, WeaponActionChamberingTypes.CHAMBERING_STARTLOOPABLE_CLOSED_KEEP	, WeaponActionChamberingTypes.CHAMBERING_ENDLOOPABLE);
-		LoopedChambering lch2 = new LoopedChambering(this, NULL, WeaponActions.CHAMBERING, WeaponActionChamberingTypes.CHAMBERING_STARTLOOPABLE_CLOSED, WeaponActionChamberingTypes.CHAMBERING_ENDLOOPABLE,true);
-		LoopedChambering psh2 = new LoopedChambering(this, NULL, WeaponActions.CHAMBERING, WeaponActionChamberingTypes.CHAMBERING_STARTLOOPABLE_CLOSED_KEEP	, WeaponActionChamberingTypes.CHAMBERING_ENDLOOPABLE,true);
-		*/
 		
 		WeaponEventBase _fin_ = new WeaponEventHumanCommandActionFinished;
-		WeaponEventBase __lS_ = new WeaponEventContinuousLoadBulletStart;
 		WeaponEventBase __L__ = new WeaponEventLoad1Bullet;
 		WeaponEventBase __T__ = new WeaponEventTrigger;
 		WeaponEventBase __TJ_ = new WeaponEventTriggerToJam;
@@ -130,79 +119,77 @@ class Mp133Shotgun_Base : Rifle_Base
 		m_fsm = new WeaponFSM();
 		
 		// Mechanism
-		m_fsm.AddTransition(new WeaponTransition( E,		__M__,	Mech_L));
+		m_fsm.AddTransition(new WeaponTransition( E,			__M__,	Mech_L));
 //----------------------------------------	
-			
-		m_fsm.AddTransition(new WeaponTransition( L,		__M__,  Mech_L));
-		m_fsm.AddTransition(new WeaponTransition( Mech_L,	_fin_,  E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_L,	_fin_,  L));
-		m_fsm.AddTransition(new WeaponTransition( Mech_L,	_abt_,  E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_L,	_abt_,  L));
 		
-		m_fsm.AddTransition(new WeaponTransition( F,		__M__,  Mech_F));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_fin_,  E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_fin_,  F, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_fin_,  L));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_abt_,  E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_abt_,  F, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition( Mech_F,	_abt_,  L));
+		m_fsm.AddTransition(new WeaponTransition( L,			__M__,	Mech_L));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_L,		_fin_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_L,		_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_L,		_abt_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_L,		_abt_,	L));
 		
-				
+		m_fsm.AddTransition(new WeaponTransition( F,			__M__,	Mech_F));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_fin_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_fin_,	F, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_abt_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_abt_,	F, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_F,		_abt_,	L));
+		
 //----------------------------------------		
 		
-		m_fsm.AddTransition(new WeaponTransition( E,			__L__,  Chamber_E));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_E,	_fin_,  L));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_E,	_abt_,  E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_E,	_abt_,	L));
+		m_fsm.AddTransition(new WeaponTransition( E,			__L__,	Chamber_E));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_E,	_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_E,	_abt_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_E,	_abt_,	L));
 		
-		m_fsm.AddTransition(new WeaponTransition( L,			__L__,  Chamber_L, NULL, new GuardNot(new WeaponGuardInnerMagazineFull(this))));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_L,	_fin_,  L));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_L,	_abt_,  L));
+		m_fsm.AddTransition(new WeaponTransition( L,			__L__,	Chamber_L, NULL, new GuardNot(new WeaponGuardInnerMagazineFull(this))));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_L,	_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_L,	_abt_,	L));
 		
-		m_fsm.AddTransition(new WeaponTransition( F,			__L__,  Chamber_F, NULL, new GuardNot(new WeaponGuardInnerMagazineFull(this))));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_F,	_fin_,  L));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_F,	_abt_,  F, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition( Chamber_F,	_abt_,  L));
+		m_fsm.AddTransition(new WeaponTransition( F,			__L__,	Chamber_F, NULL, new GuardNot(new WeaponGuardInnerMagazineFull(this))));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_F,	_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_F,	_abt_,	F, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_F,	_abt_,	L));
 
 		
-//-------------------------------------------		
-			
-		m_fsm.AddTransition(new WeaponTransition(J, 		__U__, Unjam_J));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_fin_, J, NULL, new WeaponGuardJammed(this)));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_fin_, E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_fin_, L));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_abt_, J, NULL, new WeaponGuardJammed(this)));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_abt_, E, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Unjam_J,	_abt_, L));
+//-------------------------------------------
 		
+		m_fsm.AddTransition(new WeaponTransition( J, 			__U__,	Unjam_J));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_fin_,	J, NULL, new WeaponGuardJammed(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_fin_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_fin_,	L));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_abt_,	J, NULL, new WeaponGuardJammed(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_abt_,	E, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_J,		_abt_,	L));
 		
 //-----------------------------------------
 		
 		// fire
-		m_fsm.AddTransition(new WeaponTransition(E,			__T__, Trigger_E)); // fire.cocked
-		m_fsm.AddTransition(new WeaponTransition(Trigger_E,	_fin_, E));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_E,	_dto_, E));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_E,	_abt_, E));
+		m_fsm.AddTransition(new WeaponTransition( E,			__T__,	Trigger_E)); // fire.cocked
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_E,	_fin_,	E));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_E,	_dto_,	E));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_E,	_abt_,	E));
 		
-		m_fsm.AddTransition(new WeaponTransition(L,			__T__, Trigger_L)); // fire.cocked
-		m_fsm.AddTransition(new WeaponTransition(Trigger_L,	_fin_, F));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_L,	_rto_, F));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_L,	_abt_, F));
+		m_fsm.AddTransition(new WeaponTransition( L,			__T__,	Trigger_L)); // fire.cocked
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_L,	_fin_,	F));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_L,	_rto_,	F));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_L,	_abt_,	F));
 		
-		m_fsm.AddTransition(new WeaponTransition(L,			__TJ_, Trigger_LJ)); // fire.cocked
-		m_fsm.AddTransition(new WeaponTransition(Trigger_LJ,	_fin_, J ));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_LJ,	_rto_, J ));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_LJ,	_abt_, J ));
+		m_fsm.AddTransition(new WeaponTransition( L,			__TJ_,	Trigger_LJ)); // fire.cocked
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_LJ,	_fin_,	J));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_LJ,	_rto_,	J));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_LJ,	_abt_,	J));
 		
-		m_fsm.AddTransition(new WeaponTransition(F,			__T__, Trigger_F)); // fire.cocked
-		m_fsm.AddTransition(new WeaponTransition(Trigger_F,	_fin_, F));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_F,	_dto_, F));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_F,	_abt_, F));
+		m_fsm.AddTransition(new WeaponTransition( F,			__T__,	Trigger_F)); // fire.cocked
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_F,	_fin_,	F));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_F,	_dto_,	F));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_F,	_abt_,	F));
 		
-		m_fsm.AddTransition(new WeaponTransition(J,			__T__, Trigger_J)); // fire.cocked
-		m_fsm.AddTransition(new WeaponTransition(Trigger_J,	_fin_, J));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_J,	_dto_, J));
-		m_fsm.AddTransition(new WeaponTransition(Trigger_J,	_abt_, J));
+		m_fsm.AddTransition(new WeaponTransition( J,			__T__,	Trigger_J)); // fire.cocked
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_J,	_fin_,	J));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_J,	_dto_,	J));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_J,	_abt_,	J));
 		
 //-----------------------------------------	
 		

@@ -125,7 +125,7 @@ class PlayerContainer: CollapsibleContainer
 
 				GetGame().ConfigGetText( path + " name", slot_name );
 				int slot_id = InventorySlots.GetSlotIdFromString( slot_name );
-				icon.GetGhostSlot().SetUserID( slot_id );
+				icon.SetSlotID(slot_id);
 				m_InventorySlots.Set( slot_id, icon );
 			}
 		}
@@ -140,6 +140,8 @@ class PlayerContainer: CollapsibleContainer
 		{
 			m_Player.GetOnItemAttached().Remove(ItemAttached);
 			m_Player.GetOnItemDetached().Remove(ItemDetached);
+			m_Player.GetOnAttachmentSetLock().Remove(OnAttachmentReservationSet);
+			m_Player.GetOnAttachmentReleaseLock().Remove(OnAttachmentReservationRelease);
 		}
 	}
 	
@@ -147,8 +149,12 @@ class PlayerContainer: CollapsibleContainer
 	{
 		int slot = InventorySlots.GetSlotIdFromString( slot_name );
 		SlotsIcon icon = m_InventorySlots.Get( slot );
+		
 		if( icon )
 		{
+			if( icon.IsReserved())
+				m_Player.GetOnAttachmentReleaseLock().Invoke(item, slot);
+			
 			icon.Init( item );
 
 			if( m_ShowedItems.Contains( item ) == false )
@@ -163,7 +169,6 @@ class PlayerContainer: CollapsibleContainer
 				{
 					ContainerWithCargoAndAttachments iwca = new ContainerWithCargoAndAttachments( this, sort_index );
 					iwca.SetEntity( item );
-					icon.GetPanelWidget().SetUserID( item.GetID() );
 					WidgetEventHandler.GetInstance().RegisterOnMouseButtonUp( icon.GetPanelWidget(),  this, "ToggleWidget" );
 
 					icon.GetRadialIconPanel().Show( true );
@@ -177,7 +182,6 @@ class PlayerContainer: CollapsibleContainer
 					ContainerWithCargo iwc = new ContainerWithCargo( this, sort_index );
 					iwc.SetEntity( item );
 					iwc.UpdateInterval();
-					icon.GetPanelWidget().SetUserID( item.GetID() );
 					WidgetEventHandler.GetInstance().RegisterOnMouseButtonUp( icon.GetPanelWidget(),  this, "ToggleWidget" );
 					m_ShowedItems.Insert( item, iwc );
 					icon.GetRadialIconPanel().Show(true);
@@ -225,9 +229,25 @@ class PlayerContainer: CollapsibleContainer
 		}
 	}
 	
+	void OnAttachmentReservationSet( EntityAI item, int slot_id )
+	{
+		SlotsIcon icon = m_InventorySlots.Get( slot_id );
+		
+		if( item )
+		{
+			icon.Init( item, true );
+		}
+	}
+	
+	void OnAttachmentReservationRelease( EntityAI item, int slot_id )
+	{
+		SlotsIcon icon = m_InventorySlots.Get( slot_id );
+		icon.Clear();
+	}
+	
 	void AddSlotsContainer( int row_count )
 	{
-		ref SlotsContainer s_cont = new SlotsContainer( m_PlayerAttachmentsContainer );
+		ref SlotsContainer s_cont = new SlotsContainer( m_PlayerAttachmentsContainer, m_Player );
 		s_cont.SetColumnCount( row_count );
 		m_PlayerAttachmentsContainer.Insert( s_cont );
 	}
@@ -240,27 +260,56 @@ class PlayerContainer: CollapsibleContainer
 	
 	void MouseClick( Widget w, int x, int y, int button )
 	{
-		bool inventory_locked = m_Player.GetInventory().IsInventoryLocked();
-		ItemManager.GetInstance().SetWidgetDraggable( w, !inventory_locked );
 		
-		string name = w.GetName();
-		name.Replace( "PanelWidget", "Render" );
-		ItemPreviewWidget item_preview = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
-		EntityAI item = item_preview.GetItem();
+		SlotsIcon slots_icon;
+		w.GetUserData(slots_icon);
+		
+		EntityAI item;
+		bool reserved;
+		
+		
+		if(slots_icon)
+		{
+			item = slots_icon.GetEntity();
+			reserved = slots_icon.IsReserved();
+		
+		}
+
 		InventoryItem itemAtPos = InventoryItem.Cast( item );
 		
 		if( item )
 		{
-			if ( button == MouseState.MIDDLE )
+			if ( button == MouseState.RIGHT )
 			{
-				InspectItem( itemAtPos );
-				return;
-			}
-			else if ( button == MouseState.LEFT && g_Game.IsLeftCtrlDown() )
-			{
-				if( item.GetInventory().CanRemoveEntity() )
+				if( reserved )
 				{
-					GetGame().GetPlayer().PredictiveDropEntity( item );
+					GetGame().GetPlayer().GetHumanInventory().ClearUserReservedLocation( item );
+					m_Player.GetOnAttachmentReleaseLock().Invoke(item, slots_icon.GetSlotID());
+				}
+			}
+			else if ( button == MouseState.MIDDLE )
+			{
+				if( !reserved )
+				{
+					InspectItem( itemAtPos );
+				}
+			} 
+			else if ( button == MouseState.LEFT )
+			{
+				if( !reserved )
+				{
+					if ( g_Game.IsLeftCtrlDown() )
+					{
+						if( item.GetInventory().CanRemoveEntity() )
+						{
+							GetGame().GetPlayer().PredictiveDropEntity( item );
+						}
+					}
+					else
+					{
+						bool draggable = !m_Player.GetInventory().HasInventoryReservation( item, null ) && !m_Player.GetInventory().IsInventoryLocked() && item.GetInventory().CanRemoveEntity();
+						ItemManager.GetInstance().SetWidgetDraggable( w, draggable );
+					}
 				}
 			}
 		}
@@ -598,12 +647,21 @@ class PlayerContainer: CollapsibleContainer
 			{
 			  iw = ItemPreviewWidget.Cast( w );
 			}
-			if( !iw.GetItem() )
+
+			ItemBase item = ItemBase.Cast( iw.GetItem() );
+			
+			if( !item )
 			{
 				return;
 			}
-	
-			ItemBase item = ItemBase.Cast( iw.GetItem() );
+				
+			SlotsIcon icon;
+			iw.GetUserData(icon);
+		
+			if(icon && icon.IsReserved())
+			{
+				return;
+			}
 			
 			if( !item.GetInventory().CanRemoveEntity() )
 				return;
@@ -1025,12 +1083,16 @@ class PlayerContainer: CollapsibleContainer
 		{
 			m_Player.GetOnItemAttached().Remove(ItemAttached);
 			m_Player.GetOnItemDetached().Remove(ItemDetached);
+			m_Player.GetOnAttachmentSetLock().Remove(OnAttachmentReservationSet);
+			m_Player.GetOnAttachmentReleaseLock().Remove(OnAttachmentReservationRelease);
 		}
 		m_Player = player;
 		if( m_Player )
 		{
 			m_Player.GetOnItemAttached().Insert(ItemAttached);
 			m_Player.GetOnItemDetached().Insert(ItemDetached);
+			m_Player.GetOnAttachmentSetLock().Insert(OnAttachmentReservationSet);
+			m_Player.GetOnAttachmentReleaseLock().Insert(OnAttachmentReservationRelease);
 		}
 		
 		//START - InitGhostSlots
@@ -1068,6 +1130,8 @@ class PlayerContainer: CollapsibleContainer
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget(name) );
+		ipw.SetForceFlipEnable(false);
+		
 		float icon_x, icon_y, x_content, y_content;
 		int m_sizeX, m_sizeY;
 
@@ -1095,9 +1159,7 @@ class PlayerContainer: CollapsibleContainer
 			}
 			name.Replace( "Render", "Col" );
 			w.FindAnyWidget( name ).Show( true );
-			name.Replace( "Col", "RadialIcon" );
-			w.GetParent().GetParent().FindAnyWidget( name ).Show( false );
-			name.Replace( "RadialIcon", "AmmoIcon" );
+			name.Replace( "Col", "AmmoIcon" );
 			w.GetParent().FindAnyWidget( name ).Show( false );
 			name.Replace( "AmmoIcon", "Selected" );
 			w.GetParent().FindAnyWidget( name ).Show( true );
@@ -1114,7 +1176,12 @@ class PlayerContainer: CollapsibleContainer
 		w.ClearFlags( WidgetFlags.EXACTSIZE );
 		w.SetSize( 1, 1 );
 		string name = w.GetName();
-		name.Replace( "PanelWidget", "Col" );
+		name.Replace( "PanelWidget", "Render" );
+		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(true);
+		ipw.SetForceFlip(false);
+		
+		name.Replace( "Render", "Col" );
 		w.FindAnyWidget( name ).Show( false );
 		name.Replace( "Col", "Selected" );
 		w.FindAnyWidget( name ).Show( false );
@@ -1200,13 +1267,17 @@ class PlayerContainer: CollapsibleContainer
 		{
 			return;
 		}
-		string name = receiver.GetName();
-		name.Replace("PanelWidget", "Render");
-		ItemPreviewWidget receiver_iw = ItemPreviewWidget.Cast( receiver.FindAnyWidget(name) );
+		
 		EntityAI receiver_item;
-		if( receiver_iw )
+		bool is_reserved = false;
+		
+		SlotsIcon slots_icon;
+		receiver.GetUserData(slots_icon);
+		
+		if(slots_icon)
 		{
-			receiver_item = receiver_iw.GetItem();
+			receiver_item = slots_icon.GetEntity();
+			is_reserved = slots_icon.IsReserved();
 		}
 
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( GetItemPreviewWidget( w ) );
@@ -1222,7 +1293,7 @@ class PlayerContainer: CollapsibleContainer
 			return;
 		}
 		
-		if( receiver_item )
+		if( receiver_item && !is_reserved )
 		{
 			if( GameInventory.CanSwapEntities( receiver_item, item ) )
 			{
@@ -1281,18 +1352,17 @@ class PlayerContainer: CollapsibleContainer
 		ItemManager.GetInstance().HideDropzones();
 		ItemManager.GetInstance().SetIsDragging( false );
 		
-		string name = receiver.GetName();
-		name.Replace("PanelWidget", "Render");
-		ItemPreviewWidget receiver_iw = ItemPreviewWidget.Cast( receiver.FindAnyWidget(name) );
 		EntityAI receiver_item;
+		bool is_reserved = false;
 		InventoryMenu menu = InventoryMenu.Cast( GetGame().GetUIManager().FindMenu( MENU_INVENTORY ) );
-		if( receiver_iw )
-		{
-			receiver_item = receiver_iw.GetItem();
-		}
 
 
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( GetItemPreviewWidget( w ) );
+		SlotsIcon slots_icon;
+		receiver.GetUserData(slots_icon);
+		
+		receiver_item = slots_icon.GetEntity();
+		is_reserved = slots_icon.IsReserved();
 
 		if( !ipw )
 		{
@@ -1305,7 +1375,7 @@ class PlayerContainer: CollapsibleContainer
 		{
 			return;
 		}
-		if( receiver_item )
+		if( receiver_item && !is_reserved )
 		{
 			if( GameInventory.CanSwapEntities( receiver_item, item ) )
 			{
@@ -1344,9 +1414,9 @@ class PlayerContainer: CollapsibleContainer
 			}
 		}
 		
-		if( m_Player.GetInventory().CanAddAttachmentEx( item, receiver.GetUserID() ) )
+		if( m_Player.GetInventory().CanAddAttachmentEx( item, slots_icon.GetSlotID() ) )
 		{
-			real_player.PredictiveTakeEntityToTargetAttachmentEx( m_Player, item, receiver.GetUserID() );
+			real_player.PredictiveTakeEntityToTargetAttachmentEx( m_Player, item, slots_icon.GetSlotID() );
 		}
 		else if(  m_Player.GetInventory().CanAddAttachment( item ) )
 		{

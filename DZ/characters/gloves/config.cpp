@@ -2,7 +2,7 @@
 //DeRap: characters_gloves\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:39 2019 : 'file' last modified on Thu Aug 15 00:11:59 2019
+//'now' is Thu Oct 31 18:20:17 2019 : 'file' last modified on Mon Sep 23 09:27:09 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -511,6 +511,7 @@ class CfgVehicles
 		inventorySlot = "Gloves";
 		simulation = "clothing";
 		itemInfo[] = {"Clothing","Gloves"};
+		rotationFlags = 17;
 		weight = 454;
 		itemSize[] = {2,3};
 		absorbency = 0.4;
@@ -686,7 +687,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\characters\gloves\data\leather_gloves_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\gloves\Data\leather_gloves_Natural_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\gloves\Data\leather_gloves_Natural_destruct.rvmat"}}};
 				};
 			};
@@ -703,7 +704,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\characters\gloves\data\leather_gloves_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\gloves\Data\leather_gloves_Beige_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\gloves\Data\leather_gloves_Beige_destruct.rvmat"}}};
 				};
 			};
@@ -720,7 +721,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\characters\gloves\data\leather_gloves_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\gloves\Data\leather_gloves_Black_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\gloves\Data\leather_gloves_Black_destruct.rvmat"}}};
 				};
 			};
@@ -737,7 +738,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\characters\gloves\data\leather_gloves_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\gloves\Data\leather_gloves_brown_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\gloves\Data\leather_gloves_brown_destruct.rvmat"}}};
 				};
 			};

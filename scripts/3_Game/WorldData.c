@@ -3,6 +3,7 @@ class WorldData
 {
 	protected float m_DayTemperature;
 	protected float m_NightTemperature;
+	protected Weather m_Weather;
 	
 	void WorldData()
 	{
@@ -13,6 +14,7 @@ class WorldData
 	{
 		m_DayTemperature = GetDayTemperatureFromConfig();
 		m_NightTemperature = GetNightTemperatureFromConfig();
+		m_Weather = g_Game.GetWeather();
 	}
 	
 	float GetDayTemperature()
@@ -47,5 +49,11 @@ class WorldData
 		}
 		
 		return nightTemp;
+	}
+
+	bool WeatherOnBeforeChange( EWeatherPhenomenon type, float actual, float change, float time )
+	{
+		// default behaviour is same like setting MissionWeather (in Weather) to true
+		return false;
 	}
 };

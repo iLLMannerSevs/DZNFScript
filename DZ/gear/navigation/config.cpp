@@ -2,7 +2,7 @@
 //DeRap: gear_navigation\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:27 2019 : 'file' last modified on Fri Jul 19 21:55:48 2019
+//'now' is Thu Oct 31 18:21:05 2019 : 'file' last modified on Thu Oct 10 14:11:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -511,9 +511,9 @@ class CfgVehicles
 		rotationFlags = 17;
 		itemSize[] = {1,2};
 		weight = 40;
-		world = "ChernarusPlus";
 		selectionPaper = "paper";
 		simulation = "ItemMap";
+		hiddenSelections[] = {"texture_map_closed","texture_map_opened","texture_legend"};
 		absorbency = 1;
 		class DamageSystem
 		{
@@ -521,7 +521,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\navigation\data\Map_chernarus.rvmat"}},{0.7,{"DZ\gear\navigation\data\Map_chernarus.rvmat"}},{0.5,{"DZ\gear\navigation\data\Map_chernarus_damage.rvmat"}},{0.3,{"DZ\gear\navigation\data\Map_chernarus_damage.rvmat"}},{0.0,{"DZ\gear\navigation\data\Map_chernarus_destruct.rvmat"}}};
 				};
 			};
@@ -564,7 +564,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\navigation\data\compass.rvmat"}},{0.7,{"DZ\gear\navigation\data\compass.rvmat"}},{0.5,{"DZ\gear\navigation\data\compass_damage.rvmat"}},{0.3,{"DZ\gear\navigation\data\compass_damage.rvmat"}},{0.0,{"DZ\gear\navigation\data\compass_destruct.rvmat"}}};
 				};
 			};
@@ -611,7 +611,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\navigation\data\compass_modern.rvmat"}},{0.7,{"DZ\gear\navigation\data\compass_modern.rvmat"}},{0.5,{"DZ\gear\navigation\data\compass_modern_damage.rvmat"}},{0.3,{"DZ\gear\navigation\data\compass_modern_damage.rvmat"}},{0.0,{"DZ\gear\navigation\data\compass_modern_destruct.rvmat"}}};
 				};
 			};

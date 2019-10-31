@@ -1,5 +1,7 @@
 class WeaponManager
 {
+	const float MAX_DROP_MAGAZINE_DISTANCE_SQ = 4;
+	
 	protected PlayerBase 					m_player;
 	
 	protected int							m_LastAcknowledgmentID;
@@ -150,10 +152,18 @@ class WeaponManager
 		int muzzleIndex = wpn.GetCurrentMuzzle();	
 					
 		Magazine mag2;
-		if( !Class.CastTo(mag2, wpn.GetMagazine(muzzleIndex)) || !GameInventory.CanSwapEntities( mag, mag2 ) )
+		if( !Class.CastTo(mag2, wpn.GetMagazine(muzzleIndex)) ) 
 			return false;
 		
-		return true;
+		if( GameInventory.CanSwapEntities( mag, mag2 ) )
+			return true;
+		
+		InventoryLocation il = new InventoryLocation;
+		
+		if( GameInventory.CanForceSwapEntities( mag, null, mag2, il ) )
+			return true;
+		
+		return false;
 	}
 //----------------------------------------------------------------------------			
 	bool CanDetachMagazine(Weapon_Base wpn, Magazine mag, bool reservationCheck = true)
@@ -504,6 +514,7 @@ class WeaponManager
 	bool OnInputUserDataProcess(int userDataType, ParamsReadContext ctx)
 	{
 		Weapon_Base wpn;
+		int mi;
 		InventoryLocation il;
 		int slotID;
 		bool accepted = false;
@@ -523,62 +534,89 @@ class WeaponManager
 			m_InProgress = true;
 			m_IsEventSended = false;
 			Magazine mag = NULL;
+			
+			Weapon_Base.CastTo( wpn, m_player.GetItemInHands() );
+			if ( wpn )
+				mi = wpn.GetCurrentMuzzle();
+			
 			switch (m_PendingWeaponAction)
 			{
 				case AT_WPN_ATTACH_MAGAZINE:
 				{
-					ctx.Read(mag);
+					if ( !ctx.Read(mag) )
+						break;
 					
-					
-					if ( !Weapon_Base.CastTo(wpn, m_player.GetItemInHands()) )
-					{
-						accepted = false;
-					}
-					else
-					{
-						slotID = wpn.GetSlotFromMuzzleIndex( wpn.GetCurrentMuzzle() );
-						il = new InventoryLocation;
-						il.SetAttachment(wpn,mag,slotID);
-						if( GetGame().AddInventoryJuncture(m_player,mag,il, false, 10000) )
-							accepted = true;
-					}
+					if ( !mag || !wpn )
+						break;
+
+					slotID = wpn.GetSlotFromMuzzleIndex(mi);
+					il = new InventoryLocation;
+					il.SetAttachment(wpn,mag,slotID);
+					if( GetGame().AddInventoryJuncture(m_player, mag, il, false, 10000) )
+						accepted = true;
+
 					m_PendingTargetMagazine = mag;
-					
-					//AttachMagazine(mag);
 					break;
 				}
 				case AT_WPN_SWAP_MAGAZINE:
 				{
-					ctx.Read(mag);
-					if( GetGame().AddActionJuncture(m_player,mag,10000) )
+					if ( !ctx.Read(mag) )
+						break;
+					
+					if ( !mag || !wpn )
+						break;
+
+					if ( !wpn.GetMagazine(mi) )
+						break;
+					
+					if ( GetGame().AddActionJuncture(m_player,mag,10000) )
 						accepted = true;
 					m_PendingTargetMagazine = mag;
-					//SwapMagazine(mag);
+					
 					break;
 				}
 				case AT_WPN_DETACH_MAGAZINE:
 				{
 					il = new InventoryLocation;
-					il.ReadFromContext(ctx);
+					if ( !il.ReadFromContext(ctx) )
+						break;
+					
+					if ( !il.IsValid() )
+						break;
+					
+					if ( !wpn )
+						break;
+					
+					Magazine det_mag = wpn.GetMagazine(mi);
+					mag = Magazine.Cast(il.GetItem());
+					if ( !det_mag || ( mag != det_mag) )
+						break;
+					
 					if( GetGame().AddInventoryJuncture(m_player, il.GetItem(), il, true, 10000))
 						accepted = true;
 					m_PendingInventoryLocation = il;
-					m_PendingTargetMagazine = Magazine.Cast(il.GetItem());
-					//DetachMagazine(il);
+					m_PendingTargetMagazine = mag;
 					break;
 				}
 				case AT_WPN_LOAD_BULLET:
 				{
 					ctx.Read(mag);
+					
+					if ( !mag )
+						break;
+					
 					if( GetGame().AddActionJuncture(m_player,mag,10000) )
 						accepted = true;
 					m_PendingTargetMagazine = mag;
-					//LoadBullet(mag);
 					break;
 				}
 				case AT_WPN_LOAD_MULTI_BULLETS_START:
 				{
 					ctx.Read(mag);
+					
+					if ( !mag )
+						break;
+					
 					if( GetGame().AddActionJuncture(m_player,mag,10000) )
 						accepted = true;
 					m_PendingTargetMagazine = mag;
@@ -602,7 +640,7 @@ class WeaponManager
 				}
 				default:
 					Error("unknown actionID=" + m_PendingWeaponAction);
-					return false;
+					break;
 			}
 			DayZPlayerSyncJunctures.SendWeaponActionAcknowledgment(m_player, m_PendingWeaponActionAcknowledgmentID, accepted);
 		}

@@ -31,4 +31,4 @@ class Land_FuelStation_Feed extends FuelStation
 	{
 		return !IsRuined();
 	}
-}
+};

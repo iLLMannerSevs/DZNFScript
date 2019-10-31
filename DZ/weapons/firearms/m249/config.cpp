@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\m249\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:24:16 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:53:52 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -80,7 +80,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_M2491";
 		model = "\dz\weapons\firearms\m249\m249.p3d";
 		attachments[] = {"weaponOptics","weaponMuzzleM4","weaponHandguardM249","Att_Handguard_M249_Ris"};
-		itemSize[] = {9,6};
+		itemSize[] = {9,3};
 		class DamageSystem
 		{
 			class GlobalHealth

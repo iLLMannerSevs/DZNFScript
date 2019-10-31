@@ -228,7 +228,7 @@ class Object extends IEntity
 	float GetSurfaceNoise()
 	{
 		vector position = GetPosition();
-		return GetGame().SurfaceGetNoiseMultiplier(position[0], position[2]);
+		return GetGame().SurfaceGetNoiseMultiplier(NULL, position, -1);
 	}
 	
 	//! Returns type of surface under object
@@ -299,8 +299,8 @@ class Object extends IEntity
 	proto native void CreateDynamicPhysics(PhxInteractionLayers layer);
 	proto native void EnableDynamicCCD(bool state);
 
-	//! Called when tree is chopped down.
-	void OnTreeCutDown( EntityAI cutting_tool )
+	//! Called when tree is chopped down. 'cutting_entity' can be tool, or player, if cutting bush with bare hands
+	void OnTreeCutDown( EntityAI cutting_entity )
 	{
 		
 	}
@@ -319,7 +319,8 @@ class Object extends IEntity
 //	string GetName()
 	{
 		string tmp;
-		GetGame().ObjectGetDisplayName(this, tmp);
+		if (!NameOverride(tmp))
+			GetGame().ObjectGetDisplayName(this, tmp);
 		return tmp;
 	}
 	
@@ -438,6 +439,11 @@ class Object extends IEntity
 
 	//! Returns if this entity is bush
 	bool IsBush()
+	{
+		return false;
+	}
+	
+	bool IsCuttable()
 	{
 		return false;
 	}
@@ -937,4 +943,16 @@ class Object extends IEntity
 		GetNetworkID(lo, hi);
 		return lo | hi;
 	}
+	
+	bool NameOverride(out string output)
+	{
+		return false;
+	}
+	
+	bool DescriptionOverride(out string output)
+	{
+		return false;
+	}
+	
+	EntityAI ProcessMeleeItemDamage(int mode = 0) {}
 };

@@ -199,10 +199,12 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "SelectIcon" );
 			ImageWidget toolbar_b = layoutRoot.FindAnyWidget( "BackIcon" );
+			ImageWidget toolbar_b2 = layoutRoot.FindAnyWidget( "BackIcon0" );
 			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "MuteIcon" );
 			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "GamercardIcon" );
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:" + confirm );
 			toolbar_b.LoadImageFile( 0, "set:playstation_buttons image:" + back );
+			toolbar_b2.LoadImageFile( 0, "set:playstation_buttons image:" + back );
 			toolbar_x.LoadImageFile( 0, "set:playstation_buttons image:square" );
 			toolbar_y.LoadImageFile( 0, "set:playstation_buttons image:triangle" );
 		#endif
@@ -257,6 +259,7 @@ class InGameMenuXbox extends UIScriptedMenu
 			{
 				m_OnlineMenu.Show( true );
 				layoutRoot.FindAnyWidget( "play_panel_root" ).Show( false );
+				layoutRoot.FindAnyWidget( "play_panel_root2" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 				//layoutRoot.FindAnyWidget( "dayz_logo" ).Show( false );
 				layoutRoot.FindAnyWidget( "Select" ).Show( false );
 				m_ServerInfoPanel.FocusFirst();
@@ -274,7 +277,11 @@ class InGameMenuXbox extends UIScriptedMenu
 			}
 		}
 		
-		if ( w == m_RestartDeadButton )
+		if( w == layoutRoot.FindAnyWidget( "backbtn" ) )
+		{
+			CloseOnline();		
+		}
+		else if ( w == m_RestartDeadButton )
 		{
 			if ( !GetGame().IsMultiplayer() )
 			{
@@ -379,102 +386,21 @@ class InGameMenuXbox extends UIScriptedMenu
 		string uid;
 		if( GetGame().IsMultiplayer() && layoutRoot.FindAnyWidget( "OnlineInfo" ).IsVisible() )
 		{
-			if( GetGame().GetInput().LocalPress( "UAUIUp", false ) )
-			{
-				if( m_ServerInfoPanel )
-				{
-					m_ServerInfoPanel.ScrollToEntry( m_ServerInfoPanel.FindEntryByWidget( GetFocus() ) );
-					uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-					if( uid != "" )
-					{
-						if( IsLocalPlayer( uid ) || m_ServerInfoPanel.IsEmpty() )
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-							layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
-						}
-						else
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-							#ifndef PLATFORM_PS4
-							layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
-							#endif
-							SetMuteButtonText(OnlineServices.IsPlayerMuted( uid ));
-						}
-						
-						if( m_ServerInfoPanel.IsGloballyMuted( uid ) )
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-						}
-					}
-				}
-			}
-			if( GetGame().GetInput().LocalPress( "UAUIDown", false ) )
-			{
-				if( m_ServerInfoPanel )
-				{
-					m_ServerInfoPanel.ScrollToEntry( m_ServerInfoPanel.FindEntryByWidget( GetFocus() ) );
-					uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-					if( uid != "" )
-					{
-						if( IsLocalPlayer( uid ) || m_ServerInfoPanel.IsEmpty() )
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-							layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
-						}
-						else
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-							#ifndef PLATFORM_PS4
-							layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
-							#endif							
-							SetMuteButtonText(OnlineServices.IsPlayerMuted( uid ));
-						}
-						
-						if( m_ServerInfoPanel.IsGloballyMuted( uid ) )
-						{
-							layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-						}
-					}
-				}
-			}
-			
+			PlayerListEntryScriptedWidget selected;
+			if( m_ServerInfoPanel )
+				selected = m_ServerInfoPanel.GetSelectedPlayer();
 			if( GetGame().GetInput().LocalPress( "UAUICtrlX", false ) )
 			{
-				bool muted;
-				ScriptInputUserData ctx;
-				if( m_ServerInfoPanel )
-				{
-					uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-					if( uid == "" )
-						return;
-					if( !IsLocalPlayer( uid ) && !m_ServerInfoPanel.IsGloballyMuted( uid ) && !GetGame().GetWorld().IsDisabledReceivingVoN() )
-					{
-						muted = OnlineServices.IsPlayerMuted( uid );
-						if ( uid != "" && ScriptInputUserData.CanStoreInputUserData() )
-						{
-							ctx = new ScriptInputUserData;
-							ctx.Write( INPUT_UDT_USER_MUTE_XBOX );
-							ctx.Write( uid );
-							ctx.Write( !muted );
-							ctx.Send();
-							OnlineServices.MutePlayer( uid, !muted );
-							m_ServerInfoPanel.MutePlayer( uid, !muted );
-							SetMuteButtonText(!muted);
-						}
-					}
-				}
+				if( selected )
+					m_ServerInfoPanel.ToggleMute( uid );
+				Refresh();
 			}
 			
 			#ifndef PLATFORM_PS4
 			if( GetGame().GetInput().LocalPress( "UAUICtrlY", false ) )
 			{
-				if( m_ServerInfoPanel )
-				{
-					uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-				}
-				if( uid == "" )
-					return;
-				OnlineServices.ShowUserProfile( uid );
+				if( selected )
+					OnlineServices.ShowUserProfile( selected.GetUID() );
 			}
 			#endif
 		}
@@ -516,37 +442,23 @@ class InGameMenuXbox extends UIScriptedMenu
 	void CloseOnline()
 	{
 		m_OnlineMenu.Show( false );
+		layoutRoot.FindAnyWidget( "play_panel_root2" ).Show( false );
 		layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
 		layoutRoot.FindAnyWidget( "dayz_logo" ).Show( true );
 		layoutRoot.FindAnyWidget( "Select" ).Show( true );
 		layoutRoot.FindAnyWidget( "Mute" ).Show( false );
 		layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
 		
-		
 		SetFocus( m_OnlineButton );
 	}
 	
 	void SelectServer()
 	{
-		layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-		
 		if( m_ServerInfoPanel )
 		{
 			m_ServerInfoPanel.FocusFirst();
 			
-			string uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-			if( IsLocalPlayer( uid ) || m_ServerInfoPanel.IsEmpty() )
-			{
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
-				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-			}
-			else
-			{
-				#ifndef PLATFORM_PS4
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
-				#endif
-				layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-			}
+			Refresh();
 		}
 	}
 	
@@ -558,57 +470,15 @@ class InGameMenuXbox extends UIScriptedMenu
 	void SyncEvent_OnRecievedPlayerList( SyncPlayerList player_list )
 	{
 		m_ServerInfoPanel.Reload( player_list );
-		string uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-		if( uid != "" )
-		{
-			if( IsLocalPlayer( uid ) || m_ServerInfoPanel.IsEmpty() )
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
-			}
-			else
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-				#ifndef PLATFORM_PS4
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
-				#endif
-				SetMuteButtonText( OnlineServices.IsPlayerMuted( uid ) );
-			}
-			
-			if( m_ServerInfoPanel.IsGloballyMuted( uid ) )
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-			}
-		}
+		
+		Refresh();
 	}
 	
 	void OnPermissionsUpdate( BiosPrivacyUidResultArray result_list )
 	{
 		m_ServerInfoPanel.Reload( result_list );
 		
-		string uid = m_ServerInfoPanel.FindPlayerByWidget( GetFocus() );
-		if( uid != "" )
-		{
-			if( IsLocalPlayer( uid ) || m_ServerInfoPanel.IsEmpty() )
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
-			}
-			else
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() );
-				#ifndef PLATFORM_PS4
-				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
-				#endif
-				
-				SetMuteButtonText(OnlineServices.IsPlayerMuted( uid ));
-			}
-			
-			if( m_ServerInfoPanel.IsGloballyMuted( uid ) )
-			{
-				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
-			}
-		}
+		Refresh();
 	}
 	
 	override void OnShow()
@@ -653,6 +523,26 @@ class InGameMenuXbox extends UIScriptedMenu
 		{
 			SetFocus( m_RestartDeadButton );
 		}
+		
+		#ifdef PLATFORM_CONSOLE
+			bool mk = GetGame().GetInput().IsEnabledMouseAndKeyboard();
+			bool mk_server = GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+			TextWidget warning = TextWidget.Cast( layoutRoot.FindAnyWidget( "MouseAndKeyboardWarning" ) );
+			if( mk )
+			{
+				if( mk_server )
+				{
+					warning.SetText( "#str_mouse_and_keyboard_server_warning" );
+				}
+				else
+				{
+					warning.SetText( "#str_controller_server_warning" );
+				}
+			}
+		
+			warning.Show( mk );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !mk_server );
+		#endif
 	}
 	
 	override bool OnMouseEnter( Widget w, int x, int y )
@@ -715,6 +605,24 @@ class InGameMenuXbox extends UIScriptedMenu
 			version = "#main_menu_version" + " " + version;
 		#endif
 		m_Version.SetText( version );
+		
+		if( GetGame().IsMultiplayer() && layoutRoot.FindAnyWidget( "OnlineInfo" ).IsVisible() && m_ServerInfoPanel )
+		{
+			PlayerListEntryScriptedWidget selected = m_ServerInfoPanel.GetSelectedPlayer();
+			if( selected && !selected.IsLocalPlayer() )
+			{
+				layoutRoot.FindAnyWidget( "Mute" ).Show( !GetGame().GetWorld().IsDisabledReceivingVoN() && !selected.IsGloballyMuted() );
+				#ifndef PLATFORM_PS4
+				layoutRoot.FindAnyWidget( "Gamercard" ).Show( true );
+				#endif							
+				SetMuteButtonText( selected.IsMuted() );
+			}
+			else
+			{
+				layoutRoot.FindAnyWidget( "Mute" ).Show( false );
+				layoutRoot.FindAnyWidget( "Gamercard" ).Show( false );
+			}
+		}
 	}
 	
 	void ColorDisable( Widget w )

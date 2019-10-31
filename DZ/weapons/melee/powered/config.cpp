@@ -2,7 +2,7 @@
 //DeRap: weapons_melee\powered\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:58 2019 : 'file' last modified on Wed Aug 14 13:10:45 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:04:10 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -44,18 +44,9 @@ class CfgVehicles
 		weight = 5800;
 		itemSize[] = {10,5};
 		absorbency = 0.0;
-		lootTag[] = {"Work","Forester"};
-		lootCategory = "Tools";
 		openItemSpillRange[] = {40,60};
 		repairableWithKits[] = {5,7};
 		repairCosts[] = {30.0,25.0};
-		class EnergyManager
-		{
-			hasIcon = 1;
-			energyAtSpawn = 0;
-			energyUsagePerSecond = 1;
-			energyStorageMax = 600;
-		};
 		hiddenSelections[] = {"flame"};
 		hiddenSelectionsTextures[] = {""};
 		class DamageSystem
@@ -64,10 +55,17 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\powered\Data\chainsaw.rvmat"}},{0.7,{"DZ\weapons\melee\powered\Data\chainsaw.rvmat"}},{0.5,{"DZ\weapons\melee\powered\Data\chainsaw_damage.rvmat"}},{0.3,{"DZ\weapons\melee\powered\Data\chainsaw_damage.rvmat"}},{0.0,{"DZ\weapons\melee\powered\Data\chainsaw_destruct.rvmat"}}};
 				};
 			};
+		};
+		class EnergyManager
+		{
+			hasIcon = 1;
+			energyAtSpawn = 0;
+			energyUsagePerSecond = 1;
+			energyStorageMax = 600;
 		};
 		class flame
 		{
@@ -96,7 +94,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\powered\Data\chainsaw.rvmat"}},{0.7,{"DZ\weapons\melee\powered\Data\chainsaw.rvmat"}},{0.5,{"DZ\weapons\melee\powered\Data\chainsaw_damage.rvmat"}},{0.3,{"DZ\weapons\melee\powered\Data\chainsaw_damage.rvmat"}},{0.0,{"DZ\weapons\melee\powered\Data\chainsaw_destruct.rvmat"}}};
 				};
 			};
@@ -167,7 +165,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\melee\powered\Data\Stun_Baton.rvmat"}},{0.7,{"DZ\weapons\melee\powered\Data\Stun_Baton.rvmat"}},{0.5,{"DZ\weapons\melee\powered\Data\Stun_Baton_damage.rvmat"}},{0.3,{"DZ\weapons\melee\powered\Data\Stun_Baton_damage.rvmat"}},{0.0,{"DZ\weapons\melee\powered\Data\Stun_Baton_destruct.rvmat"}}};
 				};
 			};

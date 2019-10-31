@@ -2,7 +2,7 @@
 //DeRap: structures_military\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:56:37 2019 : 'file' last modified on Tue Aug 27 07:56:19 2019
+//'now' is Thu Oct 31 18:23:22 2019 : 'file' last modified on Tue Oct 29 14:34:40 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -13529,5 +13529,15 @@ class CfgVehicles
 	{
 		scope = 1;
 		model = "\dz\structures\military\airfield\Mil_Radar_Mobile3.p3d";
+	};
+	class Land_Roadblock_Table: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\dz\structures\Military\Improvised\Roadblock_Table.p3d";
+	};
+	class Land_Roadblock_WoodenCrate: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\dz\structures\Military\Improvised\Roadblock_WoodenCrate.p3d";
 	};
 };

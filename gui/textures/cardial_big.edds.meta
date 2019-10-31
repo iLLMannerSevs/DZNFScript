@@ -1,10 +1,11 @@
 MetaFileClass {
- Name "{DD4435A772DFE53F}Gui/textures/cardial_big.edds"
+ Name "{DD4435A772DFE53F}Gui/textures/cardial_big.tga"
  Author "3672"
- ChangeDate -762665270
+ ChangeDate 1967843164
  Configurations {
   TGAResourceClass PC {
    SourceFile "cardial_big.tga"
+   Conversion DXTCompression
   }
   TGAResourceClass XBOX_ONE : PC {
   }

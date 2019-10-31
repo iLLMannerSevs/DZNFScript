@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:09 2019 : 'file' last modified on Mon Sep 02 12:14:57 2019
+//'now' is Thu Oct 31 18:20:44 2019 : 'file' last modified on Tue Oct 29 11:03:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -397,7 +397,7 @@ class CfgWorlds
 					ambientCloud[] = {{0.2,0.23,0.45},7.2};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {{0.5,0.64,1},7.0};
+					sky[] = {{1.2,0.64,1},7.0};
 					skyAroundSun[] = {{2.2,1.24,1},8.2};
 					desiredLuminanceCoef = 0.35;
 					desiredLuminanceCoefCloud = 0.35;
@@ -455,8 +455,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},10.8};
 					skyAroundSun[] = {{1.0,0.874,0.494},11.4};
-					desiredLuminanceCoef = 0.54;
-					desiredLuminanceCoefCloud = 0.54;
+					desiredLuminanceCoef = 0.47;
+					desiredLuminanceCoefCloud = 0.47;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -483,8 +483,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{0.5,0.64,1},11.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},11.2};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
+					desiredLuminanceCoef = 0.5;
+					desiredLuminanceCoefCloud = 0.5;
 					EVMin = -2.0;
 					EVMax = 0.1;
 					filmGrainIntensity = 0.0;
@@ -509,10 +509,10 @@ class CfgWorlds
 					ambientCloud[] = {{0.12,0.18,0.24},12.0};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {{0.5,0.64,1},11.7};
+					sky[] = {{0.7,0.84,1},11.7};
 					skyAroundSun[] = {{1.0,1.0,1.0},12.5};
-					desiredLuminanceCoef = 0.64;
-					desiredLuminanceCoefCloud = 0.64;
+					desiredLuminanceCoef = 0.52;
+					desiredLuminanceCoefCloud = 0.52;
 					EVMin = -2.0;
 					EVMax = 0.2;
 					filmGrainIntensity = 0.0;
@@ -537,10 +537,10 @@ class CfgWorlds
 					ambientCloud[] = {{0.12,0.18,0.24},12.8};
 					groundReflection[] = {0.0,0.0,0.0};
 					groundReflectionCloud[] = {0.0,0.0,0.0};
-					sky[] = {{0.5,0.64,1},12.6};
+					sky[] = {{0.7,0.84,1},12.6};
 					skyAroundSun[] = {{1.0,1.0,1.0},13.0};
-					desiredLuminanceCoef = 0.68;
-					desiredLuminanceCoefCloud = 0.68;
+					desiredLuminanceCoef = 0.54;
+					desiredLuminanceCoefCloud = 0.54;
 					EVMin = -2.0;
 					EVMax = 0.2;
 					filmGrainIntensity = 0.0;
@@ -735,8 +735,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{1.0,1.0,1.0},6.415};
 					skyAroundSun[] = {{1.0,1.0,1.0},6.799};
-					desiredLuminanceCoef = 0.4;
-					desiredLuminanceCoefCloud = 0.4;
+					desiredLuminanceCoef = 0.32;
+					desiredLuminanceCoefCloud = 0.32;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -763,8 +763,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{1.0,1.0,1.0},8.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},8.8};
-					desiredLuminanceCoef = 0.45;
-					desiredLuminanceCoefCloud = 0.45;
+					desiredLuminanceCoef = 0.35;
+					desiredLuminanceCoefCloud = 0.35;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -791,8 +791,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{1.0,1.0,1.0},9.0};
 					skyAroundSun[] = {{1.0,1.0,1.0},9.8};
-					desiredLuminanceCoef = 0.53;
-					desiredLuminanceCoefCloud = 0.53;
+					desiredLuminanceCoef = 0.37;
+					desiredLuminanceCoefCloud = 0.37;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -819,8 +819,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{1,1,1},11};
 					skyAroundSun[] = {{1,1,1},11.8};
-					desiredLuminanceCoef = 0.58;
-					desiredLuminanceCoefCloud = 0.58;
+					desiredLuminanceCoef = 0.4;
+					desiredLuminanceCoefCloud = 0.4;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -847,8 +847,8 @@ class CfgWorlds
 					groundReflectionCloud[] = {0.0,0.0,0.0};
 					sky[] = {{1,1,1},12};
 					skyAroundSun[] = {{1,1,1},12.8};
-					desiredLuminanceCoef = 0.6;
-					desiredLuminanceCoefCloud = 0.6;
+					desiredLuminanceCoef = 0.4;
+					desiredLuminanceCoefCloud = 0.4;
 					EVMin = -2.0;
 					EVMax = 0.0;
 					filmGrainIntensity = 0.0;
@@ -916,7 +916,7 @@ class CfgWorlds
 					speed = 0.5;
 					size = 0.65;
 					height = 0.85;
-					through = 0.55;
+					through = 0.0;
 					diffuse = 1.0;
 					cloudDiffuse = 1.0;
 					waves = 0.0;
@@ -933,7 +933,7 @@ class CfgWorlds
 					speed = 0.75;
 					size = 0.85;
 					height = 0.8;
-					through = 0.25;
+					through = 0.0;
 					diffuse = 1.0;
 					cloudDiffuse = 1.0;
 					waves = 0.0;
@@ -967,6 +967,11 @@ class CfgWorlds
 		sunObject = "DZ\Data\data\sun.p3d";
 		rainbowObject = "DZ\Data\data\rainbow.p3d";
 		moonObject = "DZ\Data\data\moon.p3d";
+		mapDisplayNameKey = "#STR_CfgVehicles_ChernarusMap0";
+		mapDescriptionKey = "#STR_CfgVehicles_ChernarusMap1";
+		mapTextureClosed = "dz\gear\navigation\data\map_chernarus_co.paa";
+		mapTextureOpened = "dz\structures\signs\tourist\data\karta_co.paa";
+		mapTextureLegend = "dz\structures\signs\tourist\data\karta_side_co.paa";
 		starsIntensity = 0.141;
 		hazeDistCoef = 0.0;
 		hazeFogCoef = 1.0;
@@ -1990,10 +1995,8 @@ class CfgVehicles
 	class Container_Base: Inventory_Base
 	{
 		storageCategory = 1;
-		inventoryCondition = "typeOf _parent != typeOf _this";
 		openable = 0;
 		armAction = "Disarm";
-		lootCategory = "Containers";
 	};
 	class WorldContainer_Base: Inventory_Base
 	{
@@ -2006,7 +2009,6 @@ class CfgVehicles
 	{
 		displayName = "Powered Item Base";
 		descriptionShort = "Should not be in inventory.";
-		lootTag[] = {"Work","Civilian","Hunting","Military_east","Military_west"};
 		attachments[] = {"BatteryD"};
 		energyResources[] = {{"power",8.0}};
 	};
@@ -2015,7 +2017,6 @@ class CfgVehicles
 		armAction = "Disarm";
 		spawnOffset = 0;
 		trashItem = "";
-		lootCategory = "Food";
 		varQuantityInit = 1000;
 		varQuantityMin = 0;
 		varQuantityMax = 1000;
@@ -2025,14 +2026,12 @@ class CfgVehicles
 	class Trap_Base: Inventory_Base
 	{
 		itemSize[] = {2,2};
-		lootCategory = "Tools";
 		isMeleeWeapon = 0;
 	};
 	class Grenade_Base: Inventory_Base
 	{
 		absorbency = 0.5;
-		itemSize[] = {2,2};
-		lootCategory = "Explosives";
+		itemSize[] = {1,2};
 		inventorySlot[] = {"VestGrenadeA","VestGrenadeB","VestGrenadeC","VestGrenadeD","tripWireAttachment"};
 	};
 	class Book_Base: Inventory_Base
@@ -2040,10 +2039,8 @@ class CfgVehicles
 		simulation = "ItemBook";
 		model = "\DZ\gear\books\Book_kniga.p3d";
 		inventorySlot = "Book";
-		itemSize[] = {1,2};
+		itemSize[] = {2,2};
 		absorbency = 0.9;
-		lootCategory = "Books";
-		lootTag[] = {"Civilian"};
 		hiddenSelections[] = {"camoGround"};
 		hiddenSelectionsTextures[] = {"dz\gear\books\data\book_kniga_co.paa"};
 	};

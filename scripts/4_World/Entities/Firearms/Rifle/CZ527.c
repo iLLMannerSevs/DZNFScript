@@ -6,15 +6,15 @@ enum CZ527AnimState
 
 enum CZ527StableStateID
 {
-	UNKNOWN				=  0,
+	UNKNOWN					=  0,
 	CZ527_CLO_BU0_MA0		=  1,
 	CZ527_CLO_BU1_MA0		=  2,
 	CZ527_CLO_BU1_MA1		=  3,
 	CZ527_CLO_BU0_MA1		=  4,
-	CZ527_CLO_BUF_MA0		=  4,
-	CZ527_CLO_BUF_MA1		=  5,
-	CZ527_JAM_BU1_MA0		=  6,
-	CZ527_JAM_BU1_MA1		=  7
+	CZ527_CLO_BUF_MA0		=  5,
+	CZ527_CLO_BUF_MA1		=  6,
+	CZ527_JAM_BU1_MA0		=  7,
+	CZ527_JAM_BU1_MA1		=  8
 }
 
 class CZ527_CLO_BU0_MA0 extends WeaponStableState
@@ -208,207 +208,202 @@ class CZ527_Base : BoltActionRifle_Base
 
 		// order: Discharged-Charged | nobullet-bullet | nomag-mag
 		// charging
-		m_fsm.AddTransition(new WeaponTransition(   C00, __M__,    Mech_C00)); // charge from dischg nobullet nomag
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C00, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C00, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( C00,				__M__,	Mech_C00)); // charge from dischg nobullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C00,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C00,		_abt_,	C00));
 
-		m_fsm.AddTransition(new WeaponTransition(   C10, __M__, Mech_C10)); // charge from bullet nomag
-		m_fsm.AddTransition(new WeaponTransition(Mech_C10, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(Mech_C10, _abt_,    C00, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Mech_C10, _abt_,    C10));
+		m_fsm.AddTransition(new WeaponTransition( C10,				__M__,	Mech_C10)); // charge from bullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C10,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C10,		_abt_,	C00, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C10,		_abt_,	C10));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF0, __M__, Mech_CF0)); // charge from bullet nomag
-		m_fsm.AddTransition(new WeaponTransition(Mech_CF0, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(Mech_CF0, _abt_,    CF0, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition(Mech_CF0, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( CF0,				__M__,	Mech_CF0)); // charge from bullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF0,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF0,		_abt_,	CF0, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF0,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C11, __M__,    Mech_C11)); // charge from dischg nobullet nomag
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C11, _fin_ , C01, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C11, _fin_ , C11));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C11, _abt_ , C01, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C11, _abt_ , C11));
+		m_fsm.AddTransition(new WeaponTransition( C11,				__M__,	Mech_C11)); // charge from dischg nobullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C11,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C11,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C11,		_abt_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C11,		_abt_,	C11));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C01, __M__,    Mech_C01)); // charge from dischg nobullet nomag
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C01, _fin_ , C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C01, _fin_ , C11));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C01, _abt_ , C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_C01, _abt_ , C11));
+		m_fsm.AddTransition(new WeaponTransition( C01,				__M__,	Mech_C01)); // charge from dischg nobullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C01,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C01,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C01,		_abt_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_C01,		_abt_,	C11));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF1, __M__,    Mech_CF1)); // charge from dischg nobullet nomag
-		m_fsm.AddTransition(new WeaponTransition(   Mech_CF1, _fin_ , C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_CF1, _fin_ , C11));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_CF1, _abt_ , CF1, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_CF1, _abt_ , C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Mech_CF1, _abt_ , C11));
+		m_fsm.AddTransition(new WeaponTransition( CF1,				__M__,	Mech_CF1)); // charge from dischg nobullet nomag
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF1,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF1,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF1,		_abt_,	CF1, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF1,		_abt_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Mech_CF1,		_abt_,	C11));
 		
 		// fire
-		m_fsm.AddTransition(new WeaponTransition(   C00, __T__,    Trigger_C00));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C00, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C00, _dto_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C00, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( C00,				__T__,	Trigger_C00));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C00,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C00,		_dto_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C00,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C01, __T__,    Trigger_C01));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C01, _fin_,    C01));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C01, _dto_,    C01));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C01, _abt_,    C01));
+		m_fsm.AddTransition(new WeaponTransition( C01,				__T__,	Trigger_C01));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C01,		_fin_,	C01));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C01,		_dto_,	C01));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C01,		_abt_,	C01));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF0, __T__,    Trigger_CF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF0, _fin_,    CF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF0, _dto_,    CF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF0, _abt_,    CF0));
+		m_fsm.AddTransition(new WeaponTransition( CF0,				__T__,	Trigger_CF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF0,		_fin_,	CF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF0,		_dto_,	CF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF0,		_abt_,	CF0));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF1, __T__,    Trigger_CF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF1, _fin_,    CF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF1, _dto_,    CF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_CF1, _abt_,    CF1));
+		m_fsm.AddTransition(new WeaponTransition( CF1,				__T__,	Trigger_CF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF1,		_fin_,	CF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF1,		_dto_,	CF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_CF1,		_abt_,	CF1));
 		
-		m_fsm.AddTransition(new WeaponTransition(   JF0, __T__,    Trigger_JF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF0, _fin_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF0, _dto_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF0, _abt_,    JF0));
+		m_fsm.AddTransition(new WeaponTransition( JF0,				__T__,	Trigger_JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF0,		_fin_,	JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF0,		_dto_,	JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF0,		_abt_,	JF0));
 		
-		m_fsm.AddTransition(new WeaponTransition(   JF1, __T__,    Trigger_JF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF1, _fin_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF1, _dto_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_JF1, _abt_,    JF1));
+		m_fsm.AddTransition(new WeaponTransition( JF1,				__T__,	Trigger_JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF1,		_fin_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF1,		_dto_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_JF1,		_abt_,	JF1));
 		
-
+		m_fsm.AddTransition(new WeaponTransition( C10,				__T__,	Trigger_C10));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10,		_rto_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C10, __T__,    Trigger_C10));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10, _rto_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( C11,				__T__,	Trigger_C11));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11,		_fin_,	CF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11,		_rto_,	CF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11,		_abt_,	CF1));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C11, __T__,    Trigger_C11));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11, _fin_,    CF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11, _rto_,    CF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11, _abt_,    CF1));
+		m_fsm.AddTransition(new WeaponTransition( C11,				__TJ_,	Trigger_C11J));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11J,	_fin_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11J,	_rto_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C11J,	_abt_,	JF1));
 		
-		
-		
-		m_fsm.AddTransition(new WeaponTransition(   C11, __TJ_,    Trigger_C11J ));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11J, _fin_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11J, _rto_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C11J, _abt_,    JF1));
-		
-		m_fsm.AddTransition(new WeaponTransition(   C10, __TJ_,    Trigger_C10J ));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10J, _fin_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10J, _rto_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(   Trigger_C10J, _abt_,    JF0));
+		m_fsm.AddTransition(new WeaponTransition( C10,				__TJ_,	Trigger_C10J ));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10J,	_fin_,	JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10J,	_rto_,	JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Trigger_C10J,	_abt_,	JF0));
 		
 
 		// load cartridge
-		m_fsm.AddTransition(new WeaponTransition(   C00, __L__, Chamber_C00)); // chamber from closed=1
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C00, _fin_,    C10));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C00, _abt_ , C00, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C00, _abt_ , C10));
+		m_fsm.AddTransition(new WeaponTransition( C00,				__L__,	Chamber_C00)); // chamber from closed=1
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C00,		_fin_,	C10));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C00,		_abt_,	C00, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C00,		_abt_,	C10));
 
-		m_fsm.AddTransition(new WeaponTransition(   C01, __L__, Chamber_C01)); // chamber from closed charged
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C01, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C01, _abt_ , C01, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_C01, _abt_ , C11));
+		m_fsm.AddTransition(new WeaponTransition( C01,				__L__,	Chamber_C01)); // chamber from closed charged
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C01,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C01,		_abt_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_C01,		_abt_,	C11));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF0, __L__, Chamber_CF0)); // chamber from closed=1
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF0, _fin_,    C10));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF0, _abt_ , CF0, NULL, new WeaponGuardChamberFiredOut(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF0, _abt_ , C00, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF0, _abt_ , C10));
+		m_fsm.AddTransition(new WeaponTransition( CF0,				__L__,	Chamber_CF0)); // chamber from closed=1
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF0,		_fin_,	C10));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF0,		_abt_,	CF0, NULL, new WeaponGuardCurrentChamberFiredOut(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF0,		_abt_,	C00, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF0,		_abt_,	C10));
 
-		m_fsm.AddTransition(new WeaponTransition(   CF1, __L__, Chamber_CF1)); // chamber from closed charged
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF1, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF1, _abt_ , CF1, NULL, new WeaponGuardChamberFiredOut(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF1, _abt_ , C01, NULL, new WeaponGuardChamberEmpty(this) ));
-		m_fsm.AddTransition(new WeaponTransition(Chamber_CF1, _abt_ , C11));
+		m_fsm.AddTransition(new WeaponTransition( CF1,				__L__,	Chamber_CF1)); // chamber from closed charged
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF1,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF1,		_abt_,	CF1, NULL, new WeaponGuardCurrentChamberFiredOut(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF1,		_abt_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this) ));
+		m_fsm.AddTransition(new WeaponTransition(  Chamber_CF1,		_abt_,	C11));
 
 		// attach magazine (no mag in weapon)
-		m_fsm.AddTransition(new WeaponTransition(   C00, __A__, Attach_C00, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b0/m0
-		m_fsm.AddTransition(new WeaponTransition(Attach_C00, _fin_,    C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C00, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C00, _abt_,    C11, NULL, new WeaponGuardChamberFull(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C00, _abt_,    C01, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C00, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( C00,				__A__,	Attach_C00, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b0/m0
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C00,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C00,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C00,		_abt_,	C11, NULL, new WeaponGuardCurrentChamberFull(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C00,		_abt_,	C01, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C00,		_abt_,	C00));
 
 
 	
-		m_fsm.AddTransition(new WeaponTransition(   C10, __A__, Attach_C10, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b1/m0
-		m_fsm.AddTransition(new WeaponTransition(Attach_C10, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C10, _abt_,    C11, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_C10, _abt_,    C10));
+		m_fsm.AddTransition(new WeaponTransition( C10,				__A__,	Attach_C10, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b1/m0
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C10,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C10,		_abt_,	C11, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_C10,		_abt_,	C10));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF0, __A__, Attach_CF0, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b1/m0
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _fin_,    C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _fin_,    C11));
+		m_fsm.AddTransition(new WeaponTransition( CF0,				__A__,	Attach_CF0, NULL, new WeaponGuardCanAttachMag(this))); // attach from CLO/b1/m0
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_abt_,	CF1, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_abt_,	C11, NULL, new WeaponGuardCurrentChamberFull(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_abt_,	C01, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_CF0,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _abt_,    CF1, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _abt_,    C11, NULL, new WeaponGuardChamberFull(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _abt_,    C01, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_CF0, _abt_,    C00));
-		
-		m_fsm.AddTransition(new WeaponTransition(   JF0, __A__, Attach_JF0, NULL, new WeaponGuardCanAttachMag(this))); // attach from JAM/b1/m0
-		m_fsm.AddTransition(new WeaponTransition(Attach_JF0, _fin_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(Attach_JF0, _abt_,    JF1, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Attach_JF0, _abt_,    JF0));
+		m_fsm.AddTransition(new WeaponTransition( JF0,				__A__,	Attach_JF0, NULL, new WeaponGuardCanAttachMag(this))); // attach from JAM/b1/m0
+		m_fsm.AddTransition(new WeaponTransition(  Attach_JF0,		_fin_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_JF0,		_abt_,	JF1, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Attach_JF0,		_abt_,	JF0));
 
 		// replace magazine
-		m_fsm.AddTransition(new WeaponTransition(   C11, __S__, Reload_C11, NULL, new WeaponGuardCanSwapMag(this))); // swap in Chg/b1/m1
-		m_fsm.AddTransition(new WeaponTransition(Reload_C11, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C11, _abt_,    C11, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C11, _abt_,    C10));	
+		m_fsm.AddTransition(new WeaponTransition( C11,				__S__,	Reload_C11, NULL, new WeaponGuardCanSwapMag(this))); // swap in Chg/b1/m1
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C11,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C11,		_abt_,	C11, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C11,		_abt_,	C10));
 		
+		m_fsm.AddTransition(new WeaponTransition( C01,				__S__,	Reload_C01, NULL, new WeaponGuardCanSwapMag(this))); // swap in CLO/b0/m1
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C01,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C01,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C01,		_abt_,	C11, NULL, new WeaponGuardCurrentChamberFull(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C01,		_abt_,	C01, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_C01,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   C01, __S__, Reload_C01, NULL, new WeaponGuardCanSwapMag(this))); // swap in CLO/b0/m1
-		m_fsm.AddTransition(new WeaponTransition(Reload_C01, _fin_,   C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C01, _fin_,   C11));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C01, _abt_,    C11, NULL, new WeaponGuardChamberFull(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C01, _abt_,    C01, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_C01, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( CF1,				__S__,	Reload_CF1, NULL, new WeaponGuardCanSwapMag(this))); // swap in CLO/b0/m1
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_abt_,	CF1, NULL, new WeaponGuardCurrentChamberFiredOut(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_abt_,	C11, NULL, new WeaponGuardCurrentChamberFull(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_abt_,	C01, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_CF1,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF1, __S__, Reload_CF1, NULL, new WeaponGuardCanSwapMag(this))); // swap in CLO/b0/m1
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _fin_,   C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _fin_,   C11));
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _abt_,    CF1, NULL, new WeaponGuardChamberFiredOut(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _abt_,    C11, NULL, new WeaponGuardChamberFull(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _abt_,    C01, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_CF1, _abt_,    C00));
-		
-		m_fsm.AddTransition(new WeaponTransition(   JF1, __S__, Reload_JF1, NULL, new WeaponGuardCanSwapMag(this))); // swap in Chg/b1/m1
-		m_fsm.AddTransition(new WeaponTransition(Reload_JF1, _fin_,    JF1));
-		m_fsm.AddTransition(new WeaponTransition(Reload_JF1, _abt_,    JF1, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Reload_JF1, _abt_,    JF0));
+		m_fsm.AddTransition(new WeaponTransition( JF1,				__S__,	Reload_JF1, NULL, new WeaponGuardCanSwapMag(this))); // swap in Chg/b1/m1
+		m_fsm.AddTransition(new WeaponTransition(  Reload_JF1,		_fin_,	JF1));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_JF1,		_abt_,	JF1, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Reload_JF1,		_abt_,	JF0));
 	
 
 		// detach magazine
-		m_fsm.AddTransition(new WeaponTransition(   C11, __D__, Detach_C11, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b1/m1
-		m_fsm.AddTransition(new WeaponTransition(Detach_C11, _fin_,    C10));
-		m_fsm.AddTransition(new WeaponTransition(Detach_C11, _abt_,    C11, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Detach_C11, _abt_,    C10));
+		m_fsm.AddTransition(new WeaponTransition( C11,				__D__,	Detach_C11, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b1/m1
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C11,		_fin_,	C10));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C11,		_abt_,	C11, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C11,		_abt_,	C10));
 		
 		
-		m_fsm.AddTransition(new WeaponTransition(   C01, __D__, Detach_C01, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b0/m1
-		m_fsm.AddTransition(new WeaponTransition(Detach_C01, _fin_,    C00));
-		m_fsm.AddTransition(new WeaponTransition(Detach_C01, _abt_,    C01, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Detach_C01, _abt_,    C00));
+		m_fsm.AddTransition(new WeaponTransition( C01,				__D__,	Detach_C01, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b0/m1
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C01,		_fin_,	C00));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C01,		_abt_,	C01, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_C01,		_abt_,	C00));
 		
-		m_fsm.AddTransition(new WeaponTransition(   CF1, __D__, Detach_CF1, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b0/m1
-		m_fsm.AddTransition(new WeaponTransition(Detach_CF1, _fin_,    CF0));
-		m_fsm.AddTransition(new WeaponTransition(Detach_CF1, _abt_,    CF1, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Detach_CF1, _abt_,    CF0));
+		m_fsm.AddTransition(new WeaponTransition( CF1,				__D__,	Detach_CF1, NULL, new WeaponGuardCanDetachMag(this))); // detach from Chg/b0/m1
+		m_fsm.AddTransition(new WeaponTransition(  Detach_CF1,		_fin_,	CF0));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_CF1,		_abt_,	CF1, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_CF1,		_abt_,	CF0));
 		
-		m_fsm.AddTransition(new WeaponTransition(   JF1, __D__, Detach_JF1, NULL, new WeaponGuardCanDetachMag(this))); // detach from CLO/b1/m1 jammed
-		m_fsm.AddTransition(new WeaponTransition(Detach_JF1, _fin_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(Detach_JF1, _abt_,    JF1, NULL, new WeaponGuardHasMag(this)));
-		m_fsm.AddTransition(new WeaponTransition(Detach_JF1, _abt_,    JF0));
+		m_fsm.AddTransition(new WeaponTransition( JF1,				__D__,	Detach_JF1, NULL, new WeaponGuardCanDetachMag(this))); // detach from CLO/b1/m1 jammed
+		m_fsm.AddTransition(new WeaponTransition(  Detach_JF1,		_fin_,	JF0));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_JF1,		_abt_,	JF1, NULL, new WeaponGuardHasMag(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Detach_JF1,		_abt_,	JF0));
 		
 		// unjam
-		m_fsm.AddTransition(new WeaponTransition(   JF0, __U__, Unjam_JF0)); // unjam nomag
-		m_fsm.AddTransition(new WeaponTransition(	Unjam_JF0, _fin_,    JF0, NULL, new WeaponGuardJammed(this)));
-		m_fsm.AddTransition(new WeaponTransition(	Unjam_JF0, _fin_,    C00, NULL, new GuardNot(new WeaponGuardJammed(this))));
-		m_fsm.AddTransition(new WeaponTransition(	Unjam_JF0, _abt_,    JF0));
-		m_fsm.AddTransition(new WeaponTransition(   JF1, __U__,    Unjam_JF1)); // unjam with mag with ammo
-		m_fsm.AddTransition(new WeaponTransition(   Unjam_JF1, _fin_,    JF1, NULL, new WeaponGuardJammed(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Unjam_JF1, _fin_,    C01, NULL, new WeaponGuardChamberEmpty(this)));
-		m_fsm.AddTransition(new WeaponTransition(   Unjam_JF1, _fin_,    C11));
-		m_fsm.AddTransition(new WeaponTransition(   Unjam_JF1, _abt_,    JF1));
+		m_fsm.AddTransition(new WeaponTransition( JF0,				__U__,	Unjam_JF0)); // unjam nomag
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF0,		_fin_,	JF0, NULL, new WeaponGuardJammed(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF0,		_fin_,	C00, NULL, new GuardNot(new WeaponGuardJammed(this))));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF0,		_abt_,	JF0));
+		
+		m_fsm.AddTransition(new WeaponTransition( JF1,				__U__,	Unjam_JF1)); // unjam with mag with ammo
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF1,		_fin_,	JF1, NULL, new WeaponGuardJammed(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF1,		_fin_,	C01, NULL, new WeaponGuardCurrentChamberEmpty(this)));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF1,		_fin_,	C11));
+		m_fsm.AddTransition(new WeaponTransition(  Unjam_JF1,		_abt_,	JF1));
 
 		m_fsm.SetInitialState(C00);
 

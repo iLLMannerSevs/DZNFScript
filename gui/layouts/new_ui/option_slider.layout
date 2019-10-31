@@ -35,7 +35,7 @@ GridSpacerWidgetClass option_slider_root {
      vexactpos 1
      hexactsize 0
      vexactsize 0
-     style GUI_Black_simple
+     style Default
      "no focus" 0
      maximum 1
      step 0.05

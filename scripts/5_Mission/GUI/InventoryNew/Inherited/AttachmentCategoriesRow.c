@@ -44,8 +44,7 @@ class AttachmentCategoriesRow: ClosableContainer
 	{
 		if( m_FocusedRow < m_Ics.Count() )
 		{
-			ItemPreviewWidget ipw = ItemPreviewWidget.Cast( m_Ics.Get( m_FocusedRow ).GetMainWidget().FindAnyWidget( "Render" + m_FocusedColumn ) );
-			return ipw.GetUserID();
+			return m_Ics.Get( m_FocusedRow ).GetSlotIcon( m_FocusedColumn ).GetSlotID();
 		}
 		return -1;
 	}
@@ -554,6 +553,9 @@ class AttachmentCategoriesRow: ClosableContainer
 		ItemBase item = ItemBase.Cast( iw.GetItem() );
 		int stack_max;
 		
+		SlotsIcon slots_icon;
+		receiver.GetUserData(slots_icon);
+		
 		if( !item.GetInventory().CanRemoveEntity() )
 			return;
 		if( m_Entity.GetInventory().CanAddAttachmentEx( item, receiver.GetUserID() ) )
@@ -569,7 +571,7 @@ class AttachmentCategoriesRow: ClosableContainer
 				item.SplitIntoStackMaxClient( m_Entity, receiver.GetUserID() );
 			}
 		}
-		else if( receiver.GetUserID() != -1 )
+		else if( slots_icon && slots_icon.GetSlotID() != -1 )
 		{
 			if( receiver_item )
 			{
@@ -663,6 +665,9 @@ class AttachmentCategoriesRow: ClosableContainer
 		if(receiver_iw)
 			receiver_item = ItemBase.Cast( receiver_iw.GetItem() );
 		
+		SlotsIcon slots_icon;
+		receiver.GetUserData(slots_icon);
+		
 		if( receiver_item )
 		{
 			int stack_max = InventorySlots.GetStackMaxForSlotId( receiver_item.GetInventory().GetSlotId(0) );
@@ -686,11 +691,11 @@ class AttachmentCategoriesRow: ClosableContainer
 				ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
 			}
 		}
-		else if( receiver.GetUserID() != -1 )
+		else if( slots_icon && slots_icon.GetSlotID() != -1 )
 		{
 			item = ItemBase.Cast( iw.GetItem() );
 			
-			if( m_Entity.GetInventory().CanAddAttachmentEx( item, receiver.GetUserID() ) )
+			if( m_Entity.GetInventory().CanAddAttachmentEx( item, slots_icon.GetSlotID() ) )
 			{
 				ItemManager.GetInstance().HideDropzones();
 				ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
@@ -790,7 +795,10 @@ class AttachmentCategoriesRow: ClosableContainer
 				return;
 			}
 			
-			if( m_Entity.GetInventory().GetSlotLock( iw.GetUserID() ) )
+			SlotsIcon slots_icon;
+			w.GetUserData(slots_icon);
+			
+			if( slots_icon && m_Entity.GetInventory().GetSlotLock( iw.GetUserID() ) )
 			{
 				return;
 			}
@@ -984,8 +992,7 @@ class AttachmentCategoriesRow: ClosableContainer
 		SlotsContainer row				= SlotsContainer.Cast( Get( ( j / ITEMS_IN_ROW + 1 ) ) );
 		SlotsIcon icon					= row.GetSlotIcon( id );
 		
-		icon.GetGhostSlot().SetUserID( slot_id );
-		icon.GetRender().SetUserID( slot_id );
+		icon.SetSlotID(slot_id);
 		
 		if( !m_Entity.CanDisplayAttachmentSlot( slot_name ) )
 		{
@@ -1080,7 +1087,7 @@ class AttachmentCategoriesRow: ClosableContainer
 		{
 			for ( int j = 0; j < (count / ITEMS_IN_ROW) + 1; j++ )
 			{
-				SlotsContainer ic = new SlotsContainer(this);
+				SlotsContainer ic = new SlotsContainer(this, m_Entity);
 				ic.GetRootWidget().SetAlpha(0.7);
 				if( j == number_of_rows && count % ITEMS_IN_ROW != 0 )
 				{

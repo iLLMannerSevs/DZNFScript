@@ -21,12 +21,10 @@ class PluginCameraTools extends PluginBase
 		if( !m_IsOpen )
 		{
 			GetGame().GetUIManager().EnterScriptedMenu( MENU_CAMERA_TOOLS, null );
-			CursorShow();
 		}
 		else
 		{
 			GetGame().GetUIManager().Back();
-			CursorHide();
 		}
 		m_IsOpen = !m_IsOpen;
 	}

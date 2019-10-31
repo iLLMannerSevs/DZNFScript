@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\repeater\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:55 2019 : 'file' last modified on Tue Aug 13 08:24:45 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:54:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -41,7 +41,6 @@ class cfgWeapons
 	{
 		scope = 0;
 		animName = "Repeater";
-		lootTag[] = {"Civilian","Hunting"};
 		weight = 2720;
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
@@ -89,7 +88,7 @@ class cfgWeapons
 		descriptionShort = "$STR_cfgWeapons_Repeater1";
 		model = "\dz\weapons\firearms\repeater\repeater.p3d";
 		attachments[] = {"weaponWrap","suppressorImpro"};
-		itemSize[] = {9,6};
+		itemSize[] = {9,3};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\repeater\data\repeater_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\repeater\data\repeater.rvmat"};
 		class Damage

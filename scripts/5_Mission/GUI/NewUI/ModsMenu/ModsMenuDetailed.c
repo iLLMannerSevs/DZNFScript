@@ -39,19 +39,31 @@ class ModsMenuDetailed extends ScriptedWidgetEventHandler
 		if( !m_Root.IsVisible() )
 			m_Scroll.VScrollToPos( 0 );
 		m_Root.Show( true );
-		m_Menu.HideNewsfeed();
+		if( m_Menu )
+			m_Menu.HideNewsfeed();
 	}
 	
 	void Close()
 	{
 		Highlight( null );
 		m_Root.Show( false );
-		m_Menu.ShowNewsfeed();
+		if( m_Menu )
+			m_Menu.ShowNewsfeed();
 	}
 	
 	bool IsOpen()
 	{
 		return m_Root.IsVisible();
+	}
+	
+	ModInfo GetHighlighted()
+	{
+		return m_Highlighted;
+	}
+	
+	void HighlightFirst()
+	{
+		Highlight( m_Data.GetKey( 0 ) );
 	}
 	
 	void Highlight( ModInfo mod_ref )
@@ -128,16 +140,20 @@ class ModsMenuDetailed extends ScriptedWidgetEventHandler
 	
 	void PrepareTooltip( ModInfo mod_ref )
 	{
-		m_TooltipMod = mod_ref;
-		if( !m_TooltipTimer )
-			m_TooltipTimer = new Timer(CALL_CATEGORY_GUI);
-		
-		m_TooltipTimer.Run( 1, this, "ShowTooltip" );
+		if( m_Tooltip )
+		{
+			m_TooltipMod = mod_ref;
+			if( !m_TooltipTimer )
+				m_TooltipTimer = new Timer(CALL_CATEGORY_GUI);
+			
+			m_TooltipTimer.Run( 1, this, "ShowTooltip" );
+		}
 	}
 	
 	void ShowTooltip()
 	{
-		m_Tooltip.ShowTooltip( m_TooltipMod );
+		if( m_Tooltip )
+			m_Tooltip.ShowTooltip( m_TooltipMod );
 	}
 	
 	void HideTooltip()
@@ -146,7 +162,8 @@ class ModsMenuDetailed extends ScriptedWidgetEventHandler
 			m_TooltipTimer.Stop();
 		
 		m_TooltipMod = null;
-		m_Tooltip.HideTooltip();
+		if( m_Tooltip )
+			m_Tooltip.HideTooltip();
 	}
 
 	void LoadEntries( array<ref ModInfo> data )

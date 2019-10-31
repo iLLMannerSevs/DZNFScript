@@ -3,8 +3,8 @@ class ActionUngagTarget: ActionContinuousBase
 	void ActionUngagTarget()
 	{
 		m_CallbackClass = ActionUncoverHeadTargetCB;
-		m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_INTERACT;
-		m_FullBody = true;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_COVERHEAD_TARGET;
+		//m_FullBody = true;
 		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 	}
 
@@ -50,7 +50,7 @@ class ActionUngagTarget: ActionContinuousBase
 			UngagSelfLambda lamb = new UngagSelfLambda(attachment, "Rag", action_data.m_Player);
 			lamb.SetTransferParams(true, true, true, false, 1);
 			action_data.m_Player.ServerReplaceItemElsewhereWithNewInHands(lamb);
-			action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+			//action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		}
 	}
 	

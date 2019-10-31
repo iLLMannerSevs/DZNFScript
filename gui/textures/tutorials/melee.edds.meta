@@ -1,7 +1,7 @@
 MetaFileClass {
- Name "{92EF7001B2ABF5C3}Gui/textures/tutorials/melee.edds"
- Author "inv1967"
- ChangeDate -540268965
+ Name "{92EF7001B2ABF5C3}Gui/textures/tutorials/melee.tga"
+ Author "3672"
+ ChangeDate -1889343652
  Configurations {
   TGAResourceClass PC {
    SourceFile "melee.tga"

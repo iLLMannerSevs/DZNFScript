@@ -34,6 +34,7 @@ class GetServersResultRow
 	int		m_HostPort; 			// PC is works
 	bool	m_Invisible;
 	bool	m_Official;
+	string	m_MapNameToRun; 		// PC not work alway 0
 	bool	m_Modded; 				// PC not work alway 0
 	int		m_ModeId; 				// PC not work alway 0
 	bool	m_AntiCheat;
@@ -46,6 +47,8 @@ class GetServersResultRow
 	bool	m_IsPasswordProtected;	// PC work
 	string	m_CreatedAt;
 	string	m_UpdatedAt;
+	bool	m_MouseAndKeyboardEnabled;
+	bool	m_WhitelistEnabled;
 	
 	//Scripted
 	bool		m_IsExpanded;
@@ -186,6 +189,7 @@ class GetServersInput
 	string		m_GameVersion;
 	bool		m_Official;
 	bool		m_Joinable;
+	string		m_MapNameToRun;
 	bool		m_IsModded;
 	int			m_MinPlayers; // minimum 1
 	int			m_MaxPlayers; // maximum 99
@@ -197,6 +201,8 @@ class GetServersInput
 	string		m_HostIp;
 	int			m_HostPort;
 	string		m_FavoriteServers;
+	bool		m_MouseAndKeyboardEnabled;
+	bool		m_WhitelistEnabled;
 
 	bool m_UseAntiCheat;
 	bool m_UseName;
@@ -216,6 +222,8 @@ class GetServersInput
 	bool m_UseHostIp;
 	bool m_UseHostPort;
 	bool m_UseHostIps;
+	bool m_UseMouseAndKeyboardEnabled;
+	bool m_UseWhitelistEnabled;
 	
 	void SetAntiCheatFilter( bool anti_cheat )
 	{
@@ -319,6 +327,12 @@ class GetServersInput
 		m_UseHostPort = true;
 	}
 	
+	void SetMouseAndKeyboardEnabled(bool enabledMouseAndKeyboard)
+	{
+		m_MouseAndKeyboardEnabled = enabledMouseAndKeyboard;
+		m_UseMouseAndKeyboardEnabled = true;
+	}
+	
 	void SetFavorited( bool show )
 	{
 		m_SortBy += "F";
@@ -408,6 +422,12 @@ class GetServersInput
 	{
 		m_FavoriteServers += ip + ";" + port + ";";
 	}
+	
+	void SetWhitelistEnabled(bool whitelistEnabled)
+	{
+		m_WhitelistEnabled = whitelistEnabled;
+		m_UseWhitelistEnabled = true;
+	}
 };
 
 class BiosLobbyService
@@ -463,11 +483,6 @@ class BiosLobbyService
 	//! Async callback for GetServerModList
 	void OnServerModList(ref GetServerModListResult result_list, EBiosError error)
 	{
-		//Print("OnServerModList: result id: " + result_list.m_Id + " response:" + error);
-		
-		//foreach( string mod : result_list.m_Mods )
-		//{
-		//	Print("OnServerModList: mod:" + mod);
-		//}
+		OnlineServices.OnGetServerModList( result_list, error );
 	}
 };

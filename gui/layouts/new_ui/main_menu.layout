@@ -91,8 +91,11 @@ FrameWidgetClass main_menu_root {
        vexactsize 1
        style Normal
        text "#layout_main_menu_main_news_header"
-       font "gui/fonts/sdf_MetronLight24"
-       "exact text" 0
+       font "gui/fonts/sdf_MetronLight42"
+       "exact text" 1
+       "exact text size" 22
+       "size to text h" 0
+       "size to text v" 0
        "text halign" center
        "text valign" center
       }
@@ -611,15 +614,6 @@ FrameWidgetClass main_menu_root {
      Margin 0
      "Size To Content V" 1
      {
-      FrameWidgetClass separator_top {
-       ignorepointer 1
-       position 10 10
-       size 1 5
-       hexactpos 1
-       vexactpos 1
-       hexactsize 0
-       vexactsize 1
-      }
       ButtonWidgetClass play_video {
        visible 0
        color 0.0392 0.0392 0.0392 1
@@ -921,7 +915,7 @@ FrameWidgetClass main_menu_root {
     GridSpacerWidgetClass character_stats_root {
      visible 1
      ignorepointer 1
-     position 100 182
+     position 100 340
      size 400 380
      halign right_ref
      hexactpos 1
@@ -939,7 +933,7 @@ FrameWidgetClass main_menu_root {
        ignorepointer 1
        color 0 0 0 0.8627
        position 0 0
-       size 1 33
+       size 1 36
        hexactpos 1
        vexactpos 1
        hexactsize 0
@@ -1416,26 +1410,12 @@ FrameWidgetClass main_menu_root {
    vexactsize 0
    priority 2
   }
-  FrameWidgetClass ModsSimple {
-   visible 1
-   clipchildren 0
-   ignorepointer 1
-   position 100 50
-   size 300 60
-   halign right_ref
-   valign bottom_ref
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   priority 5
-  }
   FrameWidgetClass ModsDetailed {
    visible 1
    clipchildren 0
    ignorepointer 1
    position 100 340
-   size 580 620
+   size 540 620
    hexactpos 1
    vexactpos 1
    hexactsize 1
@@ -1621,6 +1601,26 @@ FrameWidgetClass main_menu_root {
    stretch 1
    filter 0
    nocache 1
+  }
+  WrapSpacerWidgetClass ModsSimple {
+   visible 0
+   clipchildren 0
+   ignorepointer 1
+   position 99.9999 0.05
+   size 730 56
+   halign right_ref
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   priority 5
+   style Empty
+   Padding 0
+   Margin 0
+   "Size To Content H" 1
+   content_halign right
+   content_valign bottom
   }
  }
 }

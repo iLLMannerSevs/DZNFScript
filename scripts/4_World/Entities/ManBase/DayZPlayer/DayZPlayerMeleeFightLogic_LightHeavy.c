@@ -118,6 +118,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 	bool HandleFightLogic(int pCurrentCommandID, HumanInputController pInputs, EntityAI pEntityInHands, HumanMovementState pMovementState, out bool pContinueAttack)
 	{
 		InventoryItem itemInHands = InventoryItem.Cast(pEntityInHands);
+		HumanCommandMove hcm = m_DZPlayer.GetCommand_Move();
 
 		bool isFireWeapon = itemInHands && itemInHands.IsWeapon();
 		bool isNotMeleeWeapon = itemInHands && !itemInHands.IsMeleeWeapon(); // TODO: allowed for everything that is not disabled in config (primarily for anim testing)
@@ -146,7 +147,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 				if (isFireWeapon)
 				{
 					//! perform firearm melee from raised erect or continue with attack after character stand up from crouch
-					if (pMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_RAISEDERECT || pContinueAttack)
+					if (hcm.GetCurrentMovementSpeed() <= 2.05 && (pMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_RAISEDERECT || pContinueAttack))
 					{
 						m_HitType = GetAttackTypeByWeaponAttachments(pEntityInHands);
 						if( m_HitType == EMeleeHitType.NONE )
@@ -164,11 +165,10 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 						pContinueAttack = false; // reset continueAttack flag
 
 						return true;
-					}				
+					}
 					//! char stand up when performing firearm melee from crouch
 					else if( pMovementState.m_iStanceIdx == DayZPlayerConstants.STANCEIDX_RAISEDCROUCH )
 					{
-						HumanCommandMove hcm = m_DZPlayer.GetCommand_Move();
 						if (hcm)
 						{
 							hcm.ForceStance(DayZPlayerConstants.STANCEIDX_RAISEDERECT);
@@ -319,6 +319,8 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 					m_MeleeCombat.SetHitPos(vector.Zero);
 					m_MeleeCombat.SetHitZoneIdx(-1);
 					
+					//m_MeleeCombat.CheckMeleeItem();
+					
 					EnableControls();
 				}
 			}
@@ -407,6 +409,8 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			{
 				EvaluateHit_Common(weapon, target);
 			}
+			
+			m_MeleeCombat.CheckMeleeItem();
 		}
 	}
 
@@ -501,7 +505,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 			if( GetGame().IsServer() && targetEntity )
 			{
 				hitPosWS = targetEntity.ModelToWorld(targetEntity.GetDefaultHitPosition()); //! override hit pos by pos defined in type
-				targetEntity.EEHitBy(null, 0, m_DZPlayer, hitZoneIdx, "", ammo, hitPosWS);
+				targetEntity.EEHitBy(null, 0, m_DZPlayer, hitZoneIdx, "", ammo, hitPosWS, 1.0);
 			}
 		}
 	}
@@ -609,7 +613,7 @@ class DayZPlayerMeleeFightLogic_LightHeavy
 		/*
 		if(m_Mission)
 		{
-			m_Mission.PlayerControlEnable();
+			m_Mission.PlayerControlEnable(true);
 		}
 		*/
 	}

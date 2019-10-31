@@ -2,7 +2,7 @@
 //DeRap: weapons_projectiles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:00 2019 : 'file' last modified on Fri Aug 30 12:13:14 2019
+//'now' is Thu Oct 31 18:24:51 2019 : 'file' last modified on Thu Oct 24 15:09:40 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -253,7 +253,8 @@ class CfgAmmo
 		};
 		supersonicCrackNear[] = {};
 		supersonicCrackFar[] = {};
-		cartridge = "FxCartridge_556";
+		casing = "FxCartridge_556";
+		round = "FxRound_556";
 		timeToLive = 6;
 		deflecting = 10;
 		tracerStartTime = -1;
@@ -543,8 +544,8 @@ class CfgAmmo
 	{
 		scope = 2;
 		proxyShape = "\dz\weapons\projectiles\shotgunshell_pellets.p3d";
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_12Pellet";
+		casing = "FxCartridge_12Pellet";
+		round = "FxRound_12Pellet";
 		spawnPileType = "Ammo_12gaPellets";
 		hit = 6;
 		indirectHit = 0;
@@ -593,8 +594,8 @@ class CfgAmmo
 	{
 		scope = 2;
 		proxyShape = "\dz\weapons\projectiles\shotgunshell_slug.p3d";
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_12Slug";
+		casing = "FxCartridge_12Slug";
+		round = "FxRound_12Slug";
 		spawnPileType = "Ammo_12gaSlug";
 		hit = 11;
 		indirectHit = 0;
@@ -706,9 +707,10 @@ class CfgAmmo
 	class Bullet_556x45: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
 		muzzleFlashParticle = "weapon_shot_m4a1_01";
 		spawnPileType = "Ammo_556x45";
+		casing = "FxCartridge_556";
+		round = "FxRound_556";
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
@@ -761,8 +763,9 @@ class CfgAmmo
 	class Bullet_545x39: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_545x39";
+		casing = "FxCartridge_556";
+		round = "FxRound_556";
 		hit = 7.2;
 		airFriction = -0.00027;
 		typicalSpeed = 880;
@@ -807,8 +810,8 @@ class CfgAmmo
 	class Bullet_762x54: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_762";
+		casing = "FxCartridge_762";
+		round = "FxRound_762";
 		spawnPileType = "Ammo_762x54";
 		muzzleFlashParticle = "weapon_shot_mp5k_02_boris";
 		hit = 12;
@@ -861,8 +864,8 @@ class CfgAmmo
 	class Bullet_308Win: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_762";
+		casing = "FxCartridge_762";
+		round = "FxRound_308Win";
 		spawnPileType = "Ammo_308Win";
 		hit = 12;
 		indirectHit = 0;
@@ -917,8 +920,8 @@ class CfgAmmo
 	class Bullet_762x39: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_762x39";
+		casing = "FxCartridge_762x39";
+		round = "FxRound_762x39";
 		spawnPileType = "Ammo_762x39";
 		hit = 9.5;
 		indirectHit = 0;
@@ -970,8 +973,8 @@ class CfgAmmo
 	class Bullet_45ACP: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_9mm";
+		casing = "FxCartridge_9mm";
+		round = "FxRound_9mm";
 		spawnPileType = "Ammo_45ACP";
 		muzzleFlashParticle = "weapon_shot_mp5k_02_boris";
 		hit = 0;
@@ -1014,8 +1017,8 @@ class CfgAmmo
 	class Bullet_357: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_9mm";
+		casing = "FxCartridge_9mm";
+		round = "FxRound_9mm";
 		spawnPileType = "Ammo_357";
 		hit = 9;
 		indirectHit = 0;
@@ -1055,8 +1058,8 @@ class CfgAmmo
 	class Bullet_9x19: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_9mm";
+		casing = "FxCartridge_9mm";
+		round = "FxRound_9mm";
 		spawnPileType = "Ammo_9x19";
 		hit = 7;
 		indirectHit = 0;
@@ -1099,8 +1102,8 @@ class CfgAmmo
 	class Bullet_380: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_9mm";
+		casing = "FxCartridge_9mm";
+		round = "FxRound_9mm";
 		spawnPileType = "Ammo_380";
 		hit = 5.5;
 		indirectHit = 0;
@@ -1143,8 +1146,8 @@ class CfgAmmo
 	class Bullet_22: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_22";
+		casing = "FxCartridge_22";
+		round = "FxRound_22";
 		spawnPileType = "Ammo_22";
 		hit = 4.5;
 		indirectHit = 0;
@@ -1189,8 +1192,8 @@ class CfgAmmo
 	class Bullet_9x39AP: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_762x39";
+		casing = "FxCartridge_762x39";
+		round = "FxRound_762x39";
 		spawnPileType = "Ammo_9x39AP";
 		hit = 11;
 		indirectHit = 0;
@@ -1233,8 +1236,8 @@ class CfgAmmo
 	class Bullet_9x39: Bullet_Base
 	{
 		scope = 2;
-		lootCategory = "Crafted";
-		cartridge = "FxCartridge_762x39";
+		casing = "FxCartridge_762x39";
+		round = "FxRound_762x39";
 		spawnPileType = "Ammo_9x39";
 		hit = 11;
 		indirectHit = 0;
@@ -1277,13 +1280,13 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_composite_flying.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_ArrowComposite";
 		proxyShape = "\dz\weapons\projectiles\arrow_composite.p3d";
 		hit = 12;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "FxRound_arrow_composite";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1320,12 +1323,12 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_target.p3d";
-		lootCategory = "Crafted";
 		proxyShape = "\dz\weapons\projectiles\arrow_target.p3d";
 		hit = 7;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1362,12 +1365,12 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_hunting.p3d";
-		lootCategory = "Crafted";
 		proxyShape = "\dz\weapons\projectiles\arrow_hunting.p3d";
 		hit = 7;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1404,13 +1407,13 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_hunting_flying.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_ArrowBolt";
 		proxyShape = "\dz\weapons\projectiles\arrow_hunting.p3d";
 		hit = 14;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 0;
 		caliber = 0.55;
 		airFriction = -0.00215;
@@ -1447,13 +1450,13 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_hunting_flying.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_ArrowBoned";
 		proxyShape = "\dz\weapons\projectiles\arrow_crafted_advanced.p3d";
 		hit = 11;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1487,13 +1490,13 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_hunting_flying.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_ArrowPrimitive";
 		proxyShape = "\dz\weapons\projectiles\arrow_crafted_simple.p3d";
 		hit = 10;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1527,13 +1530,13 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\arrow_hunting_flying.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_SharpStick";
 		proxyShape = "\dz\weapons\projectiles\arrow_crude_simple.p3d";
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00255;
@@ -1567,12 +1570,12 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\dart_syringe.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_DartSyringe";
 		hit = 9;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		cartridge = "";
+		casing = "";
+		round = "";
 		deflecting = 20;
 		caliber = 0.5;
 		airFriction = -0.00215;
@@ -1606,9 +1609,9 @@ class CfgAmmo
 	{
 		scope = 2;
 		model = "\dz\weapons\projectiles\tracer_red.p3d";
-		lootCategory = "Crafted";
 		spawnPileType = "Ammo_Flare";
-		cartridge = "-";
+		casing = "-";
+		round = "-";
 		caliber = 1;
 		airFriction = -0.00215;
 		typicalSpeed = 180;
@@ -1711,8 +1714,8 @@ class CfgAmmo
 		scope = 2;
 		model = "\dz\weapons\ammunition\rocket_rpg7_inflight.p3d";
 		proxyShape = "\dz\weapons\projectiles\rocket_rpg7_inflight.p3d";
-		lootCategory = "Crafted";
-		cartridge = "-";
+		casing = "-";
+		round = "-";
 		caliber = 0.2;
 		airFriction = -0.00215;
 		typicalSpeed = 180;
@@ -1829,8 +1832,8 @@ class CfgAmmo
 		scope = 2;
 		model = "\dz\weapons\ammunition\rocket_rpg7_inflight.p3d";
 		proxyShape = "\dz\weapons\projectiles\rocket_rpg7_inflight.p3d";
-		lootCategory = "Crafted";
-		cartridge = "-";
+		casing = "-";
+		round = "-";
 		caliber = 0.2;
 		airFriction = -0.00215;
 		typicalSpeed = 145;
@@ -1918,7 +1921,7 @@ class CfgVehicles
 	class FxCartridge: ThingEffect
 	{
 		model = "\dz\weapons\projectiles\nabojnice_556.p3d";
-		displayName = "$STR_DN_FX_CARTRIDGE";
+		displayName = "";
 		submerged = 0;
 		submergeSpeed = 0;
 		timeToLive = 5;
@@ -1928,7 +1931,7 @@ class CfgVehicles
 	class FxCartridge_Small: ThingEffect
 	{
 		model = "\dz\weapons\projectiles\nabojnice_small.p3d";
-		displayName = "$STR_DN_FX_CARTRIDGE";
+		displayName = "";
 		submerged = 0;
 		submergeSpeed = 0;
 		timeToLive = 5;
@@ -1956,5 +1959,51 @@ class CfgVehicles
 	class FxCartridge_22: FxCartridge
 	{
 		model = "\dz\weapons\projectiles\nabojnice_22.p3d";
+	};
+	class FxRound: FxCartridge
+	{
+		model = "\dz\weapons\projectiles\556_SingleRound.p3d";
+		displayName = "";
+		submerged = 0;
+		submergeSpeed = 0;
+		timeToLive = 5;
+		disappearAtContact = 1;
+		airRotation = 1.0;
+	};
+	class FxRound_9mm: FxRound
+	{
+		model = "\dz\weapons\projectiles\9mm_SingleRound.p3d";
+	};
+	class FxRound_556: FxRound
+	{
+		model = "\dz\weapons\projectiles\556_SingleRound.p3d";
+	};
+	class FxRound_762: FxRound
+	{
+		model = "\dz\weapons\projectiles\762_SingleRound.p3d";
+	};
+	class FxRound_762x39: FxRound
+	{
+		model = "\dz\weapons\projectiles\762x39_SingleRound.p3d";
+	};
+	class FxRound_12Pellet: FxRound
+	{
+		model = "\dz\weapons\projectiles\shotgunshell_pellets.p3d";
+	};
+	class FxRound_12Slug: FxRound
+	{
+		model = "\dz\weapons\projectiles\shotgunshell_slug.p3d";
+	};
+	class FxRound_22: FxRound
+	{
+		model = "\dz\weapons\projectiles\22_SingleRound.p3d";
+	};
+	class FxRound_308Win: FxRound
+	{
+		model = "\dz\weapons\projectiles\308Win_SingleRound.p3d";
+	};
+	class FxRound_arrow_composite: FxRound
+	{
+		model = "\dz\weapons\projectiles\arrow_composite.p3d";
 	};
 };

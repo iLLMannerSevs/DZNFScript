@@ -18,7 +18,6 @@ class TrapBase extends ItemBase
 
 	bool m_WasActivatedOrDeactivated;
 
-	ref array<string> m_SurfaceForSetup;
 	string m_AnimationPhaseGrounded;
 	string m_AnimationPhaseSet;
 	string m_AnimationPhaseTriggered;
@@ -199,21 +198,14 @@ class TrapBase extends ItemBase
 	{
 		if ( this.GetHierarchyRootPlayer() != NULL && this.GetHierarchyRootPlayer().GetHumanInventory().GetEntityInHands() == this )
 		{
-			if ( m_SurfaceForSetup  &&  m_SurfaceForSetup.Count() > 0 )
+			PlayerBase player = PlayerBase.Cast( this.GetHierarchyRootPlayer() );
+			
+			vector player_pos = player.GetPosition();
+			vector aim_pos = player.GetAimPosition();
+							
+			if ( vector.Distance(player_pos, aim_pos) <= 1.5 )
 			{
-				PlayerBase player = PlayerBase.Cast( this.GetHierarchyRootPlayer() );
-				
-				vector player_pos = player.GetPosition();
-				vector aim_pos = player.GetAimPosition();
-								
-				if ( vector.Distance(player_pos, aim_pos) <= 1.5 )
-				{
-					return IsPlaceableAtPosition( aim_pos );
-				}
-			}
-			else
-			{
-				return true;
+				return IsPlaceableAtPosition( aim_pos );
 			}
 		}
 		
@@ -222,16 +214,12 @@ class TrapBase extends ItemBase
 
 	bool IsPlaceableAtPosition( vector position )
 	{
-		if (m_SurfaceForSetup)
+		if( GetGame().SurfaceIsSea( position[0], position[2] ) )
 		{
-		string surface_type;
-		GetGame().SurfaceGetType( position[0], position[2], surface_type );
-
-		if ( m_SurfaceForSetup.Find(surface_type) > -1 )
-		{
-			return true;
-			
+			return false;
 		}
+		else if( GetGame().SurfaceIsPond( position[0], position[2] ) )
+		{
 			return false;
 		}
 		

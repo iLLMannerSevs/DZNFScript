@@ -21,6 +21,7 @@ class MissionServer extends MissionBase
 	ref TStringArray topsArray;
 	ref TStringArray pantsArray;
 	ref TStringArray shoesArray;
+	ref TStringArray backpackArray  = {"TaloonBag_Blue","TaloonBag_Green","TaloonBag_Orange","TaloonBag_Violet"}; //only for testing equips, will remove eventually
 		
 	void MissionServer()
 	{
@@ -546,7 +547,7 @@ class MissionServer extends MissionBase
 		for (int i = 0; i < m_DeadPlayersArray.Count(); i++)
 		{
 			corpse_data = m_DeadPlayersArray.Get(i);
-			if( !corpse_data || (corpse_data && !corpse_data.m_Player) )
+			if( !corpse_data || (corpse_data && (!corpse_data.m_Player || !corpse_data.m_bUpdate)) )
 			{
 				invalid_corpses.Insert(i);
 			}

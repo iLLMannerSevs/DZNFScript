@@ -64,6 +64,15 @@ class CharacterCreationMenu extends UIScriptedMenu
 		#endif
 		m_Version.SetText( version );
 		
+		#ifdef PLATFORM_CONSOLE
+		if( m_Scene && m_Scene.GetIntroCharacter() )
+		{
+			
+			m_Scene.GetIntroCharacter().SetToDefaultCharacter();
+			m_Scene.GetIntroCharacter().LoadCharacterData( m_Scene.GetIntroCharacter().GetCharacterObj().GetPosition(), m_Scene.GetIntroCharacter().GetCharacterObj().GetDirection(), true );
+		}
+		#endif;
+		
 		m_NameSelector		= new OptionSelectorEditbox( layoutRoot.FindAnyWidget( "character_name_setting_option" ), m_Scene.GetIntroCharacter().GetCharacterName(), null, false );
 		m_GenderSelector	= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_gender_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharGenderList() );
 		if ( m_Scene.GetIntroCharacter().IsCharacterFemale() )
@@ -81,30 +90,22 @@ class CharacterCreationMenu extends UIScriptedMenu
 		m_BottomSelector	= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_bottom_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharPantsList() );
 		m_ShoesSelector		= new OptionSelectorMultistateCharacterMenu( layoutRoot.FindAnyWidget( "character_shoes_setting_option" ), 0, null, false, m_Scene.GetIntroCharacter().GetCharShoesList() );
 		
-		if( m_Scene && m_Scene.GetIntroCharacter() )
+		PlayerBase scene_char = GetPlayerObj();
+		if( scene_char )
 		{
-			#ifdef PLATFORM_CONSOLE
-			m_Scene.GetIntroCharacter().SetToDefaultCharacter();
-			m_Scene.GetIntroCharacter().LoadCharacterData( m_Scene.GetIntroCharacter().GetCharacterObj().GetPosition(), m_Scene.GetIntroCharacter().GetCharacterObj().GetDirection(), true );
-			#endif;
+			Object obj = scene_char.GetInventory().FindAttachment(InventorySlots.BODY);
+			if( obj )
+				m_TopSelector.SetValue( obj.GetType() );
 			
-			PlayerBase scene_char = GetPlayerObj();
-			if( scene_char )
-			{
-				Object obj = scene_char.GetInventory().FindAttachment(InventorySlots.BODY);
-				if( obj )
-					m_TopSelector.SetValue( obj.GetType() );
-				
-				obj = scene_char.GetInventory().FindAttachment(InventorySlots.LEGS);
-				if( obj )
-					m_BottomSelector.SetValue( obj.GetType() );
-				
-				obj = scene_char.GetInventory().FindAttachment(InventorySlots.FEET);
-				if( obj )
-					m_ShoesSelector.SetValue( obj.GetType() );
-				
-				m_SkinSelector.SetValue( scene_char.GetType() );
-			}
+			obj = scene_char.GetInventory().FindAttachment(InventorySlots.LEGS);
+			if( obj )
+				m_BottomSelector.SetValue( obj.GetType() );
+			
+			obj = scene_char.GetInventory().FindAttachment(InventorySlots.FEET);
+			if( obj )
+				m_ShoesSelector.SetValue( obj.GetType() );
+			
+			m_SkinSelector.SetValue( scene_char.GetType() );
 		}
 		
 		m_GenderSelector.m_OptionChanged.Insert( GenderChanged );

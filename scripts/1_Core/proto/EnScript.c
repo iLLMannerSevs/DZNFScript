@@ -317,10 +317,29 @@ void PrintString(string s)
 
 class array<Class T>
 {
+	/*!
+	O(1) complexity.
+	\return Number of elements of the array
+	*/
 	proto native int Count();
+	/*!
+	Destroyes all elements of the array and sets the Count to 0.
+	The underlying memory of the array is not freed.
+	*/
 	proto native void Clear();
+	/*!
+	Sets n-th element to given value.
+	*/
 	proto void Set(int n, T value);
+	/*!
+	Tries to find the first occurance of given value in the array.
+	\return Index of the first occurance of `value` if found, -1 otherwise
+	*/
 	proto int Find(T value);
+	/*!
+	\return Element at the index `n`
+	*/
+
 	proto T Get(int n);
 	/*!
 	Inserts element at the end of array.
@@ -392,7 +411,28 @@ class array<Class T>
 	Index of element to be removed
 	*/
 	proto native void RemoveOrdered(int index);
+	/*!
+	Resizes the array to given size.
+	If the `newSize` is lower than current Count overflowing objects are destroyed.
+	If the `newSize` is higher than current Count missing elements are initialized to zero (null).
+	*/
+	proto native void Resize(int newSize);
+
+	/*!
+	Swaps the contents of this and `other` arrays.
+	Does not involve copying of the elements.
+	*/
 	proto native void Swap(notnull array<T> other);
+
+	/*!
+	Sorts elements of array, depends on underlaying type.
+	*/
+	proto native void Sort(bool reverse = false);
+	/*!
+	Copes contents of `from` array to this array.
+	\return How many elements were copied
+	*/
+
 	proto int Copy(notnull array<T> from);
 	proto int Init(T init[]);
 

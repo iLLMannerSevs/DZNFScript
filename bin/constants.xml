@@ -52,7 +52,6 @@
 		<input name="UAThrowitem" loc="STR_USRACT_THROW_ITEM" />
 		<input name="UADropitem" loc="STR_USRACT_UADropItem" />
 		<input name="UAMoveItemFromHandsToInventory" loc="" visible="false" />
-		<input name="UAHeadlights" loc="" visible="false" />
 
 		<input name="UANightVision" loc="" visible="false" />
 		<input name="UAMiniMap" loc="" visible="false" />
@@ -312,7 +311,7 @@
 		<input name="UATrackLeanRight" loc=""  visible="false" /-->
 	</actions>
 	
-	<!-- action with mouse range factor spceial handling - range factor eaters -->
+	<!-- action with mouse range factor special handling - range factor eaters -->
 	<mouserangefactorlist>
         <input name="UAAimRight" />
         <input name="UAAimLeft" />
@@ -333,6 +332,24 @@
         <input name="UAHeliCollectiveRaise" />
         <input name="UAHeliCollectiveLower" /-->
 	</mouserangefactorlist>
+
+	<!-- action with special handling - supression control can be overriden -->
+	<supresscontrol>
+        <input name="UAMoveForward" />
+        <input name="UAMoveBack" />
+        <input name="UAMoveUp" />
+        <input name="UAMoveDown" />
+        <input name="UAMoveLeft" />
+        <input name="UAMoveRight" />
+        <input name="UAWalkForward" />
+        <input name="UAWalkBack" />
+        <input name="UAWalkLeft" />
+        <input name="UAWalkRight" />
+        <input name="UAAimRight" />
+        <input name="UAAimLeft" />
+        <input name="UAAimUp" />
+        <input name="UAAimDown" />
+	</supresscontrol>
 
 	<controller name="PCKeyboard" loc="STR_INPUT_DEVICE_PCKEYBOARD">
 		<limit name="doubleclick" value="0.5" />

@@ -8,15 +8,18 @@ class MainMenuConsole extends UIScriptedMenu
 	protected TextWidget			m_PlayerName;
 	protected TextWidget			m_Version;
 	
+	protected Widget				m_OpenDLC;
+	protected Widget				m_ChangeAccount;
 	protected Widget				m_CustomizeCharacter;
 	protected Widget				m_PlayVideo;
 	protected Widget				m_Tutorials;
 	protected Widget				m_Options;
 	protected Widget				m_Controls;
-	protected Widget				m_Play;	
+	protected Widget				m_Play;
 	
 	protected ref Widget			m_LastFocusedButton;
-	protected bool					m_IsShown;
+	
+	protected ref ModsMenuDetailed	m_ModsDetailed;
 
 	override Widget Init()
 	{
@@ -24,6 +27,8 @@ class MainMenuConsole extends UIScriptedMenu
 		
 		m_PlayerName				= TextWidget.Cast( layoutRoot.FindAnyWidget("character_name_xbox") );
 		
+		m_OpenDLC					= layoutRoot.FindAnyWidget( "show_dlc" );
+		m_ChangeAccount				= layoutRoot.FindAnyWidget( "choose_account" );
 		m_CustomizeCharacter		= layoutRoot.FindAnyWidget( "customize_character" );
 		m_PlayVideo					= layoutRoot.FindAnyWidget( "play_video" );
 		m_Tutorials					= layoutRoot.FindAnyWidget( "tutorials" );
@@ -33,7 +38,7 @@ class MainMenuConsole extends UIScriptedMenu
 		
 		m_Version					= TextWidget.Cast( layoutRoot.FindAnyWidget( "version" ) );
 		m_Mission					= MissionMainMenu.Cast( GetGame().GetMission() );
-		m_LastFocusedButton = 		m_Play;
+		m_LastFocusedButton			= m_Play;
 				
 		GetGame().GetUIManager().ScreenFadeOut(1);
 
@@ -57,57 +62,100 @@ class MainMenuConsole extends UIScriptedMenu
 			}
 			ImageWidget toolbar_a = layoutRoot.FindAnyWidget( "SelectIcon" );
 			ImageWidget toolbar_y = layoutRoot.FindAnyWidget( "ChooseAccount" );
-			ImageWidget toolbar_y2 = layoutRoot.FindAnyWidget( "ChooseAccount" );
+			ImageWidget toolbar_x = layoutRoot.FindAnyWidget( "OpenStoreIcon" );
+			
 			toolbar_a.LoadImageFile( 0, "set:playstation_buttons image:" + confirm );
+			toolbar_x.LoadImageFile( 0, "set:playstation_buttons image:square" );
 			toolbar_y.Show( false );
-			toolbar_y2.Show( false );
 		#endif
+		
+		LoadMods();
 		
 		Refresh();
 		return layoutRoot;
 	}
 	
+	void LoadMods()
+	{
+		ref array<ref ModInfo> modArray = new array<ref ModInfo>;
+		
+		GetGame().GetModInfos( modArray );
+		modArray.Remove( modArray.Count() - 1 );
+		modArray.Invert();
+		
+		if( m_ModsDetailed )
+			delete m_ModsDetailed;
+		
+		if( modArray.Count() > 0 )
+		{
+			ImageWidget dlc_icon = ImageWidget.Cast( layoutRoot.FindAnyWidget("show_dlc_icon") );
+			dlc_icon.LoadImageFile( 0, modArray.Get( 0 ).GetLogoSmall() );
+			dlc_icon.FindAnyWidget("Owned").Show( modArray.Get( 0 ).GetIsOwned() );
+			dlc_icon.FindAnyWidget("Unowned").Show( modArray.Get( 0 ).GetIsOwned() );
+			m_ModsDetailed = new ModsMenuDetailed(modArray, layoutRoot.FindAnyWidget("ModsDetailed"), null, null);
+		}
+	}
+	
 	override bool OnClick( Widget w, int x, int y, int button )
 	{
-		if( m_IsShown )
-		{			
-			if( w == m_Play )
+		if( w == m_Play )
+		{
+			m_LastFocusedButton = m_Play;
+			OpenMenuServerBrowser();
+			return true;
+		}
+		else if ( w == m_Options )
+		{
+			m_LastFocusedButton = m_Options;
+			OpenMenuOptions();					
+			return true;
+		}
+		else if ( w == m_PlayVideo )
+		{
+			m_Mission.StopMusic();
+			m_LastFocusedButton = m_PlayVideo;
+			OpenMenuPlayVideo();
+			return true;
+		}
+		else if ( w == m_Tutorials )
+		{
+			m_LastFocusedButton = m_Tutorials;
+			OpenMenuTutorials();
+			return true;
+		}
+		else if ( w == m_Controls )
+		{
+			m_LastFocusedButton = m_Controls;
+			OpenMenuControls();
+			return true;
+		}
+		else if ( w == m_CustomizeCharacter )
+		{
+			m_LastFocusedButton = m_CustomizeCharacter;
+			OpenMenuCustomizeCharacter();
+			return true;
+		}
+		else if ( w == m_ChangeAccount )
+		{
+			m_LastFocusedButton = m_ChangeAccount;
+			ChangeAccount();
+			return true;
+		}
+		else if ( w == m_OpenDLC )
+		{
+			m_LastFocusedButton = m_OpenDLC;
+			if (m_ModsDetailed.IsOpen() )
 			{
-				m_LastFocusedButton = m_Play;
-				OpenMenuServerBrowser();
-				return true;
+				m_ModsDetailed.Close();
+				layoutRoot.FindAnyWidget( "OpenStore" ).Show( false );
 			}
-			else if ( w == m_Options )
+			else
 			{
-				m_LastFocusedButton = m_Options;
-				OpenMenuOptions();					
-				return true;
+				m_ModsDetailed.Open();
+				m_ModsDetailed.HighlightFirst();
+				layoutRoot.FindAnyWidget( "OpenStore" ).Show( true );
 			}
-			else if ( w == m_PlayVideo )
-			{
-				m_Mission.StopMusic();
-				m_LastFocusedButton = m_PlayVideo;
-				OpenMenuPlayVideo();
-				return true;
-			}
-			else if ( w == m_Tutorials )
-			{
-				m_LastFocusedButton = m_Tutorials;
-				OpenMenuTutorials();
-				return true;
-			}
-			else if ( w == m_Controls )
-			{
-				m_LastFocusedButton = m_Controls;
-				OpenMenuControls();
-				return true;
-			}
-			else if ( w == m_CustomizeCharacter )
-			{
-				m_LastFocusedButton = m_CustomizeCharacter;
-				OpenMenuCustomizeCharacter();
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}
@@ -164,47 +212,42 @@ class MainMenuConsole extends UIScriptedMenu
 		{
 			m_ScenePC.GetIntroCamera().LookAt( m_ScenePC.GetIntroCharacter().GetPosition() + Vector( 0, 1, 0 ) );
 		}
-		m_IsShown = true;
 		
 		super.OnShow();
 		#ifdef PLATFORM_CONSOLE
+			#ifndef PLATFORM_PS4
 			layoutRoot.FindAnyWidget( "choose_account" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+			#endif
 			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 		#endif
 	}
 	
 	override void OnHide()
 	{
-		m_IsShown = false;
 		GetDayZGame().GetBacklit().MainMenu_OnHide();
 	}
 
 	override void Update(float timeslice)
 	{
 		super.Update( timeslice );
-		if( m_IsShown )
+		#ifndef PLATFORM_CONSOLE
+		if ( GetGame().GetInput().LocalPress("UAUIBack", false) && g_Game.GetLoadState() != DayZGameState.CONNECTING && !GetGame().GetUIManager().IsDialogVisible() )
 		{
-			
-			#ifndef PLATFORM_CONSOLE
-			if ( GetGame().GetInput().LocalPress("UAUIBack", false) && g_Game.GetLoadState() != DayZGameState.CONNECTING && !GetGame().GetUIManager().IsDialogVisible() )
+			Exit();
+		}
+		#endif
+		#ifdef PLATFORM_XBOX
+		if ( GetGame().GetInput().LocalPress("UAUICtrlY",false) )
+		{
+			ChangeAccount();
+		}
+		#endif
+		if ( GetGame().GetInput().LocalPress("UAUICtrlX",false) )
+		{
+			if( m_ModsDetailed.IsOpen() && m_ModsDetailed.GetHighlighted() )
 			{
-				Exit();
+				m_ModsDetailed.GetHighlighted().GoToStore();
 			}
-			#endif
-			#ifdef PLATFORM_XBOX
-			if ( GetGame().GetInput().LocalPress("UAUICtrlY",false) )
-			{
-				BiosUserManager user_manager = GetGame().GetUserManager();
-				if( user_manager )
-				{
-					g_Game.SetLoadState( DayZLoadState.MAIN_MENU_START );
-					#ifndef PLATFORM_WINDOWS
-					user_manager.SelectUser( null );
-					#endif
-					GetGame().GetUIManager().Back();
-				}
-			}
-			#endif
 		}
 	}
 	
@@ -236,6 +279,19 @@ class MainMenuConsole extends UIScriptedMenu
 	void OpenMenuCustomizeCharacter()
 	{
 		EnterScriptedMenu(MENU_CHARACTER);
+	}
+	
+	void ChangeAccount()
+	{
+		BiosUserManager user_manager = GetGame().GetUserManager();
+		if( user_manager )
+		{
+			g_Game.SetLoadState( DayZLoadState.MAIN_MENU_START );
+			#ifndef PLATFORM_WINDOWS
+			user_manager.SelectUser( null );
+			#endif
+			GetGame().GetUIManager().Back();
+		}
 	}
 	
 	void Exit()

@@ -1,10 +1,11 @@
 MetaFileClass {
  Name "{F150456F37AF9CA2}Gui/textures/radial8.tga"
- Author "inv1251"
- ChangeDate 1445110846
+ Author "3672"
+ ChangeDate 1892362076
  Configurations {
   TGAResourceClass PC {
    SourceFile "radial8.tga"
+   Conversion ColorHQCompression
   }
   TGAResourceClass XBOX_ONE : PC {
   }

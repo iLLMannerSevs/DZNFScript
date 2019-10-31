@@ -3,7 +3,7 @@ GridSpacerWidgetClass Mod {
  clipchildren 1
  ignorepointer 1
  position 0 0
- size 1 56
+ size 1 38
  hexactpos 1
  vexactpos 1
  hexactsize 0
@@ -15,28 +15,21 @@ GridSpacerWidgetClass Mod {
  "Size To Content V" 1
  Columns 1
  {
-  ImageWidgetClass Header {
+  FrameWidgetClass Header {
    clipchildren 1
    ignorepointer 1
-   color 0 0 0 0.8627
    position 0 0
-   size 1 48
+   size 1 36
    halign center_ref
    hexactpos 1
    vexactpos 1
    hexactsize 0
    vexactsize 1
    scriptclass ""
-   image0 "set:dayz_gui image:inv_header_1"
-   mode blend
-   "src alpha" 1
-   "no wrap" 1
-   stretch 1
    {
     ImageWidgetClass IconSmall {
      clipchildren 1
      ignorepointer 1
-     color 0.702 0.702 0.702 1
      position 10 0
      size 1 1
      valign center_ref
@@ -51,28 +44,6 @@ GridSpacerWidgetClass Mod {
      "src alpha" 1
      "no wrap" 1
      stretch 1
-    }
-    RichTextWidgetClass Name {
-     clipchildren 0
-     ignorepointer 1
-     position 0 0
-     size 0.9 46
-     halign center_ref
-     valign center_ref
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 1
-     style DayZNormal
-     text "CLOSABLE HEADER"
-     font "gui/fonts/sdf_MetronLight24"
-     "exact text" 1
-     "exact text size" 20
-     "size to text h" 0
-     "size to text v" 1
-     "text halign" center
-     "text valign" center
-     wrap 1
     }
     ImageWidgetClass collapse_button {
      visible 1
@@ -93,18 +64,116 @@ GridSpacerWidgetClass Mod {
      stretch 0
      filter 1
     }
+    GridSpacerWidgetClass CenterSpacer {
+     visible 1
+     clipchildren 0
+     ignorepointer 1
+     position 0 0
+     size 0.9 26
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style Colorable
+     Padding 0
+     Margin 0
+     "Size To Content H" 1
+     "Size To Content V" 1
+     content_halign center
+     content_valign center
+     Columns 2
+     Rows 1
+     {
+      FrameWidgetClass ModOwnership {
+       visible 1
+       clipchildren 0
+       ignorepointer 1
+       position 0 0
+       size 26 26
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       fixaspect inside
+       {
+        ImageWidgetClass Owned {
+         visible 0
+         clipchildren 0
+         ignorepointer 1
+         color 0 1 0 1
+         size 0.7 0.7
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         fixaspect fixwidth
+         image0 "set:dayz_gui image:circle"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         stretch 1
+        }
+        ImageWidgetClass Unowned {
+         visible 0
+         clipchildren 0
+         ignorepointer 1
+         color 1 0 0 1
+         size 0.7 0.7
+         halign right_ref
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         fixaspect fixwidth
+         image0 "set:dayz_gui image:circle"
+         mode blend
+         "src alpha" 1
+         "no wrap" 1
+         stretch 1
+        }
+       }
+      }
+      RichTextWidgetClass Name {
+       clipchildren 0
+       ignorepointer 1
+       position 0 0
+       size 200 26
+       halign center_ref
+       valign center_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       style DayZNormal
+       text "CLOSABLE HEADER"
+       font "gui/fonts/sdf_MetronLight24"
+       "exact text" 1
+       "exact text size" 20
+       "size to text h" 1
+       "size to text v" 0
+       "text halign" center
+       "text valign" center
+       wrap 0
+      }
+     }
+    }
    }
   }
   GridSpacerWidgetClass DetailContainer {
    visible 0
    ignorepointer 1
-   color 0 0 0 0.7059
    position 0 0
    size 1 0
    hexactpos 1
    vexactpos 1
    hexactsize 0
    vexactsize 1
+   style Empty
    Padding 8
    Margin 8
    "Size To Content H" 1
@@ -115,7 +184,7 @@ GridSpacerWidgetClass Mod {
     GridSpacerWidgetClass LeftSpacer {
      ignorepointer 1
      position 0 0
-     size 127 1
+     size 128 1
      hexactpos 1
      vexactpos 1
      hexactsize 1
@@ -142,19 +211,20 @@ GridSpacerWidgetClass Mod {
        stretch 1
       }
       FrameWidgetClass Space {
+       visible 0
        ignorepointer 1
        position 0 0
-       size 1 6
+       size 1 2
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 1
       }
       MultilineTextWidgetClass Author {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
-       size 128 30
+       size 128 26
        hexactpos 1
        vexactpos 1
        hexactsize 1
@@ -168,10 +238,10 @@ GridSpacerWidgetClass Mod {
        wrap 1
       }
       TextWidgetClass Version {
-       visible 1
+       visible 0
        ignorepointer 1
        position 0 0
-       size 1 30
+       size 1 26
        hexactpos 1
        vexactpos 1
        hexactsize 0
@@ -183,16 +253,34 @@ GridSpacerWidgetClass Mod {
        "text valign" center
       }
       RichTextWidgetClass Link {
-       visible 1
+       visible 0
        ignorepointer 0
        position 0 0
-       size 1 30
+       size 1 26
        hexactpos 1
        vexactpos 1
        hexactsize 0
        vexactsize 1
-       text "Website"
+       text "#mod_detail_info_website"
        font "gui/fonts/sdf_MetronLight24"
+       "bold text" 0
+       "exact text" 1
+       "exact text size" 20
+       "text halign" center
+       "text valign" center
+      }
+      RichTextWidgetClass Purchase {
+       visible 0
+       ignorepointer 0
+       position 0 0
+       size 1 26
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       text "#mod_detail_info_store"
+       font "gui/fonts/sdf_MetronLight24"
+       "bold text" 0
        "exact text" 1
        "exact text size" 20
        "text halign" center
@@ -217,6 +305,16 @@ GridSpacerWidgetClass Mod {
      wrap 1
     }
    }
+  }
+  ImageWidgetClass Spacer {
+   ignorepointer 1
+   color 0.502 0.502 0.502 0.8
+   position 0 0
+   size 1 2
+   hexactpos 1
+   vexactpos 1
+   hexactsize 0
+   vexactsize 1
   }
  }
 }

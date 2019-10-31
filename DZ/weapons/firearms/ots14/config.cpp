@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\ots14\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:24:44 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:54:19 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -100,7 +100,7 @@ class cfgWeapons
 		model = "\dz\weapons\firearms\ots14\ots14.p3d";
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\ots14\data\ots14_co.paa"};
 		attachments[] = {"weaponOpticsAK","weaponButtstockAK","weaponMuzzleAK"};
-		itemSize[] = {7,6};
+		itemSize[] = {5,3};
 		spawnDamageRange[] = {0.0,0.6};
 		class DamageSystem
 		{

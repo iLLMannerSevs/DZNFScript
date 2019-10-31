@@ -271,6 +271,8 @@ class ActionManagerBase
 	
 	void OnActionEnd( )
 	{
+		if (m_CurrentActionData)
+			actionDebugPrint("[action] " + Object.GetDebugName(m_CurrentActionData.m_Player) + " end " + m_CurrentActionData.m_Action.ToString() + " item=" + Object.GetDebugName(m_CurrentActionData.m_MainItem));
 		Debug.Log("[AM] Action data cleared (" + m_Player + ")");
 		m_CurrentActionData = NULL;
 		

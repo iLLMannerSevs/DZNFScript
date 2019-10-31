@@ -2,7 +2,7 @@
 //DeRap: gear_traps\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:31 2019 : 'file' last modified on Fri Jul 19 22:10:07 2019
+//'now' is Thu Oct 31 18:21:10 2019 : 'file' last modified on Wed Sep 25 14:21:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -96,7 +96,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\traps\data\beartrap.rvmat"}},{0.7,{"DZ\gear\traps\data\beartrap.rvmat"}},{0.5,{"DZ\gear\traps\data\beartrap_damage.rvmat"}},{0.3,{"DZ\gear\traps\data\beartrap_damage.rvmat"}},{0.0,{"DZ\gear\traps\data\beartrap_destruct.rvmat"}}};
 				};
 			};
@@ -176,7 +176,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\traps\data\landmine.rvmat"}},{0.7,{"DZ\gear\traps\data\landmine.rvmat"}},{0.5,{"DZ\gear\traps\data\landmine_damage.rvmat"}},{0.3,{"DZ\gear\traps\data\landmine_damage.rvmat"}},{0.0,{"DZ\gear\traps\data\landmine_destruct.rvmat"}}};
 				};
 			};
@@ -250,7 +250,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.7,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.5,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\Loot_WaterBottle_destruct.rvmat"}}};
 				};
 			};
@@ -294,7 +294,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.7,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.5,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\Loot_WaterBottle_destruct.rvmat"}}};
 				};
 			};
@@ -339,7 +339,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\rabbit_snare.rvmat"}},{0.7,{"DZ\gear\crafting\data\rabbit_snare.rvmat"}},{0.5,{"DZ\gear\crafting\data\rabbit_snare_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\rabbit_snare_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\rabbit_snare_destruct.rvmat"}}};
 				};
 			};
@@ -408,7 +408,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\crafting\data\rabbit_snare.rvmat"}},{0.7,{"DZ\gear\crafting\data\rabbit_snare.rvmat"}},{0.5,{"DZ\gear\crafting\data\rabbit_snare_damage.rvmat"}},{0.3,{"DZ\gear\crafting\data\rabbit_snare_damage.rvmat"}},{0.0,{"DZ\gear\crafting\data\rabbit_snare_destruct.rvmat"}}};
 				};
 			};

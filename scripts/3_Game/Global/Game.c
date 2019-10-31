@@ -493,6 +493,7 @@ class CGame
 	proto native void		ConfigGetObjectFullPath(Object obj, out TStringArray full_path);
 	
 	proto native void		GetModInfos(notnull out array<ref ModInfo> modArray);
+	proto native bool		GetModToBeReported();
 
 /**
 \brief Converts array of strings into single string.
@@ -668,7 +669,10 @@ class CGame
 		g_Game.GetWorldName(world_name);
 		return world_name;
 	}
-	
+
+	proto native bool VerifyWorldOwnership( string sWorldName );
+	proto native bool GoBuyWorldDLC( string sWorldName );
+
 	proto void					FormatString( string format, string params[], out string output);
 	proto void					GetVersion( out string version );
 	proto native UIManager	GetUIManager();
@@ -858,7 +862,7 @@ class CGame
 	proto void				SurfaceGetType3D(float x, float y, float z, out string type);
 	proto void				SurfaceUnderObject(Object object, out string type, out int liquidType);
 	proto void				SurfaceUnderObjectByBone(Object object, int boneType, out string type, out int liquidType);
-	proto native float		SurfaceGetNoiseMultiplier(float x, float z);
+	proto native float		SurfaceGetNoiseMultiplier(Object directHit, vector pos, int componentIndex);
 	proto native vector		SurfaceGetNormal(float x, float z);
 	proto native float		SurfaceGetSeaLevel();
 	proto native bool		SurfaceIsSea(float x, float z);
@@ -899,109 +903,16 @@ class CGame
 		return angles;
 	}
 	
-	//! Checks if this surface is soft
-	bool IsSurfaceSoftGround(string surface)
+	//! Checks if the surface is digable
+	bool IsSurfaceDigable(string surface)
 	{
-		const int array_elements = 30; // Sadly we don't have full API for dealing with static arrays right now, so we can't write flexible code. When we get Contains(...) method then a lot of this code can be replaced by it.
-		string compatible_surfaces[array_elements] = 	
-			{
-				"cp_broadleaf_dense1",
-				"cp_broadleaf_dense2",
-				"cp_broadleaf_sparse1",
-				"cp_broadleaf_sparse2",
-				"cp_conifer_common1",
-				"cp_conifer_common2",
-				"cp_conifer_moss1",
-				"cp_conifer_moss2",
-				"cp_dirt",
-				"dirt_ext",
-				"dirt_int",
-				"cp_grass",
-				"grass_dry_ext",
-				"grass_dry_int",
-				"cp_grass_tall",
-				"cp_gravel",
-				"gravel_small_ext",
-				"gravel_small_int",
-				"gravel_large_ext",
-				"gravel_large_int",
-				"cp_rock",
-				"rubble_large_ext",
-				"rubble_large_int",
-				"rubble_small_ext",
-				"rubble_small_int",
-				"sand_ext",
-				"sand_int",
-				"trash_ext",
-				"trash_ext",
-				"trash_int"}; // Don't forget to update array_elements if you change element count!
-		
-		
-		for ( int i = 0; i < array_elements; i++ )
-		{
-			if ( compatible_surfaces[i] == surface )
-			{
-				return true;
-				break;
-			}
-		}
-		
-		return false;
+		return ConfigGetInt("CfgSurfaces " + surface + " isDigable");
 	}
 	
-	//! Checks if this surface is hard
-	bool IsSurfaceHardGround(string surface)
+	//! Checks if the surface is fertile
+	bool IsSurfaceFertile(string surface)
 	{
-		const int array_elements = 36; // Sadly we don't have full API for dealing with static arrays right now, so we can't write flexible code. When we get Contains(...) method then a lot of this code can be replaced by it.
-		string compatible_surfaces[array_elements] = 	
-			{
-				"asphalt_ext",
-				"asphalt_destroyed_ext",
-				"asphalt_int",
-				"asphalt_destroyed_int",
-				"asphalt_felt_ext",
-				"asphalt_felt_int",
-				"cp_concrete1",
-				"cp_concrete2",
-				"concrete_ext",
-				"concrete_stairs_ext",
-				"concrete_int",
-				"concrete_stairs_int",
-				"ceramic_tiles_ext",
-				"ceramic_tiles_int",
-				"ceramic_tiles_roof_ext",
-				"ceramic_tiles_roof_int",
-				"lino_ext",
-				"lino_int",
-				"metal_thick_ext",
-				"metal_stairs_ext",
-				"metal_thick_int",
-				"metal_stairs_int",
-				"metal_thin_ext",
-				"metal_thin_int",
-				"metal_thin_mesh_ext",
-				"metal_thin_mesh_int",
-				"stone_ext",
-				"stone_int",
-				"textile_carpet_ext",
-				"textile_carpet_int",
-				"wood_parquet_ext",
-				"wood_parquet_int",
-				"wood_planks_ext",
-				"wood_planks_stairs_ext",
-				"wood_planks_int",
-				"wood_planks_stairs_int"}; // Don't forget to update array_elements if you change element count!
-		
-		for ( int i = 0; i < array_elements; i++ )
-		{
-			if ( compatible_surfaces[i] == surface )
-			{
-				return true;
-				break;
-			}
-		}
-		
-		return false;
+		return ConfigGetInt("CfgSurfaces " + surface + " isFertile");
 	}
 	
 	void UpdatePathgraphRegionByObject(Object object)
@@ -1256,6 +1167,9 @@ class CGame
 	}
 
 	proto native BiosUserManager GetUserManager();
+	
+	//! Return DLC service (service for entitlement keys for unlock content)
+	proto native ContentDLC GetContentDLCService();
 	
 	//! Returns true when current mission is Main Menu
 	bool IsMissionMainMenu()

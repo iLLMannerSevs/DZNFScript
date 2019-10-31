@@ -67,14 +67,11 @@ class CameraToolsMenu extends UIScriptedMenu
 	
 	void ~CameraToolsMenu()
 	{
-		GetGame().GetInput().ResetGameFocus();
-		GetGame().GetInput().ChangeGameFocus(-1);
-		GetGame().GetUIManager().ShowCursor(false);
+		m_Camera1.SetActive( false );
+		m_Camera2.SetActive( false );
 		
-		MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable();
-		
-		GetGame().ObjectDelete( m_Camera1 );
-		GetGame().ObjectDelete( m_Camera2 );
+		//GetGame().ObjectDelete( m_Camera1 );
+		//GetGame().ObjectDelete( m_Camera2 );
 		
 		DeveloperFreeCamera.DisableFreeCamera( PlayerBase.Cast( GetGame().GetPlayer() ), false );
 		
@@ -84,23 +81,20 @@ class CameraToolsMenu extends UIScriptedMenu
 	
 	override void OnShow()
 	{
+		super.OnShow();
 		if( !m_IsPlaying )
 		{
-			GetGame().GetInput().ChangeGameFocus(1);
-			GetGame().GetUIManager().ShowCursor(true);
 			MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlDisable(INPUT_EXCLUDE_ALL);
-			
 		}
 	}
 	
 	override void OnHide()
 	{
+		super.OnHide();
 		if( !m_IsPlaying )
 		{
-			GetGame().GetInput().ResetGameFocus();
-			GetGame().GetInput().ChangeGameFocus(-1);
 			GetGame().GetUIManager().ShowCursor(false);
-			MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable();
+			MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable(true);
 		}
 	}
 	
@@ -424,6 +418,11 @@ class CameraToolsMenu extends UIScriptedMenu
 	{
 		layoutRoot.Show( true );
 		GetGame().GetUIManager().ShowCursor( true );
+		
+		m_Camera1.SetActive( false );
+		m_Camera2.SetActive( false );
+		FreeDebugCamera.GetInstance().SetActive(true);
+		
 		m_NextCameraIndex = 1;
 		m_IsPlaying = false;
 		
@@ -691,7 +690,7 @@ class CameraToolsMenu extends UIScriptedMenu
 			GetGame().GetInput().ResetGameFocus();
 			GetGame().GetInput().ChangeGameFocus(-1);
 			GetGame().GetUIManager().ShowCursor(false);
-			MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable();
+			MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable(true);
 			SetFocus( layoutRoot );
 			return true;
 		}

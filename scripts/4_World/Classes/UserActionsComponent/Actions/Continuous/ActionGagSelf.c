@@ -3,6 +3,9 @@ class ActionGagSelf: ActionContinuousBase
 	void ActionGagSelf()
 	{
 		m_CallbackClass = ActionCoverHeadSelfCB;
+		m_CommandUID = DayZPlayerConstants.CMD_ACTIONMOD_COVERHEAD_SELF;
+		//m_FullBody = true;
+		m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
 		m_SpecialtyWeight = UASoftSkillsWeight.ROUGH_LOW;
 	}
 
@@ -29,11 +32,13 @@ class ActionGagSelf: ActionContinuousBase
 		
 		if ( !IsWearingMask(player) ) 
 		{
-			if ( player.FindAttachmentBySlotName( "Headgear" ) )
-			{
-				bool headgear_allows;
-				headgear_allows = player.FindAttachmentBySlotName( "Headgear" ).ConfigGetBool( "noMask" );
-				if (!headgear_allows)
+			ItemBase headgear = ItemBase.Cast(player.FindAttachmentBySlotName( "Headgear" ));
+			if ( headgear )
+			{		
+				bool headgear_restricted;
+				bool exists = headgear.ConfigIsExisting("noMask");
+				headgear_restricted = headgear.ConfigGetBool( "noMask" );
+				if (headgear_restricted)
 				{
 					return false;
 				}
@@ -49,7 +54,7 @@ class ActionGagSelf: ActionContinuousBase
 		action_data.m_Player.GetInventory().CreateInInventory("MouthRag");
 		action_data.m_MainItem.TransferModifiers(action_data.m_Player);
 		action_data.m_MainItem.Delete();
-		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+		//action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}
 
 	bool IsWearingMask( PlayerBase player)

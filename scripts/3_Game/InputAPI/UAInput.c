@@ -196,11 +196,12 @@ class UAInputAPI
 	proto native int PresetCount(); // count of presets
 	proto native owned string PresetName( int index ); // name of selected preset
 
-	proto native int SortingCount();				// sorting group count
+	proto native int SortingCount(); // sorting group count
 	proto native owned string SortingName( int index );	// sorting group name
 
-	proto native void Export();	// export XML (user) configuration
-	proto native void Revert();	// revert XML (user) configuration - all of it and use default PBO content!
+	proto native void Export(); // export XML (user) configuration
+	proto native void Revert(); // revert XML (user) configuration - all of it and use default PBO content!
+	proto native void SupressNextFrame( bool bForce); // supress inputs for nextframe (until key release - call this when leaving main menu and alike - to avoid button collision after character control returned)
 	
 	proto native void Backlit_None(); // turn off backlit
 	proto native void Backlit_Background( int eType, int iColor1, int iColor2 ); // start backlit

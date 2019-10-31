@@ -8,6 +8,8 @@ class Hive
 	proto native void InitOffline();
 	proto native void InitSandbox();
 
+	proto native bool IsIdleMode();
+
 	proto native void SetShardID( string shard );
 	proto native void SetEnviroment( string env );
 

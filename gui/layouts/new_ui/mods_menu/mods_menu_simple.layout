@@ -1,4 +1,4 @@
-GridSpacerWidgetClass Content {
+WrapSpacerWidgetClass Content {
  ignorepointer 1
  size 444 1
  halign right_ref
@@ -11,23 +11,48 @@ GridSpacerWidgetClass Content {
  "Size To Content H" 1
  "Size To Content V" 1
  content_halign right
- Columns 5
- Rows 1
  {
   ImageWidgetClass ModMore {
    visible 1
    ignorepointer 0
    position 0 0
-   size 60 60
+   size 56 56
    hexactpos 1
    vexactpos 1
    hexactsize 1
    vexactsize 1
+   priority 16
    image0 "set:dayz_gui image:mod_more"
    mode blend
    "src alpha" 1
    "no wrap" 1
    stretch 1
+  }
+  PanelWidgetClass mods_separator_panel {
+   ignorepointer 1
+   position 0 0
+   size 8 56
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 4
+   style blank
+   {
+    PanelWidgetClass mods_separator {
+     ignorepointer 1
+     color 0.7843 0 0 1
+     size 2 56
+     halign center_ref
+     valign center_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     priority 5
+     style rover_sim_colorable
+    }
+   }
   }
  }
 }

@@ -45,6 +45,7 @@ PanelWidgetClass GridCell {
        vexactsize 0
        priority 151
        draggable 0
+       "force flip enable" 1
       }
       FrameWidgetClass QuantityPanel {
        visible 0

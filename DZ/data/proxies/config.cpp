@@ -2,7 +2,7 @@
 //DeRap: dz\proxies\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:12 2019 : 'file' last modified on Mon Sep 02 12:15:08 2019
+//'now' is Thu Oct 31 18:20:48 2019 : 'file' last modified on Tue Oct 29 11:03:18 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

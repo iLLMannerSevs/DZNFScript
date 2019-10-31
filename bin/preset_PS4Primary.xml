@@ -83,7 +83,7 @@
 	
 	<!-- Head torch/light controlls -->
 	<input name="UAToggleHeadlight">
-		<btn name="ps4Y"	/>
+		<btn name="ps4Y" />
 	</input>
 
 	<!-- Switch to Iron Sights -->

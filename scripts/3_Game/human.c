@@ -18,6 +18,9 @@ class HumanInputController
 	//! disables input controller
 	proto native void			SetDisabled(bool pState);
 	
+	//!	returns pSpeed 0,1..2..3 (idle, walk, run, sprint), local normalized direction vector 
+	proto void 					GetMovement(out float pSpeed, out vector pLocalDirection);
+
 	//! returns main heading angle (in radians)  -PI .. PI (this is world Y angle player is actualy pointing the camera)
 	proto native float 			GetHeadingAngle();
 
@@ -237,6 +240,49 @@ class HumanInputController
 	private void ~HumanInputController()
 	{
 	}	
+}
+
+
+// *************************************************************************************
+// ! HumanInputController - what we know about the input - human.GetInputController()
+// *************************************************************************************
+
+typedef 	int 	TAnimGraphCommand;
+typedef 	int 	TAnimGraphVariable;
+typedef 	int 	TAnimGraphTag;
+typedef 	int 	TAnimGraphEvent;
+
+//!
+class HumanAnimInterface
+{	
+	//-----------------------------------------------------
+	// Binds, returns -1 when error, otherwise if ok
+
+	//! returns command index - 	
+	proto native TAnimGraphCommand		BindCommand(string pCommandName);
+
+	//!
+	proto native TAnimGraphVariable 	BindVariableFloat(string pVariable);
+	proto native TAnimGraphVariable 	BindVariableInt(string pVariable);
+	proto native TAnimGraphVariable 	BindVariableBool(string pVariable);
+
+	//!
+	proto native TAnimGraphTag 			BindTag(string pTagName);
+
+	//!
+	proto native TAnimGraphEvent		BindEvent(string pEventName);
+
+
+	//-----------------------------------------------------
+	// Sets 
+	
+	//! call command
+	proto native void 					CallCommand(TAnimGraphCommand pCmd, int pUserInt, float pUserFloat);
+
+	//! set variable
+	proto native void 					SetFloat(TAnimGraphVariable pVar, float pValue);
+	proto native void 					SetInt(TAnimGraphVariable pVar, int pValue);
+	proto native void 					SetBool(TAnimGraphVariable pVar, bool pValue);
 }
 
 
@@ -976,6 +1022,77 @@ class HumanMovementState
 }
 
 
+// *************************************************************************************
+// ! HumanCommandScript fully scriptable command 
+// *************************************************************************************
+class HumanCommandScript
+{
+	//! constructor must have 1st parameter to be Human
+	// HumanCommandScript(Human pHuman);
+
+	//! virtual to be overridden
+	//! called when command starts
+	void 	OnActivate()	{ };
+
+	//! called when command ends
+	void 	OnDeactivate()	{ };
+
+
+	//---------------------------------------------------------------
+	// usable everywhere
+
+	//! this terminates human command script and shows CommandHandler(  ... pCurrentCommandFinished == true );
+	proto native void 	SetFlagFinished(bool pFinished);
+
+
+	//---------------------------------------------------------------
+	// PreAnim Update 
+
+	//! override this !
+	//! called before any animation is processed
+	//! here change animation values, add animation commands	
+	void 	PreAnimUpdate(float pDt);
+
+	//! function usable in PreAnimUpdate or in !!! OnActivate !!!
+	proto native 	void	PreAnim_CallCommand(int pCommand, int pParamInt, float pParamFloat);
+	proto native 	void	PreAnim_SetFloat(int pVar, float pFlt);
+	proto native 	void	PreAnim_SetInt(int pVar, int pInt);
+	proto native 	void	PreAnim_SetBool(int pVar, bool pBool);
+
+	//! sets character rotation (heading)
+	proto native 	void 	PreAnim_SetFilteredHeading(float pYawAngle, float pFilterDt, float pMaxYawSpeed);
+
+	//---------------------------------------------------------------
+	// PrePhys Update 
+
+	//! override this !
+	//! after animation is processed, before physics is processed
+	void 	PrePhysUpdate(float pDt);
+
+	//! script function usable in PrePhysUpdate
+	proto native 	bool	PrePhys_IsEvent(int pEvent);
+	proto native 	bool	PrePhys_IsTag(int pTag);
+	proto native 	bool	PrePhys_GetTranslation(out vector pOutTransl);		// vec3 in local space !
+	proto native 	bool	PrePhys_GetRotation(out float pOutRot[4]);         	// quaternion in local space !
+	proto native 	void	PrePhys_SetTranslation(vector pInTransl); 			// vec3 in local space !
+	proto native 	void	PrePhys_SetRotation(float pInRot[4]);				// quaternion in local space !
+
+	//---------------------------------------------------------------
+	// PostPhys Update 
+
+	//! override this !
+	//! final adjustment of physics state (after physics was applied)
+	//! returns true if command continues running / false if command should end (or you can use SetFlagFinished(true))
+	bool	PostPhysUpdate(float pDt);
+
+	//! script function usable in PostPhysUpdate
+	proto native 	void	PostPhys_GetPosition(out vector pOutTransl);		//! vec3 in world space
+	proto native 	void	PostPhys_GetRotation(out float pOutRot[4]);        	//! quaternion in world space
+	proto native 	void	PostPhys_SetPosition(vector pInTransl);				//! vec3 in world space
+	proto native 	void	PostPhys_SetRotation(float pInRot[4]);				//! quaternion in world space
+	// native 	void	PostPhys_LockRotation();							//! do not process rotations !
+}
+
 
 // *************************************************************************************
 // ! Human - human script interface 
@@ -1013,6 +1130,9 @@ class Human extends Man
 	proto native 	void 		GetBoneTransformMS(int pBoneIndex, out vector pTm[4]);
 	proto native 	void 		GetBoneTransformWS(int pBoneIndex, out vector pTm[4]);
 
+	
+	//! returns animation interface - usable in HumanCommandScript implementations 
+	proto native 	HumanAnimInterface 	GetAnimInterface();
 
 	//---------------------------------------------------------
 	// physic props
@@ -1186,6 +1306,18 @@ class Human extends Man
 	proto native 	void 						DeleteCommandModifier_Damage(HumanCommandDamage pDamage);
 
 	proto native 	HumanCommandDamage			GetCommandModifier_Damage();
+
+
+	//!--- SCRIPTED COMMANDS 
+
+	//! starts command - Action 
+	//! pStanceMask is mix of flags STANCEMASK_ERECT, ... 
+	proto native 	HumanCommandScript			StartCommand_Script(HumanCommandScript pHumanCommand);
+	proto native 	HumanCommandScript			StartCommand_ScriptInst(typename pCallbackClass);
+
+	//! is human is in command action - returns its callback, if current command is action 
+	proto native	HumanCommandScript			GetCommand_Script();
+
 
 
 	//---------------------------------------------------------

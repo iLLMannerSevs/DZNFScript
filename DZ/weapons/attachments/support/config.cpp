@@ -2,7 +2,7 @@
 //DeRap: weapon_supports\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:07 2019 : 'file' last modified on Tue Aug 13 08:19:54 2019
+//'now' is Thu Oct 31 18:24:57 2019 : 'file' last modified on Thu Oct 24 14:55:28 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -54,7 +54,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_stock.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_stock.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_stock_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_stock_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_stock_destruct.rvmat"}}};
 				};
 			};
@@ -114,7 +114,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 220;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_stock2.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_stock2.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_stock2_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_stock2_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_stock2_destruct.rvmat"}}};
 				};
 			};
@@ -176,7 +176,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_stock3.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_stock3.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_stock3_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_stock3_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_stock3_destruct.rvmat"}}};
 				};
 			};
@@ -237,7 +237,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_wood_destruct.rvmat"}}};
 				};
 			};
@@ -299,7 +299,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_wood_destruct.rvmat"}}};
 				};
 			};
@@ -360,7 +360,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_accessories_destruct.rvmat"}}};
 				};
 			};
@@ -421,7 +421,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.7,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.5,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\AK101\data\ak101_destruct.rvmat"}}};
 				};
 			};
@@ -483,7 +483,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"dz\weapons\firearms\AK74\data\aks74u.rvmat"}},{0.7,{"dz\weapons\firearms\AK74\data\aks74u.rvmat"}},{0.5,{"dz\weapons\firearms\AK74\data\aks74u_damage.rvmat"}},{0.3,{"dz\weapons\firearms\AK74\data\aks74u_damage.rvmat"}},{0.0,{"dz\weapons\firearms\AK74\data\aks74u_destruct.rvmat"}}};
 				};
 			};
@@ -543,7 +543,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\MP5k_stock.rvmat"}},{0.7,{"DZ\weapons\attachments\data\MP5k_stock.rvmat"}},{0.5,{"DZ\weapons\attachments\data\MP5k_stock_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\MP5k_stock_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\MP5k_stock_destruct.rvmat"}}};
 				};
 			};
@@ -638,7 +638,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\support\data\FAL_stock_oe.rvmat"}},{0.7,{"DZ\weapons\attachments\support\data\FAL_stock_oe.rvmat"}},{0.5,{"DZ\weapons\attachments\support\data\FAL_stock_oe_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\support\data\FAL_stock_oe_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\support\data\FAL_stock_oe_destruct.rvmat"}}};
 				};
 			};
@@ -686,7 +686,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\support\data\FAL_stock_folding.rvmat"}},{0.7,{"DZ\weapons\attachments\support\data\FAL_stock_folding.rvmat"}},{0.5,{"DZ\weapons\attachments\support\data\FAL_stock_folding_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\support\data\FAL_stock_folding_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\support\data\FAL_stock_folding_destruct.rvmat"}}};
 				};
 			};
@@ -720,22 +720,22 @@ class cfgVehicles
 		rotationFlags = 17;
 		reversed = 0;
 		inventorySlot = "weaponButtstockSaiga";
-		weight = 1300;
+		weight = 720;
 		itemSize[] = {3,1};
 		dispersionModifier = -0.0002;
 		dispersionCondition = "true";
 		recoilModifier[] = {0.8,0.8,0.8};
 		hiddenSelections[] = {"camo"};
-		hiddenSelectionsTextures[] = {"dz\weapons\attachments\data\saiga_folding_co.paa"};
-		hiddenSelectionsMaterials[] = {"dz\weapons\attachments\data\saiga_folding.rvmat"};
+		hiddenSelectionsTextures[] = {"dz\weapons\attachments\support\data\saiga_folding_co.paa"};
+		hiddenSelectionsMaterials[] = {"dz\weapons\attachments\support\data\saiga_folding.rvmat"};
 		class DamageSystem
 		{
 			class GlobalHealth
 			{
 				class Health
 				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\saiga_folding.rvmat"}},{0.7,{"DZ\weapons\attachments\data\saiga_folding.rvmat"}},{0.5,{"DZ\weapons\attachments\data\saiga_folding_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\saiga_folding_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\saiga_folding_destruct.rvmat"}}};
+					hitpoints = 250;
+					healthLevels[] = {{1.0,{"DZ\weapons\attachments\support\data\saiga_folding.rvmat"}},{0.7,{"DZ\weapons\attachments\support\data\saiga_folding.rvmat"}},{0.5,{"DZ\weapons\attachments\support\data\saiga_folding_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\support\data\saiga_folding_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\support\data\saiga_folding_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -781,7 +781,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\handguard_world.rvmat"}},{0.7,{"DZ\weapons\attachments\data\handguard_world.rvmat"}},{0.5,{"DZ\weapons\attachments\data\handguard_world_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\handguard_world_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\handguard_world_destruct.rvmat"}}};
 				};
 			};
@@ -841,7 +841,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_ris.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_ris.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_ris_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_ris_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_ris_destruct.rvmat"}}};
 				};
 			};
@@ -901,7 +901,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 220;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_handguard_mp.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_handguard_mp.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_handguard_mp_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_handguard_mp_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_handguard_mp_destruct.rvmat"}}};
 				};
 			};
@@ -961,7 +961,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_wood_destruct.rvmat"}}};
 				};
 			};
@@ -1022,7 +1022,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_wood.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_wood_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_wood_destruct.rvmat"}}};
 				};
 			};
@@ -1083,7 +1083,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 220;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.7,{"DZ\weapons\attachments\data\akm_accessories.rvmat"}},{0.5,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\akm_accessories_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\akm_accessories_destruct.rvmat"}}};
 				};
 			};
@@ -1143,7 +1143,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 170;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.7,{"DZ\weapons\firearms\AK101\data\ak101.rvmat"}},{0.5,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\AK101\data\ak101_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\AK101\data\ak101_destruct.rvmat"}}};
 				};
 			};
@@ -1190,7 +1190,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\MP5k_grip01.rvmat"}},{0.7,{"DZ\weapons\attachments\data\MP5k_grip01.rvmat"}},{0.5,{"DZ\weapons\attachments\data\MP5k_grip01_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\MP5k_grip01_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\MP5k_grip01_destruct.rvmat"}}};
 				};
 			};
@@ -1237,7 +1237,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\MP5k_grip.rvmat"}},{0.7,{"DZ\weapons\attachments\data\MP5k_grip.rvmat"}},{0.5,{"DZ\weapons\attachments\data\MP5k_grip_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\MP5k_grip_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\MP5k_grip_destruct.rvmat"}}};
 				};
 			};
@@ -1512,7 +1512,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_tan_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_tan_destruct_co.paa"}}};
 				};
 			};
@@ -1528,7 +1528,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_green_destruct_co.paa"}}};
 				};
 			};
@@ -1544,7 +1544,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_mossy_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_mossy_destruct_co.paa"}}};
 				};
 			};
@@ -1720,7 +1720,7 @@ class CfgNonAIVehicles
 	class ProxyButtstock_saiga_folding: ProxyAttachment
 	{
 		scope = 2;
-		inventorySlot = "weaponButtstockAK";
+		inventorySlot = "weaponButtstockSaiga";
 		model = "\DZ\weapons\attachments\support\buttstock_saiga_folding.p3d";
 	};
 	class ProxyHandguard_M4_Plastic: ProxyAttachment

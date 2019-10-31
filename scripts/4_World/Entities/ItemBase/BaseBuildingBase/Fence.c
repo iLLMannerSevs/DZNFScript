@@ -270,12 +270,9 @@ class Fence extends BaseBuildingBase
 			}
 		}
 		
-		if ( attachment.Type() == ATTACHMENT_COMBINATION_LOCK )
+		if ( attachment.IsInherited( ATTACHMENT_COMBINATION_LOCK ) )
 		{
-			if ( !HasGate() || IsOpened() )
-			{
-				return false;
-			}
+			return ( HasGate() && !IsOpened() );
 		}
 			
 		return true;

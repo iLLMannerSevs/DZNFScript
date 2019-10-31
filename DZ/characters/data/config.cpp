@@ -2,7 +2,7 @@
 //DeRap: characters_data\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:38 2019 : 'file' last modified on Tue Aug 27 11:48:38 2019
+//'now' is Thu Oct 31 18:20:16 2019 : 'file' last modified on Thu Oct 24 13:45:46 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -360,7 +360,7 @@ class CfgVehicles
 					};
 					componentNames[] = {"dmgZone_head"};
 					fatalInjuryCoef = 0.1;
-					inventorySlots[] = {"Headgear","Mask"};
+					inventorySlots[] = {"Headgear","Mask","Eyewear"};
 				};
 				class Brain
 				{
@@ -709,7 +709,8 @@ class CfgVehicles
 					};
 					componentNames[] = {"dmgZone_torso"};
 					fatalInjuryCoef = -1;
-					inventorySlots[] = {"Vest","Body","Back"};
+					inventorySlots[] = {"Vest","Body","Back","Hips"};
+					inventorySlotsCoefs[] = {1.0,1.0,0.5,0.35};
 				};
 				class LeftArm
 				{
@@ -2750,6 +2751,11 @@ class CfgVehicles
 					soundSet = "IZH43_jamming5_SoundSet";
 					id = 376;
 				};
+				class IZH43_jamming5b
+				{
+					soundSet = "IZH43_jamming5b_SoundSet";
+					id = 1285;
+				};
 				class IZH43_jamming6
 				{
 					soundSet = "IZH43_jamming6_SoundSet";
@@ -2760,6 +2766,16 @@ class CfgVehicles
 					soundSet = "IZH43_jamming7_SoundSet";
 					id = 378;
 				};
+				class IZH43_jamming7b
+				{
+					soundSet = "IZH43_jamming7b_SoundSet";
+					id = 1286;
+				};
+				class IZH43_jamming7c
+				{
+					soundSet = "IZH43_jamming7c_SoundSet";
+					id = 1287;
+				};
 				class IZH43_jamming8
 				{
 					soundSet = "IZH43_jamming8_SoundSet";
@@ -2769,6 +2785,121 @@ class CfgVehicles
 				{
 					soundSet = "IZH43_jam_SoundSet";
 					id = 381;
+				};
+				class B95_charge_open
+				{
+					soundSet = "B95_charge_open_SoundSet";
+					id = 1290;
+				};
+				class B95_charge_open_release
+				{
+					soundSet = "B95_charge_open_release_SoundSet";
+					id = 1291;
+				};
+				class B95_charge_close
+				{
+					soundSet = "B95_charge_close_SoundSet";
+					id = 1292;
+				};
+				class B95_chamber_load
+				{
+					soundSet = "B95_chamber_load_SoundSet";
+					id = 1293;
+				};
+				class B95_chamber_fast_load
+				{
+					soundSet = "B95_chamber_fast_load_SoundSet";
+					id = 1294;
+				};
+				class B95_chamber_fast_in
+				{
+					soundSet = "B95_chamber_fast_in_SoundSet";
+					id = 1295;
+				};
+				class B95_chamber_fast_out
+				{
+					soundSet = "B95_chamber_fast_out_SoundSet";
+					id = 1296;
+				};
+				class B95_weapon_down
+				{
+					soundSet = "B95_weapon_down_SoundSet";
+					id = 1297;
+				};
+				class B95_hand
+				{
+					soundSet = "B95_hand_SoundSet";
+					id = 1298;
+				};
+				class B95_dry
+				{
+					soundSet = "B95_dry_SoundSet";
+					id = 1299;
+				};
+				class B95_pullout
+				{
+					soundSet = "B95_pullout_SoundSet";
+					id = 1300;
+				};
+				class B95_jamming1
+				{
+					soundSet = "B95_jamming1_SoundSet";
+					id = 1301;
+				};
+				class B95_jamming2
+				{
+					soundSet = "B95_jamming2_SoundSet";
+					id = 1302;
+				};
+				class B95_jamming3
+				{
+					soundSet = "B95_jamming3_SoundSet";
+					id = 1303;
+				};
+				class B95_jamming4
+				{
+					soundSet = "B95_jamming4_SoundSet";
+					id = 1304;
+				};
+				class B95_jamming5
+				{
+					soundSet = "B95_jamming5_SoundSet";
+					id = 1305;
+				};
+				class B95_jamming5b
+				{
+					soundSet = "B95_jamming5b_SoundSet";
+					id = 1306;
+				};
+				class B95_jamming6
+				{
+					soundSet = "B95_jamming6_SoundSet";
+					id = 1307;
+				};
+				class B95_jamming7
+				{
+					soundSet = "B95_jamming7_SoundSet";
+					id = 1308;
+				};
+				class B95_jamming7b
+				{
+					soundSet = "B95_jamming7b_SoundSet";
+					id = 1309;
+				};
+				class B95_jamming7c
+				{
+					soundSet = "B95_jamming7c_SoundSet";
+					id = 1310;
+				};
+				class B95_jamming8
+				{
+					soundSet = "B95_jamming8_SoundSet";
+					id = 1311;
+				};
+				class B95_jam
+				{
+					soundSet = "B95_jam_SoundSet";
+					id = 1312;
 				};
 				class CR527_charge_open
 				{
@@ -3538,27 +3669,27 @@ class CfgVehicles
 				class Glock19_charge_open
 				{
 					soundSet = "Glock19_charge_open_SoundSet";
-					id = 1221;
+					id = 12211;
 				};
 				class Glock19_charge_open_release
 				{
 					soundSet = "Glock19_charge_open_release_SoundSet";
-					id = 1222;
+					id = 12221;
 				};
 				class Glock19_charge_close
 				{
 					soundSet = "Glock19_charge_close_SoundSet";
-					id = 1223;
+					id = 12231;
 				};
 				class Glock19_charge_close_release
 				{
 					soundSet = "Glock19_charge_close_release_SoundSet";
-					id = 1224;
+					id = 12241;
 				};
 				class Glock19_chamber_load
 				{
 					soundSet = "Glock19_chamber_load_SoundSet";
-					id = 1225;
+					id = 12251;
 				};
 				class Glock19_mag_in
 				{
@@ -3659,6 +3790,261 @@ class CfgVehicles
 				{
 					soundSet = "Glock19_jam_SoundSet";
 					id = 1246;
+				};
+				class Saiga12_charge_open
+				{
+					soundSet = "Saiga12_charge_open_SoundSet";
+					id = 1254;
+				};
+				class Saiga12_charge_open_release
+				{
+					soundSet = "Saiga12_charge_open_release_SoundSet";
+					id = 1255;
+				};
+				class Saiga12_charge_close
+				{
+					soundSet = "Saiga12_charge_close_SoundSet";
+					id = 1256;
+				};
+				class Saiga12_charge_close_release
+				{
+					soundSet = "Saiga12_charge_close_release_SoundSet";
+					id = 1257;
+				};
+				class Saiga12_chamber_load2
+				{
+					soundSet = "Saiga12_chamber_load2_SoundSet";
+					id = 1258;
+				};
+				class Saiga12_mag_in
+				{
+					soundSet = "Saiga12_mag_in_SoundSet";
+					id = 1259;
+				};
+				class Saiga12_drum_load
+				{
+					soundSet = "Saiga12_drum_load_SoundSet";
+					id = 1260;
+				};
+				class Saiga12_drum_remove
+				{
+					soundSet = "Saiga12_drum_remove_SoundSet";
+					id = 1261;
+				};
+				class Saiga12_mag_load
+				{
+					soundSet = "Saiga12_mag_load_SoundSet";
+					id = 1262;
+				};
+				class Saiga12_mag_remove
+				{
+					soundSet = "Saiga12_mag_remove_SoundSet";
+					id = 1263;
+				};
+				class Saiga12_dry
+				{
+					soundSet = "Saiga12_dry_SoundSet";
+					id = 1265;
+				};
+				class Saiga12_pullout
+				{
+					soundSet = "Saiga12_pullout_SoundSet";
+					id = 1266;
+				};
+				class Saiga12_dry_uncock
+				{
+					soundSet = "Saiga12_dry_uncock_SoundSet";
+					id = 1267;
+				};
+				class Saiga12_hand
+				{
+					soundSet = "Saiga12_hand_SoundSet";
+					id = 1268;
+				};
+				class Saiga12_hand3
+				{
+					soundSet = "Saiga12_hand3_SoundSet";
+					id = 1269;
+				};
+				class Saiga12_weapon_down
+				{
+					soundSet = "Saiga12_weapon_down_SoundSet";
+					id = 1270;
+				};
+				class Saiga12_jamming1
+				{
+					soundSet = "Saiga12_jamming1_SoundSet";
+					id = 1271;
+				};
+				class Saiga12_jamming2
+				{
+					soundSet = "Saiga12_jamming2_SoundSet";
+					id = 1272;
+				};
+				class Saiga12_jamming3
+				{
+					soundSet = "Saiga12_jamming3_SoundSet";
+					id = 1273;
+				};
+				class Saiga12_jamming4
+				{
+					soundSet = "Saiga12_jamming4_SoundSet";
+					id = 1274;
+				};
+				class Saiga12_jamming5
+				{
+					soundSet = "Saiga12_jamming5_SoundSet";
+					id = "1067 - 1275";
+				};
+				class Saiga12_jamming6
+				{
+					soundSet = "Saiga12_jamming6_SoundSet";
+					id = 1276;
+				};
+				class Saiga12_jamming7
+				{
+					soundSet = "Saiga12_jamming7_SoundSet";
+					id = 1277;
+				};
+				class Saiga12_jamming8
+				{
+					soundSet = "Saiga12_jamming8_SoundSet";
+					id = 1278;
+				};
+				class Saiga12_jamming9
+				{
+					soundSet = "Saiga12_jamming9_SoundSet";
+					id = 1279;
+				};
+				class Saiga12_jam
+				{
+					soundSet = "Saiga12_jam_SoundSet";
+					id = 1280;
+				};
+				class Colt1911_charge_open
+				{
+					soundSet = "Colt1911_charge_open_SoundSet";
+					id = 1320;
+				};
+				class Colt1911_charge_open_release
+				{
+					soundSet = "Colt1911_charge_open_release_SoundSet";
+					id = 1321;
+				};
+				class Colt1911_charge_close
+				{
+					soundSet = "Colt1911_charge_close_SoundSet";
+					id = 1322;
+				};
+				class Colt1911_charge_close_release
+				{
+					soundSet = "Colt1911_charge_close_release_SoundSet";
+					id = 1323;
+				};
+				class Colt1911_chamber_load
+				{
+					soundSet = "Colt1911_chamber_load_SoundSet";
+					id = 1324;
+				};
+				class Colt1911_mag_in
+				{
+					soundSet = "Colt1911_mag_in_SoundSet";
+					id = 1325;
+				};
+				class Colt1911_mag_load
+				{
+					soundSet = "Colt1911_mag_load_SoundSet";
+					id = 1326;
+				};
+				class Colt1911_mag_remove
+				{
+					soundSet = "Colt1911_mag_remove_SoundSet";
+					id = 1327;
+				};
+				class Colt1911_dry
+				{
+					soundSet = "Colt1911_dry_SoundSet";
+					id = 1328;
+				};
+				class Colt1911_pullout
+				{
+					soundSet = "Colt1911_pullout_SoundSet";
+					id = 1329;
+				};
+				class Colt1911_dry_uncock
+				{
+					soundSet = "Colt1911_dry_uncock_SoundSet";
+					id = 1330;
+				};
+				class Colt1911_jamming1
+				{
+					soundSet = "Colt1911_jamming1_SoundSet";
+					id = 1331;
+				};
+				class Colt1911_jamming2
+				{
+					soundSet = "Colt1911_jamming2_SoundSet";
+					id = 1332;
+				};
+				class Colt1911_jamming3
+				{
+					soundSet = "Colt1911_jamming3_SoundSet";
+					id = 1333;
+				};
+				class Colt1911_jamming4
+				{
+					soundSet = "Colt1911_jamming4_SoundSet";
+					id = 1334;
+				};
+				class Colt1911_jamming5
+				{
+					soundSet = "Colt1911_jamming5_SoundSet";
+					id = 1335;
+				};
+				class Colt1911_jamming6
+				{
+					soundSet = "Colt1911_jamming6_SoundSet";
+					id = 1336;
+				};
+				class Colt1911_jamming7
+				{
+					soundSet = "Colt1911_jamming7_SoundSet";
+					id = 1337;
+				};
+				class Colt1911_jamming8
+				{
+					soundSet = "Colt1911_jamming8_SoundSet";
+					id = 1338;
+				};
+				class Colt1911_jamming9
+				{
+					soundSet = "Colt1911_jamming9_SoundSet";
+					id = 1339;
+				};
+				class Colt1911_jamming10
+				{
+					soundSet = "Colt1911_jamming10_SoundSet";
+					id = 1340;
+				};
+				class Colt1911_jamming11
+				{
+					soundSet = "Colt1911_jamming11_SoundSet";
+					id = 1341;
+				};
+				class Colt1911_jamming12
+				{
+					soundSet = "Colt1911_jamming12_SoundSet";
+					id = 1342;
+				};
+				class Colt1911_jamming13
+				{
+					soundSet = "Colt1911_jamming13_SoundSet";
+					id = 1343;
+				};
+				class Colt1911_jam
+				{
+					soundSet = "Colt1911_jam_SoundSet";
+					id = 1344;
 				};
 				class MagRifle_fill_loop
 				{

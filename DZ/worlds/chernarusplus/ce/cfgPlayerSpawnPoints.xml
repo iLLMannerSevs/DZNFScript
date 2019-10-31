@@ -282,4 +282,9 @@
 			<pos x="13613.870117" z="4069.193359" />
         </generator_posbubbles>
     </hop>
+	<travel>
+        <generator_posbubbles>
+			<pos x="23.713867" z="10480.735352" />
+		</generator_posbubbles>
+	</travel>
 </playerspawnpoints>

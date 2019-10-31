@@ -360,7 +360,7 @@ class WeaponReplacingMagAndChamberNext extends WeaponStateBase
 		m_fsm.AddTransition(new WeaponTransition(  m_detach, __mh_, m_hideOld));
 		m_fsm.AddTransition(new WeaponTransition( m_hideOld, __ms_, m_swapMags));
 		m_fsm.AddTransition(new WeaponTransition(m_swapMags, __ma_, m_attach));
-		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_chamber, NULL, new GuardAnd(new WeaponGuardChamberEmpty(m_weapon), new WeaponGuardHasAmmo(m_weapon))));
+		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_chamber, NULL, new GuardAnd(new WeaponGuardCurrentChamberEmpty(m_weapon), new WeaponGuardHasAmmo(m_weapon))));
 		m_fsm.AddTransition(new WeaponTransition(  m_attach, __ck_, m_onCK));
 		m_fsm.AddTransition(new WeaponTransition(  m_attach, _fin_, NULL));
 		m_fsm.AddTransition(new WeaponTransition( m_chamber, _fin_, NULL));
@@ -394,7 +394,7 @@ class WeaponReplacingMagAndChamberNext extends WeaponStateBase
 			}
 
 			m_newMagazine.GetInventory().GetCurrentInventoryLocation(m_newDst);
-			m_newDst.CopyLocationFrom(oldSrc);
+			m_newDst.CopyLocationFrom(oldSrc, true);
 
 			// move to LH
 			InventoryLocation lhand = new InventoryLocation;
@@ -434,6 +434,7 @@ class WeaponReplacingMagAndChamberNext extends WeaponStateBase
 		
 		if(mag)
 		{
+			e.m_player.GetInventory().ClearInventoryReservation( mag , null );
 			InventoryLocation il = new InventoryLocation;
 			e.m_player.GetInventory().FindFreeLocationFor( mag, FindInventoryLocationType.CARGO, il );
 		

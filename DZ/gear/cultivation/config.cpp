@@ -2,7 +2,7 @@
 //DeRap: gear_cultivation\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:20 2019 : 'file' last modified on Fri Jul 19 21:35:14 2019
+//'now' is Thu Oct 31 18:20:57 2019 : 'file' last modified on Wed Sep 25 13:59:14 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -122,7 +122,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\seeds_destruct.rvmat"}}};
 				};
 			};
@@ -233,7 +233,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\tomato_seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\tomato_seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\tomato_seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\tomato_seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\tomato_seeds_destruct.rvmat"}}};
 				};
 			};
@@ -287,7 +287,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\pepper_seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\pepper_seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\pepper_seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\pepper_seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\pepper_seeds_destruct.rvmat"}}};
 				};
 			};
@@ -341,7 +341,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\pumpkin_seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\pumpkin_seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\pumpkin_seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\pumpkin_seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\pumpkin_seeds_destruct.rvmat"}}};
 				};
 			};
@@ -395,7 +395,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\zucchini_seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\zucchini_seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\zucchini_seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\zucchini_seeds_destruct.rvmat"}}};
 				};
 			};
@@ -449,7 +449,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 5;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\cannabis_seeds.rvmat"}},{0.7,{"DZ\gear\cultivation\data\cannabis_seeds.rvmat"}},{0.5,{"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\cannabis_seeds_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\cannabis_seeds_destruct.rvmat"}}};
 				};
 			};
@@ -507,7 +507,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\cultivation\data\plant_material.rvmat"}},{0.7,{"DZ\gear\cultivation\data\plant_material.rvmat"}},{0.5,{"DZ\gear\cultivation\data\plant_material_damage.rvmat"}},{0.3,{"DZ\gear\cultivation\data\plant_material_damage.rvmat"}},{0.0,{"DZ\gear\cultivation\data\plant_material_destruct.rvmat"}}};
 				};
 			};
@@ -557,19 +557,11 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"}},{0.7,{"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"}},{0.5,{"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Loot_DisinfectantSpray_destruct.rvmat"}}};
 				};
 			};
 		};
-	};
-	class ParticleTest: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_ParticleTest0";
-		descriptionShort = "$STR_CfgVehicles_ParticleTest1";
-		model = "\dz\gear\cultivation\cannabis_seeds_pack.p3d";
-		itemSize[] = {1,1};
 	};
 	class PlantBase: Inventory_Base
 	{

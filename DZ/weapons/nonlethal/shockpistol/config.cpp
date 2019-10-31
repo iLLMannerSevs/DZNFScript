@@ -2,7 +2,7 @@
 //DeRap: weapons_nonlethal\shockpistol\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:58 2019 : 'file' last modified on Sat Jul 20 12:02:38 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:06:15 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -39,7 +39,6 @@ class cfgWeapons
 	class Shockpistol_Base: NonlethalPistol
 	{
 		scope = 0;
-		lootTag[] = {"Police"};
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};

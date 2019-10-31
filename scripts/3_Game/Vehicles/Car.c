@@ -64,6 +64,9 @@ class Car extends Transport
 	//!	Returns the current speed of the vehicle in km/h.
 	proto native float GetSpeedometer();
 
+    //! Returns true if point on this car is under water.
+    proto native bool IsPointUnderWater( vector point );
+
 
 //-----------------------------------------------------------------------------
 // fluids
@@ -188,6 +191,13 @@ class Car extends Transport
 		// just use the computed value by the game code
 		return oldValue;
 	}
+
+    /*!
+        Is called every game frame.
+
+        \param[in] dt frame time in seconds
+    */
+    void OnUpdate( float dt ) {}
 //-----------------------------------------------------------------------------
 
 

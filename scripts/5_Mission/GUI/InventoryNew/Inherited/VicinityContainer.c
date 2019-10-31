@@ -373,8 +373,8 @@ class VicinityContainer: CollapsibleContainer
 		vector pos = player.GetPosition();
 		ref array<ref EntityAI> objects;
 		
-		VicinityItemManager.Update();
-		objects = VicinityItemManager.GetVicinityItems();
+		VicinityItemManager.GetInstance().Update( player.GetDeltaT() );
+		objects = VicinityItemManager.GetInstance().GetVicinityItems();
 		
 		//GetItemsShowableInInventory
 		array<EntityAI> showable_items = new array<EntityAI>;
@@ -501,7 +501,7 @@ class VicinityContainer: CollapsibleContainer
 		}
 		
 		ref map<CargoBase, ref Container> new_showed_cargos = new ref map<CargoBase, ref Container>;
-		auto cargoes = VicinityItemManager.GetVicinityCargos();
+		auto cargoes = VicinityItemManager.GetInstance().GetVicinityCargos();
 		for ( i = 0; i < cargoes.Count(); i++ )
 		{
 			CargoBase cgo = cargoes.Get( i );

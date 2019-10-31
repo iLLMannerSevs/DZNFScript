@@ -76,6 +76,11 @@ class Grenade_Base extends InventoryItemSuper
 	{
 		return m_Pinnable;
 	}
+	
+	override bool IsExplosive()
+	{
+		return true;
+	}
 
 	void ActivateImmediate()
 	{

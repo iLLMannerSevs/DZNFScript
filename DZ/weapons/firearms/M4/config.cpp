@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\M4\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:22:10 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:52:04 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -55,6 +55,7 @@ class cfgWeapons
 		magazineSwitchTime = 0.5;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\m4a1\m4_dry",0.5,1,20};
 		reloadAction = "ReloadM4";
@@ -375,7 +376,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\M4\Data\m4_body.rvmat"}},{0.7,{"DZ\weapons\firearms\M4\Data\m4_body.rvmat"}},{0.5,{"DZ\weapons\firearms\M4\Data\m4_body_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\M4\Data\m4_body_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\M4\Data\m4_body_destruct.rvmat"}}};
 				};
 			};

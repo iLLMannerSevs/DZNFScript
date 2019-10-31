@@ -6,6 +6,14 @@ enum SurfaceAnimationBone
 	RightBackLimb
 }
 
+enum PlantType
+{
+	TREE_HARD		= 1000,
+	TREE_SOFT		= 1001,
+	BUSH_HARD		= 1002,	
+	BUSH_SOFT		= 1003,
+}
+
 class EntityAI extends Entity
 {
 	bool 					m_DeathSyncSent;
@@ -32,10 +40,14 @@ class EntityAI extends Entity
 	protected ref ScriptInvoker		m_OnItemFlipped;
 	//Called when an items view index is changed 
 	protected ref ScriptInvoker		m_OnViewIndexChanged;
-	//Called when an location in this item is reserved (EntityAI item)
+	//Called when an location in this item is reserved (EntityAI item) - cargo
 	protected ref ScriptInvoker		m_OnSetLock;
-	//Called when this item is unreserved (EntityAI item)
+	//Called when this item is unreserved (EntityAI item) - cargo
 	protected ref ScriptInvoker		m_OnReleaseLock;
+	//Called when an location in this item is reserved (EntityAI item) - attachment
+	protected ref ScriptInvoker		m_OnAttachmentSetLock;
+	//Called when this item is unreserved (EntityAI item) - attachment
+	protected ref ScriptInvoker		m_OnAttachmentReleaseLock;
 	
 	void EntityAI ()
 	{
@@ -430,7 +442,7 @@ class EntityAI extends Entity
 		// ...
 	}
 	
-	void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
 		//Print("EEHitByRemote: damageType: "+ damageType +"; source: "+ source +"; component: "+ component +"; dmgZone: "+ dmgZone +"; ammo: "+ ammo +"; modelPos: "+ modelPos);
 	}
@@ -612,6 +624,21 @@ class EntityAI extends Entity
 			m_OnReleaseLock = new ScriptInvoker;
 		return m_OnReleaseLock;
 	}
+	
+	ScriptInvoker GetOnAttachmentSetLock()
+	{
+		if( !m_OnAttachmentSetLock )
+			m_OnAttachmentSetLock = new ScriptInvoker;
+		return m_OnAttachmentSetLock;
+	}
+	
+	ScriptInvoker GetOnAttachmentReleaseLock()
+	{
+		if( !m_OnAttachmentReleaseLock )
+			m_OnAttachmentReleaseLock = new ScriptInvoker;
+		return m_OnAttachmentReleaseLock;
+	}
+	
 	
 	//! Called when this item enters cargo of some container
 	void OnMovedInsideCargo(EntityAI container)
@@ -1832,16 +1859,22 @@ class EntityAI extends Entity
 				}
 			}
 		}
-		
-		
-		
 	};
-
-	void SetBayonetAttached(bool pState) {};
-	bool HasBayonetAttached() {};
 	
-	void SetButtstockAttached(bool pState) {};
+	override EntityAI ProcessMeleeItemDamage(int mode = 0)
+	{
+		if ((GetGame().IsServer() || !GetGame().IsMultiplayer()))
+			AddHealth("","Health",-MELEE_ITEM_DAMAGE);
+		return this;
+	}
+
+	void SetBayonetAttached(bool pState, int slot_idx = -1) {};
+	bool HasBayonetAttached() {};
+	int GetBayonetAttachmentIdx() {};
+	
+	void SetButtstockAttached(bool pState, int slot_idx = -1) {};
 	bool HasButtstockAttached() {};
+	int GetButtstockAttachmentIdx() {};
 	
 	void SetInvisibleRecursive(bool invisible, EntityAI parent = null, array<int> attachments = null)
 	{
@@ -1881,5 +1914,29 @@ class EntityAI extends Entity
 				item.SetInvisible(invisible);
 			}
 		}
+	}
+	
+	void SoundHardTreeFallingPlay()
+	{
+		EffectSound sound =	SEffectManager.PlaySound( "hardTreeFall_SoundSet", GetPosition() );
+		sound.SetSoundAutodestroy( true );
+	}
+		
+	void SoundSoftTreeFallingPlay()
+	{
+		EffectSound sound =	SEffectManager.PlaySound( "softTreeFall_SoundSet", GetPosition() );
+		sound.SetSoundAutodestroy( true );
+	}
+		
+	void SoundHardBushFallingPlay()
+	{
+		EffectSound sound =	SEffectManager.PlaySound( "hardBushFall_SoundSet", GetPosition() );
+		sound.SetSoundAutodestroy( true );
+	}
+		
+	void SoundSoftBushFallingPlay()
+	{
+		EffectSound sound =	SEffectManager.PlaySound( "softBushFall_SoundSet", GetPosition() );
+		sound.SetSoundAutodestroy( true );
 	}
 };

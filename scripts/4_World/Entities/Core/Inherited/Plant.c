@@ -1,10 +1,10 @@
-enum PlantType
+/*enum PlantType
 {
 	TREE_HARD		= 0,
 	TREE_SOFT		= 1,
 	BUSH_HARD		= 2,	
 	BUSH_SOFT		= 3,
-}
+}*/
 //-----------------------------------------------------------------------------
 /** \brief Specific tree class can be declared as: class TreeHard + _ + p3d filename (without extension) 
 @code
@@ -16,12 +16,12 @@ class TreeHard_t_acer2s: TreeHard
 */
 class TreeHard extends PlantSuper
 {
-	override void OnTreeCutDown( EntityAI cutting_tool )
+	override void OnTreeCutDown( EntityAI cutting_entity )
 	{
 		int tree_hard = 14;
 		
-		ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
-		GetGame().RPCSingleParam( cut_tree_tool, PlantType.TREE_HARD, NULL, true );
+		//ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
+		GetGame().RPCSingleParam( cutting_entity, PlantType.TREE_HARD, NULL, true );
 	}
 	
 	override bool IsTree()
@@ -29,7 +29,14 @@ class TreeHard extends PlantSuper
 		return true;
 	}
 	
-	override int GetAmountOfDrops(ItemBase item)
+	override void InitMiningValues()
+	{
+		super.InitMiningValues();
+		
+		m_BarkType = "Bark_Oak";
+	};
+	
+	/*override int GetAmountOfDrops(ItemBase item)
 	{
 		if ( item && item.KindOf("Knife") )
 		{
@@ -72,17 +79,17 @@ class TreeHard extends PlantSuper
 		{
 			return 0; 
 		}
-	}
+	}*/
 };
 
 //-----------------------------------------------------------------------------
 //! For specific tree declaration see description of \ref TreeHard
 class TreeSoft extends PlantSuper
 {
-	override void OnTreeCutDown( EntityAI cutting_tool )
+	override void OnTreeCutDown( EntityAI cutting_entity )
 	{
-		ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );
-		GetGame().RPCSingleParam( cut_tree_tool, PlantType.TREE_SOFT, NULL, true );
+		//ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );
+		GetGame().RPCSingleParam( cutting_entity, PlantType.TREE_SOFT, NULL, true );
 	}
 	
 	override bool IsTree()
@@ -90,7 +97,14 @@ class TreeSoft extends PlantSuper
 		return true;
 	}
 	
-	override int GetAmountOfDrops(ItemBase item)
+	override void InitMiningValues()
+	{
+		super.InitMiningValues();
+		
+		m_BarkType = "Bark_Oak";
+	};
+	
+	/*override int GetAmountOfDrops(ItemBase item)
 	{
 		if ( item && item.KindOf("Knife") )
 		{
@@ -114,8 +128,8 @@ class TreeSoft extends PlantSuper
 		}
 		else if ( item && item.KindOf("Axe") )
 		{
-			output_map.Insert("FireWood",1);
-			//output_map.Insert("WoodenStick",1);
+			//output_map.Insert("FireWood",1);
+			output_map.Insert("WoodenStick",1);
 		}
 	}
 	
@@ -133,7 +147,7 @@ class TreeSoft extends PlantSuper
 		{
 			return 0; 
 		}
-	}
+	}*/
 };
 
 //-----------------------------------------------------------------------------
@@ -141,10 +155,10 @@ class TreeSoft extends PlantSuper
 //! default values for hard bushes
 class BushHard extends PlantSuper
 {
-	override void OnTreeCutDown( EntityAI cutting_tool )
+	override void OnTreeCutDown( EntityAI cutting_entity )
 	{
-		ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
-		GetGame().RPCSingleParam( cut_tree_tool, PlantType.BUSH_HARD, NULL, true );
+		//ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
+		GetGame().RPCSingleParam( cutting_entity, PlantType.BUSH_HARD, NULL, true );
 	}
 	
 	override bool IsBush()
@@ -152,7 +166,7 @@ class BushHard extends PlantSuper
 		return true;
 	}
 	
-	override int GetAmountOfDrops(ItemBase item)
+	/*override int GetAmountOfDrops(ItemBase item)
 	{
 		if ( item && item.KindOf("Knife") )
 		{
@@ -195,17 +209,17 @@ class BushHard extends PlantSuper
 		{
 			return 0;
 		}
-	}
+	}*/
 };
 
 //-----------------------------------------------------------------------------
 //! For specific tree declaration see description of \ref TreeHard
 class BushSoft extends PlantSuper
 {
-	override void OnTreeCutDown( EntityAI cutting_tool )
+	override void OnTreeCutDown( EntityAI cutting_entity )
 	{
-		ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
-		GetGame().RPCSingleParam( cut_tree_tool, PlantType.BUSH_SOFT, NULL, true );
+		//ToolBase cut_tree_tool = ToolBase.Cast( cutting_tool );		
+		GetGame().RPCSingleParam( cutting_entity, PlantType.BUSH_SOFT, NULL, true );
 	}
 	
 	override bool IsBush()
@@ -213,7 +227,7 @@ class BushSoft extends PlantSuper
 		return true;
 	}
 	
-	override int GetAmountOfDrops(ItemBase item)
+	/*override int GetAmountOfDrops(ItemBase item)
 	{
 		if ( item && item.KindOf("Knife") )
 		{
@@ -256,5 +270,5 @@ class BushSoft extends PlantSuper
 		{
 			return 0;
 		}
-	}
+	}*/
 };

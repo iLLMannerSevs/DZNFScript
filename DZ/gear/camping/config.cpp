@@ -2,7 +2,7 @@
 //DeRap: gear_camping\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:14 2019 : 'file' last modified on Fri Sep 06 19:27:29 2019
+//'now' is Thu Oct 31 18:20:50 2019 : 'file' last modified on Wed Sep 25 13:46:12 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -893,6 +893,7 @@ class CfgVehicles
 		hologramMaterialPath = "dz\gear\camping\data";
 		openable = 0;
 		carveNavmesh = 1;
+		weight = 10000;
 		itemSize[] = {9,4};
 		itemsCargoSize[] = {10,30};
 		lootCategory = "Tents";
@@ -1346,6 +1347,49 @@ class CfgVehicles
 		itemSize[] = {1,5};
 		weight = 280;
 		itemBehaviour = 1;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+				};
+				class GlobalArmor
+				{
+					class Projectile
+					{
+						class Health
+						{
+							damage = 0;
+						};
+						class Blood
+						{
+							damage = 0;
+						};
+						class Shock
+						{
+							damage = 0;
+						};
+					};
+					class FragGrenade
+					{
+						class Health
+						{
+							damage = 0;
+						};
+						class Blood
+						{
+							damage = 0;
+						};
+						class Shock
+						{
+							damage = 0;
+						};
+					};
+				};
+			};
+		};
 		class AnimationSources
 		{
 			class AnimSourceShown
@@ -1418,6 +1462,49 @@ class CfgVehicles
 		itemSize[] = {1,5};
 		weight = 280;
 		itemBehaviour = 1;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+				};
+				class GlobalArmor
+				{
+					class Projectile
+					{
+						class Health
+						{
+							damage = 0;
+						};
+						class Blood
+						{
+							damage = 0;
+						};
+						class Shock
+						{
+							damage = 0;
+						};
+					};
+					class FragGrenade
+					{
+						class Health
+						{
+							damage = 0;
+						};
+						class Blood
+						{
+							damage = 0;
+						};
+						class Shock
+						{
+							damage = 0;
+						};
+					};
+				};
+			};
+		};
 		class AnimationSources
 		{
 			class AnimSourceShown
@@ -3832,7 +3919,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\Barbed_wire.rvmat"}},{0.7,{"DZ\gear\camping\data\Barbed_wire.rvmat"}},{0.5,{"DZ\gear\camping\data\Barbed_wire_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\Barbed_wire_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\Barbed_wire_destruct.rvmat"}}};
 				};
 			};
@@ -3923,7 +4010,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\combilock3_metal.rvmat","DZ\gear\camping\data\combination_lock_chain.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1.rvmat"}},{0.7,{"DZ\gear\camping\data\combilock3_metal.rvmat","DZ\gear\camping\data\combination_lock_chain.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1.rvmat"}},{0.5,{"DZ\gear\camping\data\combilock3_metal_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\combilock3_metal_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\combilock3_metal_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_destruct.rvmat"}}};
 				};
 			};
@@ -3941,7 +4028,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\combilock4_metal.rvmat","DZ\gear\camping\data\combination_lock_chain.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1.rvmat"}},{0.7,{"DZ\gear\camping\data\combilock4_metal.rvmat","DZ\gear\camping\data\combination_lock_chain.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1.rvmat"}},{0.5,{"DZ\gear\camping\data\combilock4_metal_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\combilock4_metal_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_damage.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\combilock4_metal_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber_destruct.rvmat","DZ\gear\camping\data\combination_lock_chain_rubber1_destruct.rvmat"}}};
 				};
 			};
@@ -3962,7 +4049,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 500;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\Barbed_wire.rvmat"}},{0.7,{"DZ\gear\camping\data\Barbed_wire.rvmat"}},{0.5,{"DZ\gear\camping\data\Barbed_wire_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\Barbed_wire_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\Barbed_wire_destruct.rvmat"}}};
 				};
 			};
@@ -4012,7 +4099,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\camo_net_p.rvmat"}},{0.7,{"DZ\gear\camping\data\camo_net_p.rvmat"}},{0.5,{"DZ\gear\camping\data\camo_net_p_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\camo_net_p_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\camo_net_p_destruct.rvmat"}}};
 				};
 			};
@@ -4432,7 +4519,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\christmass_ligths.rvmat"}},{0.7,{"DZ\gear\camping\data\christmass_ligths.rvmat"}},{0.5,{"DZ\gear\camping\data\christmass_ligths_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\christmass_ligths_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\christmass_ligths_destruct.rvmat"}}};
 				};
 			};
@@ -4542,7 +4629,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\data\power_generator.rvmat"}},{0.7,{"DZ\gear\camping\data\power_generator.rvmat"}},{0.5,{"DZ\gear\camping\data\power_generator_damage.rvmat"}},{0.3,{"DZ\gear\camping\data\power_generator_damage.rvmat"}},{0.0,{"DZ\gear\camping\data\power_generator_destruct.rvmat"}}};
 				};
 			};
@@ -4885,11 +4972,6 @@ class CfgVehicles
 		hologramMaterial = "hbox_empty";
 		hologramMaterialPath = "dz\gear\camping\data";
 		rotationFlags = 4;
-		class Damage
-		{
-			tex[] = {};
-			mat[] = {"DZ\gear\camping\data\hbox_empty.rvmat","DZ\gear\camping\data\hbox_empty_damage.rvmat","DZ\gear\camping\data\hbox_empty_destruct.rvmat","DZ\gear\camping\data\hbox_filled.rvmat","DZ\gear\camping\data\hbox_filled_damage.rvmat","DZ\gear\camping\data\hbox_filled_destruct.rvmat"};
-		};
 		class DamageSystem
 		{
 			class GlobalHealth

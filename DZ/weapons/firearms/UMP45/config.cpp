@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\UMP45\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:55 2019 : 'file' last modified on Tue Aug 13 08:23:05 2019
+//'now' is Thu Oct 31 18:24:46 2019 : 'file' last modified on Thu Oct 31 09:53:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -53,6 +53,8 @@ class cfgWeapons
 		magazines[] = {"Mag_UMP_25Rnd"};
 		magazineSwitchTime = 0.45;
 		ejectType = 1;
+		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1.25,1.25,1};
 		drySound[] = {"DZ\sounds\weapons\firearms\ump45\UMP45_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\ump45\ump45_reload",0.8,1,30};
 		reloadAction = "ReloadUMP";
@@ -379,7 +381,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\UMP45\data\ump45.rvmat"}},{0.7,{"DZ\weapons\firearms\UMP45\data\ump45.rvmat"}},{0.5,{"DZ\weapons\firearms\UMP45\data\ump45_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\UMP45\data\ump45_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\UMP45\data\ump45_destruct.rvmat"}}};
 				};
 			};

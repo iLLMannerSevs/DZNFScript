@@ -1,4 +1,4 @@
-class ActionFishingCB : ActionContinuousBaseCB
+/*class ActionFishingCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
@@ -49,6 +49,6 @@ class ActionFishing: ActionContinuousBase
 	{
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}
-};
+};*/
 
 	

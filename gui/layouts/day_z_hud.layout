@@ -2018,7 +2018,6 @@ FrameWidgetClass HudFrameWidget {
          priority 100
          scriptclass ""
          image0 "set:dayz_gui image:continuous_action_mouse"
-         imageTexture "{07EC9681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
          mode blend
          "src alpha" 1
          "no wrap" 1
@@ -2040,7 +2039,6 @@ FrameWidgetClass HudFrameWidget {
          priority 100
          scriptclass ""
          image0 "set:dayz_gui image:continuous_action_mouse_half"
-         imageTexture "{07EC9681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
          mode blend
          "src alpha" 1
          "no wrap" 1
@@ -2076,7 +2074,6 @@ FrameWidgetClass HudFrameWidget {
            priority 50
            scriptclass ""
            image0 "set:dayz_gui image:continuous_action_mouse_half"
-           imageTexture "{07EC9681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
            mode blend
            "src alpha" 1
            "no wrap" 1

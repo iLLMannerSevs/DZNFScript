@@ -2,7 +2,7 @@
 //DeRap: weapons_shotguns\saiga\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:01 2019 : 'file' last modified on Mon Aug 12 12:21:58 2019
+//'now' is Thu Oct 31 18:24:52 2019 : 'file' last modified on Thu Oct 24 15:11:38 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -36,8 +36,8 @@ class Mode_FullAuto;
 class OpticsInfoShotgun;
 class cfgWeapons
 {
-	class Shotgun_Base;
-	class Saiga12KShotgun_Base: Shotgun_Base
+	class Rifle_Base;
+	class Saiga_Base: Rifle_Base
 	{
 		scope = 0;
 		weight = 3600;
@@ -49,12 +49,76 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_12gaPellets","Ammo_12gaSlug"};
 		magazines[] = {"Mag_Saiga_5Rnd","Mag_Saiga_8Rnd","Mag_Saiga_Drum20Rnd"};
 		magazineSwitchTime = 0.2;
+		PPDOFProperties[] = {1,0.5,10,140,4,10};
+		WeaponLength = 0.95;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		reloadAction = "ReloadAKM";
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\akm\Akm_reload",0.8,1,20};
 		drySound[] = {"dz\sounds\weapons\firearms\SKS\SKS_dry",0.5,1,20};
-		modes[] = {"Single"};
+		modes[] = {"Single","FullAuto"};
+		class Particles
+		{
+			class OnFire
+			{
+				class SmokeCloud
+				{
+					overrideParticle = "weapon_shot_winded_smoke";
+				};
+				class SmokeCloud2
+				{
+					overrideParticle = "weapon_shot_winded_smoke";
+				};
+				class SmokeCloud3BadlyDamaged
+				{
+					overrideParticle = "weapon_shot_winded_smoke";
+					onlyWithinHealthLabel[] = {3,4};
+				};
+				class MuzzleFlash
+				{
+					overrideParticle = "weapon_shot_mp133_01";
+					illuminateWorld = 1;
+				};
+				class BadlyDamagedChamberSmoke
+				{
+					overrideParticle = "weapon_shot_chamber_smoke";
+					overridePoint = "Nabojnicestart";
+					overrideDirectionPoint = "Nabojniceend";
+					onlyWithinHealthLabel[] = {3,4};
+				};
+				class BadlyDamagedChamberSmokeRaise
+				{
+					overrideParticle = "weapon_shot_chamber_smoke_raise";
+					overridePoint = "Nabojnicestart";
+					onlyWithinHealthLabel[] = {3,4};
+				};
+			};
+			class OnOverheating
+			{
+				maxOverheatingValue = 4;
+				shotsToStartOverheating = 1;
+				overheatingDecayInterval = 3;
+				class SmokingBarrel
+				{
+					overrideParticle = "smoking_barrel_small";
+				};
+				class OpenChamberSmoke
+				{
+					onlyIfBoltIsOpen = 1;
+					overrideParticle = "smoking_barrel_small";
+					overridePoint = "Nabojnicestart";
+				};
+			};
+			class OnBulletCasingEject
+			{
+				class ChamberSmokeRaise
+				{
+					overrideParticle = "weapon_shot_chamber_smoke_raise";
+					overridePoint = "Nabojnicestart";
+				};
+			};
+		};
 		class Single: Mode_SemiAuto
 		{
 			soundSetShot[] = {"Saiga12_Shot_SoundSet","Saiga12_Tail_SoundSet","Saiga12_InteriorTail_SoundSet"};
@@ -62,7 +126,7 @@ class cfgWeapons
 			begin2[] = {"dz\sounds\weapons\shotguns\Izh43\izh43_close_1",1,1,800};
 			begin3[] = {"dz\sounds\weapons\shotguns\Izh43\izh43_close_2",1,1,800};
 			soundBegin[] = {"begin1",0.33333,"begin2",0.33333,"begin3",0.33333};
-			reloadTime = 0.1;
+			reloadTime = 0.2;
 			recoil = "recoil_Saiga12";
 			recoilProne = "recoil_Saiga12_prone";
 			dispersion = 0.01;
@@ -72,14 +136,22 @@ class cfgWeapons
 			beginSilenced_HomeMade[] = {"dz\sounds\weapons\firearms\AK101\akSilenced",1,1,300};
 			soundBeginExt[] = {{"beginSilenced_Pro",1},{"beginSilenced_HomeMade",1}};
 		};
+		class FullAuto: Mode_FullAuto
+		{
+			soundSetShot[] = {"Saiga12_Shot_SoundSet","Saiga12_Tail_SoundSet","Saiga12_InteriorTail_SoundSet"};
+			reloadTime = 0.2;
+			dispersion = 0.0015;
+			magazineSlot = "magazine";
+		};
 		class OpticsInfo: OpticsInfoShotgun{};
 	};
-	class Saiga12KShotgun: Saiga12KShotgun_Base
+	class Saiga: Saiga_Base
 	{
 		scope = 2;
 		displayName = "$STR_cfgWeapons_Saiga12KShotgun0";
 		descriptionShort = "$STR_cfgWeapons_Saiga12KShotgun1";
 		model = "\dz\weapons\shotguns\saiga\saiga.p3d";
+		itemSize[] = {7,3};
 		attachments[] = {"weaponButtstockSaiga","weaponOpticsAK","weaponWrap"};
 		class DamageSystem
 		{
@@ -87,7 +159,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\shotguns\saiga\data\saiga.rvmat"}},{0.7,{"DZ\weapons\shotguns\saiga\data\saiga.rvmat"}},{0.5,{"DZ\weapons\shotguns\saiga\data\saiga_damage.rvmat"}},{0.3,{"DZ\weapons\shotguns\saiga\data\saiga_damage.rvmat"}},{0.0,{"DZ\weapons\shotguns\saiga\data\saiga_destruct.rvmat"}}};
 				};
 			};

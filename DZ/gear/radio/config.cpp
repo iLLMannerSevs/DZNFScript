@@ -2,7 +2,7 @@
 //DeRap: gear_radio\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:29 2019 : 'file' last modified on Tue Aug 13 15:10:47 2019
+//'now' is Thu Oct 31 18:21:08 2019 : 'file' last modified on Wed Sep 25 14:14:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -91,7 +91,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\radio\data\WalkieTalkie.rvmat"}},{0.7,{"DZ\gear\radio\data\WalkieTalkie.rvmat"}},{0.5,{"DZ\gear\radio\data\WalkieTalkie_damage.rvmat"}},{0.3,{"DZ\gear\radio\data\WalkieTalkie_damage.rvmat"}},{0.0,{"DZ\gear\radio\data\WalkieTalkie_destruct.rvmat"}}};
 				};
 			};
@@ -168,6 +168,17 @@ class CfgVehicles
 		itemSize[] = {3,4};
 		rotationFlags = 17;
 		oldpower = 0;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 70;
+					healthLevels[] = {{1.0,{"DZ\gear\radio\data\megaphone.rvmat"}},{0.7,{"DZ\gear\radio\data\megaphone.rvmat"}},{0.5,{"DZ\gear\radio\data\megaphone_damage.rvmat"}},{0.3,{"DZ\gear\radio\data\megaphone_damage.rvmat"}},{0.0,{"DZ\gear\radio\data\megaphone_destruct.rvmat"}}};
+				};
+			};
+		};
 		class MeleeModes
 		{
 			class Default
@@ -198,17 +209,6 @@ class CfgVehicles
 			autoSwitchOff = 1;
 			energyUsagePerSecond = 0.02;
 			attachmentAction = 1;
-		};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\gear\radio\data\megaphone.rvmat"}},{0.7,{"DZ\gear\radio\data\megaphone.rvmat"}},{0.5,{"DZ\gear\radio\data\megaphone_damage.rvmat"}},{0.3,{"DZ\gear\radio\data\megaphone_damage.rvmat"}},{0.0,{"DZ\gear\radio\data\megaphone_destruct.rvmat"}}};
-				};
-			};
 		};
 	};
 	class Radio: Inventory_Base
@@ -241,7 +241,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\radio\data\unitra_wilga.rvmat"}},{0.7,{"DZ\gear\radio\data\unitra_wilga.rvmat"}},{0.5,{"DZ\gear\radio\data\unitra_wilga_damage.rvmat"}},{0.3,{"DZ\gear\radio\data\unitra_wilga_damage.rvmat"}},{0.0,{"DZ\gear\radio\data\unitra_wilga_destruct.rvmat"}}};
 				};
 			};

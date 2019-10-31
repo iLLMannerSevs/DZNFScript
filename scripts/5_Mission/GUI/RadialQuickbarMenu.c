@@ -161,6 +161,9 @@ class RadialQuickbarMenu extends UIScriptedMenu
 		//register gestures menu
 		RadialMenu.GetInstance().RegisterClass( this );
 		
+		//delay updates until fully initialized
+		RadialMenu.GetInstance().SetWidgetInitialized(false);
+		
 		//set radial menu properties
 		RadialMenu.GetInstance().SetWidgetProperties( "gui/layouts/radial_menu/radial_quickbar/radial_quickbar_delimiter.layout" );
 

@@ -241,6 +241,7 @@ class CarDoor extends InventoryItemSuper
 	
 };
 
+//-------------------------------------
 class Hatchback_02_Door_1_1 extends CarDoor {};
 class Hatchback_02_Door_1_2 extends CarDoor {};
 class Hatchback_02_Door_2_1 extends CarDoor {};
@@ -248,6 +249,21 @@ class Hatchback_02_Door_2_2 extends CarDoor {};
 class Hatchback_02_Hood extends CarDoor {};
 class Hatchback_02_Trunk extends CarDoor {};
 
+class Hatchback_02_Door_1_1_Black extends Hatchback_02_Door_1_1 {};
+class Hatchback_02_Door_1_2_Black extends Hatchback_02_Door_1_2 {};
+class Hatchback_02_Door_2_1_Black extends Hatchback_02_Door_2_1 {};
+class Hatchback_02_Door_2_2_Black extends Hatchback_02_Door_2_2 {};
+class Hatchback_02_Hood_Black extends Hatchback_02_Hood {};
+class Hatchback_02_Trunk_Black extends Hatchback_02_Trunk {};
+
+class Hatchback_02_Door_1_1_Blue extends Hatchback_02_Door_1_1 {};
+class Hatchback_02_Door_1_2_Blue extends Hatchback_02_Door_1_2 {};
+class Hatchback_02_Door_2_1_Blue extends Hatchback_02_Door_2_1 {};
+class Hatchback_02_Door_2_2_Blue extends Hatchback_02_Door_2_2 {};
+class Hatchback_02_Hood_Blue extends Hatchback_02_Hood {};
+class Hatchback_02_Trunk_Blue extends Hatchback_02_Trunk {};
+
+//-------------------------------------
 class Sedan_02_Door_1_1 extends CarDoor {};
 class Sedan_02_Door_1_2 extends CarDoor {};
 class Sedan_02_Door_2_1 extends CarDoor {};
@@ -255,17 +271,93 @@ class Sedan_02_Door_2_2 extends CarDoor {};
 class Sedan_02_Hood extends CarDoor {};
 class Sedan_02_Trunk extends CarDoor {};
 
+class Sedan_02_Door_1_1_YellowRust extends CarDoor {};
+class Sedan_02_Door_1_2_YellowRust extends CarDoor {};
+class Sedan_02_Door_2_1_YellowRust extends CarDoor {};
+class Sedan_02_Door_2_2_YellowRust extends CarDoor {};
+class Sedan_02_Hood_YellowRust extends CarDoor {};
+class Sedan_02_Trunk_YellowRust extends CarDoor {};
+
+class Sedan_02_Door_1_1_Red extends Sedan_02_Door_1_1 {};
+class Sedan_02_Door_1_2_Red extends Sedan_02_Door_1_2 {};
+class Sedan_02_Door_2_1_Red extends Sedan_02_Door_2_1 {};
+class Sedan_02_Door_2_2_Red extends Sedan_02_Door_2_2 {};
+class Sedan_02_Hood_Red extends Sedan_02_Hood {};
+class Sedan_02_Trunk_Red extends Sedan_02_Trunk {};
+
+class Sedan_02_Door_1_1_RedRust extends Sedan_02_Door_1_1 {};
+class Sedan_02_Door_1_2_RedRust extends Sedan_02_Door_1_2 {};
+class Sedan_02_Door_2_1_RedRust extends Sedan_02_Door_2_1 {};
+class Sedan_02_Door_2_2_RedRust extends Sedan_02_Door_2_2 {};
+class Sedan_02_Hood_RedRust extends Sedan_02_Hood {};
+class Sedan_02_Trunk_RedRust extends Sedan_02_Trunk {};
+
+class Sedan_02_Door_1_1_Grey extends Sedan_02_Door_1_1 {};
+class Sedan_02_Door_1_2_Grey extends Sedan_02_Door_1_2 {};
+class Sedan_02_Door_2_1_Grey extends Sedan_02_Door_2_1 {};
+class Sedan_02_Door_2_2_Grey extends Sedan_02_Door_2_2 {};
+class Sedan_02_Hood_Grey extends Sedan_02_Hood {};
+class Sedan_02_Trunk_Grey extends Sedan_02_Trunk {};
+
+class Sedan_02_Door_1_1_GreyRust extends Sedan_02_Door_1_1 {};
+class Sedan_02_Door_1_2_GreyRust extends Sedan_02_Door_1_2 {};
+class Sedan_02_Door_2_1_GreyRust extends Sedan_02_Door_2_1 {};
+class Sedan_02_Door_2_2_GreyRust extends Sedan_02_Door_2_2 {};
+class Sedan_02_Hood_GreyRust extends Sedan_02_Hood {};
+class Sedan_02_Trunk_GreyRust extends Sedan_02_Trunk {};
+
+//-------------------------------------
 class HatchbackDoors_Driver extends CarDoor {};
 class HatchbackDoors_CoDriver extends CarDoor {};
 class HatchbackHood extends CarDoor {};
 class HatchbackTrunk extends CarDoor {};
 
+class HatchbackDoors_Driver_White extends HatchbackDoors_Driver {};
+class HatchbackDoors_CoDriver_White extends HatchbackDoors_CoDriver {};
+class HatchbackHood_White extends HatchbackHood {};
+class HatchbackTrunk_White extends HatchbackTrunk {};
+
+class HatchbackDoors_Driver_Blue extends HatchbackDoors_Driver {};
+class HatchbackDoors_CoDriver_Blue extends HatchbackDoors_CoDriver {};
+class HatchbackHood_Blue extends HatchbackHood {};
+class HatchbackTrunk_Blue extends HatchbackTrunk {};
+
+class HatchbackDoors_Driver_GreenRust extends HatchbackDoors_Driver {};
+class HatchbackDoors_CoDriver_GreenRust extends HatchbackDoors_CoDriver {};
+class HatchbackHood_GreenRust extends HatchbackHood {};
+class HatchbackTrunk_GreenRust extends HatchbackTrunk {};
+
+class HatchbackDoors_Driver_WhiteRust extends HatchbackDoors_Driver {};
+class HatchbackDoors_CoDriver_WhiteRust extends HatchbackDoors_CoDriver {};
+class HatchbackHood_WhiteRust extends HatchbackHood {};
+class HatchbackTrunk_WhiteRust extends HatchbackTrunk {};
+
+class HatchbackDoors_Driver_BlueRust extends HatchbackDoors_Driver {};
+class HatchbackDoors_CoDriver_BlueRust extends HatchbackDoors_CoDriver {};
+class HatchbackHood_BlueRust extends HatchbackHood {};
+class HatchbackTrunk_BlueRust extends HatchbackTrunk {};
+
+//-------------------------------------
 class CivSedanDoors_Driver extends CarDoor {};
 class CivSedanDoors_CoDriver extends CarDoor {};
 class CivSedanDoors_BackLeft extends CarDoor {};
 class CivSedanDoors_BackRight extends CarDoor {};
 class CivSedanHood extends CarDoor {};
 class CivSedanTrunk extends CarDoor {};
+
+class CivSedanDoors_Driver_Black extends CivSedanDoors_Driver {};
+class CivSedanDoors_CoDriver_Black extends CivSedanDoors_CoDriver {};
+class CivSedanDoors_BackLeft_Black extends CivSedanDoors_BackLeft {};
+class CivSedanDoors_BackRight_Black extends CivSedanDoors_BackRight {};
+class CivSedanHood_Black extends CivSedanHood {};
+class CivSedanTrunk_Black extends CivSedanTrunk {};
+
+class CivSedanDoors_Driver_Wine extends CivSedanDoors_Driver {};
+class CivSedanDoors_CoDriver_Wine extends CivSedanDoors_CoDriver {};
+class CivSedanDoors_BackLeft_Wine extends CivSedanDoors_BackLeft {};
+class CivSedanDoors_BackRight_Wine extends CivSedanDoors_BackRight {};
+class CivSedanHood_Wine extends CivSedanHood {};
+class CivSedanTrunk_Wine extends CivSedanTrunk {};
 
 class CarRadiator extends InventoryItemSuper
 {
@@ -434,6 +526,17 @@ class Clothing extends ItemBase
 	void UpdateNVGStatus(PlayerBase player, bool attaching = false)
 	{
 	}
+	
+	//! Returns if this entity obsructs player's voice
+	bool IsObstructingVoice()
+	{
+		return false;
+	}
+	
+	//! This items has effect on player's voice
+	void MutePlayer(PlayerBase player, bool state)
+	{
+	}
 };
 
 typedef Clothing ClothingBase;
@@ -481,6 +584,41 @@ typedef ItemGrenade GrenadeBase;
 //-----------------------------------------------------------------------------
 class ItemMap extends InventoryItemSuper
 {
+	string m_TextureClosed;
+	string m_TextureOpened;
+	string m_TextureLegend;
+	string m_DisplayName;
+	string m_Description;
+	
+	void ItemMap()
+	{
+		InitMapState();
+	}
+	
+	void InitMapState()
+	{
+		string path = "CfgWorlds " + GetGame().GetWorldName();
+		
+		GetGame().ConfigGetText(path + " mapDisplayNameKey",m_DisplayName);
+		GetGame().ConfigGetText(path + " mapDescriptionKey",m_Description);
+		GetGame().ConfigGetText(path + " mapTextureClosed",m_TextureClosed);
+		GetGame().ConfigGetText(path + " mapTextureOpened",m_TextureOpened);
+		GetGame().ConfigGetText(path + " mapTextureLegend",m_TextureLegend);
+		
+		/*if (GetMapStateAnimation())
+		{
+			SetObjectTexture(0,m_TextureClosed);
+		}
+		else
+		{
+			SetObjectTexture(1,m_TextureOpened);
+			SetObjectTexture(2,m_TextureLegend);
+		}*/
+		
+		SetObjectTexture(0,m_TextureClosed);
+		SetObjectTexture(1,m_TextureOpened);
+		SetObjectTexture(2,m_TextureLegend);
+	}
 	
 	override void OnItemLocationChanged(EntityAI old_owner, EntityAI new_owner)
 	{
@@ -516,5 +654,19 @@ class ItemMap extends InventoryItemSuper
 		if (GetAnimationPhase("map_opened") == 0)
 			return true;
 		return false;
+	}
+	
+	override bool NameOverride(out string output)
+	{
+		output = m_DisplayName;
+		
+		return true;
+	}
+	
+	override bool DescriptionOverride(out string output)
+	{
+		output = m_Description;
+		
+		return true;
 	}
 };

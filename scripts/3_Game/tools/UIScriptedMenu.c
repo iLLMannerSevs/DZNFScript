@@ -25,11 +25,19 @@ class UIMenuPanel: Managed
 	proto native void Close();
 
 	bool UseMouse()	{
+		#ifdef PLATFORM_CONSOLE
+		return GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+		#else
 		return true;
+		#endif
 	}
 
 	bool UseKeyboard()	{
+		#ifdef PLATFORM_CONSOLE
+		return GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer();
+		#else
 		return true;
+		#endif
 	}
 	
 	bool UseGamepad()	{

@@ -278,7 +278,7 @@ class MissionGameplay extends MissionBase
 			
 			if( !menu && m_ControlDisabled && !playerPB.GetCommand_Melee2() )
 			{
-				PlayerControlEnable();
+				PlayerControlEnable(true);
 			}
 		}
 
@@ -566,7 +566,8 @@ class MissionGameplay extends MissionBase
 				}
 				else if( IsPaused() )
 				{
-					if( !g_Game.GetUIManager().ScreenFadeVisible() )
+					InGameMenuXbox menu_xb = InGameMenuXbox.Cast( GetGame().GetUIManager().GetMenu() );
+					if( !g_Game.GetUIManager().ScreenFadeVisible() && ( !menu_xb || !menu_xb.IsOnlineOpen() ) )
 					{
 						if( input.LocalPress("UAUIMenu",false) )
 						{
@@ -579,7 +580,6 @@ class MissionGameplay extends MissionBase
 					}
 					else if( input.LocalPress( "UAUIBack", false ) )
 					{
-						InGameMenuXbox	menu_xb	= InGameMenuXbox.Cast( GetGame().GetUIManager().GetMenu() );
 						if( menu_xb && menu_xb.IsOnlineOpen() )
 						{
 							menu_xb.CloseOnline();
@@ -596,7 +596,7 @@ class MissionGameplay extends MissionBase
 			/*
 			else if (!menu && m_ControlDisabled)
 			{
-				PlayerControlEnable();
+				PlayerControlEnable(true);
 			}
 			*/
 		}
@@ -722,13 +722,17 @@ class MissionGameplay extends MissionBase
 		}
 	}
 	
-	override void PlayerControlEnable()
+	override void PlayerControlEnable( bool bForceSupress )
 	{
-		super.PlayerControlEnable();
+		super.PlayerControlEnable(bForceSupress);
 
 		//Print("Enabling Controls");
 		GetUApi().GetInputByName("UAWalkRunTemp").ForceEnable(false); // force walk off!
 		GetUApi().UpdateControls();
+		
+		// supress control for next frame
+		GetUApi().SupressNextFrame(bForceSupress);
+		
 		m_ControlDisabled = false;
 		
 		PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
@@ -856,9 +860,9 @@ class MissionGameplay extends MissionBase
 		{
 			GetUIManager().HideScriptedMenu(m_InventoryMenu);
 			MoveHudForInventory( false );
-			PlayerControlEnable();
+			PlayerControlEnable(false);
 			PlayerBase.Cast(GetGame().GetPlayer()).OnInventoryMenuClose();
-			VicinityItemManager.ResetRefreshCounter();
+			VicinityItemManager.GetInstance().ResetRefreshCounter();
 		}	
 	}
 	
@@ -892,7 +896,7 @@ class MissionGameplay extends MissionBase
 
 	override void HideChat()
 	{
-		PlayerControlEnable();
+		PlayerControlEnable(true);
 	}
 	
 	void ShowVehicleInfo()
@@ -955,7 +959,7 @@ class MissionGameplay extends MissionBase
 			return;
 		}
 		
-		PlayerControlEnable();
+		PlayerControlEnable(true);
 		GetUIManager().CloseMenu(MENU_INGAME);
 	}
 	

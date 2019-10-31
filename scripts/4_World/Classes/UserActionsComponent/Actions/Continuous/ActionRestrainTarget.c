@@ -160,7 +160,7 @@ class ChainedDropAndRestrainLambda : DestroyItemInCorpsesHandsAndCreateNewOnGndL
 }
 
 
-class RestrainTargetPlayerLambda : ReplaceItemWithNewLambdaBase
+class RestrainTargetPlayerLambda : TurnItemIntoItemLambda
 {
 	PlayerBase m_TargetPlayer;
 

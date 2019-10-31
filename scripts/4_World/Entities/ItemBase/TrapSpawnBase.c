@@ -22,7 +22,6 @@ class TrapSpawnBase extends ItemBase
 	string m_AnimationPhaseTriggered;
 	string m_AnimationPhaseUsed;
 
-	ref map<string, float> m_SurfaceForSetup;	//map of surfaces where trap can be installed - string surface name, float catch_chance on that surface
 	bool m_WaterSurfaceForSetup;	//if trap can be installed on water surface (cannot be detected via getsurfacetype)
 	ref multiMap<string, float>	m_CatchesPond;	//array of catches that can be catched in trap - string key, float catch_chance, float minCatch, float maxCatch
 	ref multiMap<string, float>	m_CatchesSea;	//array of catches that can be catched in trap - string key, float catch_chance, float minCatch, float maxCatch
@@ -48,7 +47,6 @@ class TrapSpawnBase extends ItemBase
 		m_AnimationPhaseTriggered = "";
 		m_AnimationPhaseUsed = "";
 		
-		m_SurfaceForSetup = NULL;
 		m_CatchesPond = NULL;
 		m_CatchesSea = NULL;
 		m_CatchesGroundAnimal = NULL;
@@ -163,19 +161,7 @@ class TrapSpawnBase extends ItemBase
 		}
 		
 		// check surface
-		if ( m_SurfaceForSetup != NULL )
-		{
-			for (int i = 0; i < m_SurfaceForSetup.Count(); i++)
-			{
-				string surface = m_SurfaceForSetup.GetKey(i);
-				if ( surface_type == surface )
-				{
-					return true;
-				}
-			}
-		}
-		
-		return false;
+		return GetGame().IsSurfaceDigable(surface_type);
 	}
 
 	void SetupTrap()
@@ -386,16 +372,10 @@ class TrapSpawnBase extends ItemBase
 				}
 				else
 				{
-					if ( m_SurfaceForSetup != NULL )
-					{
-						string surface_type;
-						GetGame().SurfaceGetType(pos[0], pos[2], surface_type);
-						
-						if ( m_SurfaceForSetup.Contains(surface_type) )
-						{
-							surface_chance_for_catch = m_SurfaceForSetup.Get( surface_type );
-						}
-					}
+					string surface_type;
+					GetGame().SurfaceGetType(pos[0], pos[2], surface_type);
+					
+					surface_chance_for_catch = GetGame().ConfigGetFloat("CfgSurfaces " + surface_type + " chanceForCatch");
 					
 					catches = m_CatchesGroundAnimal;
 				}

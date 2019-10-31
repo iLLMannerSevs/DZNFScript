@@ -132,12 +132,25 @@ class Animal_SusScrofa extends AnimalBase
 	override void RegisterHitComponentsForAI()
 	{
 		m_DefaultHitComponent = "Zone_Spine";
-		m_DefaultHitPositionComponent = "Spine1";
+		m_DefaultHitPositionComponent = "Pelvis";
 		
 		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Head", 3);
-		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Belly", 15);
 		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Neck", 55);
-		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Chest", 40);
+		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Belly", 15);
+		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Legs", 70);
+	}
+}
+
+class Animal_UrsusArctos extends AnimalBase
+{
+	override void RegisterHitComponentsForAI()
+	{
+		m_DefaultHitComponent = "Zone_Head";
+		m_DefaultHitPositionComponent = "Pelvis";
+		
+		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Head", 25);
+		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Belly", 50);
+		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Neck", 65);
 		DayZAIHitComponentHelpers.RegisterHitComponent(m_HitComponentsForAI, "Zone_Legs", 70);
 	}
 }

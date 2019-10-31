@@ -1,10 +1,12 @@
 // load x bullets
 class LoopedChambering_EndLoop extends WeaponStartAction
 {
+	override bool IsWaitingForActionFinish () { return true; }
 };
 
 class LoopedChambering_Wait4ShowBullet2 extends WeaponStateBase
 { 
+	override bool IsWaitingForActionFinish () { return true; }
 };
 
 class LoopedChambering extends WeaponStateBase
@@ -13,6 +15,7 @@ class LoopedChambering extends WeaponStateBase
 	int m_startActionType;
 	int m_endActionType;
 	Magazine m_srcMagazine; /// source of the cartridge
+	ref InventoryLocation m_srcMagazinePrevLocation;
 
 	ref WeaponStateBase m_start;
 	ref WeaponEjectCasing m_eject;
@@ -33,7 +36,7 @@ class LoopedChambering extends WeaponStateBase
 		m_chamber = new WeaponChambering_Cartridge_ChambToMag(m_weapon, this);
 		m_w4sb2 = LoopedChambering_Wait4ShowBullet2(m_weapon, this);
 		m_hideB = new BulletHide_W4T(m_weapon, this);
-		m_endLoop = new WeaponStartAction(m_weapon, this, m_action, m_endActionType); // @NOTE: termination playing action - dummy?
+		m_endLoop = new LoopedChambering_EndLoop(m_weapon, this, m_action, m_endActionType); // @NOTE: termination playing action - dummy?
 		// events
 		WeaponEventBase							_fin_ = new WeaponEventHumanCommandActionFinished;
 		WeaponEventContinuousLoadBulletStart	__lS_ = new WeaponEventContinuousLoadBulletStart;
@@ -45,9 +48,9 @@ class LoopedChambering extends WeaponStateBase
 		WeaponEventAnimBulletShow2				_bs2_ = new WeaponEventAnimBulletShow2;
 
 		m_fsm = new WeaponFSM(this); // @NOTE: set owner of the submachine fsm
-		m_fsm.AddTransition(new WeaponTransition(m_start  , __be_, m_eject));
-		m_fsm.AddTransition(new WeaponTransition(m_start  , __bs_, m_chamber));
-		m_fsm.AddTransition(new WeaponTransition(m_eject  , __bs_, m_chamber));
+		m_fsm.AddTransition(new WeaponTransition(m_start,	__be_, m_eject));
+		m_fsm.AddTransition(new WeaponTransition(m_start,	__bs_, m_chamber));
+		m_fsm.AddTransition(new WeaponTransition(m_eject,	__bs_, m_chamber));
 		
 
 		m_fsm.AddTransition(new WeaponTransition(m_chamber, __bM_, m_w4sb2, NULL, new GuardAnd(new GuardAnd(new WeaponGuardHasAmmoInLoopedState(m_chamber), new WeaponGuardChamberHasRoomForMoreThanOne(m_weapon)),new WeaponGuardWeaponManagerWantContinue())));
@@ -65,33 +68,147 @@ class LoopedChambering extends WeaponStateBase
 	{
 		if (e != NULL)
 		{
-			if (e.m_magazine != NULL)
+			
+			m_srcMagazine = e.m_magazine;
+			if (m_srcMagazine != NULL)
 			{
-				Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectFirst, taking mag from event e.mag=" + e.m_magazine.ToString());
-				m_srcMagazine = e.m_magazine;
+				InventoryLocation newSrc = new InventoryLocation;
+				m_srcMagazine.GetInventory().GetCurrentInventoryLocation(newSrc);
+				
+				m_srcMagazinePrevLocation = newSrc;
+		
+				// move to LH
+				InventoryLocation lhand = new InventoryLocation;
+				lhand.SetAttachment(e.m_player, m_srcMagazine, InventorySlots.LEFTHAND);
+				if (GameInventory.LocationSyncMoveEntity(newSrc, lhand))
+				{
+					wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - ammo pile removed from inv (inv->LHand)");
+				}
+				else
+					Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, error - cannot remove ammo pile from inv");
+				
+				m_chamber.m_srcMagazine = m_srcMagazine;
+			} 
+			else
+			{
+				Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering m_srcMagazine = NULL");
 			}
 		}
 		else
 		{
-			Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectFirst (e=NULL), m_srcMagazine=" + m_srcMagazine.ToString());
+			Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering (e=NULL), m_srcMagazine=" + m_srcMagazine.ToString());
 		}
-		Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " m_srcMagazine=" + m_srcMagazine.ToString());
-
-		m_chamber.m_srcMagazine = m_srcMagazine;
-		
-
 
 		super.OnEntry(e); // @NOTE: super at the end (prevent override from submachine start)
 	}
 	override void OnExit (WeaponEventBase e)
 	{
+		bool done = false;
+		if (m_srcMagazine)
+		{
+			e.m_player.GetInventory().ClearInventoryReservation( m_srcMagazine , m_srcMagazinePrevLocation );
+			
+			InventoryLocation leftHandIl = new InventoryLocation;
+			m_srcMagazine.GetInventory().GetCurrentInventoryLocation(leftHandIl);
+			if(leftHandIl.IsValid())
+			{
+				if(m_srcMagazinePrevLocation && m_srcMagazinePrevLocation.IsValid())
+				{
+					if(vector.DistanceSq(m_srcMagazinePrevLocation.GetPos(), leftHandIl.GetPos()) < WeaponManager.MAX_DROP_MAGAZINE_DISTANCE_SQ )
+					{
+						if( GameInventory.LocationCanMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+						{
+							if( GameInventory.LocationSyncMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+							{
+								wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - ammo pile removed from left hand to previous location (LHand->inv) - exit");
+								done = true;
+							}
+						}
+					}
+				}
+				
+				if( !done)
+				{
+					InventoryLocation il = new InventoryLocation;
+					e.m_player.GetInventory().FindFreeLocationFor( m_srcMagazine, FindInventoryLocationType.CARGO, il );
+			
+					if(!il || !il.IsValid())
+					{
+						if (DayZPlayerUtils.HandleDropMagazine(e.m_player, m_srcMagazine))
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - no inventory space for ammo pile - dropped to ground - exit");
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, error - cannot drop ammo pile from left hand after not found inventory space for ammo pile - exit");
+					
+					}
+					else
+					{
+						if (GameInventory.LocationSyncMoveEntity(leftHandIl, il))
+						{
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - ammo pile removed from left hand (LHand->inv) - exit");
+						}
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, error - cannot remove ammo pile from wpn - exit");
+					}
+				}
+			}
+		}
+		
 		m_srcMagazine = NULL;
 		m_chamber.m_srcMagazine = NULL;
 		super.OnExit(e);
-		
 	}
 	override void OnAbort (WeaponEventBase e)
 	{
+		bool done = false;
+		if (m_srcMagazine)
+		{
+			e.m_player.GetInventory().ClearInventoryReservation( m_srcMagazine , m_srcMagazinePrevLocation );
+			
+			InventoryLocation leftHandIl = new InventoryLocation;
+			m_srcMagazine.GetInventory().GetCurrentInventoryLocation(leftHandIl);
+			if(leftHandIl.IsValid())
+			{
+				if(m_srcMagazinePrevLocation && m_srcMagazinePrevLocation.IsValid())
+				{
+					if(vector.DistanceSq(m_srcMagazinePrevLocation.GetPos(), leftHandIl.GetPos()) < WeaponManager.MAX_DROP_MAGAZINE_DISTANCE_SQ )
+					{
+						if( GameInventory.LocationCanMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+						{
+							if( GameInventory.LocationSyncMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+							{
+								wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - ammo pile removed from left hand to previous location (LHand->inv) - abort");
+								done = true;
+							}
+						}
+					}
+				}
+				
+				if( !done)
+				{
+					InventoryLocation il = new InventoryLocation;
+					e.m_player.GetInventory().FindFreeLocationFor( m_srcMagazine, FindInventoryLocationType.CARGO, il );
+			
+					if(!il || !il.IsValid())
+					{
+						if (DayZPlayerUtils.HandleDropMagazine(e.m_player, m_srcMagazine))
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - no inventory space for ammo pile - dropped to ground - abort");
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, error - cannot drop ammo pile from left hand after not found inventory space for ammo pile - abort");
+					
+					}
+					else
+					{
+						if (GameInventory.LocationSyncMoveEntity(leftHandIl, il))
+						{
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, ok - ammo pile removed from left hand (LHand->inv) - abort");
+						}
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChambering, error - cannot remove ammo pile from wpn - abort");
+					}
+				}
+			}
+		}
+		
 		m_srcMagazine = NULL;
 		m_chamber.m_srcMagazine = NULL;
 		super.OnAbort(e);
@@ -130,6 +247,7 @@ class LoopedChamberingEjectLast extends WeaponStateBase
 	int m_startActionType;
 	int m_endActionType;
 	Magazine m_srcMagazine; /// source of the cartridge
+	ref InventoryLocation m_srcMagazinePrevLocation;
 
 	ref WeaponStateBase m_start;
 	ref WeaponEjectCasing m_eject;
@@ -152,7 +270,7 @@ class LoopedChamberingEjectLast extends WeaponStateBase
 		m_w4sb2 = new LoopedChambering_Wait4ShowBullet2(m_weapon, this);
 		m_hideB = new BulletHide_W4T(m_weapon, this);
 		m_chamberFromInnerMag = new WeaponChamberFromInnerMag_W4T(m_weapon, this);
-		m_endLoop = new WeaponStartAction(m_weapon, this, m_action, m_endActionType); // @NOTE: termination playing action - dummy?
+		m_endLoop = new LoopedChambering_EndLoop(m_weapon, this, m_action, m_endActionType); // @NOTE: termination playing action - dummy?
 		// events
 		WeaponEventBase							_fin_ = new WeaponEventHumanCommandActionFinished;
 		WeaponEventContinuousLoadBulletStart	__lS_ = new WeaponEventContinuousLoadBulletStart;
@@ -187,26 +305,90 @@ class LoopedChamberingEjectLast extends WeaponStateBase
 	{
 		if (e != NULL)
 		{
-			if (e.m_magazine != NULL)
+			m_srcMagazine = e.m_magazine;
+			if (m_srcMagazine != NULL)
 			{
-				Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, taking mag from event e.mag=" + e.m_magazine.ToString());
-				m_srcMagazine = e.m_magazine;
+				InventoryLocation newSrc = new InventoryLocation;
+				m_srcMagazine.GetInventory().GetCurrentInventoryLocation(newSrc);
+				
+				m_srcMagazinePrevLocation = newSrc;
+		
+				// move to LH
+				InventoryLocation lhand = new InventoryLocation;
+				lhand.SetAttachment(e.m_player, m_srcMagazine, InventorySlots.LEFTHAND);
+				if (GameInventory.LocationSyncMoveEntity(newSrc, lhand))
+				{
+					wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - ammo pile removed from inv (inv->LHand)");
+				}
+				else
+					Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, error - cannot remove ammo pile from inv");
+				
+				m_chamber.m_srcMagazine = m_srcMagazine;
+			} 
+			else
+			{
+				Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast m_srcMagazine = NULL");
 			}
 		}
 		else
 		{
 			Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast (e=NULL), m_srcMagazine=" + m_srcMagazine.ToString());
 		}
-		Print("[wpnfsm] " + Object.GetDebugName(m_weapon) + " m_srcMagazine=" + m_srcMagazine.ToString());
-
-		m_chamber.m_srcMagazine = m_srcMagazine;
-		
-
 
 		super.OnEntry(e); // @NOTE: super at the end (prevent override from submachine start)
 	}
 	override void OnExit (WeaponEventBase e)
 	{
+		bool done = false;
+		if (m_srcMagazine)
+		{
+			e.m_player.GetInventory().ClearInventoryReservation( m_srcMagazine , m_srcMagazinePrevLocation );
+			
+			InventoryLocation leftHandIl = new InventoryLocation;
+			m_srcMagazine.GetInventory().GetCurrentInventoryLocation(leftHandIl);
+			if(leftHandIl.IsValid())
+			{
+				if(m_srcMagazinePrevLocation && m_srcMagazinePrevLocation.IsValid())
+				{
+					if(vector.DistanceSq(m_srcMagazinePrevLocation.GetPos(), leftHandIl.GetPos()) < WeaponManager.MAX_DROP_MAGAZINE_DISTANCE_SQ )
+					{
+						if( GameInventory.LocationCanMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+						{
+							if( GameInventory.LocationSyncMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+							{
+								wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - ammo pile removed from left hand to previous location (LHand->inv) - exit");
+								done = true;
+							}
+						}
+					}
+				}
+				
+				if( !done)
+				{
+					InventoryLocation il = new InventoryLocation;
+					e.m_player.GetInventory().FindFreeLocationFor( m_srcMagazine, FindInventoryLocationType.CARGO, il );
+			
+					if(!il || !il.IsValid())
+					{
+						if (DayZPlayerUtils.HandleDropMagazine(e.m_player, m_srcMagazine))
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - no inventory space for ammo pile - dropped to ground - exit");
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, error - cannot drop ammo pile from left hand after not found inventory space for ammo pile - exit");
+					
+					}
+					else
+					{
+						if (GameInventory.LocationSyncMoveEntity(leftHandIl, il))
+						{
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - ammo pile removed from left hand (LHand->inv) - exit");
+						}
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, error - cannot remove ammo pile from wpn - exit");
+					}
+				}
+			}
+		}
+		
 		m_srcMagazine = NULL;
 		m_chamber.m_srcMagazine = NULL;
 		super.OnExit(e);
@@ -214,10 +396,59 @@ class LoopedChamberingEjectLast extends WeaponStateBase
 	}
 	override void OnAbort (WeaponEventBase e)
 	{
+		bool done = false;
+		if (m_srcMagazine)
+		{
+			e.m_player.GetInventory().ClearInventoryReservation( m_srcMagazine , m_srcMagazinePrevLocation );
+			
+			InventoryLocation leftHandIl = new InventoryLocation;
+			m_srcMagazine.GetInventory().GetCurrentInventoryLocation(leftHandIl);
+			if(leftHandIl.IsValid())
+			{
+				if(m_srcMagazinePrevLocation && m_srcMagazinePrevLocation.IsValid())
+				{
+					if(vector.DistanceSq(m_srcMagazinePrevLocation.GetPos(), leftHandIl.GetPos()) < WeaponManager.MAX_DROP_MAGAZINE_DISTANCE_SQ )
+					{
+						if( GameInventory.LocationCanMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+						{
+							if( GameInventory.LocationSyncMoveEntity(leftHandIl,m_srcMagazinePrevLocation) )
+							{
+								wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - ammo pile removed from left hand to previous location (LHand->inv) - abort");
+								done = true;
+							}
+						}
+					}
+				}
+				
+				if( !done)
+				{
+					InventoryLocation il = new InventoryLocation;
+					e.m_player.GetInventory().FindFreeLocationFor( m_srcMagazine, FindInventoryLocationType.CARGO, il );
+			
+					if(!il || !il.IsValid())
+					{
+						if (DayZPlayerUtils.HandleDropMagazine(e.m_player, m_srcMagazine))
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - no inventory space for ammo pile - dropped to ground - abort");
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, error - cannot drop ammo pile from left hand after not found inventory space for ammo pile - abort");
+					
+					}
+					else
+					{
+						if (GameInventory.LocationSyncMoveEntity(leftHandIl, il))
+						{
+							wpnDebugPrint("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, ok - ammo pile removed from left hand (LHand->inv) - abort");
+						}
+						else
+							Error("[wpnfsm] " + Object.GetDebugName(m_weapon) + " LoopedChamberingEjectLast, error - cannot remove ammo pile from wpn - abort");
+					}
+				}
+			}
+		}
+		
 		m_srcMagazine = NULL;
 		m_chamber.m_srcMagazine = NULL;
 		super.OnAbort(e);
-		
 	}
 	
 	override bool SaveCurrentFSMState (ParamsWriteContext ctx)

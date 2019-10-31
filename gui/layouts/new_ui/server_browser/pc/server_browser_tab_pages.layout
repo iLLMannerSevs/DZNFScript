@@ -1665,6 +1665,82 @@ WindowWidgetClass server_browser_tab_root {
         }
        }
       }
+      FrameWidgetClass whitelist_setting_container {
+       ignorepointer 0
+       position 0 0
+       size 1 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       {
+        GridSpacerWidgetClass whitelist_setting {
+         ignorepointer 0
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "no focus" 1
+         Padding 0
+         Margin 0
+         "Size To Content H" 1
+         Columns 2
+         Rows 1
+         {
+          FrameWidgetClass whitelist_setting_panel {
+           ignorepointer 1
+           position 0 0
+           size 0.5 0.6
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass whitelist_setting_label {
+             ignorepointer 1
+             position 0 0
+             size 1 0.55
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "#server_browser_filter_whitelisted"
+             font "gui/fonts/sdf_MetronLight24"
+             "text offset" 15 0
+             "exact text" 0
+             "exact text size" 18
+             "text valign" center
+            }
+           }
+          }
+          FrameWidgetClass whitelist_setting_option {
+           ignorepointer 1
+           position 0 0
+           size 0.5 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+          }
+         }
+        }
+        PanelWidgetClass whitelist_setting_disable {
+         visible 0
+         ignorepointer 1
+         color 0.1569 0.1569 0.1569 0.902
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+       }
+      }
       FrameWidgetClass prev_played_setting_container {
        ignorepointer 0
        position 0 0

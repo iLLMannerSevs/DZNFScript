@@ -269,7 +269,7 @@ class EffBulletImpactBase : EffectParticle
 			}
 			else
 			{
-				if (m_SurfNormal != INVALID)
+				if (m_SurfNormal != INVALID  &&  (m_AmmoType != "MeleeFist"  &&  m_AmmoType != "MeleeFist_Heavy"))
 				{
 					vector surfNormalN = m_SurfNormal.Normalized();
 					vector inSpeedN = m_InSpeed.Normalized();

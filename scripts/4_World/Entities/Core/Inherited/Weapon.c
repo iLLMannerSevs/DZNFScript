@@ -51,6 +51,10 @@ class Weapon extends InventoryItemSuper
 	 * @brief	ejects casing from chamber
 	 **/
 	proto native bool EjectCasing (int muzzleIndex);
+	/**@fn		EjectRound
+	 * @brief	ejects round from chamber
+	 **/
+	proto native bool CreateRound (int muzzleIndex);
 
 	/**@fn		IsChamberEmpty
 	 * @brief	detects empty chamber
@@ -144,6 +148,19 @@ class Weapon extends InventoryItemSuper
 	 * @brief	push cartridge to chamber
 	 **/
 	proto native bool PushCartridgeToChamber (int muzzleIndex, float ammoDamage, string ammoTypeName);
+	
+	/**@fn		EffectBulletShow
+	 * @brief	push effect cartridge to Weapon
+	 * @param[in] muzzleIndex
+	 * @param[in] ammoDamage \p  damage of the ammo
+	 * @param[in] ammoTypeName \p	 type name of the ammo
+	 **/
+	proto native void EffectBulletShow (int muzzleIndex, float dmg, string type);
+	/**@fn		EffectBulletHide
+	 * @brief	reset effect cartridge in weapon
+	 * @param[in] muzzleIndex
+	 **/
+	proto native void EffectBulletHide (int muzzleIndex);
 
 	/**@fn		PopCartridgeFromInternalMagazine
 	 * @brief	removes top-most cartridge from internal magazine
@@ -272,30 +289,30 @@ class Weapon extends InventoryItemSuper
 	 * @brief	returns position of currently used value in zeroing config array
 	 * @return	 position of currently used value in zeroing config array
 	 **/
-	proto native int GetStepZeroing ();
+	proto native int GetStepZeroing (int muzzleIndex = 0);
 	/**@fn		SetZeroing
 	 * @brief sets zeroing to value defined at given position in zeroing config array
 	 * @param[in] index of zeroing to set [0..cfg_max]
 	 * @return	true if zeroing set
 	 **/
-	proto native bool SetStepZeroing (int step);
+	proto native bool SetStepZeroing (int muzzleIndex, int step);
 	/**
 	 * @fn		StepZeroingUp
 	 * @brief sets zeroing to next defined (respective to current) value in zeroing config array
 	 * @return true if zeroing set
 	 **/
-	proto native bool StepZeroingUp ();
+	proto native bool StepZeroingUp (int muzzleIndex = 0);
 	/**
 	 * @fn		StepZeroingDown
 	 * @brief	sets zeroing to previous (respective to current) defined value in zeroing config array
 	 * @return true if zeroing set
 	 **/
-	proto native bool StepZeroingDown ();
+	proto native bool StepZeroingDown (int muzzleIndex = 0);
 	/**@fn		GetCurrentZeroing
 	 * @brief	returns currently used value of zeroing in config array of weapon or attached optics
 	 * @return	 currently used value in zeroing
 	 **/	
-	proto native float GetCurrentZeroing ();
+	proto native float GetCurrentZeroing (int muzzleIndex = 0);
 
 	/**
 	 * @fn		FlashlightOn
@@ -371,6 +388,22 @@ class Weapon extends InventoryItemSuper
 	proto native void SelectionBulletHide ();
 	proto native void SelectionMagazineShow ();
 	proto native void SelectionMagazineHide ();
+	
+	void StepZeroingUpAllMuzzles()
+	{
+		for (int i = 0; i < GetMuzzleCount(); i++)
+		{
+			StepZeroingUp(i);
+		}
+	}
+	
+	void StepZeroingDownAllMuzzles()
+	{
+		for (int i = 0; i < GetMuzzleCount(); i++)
+		{
+			StepZeroingDown(i);
+		}
+	}
 };
 
 

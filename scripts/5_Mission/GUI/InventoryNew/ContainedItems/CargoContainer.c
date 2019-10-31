@@ -165,24 +165,28 @@ class CargoContainer extends Container
 	
 	void SetLock( EntityAI item )
 	{
-		/*
+		#ifndef PLATFORM_CONSOLE
 		if( GetGame().GetPlayer() )
 		{
 			InventoryLocation il = new InventoryLocation;
 			int index = GetGame().GetPlayer().GetHumanInventory().FindUserReservedLocationIndex( item );
-			GetGame().GetPlayer().GetHumanInventory().GetUserReservedLocation( index, il );
-			
-			ref Icon icon = new Icon( this );
-			m_Icons.Insert( icon );
-			icon.InitLock( m_Entity, item, il.GetCol(), il.GetRow(), il.GetFlip() );
-			m_ShowedLockPositions.Insert( item, new Param3<ref Icon, int, int>( icon, 1, 1 ) );
-			item.GetOnReleaseLock().Insert( ReleaseLock );
-		}*/
+			if( index >= 0 )
+			{
+				GetGame().GetPlayer().GetHumanInventory().GetUserReservedLocation( index, il );
+				
+				ref Icon icon = new Icon( this );
+				m_Icons.Insert( icon );
+				icon.InitLock( m_Entity, item, il.GetCol(), il.GetRow(), il.GetFlip() );
+				m_ShowedLockPositions.Insert( item, new Param3<ref Icon, int, int>( icon, 1, 1 ) );
+				item.GetOnReleaseLock().Insert( ReleaseLock );
+			}
+		}
+		#endif
 	}
 	
 	void ReleaseLock( EntityAI item )
 	{
-		/*
+		#ifndef PLATFORM_CONSOLE
 		if( m_ShowedLockPositions.Contains( item ) )
 		{
 			Icon ic	= m_ShowedLockPositions.Get( item ).param1;
@@ -190,7 +194,7 @@ class CargoContainer extends Container
 			m_ShowedLockPositions.Remove( item );
 			item.GetOnReleaseLock().Remove( ReleaseLock );
 		}
-		*/
+		#endif
 	}
 	
 	override void SetLayoutName()

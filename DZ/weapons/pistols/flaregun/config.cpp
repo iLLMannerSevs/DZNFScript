@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\flaregun\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:59 2019 : 'file' last modified on Wed Aug 14 11:04:49 2019
+//'now' is Thu Oct 31 18:24:50 2019 : 'file' last modified on Thu Oct 24 15:07:50 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -39,7 +39,6 @@ class cfgWeapons
 	class Flaregun_Base: Pistol_Base
 	{
 		scope = 0;
-		lootTag[] = {"Military_east","Military_west","Civilian","Police"};
 		weight = 400;
 		absorbency = 0.0;
 		repairableWithKits[] = {5,1};

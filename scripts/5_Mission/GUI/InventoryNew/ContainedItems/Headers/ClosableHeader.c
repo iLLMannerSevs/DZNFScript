@@ -15,14 +15,10 @@ class ClosableHeader: Header
 		m_MoveUp	= ButtonWidget.Cast( GetMainWidget().FindAnyWidget( "MoveUp" ) );
 		m_MoveDown	= ButtonWidget.Cast( GetMainWidget().FindAnyWidget( "MoveDown" ) );
 		
-		#ifdef PLATFORM_WINDOWS
-		#ifndef PLATFORM_CONSOLE
 		WidgetEventHandler.GetInstance().RegisterOnClick( m_MoveUp,  m_Parent, "EquipmentMoveUp" );
 		WidgetEventHandler.GetInstance().RegisterOnClick( m_MoveDown,  m_Parent, "EquipmentMoveDown" );
 		WidgetEventHandler.GetInstance().RegisterOnMouseLeave( m_MoveUp,  this, "MouseLeave" );
 		WidgetEventHandler.GetInstance().RegisterOnMouseLeave( m_MoveDown,  this, "MouseLeave" );
-		#endif
-		#endif
 		
 		WidgetEventHandler.GetInstance().RegisterOnDrag( GetMainWidget() ,  this, "OnDragHeader" );
 		WidgetEventHandler.GetInstance().RegisterOnDrop( GetMainWidget() ,  this, "OnDropHeader" );
@@ -144,7 +140,11 @@ class ClosableHeader: Header
 	{
 		if( m_IsInLocalEquipment && !GetDragWidget() )
 		{
+			#ifdef PLATFORM_CONSOLE
+			m_MovePanel.Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
+			#else
 			m_MovePanel.Show( true );
+			#endif
 		}
 		ItemManager.GetInstance().PrepareTooltip( m_Entity, x, y );
 		return true;

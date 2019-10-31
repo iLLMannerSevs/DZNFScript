@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\svd\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:55 2019 : 'file' last modified on Tue Aug 13 08:24:45 2019
+//'now' is Thu Oct 31 18:24:46 2019 : 'file' last modified on Thu Oct 31 09:54:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -54,6 +54,7 @@ class cfgWeapons
 		magazineSwitchTime = 0.25;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\SKS\SKS_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\svd\svd_reload",1,1,30};
@@ -80,7 +81,10 @@ class cfgWeapons
 		{
 			class OnFire
 			{
-				class MuzzleFlash{};
+				class MuzzleFlash
+				{
+					ignoreIfSuppressed = 1;
+				};
 				class SmokeCloud1
 				{
 					overrideParticle = "weapon_shot_winded_smoke";
@@ -95,6 +99,7 @@ class cfgWeapons
 				{
 					overrideParticle = "weapon_shot_Flame_3D_4star";
 					overridePoint = "StarFlash";
+					ignoreIfSuppressed = 1;
 				};
 				class GasPistonBurstR
 				{
@@ -371,7 +376,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\svd\data\SVD.rvmat"}},{0.7,{"DZ\weapons\firearms\svd\data\SVD.rvmat"}},{0.5,{"DZ\weapons\firearms\svd\data\SVD_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\svd\data\SVD_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\svd\data\SVD_destruct.rvmat"}}};
 				};
 			};

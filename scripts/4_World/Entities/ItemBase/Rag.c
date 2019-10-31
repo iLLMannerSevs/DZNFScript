@@ -62,4 +62,9 @@ class Rag extends ItemBase
 		AddAction(ActionGagTarget);
 		AddAction(ActionGagSelf);
 	}
+	
+	override float GetBandagingEffectivity()
+	{
+		return 0.5;
+	};
 }

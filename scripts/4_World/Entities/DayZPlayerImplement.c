@@ -106,7 +106,7 @@ class DayZPlayerImplement extends DayZPlayer
 		m_AimingModel = new DayZPlayerImplementAiming(this);
 		m_MeleeCombat = new DayZPlayerImplementMeleeCombat(this);
 		m_MeleeFightLogic = new DayZPlayerMeleeFightLogic_LightHeavy(this);
-		m_Swimming = new DayZPlayerImplementSwimming(this);
+		m_Swimming = new DayZPlayerImplementSwimming(this);		
 		m_Throwing = new DayZPlayerImplementThrowing(this);
 		m_JumpClimb = new DayZPlayerImplementJumpClimb(this);
 		m_FallDamage = new DayZPlayerImplementFallDamage(this);
@@ -386,16 +386,13 @@ class DayZPlayerImplement extends DayZPlayer
 	#endif
 	}
 	
-	void StopDeathDarkeningEffect()
+	override void StopDeathDarkeningEffect()
 	{
 		if ( m_DeathEffectTimer && m_DeathEffectTimer.IsRunning() )
 		{
-			/*Print("StopDeathDarkeningEffect");
-			Print("m_DeathEffectTimer = " + m_DeathEffectTimer);
-			Print("~StopDeathDarkeningEffect");*/
 			m_DeathEffectTimer.Stop();
 		}
-		PPEffects.SetDeathDarkening(0);
+		//PPEffects.SetDeathDarkening(0);
 	}
 	
 	void SimulateDeath(bool state)
@@ -626,14 +623,20 @@ class DayZPlayerImplement extends DayZPlayer
 			if (optic && (optic.IsInOptics() || optic.IsUsingWeaponIronsightsOverride()) )
 				optic.StepZeroingUp();
 			else
-				weapon.StepZeroingUp();
+			{
+				//weapon.StepZeroingUp(weapon.GetCurrentMuzzle());
+				weapon.StepZeroingUpAllMuzzles();
+			}
 		}
 		if (pInputs.IsZeroingDown())
 		{
 			if (optic && (optic.IsInOptics() || optic.IsUsingWeaponIronsightsOverride()) )
 				optic.StepZeroingDown();
 			else
-				weapon.StepZeroingDown();
+			{
+				//weapon.StepZeroingDown(weapon.GetCurrentMuzzle());
+				weapon.StepZeroingDownAllMuzzles();
+			}
 		}
 		
 		if (!m_LiftWeapon_player && (m_CameraIronsight || !weapon.CanEnterIronsights() || m_CameraOptics/*m_ForceHandleOptics*/)) 	// HACK straight to optics, if ironsights not allowed
@@ -970,9 +973,9 @@ class DayZPlayerImplement extends DayZPlayer
 	}
 
 	//! event from damage system
-	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
-		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos);
+		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos, speedCoef);
 
 		m_TransportHitRegistered = false;
 		
@@ -1037,7 +1040,7 @@ class DayZPlayerImplement extends DayZPlayer
 	{
 		super.EEHitByRemote(damageType, source, component, dmgZone, ammo, modelPos);
 		
-		Print("DayZPlayerImplement : EEHitByRemote");
+		//Print("DayZPlayerImplement : EEHitByRemote");
 	}
 
 	//-------------------------------------------------------------
@@ -1561,10 +1564,43 @@ class DayZPlayerImplement extends DayZPlayer
 	int m_LastBackSoundTime;
 	int m_LastBackSoundTime2;
 	float m_SoundOffset;
+
+
+	//-------------------------------------------------------------
+	//!
+	//! ModOverrides
+	//! 
+	// these functions are for modded overide in script command mods 
+
+	bool	ModCommandHandlerBefore(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
+	{
+		return false;
+	}
+
+	bool	ModCommandHandlerInside(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
+	{
+		return false;
+	}
+	
+	bool	ModCommandHandlerAfter(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
+	{
+		return false;
+	}
+
+	//-------------------------------------------------------------
+	//!
+	//! This is main command logic
+	//! 
+
 	
 	//! 
 	override void  CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)
 	{
+		if (ModCommandHandlerBefore(pDt, pCurrentCommandID, pCurrentCommandFinished))
+		{
+			return;
+		}
+	
 		//! handle weapon mode switch
 		HandleADS();
 		
@@ -1573,6 +1609,7 @@ class DayZPlayerImplement extends DayZPlayer
 		{
 			return;
 		}
+
 
 		HumanInputController hic = GetInputController();
 		GetMovementState(m_MovementState);
@@ -1658,6 +1695,15 @@ class DayZPlayerImplement extends DayZPlayer
 			return;
 		};
 	
+
+		//--------------------------------------------
+		//! debug test script command !PSOVIS
+
+		if (ModCommandHandlerInside(pDt, pCurrentCommandID, pCurrentCommandFinished))
+		{
+			return;
+		}
+		
 
 		//--------------------------------------------
 		// vehicle handling
@@ -1906,7 +1952,17 @@ class DayZPlayerImplement extends DayZPlayer
 				}
 			}
 		}
+
+
+		//!
+		if (ModCommandHandlerAfter(pDt, pCurrentCommandID, pCurrentCommandFinished))
+		{
+			return;
+		}
 	}
+
+
+
 
 	void ExitSights ()
 	{

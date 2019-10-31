@@ -44,7 +44,7 @@ class DayZPlayerCameraIronsights extends DayZPlayerCameraBase
 		SetupSightEntities();
 		GetCurrentSightInfo(m_OpticsCamPos, m_OpticsCamDir);
 		m_isEntering = true;
-		m_WeaponSwayModifier = 0.2;
+		m_WeaponSwayModifier = 0.5;
 		
 		m_movementTimeAcc = 0;
 		m_movementAmplitudeX = 1;

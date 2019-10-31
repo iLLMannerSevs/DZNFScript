@@ -16,22 +16,6 @@ class Trap_RabbitSnare extends TrapSpawnBase
 		m_AnimationPhaseUsed = "rabbit_snare_used";
 
 		m_WaterSurfaceForSetup = false;
-
-		m_SurfaceForSetup = new map<string, float>;
-		m_SurfaceForSetup.Set("cp_concrete", 1 );
-		m_SurfaceForSetup.Set("cp_dirt", 1 );
-		m_SurfaceForSetup.Set("cp_broadleaf_dense1", 1 );
-		m_SurfaceForSetup.Set("cp_broadleaf_dense2", 1 );
-		m_SurfaceForSetup.Set("cp_broadleaf_sparse1", 1 );
-		m_SurfaceForSetup.Set("cp_broadleaf_sparse2", 1 );
-		m_SurfaceForSetup.Set("cp_conifer_common1", 1 );
-		m_SurfaceForSetup.Set("cp_conifer_common2", 1 );
-		m_SurfaceForSetup.Set("cp_conifer_moss1", 1 );
-		m_SurfaceForSetup.Set("cp_conifer_moss2", 1 );
-		m_SurfaceForSetup.Set("cp_grass", 1 );
-		m_SurfaceForSetup.Set("cp_grass_tall", 1 );
-		m_SurfaceForSetup.Set("cp_gravel", 1 );
-		m_SurfaceForSetup.Set("cp_rock", 1 );
 		
 		m_CatchesPond = new multiMap<string, float>;
 		

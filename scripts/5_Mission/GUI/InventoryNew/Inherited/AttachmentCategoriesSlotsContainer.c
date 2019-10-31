@@ -4,7 +4,7 @@ class AttachmentCategoriesSlotsContainer: Container
 	
 	void AttachmentCategoriesSlotsContainer( LayoutHolder parent, int index )
 	{
-		m_ItemsCont = new SlotsContainer(this);
+		m_ItemsCont = new SlotsContainer(this, null);
 		m_Body.Insert( m_ItemsCont );
 		m_ItemsCont.GetMainWidget().SetUserID( index );
 		

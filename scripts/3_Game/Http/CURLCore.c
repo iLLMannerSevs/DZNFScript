@@ -28,11 +28,12 @@ enum ECURLResultState
 enum ECURLOption
 {
 	ECURLOPT_UNKNOWN,					// invalid option
+
 	ECURLOPT_TIMEOUT_READOPERATION,		// read operation timeout (default 10sec)
 	ECURLOPT_TIMEOUT_CONNECTION,		// connection timeout (default 10sec)
+	// note: limit for timeout is between <3 .. 120> seconds, you cannot exceed this value
 };
 
-// note: limit for timeout is between <3 .. 120> seconds, you cannot exceed this value
 
 
 // -------------------------------------------------------------------------
@@ -110,6 +111,13 @@ class CURLContext
 	*/
 	proto native void reset();
 
+	/**
+	\brief Set Content-Type header (string)
+	
+	default content type is "application/octet-stream"
+	but you can specify whatever you like, for example "application/json" "application/sql" "text/plain"
+	*/
+	proto native void SetHeader( string value );
 };
 
 
@@ -139,7 +147,7 @@ class CURLCore
 
 
 	/**
-	\brief Set specific option
+	\brief Set specific option (integer)
 	*/
 	proto native void SetOption( int option, int value );
 

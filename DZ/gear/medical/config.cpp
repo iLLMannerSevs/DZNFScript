@@ -2,7 +2,7 @@
 //DeRap: gear_medical\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:26 2019 : 'file' last modified on Tue Aug 20 11:02:21 2019
+//'now' is Thu Oct 31 18:21:03 2019 : 'file' last modified on Wed Sep 25 14:08:48 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -43,9 +43,9 @@ class CfgVehicles
 		model = "\dz\gear\medical\Bandage_dressing.p3d";
 		inventorySlot = "MedicalBandage";
 		isMeleeWeapon = 1;
-		varQuantityInit = 2;
+		varQuantityInit = 4;
 		varQuantityMin = 0;
-		varQuantityMax = 2;
+		varQuantityMax = 4;
 		quantityBar = 1;
 		varQuantityDestroyOnMin = 1;
 		rotationFlags = 17;
@@ -60,7 +60,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\bandage.rvmat"}},{0.7,{"DZ\gear\medical\data\bandage.rvmat"}},{0.5,{"DZ\gear\medical\data\bandage_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\bandage_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\bandage_destruct.rvmat"}}};
 				};
 			};
@@ -128,7 +128,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"}},{0.7,{"DZ\gear\medical\data\Loot_DisinfectantSpray.rvmat"}},{0.5,{"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Loot_DisinfectantSpray_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Loot_DisinfectantSpray_destruct.rvmat"}}};
 				};
 			};
@@ -210,7 +210,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\alfa.rvmat"}},{0.7,{"DZ\gear\medical\data\alfa.rvmat"}},{0.5,{"DZ\gear\medical\data\alfa_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\alfa_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\alfa_destruct.rvmat"}}};
 				};
 			};
@@ -267,7 +267,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\water_purification_tablets.rvmat"}},{0.7,{"DZ\gear\medical\data\water_purification_tablets.rvmat"}},{0.5,{"DZ\gear\medical\data\water_purification_tablets_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\water_purification_tablets_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\water_purification_tablets_destruct.rvmat"}}};
 				};
 			};
@@ -325,7 +325,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\charcoal_tablets.rvmat"}},{0.7,{"DZ\gear\medical\data\charcoal_tablets.rvmat"}},{0.5,{"DZ\gear\medical\data\charcoal_tablets_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\charcoal_tablets_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\charcoal_tablets_destruct.rvmat"}}};
 				};
 			};
@@ -383,7 +383,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\painkiller2.rvmat"}},{0.7,{"DZ\gear\medical\data\painkiller2.rvmat"}},{0.5,{"DZ\gear\medical\data\painkiller2_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\painkiller2_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\painkiller2_destruct.rvmat"}}};
 				};
 			};
@@ -440,7 +440,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\vitamin_bottle.rvmat"}},{0.7,{"DZ\gear\medical\data\vitamin_bottle.rvmat"}},{0.5,{"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\vitamin_bottle_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\vitamin_bottle_destruct.rvmat"}}};
 				};
 			};
@@ -500,7 +500,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\tetracycline.rvmat"}},{0.7,{"DZ\gear\medical\data\tetracycline.rvmat"}},{0.5,{"DZ\gear\medical\data\tetracycline_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\tetracycline_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\tetracycline_destruct.rvmat"}}};
 				};
 			};
@@ -558,7 +558,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\epipen.rvmat"}},{0.7,{"DZ\gear\medical\data\epipen.rvmat"}},{0.5,{"DZ\gear\medical\data\epipen_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\epipen_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\epipen_destruct.rvmat"}}};
 				};
 			};
@@ -579,7 +579,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Morphine.rvmat"}},{0.7,{"DZ\gear\medical\data\Morphine.rvmat"}},{0.5,{"DZ\gear\medical\data\Morphine_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Morphine_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Morphine_destruct.rvmat"}}};
 				};
 			};
@@ -624,7 +624,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.7,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.5,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Syringe_destruct.rvmat"}}};
 				};
 			};
@@ -674,7 +674,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.7,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.5,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Syringe_destruct.rvmat"}}};
 				};
 			};
@@ -709,6 +709,7 @@ class CfgVehicles
 		model = "\dz\gear\medical\syringe_Full.p3d";
 		rotationFlags = 17;
 		weight = 110;
+		itemSize[] = {1,2};
 		stackedUnit = "ml";
 		quantityBar = 1;
 		varQuantityInit = 20;
@@ -716,7 +717,6 @@ class CfgVehicles
 		varQuantityMax = 20;
 		varLiquidTypeInit = 4;
 		liquidContainerType = "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256";
-		itemSize[] = {1,2};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\dz\gear\medical\data\SyringeFluid_Blood_CO.paa"};
 		class DamageSystem
@@ -725,7 +725,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.7,{"DZ\gear\medical\data\Syringe.rvmat"}},{0.5,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Syringe_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Syringe_destruct.rvmat"}}};
 				};
 			};
@@ -766,7 +766,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\InjectionVial.rvmat"}},{0.7,{"DZ\gear\medical\data\InjectionVial.rvmat"}},{0.5,{"DZ\gear\medical\data\InjectionVial_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\InjectionVial_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\InjectionVial_destruct.rvmat"}}};
 				};
 			};
@@ -799,7 +799,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Saline_Bag.rvmat"}},{0.7,{"DZ\gear\medical\data\Saline_Bag.rvmat"}},{0.5,{"DZ\gear\medical\data\Saline_Bag_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Saline_Bag_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Saline_Bag_destruct.rvmat"}}};
 				};
 			};
@@ -862,7 +862,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\start_kit.rvmat"}},{0.7,{"DZ\gear\medical\data\start_kit.rvmat"}},{0.5,{"DZ\gear\medical\data\start_kit_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\start_kit_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\start_kit_destruct.rvmat"}}};
 				};
 			};
@@ -917,7 +917,7 @@ class CfgVehicles
 		model = "\dz\gear\medical\TransfusionKit.p3d";
 		rotationFlags = 17;
 		itemSize[] = {2,2};
-		weight = 360;
+		weight = 200;
 		isMeleeWeapon = 1;
 		class DamageSystem
 		{
@@ -925,7 +925,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\transfusion_kit.rvmat"}},{0.7,{"DZ\gear\medical\data\transfusion_kit.rvmat"}},{0.5,{"DZ\gear\medical\data\transfusion_kit_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\transfusion_kit_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\transfusion_kit_destruct.rvmat"}}};
 				};
 			};
@@ -996,7 +996,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\BloodBag_Sealed.rvmat"}},{0.7,{"DZ\gear\medical\data\BloodBag_Sealed.rvmat"}},{0.5,{"DZ\gear\medical\data\BloodBag_Sealed_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\BloodBag_Sealed_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\BloodBag_Sealed_destruct.rvmat"}}};
 				};
 			};
@@ -1135,7 +1135,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\BloodBag_Full.rvmat"}},{0.7,{"DZ\gear\medical\data\BloodBag_Full.rvmat"}},{0.5,{"DZ\gear\medical\data\BloodBag_Full_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\BloodBag_Full_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\BloodBag_Full_destruct.rvmat"}}};
 				};
 			};
@@ -1197,7 +1197,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 15;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\BloodTest.rvmat"}},{0.7,{"DZ\gear\medical\data\BloodTest.rvmat"}},{0.5,{"DZ\gear\medical\data\BloodTest_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\BloodTest_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\BloodTest_destruct.rvmat"}}};
 				};
 			};
@@ -1260,7 +1260,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\improvised_fixture.rvmat"}},{0.7,{"DZ\gear\medical\data\improvised_fixture.rvmat"}},{0.5,{"DZ\gear\medical\data\improvised_fixture_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\improvised_fixture_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\improvised_fixture_destruct.rvmat"}}};
 				};
 			};
@@ -1309,7 +1309,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 15;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\med_tmeter.rvmat"}},{0.7,{"DZ\gear\medical\data\med_tmeter.rvmat"}},{0.5,{"DZ\gear\medical\data\med_tmeter_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\med_tmeter_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\med_tmeter_destruct.rvmat"}}};
 				};
 			};
@@ -1398,7 +1398,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 25;
 					healthLevels[] = {{1.0,{"DZ\gear\medical\data\Pack_of_cigs.rvmat"}},{0.7,{"DZ\gear\medical\data\Pack_of_cigs.rvmat"}},{0.5,{"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"}},{0.3,{"DZ\gear\medical\data\Pack_of_cigs_damage.rvmat"}},{0.0,{"DZ\gear\medical\data\Pack_of_cigs_destruct.rvmat"}}};
 				};
 			};

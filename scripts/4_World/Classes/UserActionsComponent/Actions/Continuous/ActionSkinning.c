@@ -111,7 +111,7 @@ class ActionSkinning: ActionContinuousBase
 		{
 			GetGame().ObjectDelete(body); // Temporal deletion of the body
 		}
-		
+
 		// clutter cutter removed due to issues with audio it causes when players steps on it.
 		//Object cutter = GetGame().CreateObject( "ClutterCutter2x2", body_pos, false ); // clutter cutter to free space on ground for organs.
 		
@@ -133,11 +133,28 @@ class ActionSkinning: ActionContinuousBase
 			{
 				// Spawning items in action_data.m_Player's inventory
 				int item_count = g_Game.ConfigGetInt( cfg_skinning_organ_class + "count" );
-				
+
+				array<string> itemZones = new array<string>;
+				array<float> itemCount = new array<float>;
+				float zoneDmg = 0;
+
+				GetGame().ConfigGetTextArray( cfg_skinning_organ_class + "itemZones", itemZones);
+				GetGame().ConfigGetFloatArray( cfg_skinning_organ_class + "countByZone", itemCount);
+
+				if ( itemCount.Count() > 0 )
+					item_count = 0;
+
+				for ( int z = 0; z < itemZones.Count(); z++ )
+				{
+					zoneDmg = targetObject.GetHealth01(itemZones[z], "Health");
+					zoneDmg *= itemCount[z]; //just re-using variable
+					item_count += Math.Floor( zoneDmg ) ;
+				}
+
 				for ( int i2 = 0; i2 < item_count; i2++ )
 				{
 					ItemBase spawn_result = CreateOrgan( action_data.m_Player, body_pos, item_to_spawn, cfg_skinning_organ_class, action_data.m_MainItem );
-					action_data.m_MainItem.DecreaseHealth(0.1); // wear out
+					action_data.m_MainItem.DecreaseHealth("","",UADamageApplied.SKINNING); // wear out
 				}
 			}
 		}	

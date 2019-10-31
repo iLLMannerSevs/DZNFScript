@@ -2,7 +2,7 @@
 //DeRap: characters_masks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:49 2019 : 'file' last modified on Tue Jul 23 15:30:18 2019
+//'now' is Thu Oct 31 18:20:26 2019 : 'file' last modified on Mon Oct 07 17:55:29 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -51,6 +51,17 @@ class CfgVehicles
 		headSelectionsToHide[] = {"Clipping_Gasmask"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"\dz\characters\masks\data\GasMask_co.paa","\dz\characters\masks\data\GasMask_co.paa","\dz\characters\masks\data\GasMask_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\characters\masks\data\GasMask.rvmat"}},{0.7,{"DZ\characters\masks\data\GasMask.rvmat"}},{0.5,{"DZ\characters\masks\data\GasMask_damage.rvmat"}},{0.3,{"DZ\characters\masks\data\GasMask_damage.rvmat"}},{0.0,{"DZ\characters\masks\data\GasMask_destruct.rvmat"}}};
+				};
+			};
+		};
 		class ClothingTypes
 		{
 			male = "\DZ\characters\masks\GasMask_m.p3d";
@@ -399,7 +410,7 @@ class CfgVehicles
 		descriptionShort = "placeholder description";
 		model = "\DZ\characters\masks\GP5GasMask_filter.p3d";
 		inventorySlot = "GasMaskFilter";
-		rotationFlags = 1;
+		rotationFlags = 2;
 		weight = 200;
 		itemSize[] = {2,2};
 		absorbency = 0;
@@ -609,7 +620,7 @@ class CfgVehicles
 		model = "\DZ\characters\masks\Surgical_mask_g.p3d";
 		inventorySlot = "Mask";
 		itemInfo[] = {"Clothing","Mask"};
-		rotationFlags = 16;
+		rotationFlags = 2;
 		weight = 340;
 		itemSize[] = {3,1};
 		absorbency = 0.9;
@@ -731,57 +742,6 @@ class CfgVehicles
 				class drop
 				{
 					soundset = "DarkMotoHelmet_drop_SoundSet";
-					id = 898;
-				};
-			};
-		};
-	};
-	class ClippingDebug_Mask: Clothing
-	{
-		scope = 2;
-		displayName = "@-*.#?$!";
-		descriptionShort = "...";
-		model = "\DZ\gear\consumables\Rags.p3d";
-		inventorySlot = "Mask";
-		itemInfo[] = {"Clothing","Mask"};
-		weight = 150;
-		itemSize[] = {1,3};
-		ragQuantity = 1;
-		absorbency = 0.98;
-		heatIsolation = 0;
-		repairableWithKits[] = {5,2};
-		repairCosts[] = {30.0,25.0};
-		headSelectionsToHide[] = {"Clipping_Gasmask"};
-		hiddenSelections[] = {"camoMale","camoFemale"};
-		hiddenSelectionsTextures[] = {"DZ\characters\masks\data\mouth_rags_CO.paa","DZ\characters\masks\data\mouth_rags_CO.paa"};
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\characters\masks\data\mouth_rags.rvmat"}},{0.7,{"DZ\characters\masks\data\mouth_rags.rvmat"}},{0.5,{"DZ\characters\masks\data\mouth_rags_damage.rvmat"}},{0.3,{"DZ\characters\masks\data\mouth_rags_damage.rvmat"}},{0.0,{"DZ\characters\masks\data\mouth_rags_destruct.rvmat"}}};
-				};
-			};
-		};
-		class ClothingTypes
-		{
-			male = "\DZ\characters\masks\mouth_rags.p3d";
-			female = "\DZ\characters\masks\mouth_rags.p3d";
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem
-				{
-					soundSet = "Shirt_pickup_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "Shirt_drop_SoundSet";
 					id = 898;
 				};
 			};

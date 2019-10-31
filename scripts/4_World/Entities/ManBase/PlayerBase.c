@@ -9,6 +9,7 @@ class PlayerBase extends ManBase
 	private bool					m_HasBloodTypeVisible;
 	private bool					m_LiquidTendencyDrain;
 	private bool					m_HasBloodyHandsVisible;
+	protected bool 					m_PlayerLoaded;
 	protected int 					m_LocalRefreshAnimStateIdx;
 	protected int 					m_RefreshAnimStateIdx;
 	private int 					m_StoreLoadVersion;
@@ -104,8 +105,8 @@ class PlayerBase extends ManBase
 	EPulseType						m_PulseType;
 	PlayerBase						m_CheckPulseLastTarget;
 	int 							m_ForceInjuryAnimMask;
-	bool 							m_bProcessOpticsPreload;
-	string 							m_sOpticsType;
+	//bool 							m_bProcessOpticsPreload;
+	//string 						m_sOpticsType;
 	bool 							m_HideHairAnimated;
 	string 							m_DecayedTexture;
 	
@@ -182,6 +183,8 @@ class PlayerBase extends ManBase
 	
 	//! melee stats
 	protected bool 					m_MeleeDebug;
+	//protected bool 					m_CheckMeleeItem;
+	protected ItemBase 				m_CheckMeleeItem;
 	
 	//! user actions last message
 	protected string 				m_UALastMessage;
@@ -215,6 +218,7 @@ class PlayerBase extends ManBase
 		m_LifespanLevelLocal = -1;
 		m_CorpseStateLocal = -1;
 		m_HasBloodyHandsVisible = false;
+		m_PlayerLoaded = false;
 		m_PlayerSelected = false;
 		m_LiquidTendencyDrain = false;
 		m_UAParamMessage = new Param1<string>("");
@@ -274,6 +278,7 @@ class PlayerBase extends ManBase
 			m_StanceIndicator = new StanceIndicator(this);
 			m_ActionsInitialize = false;
 			ClientData.AddPlayerBase( this );
+			//PPEffects.SetDeathDarkening(1);
 		}
 
 		m_ActionManager = NULL;
@@ -366,6 +371,7 @@ class PlayerBase extends ManBase
 		}*/
 		m_DecayedTexture = ConfigGetString("decayedTexture");
 		m_FliesIndex = -1;
+		
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(this.OnPlayerLoaded);
 	}
 	
@@ -552,7 +558,7 @@ class PlayerBase extends ManBase
 		super.EEKilled( killer );
 	}
 
-	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
 		/*
 		Print("ProjectileDebugging | Damage Health: " + damageResult.GetDamage(dmgZone,"Health") + " | Zone: " + dmgZone);
@@ -565,7 +571,7 @@ class PlayerBase extends ManBase
 			m_AdminLog.PlayerHitBy( damageResult, damageType, this, source, component, dmgZone, ammo );
 		}
 		
-		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos);
+		super.EEHitBy(damageResult, damageType, source, component, dmgZone, ammo, modelPos, speedCoef);
 		
 		if( damageResult != null && damageResult.GetDamage(dmgZone, "Shock") > 0)
 		{
@@ -607,6 +613,17 @@ class PlayerBase extends ManBase
 		
 		//analytics
 		GetGame().GetAnalyticsServer().OnEntityHit( source, this );
+	}
+	
+	override void EEDelete(EntityAI parent)
+	{
+		if( m_FliesEff )
+			m_FliesEff.Stop();
+		if( m_SoundFliesEffect )
+		{
+			SEffectManager.DestroySound(m_SoundFliesEffect);
+			m_SoundFliesEffect = null;
+		}
 	}
 	
 	/** Call only on client or single player PlayerBase
@@ -893,6 +910,7 @@ class PlayerBase extends ManBase
 		//AddAction(ActionDrinkPond);//OK
 		AddAction(ActionDrinkPondContinuous);
 		AddAction(ActionIgniteFireplaceByAir);
+		AddAction(ActionMineBushByHand);
 		
 		AddAction(ActionUngagSelf);
 		AddAction(ActionLockedDoors);
@@ -900,6 +918,8 @@ class PlayerBase extends ManBase
 		AddAction(ActionGetOutTransport);
 		//AddAction(ActionSwitchLights);
 		AddAction(ActionTakeMaterialToHands);
+		
+		AddAction(ActionPullBodyFromTransport);
 		
 		/*
 		AddAction(AT_VEH_ENGINE_START);// TODO -> target
@@ -1246,12 +1266,15 @@ class PlayerBase extends ManBase
 	
 	override bool CanReceiveAttachment (EntityAI attachment, int slotId)
 	{
-		//temporary hack
-		if( GreatHelm.Cast(GetInventory().FindAttachment(InventorySlots.HEADGEAR)) && (slotId == InventorySlots.MASK || slotId == InventorySlots.EYEWEAR) )
+		ClothingBase headgear = ClothingBase.Cast(GetInventory().FindAttachment(InventorySlots.HEADGEAR));
+		ClothingBase mask = ClothingBase.Cast(GetInventory().FindAttachment(InventorySlots.MASK));
+		ClothingBase eyewear = ClothingBase.Cast(GetInventory().FindAttachment(InventorySlots.EYEWEAR));
+		
+		if( headgear && ((headgear.ConfigGetBool("noMask") && slotId == InventorySlots.MASK) || (headgear.ConfigGetBool("noEyewear") && slotId == InventorySlots.EYEWEAR)) )
 		{
 			return false;
 		}
-		if( GreatHelm.Cast(attachment) && (GetInventory().FindAttachment(InventorySlots.MASK) || GetInventory().FindAttachment(InventorySlots.EYEWEAR)) )
+		if( ClothingBase.Cast(attachment) && ((attachment.ConfigGetBool("noMask") && mask) || (attachment.ConfigGetBool("noEyewear") && eyewear)) )
 		{
 			return false;
 		}
@@ -1502,6 +1525,7 @@ class PlayerBase extends ManBase
 	//---------------------------------------------------------------------------------------------------------------------------
 	void OnPlayerLoaded()
 	{
+		//Print("---OnPlayerLoaded--- | timestamp: " + GetSimulationTimeStamp());
 		InitEditor();
 		
 		if ( GetGame().IsMultiplayer() || GetGame().IsServer() )
@@ -1512,6 +1536,7 @@ class PlayerBase extends ManBase
 		if ( m_Hud )
 		{
 			m_Hud.UpdateBloodName();
+			PPEffects.SetDeathDarkening(0);
 		}
 		
 		int slot_id = InventorySlots.GetSlotIdFromString("Head");
@@ -1519,6 +1544,8 @@ class PlayerBase extends ManBase
 		CheckHairClippingOnCharacterLoad();
 		UpdateHairSelectionVisibility();
 		PreloadDecayTexture();
+		
+		m_PlayerLoaded = true;
 	}
 
 	// --------------------------------------------------
@@ -1719,7 +1746,10 @@ class PlayerBase extends ManBase
 		if( m_FliesEff )
 			m_FliesEff.Stop();
 		if( m_SoundFliesEffect )
+		{
 			SEffectManager.DestroySound(m_SoundFliesEffect);
+			m_SoundFliesEffect = null;
+		}
 	}
 
 	void OnCameraChanged(DayZPlayerCameraBase new_camera)
@@ -1990,17 +2020,17 @@ class PlayerBase extends ManBase
 			w.ResetWeaponAnimState();
 		}
 		
-		SetOpticsPreload(true,item);
+		//SetOpticsPreload(true,item);
 	}
 	
 	override void EEItemOutOfHands(EntityAI item)
 	{
 		super.EEItemOutOfHands( item );
 		
-		SetOpticsPreload(false,item);
+		//SetOpticsPreload(false,item);
 	}
 	
-	void SetOpticsPreload(bool state, EntityAI item)
+	/*void SetOpticsPreload(bool state, EntityAI item)
 	{
 		m_bProcessOpticsPreload = state;
 		if (state)
@@ -2033,16 +2063,16 @@ class PlayerBase extends ManBase
 		{
 			m_sOpticsType = "";
 		}
-	}
+	}*/
 	
-	void ProcessOpticsPreload()
+	/*void ProcessOpticsPreload()
 	{
 		if (m_bProcessOpticsPreload && m_sOpticsType != "")
 		{
 			bool boo = GetGame().PreloadObject(m_sOpticsType,0.1);
 			//Print("attached optics found " + m_sOpticsType + " | " + boo);
 		}
-	}
+	}*/
 	
 	override void CommandHandler(float pDt, int pCurrentCommandID, bool pCurrentCommandFinished)	
 	{
@@ -2233,7 +2263,12 @@ class PlayerBase extends ManBase
 		if (m_Bot)
 			m_Bot.OnUpdate(pDt);
 #endif
-		
+		if (m_CheckMeleeItem && (!GetGame().IsMultiplayer() || GetGame().IsClient()) && ScriptInputUserData.CanStoreInputUserData() )
+		{
+			bool result = CheckMeleeItemDamage(m_CheckMeleeItem);
+			//if (result)
+				SetCheckMeleeItem();
+		}
 		OnCommandHandlerTick(pDt, pCurrentCommandID);
 	}
 	
@@ -2262,7 +2297,7 @@ class PlayerBase extends ManBase
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
 			if ( !GetGame().GetUIManager().GetMenu() )
-				GetGame().GetMission().PlayerControlEnable();
+				GetGame().GetMission().PlayerControlEnable(true);
 			if (GetGame().GetUIManager().IsMenuOpen(MENU_MAP))
 				GetGame().GetUIManager().FindMenu(MENU_MAP).Close();
 		}
@@ -2277,6 +2312,11 @@ class PlayerBase extends ManBase
 	bool IsMapOpen()
 	{
 		return m_MapOpen;
+	}
+	
+	void SetCheckMeleeItem(ItemBase item = null)
+	{
+		m_CheckMeleeItem = item;
 	}
 	
 	/*
@@ -2457,7 +2497,7 @@ class PlayerBase extends ManBase
 	void OnRestrainStart()
 	{
 		CloseInventoryMenu();
-		GetGame().GetMission().PlayerControlEnable();
+		GetGame().GetMission().PlayerControlEnable(true);
 	}
 	
 	void ShockRefill(float pDt)
@@ -2485,7 +2525,7 @@ class PlayerBase extends ManBase
 		if ( GetItemInHands() ) GetItemAccessor().HideItemInHands(true);
 		if( GetInventory() ) GetInventory().LockInventory(LOCK_FROM_SCRIPT);
 		CloseInventoryMenu();
-		GetGame().GetMission().PlayerControlEnable();
+		GetGame().GetMission().PlayerControlEnable(false);
 		GetDayZGame().GetBacklit().OnSwimmingStart();
 		
 		GetWeaponManager().DelayedRefreshAnimationState(10);
@@ -2542,13 +2582,14 @@ class PlayerBase extends ManBase
 	
 	override void OnCommandClimbFinish()
 	{
-		if( GetInventory() ) GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
+		if ( GetInventory() ) GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
 		
 		GetWeaponManager().RefreshAnimationState();
 	}
 	
 	override void OnCommandVehicleStart()
 	{
+		if ( GetInventory() ) GetInventory().LockInventory(LOCK_FROM_SCRIPT);
 		ItemBase itemInHand = GetItemInHands();
 		EntityAI itemOnHead = FindAttachmentBySlotName("Headgear");
 
@@ -2579,6 +2620,7 @@ class PlayerBase extends ManBase
 	
 	override void OnCommandVehicleFinish()
 	{
+		if ( GetInventory() ) GetInventory().UnlockInventory(LOCK_FROM_SCRIPT);
 		if ( GetItemInHands() )
 		{
 			GetItemAccessor().HideItemInHands(false);
@@ -2667,7 +2709,7 @@ class PlayerBase extends ManBase
 		if ( GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT )
 		{
 			m_Hud.Update( timeSlice );
-			ProcessOpticsPreload();
+			//ProcessOpticsPreload();
 		}
 	}
 
@@ -2792,6 +2834,11 @@ class PlayerBase extends ManBase
 		{
 			return false;
 		}
+		
+		/*if (IsUnderRoofJumpCheck())
+		{
+			return false;
+		}*/
 
 		return super.CanJump();
 	}
@@ -2800,6 +2847,30 @@ class PlayerBase extends ManBase
 	{
 		return m_JumpClimb.m_bIsJumpInProgress;
 	}
+	
+	/*bool IsUnderRoofJumpCheck() 
+	{
+		vector start = GetPosition();
+		float size;
+		vector to;
+		vector contact_pos;
+		vector contact_dir;
+		int contact_component;
+		if (IsPlayerInStance(DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_RAISEDERECT))
+		{
+			start[1] = start[1] + 1.7;
+		}
+		else
+		{
+			start[1] = start[1] + 1.7;
+		}
+		
+		size = 0.5;
+		to = start;
+		to[1] = to[1] + size;
+	
+		return DayZPhysics.RaycastRV( start, to, contact_pos, contact_dir, contact_component, NULL, NULL, this );
+	}*/
 	
 	void RequestHandAnimationStateRefresh()
 	{
@@ -2915,9 +2986,9 @@ class PlayerBase extends ManBase
 				}
 				
 				if(Reserved_Item_il)
-					inHandEntityFSwapDst.CopyLocationFrom(Reserved_Item_il);
+					inHandEntityFSwapDst.CopyLocationFrom(Reserved_Item_il, true);
 				
-				if(GameInventory.CanForceSwapEntities( quickBarEntity, inHandEntity, inHandEntityFSwapDst ))
+				if(GameInventory.CanForceSwapEntities( quickBarEntity, null, inHandEntity, inHandEntityFSwapDst ))
 				{
 					syncDebugPrint("[QB] Swap - PredictiveForceSwapEntities HND=" + Object.GetDebugName(inHandEntity) +  " QB=" + Object.GetDebugName(quickBarEntity) + " fswap_dst=" + InventoryLocation.DumpToStringNullSafe(inHandEntityFSwapDst));
 					PredictiveForceSwapEntities( quickBarEntity, inHandEntity, inHandEntityFSwapDst );
@@ -3260,6 +3331,7 @@ class PlayerBase extends ManBase
 	
 	override void UpdateWeight()
 	{
+		//Print("CalculatePlayerLoad | timestamp: " + GetSimulationTimeStamp());
 		EntityAI attachment;
 		ItemBase itemHands;
 		
@@ -3613,6 +3685,28 @@ class PlayerBase extends ManBase
 		m_IsFighting = false;
 	}
 	
+	bool CheckMeleeItemDamage(ItemBase item)
+	{
+		//on-hit drop of melee weapons
+		//bayonets & buttstocks
+		if (item && item.GetHierarchyParent() && item.GetHierarchyParent().IsWeapon() && item.IsRuined()/*&& item.FindAttachmentBySlotName()*/)
+		{
+			PlayAttachmentDropSound();
+			return DropItem(item);
+		}
+		//handheld items themselves
+		if (item && item == GetItemInHands() && item.IsRuined())
+		{
+			return PredictiveDropEntity(item);
+		}
+		return false;
+	}
+	
+	void PlayAttachmentDropSound()
+	{
+		//TODO
+	}
+	
 	// -------------------------------------------------------------------------
 	override void RPC(int rpc_type, array<ref Param> params, bool guaranteed, PlayerIdentity recipient = NULL)
 	{
@@ -3825,6 +3919,26 @@ class PlayerBase extends ManBase
 			break;
 			*/
 		}
+		
+		//woodcutting
+		switch(rpc_type)
+		{
+			case PlantType.TREE_HARD:
+				SoundHardTreeFallingPlay();
+			break;
+			
+			case PlantType.TREE_SOFT:
+				SoundSoftTreeFallingPlay();
+			break;
+			
+			case PlantType.BUSH_HARD:
+				SoundHardBushFallingPlay();
+			break;
+			
+			case PlantType.BUSH_SOFT:
+				SoundSoftBushFallingPlay();
+			break;
+		}
 #ifdef DEVELOPER
 			PluginDeveloper module_rc = PluginDeveloper.Cast( GetPlugin(PluginDeveloper) );
 			if(module_rc) module_rc.OnRPC(this, rpc_type, ctx);
@@ -3973,7 +4087,7 @@ class PlayerBase extends ManBase
 			}
 			
 			if( !GetGame().GetUIManager().GetMenu() )
-				GetGame().GetMission().PlayerControlEnable();
+				GetGame().GetMission().PlayerControlEnable(true);
 			
 			m_PresenceNotifier = PluginPresenceNotifier.Cast( GetPlugin( PluginPresenceNotifier ) );
 			m_PresenceNotifier.Init(this);
@@ -4011,17 +4125,23 @@ class PlayerBase extends ManBase
 	
 	void CheckForGag()
 	{
-		MouthRag attachment;
-		Class.CastTo(attachment, GetInventory().FindAttachment(InventorySlots.MASK));
-		if ( attachment )
+		Clothing item;
+		Class.CastTo(item, GetInventory().FindAttachment(InventorySlots.MASK));
+		if ( !item )
 		{
-			attachment.MutePlayerByGag(this,true);
+			Class.CastTo(item, GetInventory().FindAttachment(InventorySlots.HEADGEAR));
+		}
+		
+		if ( item && item.IsObstructingVoice() )
+		{
+			item.MutePlayer(this,true);
 		}
 		else 
 		{
 			if (( GetGame().IsServer() && GetGame().IsMultiplayer() ) || ( GetGame().GetPlayer() == this ))
 			{
 				GetGame().SetVoiceEffect(this, VoiceEffectMumbling, false);
+				GetGame().SetVoiceEffect(this, VoiceEffectObstruction, false);
 			}
 		}
 	}
@@ -4492,7 +4612,7 @@ class PlayerBase extends ManBase
 			if( menu && ( menu.GetID() == MENU_INVENTORY || menu.GetID() == MENU_INSPECT ) )
 			{
 				GetGame().GetUIManager().CloseAll();
-				GetGame().GetMission().PlayerControlEnable();
+				GetGame().GetMission().PlayerControlEnable(true);
 			}
 		}
 	}
@@ -6203,15 +6323,15 @@ class PlayerBase extends ManBase
 	
 	void HideHairSelections(ItemBase item, bool state)
 	{
-		if ( !item || !item.m_HeadHidingSelections || !m_CharactersHead)
+		if ( !item || !item.GetHeadHidingSelection() || !m_CharactersHead)
 			return;
 		
 		string str
 		int idx;
 		
-		for (int i = 0; i < item.m_HeadHidingSelections.Count(); i++)
+		for (int i = 0; i < item.GetHeadHidingSelection().Count(); i++)
 		{
-			str = item.m_HeadHidingSelections.Get(i);
+			str = item.GetHeadHidingSelection().Get(i);
 			idx = m_CharactersHead.m_HeadHairSelectionArray.Find(str);//selection_array.Find(str);
 			SetHairLevelToHide(idx,state);
 		}
@@ -6403,7 +6523,8 @@ class PlayerBase extends ManBase
 					m_FliesIndex = SEffectManager.PlayOnObject(m_FliesEff,this,"0 0.25 0");
 					p = m_FliesEff.GetParticle();
 					AddChild(p, boneIdx);
-					m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
+					if( !m_SoundFliesEffect )
+						m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
 				}
 			break;
 			case PlayerConstants.CORPSE_STATE_DECAYED :
@@ -6417,7 +6538,8 @@ class PlayerBase extends ManBase
 					m_FliesIndex = SEffectManager.PlayOnObject(m_FliesEff,this,"0 0.25 0");
 					p = m_FliesEff.GetParticle();
 					AddChild(p, boneIdx);
-					m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
+					if( !m_SoundFliesEffect )
+						m_SoundFliesEffect = SEffectManager.PlaySoundOnObject("Flies_SoundSet",this,0,0,true);
 				}
 			break;
 			
@@ -6428,7 +6550,10 @@ class PlayerBase extends ManBase
 					SEffectManager.Stop(m_FliesIndex);
 				}
 				if ( m_SoundFliesEffect )
+				{
 					SEffectManager.DestroySound(m_SoundFliesEffect);
+					m_SoundFliesEffect = null;
+				}
 		}
 	}
 	

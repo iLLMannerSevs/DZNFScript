@@ -23,11 +23,14 @@ class Weapon_Base extends Weapon
 	protected bool m_LiftWeapon = false;
 	protected bool m_BayonetAttached;
 	protected bool m_ButtstockAttached;
+	protected int m_BayonetAttachmentIdx;
+	protected int m_ButtstockAttachmentIdx;
 	protected int m_weaponAnimState = -1; /// animation state the weapon is in, -1 == uninitialized
 	protected int m_magazineSimpleSelectionIndex = -1;
 	protected int m_weaponHideBarrelIdx = -1; //index in simpleHiddenSelections cfg array
 	protected float m_DmgPerShot;
 	protected float m_WeaponLength;
+	ref array<int> m_bulletSelectionIndex = new array<int>;
 	ref array<float> m_DOFProperties = new array<float>;
 	ref array<float> m_ChanceToJam = new array<float>;
 	protected float m_ChanceToJamSync = 0;
@@ -39,6 +42,8 @@ class Weapon_Base extends Weapon
 		m_DmgPerShot 		= ConfigGetFloat("damagePerShot");
 		m_BayonetAttached 	= false;
 		m_ButtstockAttached = false;
+		m_BayonetAttachmentIdx = -1;
+		m_ButtstockAttachmentIdx = -1;
 		
 		if ( ConfigIsExisting("simpleHiddenSelections") )
 		{
@@ -46,6 +51,25 @@ class Weapon_Base extends Weapon
 			ConfigGetTextArray("simpleHiddenSelections",selectionNames);
 			m_weaponHideBarrelIdx = selectionNames.Find("hide_barrel");
 			m_magazineSimpleSelectionIndex = selectionNames.Find("magazine");
+			
+			int bulletIndex = selectionNames.Find("bullet");
+			if( bulletIndex != -1 )
+			{ 
+				m_bulletSelectionIndex.Insert(bulletIndex);
+			
+				for(int i = 2; i < 100; i++)
+				{
+					bulletIndex = selectionNames.Find(string.Format("bullet%1",i));
+					if(bulletIndex != -1)
+					{
+						m_bulletSelectionIndex.Insert(bulletIndex);
+					}
+					else
+					{
+						break;
+					}
+				}
+			}
 		}
 		
 		InitWeaponLength();
@@ -169,12 +193,12 @@ class Weapon_Base extends Weapon
 		if ( !GetGame().IsServer()  ||  !GetGame().IsMultiplayer() )
 		{
 			// Muzzle flash & overheating effects
-			ItemBase.PlayFireParticles(this, ammoType, this, suppressor, "CfgWeapons" );
+			ItemBase.PlayFireParticles(this, muzzleType, ammoType, this, suppressor, "CfgWeapons" );
 			IncreaseOverheating(this, ammoType, this, suppressor, "CfgWeapons");
 			
 			if (suppressor)
 			{
-				ItemBase.PlayFireParticles(this, ammoType, suppressor, NULL, "CfgVehicles" );
+				ItemBase.PlayFireParticles(this, muzzleType, ammoType, suppressor, NULL, "CfgVehicles" );
 				suppressor.IncreaseOverheating(this, ammoType, this, suppressor, "CfgVehicles");
 			}
 		}
@@ -203,6 +227,26 @@ class Weapon_Base extends Weapon
 				return true;
 		}
 		return false;
+	}
+	
+	void ShowBullet(int muzzleIndex)
+	{
+		if( m_bulletSelectionIndex.Count() > muzzleIndex )
+		{
+			SetSimpleHiddenSelectionState(m_bulletSelectionIndex[muzzleIndex],1);
+		}
+		else
+			SelectionBulletShow();
+	}
+	
+	void HideBullet(int muzzleIndex)
+	{
+		if( m_bulletSelectionIndex.Count() > muzzleIndex )
+		{
+			SetSimpleHiddenSelectionState(m_bulletSelectionIndex[muzzleIndex],0);
+		}
+		else
+			SelectionBulletHide();
 	}
 	
 	bool IsJammed () { return m_isJammed; }
@@ -437,7 +481,7 @@ class Weapon_Base extends Weapon
 
 		GetPropertyModifierObject().UpdateModifiers();
 		
-		if (ItemOptics.Cast(item))
+		/*if (ItemOptics.Cast(item))
 		{
 			PlayerBase player = PlayerBase.Cast( GetHierarchyRootPlayer() );
 			if( player )
@@ -447,7 +491,7 @@ class Weapon_Base extends Weapon
 					player.SetOpticsPreload(true,item);
 				}
 			}
-		}
+		}*/
 	}
 
 	override void EEItemDetached (EntityAI item, string slot_name)
@@ -456,7 +500,7 @@ class Weapon_Base extends Weapon
 
 		GetPropertyModifierObject().UpdateModifiers();
 		
-		if (ItemOptics.Cast(item))
+		/*if (ItemOptics.Cast(item))
 		{
 			PlayerBase player = PlayerBase.Cast( GetHierarchyRootPlayer() );
 			if( player )
@@ -466,7 +510,7 @@ class Weapon_Base extends Weapon
 					player.SetOpticsPreload(false,item);
 				}
 			}
-		}
+		}*/
 	}
 	
 	override void OnItemLocationChanged(EntityAI old_owner, EntityAI new_owner)
@@ -738,9 +782,10 @@ class Weapon_Base extends Weapon
 	}
 	
 	//! attachment helpers (firearm melee)
-	override void SetBayonetAttached(bool pState)
+	override void SetBayonetAttached(bool pState, int slot_idx = -1)
 	{
 		m_BayonetAttached = pState;
+		m_BayonetAttachmentIdx = slot_idx;
 	}
 	
 	override bool HasBayonetAttached()
@@ -748,14 +793,25 @@ class Weapon_Base extends Weapon
 		return m_BayonetAttached;
 	}
 	
-	override void SetButtstockAttached(bool pState)
+	override int GetBayonetAttachmentIdx()
+	{
+		return m_BayonetAttachmentIdx;
+	}
+	
+	override void SetButtstockAttached(bool pState, int slot_idx = -1)
 	{
 		m_ButtstockAttached = pState;
+		m_ButtstockAttachmentIdx = slot_idx;
 	}
 
 	override bool HasButtstockAttached()
 	{
 		return m_ButtstockAttached;
+	}
+	
+	override int GetButtstockAttachmentIdx()
+	{
+		return m_ButtstockAttachmentIdx;
 	}
 	
 	void HideWeaponBarrel(bool state)
@@ -784,6 +840,38 @@ class Weapon_Base extends Weapon
 			SetSimpleHiddenSelectionState(m_magazineSimpleSelectionIndex,0);
 		else
 			SelectionMagazineHide();
+	}
+	
+	override EntityAI ProcessMeleeItemDamage(int mode = 0)
+	{
+		EntityAI attachment;
+		
+		switch(mode)
+		{
+			case 0:
+				super.ProcessMeleeItemDamage();
+			break;
+			
+			case 1:
+				attachment = GetInventory().FindAttachment(m_ButtstockAttachmentIdx);
+			break;
+			
+			case 2:
+				attachment = GetInventory().FindAttachment(m_BayonetAttachmentIdx);
+			break;
+			
+			default:
+				super.ProcessMeleeItemDamage();
+			break;
+		}
+		
+		if (attachment)
+		{
+			attachment.ProcessMeleeItemDamage();
+			return attachment;
+		}
+		
+		return this;
 	}
 
 	override void SetActions()

@@ -2,7 +2,7 @@
 //DeRap: weapons_nonlethal\dartgun\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:58 2019 : 'file' last modified on Sat Jul 20 12:02:32 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:06:09 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -51,7 +51,6 @@ class cfgWeapons
 		drySound[] = {"DZ\sounds\weapons\nonlethal\dartgun\Dartgun_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\bows\crossbow_reload",0.05623413,1,30};
 		reloadSound[] = {"dz\sounds\weapons\bows\crossbow_magazine_reload",0.05623413,1,30};
-		lootTag[] = {"Hunting","Civilian"};
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};
 		modes[] = {"Single"};

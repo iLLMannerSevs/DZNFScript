@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\Ruger1022\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:55 2019 : 'file' last modified on Tue Aug 13 08:22:42 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:52:36 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -87,6 +87,7 @@ class cfgWeapons
 		displayName = "$STR_cfgWeapons_Ruger10220";
 		descriptionShort = "$STR_cfgWeapons_Ruger10221";
 		model = "\dz\weapons\firearms\Ruger1022\Ruger1022.p3d";
+		itemSize[] = {9,3};
 		attachments[] = {"weaponWrap","suppressorImpro","weaponOpticsHunting"};
 		hiddenSelectionsTextures[] = {"dz\weapons\firearms\Ruger1022\data\ruger1022_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\firearms\Ruger1022\data\ruger1022.rvmat"};

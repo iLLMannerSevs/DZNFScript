@@ -18,7 +18,7 @@ FrameWidgetClass StartupFrame {
      hexactsize 1
      vexactsize 0
      fixaspect fixwidth
-     imageTexture "{07EC9681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
+     image0 "set:dayz_gui image:DayZLogo"
      mode blend
      "src alpha" 1
      "no wrap" 1

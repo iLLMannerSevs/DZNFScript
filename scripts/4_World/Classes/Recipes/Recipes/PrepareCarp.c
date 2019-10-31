@@ -86,7 +86,7 @@ class PrepareCarp extends RecipeBase
 		m_ResultToInventory[1] = -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
 		m_ResultUseSoftSkills[1] = false;// set 'true' to allow modification of the values by softskills on this result
 		m_ResultReplacesIngredient[1] = 0;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
-		
+/*
 		//result3
 		AddResult("SmallGuts");//add results here
 		
@@ -98,6 +98,7 @@ class PrepareCarp extends RecipeBase
 		m_ResultToInventory[2] = -2;//(value) == -2 spawn result on the ground;(value) == -1 place anywhere in the players inventory, (value) >= 0 means switch position with ingredient number(value)
 		m_ResultUseSoftSkills[2] = false;// set 'true' to allow modification of the values by softskills on this result
 		m_ResultReplacesIngredient[2] = 0;// value == -1 means do nothing; a value >= 0 means this result will transfer item propertiesvariables, attachments etc.. from an ingredient value
+*/
 		//----------------------------------------------------------------------------------------------------------------------
 	}
 

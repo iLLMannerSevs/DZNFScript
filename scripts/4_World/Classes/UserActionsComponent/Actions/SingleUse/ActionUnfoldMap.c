@@ -4,6 +4,8 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 	bool 								m_MapFolding;
 	bool 								m_HasReceivedEvent;
 	bool 								m_CancelCondition;
+	int 								m_InitMovementState;
+	int 								m_FinalMovementState;
 	
 	void ActionUnfoldMapCB()
 	{
@@ -16,7 +18,7 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 	{
 		if (GetGame().IsClient() && !GetGame().GetUIManager().GetMenu())
 		{
-			GetGame().GetMission().PlayerControlEnable();
+			GetGame().GetMission().PlayerControlEnable(true);
 		}
 		
 		if (!m_ActionData || !m_ActionData.m_Player )
@@ -43,7 +45,7 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 	{
 		if (!m_ActionData || !m_ActionData.m_Player)
 			return;
-		
+				
 		if ( ( pOldState == STATE_LOOP_IN && pCurrentState == STATE_LOOP_LOOP ) && !m_HasReceivedEvent )
 		{
 			m_CancelCondition = true;
@@ -51,7 +53,16 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 		
 		if ( ( pOldState == STATE_LOOP_IN && pCurrentState == STATE_LOOP_LOOP ) && m_HasReceivedEvent )
 		{
-			m_CancelCondition = false; 
+			m_FinalMovementState = m_ActionData.m_Player.m_MovementState.m_iStanceIdx;
+			
+			if ( StateCheck() )
+			{
+				m_CancelCondition = false; 
+			}
+			else
+			{
+				m_CancelCondition = true; 
+			}
 		}
 	}
 	
@@ -64,6 +75,7 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 		{
 			case UA_ANIM_EVENT: 
 				m_HasReceivedEvent = true;
+				m_InitMovementState = m_ActionData.m_Player.m_MovementState.m_iStanceIdx;
 				PerformMapChange();
 			break;
 		}
@@ -87,6 +99,9 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 			
 			if(action)
 				action.End(m_ActionData);
+						
+			m_InitMovementState = 0;
+			m_FinalMovementState = 0;
 		}
 	}
 	
@@ -95,7 +110,7 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 		if (m_ActionData.m_Player.IsSwimming() || m_ActionData.m_Player.IsClimbing() || m_ActionData.m_Player.IsFalling() || m_ActionData.m_Player.IsClimbingLadder() || m_ActionData.m_Player.IsUnconscious() || m_ActionData.m_Player.IsRestrained())
 			return;
 		
-		if ( m_CancelCondition ) { return; };
+		if ( m_CancelCondition ) { return; }
 		
 		ItemMap chernomap = ItemMap.Cast(m_ActionData.m_Player.GetItemInHands());
 		if (chernomap && !m_ActionData.m_Player.IsMapOpen() && !m_MapFolding)
@@ -116,6 +131,18 @@ class ActionUnfoldMapCB : HumanCommandActionCallback //ActionSingleUseBaseCB
 			//MiscGameplayFunctions.TurnItemIntoItem(chernomap, closed_map, m_ActionData.m_Player);
 			chernomap.SetMapStateOpen(false,m_ActionData.m_Player);
 			m_MapFolding = true;
+		}
+	}
+	
+	bool StateCheck()
+	{
+		if ( m_InitMovementState == m_FinalMovementState )
+		{
+			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 }

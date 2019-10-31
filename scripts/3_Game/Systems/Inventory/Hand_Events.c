@@ -421,7 +421,7 @@ class HandEventForceSwap extends HandEventSwap
 			if (!test1)
 				hndDebugPrint("Warning: HandEventForceSwap.CheckRequest test1 failed");
 
-			bool test2 = GameInventory.CanForceSwapEntities(GetSrcEntity(), inHands, null); // null here means 'do not search for dst2' (already have valid one from constructor)
+			bool test2 = GameInventory.CanForceSwapEntities(m_Src.GetItem(), null, m_Src2.GetItem(), m_Dst2); // null here means 'do not search for dst2' (already have valid one from constructor)
 			if (!test2)
 				hndDebugPrint("Warning: HandEventForceSwap.CheckRequest test2 failed");
 			return test1 && test2;

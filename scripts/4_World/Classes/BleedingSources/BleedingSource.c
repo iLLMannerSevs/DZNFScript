@@ -98,7 +98,7 @@ class BleedingSource
 		if(m_BleedingEffect) delete m_BleedingEffect;
 	}
 
-	void OnUpdateServer(float deltatime, bool no_blood_loss)
+	void OnUpdateServer(float deltatime, float blood_scale, bool no_blood_loss )
 	{
 		m_ActiveTime += deltatime;
 		
@@ -113,11 +113,8 @@ class BleedingSource
 		
 		if( !no_blood_loss )
 		{
-			m_Player.AddHealth("GlobalHealth","Blood", (PlayerConstants.BLEEDING_SOURCE_BLOODLOSS_PER_SEC * deltatime * m_FlowModifier) );
+			m_Player.AddHealth("GlobalHealth","Blood", (PlayerConstants.BLEEDING_SOURCE_BLOODLOSS_PER_SEC * blood_scale * deltatime * m_FlowModifier) );
 		}
-		
-		
-		
 	}
 	
 	void DrawDebugShape()

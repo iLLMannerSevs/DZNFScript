@@ -44,7 +44,7 @@ class ActionConstructor
 		actions.Insert(ActionPlantSeed);
 		actions.Insert(ActionDisinfectPlantBit);
 		actions.Insert(ActionTurnOnHeatpack);
-		actions.Insert(ActionToggleFishing);
+		//actions.Insert(ActionToggleFishing);
 //		actions.Insert(ActionAttachToCharger);
 		actions.Insert(ActionTurnOnTransmitter);	
 		actions.Insert(ActionTurnOffTransmitter);
@@ -147,7 +147,7 @@ class ActionConstructor
 		actions.Insert(ActionPlaceOnGround);
 		actions.Insert(ActionForceDrinkAlcohol);
 		actions.Insert(ActionDrinkAlcohol);
-		actions.Insert(ActionFishing);
+		//actions.Insert(ActionFishing);
 		actions.Insert(ActionFillBottleBase);
 		actions.Insert(ActionUpgradeTorchFromGasPump);
 		actions.Insert(ActionTuneFrequency);
@@ -219,6 +219,9 @@ class ActionConstructor
 		actions.Insert(ActionUngagTarget);
 		actions.Insert(ActionDigInStash);
 		actions.Insert(ActionDigOutStash);
+		actions.Insert(ActionMineBushByHand);
+		actions.Insert(ActionBreakLongWoodenStick);
+		actions.Insert(ActionFishingNew);
 		//actions.Insert(ActionEmptyBarrel);
 		
 		// Interact actions
@@ -299,6 +302,8 @@ class ActionConstructor
 		
 		actions.Insert(FirearmActionLoadBulletQuick);
 		actions.Insert(FirearmActionLoadMultiBulletQuick);
+
+		actions.Insert(ActionPullBodyFromTransport);
 		
 	}
 };

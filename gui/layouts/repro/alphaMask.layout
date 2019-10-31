@@ -37,7 +37,7 @@ FrameWidgetClass rootFrame {
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   imageTexture "{7EC90681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
+   image0 "set:dayz_gui image:DayZLogo"
    mode blend
    "src alpha" 0
    "no wrap" 1
@@ -53,7 +53,7 @@ FrameWidgetClass rootFrame {
    vexactpos 1
    hexactsize 1
    vexactsize 1
-   imageTexture "{7EC90681964DCC2E}Gui/textures/dayz_logo_small_ca.edds"
+   image0 "set:dayz_gui image:DayZLogo"
    mode blend
    "src alpha" 1
    Mask "{EAA45FAEB23A18C4}Gui/textures/SplashScreenTransitionMask_8bit.edds"

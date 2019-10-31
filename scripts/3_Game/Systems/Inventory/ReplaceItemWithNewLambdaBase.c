@@ -49,7 +49,7 @@ class ReplaceItemWithNewLambdaBase
 			if (m_NewLocation == null)
 			{
 				m_NewLocation = new InventoryLocation;
-				m_NewLocation.CopyLocationFrom(m_OldLocation);	// A.2) prepare new location from old
+				m_NewLocation.CopyLocationFrom(m_OldLocation, true);	// A.2) prepare new location from old
 			}
 			return true;
 		}

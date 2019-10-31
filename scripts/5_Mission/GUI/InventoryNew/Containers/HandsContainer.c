@@ -603,6 +603,10 @@ class HandsContainer: Container
 		{
 			return;
 		}
+		EntityAI receiver_item;
+		EntityAI slot_owner;
+		int slot_id = -1;
+		
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 
@@ -615,6 +619,17 @@ class HandsContainer: Container
 		{
 			return;
 		}
+		
+		SlotsIcon slots_icon;
+		receiver.GetUserData(slots_icon);
+		
+		if(slots_icon)
+		{
+			receiver_item	= slots_icon.GetEntity();
+			slot_id			= slots_icon.GetSlotID();
+			slot_owner		= slots_icon.GetSlotParent();
+		}
+		
 
 		PlayerBase p = PlayerBase.Cast( GetGame().GetPlayer() );
 		InventoryItem receiver_entity = InventoryItem.Cast( p.GetHumanInventory().GetEntityInHands() );
@@ -624,25 +639,133 @@ class HandsContainer: Container
 			return;
 		}
 
-		if( receiver_entity != null && GameInventory.CanSwapEntities( receiver_entity, w_entity ) )
+		if( receiver_entity )
 		{
-			ColorManager.GetInstance().SetColor( w, ColorManager.SWAP_COLOR );
-			ItemManager.GetInstance().HideDropzones();
-			ItemManager.GetInstance().GetCenterDropzone().SetAlpha( 1 );
-		}
-		else
-		{
-			//if( m_HandsIcon )
+			if( receiver_item )
+			{
+				ItemBase receiver_itemIB	= ItemBase.Cast( receiver_item );
+				ItemBase itemIB				= ItemBase.Cast( receiver_item );
+				if( receiver_itemIB && itemIB && receiver_itemIB.CanBeCombined( itemIB ) )
+				{
+					ItemManager.GetInstance().HideDropzones();
+					if( m_Entity.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
+					{
+						ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+					}
+					else
+					{
+						ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+					}
+					ColorManager.GetInstance().SetColor( w, ColorManager.COMBINE_COLOR );
+				}
+				else 
+				{
+					PlayerBase player = PlayerBase.Cast( GetGame().GetPlayer() );
+					Magazine mag = Magazine.Cast(receiver_item);
+					Weapon_Base wpn = Weapon_Base.Cast(receiver_item.GetHierarchyParent());
+				
+					if( wpn && mag )
+					{
+						if( player.GetWeaponManager().CanSwapMagazine( wpn,  Magazine.Cast(w_entity) ) )
+						{
+							ColorManager.GetInstance().SetColor( w, ColorManager.SWAP_COLOR );
+							if( w_entity.GetHierarchyRootPlayer() == player )
+							{
+								ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+							}
+							else
+							{
+								ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+							}
+						}
+						else
+						{
+							ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
+							ItemManager.GetInstance().ShowSourceDropzone( w_entity );
+						}
+					}
+					else
+					{
+						if( GameInventory.CanSwapEntities( receiver_item, w_entity ) )
+						{
+							ItemManager.GetInstance().HideDropzones();
+							if( m_Entity.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
+							{
+								ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+							}
+							else
+							{
+								ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+							}
+							ColorManager.GetInstance().SetColor( w, ColorManager.SWAP_COLOR );
+						}
+						else if( receiver_itemIB.GetInventory().CanAddAttachment( w_entity ) )
+						{
+							ItemManager.GetInstance().HideDropzones();
+							if( receiver_itemIB.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
+							{
+								ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+							}
+							else
+							{
+								ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+							}
+							ColorManager.GetInstance().SetColor( w, ColorManager.GREEN_COLOR );
+						}
+					}
+				}
+			}
+			else if( slot_owner && slot_owner.GetInventory().CanAddAttachment( w_entity ) )
+			{
+				ItemManager.GetInstance().HideDropzones();
+				if( slot_owner.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
+				{
+					ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+				}
+				else
+				{
+					ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+				}
+				ColorManager.GetInstance().SetColor( w, ColorManager.GREEN_COLOR );
+			}
+			
+			
+			
+			
+			else if(GameInventory.CanSwapEntities( receiver_entity, w_entity ))
 			{
 				ColorManager.GetInstance().SetColor( w, ColorManager.SWAP_COLOR );
 				ItemManager.GetInstance().HideDropzones();
 				ItemManager.GetInstance().GetCenterDropzone().SetAlpha( 1 );
 			}
-			/*else
+			else if( receiver_entity.GetInventory().CanAddAttachment( w_entity ) )
 			{
+				ItemManager.GetInstance().HideDropzones();
+				if( receiver_entity.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
+				{
+					ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+				}
+				else
+				{
+					ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+				}
+				ColorManager.GetInstance().SetColor( w, ColorManager.GREEN_COLOR );
+			}
+		}
+		else
+		{
+			/*if( m_HandsIcon )
+			{
+				ColorManager.GetInstance().SetColor( w, ColorManager.SWAP_COLOR );
+				ItemManager.GetInstance().HideDropzones();
+				ItemManager.GetInstance().GetCenterDropzone().SetAlpha( 1 );
+			}
+			
+			else
+			{*/
 				ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
 				ItemManager.GetInstance().ShowSourceDropzone( w_entity );
-			}*/
+			//}
 		}
 	}
 
@@ -815,6 +938,7 @@ class HandsContainer: Container
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(false);
 
 		float icon_x, icon_y, x_content, y_content;
 		int m_sizeX, m_sizeY;
@@ -851,7 +975,13 @@ class HandsContainer: Container
 		w.ClearFlags( WidgetFlags.EXACTSIZE );
 		w.SetSize( 1, 1 );
 		string name = w.GetName();
-		name.Replace( "PanelWidget", "Col" );
+		
+		name.Replace( "PanelWidget", "Render" );
+		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(true);
+		ipw.SetForceFlip(false);
+		
+		name.Replace( "Render", "Col" );
 		w.FindAnyWidget( name ).Show( false );
 		name.Replace( "Col", "Selected" );
 		w.FindAnyWidget( name ).Show( false );
@@ -1168,6 +1298,12 @@ class HandsContainer: Container
 		{
 			target_entity	= m_Entity;
 			target_cargo 	= m_Entity.GetInventory().GetCargo();
+			#ifdef PLATFORM_CONSOLE
+			if( m_CargoGrid.HasItem( item ) )
+			{
+				return;
+			}
+			#endif
 		}
 		else
 		{
@@ -1175,6 +1311,12 @@ class HandsContainer: Container
 			if( target_entity )
 			{
 				target_cargo 	= target_entity.GetInventory().GetCargo();
+				#ifdef PLATFORM_CONSOLE
+				if( cargo.HasItem( item ) )
+				{
+					return;
+				}
+				#endif
 			}
 			else
 				return;
@@ -1188,10 +1330,19 @@ class HandsContainer: Container
 		else
 			return;
 
-		InventoryLocation dst = new InventoryLocation;		
+		InventoryLocation dst = new InventoryLocation;
+		#ifdef PLATFORM_CONSOLE
+		y = target_cargo.GetItemCount();
+		target_entity.GetInventory().FindFreeLocationFor( item, FindInventoryLocationType.CARGO, dst );
+		#else
 		dst.SetCargoAuto(target_cargo, item, x, y, item.GetInventory().GetFlipCargo());
-			
+		#endif
+		
+		#ifdef PLATFORM_CONSOLE
+		if(dst.IsValid() && target_entity.GetInventory().LocationCanAddEntity(dst))
+		#else
 		if( c_x > x && c_y > y && target_entity.GetInventory().LocationCanAddEntity(dst))
+		#endif
 		{
 			SplitItemUtils.TakeOrSplitToInventoryLocation( player, dst );
 
@@ -1261,15 +1412,16 @@ class HandsContainer: Container
 	void TakeAsAttachment( Widget w, Widget receiver )
 	{
 		EntityAI receiver_item;
+		EntityAI slot_owner;
 		int slot_id = -1;
-		string name = receiver.GetName();
-		name.Replace("PanelWidget", "Render");
-		
-		ItemPreviewWidget receiver_iw = ItemPreviewWidget.Cast( receiver.FindAnyWidget(name) );
-		if( receiver_iw )
+
+		SlotsIcon slots_icon; 
+		receiver.GetUserData(slots_icon);
+		if( slots_icon )
 		{
-			receiver_item	= receiver_iw.GetItem();
-			slot_id			= receiver_iw.GetUserID();
+			receiver_item	= slots_icon.GetEntity();
+			slot_id			= slots_icon.GetSlotID();
+			slot_owner		= slots_icon.GetSlotParent();
 		}
 		
 		EntityAI item = GetItemPreviewItem( w );
@@ -1291,6 +1443,10 @@ class HandsContainer: Container
 			{
 				player.GetWeaponManager().AttachMagazine( mag );
 			}
+			else if(player.GetWeaponManager().CanSwapMagazine( wpn, mag ))
+			{
+				player.GetWeaponManager().SwapMagazine( mag );
+			}
 		}
 		else if( receiver_item )
 		{
@@ -1303,6 +1459,23 @@ class HandsContainer: Container
 				if( !receiver_item.GetInventory().CanRemoveEntity() )
 					return;
 				GetGame().GetPlayer().PredictiveSwapEntities( item, receiver_item );
+			}
+		}
+		else if( slot_owner && slot_owner.GetInventory().CanAddAttachment( item ) )
+		{
+			ItemBase item_base2	= ItemBase.Cast( item );
+			float stackable2		= item_base2.ConfigGetFloat("varStackMax");
+			
+			if( stackable2 == 0 || stackable2 >= item_base2.GetQuantity() )
+			{
+				if( slot_id != -1 )
+					player.PredictiveTakeEntityToTargetAttachmentEx(slot_owner, item, slot_id);
+				else
+					player.PredictiveTakeEntityToTargetAttachment(slot_owner, item);
+			}
+			else if( stackable2 != 0 && stackable2 < item_base2.GetQuantity() )
+			{
+				item_base2.SplitIntoStackMaxClient( m_Entity, slot_id );
 			}
 		}
 		else if( m_Entity.GetInventory().CanAddAttachment( item ) )

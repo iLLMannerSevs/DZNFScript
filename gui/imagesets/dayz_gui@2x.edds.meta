@@ -1,10 +1,13 @@
 MetaFileClass {
- Name "{C139E49FD0ECAF9E}Gui/imagesets/dayz_gui@2x.tga"
+ Name "{C139E49FD0ECAF9E}Gui/imagesets/dayz_gui@2x.edds"
  Author "3672"
- ChangeDate 119252758
+ ChangeDate 688072540
  Configurations {
   TGAResourceClass PC {
    SourceFile "dayz_gui@2x.tga"
+   FormatCompress Best
+   Conversion DXTCompression
+   TiledTexture 0
   }
   TGAResourceClass XBOX_ONE : PC {
   }

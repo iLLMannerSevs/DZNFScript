@@ -52,8 +52,6 @@ class PlayerConstants
 	static const float LOW_WATER_THRESHOLD 						= PlayerConstants.SL_WATER_LOW;	//threshold from which water affects health
 
 	static const float LOW_ENERGY_THRESHOLD 					= 200;	//threshold from which energy affects health
-	static const float WATER_DRAIN_FROM_VOMIT					= -150;
-	static const float ENERGY_DRAIN_FROM_VOMIT					= -150;
 
 	//--------------------------------------------------------
 	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle
@@ -80,7 +78,7 @@ class PlayerConstants
 	//--------------------------------------------------------
 	static const int BLOOD_THRESHOLD_FATAL 					= 2500;	//fatal blood level
 	
-	static const float BLOOD_REGEN_RATE_PER_SEC				= 0.7; 	//base amount of blood regenerated per second
+	static const float BLOOD_REGEN_RATE_PER_SEC				= 0.3; 	//base amount of blood regenerated per second
 	static const float DAMAGE_ZONE_BLOOD_REGEN_MODIFIER 	= 0.7;
 	
 	static const float BLOOD_REGEN_MODIFIER_ENERGY_LOW		= 0; 	//multiplier for blood regen rate 
@@ -142,10 +140,12 @@ class PlayerConstants
 	
 	static const float UNCONSCIOUS_IN_WATER_TIME_LIMIT_TO_DEATH	= 20;	// how long can player survive while unconscious when in water in secs 
 	//----------------------------------------------------------
-	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -16; 		// amount of blood loss per second from one bleeding source 
+	static const float BLEEDING_SOURCE_BLOODLOSS_PER_SEC 	= -24; 		// amount of blood loss per second from one bleeding source 
 	static const float BLEEDING_SOURCE_FLOW_MODIFIER_MEDIUM = 0.6; 		// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
-	static const float BLEEDING_SOURCE_FLOW_MODIFIER_LOW	= 0.1; 	// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
-	static const int BLEEDING_SOURCE_DURATION_NORMAL = 300; 	// in seconds, how long will bleeding source exist until disapearing
+	static const float BLEEDING_SOURCE_FLOW_MODIFIER_LOW	= 0.1; 		// modifier of the bloodloss given by BLEEDING_SOURCE_BLOODLOSS_PER_SEC, multiplying these two will give the resulting bloodloss
+	static const int BLEEDING_SOURCE_DURATION_NORMAL = 300; 			// in seconds, how long will bleeding source exist until disapearing
+	static const float BLEEDING_LOW_PRESSURE_BLOOD = 4000.0;			// from which blood level we start lowering BLEEDING_SOURCE_BLOODLOSS_PER_SEC
+	static const float BLEEDING_LOW_PRESSURE_MIN_MOD = 0.3;				// minimal value for low pressure bleeding (lowest possible multiplier of BLEEDING_SOURCE_BLOODLOSS_PER_SEC)
 	
 	 
 	//----------------------------------------------------------

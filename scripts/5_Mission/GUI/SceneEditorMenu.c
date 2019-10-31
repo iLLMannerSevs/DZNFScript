@@ -804,7 +804,7 @@ class SceneEditorMenu extends UIScriptedMenu
 	
 	override void OnHide()
 	{
-		MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable();
+		MissionGameplay.Cast( GetGame().GetMission() ).PlayerControlEnable(true);
 	}
 
 	//============================================

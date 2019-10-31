@@ -169,7 +169,25 @@ class DayZPlayerImplementMeleeCombat
 			}
 		}
 	}
+	
+	void CheckMeleeItem()
+	{
+		if (m_Weapon)
+		{
+			ItemBase item;
+			item = ItemBase.Cast(m_Weapon.ProcessMeleeItemDamage(GetWeaponMode()));
 			
+			if (item && item.GetHierarchyRootPlayer())
+			{
+				PlayerBase.Cast(item.GetHierarchyRootPlayer()).SetCheckMeleeItem(item);
+			}
+			else if (m_Weapon && m_Weapon.GetHierarchyRootPlayer())
+			{
+				PlayerBase.Cast(m_Weapon.GetHierarchyRootPlayer()).SetCheckMeleeItem(ItemBase.Cast(m_Weapon));
+			}
+		}
+	}
+	
 	// ------------------------------------------------------------
 	// protected
 	// ------------------------------------------------------------
@@ -271,7 +289,6 @@ class DayZPlayerImplementMeleeCombat
 		m_RayEnd = pos + cameraDirection * TARGETING_RAY_DIST;
 
 		// raycast
-		vector hitPos;
 		vector hitNormal;	
 		ref set<Object> hitObjects = new set<Object>;
 
@@ -280,8 +297,16 @@ class DayZPlayerImplementMeleeCombat
 			if( hitObjects.Count() )
 			{
 				cursorTarget = hitObjects.Get(0);
-				//! just for building and transports (big objects)
-				if( cursorTarget.IsAnyInherited(m_NonAlignableObjects) )
+
+				//! make sure we are in range of the current weapon;				
+				vector playerPos = m_DZPlayer.GetPosition();
+				vector hitPos = m_HitPositionWS;
+				//! 2d only
+				playerPos[1] = 0;
+				hitPos[1] = 0;
+
+				//! just for building and transports (big objects)				
+				if( cursorTarget.IsAnyInherited(m_NonAlignableObjects) && vector.Distance(playerPos, hitPos) <= GetWeaponRange(m_Weapon, GetWeaponMode()))
 				{
 					//! if no object in cone, set this object from raycast for these special cases
 					if (m_TargetObject == null)

@@ -2,7 +2,7 @@
 //DeRap: weapon_lights\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:04 2019 : 'file' last modified on Sat Jul 20 11:10:25 2019
+//'now' is Thu Oct 31 18:24:55 2019 : 'file' last modified on Thu Oct 24 14:41:05 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -50,7 +50,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_flashlight.rvmat","dz\gear\tools\data\flashlight_glass.rvmat"}},{0.7,{}},{0.5,{"DZ\weapons\attachments\data\m4_flashlight_damage.rvmat","dz\gear\tools\data\flashlight_glass_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\weapons\attachments\data\m4_flashlight_destruct.rvmat","dz\gear\tools\data\flashlight_glass_destruct.rvmat"}}};
 				};
 			};
@@ -87,7 +87,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 70;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\tls3.rvmat"}},{0.7,{"DZ\weapons\attachments\data\tls3.rvmat"}},{0.5,{"DZ\weapons\attachments\data\tls3_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\tls3_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\tls3_destruct.rvmat"}}};
 				};
 			};

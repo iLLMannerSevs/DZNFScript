@@ -7,12 +7,18 @@ class Bandana_ColorBase: Clothing
 		
 		AddAction(ActionBandageTarget);
 		AddAction(ActionBandageSelf);
+		AddAction(ActionWringClothes);
 	}
 	
 	void Bandana_ColorBase()
 	{
 
 	}
+	
+	override float GetBandagingEffectivity()
+	{
+		return 1.0;
+	};
 };
 class Bandana_RedPattern: Bandana_ColorBase {};
 class Bandana_BlackPattern: Bandana_ColorBase {};

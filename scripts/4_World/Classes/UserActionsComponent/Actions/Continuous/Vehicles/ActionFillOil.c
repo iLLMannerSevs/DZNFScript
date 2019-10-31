@@ -46,22 +46,24 @@ class ActionFillOil: ActionContinuousBase
 		if( car.GetFluidFraction( CarFluid.OIL ) >= 0.98 )
 			return false;
 
-		float distance = Math.AbsFloat(vector.Distance(car.GetPosition(), player.GetPosition()));
+		array<string> selections = new array<string>;
+		target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
 
 		CarScript carS = CarScript.Cast(car);
-		if( distance <= carS.GetActionDistanceFuel() )
+		if( carS )
 		{
-			array<string> selections = new array<string>;
-			target.GetObject().GetActionComponentNameList(target.GetComponentIndex(), selections);
-
 			for (int s = 0; s < selections.Count(); s++)
 			{
 				if ( selections[s] == carS.GetActionCompNameOil() )
 				{
-					return true;
+					float dist = vector.Distance( carS.GetRefillPointPosWS(), player.GetPosition() );
+
+					if ( dist < carS.GetActionDistanceOil() )
+						return true;
 				}
 			}
 		}
+
 		return false;
 	}
 

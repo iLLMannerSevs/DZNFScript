@@ -8,12 +8,13 @@ class JsonControlMappingInfo
 
 class ControlsXbox extends UIScriptedMenu
 {
-	protected string 		m_BackButtonTextID;
+	protected string 					m_BackButtonTextID;
 	
-	protected ImageWidget 	m_ControlsLayoutImage;
-	protected const int 	TABS_COUNT = 4;
-	protected ImageWidget 	m_tab_images[TABS_COUNT];
-	protected TabberUI		m_TabScript;
+	protected ButtonWidget 				m_Back;
+	protected ImageWidget 				m_ControlsLayoutImage;
+	protected const int 				TABS_COUNT = 4;
+	protected ImageWidget 				m_tab_images[TABS_COUNT];
+	protected TabberUI					m_TabScript;
 	
 	//============================================
 	// ControlsXbox
@@ -302,10 +303,13 @@ class ControlsXbox extends UIScriptedMenu
 	//============================================
 	override Widget Init()
 	{
-		layoutRoot = GetGame().GetWorkspace().CreateWidgets( "gui/layouts/xbox/control_mapping_info_screen.layout" );
+		layoutRoot	= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/xbox/control_mapping_info_screen.layout" );
 		
 		layoutRoot.FindAnyWidget("Tabber").GetScript( m_TabScript );
+		
 		m_TabScript.m_OnTabSwitch.Insert( DrawConnectingLines );
+		
+		m_Back			= ButtonWidget.Cast( layoutRoot.FindAnyWidget( "back" ) );
 		
 		#ifdef PLATFORM_XBOX
 			layoutRoot.FindAnyWidget("XboxControlsImage").Show( true );
@@ -332,6 +336,28 @@ class ControlsXbox extends UIScriptedMenu
 		PPEffects.SetBlurMenu( 0.6 );
 		DrawConnectingLines( 0 );
 		return layoutRoot;
+	}
+	
+	override void OnShow()
+	{
+		super.OnShow();
+		#ifdef PLATFORM_CONSOLE
+			//layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
+			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
+		#endif
+	}
+	
+	override bool OnClick( Widget w, int x, int y, int button )
+	{
+		if( button == MouseState.LEFT )
+		{
+			if( w == m_Back )
+			{
+				Back();
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	override void Update( float timeslice )

@@ -8,8 +8,6 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 	
 	protected Widget								m_ButtonPageLeftImg;
 	protected Widget								m_ButtonPageRightImg;
-	protected Widget								m_ButtonPageRightArrow;
-	protected Widget								m_ButtonPageLeftArrow;
 	
 	protected int									m_PreviousPage;
 	protected int									m_TotalServersCount;
@@ -43,6 +41,7 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		m_TabType				= type;
 		
 		m_ApplyFilter			= m_Root.FindAnyWidget( "apply_filter_button" );
+		m_ResetFilters			= m_Root.FindAnyWidget( "reset_filter_button" );
 		m_RefreshList			= m_Root.FindAnyWidget( "refresh_list_button" );
 		m_FiltersChanged		= m_Root.FindAnyWidget( "unapplied_filters_notify" );
 		m_HostSort				= m_Root.FindAnyWidget( "server_list_content_header_host" );
@@ -54,8 +53,8 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		m_WidgetNavFilters		= m_Root.FindAnyWidget( "filters_root_nav_wrapper" );
 		m_WidgetNavServers		= m_Root.FindAnyWidget( "server_list_root_nav_wrapper" );
 		
-		m_ButtonPageLeftArrow	= m_Root.FindAnyWidget( "servers_navigation_prev" );
-		m_ButtonPageRightArrow	= m_Root.FindAnyWidget( "servers_navigation_next" );
+		m_BtnPagePrev			= ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_prev" ) ) ;
+		m_BtnPageNext			= ButtonWidget.Cast( m_Root.FindAnyWidget( "servers_navigation_next" ) ) ;
 		
 		#ifdef PLATFORM_PS4
 			m_ButtonPageLeftImg = m_Root.FindAnyWidget( "servers_navigation_page_prev_icon_ps4" );
@@ -93,6 +92,8 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 #ifdef PLATFORM_PS4
 		is_xbox = false;
 #endif
+		
+		m_Root.FindAnyWidget( "filters_button_wrapper" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
 		
 		m_Root.FindAnyWidget( "filters_root_nav_img_lb_xbox" ).Show( is_xbox );
 		m_Root.FindAnyWidget( "filters_root_nav_img_rb_xbox" ).Show( is_xbox );
@@ -505,19 +506,61 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		{
 			bool can_left = (GetCurrentPage() > 1);
 			m_ButtonPageLeftImg.Show( can_left );
-			m_ButtonPageLeftArrow.Show( can_left );
+			m_BtnPagePrev.Show( can_left );
 			
 			bool can_right = (GetCurrentPage() < m_PagesCount);
 			m_ButtonPageRightImg.Show( can_right );
-			m_ButtonPageRightArrow.Show( can_right );
+			m_BtnPageNext.Show( can_right );
 		}
 		else
 		{
 			m_ButtonPageLeftImg.Show( false );
-			m_ButtonPageLeftArrow.Show( false );
+			m_BtnPagePrev.Show( false );
 			m_ButtonPageRightImg.Show( false );
-			m_ButtonPageRightArrow.Show( false );
+			m_BtnPageNext.Show( false );
 		}
+	}
+	
+	override bool OnClick( Widget w, int x, int y, int button )
+	{
+		super.OnClick( w, x, y, button );
+		
+		if( button == MouseState.LEFT )
+		{
+			if ( w == m_ResetFilters )
+			{
+				ResetFilters();
+			}
+			else if( w == m_ApplyFilter )
+			{
+				ApplyFilters();
+				return true;
+			}
+			else if ( w == m_RefreshList )
+			{
+				if ( m_Loading && !m_LoadingFinished )
+				{
+					PressX();
+				}
+				else
+				{
+					RefreshList();
+				}
+				
+				return true;
+			}
+			else if ( w == m_BtnPagePrev )
+			{
+				Left();
+				return true;
+			}
+			else if ( w == m_BtnPageNext )
+			{
+				Right();
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	//Coloring functions (Until WidgetStyles are useful)

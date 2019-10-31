@@ -1,10 +1,11 @@
 MetaFileClass {
- Name "{0DE9ACA1E3D366FB}Graphics/Textures/Water/sat_co.dds"
- Author "inv1836"
- ChangeDate 156509306
+ Name "{0DE9ACA1E3D366FB}Enfusion/Graphics/Textures/Water/sat_co.edds"
+ Author "4780"
+ ChangeDate 649914201
  Configurations {
   DDSResourceClass PC {
    SourceFile "sat_co.dds"
+   Conversion ColorHQCompression
   }
   DDSResourceClass XBOX_ONE : PC {
   }

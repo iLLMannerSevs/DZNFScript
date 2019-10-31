@@ -251,6 +251,7 @@ FrameWidgetClass Icon {
   }
   GridSpacerWidgetClass ItemSizePanel {
    visible 0
+   ignorepointer 1
    color 0 0 0 1
    position 1 1
    size 20 20
@@ -269,6 +270,7 @@ FrameWidgetClass Icon {
    Rows 1
    {
     GridSpacerWidgetClass ItemSizePanel2 {
+     ignorepointer 1
      color 1 1 1 0.9961
      size 1 1
      halign right_ref
@@ -310,24 +312,6 @@ FrameWidgetClass Icon {
      }
     }
    }
-  }
-  ImageWidgetClass AmmoIcon {
-   visible 0
-   clipchildren 1
-   ignorepointer 1
-   position 3 3
-   size 17 35
-   hexactpos 1
-   vexactpos 1
-   hexactsize 1
-   vexactsize 1
-   priority 999
-   draggable 0
-   image0 "set:dayz_gui image:cartridge_fp"
-   mode blend
-   "src alpha" 1
-   "no wrap" 1
-   stretch 1
   }
   ImageWidgetClass AmmoTypeIcon {
    visible 0

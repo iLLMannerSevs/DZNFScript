@@ -357,3 +357,72 @@ class Sedan_02 extends CarScript
 		Fill( CarFluid.OIL, 4.0 );
 	}
 }
+
+class Sedan_02_Red extends Sedan_02
+{
+	override void OnDebugSpawn()
+	{
+		EntityAI entity;
+		
+		if ( Class.CastTo(entity, this) )
+		{
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_RedRust" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2_RedRust" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1_RedRust" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2_RedRust" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Hood_RedRust" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Trunk_RedRust" );
+
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+		};
+
+		Fill( CarFluid.FUEL, 50 );
+		Fill( CarFluid.COOLANT, 6.0 );
+		Fill( CarFluid.OIL, 4.0 );
+	}
+};
+
+
+class Sedan_02_Grey extends Sedan_02
+{
+	override void OnDebugSpawn()
+	{
+		EntityAI entity;
+		
+		if ( Class.CastTo(entity, this) )
+		{
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Wheel" );
+
+			entity.GetInventory().CreateInInventory( "CarBattery" );
+			entity.GetInventory().CreateInInventory( "SparkPlug" );
+			entity.GetInventory().CreateInInventory( "CarRadiator" );
+
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_1_Grey" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_1_2_Grey" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_1_Grey" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Door_2_2_Grey" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Hood_Grey" );
+			entity.GetInventory().CreateInInventory( "Sedan_02_Trunk_Grey" );
+
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+			entity.GetInventory().CreateInInventory( "HeadlightH7" );
+		};
+
+		Fill( CarFluid.FUEL, 50 );
+		Fill( CarFluid.COOLANT, 6.0 );
+		Fill( CarFluid.OIL, 4.0 );
+	}
+};

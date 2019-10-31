@@ -1776,7 +1776,7 @@ PanelWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass Tab_0 {
+    FrameWidgetClass Tab_0 {
      visible 1
      ignorepointer 1
      position 0 0
@@ -1800,7 +1800,7 @@ PanelWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass Tab_1 {
+    FrameWidgetClass Tab_1 {
      visible 0
      ignorepointer 1
      position 0 0
@@ -1824,7 +1824,7 @@ PanelWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass Tab_2 {
+    FrameWidgetClass Tab_2 {
      visible 0
      ignorepointer 1
      position 0 0
@@ -1848,7 +1848,7 @@ PanelWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass Tab_3 {
+    FrameWidgetClass Tab_3 {
      visible 0
      ignorepointer 1
      position 0 0
@@ -1869,7 +1869,7 @@ PanelWidgetClass rootFrame {
       }
      }
     }
-    PanelWidgetClass Tab_4 {
+    FrameWidgetClass Tab_4 {
      visible 0
      ignorepointer 1
      position 0 0
@@ -1889,6 +1889,16 @@ PanelWidgetClass rootFrame {
        vexactsize 0
       }
      }
+    }
+    FrameWidgetClass Tab_5 {
+     visible 0
+     ignorepointer 1
+     position 105 160
+     size 1760 800
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
     }
    }
   }
@@ -2014,6 +2024,120 @@ PanelWidgetClass rootFrame {
          "size to text h" 1
          "size to text v" 0
          "text valign" center
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+  WrapSpacerWidgetClass play_panel_root {
+   visible 0
+   ignorepointer 1
+   position 100 130
+   size 400 400
+   halign right_ref
+   valign bottom_ref
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+   priority 2
+   Padding 0
+   Margin 0
+   content_halign center
+   content_valign bottom
+   {
+    WrapSpacerWidgetClass bottom {
+     color 0 0 0 0.549
+     position 0 0
+     size 1 90
+     halign center_ref
+     valign bottom_ref
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     style DayZDefaultPanel
+     "no focus" 0
+     "next left" "news_main"
+     "next right" "news_main"
+     "next up" ""
+     "next down" "exit_button"
+     Padding 0
+     Margin 0
+     "Size To Content H" 1
+     "Size To Content V" 1
+     {
+      ButtonWidgetClass back {
+       color 0 0 0 0
+       position 0 0
+       size 1 90
+       halign center_ref
+       valign bottom_ref
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Empty
+       "no focus" 0
+       "next left" "news_main"
+       "next right" "news_main"
+       "next up" "choose_server"
+       "next down" "play_video"
+       {
+        PanelWidgetClass back_panel {
+         ignorepointer 1
+         color 0 0 0 0
+         position 0 0
+         size 1 1
+         hexactpos 0
+         vexactpos 0
+         hexactsize 0
+         vexactsize 0
+         style DayZDefaultPanel
+         {
+          TextWidgetClass back_label {
+           clipchildren 0
+           ignorepointer 1
+           size 1 0.65
+           halign center_ref
+           valign center_ref
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           text "#layout_pc_keybinding_play_pannel_back"
+           font "gui/fonts/sdf_MetronLight42"
+           "text halign" center
+           "text valign" center
+           {
+            ImageWidgetClass BackIcon0 {
+             clipchildren 0
+             inheritalpha 0
+             ignorepointer 1
+             position 10 0
+             size 36 36
+             halign right_ref
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 1
+             vexactsize 1
+             scaled 1
+             image0 "set:xbox_buttons image:B"
+             mode blend
+             "src alpha" 1
+             "no wrap" 1
+             stretch 0
+             "flip u" 0
+             "flip v" 0
+             filter 1
+             nocache 0
+            }
+           }
+          }
+         }
         }
        }
       }

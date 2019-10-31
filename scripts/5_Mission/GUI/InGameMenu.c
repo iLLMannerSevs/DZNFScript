@@ -45,7 +45,7 @@ class InGameMenu extends UIScriptedMenu
 		
 		SetGameVersion();
 		
-		m_ModdedWarning.Show( g_Game.IsModded() );
+		m_ModdedWarning.Show( g_Game.ReportModded() );
 		
 		return layoutRoot;
 	}

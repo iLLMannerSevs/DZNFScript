@@ -50,6 +50,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	
 	protected Widget										m_ApplyFilter;
 	protected Widget										m_RefreshList;
+	protected Widget										m_ResetFilters;
 	protected Widget										m_FiltersChanged;
 	protected Widget										m_HostSort;
 	protected Widget										m_TimeSort;
@@ -57,6 +58,8 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	protected Widget										m_SlotsSort;
 	protected Widget										m_PingSort;
 	protected TextWidget									m_LoadingText;
+	protected ButtonWidget									m_BtnPagePrev;
+	protected ButtonWidget									m_BtnPageNext;
 	
 	protected ref map<ESortType, ref array<ref GetServersResultRow>> m_EntriesSorted;
 	protected ref map<ESortType, ESortOrder>				m_SortInverted;
@@ -208,7 +211,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	{
 		if( w )
 		{
-			return ( w == m_ApplyFilter || w == m_RefreshList );
+			return ( w == m_ApplyFilter || w == m_RefreshList || w == m_ResetFilters );
 		}
 		return false;
 	}
@@ -354,8 +357,6 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 		m_CurrentFilterInput.m_Page = GetCurrentPage();
 #endif
 #endif
-		
-		Print("RefreshList Start");
 		m_Loading = true;
 		switch( m_TabType )
 		{
@@ -379,8 +380,6 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 			}
 		}
 		
-		Print("RefreshList End");
-		//m_ServerListScroller.VScrollToPos01( 0 );
 	}
 	
 	void GetNextPage()

@@ -514,7 +514,7 @@ WindowWidgetClass server_browser_tab_root {
        content_halign center
        content_valign center
        {
-        TextWidgetClass servers_navigation_prev {
+        ButtonWidgetClass servers_navigation_prev {
          visible 1
          size 1 1
          halign center_ref
@@ -524,12 +524,10 @@ WindowWidgetClass server_browser_tab_root {
          hexactsize 0
          vexactsize 0
          fixaspect fixwidth
-         style Normal
+         style Default
          text "<"
-         font "gui/fonts/sdf_MetronBook24"
          text_proportion 0.5
-         "text halign" center
-         "text valign" center
+         font "gui/fonts/sdf_MetronBook24"
         }
         ImageWidgetClass servers_navigation_page_prev_icon_xbox {
          ignorepointer 1
@@ -555,7 +553,7 @@ WindowWidgetClass server_browser_tab_root {
          hexactsize 0
          vexactsize 0
          fixaspect fixwidth
-         image0 "set:xbox_buttons image:DPAD_left"
+         image0 "set:playstation_buttons image:DPAD_left"
          mode blend
          "src alpha" 1
         }
@@ -662,6 +660,20 @@ WindowWidgetClass server_browser_tab_root {
          vexactsize 0
          fixaspect fixwidth
         }
+        ImageWidgetClass servers_navigation_page_next_icon_ps4 {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         valign center_ref
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         fixaspect fixwidth
+         image0 "set:playstation_buttons image:DPAD_right"
+         mode blend
+         "src alpha" 1
+        }
         ImageWidgetClass servers_navigation_page_next_icon_xbox {
          ignorepointer 1
          position 0 0
@@ -676,21 +688,7 @@ WindowWidgetClass server_browser_tab_root {
          mode blend
          "src alpha" 1
         }
-        ImageWidgetClass servers_navigation_page_next_icon_ps4 {
-         ignorepointer 1
-         position 0 0
-         size 1 1
-         valign center_ref
-         hexactpos 1
-         vexactpos 1
-         hexactsize 0
-         vexactsize 0
-         fixaspect fixwidth
-         image0 "set:xbox_buttons image:DPAD_right"
-         mode blend
-         "src alpha" 1
-        }
-        TextWidgetClass servers_navigation_next {
+        ButtonWidgetClass servers_navigation_next {
          visible 1
          size 1 1
          halign center_ref
@@ -700,12 +698,10 @@ WindowWidgetClass server_browser_tab_root {
          hexactsize 0
          vexactsize 0
          fixaspect fixwidth
-         style Normal
+         style Default
          text ">"
-         font "gui/fonts/sdf_MetronBook24"
          text_proportion 0.5
-         "text halign" center
-         "text valign" center
+         font "gui/fonts/sdf_MetronBook24"
         }
        }
       }
@@ -1005,7 +1001,7 @@ WindowWidgetClass server_browser_tab_root {
      vexactpos 1
      hexactsize 0
      vexactsize 0
-     style DayZDefaultPanel
+     style Colorable
      "no focus" 0
      Padding 0
      Margin 0
@@ -1361,7 +1357,7 @@ WindowWidgetClass server_browser_tab_root {
        "next right" "none"
        {
         GridSpacerWidgetClass password_button_panel {
-         ignorepointer 0
+         ignorepointer 1
          position 0 0
          size 1 30
          hexactpos 1
@@ -1414,6 +1410,164 @@ WindowWidgetClass server_browser_tab_root {
          }
         }
         PanelWidgetClass password_button_disable {
+         visible 0
+         ignorepointer 1
+         color 0.1569 0.1569 0.1569 0.902
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+       }
+      }
+      ButtonWidgetClass whitelist_button {
+       ignorepointer 0
+       position 0 0
+       size 1 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       "next left" "none"
+       "next right" "none"
+       {
+        GridSpacerWidgetClass whitelist_button_panel {
+         ignorepointer 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "no focus" 1
+         Padding 0
+         Margin 0
+         "Size To Content H" 1
+         Columns 2
+         Rows 1
+         {
+          FrameWidgetClass whitelist_setting_panel {
+           ignorepointer 1
+           position 0 0
+           size 0.5 0.6
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass whitelist_button_label {
+             ignorepointer 1
+             position 0 0
+             size 1 0.55
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "#server_browser_filter_whitelisted"
+             font "gui/fonts/sdf_MetronLight24"
+             "text offset" 10 0
+             "exact text" 0
+             "exact text size" 18
+             "text valign" center
+            }
+           }
+          }
+          FrameWidgetClass whitelist_setting_option {
+           ignorepointer 1
+           position 0 0
+           size 0.5 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+          }
+         }
+        }
+        PanelWidgetClass whitelist_button_disable {
+         visible 0
+         ignorepointer 1
+         color 0.1569 0.1569 0.1569 0.902
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+       }
+      }
+      ButtonWidgetClass keyboard_button {
+       ignorepointer 0
+       position 0 0
+       size 1 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       "next left" "none"
+       "next right" "none"
+       {
+        GridSpacerWidgetClass keyboard_button_panel {
+         ignorepointer 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "no focus" 1
+         Padding 0
+         Margin 0
+         "Size To Content H" 1
+         Columns 2
+         Rows 1
+         {
+          FrameWidgetClass keyboard_setting_panel {
+           ignorepointer 1
+           position 0 0
+           size 0.5 0.6
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass keyboard_button_label {
+             ignorepointer 1
+             position 0 0
+             size 1 0.55
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "#layout_xbox_options_mandk"
+             font "gui/fonts/sdf_MetronLight24"
+             "text offset" 10 0
+             "exact text" 0
+             "exact text size" 18
+             "text valign" center
+            }
+           }
+          }
+          FrameWidgetClass keyboard_setting_option {
+           ignorepointer 1
+           position 0 0
+           size 0.5 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+          }
+         }
+        }
+        PanelWidgetClass keyboard_button_disable {
          visible 0
          ignorepointer 1
          color 0.1569 0.1569 0.1569 0.902
@@ -1759,22 +1913,92 @@ WindowWidgetClass server_browser_tab_root {
        hexactsize 0
        vexactsize 1
       }
+      GridSpacerWidgetClass filters_button_wrapper {
+       ignorepointer 1
+       position 10 10
+       size 0.197 0.102
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       Padding 0
+       Margin 0
+       "Size To Content V" 1
+       Columns 1
+       {
+        ButtonWidgetClass apply_filter_button {
+         visible 0
+         ignorepointer 0
+         color 0.7843 0 0 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style DayZDefaultButtonBottom
+         "no focus" 1
+         text "#STR_server_browser_tab_root_filters_root_filters_content_apply_filter_button0"
+         text_proportion 0.55
+         font "gui/fonts/sdf_MetronLight24"
+        }
+        ButtonWidgetClass reset_filter_button {
+         ignorepointer 0
+         color 0.7843 0 0 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style DayZDefaultButtonBottom
+         "no focus" 1
+         text "#server_browser_filter_reset"
+         text_proportion 0.55
+         font "gui/fonts/sdf_MetronLight24"
+        }
+        ButtonWidgetClass refresh_list_button {
+         ignorepointer 0
+         color 0.7843 0 0 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         style DayZDefaultButtonBottom
+         "no focus" 1
+         text "#STR_server_browser_tab_root_filters_root_filters_content_refresh_list_button0"
+         text_proportion 0.55
+         font "gui/fonts/sdf_MetronLight24"
+        }
+        FrameWidgetClass spacer2 {
+         ignorepointer 1
+         position 10 10
+         size 48 10
+         hexactpos 1
+         vexactpos 1
+         hexactsize 1
+         vexactsize 1
+        }
+       }
+      }
+      TextWidgetClass unapplied_filters_notify {
+       visible 0
+       position 0 0
+       size 1 20
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       text "#server_browser_filters_changed_console"
+       font "gui/fonts/sdf_MetronLight24"
+       "exact text" 1
+       "exact text size" 16
+       "text halign" center
+       "text valign" center
+      }
      }
-    }
-    TextWidgetClass unapplied_filters_notify {
-     visible 0
-     position 0 0
-     size 1 20
-     hexactpos 1
-     vexactpos 1
-     hexactsize 0
-     vexactsize 1
-     text "#server_browser_filters_changed_console"
-     font "gui/fonts/sdf_MetronLight24"
-     "exact text" 1
-     "exact text size" 16
-     "text halign" center
-     "text valign" center
     }
    }
   }

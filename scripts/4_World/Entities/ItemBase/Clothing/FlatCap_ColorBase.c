@@ -1,4 +1,11 @@
-class FlatCap_ColorBase extends Clothing {};
+class FlatCap_ColorBase extends Clothing
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
+};
 class FlatCap_Black extends FlatCap_ColorBase {};
 class FlatCap_Blue extends FlatCap_ColorBase {};
 class FlatCap_Red extends FlatCap_ColorBase {};

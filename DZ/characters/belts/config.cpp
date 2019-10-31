@@ -2,7 +2,7 @@
 //DeRap: characters_belts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:36 2019 : 'file' last modified on Thu Aug 15 00:08:23 2019
+//'now' is Thu Oct 31 18:20:15 2019 : 'file' last modified on Mon Sep 23 10:01:44 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -145,7 +145,7 @@ class CfgVehicles
 		itemSize[] = {1,3};
 		attachments[] = {"Knife"};
 		absorbency = 0.1;
-		heatIsolation = 0.1;
+		heatIsolation = 0.0;
 		repairableWithKits[] = {5,3};
 		repairCosts[] = {30.0,25.0};
 		class DamageSystem
@@ -194,7 +194,7 @@ class CfgVehicles
 		itemSize[] = {3,1};
 		attachments[] = {"Knife"};
 		absorbency = 0.1;
-		heatIsolation = 0.1;
+		heatIsolation = 0.0;
 		repairableWithKits[] = {5,3};
 		repairCosts[] = {30.0,25.0};
 		class DamageSystem
@@ -242,6 +242,9 @@ class CfgVehicles
 		lootTag[] = {"Civilian"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"\dz\characters\belts\data\belt_leather_co.paa","\dz\characters\belts\data\belt_leather_co.paa","\dz\characters\belts\data\belt_leather_co.paa"};
+		absorbency = 0.1;
+		repairableWithKits[] = {5,3};
+		repairCosts[] = {30.0,25.0};
 		class DamageSystem
 		{
 			class GlobalHealth

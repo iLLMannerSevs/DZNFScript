@@ -61,6 +61,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		if( GetGame().GetInput().IsEnabledMouseAndKeyboard() )
 		{
 			layoutRoot.FindAnyWidget( "play_panel_root" ).Show( true );
+			layoutRoot.FindAnyWidget( "MouseAndKeyboardWarning" ).Show( true );
 			layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( false );
 		}
 #else
@@ -69,7 +70,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		m_Version.SetText( version );
 		
 		OnlineServices.m_ServersAsyncInvoker.Insert( OnLoadServersAsync );
-		//OnlineServices.m_ServerModLoadAsyncInvoker.Insert( OnLoadServerModsAsync );
+		OnlineServices.m_ServerModLoadAsyncInvoker.Insert( OnLoadServerModsAsync );
 		m_Tabber.m_OnTabSwitch.Insert( OnTabSwitch );
 				
 		m_OfficialTab.RefreshList();
@@ -114,7 +115,7 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 		SaveFavoriteServersConsoles();
 #endif
 		OnlineServices.m_ServersAsyncInvoker.Remove( OnLoadServersAsync );
-		//OnlineServices.m_ServerModLoadAsyncInvoker.Remove( OnLoadServerModsAsync );
+		OnlineServices.m_ServerModLoadAsyncInvoker.Remove( OnLoadServerModsAsync );
 		m_Tabber.m_OnTabSwitch.Remove( OnTabSwitch );
 		PPEffects.SetBlurMenu( 0.0 );
 	}
@@ -450,11 +451,12 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	
 	void SelectServer( ServerBrowserEntry server )
 	{
+	
 		if( m_SelectedServer )
 		{
-			m_SelectedServer.Deselect();
+			m_SelectedServer.Deselect();						
 		}
-		
+				
 		m_SelectedServer = server;
 	}
 	
@@ -471,6 +473,18 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 	{
 		if( m_SelectedServer )
 		{
+			string mapNM = m_SelectedServer.GetMapToRun();
+			if( !g_Game.VerifyWorldOwnership(mapNM) )
+			{
+				GetGame().GetUIManager().ShowDialog( "#server_browser_connect_label", "#mod_detail_info_warning", 232, DBT_OK, DBB_NONE, DMT_INFO, GetGame().GetUIManager().GetMenu() );
+			
+				// todo: !!! HANDLE DLC properly here !!!
+				Print("Map not owned..." + mapNM);
+				g_Game.GoBuyWorldDLC(mapNM);
+				return;
+			}
+			
+		
 			string ip = m_SelectedServer.GetIP();
 			int port = m_SelectedServer.GetPort();
 			

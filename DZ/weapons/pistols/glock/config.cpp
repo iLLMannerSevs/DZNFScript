@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\glock\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:59 2019 : 'file' last modified on Wed Aug 14 11:04:49 2019
+//'now' is Thu Oct 31 18:24:50 2019 : 'file' last modified on Thu Oct 24 15:07:50 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -52,6 +52,7 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_9x19"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1,1,1};
 		drySound[] = {"DZ\sounds\weapons\firearms\glock19\Glock19_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\FNX45\FNX45_reload",0.8,1,20};
 		reloadAction = "ReloadGlock";
@@ -273,7 +274,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\pistols\glock\data\glock19.rvmat"}},{0.7,{"DZ\weapons\pistols\glock\data\glock19.rvmat"}},{0.5,{"DZ\weapons\pistols\glock\data\glock19_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\glock\data\glock19_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\glock\data\glock19_destruct.rvmat"}}};
 				};
 			};

@@ -147,10 +147,10 @@ class DayZPlayerImplementThrowing
 		if( itemCfg && itemCfg.m_iType == ItemBehaviorType.HEAVY )
 			return false;
 		
-		HumanMovementState movementState = new HumanMovementState();
+/*		HumanMovementState movementState = new HumanMovementState();
 		m_Player.GetMovementState(movementState);
 		if( movementState.IsInProne() )
-			return false;
+			return false;*/
 		
 		PlayerBase playerPB = PlayerBase.Cast(m_Player);
 		if( playerPB && playerPB.GetEmoteManager().IsEmotePlaying() )

@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\mosin9130\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:24:19 2019
+//'now' is Thu Oct 31 18:24:44 2019 : 'file' last modified on Thu Oct 31 09:53:55 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -48,6 +48,7 @@ class cfgWeapons
 		repairableWithKits[] = {5,1};
 		repairCosts[] = {30.0,25.0};
 		PPDOFProperties[] = {1,0.5,20,170,4,10};
+		DisplayMagazine = 0;
 		WeaponLength = 1.22271;
 		chamberSize = 5;
 		chamberedRound = "";
@@ -55,6 +56,7 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_762x54","Ammo_762x54Tracer","Mag_CLIP762x54_5Rnd"};
 		ejectType = 0;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {2,2,1};
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\mosin9130\mosin_dry",0.5,1,20};
 		reloadSkips[] = {0.32,0.41,0.5,0.59,0.69,0.77};
@@ -133,7 +135,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\mosin9130\Data\mosin_9130.rvmat"}},{0.7,{"DZ\weapons\firearms\mosin9130\Data\mosin_9130.rvmat"}},{0.5,{"DZ\weapons\firearms\mosin9130\Data\mosin_9130_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\mosin9130\Data\mosin_9130_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\mosin9130\Data\mosin_9130_destruct.rvmat"}}};
 				};
 			};
@@ -335,7 +337,7 @@ class cfgWeapons
 		magazines[] = {};
 		chamberableFrom[] = {"Ammo_762x54","Ammo_762x54Tracer","Mag_CLIP762x54_5Rnd"};
 		ejectType = 0;
-		recoilModifier[] = {1,1,1};
+		recoilModifier[] = {2,2,1};
 		DisplayMagazine = 0;
 		simpleHiddenSelections[] = {"hide_barrel"};
 		drySound[] = {"dz\sounds\weapons\firearms\mosin9130\mosin_dry",0.5,1};
@@ -773,7 +775,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\mosin9130\Data\mosin_sawn.rvmat"}},{0.7,{"DZ\weapons\firearms\mosin9130\Data\mosin_sawn.rvmat"}},{0.5,{"DZ\weapons\firearms\mosin9130\Data\mosin_sawn_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\mosin9130\Data\mosin_sawn_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\mosin9130\Data\mosin_sawn_destruct.rvmat"}}};
 				};
 			};

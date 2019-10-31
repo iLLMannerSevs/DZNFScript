@@ -39,12 +39,9 @@ class ActionBuryBody: ActionContinuousBase
 			string surface_type;
 			vector position = body_EAI.GetPosition();
 			GetGame().SurfaceGetType ( position[0], position[2], surface_type );
-			array<string> surface_types = {"cp_dirt", "cp_grass", "cp_grass_tall", "cp_conifer_common1", "cp_conifer_common2", "cp_conifer_moss1", "cp_conifer_moss2", "cp_broadleaf_dense1", "cp_broadleaf_dense2", "cp_broadleaf_sparse1", "cp_broadleaf_sparse2", "cp_gravel" };
 			
-			if ( surface_types.Find(surface_type) )
-			{
+			if ( GetGame().IsSurfaceDigable(surface_type) )
 				return true;
-			}
 		}
 		
 		return false;

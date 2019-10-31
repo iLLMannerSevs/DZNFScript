@@ -1,10 +1,10 @@
 class ActionMineTreeCB : ActionContinuousBaseCB
 {
-	private const float TIME_BETWEEN_MATERIAL_DROPS = 4;
+	private const float TIME_BETWEEN_MATERIAL_DROPS_DEFAULT = 4;
 	
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousMineWood(TIME_BETWEEN_MATERIAL_DROPS);
+		m_ActionData.m_ActionComponent = new CAContinuousMineWood(TIME_BETWEEN_MATERIAL_DROPS_DEFAULT);
 	} 
 };
 
@@ -24,17 +24,20 @@ class ActionMineTree: ActionContinuousBase
 		m_ConditionTarget = new CCTTree(UAMaxDistances.DEFAULT);
 		m_ConditionItem = new CCINonRuined;
 	}
-		
+	
 	override string GetText()
 	{
 		return "#cut_down_tree";
 	}
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{	
+	{
+		if ( GetGame().IsMultiplayer() && GetGame().IsServer() )
+				return true;
+		
 		Object targetObject = target.GetObject();
 		
-		if ( targetObject.IsTree() )
+		if ( targetObject.IsTree() && targetObject.IsCuttable() )
 		{ 
 			return true;
 		}
@@ -43,7 +46,7 @@ class ActionMineTree: ActionContinuousBase
 	}
 	
 	override void OnFinishProgressServer( ActionData action_data )
-	{			
+	{
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 		// TODO switch WoodenPlank item for logs, once those are ready
 		//ItemBase wooden_logs = ItemBase.Cast(GetGame().CreateObject("WoodenPlank",action_data.m_Player.GetPosition(), false));

@@ -16,6 +16,12 @@ class BaseballCap_ColorBase extends Clothing
 		}
 		return false;
 	}
+	
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
 };
 
 

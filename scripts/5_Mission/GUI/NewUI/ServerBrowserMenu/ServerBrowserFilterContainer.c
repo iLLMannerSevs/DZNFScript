@@ -12,6 +12,8 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			ref OptionSelector				m_FriendsPlayingFilter;
 			ref OptionSelector				m_BattleyeFilter;
 			ref OptionSelector				m_PasswordFilter;
+			ref OptionSelector				m_WhitelistFilter;
+			ref OptionSelector				m_KeyboardFilter;
 			ref OptionSelector				m_PreviouslyPlayedFilter;
 			ref OptionSelector				m_VersionMatchFilter;
 			ref OptionSelector				m_FullServerFilter;
@@ -47,6 +49,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		m_PreviouslyPlayedFilter	= new OptionSelector( root.FindAnyWidget( "prev_played_setting_option" ), 0, this, false );
 		m_FullServerFilter			= new OptionSelector( root.FindAnyWidget( "full_server_setting_option" ), 0, this, false );
 		m_PasswordFilter			= new OptionSelector( root.FindAnyWidget( "password_setting_option" ), 0, this, false  );
+		m_WhitelistFilter			= new OptionSelector( root.FindAnyWidget( "whitelist_setting_option" ), 0, this, false  );
 		
 		m_RegionFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_PingFilter.m_OptionChanged.Insert( OnFilterChanged );
@@ -55,11 +58,16 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		m_PreviouslyPlayedFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_FullServerFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_PasswordFilter.m_OptionChanged.Insert( OnFilterChanged );
+		m_WhitelistFilter.m_OptionChanged.Insert( OnFilterChanged );
 		
 		#ifdef PLATFORM_CONSOLE
 			m_SortingFilter			= new OptionSelectorMultistate( root.FindAnyWidget( "sort_setting_option" ), 0, this, false, sort_options );
+			m_KeyboardFilter		= new OptionSelectorMultistate( root.FindAnyWidget( "keyboard_setting_option" ), 0, this, false, three_options );
+		
 			m_SortingFilter.m_OptionChanged.Insert( OnSortChanged );
 			m_SortingFilter.m_OptionChanged.Insert( OnFilterChanged );
+			m_KeyboardFilter.m_OptionChanged.Insert( OnFilterChanged );
+		
 			m_PingFilter.Disable();
 			m_FriendsPlayingFilter.Disable();
 		#endif
@@ -115,9 +123,11 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			m_PreviouslyPlayedFilter.SetStringOption( m_Options.Get( "m_PreviouslyPlayedFilter" ), false );
 			m_FullServerFilter.SetStringOption( m_Options.Get( "m_FullServerFilter" ), false );
 			m_PasswordFilter.SetStringOption( m_Options.Get( "m_PasswordFilter" ), false );
+			m_WhitelistFilter.SetStringOption( m_Options.Get( "m_WhitelistFilter" ), false );
 			
 			#ifdef PLATFORM_CONSOLE
 				m_SortingFilter.SetStringOption( m_Options.Get( "m_SortingFilter" ), false );
+				m_KeyboardFilter.SetStringOption( m_Options.Get( "m_KeyboardFilter" ), false );
 			#endif
 			
 			if( m_Options.Count() >= 12 )
@@ -149,9 +159,11 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		m_Options.Insert( "m_PreviouslyPlayedFilter", m_PreviouslyPlayedFilter.GetStringValue() );
 		m_Options.Insert( "m_FullServerFilter", m_FullServerFilter.GetStringValue() );
 		m_Options.Insert( "m_PasswordFilter", m_PasswordFilter.GetStringValue() );
+		m_Options.Insert( "m_WhitelistFilter", m_WhitelistFilter.GetStringValue() );
 		
 		#ifdef PLATFORM_CONSOLE
 			m_Options.Insert( "m_SortingFilter", m_SortingFilter.GetStringValue() );
+			m_Options.Insert( "m_KeyboardFilter", m_KeyboardFilter.GetStringValue() );
 		#endif
 		
 		#ifdef PLATFORM_WINDOWS
@@ -179,9 +191,11 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		m_PreviouslyPlayedFilter.Reset();
 		m_FullServerFilter.Reset();
 		m_PasswordFilter.Reset();
+		m_WhitelistFilter.Reset();
 		
 		#ifdef PLATFORM_CONSOLE
 			m_SortingFilter.Reset();
+			m_KeyboardFilter.Reset();
 		#endif
 		
 		#ifdef PLATFORM_WINDOWS
@@ -474,31 +488,37 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			input.SetPassworded( m_PasswordFilter.IsEnabled() );
 		}
 		
-		//8 Search by Previously Played
+		//8 Search by Passworded
+		if( m_WhitelistFilter.IsSet() )
+		{
+			input.SetWhitelistEnabled( m_WhitelistFilter.IsEnabled() );
+		}
+		
+		//9 Search by Previously Played
 		if( m_PreviouslyPlayedFilter.IsSet() )
 		{
 			input.SetPreviouslyPlayed( m_PreviouslyPlayedFilter.IsEnabled() );
 		}
 		
-		//9 Search by Proper Version
+		//10 Search by Proper Version
 		if( m_VersionMatchFilter.IsSet() )
 		{
 			input.SetProperVersionMatch( m_VersionMatchFilter.IsEnabled() );
 		}
 				
-		//10 Search by Full Server
+		//11 Search by Full Server
 		if( m_FullServerFilter.IsSet() )
 		{
 			input.SetFullServer( m_FullServerFilter.IsEnabled() );
 		}
 		
-		//11 Search by Third Person
+		//12 Search by Third Person
 		if( m_ThirdPersonFilter.IsSet() )
 		{
 			input.SetThirdPerson( m_ThirdPersonFilter.IsEnabled() );
 		}
 		
-		//12 Search by Public
+		//13 Search by Public
 		if( m_PublicFilter.IsSet() )
 		{
 			input.SetPublic( m_PublicFilter.IsEnabled() );
@@ -563,6 +583,10 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 				input.SetPreviouslyPlayed( m_PreviouslyPlayedFilter.IsEnabled() );
 			#endif
 		}
+		if( m_KeyboardFilter.IsSet() )
+		{
+			input.SetMouseAndKeyboardEnabled( m_KeyboardFilter.IsEnabled() );
+		}
 		if( m_FullServerFilter.IsSet() )
 		{
 			input.SetFullServer( m_FullServerFilter.IsEnabled() );
@@ -578,6 +602,10 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		if( m_PasswordFilter.IsSet() )
 		{
 			input.SetIsPasswordProtectedFilter( m_PasswordFilter.IsEnabled() );
+		}
+		if( m_WhitelistFilter.IsSet() )
+		{
+			input.SetWhitelistEnabled( m_WhitelistFilter.IsEnabled() );
 		}
 		
 		#ifdef PLATFORM_WINDOWS

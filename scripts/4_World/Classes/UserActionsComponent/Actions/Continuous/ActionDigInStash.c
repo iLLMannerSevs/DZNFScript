@@ -50,7 +50,6 @@ class ActionDigInStash: ActionContinuousBase
 				return false;
 			}
 			
-			
 			// Check surface
 			string surface_type;
 			vector position = target_IB.GetPosition();
@@ -58,7 +57,7 @@ class ActionDigInStash: ActionContinuousBase
 			
 			if ( target_IB.ConfigGetBool("canBeDigged") )
 			{
-				if ( GetGame().IsSurfaceSoftGround(surface_type) )
+				if ( GetGame().IsSurfaceDigable(surface_type) )
 				{
 					// Check slope angle
 					vector posA = position + "0.5 0 0.5";

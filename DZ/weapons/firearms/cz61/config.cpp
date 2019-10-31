@@ -2,7 +2,7 @@
 //DeRap: weapons_firearms\cz61\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:54 2019 : 'file' last modified on Tue Aug 13 08:24:10 2019
+//'now' is Thu Oct 31 18:24:43 2019 : 'file' last modified on Thu Oct 31 09:53:45 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -54,6 +54,7 @@ class CfgWeapons
 		barrelArmor = 800;
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1,1,1};
 		drySound[] = {"dz\sounds\weapons\firearms\m4a1\m4_dry",0.5,1,20};
 		reloadAction = "ReloadCZ61";
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\pm63rak\pm63rak_reload_0mod",0.8,1,20};
@@ -350,7 +351,7 @@ class CfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.7,{"DZ\weapons\firearms\cz61\data\cz61.rvmat"}},{0.5,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0.3,{"DZ\weapons\firearms\cz61\data\cz61_damage.rvmat"}},{0.0,{"DZ\weapons\firearms\cz61\data\cz61_destruct.rvmat"}}};
 				};
 			};

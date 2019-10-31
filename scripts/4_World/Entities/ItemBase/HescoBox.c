@@ -5,7 +5,6 @@ class HescoBox extends Inventory_Base
 	static const int FILLED 		   = 2;
 	static const int PERCENTUAL_DAMAGE = 1;
 	
-	static ref array<string> 		m_SurfaceForSetup;
 	ref Timer 						m_Timer;
 	ref protected EffectSound 		m_DeployLoopSound;
 
@@ -15,12 +14,6 @@ class HescoBox extends Inventory_Base
 	{
 		m_State = FOLDED;
 		m_DeployLoopSound = new EffectSound;
-		
-		if (!m_SurfaceForSetup)
-		{
-			m_SurfaceForSetup = new array<string>;
-			InsertMaterialForSetup();
-		}
 		
 		//synchronized variables
 		RegisterNetSyncVariableInt( "m_State", FOLDED, FILLED );
@@ -80,10 +73,6 @@ class HescoBox extends Inventory_Base
 	
 	void RefreshVisuals()
 	{
-		if( GetState() == UNFOLDED )
-		{
-			InsertMaterialForSetup();
-		}
 	}
 
 	int GetState()
@@ -100,13 +89,8 @@ class HescoBox extends Inventory_Base
 	{
 		string surface_type;
 		GetGame().SurfaceGetType( position[0], position[2], surface_type );
-
-		if ( m_SurfaceForSetup.Find(surface_type) > -1 )
-		{
-			return true;
-		}
 		
-		return false;
+		return GetGame().IsSurfaceDigable(surface_type);
 	}
 
 	bool CanBeManipulated()
@@ -145,7 +129,6 @@ class HescoBox extends Inventory_Base
 		this.ShowSelection( "placing" );
 		this.HideSelection( "filled" );
 		
-		InsertMaterialForSetup();
 		SetState( UNFOLDED );
 		RefreshPhysics();
 		
@@ -200,22 +183,6 @@ class HescoBox extends Inventory_Base
 			m_Timer = new Timer( CALL_CATEGORY_SYSTEM );
 		
 		m_Timer.Run(0.1, this, "RefreshPhysicsDelayed");
-	}
-	
-	void InsertMaterialForSetup()
-	{	
-		m_SurfaceForSetup.Insert("cp_dirt");
-		m_SurfaceForSetup.Insert("cp_broadleaf_dense1");
-		m_SurfaceForSetup.Insert("cp_broadleaf_dense2");
-		m_SurfaceForSetup.Insert("cp_broadleaf_sparse1");
-		m_SurfaceForSetup.Insert("cp_broadleaf_sparse2");
-		m_SurfaceForSetup.Insert("cp_conifer_common1");
-		m_SurfaceForSetup.Insert("cp_conifer_common2");
-		m_SurfaceForSetup.Insert("cp_conifer_moss1");
-		m_SurfaceForSetup.Insert("cp_conifer_moss2");
-		m_SurfaceForSetup.Insert("cp_grass");
-		m_SurfaceForSetup.Insert("cp_grass_tall");
-		m_SurfaceForSetup.Insert("cp_gravel");
 	}
 
 	void Fill()

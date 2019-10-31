@@ -1,1 +1,1 @@
-class ObsoleteFishingRod: FishingRod_Base {};
+class ObsoleteFishingRod: FishingRod_Base_New {};

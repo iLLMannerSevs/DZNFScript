@@ -2,7 +2,7 @@
 //DeRap: gear_drinks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:22 2019 : 'file' last modified on Fri Jul 19 21:41:25 2019
+//'now' is Thu Oct 31 18:20:58 2019 : 'file' last modified on Wed Oct 30 08:59:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -42,7 +42,7 @@ class CfgVehicles
 		model = "\dz\gear\drinks\Canteen.p3d";
 		inventorySlot = "Belt_Left";
 		weight = 250;
-		itemSize[] = {2,3};
+		itemSize[] = {2,2};
 		varQuantityInit = 1000;
 		varQuantityMin = 0;
 		varQuantityMax = 1000;
@@ -134,9 +134,9 @@ class CfgVehicles
 		varQuantityDestroyOnMin = 0;
 		varLiquidTypeInit = 512;
 		liquidContainerType = "1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + 2048 + 4096 + 8192 + 16384 + 32768 + 65536  - (1 + 2 + 4 + 8 + 16 + 32 + 64 + 128 + 256)";
-		varQuantityInit = 500.0;
+		varQuantityInit = 1000.0;
 		varQuantityMin = 0.0;
-		varQuantityMax = 500.0;
+		varQuantityMax = 1000.0;
 		isMeleeWeapon = 1;
 		class DamageSystem
 		{
@@ -144,7 +144,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.7,{"DZ\gear\drinks\data\Loot_WaterBottle.rvmat"}},{0.5,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Loot_WaterBottle_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\Loot_WaterBottle_destruct.rvmat"}}};
 				};
 			};
@@ -217,7 +217,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 20;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\VodkaBottles.rvmat"}},{0.7,{"DZ\gear\drinks\data\VodkaBottles.rvmat"}},{0.5,{"DZ\gear\drinks\data\VodkaBottles_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\VodkaBottles_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\VodkaBottles_destruct.rvmat"}}};
 				};
 			};
@@ -286,7 +286,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural.rvmat"}},{0.7,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural.rvmat"}},{0.5,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_destruct.rvmat"}}};
 				};
 			};
@@ -398,7 +398,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural.rvmat"}},{0.7,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural.rvmat"}},{0.5,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_damage.rvmat"}},{0.3,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_damage.rvmat"}},{0.0,{"DZ\gear\drinks\data\Drink_WaterPouch_Natural_destruct.rvmat"}}};
 				};
 			};

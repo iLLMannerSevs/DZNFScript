@@ -20,6 +20,9 @@ class Attachments
 		m_AttachmentSlotNames	= GetItemSlots( entity );
 		m_Entity.GetOnItemAttached().Insert( AttachmentAdded );
 		m_Entity.GetOnItemDetached().Insert( AttachmentRemoved );
+		m_Entity.GetOnAttachmentSetLock().Insert( OnAttachmentReservationSet );
+		m_Entity.GetOnAttachmentReleaseLock().Insert( OnAttachmentReservationRelease );
+		
 	}
 	
 	void ~Attachments()
@@ -28,6 +31,8 @@ class Attachments
 		{
 			m_Entity.GetOnItemAttached().Remove( AttachmentAdded );
 			m_Entity.GetOnItemDetached().Remove( AttachmentRemoved );
+			m_Entity.GetOnAttachmentSetLock().Remove( OnAttachmentReservationSet );
+			m_Entity.GetOnAttachmentReleaseLock().Remove( OnAttachmentReservationRelease );
 		}
 		
 		delete m_AttachmentsContainer;
@@ -142,7 +147,7 @@ class Attachments
 	{
 		if( m_FocusedRow < m_Ics.Count() )
 		{
-			return m_Ics.Get( m_FocusedRow ).GetSlotIcon( m_FocusedColumn ).GetRender().GetUserID();
+			return m_Ics.Get( m_FocusedRow ).GetSlotIcon( m_FocusedColumn ).GetSlotID();
 		}
 		return -1;
 	}
@@ -418,6 +423,11 @@ class Attachments
 				if( item )
 				{
 					bool draggable = true;
+					if(icon.IsReserved())
+					{
+						draggable = false;
+					}
+					
 					if( m_Entity.GetInventory().GetSlotLock( slot_id ) && ItemManager.GetInstance().GetDraggedItem() != item )
 					{
 						icon.GetMountedWidget().Show( true );
@@ -468,7 +478,7 @@ class Attachments
 		int slot_id = InventorySlots.GetSlotIdFromString( slot );
 		SlotsIcon icon = m_AttachmentSlots.Get( slot_id );
 		
-		icon.GetRender().SetUserID( slot_id );
+		icon.SetSlotID( slot_id );
 		if( item )
 		{
 			icon.Init( item );
@@ -481,6 +491,23 @@ class Attachments
 		SlotsIcon icon = m_AttachmentSlots.Get( slot_id );
 		icon.Clear();
 	}
+	
+	void OnAttachmentReservationSet( EntityAI item, int slot_id )
+	{
+		SlotsIcon icon = m_AttachmentSlots.Get( slot_id );
+		
+		if( item )
+		{
+			icon.Init( item, true );
+		}
+	}
+	
+	void OnAttachmentReservationRelease( EntityAI item, int slot_id )
+	{
+		SlotsIcon icon = m_AttachmentSlots.Get( slot_id );
+		icon.Clear();
+	}
+	
 
 	void InitAttachmentGrid( int att_row_index )
 	{
@@ -495,7 +522,7 @@ class Attachments
 		
 		for ( int i = 0; i < number_of_rows; i++ )
 		{
-			SlotsContainer ic = new SlotsContainer( m_AttachmentsContainer );
+			SlotsContainer ic = new SlotsContainer( m_AttachmentsContainer, m_Entity );
 			m_AttachmentsContainer.Insert( ic );
 
 			if( i == ( number_of_rows - 1 ) && m_AttachmentSlotNames.Count() % ITEMS_IN_ROW != 0 )
@@ -538,6 +565,8 @@ class Attachments
 				icon2.GetGhostSlot().LoadImageFile( 0, "set:dayz_inventory image:" + icon_name );
 			int slot_id = InventorySlots.GetSlotIdFromString( m_AttachmentSlotNames[i] );
 			m_AttachmentSlots.Insert( slot_id, icon2 );
+			icon2.SetSlotID(slot_id);
+			
 			EntityAI item = m_Entity.GetInventory().FindAttachment( slot_id );
 			if( item )
 				AttachmentAdded( item, m_AttachmentSlotNames[i], m_Entity );

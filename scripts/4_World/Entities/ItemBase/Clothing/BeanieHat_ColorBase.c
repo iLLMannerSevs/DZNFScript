@@ -1,4 +1,11 @@
-class BeanieHat_ColorBase extends Clothing {};
+class BeanieHat_ColorBase extends Clothing
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
+};
 class BeanieHat_Beige extends BeanieHat_ColorBase {};
 class BeanieHat_Black extends BeanieHat_ColorBase {};
 class BeanieHat_Blue extends BeanieHat_ColorBase {};

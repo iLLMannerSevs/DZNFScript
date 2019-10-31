@@ -1,10 +1,10 @@
 class ActionMineBushCB : ActionContinuousBaseCB
 {
-	private const float TIME_BETWEEN_MATERIAL_DROPS = 3;
+	protected const float TIME_BETWEEN_MATERIAL_DROPS_DEFAULT = 3;
 	
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousMineWood(TIME_BETWEEN_MATERIAL_DROPS);
+		m_ActionData.m_ActionComponent = new CAContinuousMineWood(TIME_BETWEEN_MATERIAL_DROPS_DEFAULT);
 	}
 };
 
@@ -21,19 +21,22 @@ class ActionMineBush: ActionContinuousBase
 	
 	override void CreateConditionComponents()  
 	{
-		m_ConditionTarget = new CCTCursor(UAMaxDistances.DEFAULT);
+		m_ConditionTarget = new CCTCursor(1);
 		m_ConditionItem = new CCINonRuined;
 	}
-		
+	
 	override string GetText()
 	{
 		return "#cut_down_bush";
 	}
-		
+	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
-	{	
+	{
+		if ( GetGame().IsMultiplayer() && GetGame().IsServer() )
+				return true;
+		
 		Object targetObject = target.GetObject();
-		if ( targetObject.IsBush() ) 
+		if ( targetObject.IsBush() && targetObject.IsCuttable() ) 
 		{
 			return true;
 		}
@@ -41,7 +44,7 @@ class ActionMineBush: ActionContinuousBase
 	}
 
 	override void OnFinishProgressServer( ActionData action_data )
-	{		
+	{
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}
 };

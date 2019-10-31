@@ -234,21 +234,22 @@ class ContainerWithCargo: ClosableContainer
 			c_y = cargo.GetWidth();
 		}
 		
+		InventoryLocation dst = new InventoryLocation;
 		#ifdef PLATFORM_CONSOLE
+		x = 0;
 		y = cargo.GetItemCount();
 		#endif
 		
-		InventoryLocation dst = new InventoryLocation;		
 		dst.SetCargoAuto(cargo, item, x, y, item.GetInventory().GetFlipCargo());
 		
 		#ifdef PLATFORM_CONSOLE
-		if( m_Entity.GetInventory().LocationCanAddEntity(dst))
+		if( dst.IsValid() && m_Entity.GetInventory().LocationCanAddEntity(dst))
 		#else
 		if( m_Entity && c_x > x && c_y > y && m_Entity.GetInventory().LocationCanAddEntity(dst))
 		#endif
 		{
 			ItemManager.GetInstance().HideDropzones();
-			if( m_Entity.GetHierarchyParent() == GetGame().GetPlayer() )
+			if( m_Entity.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
 			{
 				ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
 			}
@@ -328,7 +329,7 @@ class ContainerWithCargo: ClosableContainer
 		#endif
 		
 		#ifdef PLATFORM_CONSOLE
-		if(m_Entity.GetInventory().LocationCanAddEntity(dst))
+		if(dst.IsValid() && m_Entity.GetInventory().LocationCanAddEntity(dst))
 		#else
 		if( c_x > x && c_y > y && m_Entity.GetInventory().LocationCanAddEntity(dst))
 		#endif
@@ -388,7 +389,7 @@ class ContainerWithCargo: ClosableContainer
 		{
 			ColorManager.GetInstance().SetColor( w, ColorManager.GREEN_COLOR );
 			ItemManager.GetInstance().HideDropzones();
-			if( m_Entity.GetHierarchyParent() == GetGame().GetPlayer() )
+			if( m_Entity.GetHierarchyRootPlayer() == GetGame().GetPlayer() )
 			{
 				ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
 			}

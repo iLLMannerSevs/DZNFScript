@@ -27,7 +27,7 @@ FrameWidgetClass OnlineInfo {
   FrameWidgetClass ServerInfoPanel {
    clipchildren 1
    position 100 150
-   size 600 800
+   size 600 600
    halign right_ref
    hexactpos 1
    vexactpos 1

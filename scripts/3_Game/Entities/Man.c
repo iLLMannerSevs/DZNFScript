@@ -883,4 +883,6 @@ class Man extends EntityAI
 	
 	/// returns true if man is in transport, false otherwise
 	bool IsInTransport () { return null != Transport.Cast(GetParent()); }
+	
+	void StopDeathDarkeningEffect() {}
 };

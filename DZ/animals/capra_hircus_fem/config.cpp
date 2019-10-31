@@ -2,7 +2,7 @@
 //DeRap: animals\capra_hircus_fem\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:03 2019 : 'file' last modified on Mon Aug 26 15:09:32 2019
+//'now' is Thu Oct 31 18:19:39 2019 : 'file' last modified on Thu Oct 31 12:38:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -566,6 +566,8 @@ class CfgVehicles
 			{
 				item = "GoatSteakMeat";
 				count = 10;
+				itemZones[] = {"Zone_Chest","Zone_Belly","Zone_Pelvis"};
+				countByZone[] = {3.0,2.0,4.0};
 				quantityMinMaxCoef[] = {0.5,1};
 			};
 			class ObtainedPelt

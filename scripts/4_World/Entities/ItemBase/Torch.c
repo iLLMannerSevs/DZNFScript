@@ -272,7 +272,7 @@ class Torch : ItemBase
 		string surface_type;
 		vector position = GetPosition();
 		GetGame().SurfaceGetType ( position[0], position[2], surface_type );
-		bool is_surface_soft = GetGame().IsSurfaceSoftGround(surface_type);
+		bool is_surface_soft = GetGame().IsSurfaceDigable(surface_type);
 		
 		if ( is_surface_soft  &&  !IsRuined() )
 		{

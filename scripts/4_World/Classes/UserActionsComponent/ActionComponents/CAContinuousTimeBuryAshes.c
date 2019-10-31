@@ -103,7 +103,7 @@ class CAContinuousTimeBuryAshes : CAContinuousBase
 		string surface_type;
 		vector position = target_object.GetPosition();
 		GetGame().SurfaceGetType ( position[0], position[2], surface_type ); 
-		if ( !GetGame().IsSurfaceSoftGround( surface_type ) )
+		if ( !GetGame().IsSurfaceDigable( surface_type ) )
 		{
 			return fireplace_target.MESSAGE_BURY_ASHES_FAILED_SURFACE;
 		}

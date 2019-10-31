@@ -353,9 +353,12 @@ class Magazine : InventoryItemSuper
 		if(player)
 		{
 			Weapon_Base wpn = Weapon_Base.Cast(parent);
-			return player.GetWeaponManager().CanDetachMagazine(wpn,this);
+			if(wpn)
+			{
+				return player.GetWeaponManager().CanDetachMagazine(wpn,this);
+			}
 		}
-		return false;
+		return super.CanDetachAttachment(parent);
 	}
 	
 	override void OnInventoryEnter(Man player)

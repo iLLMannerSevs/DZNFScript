@@ -78,7 +78,7 @@ class ActionCoverHeadTarget: ActionContinuousBase
 	}
 };
 
-class CoverHeadOfTargetPlayerLambda : ReplaceItemWithNewLambdaBase
+class CoverHeadOfTargetPlayerLambda : TurnItemIntoItemLambda
 {
 	PlayerBase m_TargetPlayer;
 

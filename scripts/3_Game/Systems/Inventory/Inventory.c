@@ -463,11 +463,12 @@ class GameInventory
 	 * @brief   test if forced swap can be performed.
 	 *
 	 * @param [in]  item1     is the forced item (primary)
+	 * @param [in]  item1_dst     optional destination for item1 (null if item1 goes to place of item2)
 	 * @param [in]  item2     second item that will be replaced by the item1. (secondary)
 	 * @param [out]  item2_dst     second item's potential destination (if null, search for item_dst2 is ommited). if (NOT null AND IsValid()), then it is tried first, without search to inventory
 	 * @return    true if can be force swapped
 	 */
-	static proto native bool CanForceSwapEntities (notnull EntityAI item1, notnull EntityAI item2, out InventoryLocation item2_dst);
+	static proto native bool CanForceSwapEntities (notnull EntityAI item1, InventoryLocation item1_dst, notnull EntityAI item2, out InventoryLocation item2_dst);
 
 	///@{ reservations
 	const int c_InventoryReservationTimeoutMS = 15000;
@@ -842,15 +843,17 @@ class GameInventory
 	/// helper function for swap
 	static bool MakeDstForSwap (notnull ref InventoryLocation src1, notnull ref InventoryLocation src2, out ref InventoryLocation dst1, out ref InventoryLocation dst2)
 	{
+		src1.SetFlip(src1.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
+		
 		if (dst1 == null)
 			dst1 = new InventoryLocation;
 		dst1.Copy(src1);
-		dst1.CopyLocationFrom(src2);
+		dst1.CopyLocationFrom(src2, false);
 
 		if (dst2 == null)
 			dst2 = new InventoryLocation;
 		dst2.Copy(src2);
-		dst2.CopyLocationFrom(src1);
+		dst2.CopyLocationFrom(src1, false);
 		return true;
 	}
 
@@ -879,7 +882,8 @@ class GameInventory
 			if (dst1 == null)
 				dst1 = new InventoryLocation;
 			dst1.Copy(src1);
-			dst1.CopyLocationFrom(src2);
+			dst1.CopyLocationFrom(src2, false);
+			dst1.SetFlip(dst1.GetItem().GetInventory().GetFlipCargo());
 
 			// src2 -> dst2 from user
 			return true;

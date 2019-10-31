@@ -2,7 +2,7 @@
 //DeRap: characters_headgear\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:40 2019 : 'file' last modified on Fri Aug 30 10:04:39 2019
+//'now' is Thu Oct 31 18:20:18 2019 : 'file' last modified on Mon Oct 21 09:35:25 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -421,7 +421,8 @@ class CfgVehicles
 		itemSize[] = {4,3};
 		absorbency = 0;
 		heatIsolation = 0.25;
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		headSelectionsToHide[] = {"Clipping_ConstructionHelmet"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class DamageSystem
@@ -573,7 +574,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.7,{"DZ\characters\headgear\data\Head_Sack.rvmat"}},{0.5,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\Head_Sack_damage.rvmat"}},{0.0,{"DZ\characters\headgear\data\Head_Sack_destruct.rvmat"}}};
 				};
 			};
@@ -787,6 +788,7 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 1;
 		noMask = 1;
+		noEyewear = 1;
 		headSelectionsToHide[] = {"Clipping_PumpkinHelmet"};
 		class Reflectors
 		{
@@ -858,6 +860,7 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 1;
 		noMask = 1;
+		noEyewear = 1;
 		headSelectionsToHide[] = {"Clipping_MotoHelmet"};
 		hiddenSelections[] = {"camoGround"};
 		class ClothingTypes
@@ -1025,6 +1028,7 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 1;
 		noMask = 1;
+		noEyewear = 1;
 		headSelectionsToHide[] = {"Clipping_MotoHelmet"};
 		hiddenSelections[] = {"camoGround","Camo1"};
 		class ClothingTypes
@@ -1266,6 +1270,7 @@ class CfgVehicles
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
 		headSelectionsToHide[] = {"Clipping_BandanaHead","Clipping_BandanaFace"};
+		hideSelectionsByInventorySlot = 1;
 		hiddenSelections[] = {"camoGround","camoMale_H","camoMale_M","camoFemale_H","camoFemale_M"};
 		simpleHiddenSelections[] = {"hide_headgear","hide_mask"};
 		class DamageSystem
@@ -1884,6 +1889,7 @@ class CfgVehicles
 		rotationFlags = 16;
 		weight = 170;
 		itemSize[] = {3,2};
+		attachments[] = {"Hook"};
 		absorbency = 0.7;
 		heatIsolation = 0.3;
 		repairableWithKits[] = {5,2};
@@ -2120,6 +2126,17 @@ class CfgVehicles
 		headSelectionsToHide[] = {"Clipping_pilotka"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\Pilotka_co.paa","dz\characters\headgear\data\Pilotka_co.paa","dz\characters\headgear\data\Pilotka_co.paa"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\characters\headgear\data\pilotka.rvmat"}},{0.7,{"DZ\characters\headgear\data\pilotka.rvmat"}},{0.5,{"DZ\characters\headgear\data\pilotka_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\pilotka_damage.rvmat"}},{0.0,{"DZ\characters\headgear\data\pilotka_destruct.rvmat"}}};
+				};
+			};
+		};
 		class ClothingTypes
 		{
 			male = "\DZ\characters\headgear\pilotka_m.p3d";
@@ -2155,7 +2172,8 @@ class CfgVehicles
 		rotationFlags = 17;
 		weight = 980;
 		itemSize[] = {4,3};
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		absorbency = 0.4;
 		heatIsolation = 1;
 		visibilityModifier = 0.98;
@@ -2473,7 +2491,8 @@ class CfgVehicles
 		itemSize[] = {4,3};
 		absorbency = 0;
 		heatIsolation = 0.15;
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		headSelectionsToHide[] = {"Clipping_ProtecSkateHelmet2"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class DamageSystem
@@ -2619,6 +2638,7 @@ class CfgVehicles
 		heatIsolation = 0.3;
 		visibilityModifier = 0.85;
 		noMask = 1;
+		noEyewear = 1;
 		headSelectionsToHide[] = {"Clipping_Welding_Mask"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"\DZ\characters\masks\data\Welding_Mask_CO.paa","\DZ\characters\masks\data\Welding_Mask_CO.paa","\DZ\characters\masks\data\Welding_Mask_CO.paa"};
@@ -2823,7 +2843,8 @@ class CfgVehicles
 		heatIsolation = 0.45;
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		headSelectionsToHide[] = {"Clipping_Hat_leather"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		hiddenSelectionsTextures[] = {"dz\characters\headgear\data\Hat_Leather_CO.paa","dz\characters\headgear\data\Hat_Leather_CO.paa","dz\characters\headgear\data\Hat_Leather_CO.paa"};
@@ -3016,6 +3037,7 @@ class CfgVehicles
 		absorbency = 0;
 		heatIsolation = 0.2;
 		noMask = 1;
+		noEyewear = 1;
 		headSelectionsToHide[] = {"Clipping_grathelm"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"\DZ\characters\headgear\data\greathelm_CO.paa"};
@@ -3254,7 +3276,8 @@ class CfgVehicles
 		itemSize[] = {4,3};
 		absorbency = 0;
 		heatIsolation = 1;
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		attachments[] = {"DBHelmetVisor","DBHelmetMouth"};
 		headSelectionsToHide[] = {"Clipping_MxHelmet"};
 		hiddenSelections[] = {"camoGround","camo"};
@@ -3455,6 +3478,17 @@ class CfgVehicles
 		heatIsolation = 0.5;
 		headSelectionsToHide[] = {"Clipping_NBC_Hood"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\characters\headgear\data\NBC_Hood.rvmat"}},{0.7,{"DZ\characters\headgear\data\NBC_Hood.rvmat"}},{0.5,{"DZ\characters\headgear\data\NBC_Hood_damage.rvmat"}},{0.3,{"DZ\characters\headgear\data\NBC_Hood_damage.rvmat"}},{0.0,{"DZ\characters\headgear\data\NBC_Hood_destruct.rvmat"}}};
+				};
+			};
+		};
 		class ClothingTypes
 		{
 			male = "\DZ\characters\headgear\NBC_Hood_m.p3d";
@@ -3497,7 +3531,8 @@ class CfgVehicles
 		itemSize[] = {4,3};
 		absorbency = 0;
 		heatIsolation = 0.3;
-		noMask = 1;
+		noMask = 0;
+		noEyewear = 0;
 		headSelectionsToHide[] = {"Clipping_Hockey_hekmet"};
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class DamageSystem

@@ -68,7 +68,7 @@ class ItemBase extends InventoryItem
 	float 								m_OverheatingDecayInterval = 1; // Timer's interval for decrementing overheat effect's lifespan
 	ref array <ref OverheatingParticle> m_OverheatingParticles;
 	
-	ref TStringArray m_HeadHidingSelections;
+	protected ref TStringArray m_HeadHidingSelections;
 	
 	// Admin Log
 	PluginAdminLog			m_AdminLog;
@@ -662,6 +662,11 @@ class ItemBase extends InventoryItem
 		return false;
 	}
 	
+	bool IsExplosive()
+	{
+		return false;
+	}
+	
 	bool IsLightSource()
 	{
 		return false;
@@ -746,10 +751,29 @@ class ItemBase extends InventoryItem
 		if( oldLoc.GetParent() )
 			old_player = PlayerBase.Cast(oldLoc.GetParent().GetHierarchyRootPlayer());
 		
-		if(oldLoc.GetType() == InventoryLocationType.HANDS)
+		if(old_player && oldLoc.GetType() == InventoryLocationType.HANDS)
 		{
-			old_player.GetHumanInventory().ClearUserReservedLocation(this);
-			GetOnReleaseLock().Invoke(this);
+			int r_index = old_player.GetHumanInventory().FindUserReservedLocationIndex(this);
+
+			if(r_index >= 0)
+			{
+					InventoryLocation r_il = new InventoryLocation;
+					old_player.GetHumanInventory().GetUserReservedLocation(r_index,r_il);
+
+					old_player.GetHumanInventory().ClearUserReservedLocationAtIndex(r_index);
+					int r_type = r_il.GetType();
+					if( r_type == InventoryLocationType.CARGO || r_type == InventoryLocationType.PROXYCARGO )
+					{
+						r_il.GetParent().GetOnReleaseLock().Invoke( this );
+					}
+					else if( r_type == InventoryLocationType.ATTACHMENT )
+					{
+						r_il.GetParent().GetOnAttachmentReleaseLock().Invoke( this, r_il.GetSlot() );
+					}
+			
+			}
+			//old_player.GetHumanInventory().ClearUserReservedLocation(this);
+			//GetOnReleaseLock().Invoke(this);
 		}
 		
 		if(newLoc.GetType() == InventoryLocationType.HANDS)
@@ -760,12 +784,19 @@ class ItemBase extends InventoryItem
 				{
 					new_player.GetHumanInventory().SetUserReservedLocation(this,oldLoc);
 				}
-				int type = oldLoc.GetType();
-				if( type == InventoryLocationType.CARGO || type == InventoryLocationType.PROXYCARGO )
-				{
-					oldLoc.GetParent().GetOnSetLock().Invoke( this );
-				}
 				
+				if( new_player.GetHumanInventory().FindUserReservedLocationIndex( this ) >= 0 )
+				{
+					int type = oldLoc.GetType();
+					if( type == InventoryLocationType.CARGO || type == InventoryLocationType.PROXYCARGO )
+					{
+						oldLoc.GetParent().GetOnSetLock().Invoke( this );
+					}
+					else if( type == InventoryLocationType.ATTACHMENT )
+					{
+						oldLoc.GetParent().GetOnAttachmentSetLock().Invoke( this, oldLoc.GetSlot() );
+					}
+				}
 				if (!m_OldLocation)
 				{
 					m_OldLocation = new InventoryLocation;
@@ -791,7 +822,16 @@ class ItemBase extends InventoryItem
 					new_player.GetHumanInventory().GetUserReservedLocation(res_index,il);
 					ItemBase it = ItemBase.Cast(il.GetItem());
 					new_player.GetHumanInventory().ClearUserReservedLocationAtIndex(res_index);
-					it.GetOnReleaseLock().Invoke(it);
+					int rel_type = il.GetType();
+					if( rel_type == InventoryLocationType.CARGO || rel_type == InventoryLocationType.PROXYCARGO )
+					{
+						il.GetParent().GetOnReleaseLock().Invoke( it );
+					}
+					else if( rel_type == InventoryLocationType.ATTACHMENT )
+					{
+						il.GetParent().GetOnAttachmentReleaseLock().Invoke( it, il.GetSlot() );
+					}
+					//it.GetOnReleaseLock().Invoke(it);
 				}
 			}
 		
@@ -1045,18 +1085,49 @@ class ItemBase extends InventoryItem
 			ExplodeAmmo();
 		}
 	}
-
+	
 	// -------------------------------------------------------------------------------
-	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos)
+	override void EEHitBy(TotalDamageResult damageResult, int damageType, EntityAI source, int component, string dmgZone, string ammo, vector modelPos, float speedCoef)
 	{
+		const int CHANCE_DAMAGE_CARGO = 4;
+		const int CHANCE_DAMAGE_ATTACHMENT = 1;
+		const int CHANCE_DAMAGE_NOTHING = 2;
+		
 		if ( IsClothing() || IsContainer() )
 		{
-			DamageItemsInCargo(damageResult);
+			float dmg = damageResult.GetDamage("","Health") / -2;
+			int chances;
+			int rnd;
+			
+			if (GetInventory().GetCargo())
+			{
+				chances = CHANCE_DAMAGE_CARGO + CHANCE_DAMAGE_ATTACHMENT + CHANCE_DAMAGE_NOTHING;
+				rnd = Math.RandomInt(0,chances);
+				
+				if (rnd < CHANCE_DAMAGE_CARGO)
+				{
+					DamageItemInCargo(dmg);
+				}
+				else if (rnd < (chances - CHANCE_DAMAGE_NOTHING) )
+				{
+					DamageItemAttachments(dmg);
+				}
+			}
+			else
+			{
+				chances = CHANCE_DAMAGE_ATTACHMENT + CHANCE_DAMAGE_NOTHING;
+				rnd = Math.RandomInt(0,chances);
+				
+				if (rnd < CHANCE_DAMAGE_ATTACHMENT)
+				{
+					DamageItemAttachments(dmg);
+				}
+			}
 		}
 	}
-
-	void DamageItemsInCargo(TotalDamageResult damageResult)
-	{	
+	
+	bool DamageItemInCargo(float damage)
+	{
 		if ( GetInventory().GetCargo() )
 		{
 			int item_count = GetInventory().GetCargo().GetItemCount();
@@ -1064,12 +1135,33 @@ class ItemBase extends InventoryItem
 			{
 				int random_pick = Math.RandomInt(0, item_count);
 				ItemBase item = ItemBase.Cast( GetInventory().GetCargo().GetItem(random_pick) );
-				float dmg = damageResult.GetDamage("","Health") / -2;
-				item.AddHealth("","",dmg);
+				if (!item.IsExplosive())
+				{
+					item.AddHealth("","",damage);
+					return true;
+				}
 			}
 		}
+		return false;
 	}
-
+	
+	bool DamageItemAttachments(float damage)
+	{
+		int attachment_count = GetInventory().AttachmentCount();
+		if ( attachment_count > 0 )
+		{
+			int random_pick = Math.RandomInt(0, attachment_count);
+			ItemBase attachment = ItemBase.Cast( GetInventory().GetAttachmentFromIndex(random_pick));
+			if (!attachment.IsExplosive())
+			{
+				attachment.AddHealth("","",damage);
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	//----------------
 	bool CanBeSplit()
 	{
 		if( ConfigGetBool("canBeSplit") )
@@ -2915,7 +3007,7 @@ class ItemBase extends InventoryItem
 	}
 	
 	// Plays muzzle flash particle effects
-	static void PlayFireParticles(ItemBase weapon, string ammoType, ItemBase muzzle_owner, ItemBase suppressor, string config_to_search)
+	static void PlayFireParticles(ItemBase weapon, int muzzle_index, string ammoType, ItemBase muzzle_owner, ItemBase suppressor, string config_to_search)
 	{
 		int id = muzzle_owner.GetMuzzleID();
 		array<ref WeaponParticlesOnFire> WPOF_array = m_OnFireEffect.Get(id);
@@ -2928,7 +3020,7 @@ class ItemBase extends InventoryItem
 				
 				if (WPOF)
 				{
-					WPOF.OnActivate(weapon, ammoType, muzzle_owner, suppressor, config_to_search);
+					WPOF.OnActivate(weapon, muzzle_index, ammoType, muzzle_owner, suppressor, config_to_search);
 				}
 			}
 		}
@@ -2948,7 +3040,7 @@ class ItemBase extends InventoryItem
 				
 				if (WPOBE)
 				{
-					WPOBE.OnActivate(weapon, ammoType, muzzle_owner, suppressor, config_to_search);
+					WPOBE.OnActivate(weapon, 0, ammoType, muzzle_owner, suppressor, config_to_search);
 				}
 			}
 		}
@@ -2968,7 +3060,7 @@ class ItemBase extends InventoryItem
 				
 				if (WPOOH)
 				{
-					WPOOH.OnActivate(weapon, ammoType, muzzle_owner, suppressor, config_to_search);
+					WPOOH.OnActivate(weapon, 0, ammoType, muzzle_owner, suppressor, config_to_search);
 				}
 			}
 		}
@@ -3164,6 +3256,16 @@ class ItemBase extends InventoryItem
 	}
 	
 	void OnApply(PlayerBase player);
+	
+	float GetBandagingEffectivity()
+	{
+		return 1.0;
+	};
+	//returns applicable selection
+	array<string> GetHeadHidingSelection()
+	{
+		return m_HeadHidingSelections;
+	}
 
 }
 

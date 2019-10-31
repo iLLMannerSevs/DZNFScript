@@ -57,7 +57,7 @@ class UATimeSpent
 
 	const float DIG_GARDEN = 4;
 	const float DIG_STASH = 10;
-	const float DIG_WORMS = 12;
+	const float DIG_WORMS = 10;
 
 	const float BURY_ASHES = 6;
 	const float BURY_BODY = 12;
@@ -103,8 +103,9 @@ class UASoftSkillsWeight
  */
 class UADamageApplied
 {
-	const float BUILD 		= 5;
-	const float DISMANTLE 	= 5;
-	const float DESTROY 	= 20;
+	const float BUILD 		= 10;
+	const float DISMANTLE 	= 15;
+	const float DESTROY 	= 50;
 	const float SAW_LOCK 	= 50;
+	const float SKINNING 	= 1;
 };

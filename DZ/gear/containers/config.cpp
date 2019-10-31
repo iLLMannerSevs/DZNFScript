@@ -2,7 +2,7 @@
 //DeRap: gear_containers\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:54:18 2019 : 'file' last modified on Tue Aug 27 09:18:52 2019
+//'now' is Thu Oct 31 18:20:55 2019 : 'file' last modified on Wed Sep 25 13:52:47 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -366,7 +366,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\gear\containers\data\Protector_Case.rvmat"}},{0.7,{"DZ\gear\containers\data\Protector_Case.rvmat"}},{0.5,{"DZ\gear\containers\data\Protector_Case_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\Protector_Case_damage.rvmat"}},{0.0,{"DZ\gear\containers\data\Protector_Case_destruct.rvmat"}}};
 				};
 			};
@@ -409,7 +409,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.7,{"DZ\characters\vests\Data\BallisticVest.rvmat"}},{0.5,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.3,{"DZ\characters\vests\Data\BallisticVest_damage.rvmat"}},{0.0,{"DZ\characters\vests\Data\BallisticVest_destruct.rvmat"}}};
 				};
 			};
@@ -450,7 +450,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\gear\containers\data\300RoundBox.rvmat"}},{0.7,{"DZ\gear\containers\data\300RoundBox.rvmat"}},{0.5,{"DZ\gear\containers\data\300RoundBox_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\300RoundBox_damage.rvmat"}},{0.0,{"DZ\gear\containers\data\300RoundBox_destruct.rvmat"}}};
 				};
 			};
@@ -489,7 +489,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 30;
 					healthLevels[] = {{1.0,{"DZ\gear\containers\data\teddybear.rvmat"}},{0.7,{"DZ\gear\containers\data\teddybear.rvmat"}},{0.5,{"DZ\gear\containers\data\teddybear_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\teddybear_damage.rvmat"}},{0.0,{"DZ\gear\containers\data\teddybear_destruct.rvmat"}}};
 				};
 			};
@@ -554,7 +554,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\gear\containers\data\WaterproofBag.rvmat"}},{0.7,{"DZ\gear\containers\data\WaterproofBag.rvmat"}},{0.5,{"DZ\gear\containers\data\WaterproofBag_damage.rvmat"}},{0.3,{"DZ\gear\containers\data\WaterproofBag_damage.rvmat"}},{0.0,{"DZ\gear\containers\data\WaterproofBag_destruct.rvmat"}}};
 				};
 			};

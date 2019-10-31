@@ -38,7 +38,10 @@ class InventoryItem extends EntityAI
 	//! Get tooltip text
 	string GetTooltip()
 	{
-		return ConfigGetString("descriptionShort");
+		string temp;
+		if (!DescriptionOverride(temp))
+			temp = ConfigGetString("descriptionShort");
+		return temp;
 	}
 
 	override bool IsInventoryItem()

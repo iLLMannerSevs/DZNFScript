@@ -1,4 +1,11 @@
-class BalaclavaMask_ColorBase extends Clothing {};
+class BalaclavaMask_ColorBase extends Clothing
+{
+	override void SetActions()
+	{
+		super.SetActions();
+		AddAction(ActionWringClothes);
+	}
+};
 class BalaclavaMask_Black extends BalaclavaMask_ColorBase {};
 class BalaclavaMask_Blackskull extends BalaclavaMask_ColorBase {};
 class BalaclavaMask_Beige extends BalaclavaMask_ColorBase {};

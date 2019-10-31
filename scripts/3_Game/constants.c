@@ -268,6 +268,7 @@ const int ID_EMOTE_SHAKE 		= 59;
 const int ID_EMOTE_SHRUG 		= 60;
 const int ID_EMOTE_SURRENDER 	= 61;
 const int ID_EMOTE_VOMIT 		= 62;
+const int ID_EMOTE_DEBUG 		= 1000;
 
 /**
  * \defgroup Custom animation events ID for emotes
@@ -451,6 +452,7 @@ const float PROJECTED_CURSOR_DISTANCE = 5;//how long is the raycast from the wea
   * \ misc
  */
 const float DEBUG_QUICK_UNRESTRAIN_TIME = 1.0;
+const float MELEE_ITEM_DAMAGE = 1.0;
 
 const int HAIR_SELECTION_COUNT = 45;
 /**
@@ -622,4 +624,9 @@ class GameConstants
 	
 	//! Camera shake
 	const int CAMERA_SHAKE_GRENADE_DISTANCE = 40;
+	
+	//! Wood mining GameConstants, scaled by output. Should not be lower than ~1.5s!
+	const float MINING_WOOD_FAST = 2.0;
+	const float MINING_WOOD_MEDIUM = 2.0;
+	const float MINING_WOOD_SLOW = 3.0;
 }

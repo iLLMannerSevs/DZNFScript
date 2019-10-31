@@ -474,12 +474,25 @@ class ActionBase : ActionBase_Basic
 			OnStartClient(action_data);
 		}	
 		InformPlayers(action_data.m_Player,action_data.m_Target,UA_START);
+
+		actionDebugPrint("[action] " + Object.GetDebugName(action_data.m_Player) + " started " + ToString() + " item=" + Object.GetDebugName(action_data.m_MainItem));
 	}
 	
 	void End( ActionData action_data )
 	{
 		if( action_data.m_Player )
+		{
+			if ( GetGame().IsServer() )
+			{
+				OnEndServer(action_data);
+			}
+			else
+			{
+				OnEndClient(action_data);
+			}
+			
 			action_data.m_Player.GetActionManager().OnActionEnd();
+		}
 	}
 	
 	void Interrupt(ActionData action_data)

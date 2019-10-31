@@ -118,7 +118,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		//! weapon specific
 		if( m_EntityInHands && m_EntityInHands.IsWeapon() )
 		{
-			GetWeaponQuantity(q_chamber, q_mag);
+			//GetWeaponQuantity(q_chamber, q_mag);
 			SetWeaponQuantity(q_chamber, q_mag, "ia_item", "ia_item_quantity_pb", "ia_item_quantity_text", m_QuantityEnabled);
 			SetWeaponModeAndZeroing("ia_item_subdesc", "ia_item_subdesc_up", "ia_item_subdesc_down", true);
 		}
@@ -311,7 +311,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		}
 	}
 	
-	protected void GetWeaponQuantity(out int q_chamber, out int q_mag)
+/*	protected void GetWeaponQuantity(out int q_chamber, out int q_mag)
 	{
 		q_chamber = 0;
 		q_mag = 0;
@@ -341,7 +341,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 				q_mag = wpn.GetInternalMagazineCartridgeCount(mi);
 			}
 		}
-	}
+	}*/
 	
 	protected string GetRadioFrequency()
 	{
@@ -484,23 +484,66 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		
 		widget = m_Root.FindAnyWidget(itemWidget);
 		
-		if(enabled)
+		if (enabled)
 		{
-			string wpn_qty;
+			string wpn_qty = "";
 
 			ProgressBarWidget progressBar;
 			TextWidget textWidget;
 			Class.CastTo(progressBar, widget.FindAnyWidget(quantityPBWidget));
 			Class.CastTo(textWidget, widget.FindAnyWidget(quantityTextWidget));
 			
-			if( chamber == -1 )
+			Weapon_Base wpn;
+			Magazine maga;
+			int mag_quantity = -1;
+
+			if ( Class.CastTo(wpn, m_EntityInHands ) )
 			{
-				//! show 'X' when the chamber is jammed
-				wpn_qty = string.Format("X (+%1)", mag);
-			}
-			else
-			{
-				wpn_qty = string.Format("%1 (+%2)", chamber, mag);
+				for (int i = 0; i < wpn.GetMuzzleCount(); i++)
+				{
+					if ( i > 0)
+					{
+						wpn_qty = wpn_qty + " ";
+					}
+					if (wpn.IsChamberEmpty(i))
+					{
+						wpn_qty = wpn_qty + "0";
+					}
+					else if (wpn.IsChamberFiredOut(i))
+					{
+						wpn_qty = wpn_qty + "F";
+					}
+					else
+					{
+						wpn_qty = wpn_qty + "1";
+					}
+					
+					maga = wpn.GetMagazine(i);
+					if (maga)
+					{
+						mag_quantity = maga.GetAmmoCount();
+					}
+					else if (wpn.GetInternalMagazineMaxCartridgeCount(i) > 0)
+					{
+						mag_quantity = wpn.GetInternalMagazineCartridgeCount(i);
+					}
+				
+				}
+			
+				if (wpn.IsJammed())
+				{
+					if (mag_quantity != -1 )
+						wpn_qty = string.Format("X (+%1)", mag_quantity);
+					else
+						wpn_qty = "X";
+				}
+				else
+				{
+					if(mag_quantity != -1 )
+					{
+						wpn_qty = wpn_qty + " (" + mag_quantity.ToString() + ")";
+					}
+				}
 			}
 	
 			progressBar.Show(false);
@@ -529,7 +572,7 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 			Weapon w = Weapon.Cast(m_Player.GetHumanInventory().GetEntityInHands());
 			string zeroing	= string.Empty;
 			if (w)
-				zeroing	= string.Format("%1 m", w.GetCurrentZeroing());
+				zeroing	= string.Format("%1 m", w.GetCurrentZeroing(w.GetCurrentMuzzle()));
 
 			txtModeWidget.SetText(WeaponModeTextTemp());
 			txtZeroingWidget.SetText(zeroing);
@@ -589,10 +632,10 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		widget = m_Root.FindAnyWidget(actionWidget);
 		
 #ifdef PLATFORM_XBOX
-		ShowXboxHidePCIcons( actionWidget, true );
+		ShowXboxHidePCIcons( actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 #else
 #ifdef PLATFORM_PS4
-		ShowXboxHidePCIcons( actionWidget, true );
+		ShowXboxHidePCIcons( actionWidget, !GetGame().GetInput().IsEnabledMouseAndKeyboardEvenOnServer() );
 #else
 		ShowXboxHidePCIcons( actionWidget, false );
 #endif
@@ -660,9 +703,6 @@ class ItemActionsWidget extends ScriptedWidgetEventHandler
 		// uses text in floating widget
 		iconWidget.Show(false);
 		textWidget.SetText(keyName);
-#ifdef X1_TODO_TEMP_GUI
-		textWidget.SetText("X");
-#endif
 		//frameWidget.Show(true);
 		textWidget.Show(true);	
 	}

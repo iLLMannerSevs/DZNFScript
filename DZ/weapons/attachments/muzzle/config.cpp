@@ -2,7 +2,7 @@
 //DeRap: weapon_muzzles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:58:05 2019 : 'file' last modified on Tue Aug 06 08:08:20 2019
+//'now' is Thu Oct 31 18:24:56 2019 : 'file' last modified on Thu Oct 24 14:44:01 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -78,7 +78,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\Russian_AKM_Bayonet.rvmat"}},{0.7,{"DZ\weapons\attachments\data\Russian_AKM_Bayonet.rvmat"}},{0.5,{"DZ\weapons\attachments\data\Russian_AKM_Bayonet_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\Russian_AKM_Bayonet_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\Russian_AKM_Bayonet_destruct.rvmat"}}};
 				};
 			};
@@ -143,7 +143,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\m4_bayonet.rvmat"}},{0.7,{"DZ\weapons\attachments\data\m4_bayonet.rvmat"}},{0.5,{"DZ\weapons\attachments\data\m4_bayonet_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\m4_bayonet_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\m4_bayonet_destruct.rvmat"}}};
 				};
 			};
@@ -208,7 +208,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\mosin_bayonet.rvmat"}},{0.7,{"DZ\weapons\attachments\data\mosin_bayonet.rvmat"}},{0.5,{"DZ\weapons\attachments\data\mosin_bayonet_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\mosin_bayonet_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\mosin_bayonet_destruct.rvmat"}}};
 				};
 			};
@@ -273,7 +273,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 150;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\sks_bayo.rvmat"}},{0.7,{"DZ\weapons\attachments\data\sks_bayo.rvmat"}},{0.5,{"DZ\weapons\attachments\data\sks_bayo_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\sks_bayo_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\sks_bayo_destruct.rvmat"}}};
 				};
 			};
@@ -332,7 +332,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\mosin_compensator.rvmat"}},{0.7,{"DZ\weapons\attachments\data\mosin_compensator.rvmat"}},{0.5,{"DZ\weapons\attachments\data\mosin_compensator_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\mosin_compensator_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\mosin_compensator_destruct.rvmat"}}};
 				};
 			};
@@ -381,7 +381,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 40;
 					healthLevels[] = {{1.0,{"DZ\weapons\attachments\data\MP5k_compensator.rvmat"}},{0.7,{"DZ\weapons\attachments\data\MP5k_compensator.rvmat"}},{0.5,{"DZ\weapons\attachments\data\MP5k_compensator_damage.rvmat"}},{0.3,{"DZ\weapons\attachments\data\MP5k_compensator_damage.rvmat"}},{0.0,{"DZ\weapons\attachments\data\MP5k_compensator_destruct.rvmat"}}};
 				};
 			};
@@ -404,7 +404,7 @@ class cfgVehicles
 		inventorySlot[] = {"suppressorImpro","weaponMuzzleAK","weaponMuzzleM4","pistolMuzzle"};
 		simulation = "ItemSuppressor";
 		dispersionModifier = -0.0001;
-		noiseShootModifier = -0.4;
+		noiseShootModifier = -0.7;
 		dispersionCondition = "true";
 		barrelArmor = 7;
 		recoilModifier[] = {0.9,0.9,0.9};
@@ -472,7 +472,7 @@ class cfgVehicles
 		inventorySlot = "weaponMuzzleM4";
 		simulation = "ItemSuppressor";
 		dispersionModifier = -0.0001;
-		noiseShootModifier = -0.5;
+		noiseShootModifier = -0.9;
 		dispersionCondition = "true";
 		barrelArmor = 600;
 		recoilModifier[] = {0.8,0.8,0.8};
@@ -541,7 +541,7 @@ class cfgVehicles
 		inventorySlot = "weaponMuzzleAK";
 		simulation = "ItemSuppressor";
 		dispersionModifier = -0.0001;
-		noiseShootModifier = -0.5;
+		noiseShootModifier = -0.87;
 		dispersionCondition = "true";
 		barrelArmor = 600;
 		recoilModifier[] = {0.8,0.8,0.8};
@@ -554,14 +554,7 @@ class cfgVehicles
 			{
 				class MuzzleFlashAssault
 				{
-					onlyIfBulletIs = "Bullet_762x39";
 					overrideParticle = "weapon_shot_akm_02";
-					onlyWithinHealthLabel[] = {0,3};
-				};
-				class MuzzleFlashSMG
-				{
-					onlyIfBulletIs = "Bullet_380";
-					overrideParticle = "weapon_shot_fnx_02";
 					onlyWithinHealthLabel[] = {0,3};
 				};
 				class Ruined
@@ -615,7 +608,7 @@ class cfgVehicles
 		lootTag[] = {"Military_east","Military_west","Police","Civilian"};
 		inventorySlot = "pistolMuzzle";
 		simulation = "ItemSuppressor";
-		noiseShootModifier = -0.8;
+		noiseShootModifier = -0.9;
 		barrelArmor = 600;
 		recoilModifier[] = {0.8,0.8,0.8};
 		selectionFireAnim = "zasleh";
@@ -740,7 +733,7 @@ class cfgVehicles
 		lootTag[] = {"Military_east"};
 		inventorySlot = "weaponMuzzleAK";
 		dispersionModifier = -0.0001;
-		noiseShootModifier = -0.75;
+		noiseShootModifier = -0.9;
 		simulation = "ItemSuppressor";
 		barrelArmor = 7;
 		dispersionCondition = "true";
@@ -774,7 +767,7 @@ class cfgVehicles
 		lootTag[] = {"Military_east"};
 		inventorySlot = "pistolMuzzle";
 		simulation = "ItemSuppressor";
-		noiseShootModifier = -0.8;
+		noiseShootModifier = -0.9;
 		barrelArmor = 600;
 		recoilModifier[] = {1,1,1};
 		selectionFireAnim = "zasleh";
@@ -824,7 +817,7 @@ class cfgVehicles
 		inventorySlot = "weaponBarrelAug";
 		simulation = "ItemBarrel";
 		dispersionModifier = -0.0001;
-		noiseShootModifier = -0.5;
+		noiseShootModifier = -0.9;
 		dispersionCondition = "true";
 		barrelArmor = 600;
 		recoilModifier[] = {1,1,1};

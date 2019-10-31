@@ -111,6 +111,8 @@ class ZombieContainer: CollapsibleContainer
 		string name = w.GetName();
 		name.Replace( "PanelWidget", "Render" );
 		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget(name) );
+		ipw.SetForceFlipEnable(false);
+		
 		float icon_x, icon_y, x_content, y_content;
 		int m_sizeX, m_sizeY;
 
@@ -157,7 +159,13 @@ class ZombieContainer: CollapsibleContainer
 		w.ClearFlags( WidgetFlags.EXACTSIZE );
 		w.SetSize( 1, 1 );
 		string name = w.GetName();
-		name.Replace( "PanelWidget", "Col" );
+		
+		name.Replace( "PanelWidget", "Render" );
+		ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+		ipw.SetForceFlipEnable(true);
+		ipw.SetForceFlip(false);
+		
+		name.Replace( "Render", "Col" );
 		w.FindAnyWidget( name ).Show( false );
 		name.Replace( "Col", "Selected" );
 		w.FindAnyWidget( name ).Show( false );
@@ -552,13 +560,16 @@ class ZombieContainer: CollapsibleContainer
 		}
 	}
 
-	void ToggleContainer( Widget w , int number )
+	void ToggleContainer( Widget w )
 	{
-		EntityAI item = m_ZombieEntity.GetInventory().FindAttachment( number );
+		EntityAI item;
+		SlotsIcon slots_icon; 
+		w.GetUserData(slots_icon);
+		if(slots_icon)
+			item = slots_icon.GetEntity();
 		if( item )
 		{
 			ClosableContainer c = ClosableContainer.Cast( m_ShowedItems.Get( item ) );
-			SlotsIcon icon = m_InventorySlots.Get( number );
 			if( c.IsOpened() )
 			{
 				c.Close();
@@ -568,10 +579,10 @@ class ZombieContainer: CollapsibleContainer
 				c.Open();
 			}
 		
-			if( icon )
+			if( slots_icon )
 			{
-				Widget icon_open = icon.GetRadialIcon();
-				Widget icon_closed = icon.GetRadialIconClosed();
+				Widget icon_open = slots_icon.GetRadialIcon();
+				Widget icon_closed = slots_icon.GetRadialIconClosed();
 				icon_open.Show( !c.IsOpened() );
 				icon_closed.Show( c.IsOpened() );
 			}
@@ -601,12 +612,14 @@ class ZombieContainer: CollapsibleContainer
 			}
 			else
 			{
-				name.Replace( "PanelWidget", "Render" );
-				ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
-				if( ipw.GetItem() )
-				{
-					ToggleContainer( w, w.GetUserID() );
-				}
+				//name.Replace( "PanelWidget", "Render" );
+				//ItemPreviewWidget ipw = ItemPreviewWidget.Cast( w.FindAnyWidget( name ) );
+				//SlotsIcon slot_icon; 
+				//w.GetUserData(slot_icon);
+				//if( slot_icon && slot_icon.GetEntity() )
+				//{
+					ToggleContainer( w );
+				//}
 			}
 		}
 	}
@@ -668,8 +681,9 @@ class ZombieContainer: CollapsibleContainer
 
 				GetGame().ConfigGetText( path + " name", slot_name );
 				int slot_id = InventorySlots.GetSlotIdFromString( slot_name );
-				icon.GetGhostSlot().SetUserID( slot_id );
-				icon.GetPanelWidget().SetUserID( slot_id );
+				//icon.GetGhostSlot().SetUserID( slot_id );
+				//icon.GetPanelWidget().SetUserID( slot_id );
+				icon.SetSlotID( slot_id );
 				m_InventorySlots.Set( slot_id, icon );
 				
 				int slot = InventorySlots.GetSlotIdFromString( slot_name );
@@ -709,7 +723,7 @@ class ZombieContainer: CollapsibleContainer
 	
 	void AddSlotsContainer( int row_count )
 	{
-		ref SlotsContainer s_cont = new SlotsContainer( m_Container );
+		ref SlotsContainer s_cont = new SlotsContainer( m_Container, m_ZombieEntity );
 		s_cont.SetColumnCount( row_count );
 		m_Container.Insert( s_cont );
 	}

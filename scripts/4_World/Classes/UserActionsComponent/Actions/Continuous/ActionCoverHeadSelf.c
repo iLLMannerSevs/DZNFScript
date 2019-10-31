@@ -45,8 +45,8 @@ class ActionCoverHeadSelf: ActionContinuousBase
 	{	
 		//setaperture will be called from here, or from statemachine
 		//GetGame().GetWorld().SetAperture(10000);
-		action_data.m_Player.GetInventory().CreateInInventory("BurlapSackCover");
-		action_data.m_MainItem.TransferModifiers(action_data.m_Player);
+		ItemBase new_item = ItemBase.Cast(action_data.m_Player.GetInventory().CreateInInventory("BurlapSackCover"));
+		MiscGameplayFunctions.TransferItemProperties(action_data.m_MainItem,new_item,true,false,true);
 		action_data.m_MainItem.Delete();
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
 	}

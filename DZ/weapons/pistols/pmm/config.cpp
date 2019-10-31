@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\pmm\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:59 2019 : 'file' last modified on Wed Aug 14 11:04:51 2019
+//'now' is Thu Oct 31 18:24:51 2019 : 'file' last modified on Thu Oct 24 15:07:53 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -52,6 +52,7 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_380"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1,1,1};
 		drySound[] = {"dz\sounds\weapons\firearms\ij70\Makarov_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\ij70\Makarov_reload",0.8,1,20};
 		reloadAction = "ReloadIJ70";

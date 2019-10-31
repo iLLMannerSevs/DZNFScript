@@ -51,7 +51,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 		SetOptions( options );
 		
 		#ifdef PLATFORM_CONSOLE
-		m_Root.FindAnyWidget( "aimhelper_setting_option" ).SetUserID( AT_OPTIONS_MOUSE_AND_KEYBOARD );
+		m_Root.FindAnyWidget( "keyboard_setting_option" ).SetUserID( AT_OPTIONS_MOUSE_AND_KEYBOARD );
 		m_Root.FindAnyWidget( "aimhelper_setting_option" ).SetUserID( AT_OPTIONS_AIM_HELPER );
 		#endif
 		
@@ -127,7 +127,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	void Focus()
 	{
 		#ifdef PLATFORM_CONSOLE
-			m_AimHelperSelector.Focus();
+			m_KeyboardSelector.Focus();
 		#endif
 	}
 	
@@ -198,13 +198,22 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 				return true;
 			}
 			
+			if( w.IsInherited( SliderWidget ) )
+			{
+				ColorRed( w );
+				return true;
+			}
+			
 			if( IsFocusable( w ) )
 			{
 				ColorRed( w );
 				return true;
 			}
 		}
-		m_DetailsRoot.Show( false );
+		else
+		{
+			m_DetailsRoot.Show( false );
+		}
 		return ( w != null );
 	}
 	
@@ -249,19 +258,34 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	
 	bool IsChanged()
 	{
+		#ifdef PLATFORM_CONSOLE
+		return ( ( m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 0 ) || ( !m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 1 ) );
+		#else
 		return false;
+		#endif
 	}
 	
 	void Apply()
 	{
 		#ifdef PLATFORM_CONSOLE
 		if( m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 0 )
+		{
 			m_KeyboardOption.Switch();
+			g_Game.DeleteGamepadDisconnectMenu();
+		}
 		else if( !m_KeyboardSelector.IsEnabled() && m_KeyboardOption.GetIndex() == 1 )
+		{
 			m_KeyboardOption.Switch();
+			m_KeyboardSelector.Focus();
+			if( g_Game.ShouldShowControllerDisconnect() || ( GetGame().IsClient() && !GetGame().GetWorld().IsMouseAndKeyboardEnabledOnServer() )
+			{
+				g_Game.CreateGamepadDisconnectMenu();
+			}
+		}
+		
 		GetGame().GetInput().EnableMouseAndKeyboard( m_KeyboardSelector.IsEnabled() );
-		m_Menu.layoutRoot.FindAnyWidget( "play_panel_root" ).Show( GetGame().GetInput().IsEnabledMouseAndKeyboard() );
-		m_Menu.layoutRoot.FindAnyWidget( "toolbar_bg" ).Show( !GetGame().GetInput().IsEnabledMouseAndKeyboard() );
+		GetGame().GetUIManager().ShowUICursor( m_KeyboardSelector.IsEnabled() );
+		m_Menu.Refresh();
 		#endif
 	}
 	
@@ -380,17 +404,18 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 	void FillTextMap()
 	{
 		m_TextMap = new map<int, ref Param2<string, string>>;
-		m_TextMap.Insert( AT_CONFIG_YAXIS, new Param2<string, string>( "#options_controls_vertical_sens", "#options_controls_vertical_sensitivity_desc" ) );
+		m_TextMap.Insert( AT_CONFIG_YAXIS, new Param2<string, string>( "#options_controls_vertical_sens", "#ps4_options_controls_mandk_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_XAXIS, new Param2<string, string>( "#options_controls_horizontal_sens", "#options_controls_horizontal_sensitivity_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_YREVERSED, new Param2<string, string>( "#options_controls_invert_vertical_view", "#options_controls_invert_vertical_view_desc" ) );
 		
 		#ifdef PLATFORM_PS4
+		m_TextMap.Insert( AT_OPTIONS_MOUSE_AND_KEYBOARD, new Param2<string, string>( "#xbox_options_controls_mandk_contr", "#xbox_options_controls_mandk_contr_desc" ) );
 		m_TextMap.Insert( AT_OPTIONS_AIM_HELPER, new Param2<string, string>( "#ps4_options_controls_aim_helper_contr", "#ps4_options_controls_aim_helper_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_YAXIS, new Param2<string, string>( "#ps4_options_controls_vertical_sens_contr", "#ps4_options_controls_vertical_sens_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_XAXIS, new Param2<string, string>( "#ps4_options_controls_horizontal_sens_contr", "#ps4_options_controls_horizontal_sens_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_REVERSED_LOOK, new Param2<string, string>( "#ps4_options_controls_invert_vert_view_contr", "#ps4_options_controls_invert_vert_view_contr_desc" ) );
 		#else 
-		m_TextMap.Insert( AT_OPTIONS_MOUSE_AND_KEYBOARD, new Param2<string, string>( "#options_controls_aim_helper_contr", "#options_controls_aim_helper_contr_desc" ) );
+		m_TextMap.Insert( AT_OPTIONS_MOUSE_AND_KEYBOARD, new Param2<string, string>( "#xbox_options_controls_mandk_contr", "#xbox_options_controls_mandk_contr_desc" ) );
 		m_TextMap.Insert( AT_OPTIONS_AIM_HELPER, new Param2<string, string>( "#xbox_options_controls_aim_helper_contr", "#xbox_options_controls_aim_helper_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_YAXIS, new Param2<string, string>( "#options_controls_vertical_sens_contr", "#options_controls_vertical_sens_contr_desc" ) );
 		m_TextMap.Insert( AT_CONFIG_CONTROLLER_XAXIS, new Param2<string, string>( "#options_controls_horizontal_sens_contr", "#options_controls_horizontal_sens_contr_desc" ) );

@@ -644,6 +644,7 @@ enum DayZPlayerConstants
 	COMMANDID_SWIM,			// type is int (overridden from C++) - swimming
 	COMMANDID_VEHICLE,		// type is int (overridden from C++) - vehicle
 	COMMANDID_CLIMB,		// type is int (overridden from C++) - climb
+	COMMANDID_SCRIPT,		// type is int (overridden from C++) - all scripted commands
 
 
 	//! modifier commands - additive behaviour 

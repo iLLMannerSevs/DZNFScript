@@ -36,6 +36,7 @@ class RadialMenu : ScriptedWidgetEventHandler
 	protected const float 				CONTROLLER_TILT_TRESHOLD_EXECUTE	= 1.0;			//tilt value (0.0-1.0) for controller sticks after which the selection will be executed 
 	
 	//mouse
+	protected bool 						m_WidgetInitialized;
 	protected const float 				MOUSE_SAFE_ZONE_RADIUS = 50;		//Radius [px] of safe zone where every previous selection is deselected
 	
 	//References
@@ -140,7 +141,17 @@ class RadialMenu : ScriptedWidgetEventHandler
 		}
 		
 		return false;
-	}	
+	}
+	
+	void SetWidgetInitialized(bool state)
+	{
+		m_WidgetInitialized = state;
+	}
+	
+	bool IsWidgetInitialized()
+	{
+		return m_WidgetInitialized;
+	}
 			
 	//============================================
 	// Setup
@@ -148,6 +159,8 @@ class RadialMenu : ScriptedWidgetEventHandler
 	void RegisterClass( UIScriptedMenu class_name )
 	{
 		m_RegisteredClass = class_name;
+		if (m_UpdateTimer && !m_UpdateTimer.IsRunning())
+			m_UpdateTimer.Run( 0.01, this, "Update", NULL, true );
 	}	
 
 	//Set radial menu parameters
@@ -469,6 +482,11 @@ class RadialMenu : ScriptedWidgetEventHandler
 	int last_time = -1;
 	protected void Update()
 	{
+		if (this && !m_RegisteredClass)
+		{
+			m_UpdateTimer.Stop();
+			return;
+		}
 		//get delta time
 		if ( last_time < 0 )
 		{
@@ -478,10 +496,10 @@ class RadialMenu : ScriptedWidgetEventHandler
 		last_time = GetGame().GetTime();
 		
 		//controls
-		if ( this )
+		if ( this && m_RegisteredClass && m_RegisteredClass.IsVisible())
 		{
 			//mouse controls
-			if ( IsUsingMouse() )
+			if ( IsUsingMouse() && m_WidgetInitialized )
 			{
 				float mouse_angle = GetMousePointerAngle();
 				float mouse_distance = GetMouseDistance();
@@ -581,6 +599,8 @@ class RadialMenu : ScriptedWidgetEventHandler
 				m_ControllerAngle = -1;				//reset angle and tilt
 				m_ControllerTilt = -1;
 			}
+			
+			m_WidgetInitialized = true;
 		}
 	}
 	

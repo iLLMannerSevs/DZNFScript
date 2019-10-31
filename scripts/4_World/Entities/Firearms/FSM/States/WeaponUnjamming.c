@@ -86,6 +86,7 @@ class WeaponUnjamming_Cartridge extends WeaponStateBase
 	
 		//DayZPlayer p = e.m_player;
 		int mi = m_weapon.GetCurrentMuzzle();
+		m_weapon.EffectBulletHide(mi);
 		m_weapon.SelectionBulletHide();
 		m_weapon.EjectCasing(mi);
 		//m_weapon.EjectCartridge(mi,dmg,type);

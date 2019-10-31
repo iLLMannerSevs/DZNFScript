@@ -2,7 +2,7 @@
 //DeRap: weapons_pistols\mkii\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:59 2019 : 'file' last modified on Wed Aug 14 11:04:51 2019
+//'now' is Thu Oct 31 18:24:51 2019 : 'file' last modified on Thu Oct 24 15:07:52 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -52,6 +52,7 @@ class cfgWeapons
 		chamberableFrom[] = {"Ammo_22"};
 		ejectType = 1;
 		recoilModifier[] = {1,1,1};
+		swayModifier[] = {1,1,1};
 		drySound[] = {"dz\sounds\weapons\firearms\FNX45\FNX_dry",0.5,1,20};
 		reloadMagazineSound[] = {"dz\sounds\weapons\firearms\MkII\MkII_reload",0.7,1,20};
 		reloadAction = "ReloadRugerMK2";
@@ -277,7 +278,7 @@ class cfgWeapons
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 120;
 					healthLevels[] = {{1.0,{"DZ\weapons\pistols\mkii\data\ruger_metal_1.rvmat"}},{0.7,{"DZ\weapons\pistols\mkii\data\ruger_metal_1.rvmat"}},{0.5,{"DZ\weapons\pistols\mkii\data\ruger_metal_1_damage.rvmat"}},{0.3,{"DZ\weapons\pistols\mkii\data\ruger_metal_1_damage.rvmat"}},{0.0,{"DZ\weapons\pistols\mkii\data\ruger_metal_1_destruct.rvmat"}}};
 				};
 			};

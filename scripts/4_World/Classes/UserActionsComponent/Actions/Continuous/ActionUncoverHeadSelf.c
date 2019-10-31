@@ -48,13 +48,17 @@ class ActionUncoverHeadSelf: ActionContinuousBase
 			action_data.m_Player.GetTransformWS(m4);
 			InventoryLocation target_gnd = new InventoryLocation;
 			target_gnd.SetGround(null, m4);
-			GameInventory.LocationCreateEntity(target_gnd, "BurlapSack",ECE_IN_INVENTORY,RF_DEFAULT);
+			entity = GameInventory.LocationCreateEntity(target_gnd, "BurlapSack",ECE_IN_INVENTORY,RF_DEFAULT);
 		}
 		
 		EntityAI attachment;
+		ItemBase new_item = ItemBase.Cast(entity);
 		Class.CastTo(attachment, action_data.m_Player.GetInventory().FindAttachment(InventorySlots.HEADGEAR));
 		if ( attachment && attachment.GetType() == "BurlapSackCover" )
 		{
+			if (new_item)
+				MiscGameplayFunctions.TransferItemProperties(attachment,new_item,true,false,true);
+			
 			attachment.Delete();
 		}
 		

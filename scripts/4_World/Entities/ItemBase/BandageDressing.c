@@ -41,4 +41,9 @@ class BandageDressing extends ItemBase
 		AddAction(ActionBandageTarget);
 		AddAction(ActionBandageSelf);
 	}
+	
+	override float GetBandagingEffectivity()
+	{
+		return 2.0;
+	};
 }

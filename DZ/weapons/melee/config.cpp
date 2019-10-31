@@ -2,7 +2,7 @@
 //DeRap: weapons_melee\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:58 2019 : 'file' last modified on Wed Aug 14 13:10:34 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:04:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -10919,7 +10919,8 @@ class CfgAmmo
 			additionAnimalMeleeMultiplier = 1;
 			class Health
 			{
-				damage = 5;
+				damage = 7.5;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -11155,6 +11156,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -11390,6 +11392,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -11625,6 +11628,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -11860,6 +11864,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -12095,6 +12100,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -12330,6 +12336,7 @@ class CfgAmmo
 			class Health
 			{
 				damage = 10;
+				armorDamage = 1;
 			};
 			class Blood
 			{
@@ -12603,7 +12610,6 @@ class cfgVehicles
 		armAction = "TwoHanded";
 		inventorySlot[] = {"Shoulder","Melee"};
 		itemSize[] = {1,2};
-		lootCategory = "Tools";
 		class MeleeModes
 		{
 			class Default

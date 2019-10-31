@@ -2,7 +2,7 @@
 //DeRap: characters_backpacks\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:34 2019 : 'file' last modified on Thu Aug 15 00:05:26 2019
+//'now' is Thu Oct 31 18:20:14 2019 : 'file' last modified on Mon Sep 23 09:59:30 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -63,7 +63,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\taloon.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\taloon.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\taloon_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\taloon_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\taloon_destruct.rvmat"}}};
 				};
 			};
@@ -141,7 +141,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\tortila.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\tortila.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\tortila_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\tortila_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\tortila_destruct.rvmat"}}};
 				};
 			};
@@ -200,7 +200,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\ImpCourierBag.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\ImpCourierBag.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\ImpCourierBag_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\ImpCourierBag_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\ImpCourierBag_destruct.rvmat"}}};
 				};
 			};
@@ -259,7 +259,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\ImpCourierBag_fur.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\ImpCourierBag_fur.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\ImpCourierBag_fur_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\ImpCourierBag_fur_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\ImpCourierBag_fur_destruct.rvmat"}}};
 				};
 			};
@@ -318,7 +318,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\bp_improvised.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\bp_improvised.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\bp_improvised_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\bp_improvised_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\bp_improvised_destruct.rvmat"}}};
 				};
 			};
@@ -379,7 +379,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\bp_improvised_fur.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\bp_improvised_fur.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\bp_improvised_fur_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\bp_improvised_fur_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\bp_improvised_fur_destruct.rvmat"}}};
 				};
 			};
@@ -438,7 +438,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\dryBag.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\dryBag.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\dryBag_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\dryBag_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\dryBag_destruct.rvmat"}}};
 				};
 			};
@@ -531,7 +531,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\hunting.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\hunting.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\hunting_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\hunting_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\hunting_destruct.rvmat"}}};
 				};
 			};
@@ -589,7 +589,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\mountain.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\mountain.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\mountain_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\mountain_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\mountain_destruct.rvmat"}}};
 				};
 			};
@@ -671,7 +671,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\Smersh.rvmat","DZ\Characters\backpacks\data\Smersh_g.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\Smersh.rvmat","DZ\Characters\backpacks\data\Smersh_g.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\Smersh_damage.rvmat","DZ\Characters\backpacks\data\Smersh_g_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\Smersh_damage.rvmat","DZ\Characters\backpacks\data\Smersh_g_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\Smersh_destruct.rvmat","DZ\Characters\backpacks\data\Smersh_g_destruct.rvmat"}}};
 				};
 			};
@@ -729,7 +729,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\childs.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\childs.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\childs_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\childs_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\childs_destruct.rvmat"}}};
 				};
 			};
@@ -806,7 +806,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_tan_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_tan_destruct_co.paa"}}};
 				};
 			};
@@ -823,7 +823,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_green_destruct_co.paa"}}};
 				};
 			};
@@ -840,7 +840,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_mossy_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_mossy_destruct_co.paa"}}};
 				};
 			};
@@ -880,7 +880,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_tan_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_tan_destruct_co.paa"}}};
 				};
 			};
@@ -897,7 +897,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_green_destruct_co.paa"}}};
 				};
 			};
@@ -914,7 +914,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_mossy_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_mossy_destruct_co.paa"}}};
 				};
 			};
@@ -952,7 +952,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_tan_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_tan_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_tan_destruct_co.paa"}}};
 				};
 			};
@@ -969,7 +969,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_green_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_green_destruct_co.paa"}}};
 				};
 			};
@@ -986,7 +986,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\ghillie_green_co.paa"}},{0.7,{"DZ\characters\backpacks\data\ghillie_mossy_co.paa"}},{0.5,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.3,{"DZ\characters\backpacks\data\ghillie_mossy_damage_co.paa"}},{0.0,{"DZ\characters\backpacks\data\ghillie_mossy_destruct_co.paa"}}};
 				};
 			};
@@ -1050,7 +1050,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\Bag_LeatherSack_natural.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\backpacks\Data\Bag_LeatherSack_natural_damage.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\backpacks\Data\Bag_LeatherSack_natural_destruct.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural_destruct.rvmat"}}};
 				};
 			};
@@ -1068,7 +1068,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\Bag_LeatherSack_natural.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\backpacks\Data\Bag_LeatherSack_Black_damage.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_Black_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\backpacks\Data\Bag_LeatherSack_Black_destruct.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_Black_destruct.rvmat"}}};
 				};
 			};
@@ -1086,7 +1086,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\Bag_LeatherSack_natural.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\backpacks\Data\bag_leatherSack_beige_damage.rvmat","dz\characters\backpacks\data\bag_leatherSack_g_beige_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\backpacks\Data\bag_leatherSack_beige_destruct.rvmat","dz\characters\backpacks\data\bag_leatherSack_g_beige_destruct.rvmat"}}};
 				};
 			};
@@ -1104,7 +1104,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\characters\backpacks\data\Bag_LeatherSack_natural.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_natural.rvmat"}},{0.7,{}},{0.5,{"DZ\characters\backpacks\Data\Bag_LeatherSack_Brown_damage.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_Brown_damage.rvmat"}},{0.3,{}},{0.0,{"DZ\characters\backpacks\Data\Bag_LeatherSack_Brown_destruct.rvmat","dz\characters\backpacks\data\Bag_LeatherSack_g_Brown_destruct.rvmat"}}};
 				};
 			};
@@ -1141,7 +1141,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\boulder_m53.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\boulder_m53.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\boulder_m53_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\boulder_m53_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\boulder_m53_destruct.rvmat"}}};
 				};
 			};
@@ -1216,7 +1216,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\CoyotesBP.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\CoyotesBP.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\CoyotesBP_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\CoyotesBP_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\CoyotesBP_destruct.rvmat"}}};
 				};
 			};
@@ -1285,7 +1285,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\Characters\backpacks\data\Alice_backpack.rvmat"}},{0.7,{"DZ\Characters\backpacks\data\Alice_backpack.rvmat"}},{0.5,{"DZ\Characters\backpacks\data\Alice_backpack_damage.rvmat"}},{0.3,{"DZ\Characters\backpacks\data\Alice_backpack_damage.rvmat"}},{0.0,{"DZ\Characters\backpacks\data\Alice_backpack_destruct.rvmat"}}};
 				};
 			};
@@ -1357,7 +1357,7 @@ class cfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\gear\camping\Data\large_tent.rvmat"}},{0.7,{"DZ\gear\camping\Data\large_tent.rvmat"}},{0.5,{"DZ\gear\camping\Data\large_tent_damage.rvmat"}},{0.3,{"DZ\gear\camping\Data\large_tent_damage.rvmat"}},{0.0,{"DZ\gear\camping\Data\large_tent_destruct.rvmat"}}};
 				};
 			};

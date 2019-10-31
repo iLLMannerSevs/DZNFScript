@@ -2,7 +2,7 @@
 //DeRap: characters_glasses\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:53:38 2019 : 'file' last modified on Mon Aug 19 12:22:15 2019
+//'now' is Thu Oct 31 18:20:16 2019 : 'file' last modified on Thu Oct 10 15:34:28 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -44,7 +44,7 @@ class CfgVehicles
 		simulation = "clothing";
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 17;
 		itemSize[] = {3,1};
 		weight = 20;
 		lootCategory = "Eyewear";
@@ -56,7 +56,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\joeyx.rvmat"}},{0.7,{"DZ\characters\glasses\data\joeyx.rvmat"}},{0.5,{"DZ\characters\glasses\data\joeyx_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\joeyx_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\joeyx_destruct.rvmat"}}};
 				};
 			};
@@ -113,7 +113,7 @@ class CfgVehicles
 		simulation = "clothing";
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 17;
 		weight = 36;
 		itemSize[] = {2,1};
 		lootTag[] = {"Military_west","Military_east","Civilian"};
@@ -124,7 +124,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\goggles2_metal.rvmat"}},{0.7,{"DZ\characters\glasses\data\goggles2_metal.rvmat"}},{0.5,{"DZ\characters\glasses\data\goggles2_metal_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\goggles2_metal_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\goggles2_metal_destruct.rvmat"}}};
 				};
 			};
@@ -161,7 +161,7 @@ class CfgVehicles
 		simulation = "clothing";
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 17;
 		weight = 40;
 		itemSize[] = {2,1};
 		lootTag[] = {"Civilian"};
@@ -172,7 +172,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\sunglass_designer.rvmat"}},{0.7,{"DZ\characters\glasses\data\sunglass_designer.rvmat"}},{0.5,{"DZ\characters\glasses\data\sunglass_designer_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\sunglass_designer_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\sunglass_designer_destruct.rvmat"}}};
 				};
 			};
@@ -209,7 +209,7 @@ class CfgVehicles
 		simulation = "clothing";
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 17;
 		weight = 50;
 		itemSize[] = {2,1};
 		lootTag[] = {"Civilian"};
@@ -220,7 +220,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\ThickFrameGlasses.rvmat"}},{0.7,{"DZ\characters\glasses\data\ThickFrameGlasses.rvmat"}},{0.5,{"DZ\characters\glasses\data\ThickFrameGlasses_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\ThickFrameGlasses_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\ThickFrameGlasses_destruct.rvmat"}}};
 				};
 			};
@@ -257,7 +257,7 @@ class CfgVehicles
 		simulation = "clothing";
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 17;
 		weight = 30;
 		itemSize[] = {2,1};
 		lootTag[] = {"Civilian"};
@@ -268,7 +268,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\ThinFrameGlasses.rvmat"}},{0.7,{"DZ\characters\glasses\data\ThinFrameGlasses.rvmat"}},{0.5,{"DZ\characters\glasses\data\ThinFrameGlasses_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\ThinFrameGlasses_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\ThinFrameGlasses_destruct.rvmat"}}};
 				};
 			};
@@ -314,7 +314,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\TacGoggles.rvmat"}},{0.7,{"DZ\characters\glasses\data\TacGoggles.rvmat"}},{0.5,{"DZ\characters\glasses\data\TacGoggles_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\TacGoggles_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\TacGoggles_destruct.rvmat"}}};
 				};
 			};
@@ -352,7 +352,7 @@ class CfgVehicles
 		attachments[] = {"NVG"};
 		inventorySlot = "Eyewear";
 		itemInfo[] = {"Clothing","Eyewear"};
-		rotationFlags = 1;
+		rotationFlags = 2;
 		itemSize[] = {3,3};
 		weight = 150;
 		class DamageSystem
@@ -361,7 +361,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\characters\glasses\data\NVG_Headstrap.rvmat"}},{0.7,{"DZ\characters\glasses\data\NVG_Headstrap.rvmat"}},{0.5,{"DZ\characters\glasses\data\NVG_Headstrap_damage.rvmat"}},{0.3,{"DZ\characters\glasses\data\NVG_Headstrap_damage.rvmat"}},{0.0,{"DZ\characters\glasses\data\NVG_Headstrap_destruct.rvmat"}}};
 				};
 			};
@@ -399,7 +399,7 @@ class CfgVehicles
 		inventorySlot = "NVG";
 		itemSize[] = {2,2};
 		weight = 300;
-		rotationFlags = 17;
+		rotationFlags = 1;
 		class OpticsInfo
 		{
 			memoryPointCamera = "eyeScope";

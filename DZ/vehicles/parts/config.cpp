@@ -2,7 +2,7 @@
 //DeRap: vehicles_parts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:36 2019 : 'file' last modified on Sat Jul 20 10:27:57 2019
+//'now' is Thu Oct 31 18:24:23 2019 : 'file' last modified on Thu Oct 10 10:27:43 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -74,7 +74,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 240;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\truck_bat.rvmat"}},{0.7,{"DZ\vehicles\parts\data\truck_bat.rvmat"}},{0.5,{"DZ\vehicles\parts\data\truck_bat_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\truck_bat_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\truck_bat_destruct.rvmat"}}};
 				};
 			};
@@ -131,7 +131,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\battery_smallcar.rvmat"}},{0.7,{"DZ\vehicles\parts\data\battery_smallcar.rvmat"}},{0.5,{"DZ\vehicles\parts\data\battery_smallcar_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\battery_smallcar_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\battery_smallcar_destruct.rvmat"}}};
 				};
 			};
@@ -144,86 +144,6 @@ class CfgVehicles
 				{
 					soundset = "carbattery_drop_SoundSet";
 					id = 898;
-				};
-			};
-		};
-	};
-	class AircraftBattery: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_AirCraftBattery0";
-		descriptionShort = "$STR_CfgVehicles_AirCraftBattery1";
-		model = "\dz\vehicles\parts\aircraft_battery.p3d";
-		attachments[] = {"MetalWire"};
-		weight = 10000;
-		itemSize[] = {2,2};
-		absorbency = 0;
-		inventorySlot = "AirBattery";
-		rotationFlags = 2;
-		stackedUnit = "w";
-		quantityBar = 1;
-		varQuantityInit = 50;
-		varQuantityMin = 0.0;
-		varQuantityMax = 50;
-		varQuantityDestroyOnMin = 0;
-		repairableWithKits[] = {5,7};
-		repairCosts[] = {30.0,25.0};
-		class EnergyManager
-		{
-			hasIcon = 1;
-			switchOnAtSpawn = 1;
-			isPassiveDevice = 1;
-			convertEnergyToQuantity = 1;
-			energyStorageMax = 500;
-			energyAtSpawn = 500;
-			reduceMaxEnergyByDamageCoef = 0.5;
-			powerSocketsCount = 1;
-			plugType = 4;
-			compatiblePlugTypes[] = {5,8,6};
-			attachmentAction = 2;
-		};
-	};
-	class TruckExhaust: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_TruckExhaust0";
-		descriptionShort = "$STR_CfgVehicles_TruckExhaust1";
-		model = "\dz\vehicles\parts\exhaust_truck.p3d";
-		weight = 12500;
-		itemSize[] = {7,3};
-		absorbency = 0;
-		rotationFlags = 64;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\exhaust_v3s.rvmat"}},{0.7,{"DZ\vehicles\parts\data\exhaust_v3s.rvmat"}},{0.5,{"DZ\vehicles\parts\data\exhaust_v3s_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\exhaust_v3s_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\exhaust_v3s_destruct.rvmat"}}};
-				};
-			};
-		};
-	};
-	class EngineBelt: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_EngineBelt0";
-		descriptionShort = "$STR_CfgVehicles_EngineBelt1";
-		model = "\dz\vehicles\parts\belt.p3d";
-		weight = 500;
-		itemSize[] = {2,1};
-		absorbency = 0;
-		inventorySlot = "EngineBelt";
-		rotationFlags = 64;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\belt_box.rvmat"}},{0.7,{"DZ\vehicles\parts\data\belt_box.rvmat"}},{0.5,{"DZ\vehicles\parts\data\belt_box_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\belt_box_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\belt_box_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -250,7 +170,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Brake_Fluid.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Brake_Fluid.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Brake_Fluid_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Brake_Fluid_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Brake_Fluid_destruct.rvmat"}}};
 				};
 			};
@@ -294,7 +214,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 50;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\oil_bottle.rvmat"}},{0.7,{"DZ\vehicles\parts\data\oil_bottle.rvmat"}},{0.5,{"DZ\vehicles\parts\data\oil_bottle_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\oil_bottle_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\oil_bottle_destruct.rvmat"}}};
 				};
 			};
@@ -333,7 +253,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 250;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\radiator_smallcar.rvmat"}},{0.7,{"DZ\vehicles\parts\data\radiator_smallcar.rvmat"}},{0.5,{"DZ\vehicles\parts\data\radiator_smallcar_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\radiator_smallcar_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\radiator_smallcar_destruct.rvmat"}}};
 				};
 			};
@@ -355,94 +275,6 @@ class CfgVehicles
 				class drop
 				{
 					soundset = "carradiator_drop_SoundSet";
-					id = 898;
-				};
-			};
-		};
-	};
-	class TruckRadiator: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_TruckRadiator0";
-		descriptionShort = "$STR_CfgVehicles_TruckRadiator1";
-		model = "\dz\vehicles\parts\radiator_truck.p3d";
-		weight = 2000;
-		itemSize[] = {7,5};
-		absorbency = 0;
-		inventorySlot = "TruckRadiator";
-		rotationFlags = 32;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\radiator_truck.rvmat"}},{0.7,{"DZ\vehicles\parts\data\radiator_truck.rvmat"}},{0.5,{"DZ\vehicles\parts\data\radiator_truck_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\radiator_truck_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\radiator_truck_destruct.rvmat"}}};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUp_Light
-				{
-					soundSet = "pickUpCanisterGasolineLight_SoundSet";
-					id = 796;
-				};
-				class pickUp
-				{
-					soundSet = "pickUpCanisterGasoline_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "carradiator_drop_SoundSet";
-					id = 898;
-				};
-			};
-		};
-	};
-	class TireRepairKit: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_TireRepairKit0";
-		descriptionShort = "$STR_CfgVehicles_TireRepairKit1";
-		model = "\dz\vehicles\parts\Tire_Repair_Kit.p3d";
-		weight = 1000;
-		itemSize[] = {2,3};
-		absorbency = 0;
-		rotationFlags = 16;
-		stackedUnit = "percentage";
-		quantityBar = 1;
-		varQuantityInit = 100.0;
-		varQuantityMin = 0.0;
-		varQuantityMax = 100.0;
-		repairKitType = 6;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 100;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit_destruct.rvmat"}}};
-				};
-			};
-		};
-		class AnimEvents
-		{
-			class SoundWeapon
-			{
-				class pickUpItem
-				{
-					soundSet = "smallprotectorcase_pickup_SoundSet";
-					id = 797;
-				};
-				class drop
-				{
-					soundset = "smallprotectorcase_drop_SoundSet";
 					id = 898;
 				};
 			};
@@ -501,16 +333,17 @@ class CfgVehicles
 			};
 		};
 	};
-	class WindscreenBox: Inventory_Base
+	class SparkPlug: Inventory_Base
 	{
 		scope = 2;
-		displayName = "$STR_CfgVehicles_WindscreenBox0";
-		descriptionShort = "$STR_CfgVehicles_WindscreenBox1";
-		model = "\dz\vehicles\parts\Windscreen_box.p3d";
-		weight = 3000;
-		itemSize[] = {14,6};
+		displayName = "$STR_CfgVehicles_SparkPlug0";
+		descriptionShort = "$STR_CfgVehicles_SparkPlug1";
+		model = "\dz\vehicles\parts\sparkplug.p3d";
+		weight = 180;
+		itemSize[] = {1,1};
 		absorbency = 0;
-		rotationFlags = 64;
+		inventorySlot = "SparkPlug";
+		rotationFlags = 12;
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -518,7 +351,51 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 20;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Windscreen_Box.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Windscreen_Box.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Windscreen_Box_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Windscreen_Box_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Windscreen_Box_destruct.rvmat"}}};
+					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\sparkplug.rvmat"}},{0.7,{"DZ\vehicles\parts\data\sparkplug.rvmat"}},{0.5,{"DZ\vehicles\parts\data\sparkplug_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\sparkplug_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\sparkplug_destruct.rvmat"}}};
+				};
+			};
+		};
+	};
+	class TireRepairKit: Inventory_Base
+	{
+		scope = 2;
+		displayName = "$STR_CfgVehicles_TireRepairKit0";
+		descriptionShort = "$STR_CfgVehicles_TireRepairKit1";
+		model = "\dz\vehicles\parts\Tire_Repair_Kit.p3d";
+		weight = 1000;
+		itemSize[] = {2,3};
+		absorbency = 0;
+		rotationFlags = 16;
+		stackedUnit = "percentage";
+		quantityBar = 1;
+		varQuantityInit = 100.0;
+		varQuantityMin = 0.0;
+		varQuantityMax = 100.0;
+		repairKitType = 6;
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 100;
+					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.7,{"DZ\vehicles\parts\data\Tire_Repair_Kit.rvmat"}},{0.5,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\Tire_Repair_Kit_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\Tire_Repair_Kit_destruct.rvmat"}}};
+				};
+			};
+		};
+		class AnimEvents
+		{
+			class SoundWeapon
+			{
+				class pickUpItem
+				{
+					soundSet = "smallprotectorcase_pickup_SoundSet";
+					id = 797;
+				};
+				class drop
+				{
+					soundset = "smallprotectorcase_drop_SoundSet";
+					id = 898;
 				};
 			};
 		};
@@ -568,54 +445,8 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 300;
 					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\jerrycan.rvmat"}},{0.7,{"DZ\vehicles\parts\data\jerrycan.rvmat"}},{0.5,{"DZ\vehicles\parts\data\jerrycan_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\jerrycan_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\jerrycan_destruct.rvmat"}}};
-				};
-			};
-		};
-	};
-	class GlowPlug: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_GlowPlug0";
-		descriptionShort = "$STR_CfgVehicles_GlowPlug1";
-		model = "\dz\vehicles\parts\GlowPlug.p3d";
-		weight = 200;
-		itemSize[] = {1,1};
-		absorbency = 0;
-		inventorySlot = "GlowPlug";
-		rotationFlags = 12;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 20;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\glowplug.rvmat"}},{0.7,{"DZ\vehicles\parts\data\glowplug.rvmat"}},{0.5,{"DZ\vehicles\parts\data\glowplug_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\glowplug_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\glowplug_destruct.rvmat"}}};
-				};
-			};
-		};
-	};
-	class SparkPlug: Inventory_Base
-	{
-		scope = 2;
-		displayName = "$STR_CfgVehicles_SparkPlug0";
-		descriptionShort = "$STR_CfgVehicles_SparkPlug1";
-		model = "\dz\vehicles\parts\sparkplug.p3d";
-		weight = 180;
-		itemSize[] = {1,1};
-		absorbency = 0;
-		inventorySlot = "SparkPlug";
-		rotationFlags = 12;
-		class DamageSystem
-		{
-			class GlobalHealth
-			{
-				class Health
-				{
-					hitpoints = 20;
-					healthLevels[] = {{1.0,{"DZ\vehicles\parts\data\sparkplug.rvmat"}},{0.7,{"DZ\vehicles\parts\data\sparkplug.rvmat"}},{0.5,{"DZ\vehicles\parts\data\sparkplug_damage.rvmat"}},{0.3,{"DZ\vehicles\parts\data\sparkplug_damage.rvmat"}},{0.0,{"DZ\vehicles\parts\data\sparkplug_destruct.rvmat"}}};
 				};
 			};
 		};
@@ -649,29 +480,14 @@ class CfgNonAIVehicles
 		model = "DZ\vehicles\parts\sparkplug.p3d";
 		inventorySlot = "SparkPlug";
 	};
-	class ProxyGlowplug: ProxyPart
-	{
-		model = "DZ\vehicles\parts\Glowplug.p3d";
-		inventorySlot = "GlowPlug";
-	};
 	class ProxyReplacement_Headlight: ProxyPart
 	{
 		model = "DZ\vehicles\parts\Replacement_Headlight.p3d";
 		inventorySlot[] = {"Reflector_1_1","Reflector_2_1"};
 	};
-	class ProxyRadiator_truck: ProxyPart
-	{
-		model = "DZ\vehicles\parts\Radiator_truck.p3d";
-		inventorySlot = "TruckRadiator";
-	};
 	class ProxyRadiator_car: ProxyPart
 	{
 		model = "DZ\vehicles\parts\Radiator_car.p3d";
 		inventorySlot = "CarRadiator";
-	};
-	class ProxyBelt: ProxyPart
-	{
-		model = "DZ\vehicles\parts\belt.p3d";
-		inventorySlot = "EngineBelt";
 	};
 };

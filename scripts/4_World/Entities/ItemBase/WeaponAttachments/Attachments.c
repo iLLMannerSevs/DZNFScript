@@ -4,7 +4,7 @@ class ButtstockBase extends Inventory_Base
 	{
 		if( parent.IsWeapon() )
 		{
-			parent.SetButtstockAttached(true);
+			parent.SetButtstockAttached(true,slot_id);
 		}		
 	}
 	

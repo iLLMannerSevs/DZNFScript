@@ -16,22 +16,6 @@ class TripwireTrap : TrapBase
 		m_AnimationPhaseSet = "placing";
 		m_AnimationPhaseTriggered = "TripWire_triggered";
 		m_InfoActivationTime = "#STR_TripwireTrap0" + m_InitWaitTime.ToString() + "#STR_TripwireTrap1";  // nefunguje dynamicke vyrazy mimo funkcii
-		
-		
-		m_SurfaceForSetup = new array<string>; // declared in TrapBase
-		m_SurfaceForSetup.Insert("cp_dirt");
-		m_SurfaceForSetup.Insert("cp_broadleaf_dense1");
-		m_SurfaceForSetup.Insert("cp_broadleaf_dense2");
-		m_SurfaceForSetup.Insert("cp_broadleaf_sparse1");
-		m_SurfaceForSetup.Insert("cp_broadleaf_sparse2");
-		m_SurfaceForSetup.Insert("cp_conifer_common1");
-		m_SurfaceForSetup.Insert("cp_conifer_common2");
-		m_SurfaceForSetup.Insert("cp_conifer_moss1");
-		m_SurfaceForSetup.Insert("cp_conifer_moss2");
-		m_SurfaceForSetup.Insert("cp_grass");
-		m_SurfaceForSetup.Insert("cp_grass_tall");
-		m_SurfaceForSetup.Insert("cp_gravel");
-		m_SurfaceForSetup.Insert("cp_rock");
 	}
 	
 	/*override bool IsOneHandedBehaviour()

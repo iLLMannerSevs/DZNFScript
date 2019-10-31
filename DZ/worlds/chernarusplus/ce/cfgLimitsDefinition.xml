@@ -13,6 +13,7 @@
     <tags>
         <tag name="floor"/>
         <tag name="shelves"/>
+		<tag name="ground"/>
     </tags>
     <usageflags>
         <usage name="Military"/>

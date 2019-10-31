@@ -2,7 +2,7 @@
 //DeRap: weapons_nonlethal\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Oct 01 13:57:58 2019 : 'file' last modified on Sat Jul 20 12:02:32 2019
+//'now' is Thu Oct 31 18:24:49 2019 : 'file' last modified on Thu Oct 24 15:06:08 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -81,7 +81,6 @@ class cfgWeapons
 		cursor = "aimGunGhost";
 		cursorAim = "aimPistol";
 		inventorySlot = "Pistol";
-		lootCategory = "Pistols";
 		animClass = "Pistol";
 		armAction = "HandGun";
 	};
@@ -92,7 +91,6 @@ class cfgWeapons
 		cursor = "aimGunGhost";
 		cursorAim = "aimRifle";
 		inventorySlot = "Shoulder";
-		lootCategory = "Rifles";
 		animClass = "Rifle";
 	};
 };

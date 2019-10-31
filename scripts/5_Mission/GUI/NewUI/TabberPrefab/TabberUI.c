@@ -83,14 +83,17 @@ class TabberUI extends ScriptedWidgetEventHandler
 		Widget tab_child = tab_controls_container.GetChildren();
 		while( tab_child )
 		{
-			TextWidget tab_text = TextWidget.Cast( tab_child.FindAnyWidget( tab_child.GetName() + "_Title" ) );
-			int t_x, t_y;
-			tab_text.Update();
-			tab_text.GetTextSize( t_x, t_y );
-			tab_child.SetSize( t_x + 50, 1 );
-			tab_controls_container.Update();
-			
-			total_size += ( t_x + 50 );
+			if( tab_child.IsVisible() )
+			{
+				TextWidget tab_text = TextWidget.Cast( tab_child.FindAnyWidget( tab_child.GetName() + "_Title" ) );
+				int t_x, t_y;
+				tab_text.Update();
+				tab_text.GetTextSize( t_x, t_y );
+				tab_child.SetSize( t_x + 50, 1 );
+				tab_controls_container.Update();
+				
+				total_size += ( t_x + 50 );
+			}
 			
 			tab_child = tab_child.GetSibling();
 		}
@@ -246,6 +249,14 @@ class TabberUI extends ScriptedWidgetEventHandler
 		return false;
 	}
 	
+	void EnableTabControl( int index, bool enable )
+	{
+		Widget tab_control = m_Root.FindAnyWidget( "Tab_Control_" + index );
+		if( tab_control )
+			tab_control.Show( enable );
+		AlignTabbers();
+	}
+	
 	void SelectTabControl( int index )
 	{
 		Widget tab_control = m_TabControls.Get( index );
@@ -313,6 +324,12 @@ class TabberUI extends ScriptedWidgetEventHandler
 	void NextTab()
 	{
 		int next_index = m_SelectedIndex + 1;
+		
+		while( next_index < m_Tabs.Count() && !m_TabControls[next_index].IsVisible() )
+		{
+			next_index++;
+		}
+		
 		if( next_index >= m_Tabs.Count() )
 		{
 			next_index = 0;
@@ -340,9 +357,15 @@ class TabberUI extends ScriptedWidgetEventHandler
 	void PreviousTab()
 	{
 		int next_index = m_SelectedIndex - 1;
+		
 		if( next_index < 0 )
 		{
 			next_index = m_TabControls.Count() - 1;
+		}
+		
+		while( next_index > 0 && !m_TabControls[next_index].IsVisible() )
+		{
+			next_index--;
 		}
 		
 		if( m_SelectedIndex != next_index )

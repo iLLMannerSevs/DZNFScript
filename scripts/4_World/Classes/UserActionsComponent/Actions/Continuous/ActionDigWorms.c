@@ -2,7 +2,12 @@ class ActionDigWormsCB : ActionContinuousBaseCB
 {
 	override void CreateActionComponent()
 	{
-		m_ActionData.m_ActionComponent = new CAContinuousTime(UATimeSpent.DIG_WORMS);
+		float time_spent;
+		time_spent = UATimeSpent.DIG_WORMS;
+		if (m_ActionData.m_MainItem.KindOf("Knife"))
+			time_spent = time_spent * 1.2;
+		
+		m_ActionData.m_ActionComponent = new CAContinuousTime(time_spent);
 	}
 };
 
@@ -20,32 +25,57 @@ class ActionDigWorms: ActionContinuousBase
 	override void CreateConditionComponents()  
 	{	
 		m_ConditionItem = new CCINonRuined;
-		m_ConditionTarget = new CCTNone;
+		m_ConditionTarget = new CCTSurface(UAMaxDistances.DEFAULT);
 	}
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		if( !player.IsPlacingLocal() )
+		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
-			if ( target )
+			if ( !player.IsPlacingLocal() )
 			{
-				string surface_type;
-				vector position;
-				position = target.GetCursorHitPos();
-				GetGame().SurfaceGetType ( position[0], position[2], surface_type );
-				if ( surface_type == "cp_dirt"  ||  surface_type == "cp_grass"  ||  surface_type == "cp_grass_tall"  ||  surface_type == "cp_conifer_common1"  ||  surface_type == "cp_conifer_common2" ||  surface_type == "cp_conifer_moss1"  ||  surface_type == "cp_conifer_moss2"  ||  surface_type == "cp_broadleaf_dense1"  ||  surface_type == "cp_broadleaf_dense2" ||  surface_type == "cp_broadleaf_sparse1"  ||  surface_type == "cp_broadleaf_sparse2" || surface_type == "cp_gravel" )
+				if ( target )
 				{
-					return true;
+					string surface_type;
+					vector position;
+					position = target.GetCursorHitPos();
+					
+					GetGame().SurfaceGetType( position[0], position[2], surface_type );
+					
+					if ( GetGame().IsSurfaceFertile(surface_type) )
+					{
+						//Print("surface_type: " + surface_type);
+						return true;
+					}
 				}
 			}
+		
+			return false;
 		}
+		else
+		{
+			return true;
+		}
+	}
 	
+	override bool SetupAction( PlayerBase player, ActionTarget target, ItemBase item, out ActionData action_data, Param extra_data = NULL )
+	{	
+		if( super.SetupAction( player, target, item, action_data, extra_data ) )
+		{
+			if ( item )
+			{
+				SetDiggingAnimation( item );
+			}
+			
+			return true;
+		}
+		
 		return false;
 	}
 
 	override bool HasTarget()
 	{
-		return false;
+		return true;
 	}
 
 	override string GetText()
@@ -59,5 +89,19 @@ class ActionDigWorms: ActionContinuousBase
 		Class.CastTo(worms,  GetGame().CreateObject("Worm", action_data.m_Player.GetPosition()) );
 		worms.SetQuantity(10,false);
 		action_data.m_Player.GetSoftSkillsManager().AddSpecialty( m_SpecialtyWeight );
+	}
+	
+	void SetDiggingAnimation( ItemBase item )
+	{
+		if (item.KindOf("Knife"))
+		{
+			m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DEPLOY_1HD;
+			m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT | DayZPlayerConstants.STANCEMASK_CROUCH;
+		}
+		else
+		{
+			m_CommandUID = DayZPlayerConstants.CMD_ACTIONFB_DIGMANIPULATE;
+			m_StanceMask = DayZPlayerConstants.STANCEMASK_ERECT;
+		}
 	}
 };

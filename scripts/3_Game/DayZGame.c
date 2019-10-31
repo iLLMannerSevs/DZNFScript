@@ -313,7 +313,7 @@ class LoadingScreen
 		}
 		
 		
-		m_ModdedWarning.Show( DayZGame.IsModded() );
+		m_ModdedWarning.Show( g_Game.ReportModded() );
 		m_ImageLogoMid.Show(true);
 		m_ImageLogoCorner.Show(false);
 		
@@ -709,14 +709,15 @@ class DayZGame extends CGame
 	private bool	m_IsLeftAltHolding;
 	private bool	m_IsRightAltHolding;
 	
-	static bool		m_IsModded;
+	static bool		m_ReportModded;
 	private bool	m_IsStressTest;
 	int 			m_OriginalCharactersCount;
 	private string 	m_PlayerName;
 	private bool 	m_IsNewCharacter;
 	private bool 	m_IsConnecting;
 	private bool	m_ConnectFromJoin;
-	
+	private bool	m_ShouldShowControllerDisconnect;
+	private int		m_PreviousGamepad;
 	private float	m_UserFOV;
 	float 	m_volume_sound;
 	float 	m_volume_speechEX;
@@ -772,10 +773,8 @@ class DayZGame extends CGame
 		m_Backlit = new Backlit();
 		m_Backlit.OnInit(this);
 		
-		array<ref ModInfo> mods = new array<ref ModInfo>;
-		GetModInfos( mods );
-		m_IsModded = (mods.Count() > 1);
-		
+		m_ReportModded = GetModToBeReported();
+
 	#ifndef NO_GUI
 		if (m_loading == null)
 		{
@@ -931,9 +930,9 @@ class DayZGame extends CGame
 		return m_LoadState;
 	}
 	
-	static bool IsModded()
+	static bool ReportModded()
 	{
-		return m_IsModded;
+		return m_ReportModded;
 	}
 	
 	Backlit GetBacklit()
@@ -1129,6 +1128,9 @@ class DayZGame extends CGame
 					#endif
 				#endif
 			}
+				
+			if( m_ShouldShowControllerDisconnect && !GetWorld().IsMouseAndKeyboardEnabledOnServer() )
+				CreateGamepadDisconnectMenu();
 			
 			break;
 		}
@@ -1274,6 +1276,15 @@ class DayZGame extends CGame
 			}
 			break;
 		}
+		case DLCOwnerShipFailedEventTypeID:
+		{
+			DLCOwnerShipFailedParams dlcParams;
+			if (Class.CastTo(dlcParams, params))
+			{
+				Print( "### DLC Ownership failed !!! Map: " + dlcParams.param1 );
+			}
+			break;
+		}
 		}
 		Mission mission = GetMission();
 		if (mission)
@@ -1392,6 +1403,8 @@ class DayZGame extends CGame
 			
 			GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(this.LoginTimeCountdown, 1000, true);
 		}
+		GetPlayer().StopDeathDarkeningEffect();
+		PPEffects.SetDeathDarkening(1);
 	}
 	
 	// ------------------------------------------------------------
@@ -1660,35 +1673,46 @@ class DayZGame extends CGame
 		}
 	}
 	
+	bool ShouldShowControllerDisconnect()
+	{
+		return m_ShouldShowControllerDisconnect;
+	}
+	
 	void CreateGamepadDisconnectMenu()
 	{
 		DeleteGamepadDisconnectMenu();
-		PPEffects.SetBlurMenu( 1 );
-		m_GamepadDisconnectMenu = GetWorkspace().CreateWidgets("gui/layouts/xbox/day_z_gamepad_connect.layout");
-		RichTextWidget text_widget = RichTextWidget.Cast( m_GamepadDisconnectMenu.FindAnyWidget("Text") );
-		TextWidget caption_widget = TextWidget.Cast( m_GamepadDisconnectMenu.FindAnyWidget("Caption") );
-		if (text_widget)
+		
+		if( !GetInput().IsEnabledMouseAndKeyboard() || ( m_GameState == DayZGameState.IN_GAME && !GetWorld().IsMouseAndKeyboardEnabledOnServer() ) )
 		{
-			string text = Widget.TranslateString( "#console_reconect" );
-			#ifdef PLATFORM_XBOX
-				text_widget.SetText( string.Format( text, "<image set=\"xbox_buttons\" name=\"A\" />" ) );
-				caption_widget.SetText("#STR_TitleScreenLayout_Caption0");
-			#endif
-					
-			#ifdef PLATFORM_PS4
-				string confirm = "cross";
-				if( GetInput().GetEnterButton() == GamepadButton.A )
-				{
-					confirm = "cross";
-				}
-				else
-				{
-					confirm = "circle";
-				}
-				text_widget.SetText( string.Format( text, "<image set=\"playstation_buttons\" name=\"" + confirm + "\" />" ) );
-				caption_widget.SetText("#ps4_STR_TitleScreenLayout_Caption0");
-			#endif
+			PPEffects.SetBlurMenu( 1 );
+			m_GamepadDisconnectMenu = GetWorkspace().CreateWidgets("gui/layouts/xbox/day_z_gamepad_connect.layout");
+			RichTextWidget text_widget = RichTextWidget.Cast( m_GamepadDisconnectMenu.FindAnyWidget("Text") );
+			TextWidget caption_widget = TextWidget.Cast( m_GamepadDisconnectMenu.FindAnyWidget("Caption") );
+			if (text_widget)
+			{
+				string text = Widget.TranslateString( "#console_reconect" );
+				#ifdef PLATFORM_XBOX
+					text_widget.SetText( string.Format( text, "<image set=\"xbox_buttons\" name=\"A\" />" ) );
+					caption_widget.SetText("#STR_TitleScreenLayout_Caption0");
+				#endif
+
+				#ifdef PLATFORM_PS4
+					string confirm = "cross";
+					if( GetInput().GetEnterButton() == GamepadButton.A )
+					{
+						confirm = "cross";
+					}
+					else
+					{
+						confirm = "circle";
+					}
+					text_widget.SetText( string.Format( text, "<image set=\"playstation_buttons\" name=\"" + confirm + "\" />" ) );
+					caption_widget.SetText("#ps4_STR_TitleScreenLayout_Caption0");
+				#endif
+			}
 		}
+
+		m_ShouldShowControllerDisconnect = true;
 	}
 	
 	void DeleteGamepadDisconnectMenu()
@@ -1698,7 +1722,7 @@ class DayZGame extends CGame
 			delete m_GamepadDisconnectMenu;
 		if( GetUIManager().IsDialogVisible() )
 			GetUIManager().CloseDialog();
-		
+		m_ShouldShowControllerDisconnect = false;
 	}
 	
 	void JoinLaunch()
@@ -1898,6 +1922,16 @@ class DayZGame extends CGame
 				}
 			}
 		}
+	}
+	
+	void SetPreviousGamepad( int gamepad )
+	{
+		m_PreviousGamepad = gamepad;
+	}
+	
+	int GetPreviousGamepad()
+	{
+		return m_PreviousGamepad;
 	}
 	
 	void GamepadCheck()
@@ -2598,7 +2632,7 @@ class DayZGame extends CGame
 			ref NoiseParams npar = new NoiseParams();
 			npar.LoadFromPath("cfgAmmo " + ammoType + " NoiseExplosion");
 			
-			float surfaceCoef = SurfaceGetNoiseMultiplier(pos[0], pos[2]);
+			float surfaceCoef = SurfaceGetNoiseMultiplier(directHit, pos, componentIndex);
 			GetNoiseSystem().AddNoisePos(EntityAI.Cast(source), pos, npar, surfaceCoef);
 		}
 	}
@@ -2629,7 +2663,7 @@ class DayZGame extends CGame
 			ref NoiseParams npar = new NoiseParams();
 			npar.LoadFromPath("cfgAmmo " + ammoType + " NoiseHit");
 			
-			float surfaceCoef = SurfaceGetNoiseMultiplier(pos[0], pos[2]);
+			float surfaceCoef = SurfaceGetNoiseMultiplier(directHit, pos, componentIndex);
 			float coefAdjusted = surfaceCoef * inSpeed.Length() / ConfigGetFloat("cfgAmmo " + ammoType + " initSpeed");
 			GetNoiseSystem().AddNoisePos(EntityAI.Cast(source), pos, npar, coefAdjusted);
 			
@@ -2660,7 +2694,7 @@ class DayZGame extends CGame
 			ref NoiseParams npar = new NoiseParams();
 			npar.LoadFromPath("cfgAmmo " + ammoType + " NoiseHit");
 			
-			float surfaceCoef = SurfaceGetNoiseMultiplier(pos[0], pos[2]);
+			float surfaceCoef = SurfaceGetNoiseMultiplier(directHit, pos, componentIndex);
 			GetNoiseSystem().AddNoisePos(EntityAI.Cast(source), pos, npar, surfaceCoef);
 		}
 	}
