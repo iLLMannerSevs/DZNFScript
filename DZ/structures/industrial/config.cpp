@@ -2,7 +2,7 @@
 //DeRap: structures_industrial\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:23:07 2019 : 'file' last modified on Thu Oct 24 16:37:56 2019
+//'now' is Wed Nov 13 18:06:55 2019 : 'file' last modified on Wed Nov 06 15:49:11 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -10990,6 +10990,11 @@ class CfgVehicles
 	{
 		scope = 1;
 		model = "\dz\structures\industrial\misc\misc_scaffolding.p3d";
+	};
+	class Land_Misc_Through_Static: HouseNoDestruct
+	{
+		scope = 1;
+		model = "\dz\structures\industrial\misc\misc_through_static.p3d";
 	};
 	class Land_Pipe_Big_BuildR: HouseNoDestruct
 	{

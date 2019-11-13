@@ -32,12 +32,7 @@ class Mosin_Bayonet extends Inventory_Base
 		
 		AddAction(ActionBurnSewTarget);
 		AddAction(ActionUnrestrainTarget);
-		//AddAction(ActionSkinning);
-		//AddAction(ActionMineBush);
-		//AddAction(ActionMineTreeBark);
 		AddAction(ActionBurnSewSelf);
-		//AddAction(ActionShaveTarget);
-		//AddAction(ActionShave);
 		AddAction(ActionDigWorms);
 	}
 }

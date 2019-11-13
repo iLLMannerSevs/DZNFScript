@@ -29,9 +29,10 @@ class TutorialKeybinds extends ScriptedWidgetEventHandler
 					{
 						column_index		= Math.Floor( item_index / 21 );
 						Widget w			= GetGame().GetWorkspace().CreateWidgets( "gui/layouts/new_ui/tutorials/xbox/keybindings_panels/keybinding_panel.layout", m_Root.FindAnyWidget( "container" + column_index ) );
+						Widget spacer		= w.FindWidget( "Spacer" );
 						TextWidget name		= TextWidget.Cast( w.FindWidget( "KeybindName" ) );
-						TextWidget mod		= TextWidget.Cast( w.FindWidget( "KeybindModifier" ) );
-						TextWidget value	= TextWidget.Cast( w.FindWidget( "KeybindButton" ) );
+						TextWidget mod		= TextWidget.Cast( spacer.FindWidget( "KeybindModifier" ) );
+						TextWidget value	= TextWidget.Cast( spacer.FindWidget( "KeybindButton" ) );
 						
 						string modifier_text = "";
 						name.SetText( option_text );
@@ -42,10 +43,14 @@ class TutorialKeybinds extends ScriptedWidgetEventHandler
 							mod.SetText( modifier_text );
 						}
 						
+						name.Update();
+						mod.Update();
+						value.Update();
+						spacer.Update();
+						
 						item_index++;
 					}
 				}
-				Print( option_text );
 			}
 		}
 		

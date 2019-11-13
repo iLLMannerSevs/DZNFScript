@@ -83,9 +83,10 @@
 				<item name="Thermometer" chance="0.05" />
 		</cargo>
 		<cargo chance="0.15" name="toolsPolice">
-				<item name="Paper" chance="0.3" />
+				<item name="Paper" chance="0.05" />
+				<item name="Battery9V" chance="0.1" />
 				<item name="PersonalRadio" chance="0.1" />
-				<item name="Flashlight" chance="0.1" />
+				<item name="Flashlight" chance="0.15" />
 				<item name="Roadflare" chance="0.2" />
 				<item name="CombatKnife" chance="0.05" />
 				<item name="Morphine" chance="0.05" />
@@ -141,7 +142,7 @@
 		<cargo chance="0.1" name="mixVillage">
 				<item name="DuctTape" chance="0.07" />
 				<item name="Battery9V" chance="0.07" />
-				<item name="Paper" chance="0.3" />
+				<item name="Paper" chance="0.1" />
 				<item name="Flashlight" chance="0.1" />
 				<item name="Matchbox" chance="0.07" />
 				<item name="Roadflare" chance="0.2" />
@@ -166,7 +167,7 @@
 				<item name="BakedBeansCan" chance="0.10" />
 		</cargo>
 		<cargo chance="0.1" name="mixHunter">
-				<item name="Paper" chance="0.3" />
+				<item name="Paper" chance="0.1" />
 				<item name="Flashlight" chance="0.1" />
 				<item name="Matchbox" chance="0.07" />
 				<item name="Roadflare" chance="0.2" />

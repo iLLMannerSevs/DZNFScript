@@ -221,7 +221,7 @@ class DayZPlayerCameraIronsights extends DayZPlayerCameraBase
 	override void SetCameraPP(bool state, DayZPlayerCamera launchedFrom)
 	{
 		//Print("SetCameraPP - ADS");
-		if (!state || !m_weaponUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).m_CurrentCamera))
+		if (!state || !m_weaponUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).GetCurrentPlayerCamera()))
 		{
 			PPEffects.ResetPPMask();
 			PPEffects.SetLensEffect(0, 0, 0, 0);
@@ -411,7 +411,7 @@ class DayZPlayerCameraOptics : DayZPlayerCameraIronsights
 	override void SetCameraPP(bool state,DayZPlayerCamera launchedFrom)
 	{
 		//Print("SetCameraPP - optics");
-		if (!state || !m_opticsUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).m_CurrentCamera))
+		if (!state || !m_opticsUsed || (PlayerBase.Cast(m_pPlayer) && launchedFrom != PlayerBase.Cast(m_pPlayer).GetCurrentPlayerCamera()))
 		{
 			PPEffects.ResetPPMask();
 			PPEffects.SetLensEffect(0, 0, 0, 0);

@@ -19,7 +19,7 @@ class ActionUncoverHeadTarget: ActionContinuousBase
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem = new CCINone;
-		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT);
+		m_ConditionTarget = new CCTMan(UAMaxDistances.DEFAULT,false);
 	}
 	
 	override string GetText()

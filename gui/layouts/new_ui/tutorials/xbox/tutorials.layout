@@ -1382,7 +1382,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_0_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1395,7 +1395,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1442,7 +1442,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_1_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1455,7 +1455,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1502,7 +1502,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_2_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1515,7 +1515,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1562,7 +1562,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_3_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1575,7 +1575,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1622,7 +1622,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_4_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1635,7 +1635,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1682,7 +1682,7 @@ FrameWidgetClass rootFrame {
            {
             TextWidgetClass Tab_Control_5_Title {
              ignorepointer 1
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1695,7 +1695,7 @@ FrameWidgetClass rootFrame {
              "italic text" 0
              "bold text" 0
              "exact text" 0
-             "size to text h" 0
+             "size to text h" 1
              "size to text v" 0
              "text halign" center
              "text valign" center
@@ -1744,7 +1744,7 @@ FrameWidgetClass rootFrame {
             TextWidgetClass Tab_Control_6_Title {
              ignorepointer 1
              position 0 0
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -1754,6 +1754,7 @@ FrameWidgetClass rootFrame {
              priority 250
              text "#layout_pc_keybinding_desc"
              font "gui/fonts/sdf_MetronLight72"
+             "size to text h" 1
              "text halign" center
              "text valign" center
             }

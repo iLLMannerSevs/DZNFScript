@@ -211,6 +211,7 @@ class GetServersInput
 	bool m_UseGameVersion;
 	bool m_UseOfficial;
 	bool m_UseJoinable;
+	bool m_UseMapNameToRun;
 	bool m_UseIsModded;
 	bool m_UseMinPlayers; 
 	bool m_UseMaxPlayers; 
@@ -265,6 +266,12 @@ class GetServersInput
 	{
 		m_Joinable					= joinable;
 		m_UseJoinable				= true;
+	}
+	
+	void SetMapNameToRun( string mapNameToRun )
+	{
+		m_MapNameToRun = mapNameToRun;
+		m_UseMapNameToRun = true;
 	}
 	
 	void SetIsModdedFilter( bool is_modded )

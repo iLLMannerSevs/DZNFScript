@@ -37,7 +37,7 @@ class BurlapSackCover extends ClothingBase
 		{
 			PlayerBase player;
 			Class.CastTo(player, parent.GetHierarchyRootPlayer());
-			MiscGameplayFunctions.TurnItemIntoItem(this, "BurlapSack", player);
+			//MiscGameplayFunctions.TurnItemIntoItem(this, "BurlapSack", player);
 		}
 	}
 
@@ -55,7 +55,7 @@ class BurlapSackCover extends ClothingBase
 	{
 		PlayerBase player;
 		Class.CastTo(player, GetHierarchyRootPlayer());
-		return (player && !player.IsAlive());
+		return false; // (player && !player.IsAlive());
 	}
 
 	void OnRemovedFromHead(PlayerBase player)

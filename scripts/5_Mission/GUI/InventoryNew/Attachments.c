@@ -239,6 +239,19 @@ class Attachments
 		return GetGame().GetPlayer().GetInventory().FindFreeLocationFor( entity, FindInventoryLocationType.ATTACHMENT, il );
 	}
 	
+	bool Combine()
+	{
+		ItemBase ent = ItemBase.Cast( GetFocusedEntity() );
+		ItemBase item_in_hands = ItemBase.Cast(	GetGame().GetPlayer().GetHumanInventory().GetEntityInHands() );
+		
+		if( ent && item_in_hands && ( item_in_hands.CanBeCombined( ent ) ) )
+		{
+			item_in_hands.CombineItemsClient( ent );
+			return false;
+		}
+		return true;
+	}
+	
 	bool EquipItem()
 	{
 		ItemBase entity = ItemBase.Cast( GetFocusedEntity() );

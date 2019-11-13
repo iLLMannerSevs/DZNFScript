@@ -12,7 +12,7 @@ class ActionViewBinoculars : ActionViewOptics
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		ItemOptics optic;
-		if( Class.CastTo(optic, item) && !optic.IsInOptics() )
+		if( Class.CastTo(optic, item) && !optic.IsInOptics() && !player.IsNVGLowered() )
 		{
 			Rangefinder rangefinder = Rangefinder.Cast(item);
 			if ( rangefinder && rangefinder.GetCompEM().CanWork() )

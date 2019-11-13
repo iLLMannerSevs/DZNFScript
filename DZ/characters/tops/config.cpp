@@ -2,7 +2,7 @@
 //DeRap: characters_tops\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:20:33 2019 : 'file' last modified on Thu Sep 19 22:12:53 2019
+//'now' is Wed Nov 13 18:04:35 2019 : 'file' last modified on Thu Nov 07 10:13:54 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3158,7 +3158,7 @@ class CfgVehicles
 		itemsCargoSize[] = {4,3};
 		quickBarBonus = 3;
 		heatIsolation = 0.8;
-		absorbency = 0.1;
+		absorbency = 0.0;
 		soundAttType = "HeavyJacket";
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class DamageSystem

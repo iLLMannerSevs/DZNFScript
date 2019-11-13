@@ -24,7 +24,7 @@ class AttachmentsWrapper: Container
 	
 	override bool Combine()
 	{
-		return false;
+		return m_Attachments.Combine();
 	}
 	
 	override bool TransferItemToVicinity()

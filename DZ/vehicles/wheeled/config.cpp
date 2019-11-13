@@ -2,7 +2,7 @@
 //DeRap: vehicles_wheeled\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:24:28 2019 : 'file' last modified on Tue Oct 29 11:44:29 2019
+//'now' is Wed Nov 13 18:08:13 2019 : 'file' last modified on Wed Nov 13 15:03:42 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3162,6 +3162,7 @@ class CfgVehicles
 				class Health
 				{
 					hitpoints = 1000;
+					healthLevels[] = {{1.0,{}},{0.7,{}},{0.5,{}},{0.3,{}},{0.0,{}}};
 				};
 			};
 			class DamageZones

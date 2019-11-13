@@ -70,7 +70,6 @@ class ActionEmptyBottleBase: ActionContinuousBase
 
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
-		//TODO: implement proper solution, ideally something to do with camera angle
 		vector 	pos_cursor = target.GetCursorHitPos();
 		vector 	pos_head;
 		MiscGameplayFunctions.GetHeadBonePos( player, pos_head );
@@ -78,12 +77,9 @@ class ActionEmptyBottleBase: ActionContinuousBase
 				
 		if ( GetGame().IsServer() && GetGame().IsMultiplayer() )
 			return true;
-		/*if ( item.IsLiquidPresent() && distance < 1.7 && !target.GetObject() )
-			return true;*/
-		DayZPlayerCameraBase camera;
-		if ( item.IsLiquidPresent() && !target.GetObject() && DayZPlayerCameraBase.CastTo(camera, player.GetCurrentCamera()) && camera.GetCurrentPitch() < -70 )
+		
+		if ( item.IsLiquidPresent() && !target.GetObject() && player.IsCurrentCameraAimedAtGround() )
 		{
-			//Print(camera.GetCurrentPitch());
 			return true;
 		}
 		return false;
@@ -97,20 +93,12 @@ class ActionEmptyBottleBase: ActionContinuousBase
 		}
 		return false;
 	}
-	
-	/*override void OnCompleteLoopServer( ActionData action_data )
+	/*override void OnEndServer( ActionData action_data )
 	{
-		//item.TransferModifiers(player);
-		Param1<float> nacdata;
-		Class.CastTo(nacdata,  action_data.m_ActionComponent.GetACData() );
-		float delta = nacdata.param1;
-		action_data.m_MainItem.AddQuantity( -delta );
-
-		action_data.m_Player.GetSoftSkillManager().AddSpecialty( m_SpecialtyWeight );
-	}
-	
-	override void OnCancelServer( ActionData action_data )
-	{
-		OnCompleteLoopServer(action_data);
+		if ( action_data.m_MainItem.GetQuantity() < 0.01 )
+		{
+			action_data.m_MainItem.SetQuantity(0);
+			action_data.m_MainItem.SetLiquidType(0);
+		}
 	}*/
 };

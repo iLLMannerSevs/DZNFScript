@@ -403,289 +403,304 @@ GridSpacerWidgetClass server_browser_list_entry_root {
      hexactsize 1
      vexactsize 0
     }
-    GridSpacerWidgetClass detail_info_panel {
-     visible 1
-     clipchildren 1
+    GridSpacerWidgetClass detail_info_spacer {
      ignorepointer 1
      position 0 0
-     size 1 1
+     size 1 80
      hexactpos 1
      vexactpos 1
      hexactsize 0
-     vexactsize 0
+     vexactsize 1
      Padding 0
      Margin 4
-     Columns 2
-     Rows 4
+     "Size To Content V" 1
+     Columns 1
+     Rows 2
      {
-      FrameWidgetClass shard {
-       clipchildren 0
+      GridSpacerWidgetClass detail_info_panel {
+       visible 1
+       clipchildren 1
        ignorepointer 1
-       position 0 0.125
-       size 0.65 0.2
+       position 0 0
+       size 1 54
        hexactpos 1
-       vexactpos 0
+       vexactpos 1
        hexactsize 0
-       vexactsize 0
+       vexactsize 1
+       Padding 0
+       Margin 0
+       Columns 2
        {
-        TextWidgetClass shard_label {
+        FrameWidgetClass shard {
          clipchildren 0
          ignorepointer 1
-         position 0 0
-         size 128 1
-         hexactpos 1
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_shard_shard_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
-        }
-        TextWidgetClass shard_text {
-         clipchildren 0
-         ignorepointer 1
-         position 128 0
-         size 1 1.0455
+         position 0 0.125
+         size 0.65 1
          hexactpos 1
          vexactpos 0
          hexactsize 0
          vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_shard_shard_text0"
-         font "gui/fonts/sdf_MetronLight24"
-         "text offset" 8 0
-         "exact text" 0
-         "size to text h" 0
-         "size to text v" 0
-         "text valign" center
+         {
+          TextWidgetClass shard_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 128 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_shard_shard_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass shard_text {
+           clipchildren 0
+           ignorepointer 1
+           position 128 0
+           size 1 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_shard_shard_text0"
+           font "gui/fonts/sdf_MetronLight24"
+           "text offset" 8 0
+           "exact text" 0
+           "size to text h" 0
+           "size to text v" 0
+           "text valign" center
+          }
+         }
         }
-       }
-      }
-      FrameWidgetClass mode {
-       clipchildren 0
-       ignorepointer 1
-       position 0.65 0.125
-       size 0.5 0.2
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        TextWidgetClass mode_label {
+        FrameWidgetClass mode {
          clipchildren 0
          ignorepointer 1
-         position 0 0
-         size 128 1
+         position 0.65 0.125
+         size 0.5 1
          hexactpos 0
          vexactpos 0
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_mode_mode_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
+         {
+          TextWidgetClass mode_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 128 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_mode_mode_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass mode_text {
+           clipchildren 0
+           ignorepointer 1
+           position 128 0
+           size 1 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 0
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_mode_mode_text0"
+           font "gui/fonts/sdf_MetronLight24"
+           "text offset" 8 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
         }
-        TextWidgetClass mode_text {
+        FrameWidgetClass character_alive {
          clipchildren 0
          ignorepointer 1
-         position 128 0
-         size 680 1
+         position 0 0.375
+         size 0.65 1
          hexactpos 1
          vexactpos 0
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_mode_mode_text0"
-         font "gui/fonts/sdf_MetronLight24"
-         "text offset" 8 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
+         {
+          TextWidgetClass character_alive_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 128 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_character_alive_character_alive_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass character_alive_text {
+           clipchildren 0
+           ignorepointer 1
+           position 128 0
+           size 630 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "-"
+           font "gui/fonts/sdf_MetronLight24"
+           "text offset" 8 0
+           "bold text" 0
+           "exact text" 0
+           "size to text h" 0
+           "size to text v" 0
+           "text valign" center
+          }
+         }
         }
-       }
-      }
-      FrameWidgetClass character_alive {
-       clipchildren 0
-       ignorepointer 1
-       position 0 0.375
-       size 0.65 0.2
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        TextWidgetClass character_alive_label {
+        FrameWidgetClass battlleye {
          clipchildren 0
          ignorepointer 1
-         position 0 0
-         size 128 1
+         position 0.65 0.375
+         size 0.5 1
          hexactpos 0
          vexactpos 0
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_character_alive_character_alive_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
+         {
+          TextWidgetClass battlleye_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 128 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_battlleye_battlleye_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass battlleye_text {
+           clipchildren 0
+           ignorepointer 1
+           color 0 1 0.251 1
+           position 128 0
+           size 680 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_battlleye_battlleye_text0"
+           font "gui/fonts/sdf_MetronLight24"
+           "text color" 0 1 0.251 1
+           "text offset" 8 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
         }
-        TextWidgetClass character_alive_text {
+        FrameWidgetClass ip {
          clipchildren 0
          ignorepointer 1
-         position 128 0
-         size 630 1
+         position 0 0.625
+         size 0.65 1
          hexactpos 1
          vexactpos 0
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
-         text "-"
-         font "gui/fonts/sdf_MetronLight24"
-         "text offset" 8 0
-         "bold text" 0
-         "exact text" 0
-         "size to text h" 0
-         "size to text v" 0
-         "text valign" center
+         {
+          TextWidgetClass ip_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 32 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_ip_ip_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass ip_text {
+           clipchildren 1
+           ignorepointer 1
+           position 32 0
+           size 680 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "192.168.100.100:2302"
+           font "gui/fonts/sdf_MetronLight24"
+           "text offset" 8 0
+           "bold text" 0
+           "exact text" 0
+           "size to text h" 0
+           "size to text v" 0
+           "text valign" center
+          }
+         }
         }
-       }
-      }
-      FrameWidgetClass battlleye {
-       clipchildren 0
-       ignorepointer 1
-       position 0.65 0.375
-       size 0.5 0.2
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        TextWidgetClass battlleye_label {
+        FrameWidgetClass steam_friends {
          clipchildren 0
          ignorepointer 1
-         position 0 0
-         size 128 1
+         position 0.65 0.625
+         size 0.5 1
          hexactpos 0
          vexactpos 0
-         hexactsize 1
+         hexactsize 0
          vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_battlleye_battlleye_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
-        }
-        TextWidgetClass battlleye_text {
-         clipchildren 0
-         ignorepointer 1
-         color 0 1 0.251 1
-         position 128 0
-         size 680 1
-         hexactpos 1
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_battlleye_battlleye_text0"
-         font "gui/fonts/sdf_MetronLight24"
-         "text color" 0 1 0.251 1
-         "text offset" 8 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass ip {
-       clipchildren 0
-       ignorepointer 1
-       position 0 0.625
-       size 0.65 0.2
-       hexactpos 1
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        TextWidgetClass ip_label {
-         clipchildren 0
-         ignorepointer 1
-         position 0 0
-         size 32 1
-         hexactpos 0
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_ip_ip_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
-        }
-        TextWidgetClass ip_text {
-         clipchildren 1
-         ignorepointer 1
-         position 32 0
-         size 680 1
-         hexactpos 1
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "192.168.100.100:2302"
-         font "gui/fonts/sdf_MetronLight24"
-         "text offset" 8 0
-         "bold text" 0
-         "exact text" 0
-         "size to text h" 0
-         "size to text v" 0
-         "text valign" center
-        }
-       }
-      }
-      FrameWidgetClass steam_friends {
-       clipchildren 0
-       ignorepointer 1
-       position 0.65 0.625
-       size 0.5 0.2
-       hexactpos 0
-       vexactpos 0
-       hexactsize 0
-       vexactsize 0
-       {
-        TextWidgetClass steam_friends_label {
-         clipchildren 0
-         ignorepointer 1
-         position 0 0
-         size 128 1
-         hexactpos 0
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_steam_friends_steam_friends_label0"
-         font "gui/fonts/sdf_MetronLight24"
-         "italic text" 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
-        }
-        TextWidgetClass steam_friends_text {
-         clipchildren 0
-         ignorepointer 1
-         position 128 0
-         size 630 1
-         hexactpos 1
-         vexactpos 0
-         hexactsize 1
-         vexactsize 0
-         text "Erika, Tony, Janko Hrasko"
-         font "gui/fonts/sdf_MetronLight24"
-         "text offset" 8 0
-         "bold text" 0
-         "exact text" 0
-         "text valign" center
+         {
+          TextWidgetClass steam_friends_label {
+           clipchildren 0
+           ignorepointer 1
+           position 0 0
+           size 128 1
+           hexactpos 0
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "#STR_server_browser_list_entry_root_detailed_info_detail_info_panel_steam_friends_steam_friends_label0"
+           font "gui/fonts/sdf_MetronLight24"
+           "italic text" 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+          TextWidgetClass steam_friends_text {
+           clipchildren 0
+           ignorepointer 1
+           position 128 0
+           size 630 1
+           hexactpos 1
+           vexactpos 0
+           hexactsize 1
+           vexactsize 0
+           text "Erika, Tony, Janko Hrasko"
+           font "gui/fonts/sdf_MetronLight24"
+           "text offset" 8 0
+           "bold text" 0
+           "exact text" 0
+           "text valign" center
+          }
+         }
         }
        }
       }
@@ -693,12 +708,12 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        clipchildren 0
        ignorepointer 1
        position 0 0
-       size 0.875 1
+       size 1 18
        valign center_ref
        hexactpos 1
        vexactpos 1
        hexactsize 0
-       vexactsize 0
+       vexactsize 1
        font "gui/fonts/sdf_MetronLight24"
       }
      }
@@ -729,7 +744,8 @@ GridSpacerWidgetClass server_browser_list_entry_root {
        "text valign" center
       }
       ButtonWidgetClass mods_expand {
-       visible 1
+       visible 0
+       color 0 0 0 1
        position 0 0.75
        size 0.6 0.2
        halign right_ref

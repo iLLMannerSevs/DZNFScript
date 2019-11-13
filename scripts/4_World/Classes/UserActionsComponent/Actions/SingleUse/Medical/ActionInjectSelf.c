@@ -40,4 +40,12 @@ class ActionInjectSelf: ActionSingleUseBase
 			action_data.m_MainItem.Delete();
 		}
 	}
+	
+	override void OnEndClient( ActionData action_data )
+	{
+		if (action_data.m_WasExecuted && action_data.m_MainItem )
+		{
+			action_data.m_MainItem.DeleteOnClient();
+		}
+	}
 };

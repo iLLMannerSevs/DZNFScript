@@ -260,6 +260,8 @@ class PlayerListScriptedWidget extends ScriptedWidgetEventHandler
 		if( m_SelectedEntry )
 			m_SelectedEntry.Deselect();
 		m_SelectedEntry = entry;
+		if( GetGame().GetUIManager().GetMenu() )
+			GetGame().GetUIManager().GetMenu().Refresh();
 		ScrollToEntry( entry );
 	}
 	

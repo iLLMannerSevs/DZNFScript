@@ -81,7 +81,7 @@ FrameWidgetClass Tabber {
           TextWidgetClass Tab_Control_0_Title {
            ignorepointer 1
            position 0 0
-           size 1 0.48
+           size 1 0.42
            halign center_ref
            valign center_ref
            hexactpos 1

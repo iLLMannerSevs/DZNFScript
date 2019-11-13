@@ -15,8 +15,6 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	protected ButtonWidget							m_BtnPagesFirst;
 	protected ButtonWidget							m_BtnPagesLast;
 	
-	protected Widget								m_FilterSearchText;
-	protected Widget								m_FilterSearchTextBox;
 	protected Widget								m_FilterSearchIP;
 	protected Widget								m_FilterSearchIPBox;
 	protected Widget								m_FilterPanelPing;

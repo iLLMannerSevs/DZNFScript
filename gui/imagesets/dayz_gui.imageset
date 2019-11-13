@@ -762,6 +762,18 @@ ImageSetClass {
    Size 73 38
    Flags 0
   }
+  ImageSetDefClass icon_modded_sb {
+   Name "icon_modded_sb"
+   Pos 799 286
+   Size 20 20
+   Flags 0
+  }
+  ImageSetDefClass icon_mouseandkeyboard_sb {
+   Name "icon_mouseandkeyboard_sb"
+   Pos 819 286
+   Size 47 20
+   Flags 0
+  }
  }
  Groups {
   ImageSetGroupClass UI {

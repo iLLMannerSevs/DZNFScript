@@ -277,14 +277,15 @@ class HandEventThrow extends HandEventDrop
 		m_EventID = HandEventID.THROW; 
 		if( src )
 		{
-			m_Dst = new InventoryLocation;
-			
 			vector mat[4];
 			EntityAI entity = GetSrcEntity();
+			if (entity)
+			{
+				m_Dst = new InventoryLocation;
 			entity.GetTransform(mat);
-
 			m_Dst.SetGround(entity, mat);
 		}
+	}
 	}
 	
 	override InventoryLocation GetDst ()
@@ -391,7 +392,7 @@ class HandEventSwap extends HandEventBase
 		bool test1 = GameInventory.CheckSwapItemsRequest(m_Player, m_Src, m_Src2, m_Dst, m_Dst2, GameInventory.c_MaxItemDistanceRadius);
 		if (!test1)
 			hndDebugPrint("Warning: HandEventSwap.CheckRequest failed");
-		bool test2 = GameInventory.CanSwapEntities(m_Src.GetItem(), m_Src2.GetItem());
+		bool test2 = m_Player.GetHumanInventory().CanAddSwappedEntity(m_Src, m_Src2, m_Dst, m_Dst2);
   		if (!test2)
 			hndDebugPrint("Warning: HandEventSwap.CheckRequest test2 failed");
 		return test1 && test2;

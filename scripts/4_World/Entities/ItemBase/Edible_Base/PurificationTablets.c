@@ -1,5 +1,6 @@
 class PurificationTablets extends Edible_Base
 {
+/*
 	override void SetActions()
 	{
 		super.SetActions();
@@ -9,4 +10,5 @@ class PurificationTablets extends Edible_Base
 		//AddAction(ActionForceFeed);
 		//AddAction(ActionEat);
 	}
-}
+*/
+};

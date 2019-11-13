@@ -114,6 +114,7 @@ class DayZPlayerCamera3rdPerson extends DayZPlayerCameraBase
 		pOutResult.m_fUseHeading 	= 1.0;
 		pOutResult.m_fInsideCamera 	= 0.0;
 
+		InitCameraOnPlayer();
 		StdFovUpdate(pDt, pOutResult);
 		UpdateCameraNV(PlayerBase.Cast(m_pPlayer));
 	}
@@ -528,6 +529,7 @@ class DayZPlayerCamera3rdPersonProneBase extends DayZPlayerCamera3rdPerson
 		pOutResult.m_fPositionModelSpace = 1.0;
 		pOutResult.m_bUpdateWhenBlendOut	= false;
 		
+		InitCameraOnPlayer();
 		StdFovUpdate(pDt, pOutResult);
 		UpdateCameraNV(PlayerBase.Cast(m_pPlayer));
 	}

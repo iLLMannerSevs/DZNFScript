@@ -2,7 +2,7 @@
 //DeRap: characters_gloves\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:20:17 2019 : 'file' last modified on Mon Sep 23 09:27:09 2019
+//'now' is Wed Nov 13 18:04:21 2019 : 'file' last modified on Thu Nov 07 10:01:02 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -514,7 +514,7 @@ class CfgVehicles
 		rotationFlags = 17;
 		weight = 454;
 		itemSize[] = {2,3};
-		absorbency = 0.4;
+		absorbency = 0.0;
 		heatIsolation = 0.25;
 		repairableWithKits[] = {5,2};
 		repairCosts[] = {30.0,25.0};

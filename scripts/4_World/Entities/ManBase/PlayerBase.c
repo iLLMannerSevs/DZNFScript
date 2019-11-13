@@ -191,6 +191,7 @@ class PlayerBase extends ManBase
 	protected ref Timer 			m_UALastMessageTimer;
 	
 	bool 							m_WorkingNVGHeadset;
+	bool 							m_LoweredNVGHeadset;
 	//bool 							m_PreviousNVGState;
 	
 	PluginAdminLog 					m_AdminLog; 
@@ -232,6 +233,8 @@ class PlayerBase extends ManBase
 		m_ActionQBControl = false;
 		m_QuickBarHold = false;
 		m_HideHairAnimated = true;
+		m_WorkingNVGHeadset = false;
+		m_LoweredNVGHeadset = false;
 		
 		m_AnalyticsTimer = new Timer( CALL_CATEGORY_SYSTEM );
 
@@ -1755,18 +1758,21 @@ class PlayerBase extends ManBase
 	void OnCameraChanged(DayZPlayerCameraBase new_camera)
 	{
 		m_CameraSwayModifier = new_camera.GetWeaponSwayModifier();
-		
-		/*m_PreviousNVGState = m_WorkingNVGHeadset;
-		if ( DayZPlayerCameraOptics.Cast(new_camera) && m_WorkingNVGHeadset )
-		{
-			DEBUGRotateNVG();
-		}
-		else if ( DayZPlayerCameraOptics.Cast(m_CurrentCamera) && m_PreviousNVGState )
-		{
-			DEBUGRotateNVG();
-		}*/
 		m_CurrentCamera = new_camera;
 	}
+	
+	DayZPlayerCamera GetCurrentPlayerCamera()
+	{
+		return m_CurrentCamera;
+	}
+	
+	bool IsCurrentCameraAimedAtGround()
+	{
+		if (!m_CurrentCamera)
+			return false;
+		
+		return m_CurrentCamera.GetCurrentPitch() < PlayerConstants.CAMERA_THRESHOLD_PITCH;
+	} 
 	
 	BleedingSourcesManagerServer GetBleedingManagerServer()
 	{
@@ -2835,6 +2841,7 @@ class PlayerBase extends ManBase
 			return false;
 		}
 		
+		//! disables jump when player is under object
 		/*if (IsUnderRoofJumpCheck())
 		{
 			return false;
@@ -6414,10 +6421,23 @@ class PlayerBase extends ManBase
 		return m_WorkingNVGHeadset;
 	}
 	
+	bool IsNVGLowered()
+	{
+		return m_LoweredNVGHeadset;
+	}
+	
 	void SetNVGWorking(bool state)
 	{
 		m_WorkingNVGHeadset = state;
-		//Print("NVG working by player: " + state);
+		if (state)
+		{
+			Print("NVG working by player: " + state);
+		}
+	}
+	
+	void SetNVGLowered(bool state)
+	{
+		m_LoweredNVGHeadset = state;
 	}
 #ifdef DEVELOPER
 	void DEBUGRotateNVG()

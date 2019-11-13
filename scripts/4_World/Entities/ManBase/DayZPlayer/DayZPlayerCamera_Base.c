@@ -214,13 +214,13 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		super.OnUpdate(pDt, pOutResult);
 		StdFovUpdate(pDt, pOutResult);
 		UpdateCameraNV(PlayerBase.Cast(m_pPlayer));
+		InitCameraOnPlayer();
 	}
 
 	override void OnActivate(DayZPlayerCamera pPrevCamera, DayZPlayerCameraResult pPrevCameraResult)
 	{
 		//PrintString("OnActivate DayZPlayerCameraBase");
-		PlayerBase player = PlayerBase.Cast(m_pPlayer);
-		player.OnCameraChanged(this);
+		InitCameraOnPlayer(true);
 		SetCameraPPDelay(pPrevCamera);
 		
 		if (DayZPlayerCameraBase.Cast(pPrevCamera) && DayZPlayerCameraBase.Cast(pPrevCamera).IsCameraNV())
@@ -340,6 +340,16 @@ class DayZPlayerCameraBase extends DayZPlayerCamera
 		if (PlayerBaseClient.Cast(m_pPlayer))
 		{
 			PlayerBaseClient.Cast(m_pPlayer).SwitchPersonalLight(NVtype < 1); //TODO 
+		}
+	}
+	
+	void InitCameraOnPlayer(bool force = false)
+	{
+		//Print("" + this + " | " + GetGame().GetTime());
+		PlayerBase player = PlayerBase.Cast(m_pPlayer);
+		if (!player.GetCurrentPlayerCamera() || (force && player.GetCurrentPlayerCamera() != this))
+		{
+			player.OnCameraChanged(this);
 		}
 	}
 	

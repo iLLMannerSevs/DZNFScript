@@ -2,7 +2,7 @@
 //DeRap: characters_pants\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:20:28 2019 : 'file' last modified on Tue Sep 10 08:20:14 2019
+//'now' is Wed Nov 13 18:04:31 2019 : 'file' last modified on Thu Nov 07 10:07:01 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2300,7 +2300,7 @@ class CfgVehicles
 		itemSize[] = {3,2};
 		itemsCargoSize[] = {5,4};
 		weight = 520;
-		absorbency = 0.1;
+		absorbency = 0.0;
 		heatIsolation = 0.7;
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};
 		class ClothingTypes

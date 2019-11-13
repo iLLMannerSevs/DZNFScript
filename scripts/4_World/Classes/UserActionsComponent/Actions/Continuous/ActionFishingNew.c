@@ -15,7 +15,7 @@ class FishingActionData : ActionData
 class ActionFishingNewCB : ActionContinuousBaseCB
 {
 	FishingActionData 	m_ActionDataFishing;
-	ref array<string> 	m_JunkTypes = {"Wellies_Black","Wellies_Brown","Wellies_Green","Wellies_Grey"};
+	ref array<string> 	m_JunkTypes = {"Wellies_Black","Wellies_Brown","Wellies_Green","Wellies_Grey","Pot"};
 	
 	override void CreateActionComponent()
 	{
@@ -100,7 +100,17 @@ class ActionFishingNewCB : ActionContinuousBaseCB
 			}
 			
 			if (fish)
+			{
 				fish.SetWet(0.3);
+				fish.PlaceOnSurface();
+				if (fish.HasQuantity())
+				{
+					float coef = Math.RandomFloatInclusive(0.5, 1.0);
+					float item_quantity = fish.GetQuantityMax() * coef;
+					item_quantity = Math.Round(item_quantity);
+					fish.SetQuantity( item_quantity );
+				}
+			}
 			
 			m_ActionDataFishing.m_MainItem.AddHealth(m_ActionDataFishing.FISHING_DAMAGE);
 		}

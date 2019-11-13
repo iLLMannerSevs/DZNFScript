@@ -72,6 +72,7 @@ PanelWidgetClass DropzoneX {
       }
       PanelWidgetClass Up {
        clipchildren 0
+       ignorepointer 1
        size 40 150
        halign right_ref
        hexactpos 1

@@ -124,7 +124,7 @@ class PrepareMackerel extends RecipeBase
 		{
 			ItemBase item_result;
 			Class.CastTo(item_result, results.Get(i));
-			if (m_ResultSetFullQuantity[i] == false && m_ResultSetHealth[i] == -1)
+			if (m_ResultSetFullQuantity[i] == false)
 			{
 				item_result.SetQuantity(item_result.GetQuantityMax() * adjust);
 			}

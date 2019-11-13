@@ -2,7 +2,7 @@
 //DeRap: animals\canis_lupus\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:19:38 2019 : 'file' last modified on Thu Oct 31 12:38:03 2019
+//'now' is Wed Nov 13 18:03:54 2019 : 'file' last modified on Thu Nov 07 12:38:55 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -49,7 +49,7 @@ class CfgVehicles
 			{
 				class Health
 				{
-					hitpoints = 100;
+					hitpoints = 200;
 					healthLabels[] = {1.0,0.7,0.5,0.3,0.0};
 				};
 				class Blood
@@ -58,648 +58,97 @@ class CfgVehicles
 				};
 				class Shock
 				{
-					hitpoints = 5000;
+					hitpoints = 100;
 				};
 			};
 			class DamageZones
 			{
-				class Zone_Belly
-				{
-					canBleed = 0;
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.2;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.33;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.33;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Belly"};
-					transferToZonesNames[] = {};
-					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
-				};
-				class Zone_Chest
-				{
-					canBleed = 0;
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.75;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Chest"};
-					transferToZonesNames[] = {};
-					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
-				};
 				class Zone_Head
 				{
-					canBleed = 0;
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 500;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 500;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
 					componentNames[] = {"Zone_Head"};
 					transferToZonesNames[] = {};
 					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.5;
-				};
-				class Zone_Legs_Front
-				{
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Legs_Front"};
-					transferToZonesNames[] = {};
-					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
-				};
-				class Zone_Legs_Back
-				{
+					fatalInjuryCoef = 0.15;
 					canBleed = 0;
 					class Health
 					{
-						hitpoints = 100;
+						hitpoints = 120;
 						transferToGlobalCoef = 1;
 					};
-					class Blood
+					class Blood: Health
 					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
+						hitpoints = 0;
 					};
-					class Shock
+					class Shock: Health
 					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
+						hitpoints = 0;
 					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.1;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Legs_Back"};
-					transferToZonesNames[] = {};
-					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
 				};
-				class Zone_Neck
+				class Zone_Neck: Zone_Head
 				{
-					canBleed = 0;
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.75;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.66;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.66;
-							};
-							class Blood
-							{
-								damage = 5;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
 					componentNames[] = {"Zone_Neck"};
 					transferToZonesNames[] = {};
 					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
-				};
-				class Zone_Pelvis
-				{
-					canBleed = 0;
-					class Health
+					fatalInjuryCoef = 0.05;
+					class Health: Health
 					{
 						hitpoints = 100;
-						transferToGlobalCoef = 1;
 					};
-					class Blood
+				};
+				class Zone_Chest: Zone_Head
+				{
+					componentNames[] = {"Zone_Chest"};
+					transferToZonesNames[] = {};
+					transferToZonesCoefs[] = {};
+					fatalInjuryCoef = 0.05;
+					class Health: Health
 					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
+						hitpoints = 150;
 					};
-					class Shock
+				};
+				class Zone_Belly: Zone_Head
+				{
+					componentNames[] = {"Zone_Belly"};
+					transferToZonesNames[] = {};
+					transferToZonesCoefs[] = {};
+					fatalInjuryCoef = 0.05;
+					class Health: Health
 					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
+						hitpoints = 150;
 					};
-					class ArmorType
+				};
+				class Zone_Spine: Zone_Head
+				{
+					componentNames[] = {"Zone_Spine_Front","Zone_Spine_Back"};
+					transferToZonesNames[] = {};
+					transferToZonesCoefs[] = {};
+					fatalInjuryCoef = 0.05;
+					class Health: Health
 					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.25;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.2;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.2;
-							};
-							class Blood
-							{
-								damage = 0;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
+						hitpoints = 150;
 					};
+				};
+				class Zone_Pelvis: Zone_Head
+				{
 					componentNames[] = {"Zone_Pelvis"};
 					transferToZonesNames[] = {"Zone_Spine"};
 					transferToZonesCoefs[] = {0.5};
-					fatalInjuryCoef = 0.25;
+					fatalInjuryCoef = 0.05;
+					class Health: Health
+					{
+						hitpoints = 180;
+					};
 				};
-				class Zone_Spine_Front
+				class Zone_Legs: Zone_Head
 				{
-					canBleed = 0;
-					class Health
-					{
-						hitpoints = 100;
-						transferToGlobalCoef = 1;
-					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.75;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.66;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.66;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Spine_Front"};
+					componentNames[] = {"Zone_Legs_Front","Zone_Legs_Back"};
 					transferToZonesNames[] = {};
 					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
-				};
-				class Zone_Spine_Back
-				{
-					canBleed = 0;
-					class Health
+					fatalInjuryCoef = 0.0;
+					class Health: Health
 					{
 						hitpoints = 100;
-						transferToGlobalCoef = 1;
 					};
-					class Blood
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 1;
-					};
-					class Shock
-					{
-						hitpoints = 5000;
-						transferToGlobalCoef = 0;
-					};
-					class ArmorType
-					{
-						class Melee
-						{
-							class Health
-							{
-								damage = 0.25;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class Projectile
-						{
-							class Health
-							{
-								damage = 0.33;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-						class FragGrenade
-						{
-							class Health
-							{
-								damage = 0.33;
-							};
-							class Blood
-							{
-								damage = 1;
-							};
-							class Shock
-							{
-								damage = 0;
-							};
-						};
-					};
-					componentNames[] = {"Zone_Spine_Back"};
-					transferToZonesNames[] = {};
-					transferToZonesCoefs[] = {};
-					fatalInjuryCoef = 0.25;
 				};
 			};
 		};

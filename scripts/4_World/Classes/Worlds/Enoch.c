@@ -28,6 +28,14 @@ class EnochData extends WorldData
 	protected int m_choosenWeather = 1;
 	protected int m_lastWeather = 0;
 
+	override void Init()
+	{
+		super.Init();
+		
+		m_DayTemperature = 12;
+		m_NightTemperature = 5;
+	}
+	
 	override bool WeatherOnBeforeChange( EWeatherPhenomenon type, float actual, float change, float time )
 	{
 		float phmnValue 0;

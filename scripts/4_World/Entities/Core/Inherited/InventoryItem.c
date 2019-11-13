@@ -523,8 +523,40 @@ class Clothing extends ItemBase
 		return ConfigGetFloat("visibilityModifier");
 	}
 	
-	void UpdateNVGStatus(PlayerBase player, bool attaching = false)
+	void UpdateNVGStatus(PlayerBase player, bool attaching = false, bool force_disable = false)
 	{
+		NVGoggles NVGAttachment;
+		NVGAttachment = NVGoggles.Cast(FindAttachmentBySlotName("NVG"));
+		bool has_nvg_slot;
+		for (int i = 0; i < GetInventory().GetAttachmentSlotsCount(); i++)
+		{
+			has_nvg_slot = GetInventory().GetAttachmentSlotId(i) == InventorySlots.GetSlotIdFromString("NVG");
+			if (has_nvg_slot)
+				break;
+		}
+		
+		if ( player && has_nvg_slot )
+		{
+			if ( NVGAttachment )
+			{
+				NVGAttachment.LoweredCheck();
+				
+				if ( attaching && NVGAttachment.IsWorking() && NVGAttachment.m_Strap && NVGAttachment.m_IsLowered && !player.IsNVGWorking() )
+				{
+					NVGAttachment.SetPlayer(player);
+					player.SetNVGWorking(true);
+				}
+				else if ( player.IsNVGWorking() )
+				{
+					NVGAttachment.SetPlayer(null);
+					player.SetNVGWorking(false);
+				}
+			}
+			else if ( player.IsNVGWorking() && force_disable )
+			{
+				player.SetNVGWorking(false);
+			}
+		}
 	}
 	
 	//! Returns if this entity obsructs player's voice

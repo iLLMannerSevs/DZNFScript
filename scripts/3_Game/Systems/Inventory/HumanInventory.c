@@ -94,7 +94,7 @@ class HumanInventory : GameInventory
 
 	void HandEvent (InventoryMode mode, HandEventBase e)
 	{
-		hndDebugPrint("[inv] HumanInventory::HandEvent(" + typename.EnumToString(InventoryMode, mode) + ")");
+		hndDebugPrint("[inv] HumanInventory::HandEvent(" + typename.EnumToString(InventoryMode, mode) + ") ev=" + e.DumpToString());
 
 		switch (mode)
 		{

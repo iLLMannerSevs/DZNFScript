@@ -577,6 +577,7 @@ class CGame
 	proto native Object CreateObject_WIP( string type, vector pos, int iFlags );
 	
 	proto native void   ObjectDelete( Object obj );
+	proto native void   ObjectDeleteOnClient( Object obj );
     proto native void   RemoteObjectDelete( Object obj ); /// RemoteObjectDelete - deletes only remote object (unregisters from network). do not use if not sure what you do
 	proto native void   RemoteObjectTreeDelete( Object obj ); /// RemoteObjectDelete - deletes only remote object tree (unregisters from network). do not use if not sure what you do
     proto native void   RemoteObjectCreate( Object obj ); /// RemoteObjectCreate - postponed registration of network object (and creation of remote object). do not use if not sure what you do

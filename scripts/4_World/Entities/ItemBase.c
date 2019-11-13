@@ -1465,6 +1465,7 @@ class ItemBase extends InventoryItem
 		{
 			parent.OnAttachmentQuantityChanged(this);
 		}
+		UpdateWeight();
 	}
 	
 	//! Called on server side when some attachment's quantity is changed. Call super.OnAttachmentQuantityChanged(item); first when overriding this event.
@@ -2491,8 +2492,13 @@ class ItemBase extends InventoryItem
 		float item_wetness = this.GetWet();
 		int ConfWeight;
 		
-		int AttachmentsCount = GetInventory().AttachmentCount();
-		CargoBase cargo = GetInventory().GetCargo();
+		int AttachmentsCount = 0;
+		CargoBase cargo;
+		if (GetInventory())
+		{
+			AttachmentsCount = GetInventory().AttachmentCount();
+			cargo = GetInventory().GetCargo();
+		}
 		
 		ConfWeight = this.ConfigGetInt("weight");
 		

@@ -249,7 +249,7 @@ class Environment
 		vector from = m_Player.GetPosition();
 		vector to = from + "0 25 0";
 		Object hitObject;
-		PhxInteractionLayers collisionLayerMask = PhxInteractionLayers.BUILDING|PhxInteractionLayers.VEHICLE;
+		PhxInteractionLayers collisionLayerMask = PhxInteractionLayers.ITEM_LARGE|PhxInteractionLayers.BUILDING|PhxInteractionLayers.VEHICLE;
 		
 		m_IsUnderRoof = DayZPhysics.RayCastBullet(from, to, collisionLayerMask, null, hitObject, hitPosition, hitNormal, hitFraction);
 	}
@@ -464,16 +464,19 @@ class Environment
 		else if ( IsRaining() && !IsInsideBuilding() && !IsUnderRoof() )
 		{
 			//! player is getting wet from rain
-			wet_delta = GameConstants.ENVIRO_WET_INCREMENT * GameConstants.ENVIRO_TICKS_TO_WETNESS_CALCULATION * (1+(GameConstants.ENVIRO_WIND_EFFECT*m_Wind)) * ( m_Rain );
+			wet_delta = GameConstants.ENVIRO_WET_INCREMENT * GameConstants.ENVIRO_TICKS_TO_WETNESS_CALCULATION * ( 4 * GameConstants.ENVIRO_WIND_EFFECT * m_Wind ) * ( m_Rain );
 		}
 		else
 		{
 			//! player is drying
-			float sun_effect = (GameConstants.ENVIRO_SUN_INCREMENT * m_DayOrNight * (1-m_Fog))*(1-(m_Clouds*GameConstants.ENVIRO_CLOUD_DRY_EFFECT));
-			float temp_effect = Math.Sqrt(m_PlayerHeat + GetEnvironmentTemperature());
+			float sun_effect = ( GameConstants.ENVIRO_SUN_INCREMENT * m_DayOrNight * ( 1 - m_Fog ) ) * ( 1 - ( m_Clouds * GameConstants.ENVIRO_CLOUD_DRY_EFFECT ) );
+			float temp_effect = Math.Sqrt( m_PlayerHeat + GetEnvironmentTemperature() );
 			//! Coef should be higher than 0 (Sqrt is none for x < 0)
-			if (temp_effect <= 0) { temp_effect = 1; }
-			wet_delta = -( GameConstants.ENVIRO_DRY_INCREMENT * ( temp_effect + sun_effect ) * ( 1 + ( GameConstants.ENVIRO_WIND_EFFECT * m_Wind ) ) );
+			if ( temp_effect <= 0 ) { temp_effect = 1; }
+
+			wet_delta = -( GameConstants.ENVIRO_DRY_INCREMENT * ( temp_effect + sun_effect ) );
+			if ( !IsInsideBuilding() )
+				wet_delta *= ( 1 + ( GameConstants.ENVIRO_WIND_EFFECT * m_Wind ) );
 		}
 
 		return wet_delta;

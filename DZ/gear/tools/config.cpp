@@ -2,7 +2,7 @@
 //DeRap: gear_tools\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:21:09 2019 : 'file' last modified on Thu Oct 31 09:31:40 2019
+//'now' is Wed Nov 13 18:05:04 2019 : 'file' last modified on Thu Nov 07 11:12:21 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1548,7 +1548,7 @@ class CfgVehicles
 		canSkinBodies = 1;
 		weight = 170;
 		itemSize[] = {1,3};
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		class DamageSystem
 		{
 			class GlobalHealth
@@ -1623,7 +1623,7 @@ class CfgVehicles
 		canSkinBodies = 1;
 		weight = 90;
 		itemSize[] = {1,2};
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		class DamageSystem
 		{
 			class GlobalHealth

@@ -1449,6 +1449,9 @@ class PlayerContainer: CollapsibleContainer
 				
 				cont1.GetRootWidget().SetSort( sort2 );
 				cont2.GetRootWidget().SetSort( sort1 );
+				
+				m_Body.SwapItems( m_Body.Find( cont1 ), m_Body.Find( cont2 ) );
+				m_OpenedContainers.SwapItems( m_OpenedContainers.Find( cont1 ), m_OpenedContainers.Find( cont2 ) );
 			}
 		}
 	}

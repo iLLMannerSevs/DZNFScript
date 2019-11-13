@@ -175,7 +175,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	
 	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
 	{
-		if( IsFocusable( w ) )
+		if( IsFocusable( w ) && !IsFocusable( enterW ) )
 		{
 			Lighten( w, enterW, x, y );
 			return true;
@@ -236,7 +236,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	{
 		if( w )
 		{
-			return ( w == m_Root || w == m_Favorite || w == m_Expand );
+			return ( w == m_Root || w == m_Favorite || w == m_Expand || w == m_ServerModsExpand );
 		}
 		return false;
 	}
@@ -500,9 +500,6 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	void SetModded( bool is_modded )
 	{
 		m_ServerModIcon.Show( is_modded );
-		#ifdef PLATFORM_WINDOWS
-		m_ServerModsExpand.Show( is_modded );
-		#endif
 	}
 	
 	void SetMods( array<string> mods )
@@ -522,6 +519,9 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 				m_ServerMods.SetText( mods_text );
 			}
 		}
+		#ifdef PLATFORM_WINDOWS
+			m_ServerModsExpand.Show( ( mods && mods.Count() > 0 ) );
+		#endif
 	}
 	
 	void SetMouseAndKeyboard( bool is_mkenabled )

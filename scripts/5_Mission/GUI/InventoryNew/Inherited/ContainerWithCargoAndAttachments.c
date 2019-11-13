@@ -34,27 +34,27 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 	
 	void AttachmentAdded(EntityAI item, string slot, EntityAI parent)
 	{
-		int slot_id								= InventorySlots.GetSlotIdFromString( slot );
-		
+		int slot_id = InventorySlots.GetSlotIdFromString( slot );
+		int att_mod = 1;
 		if( item.GetInventory().GetCargo() )
 		{
 			ref CargoContainer cont = new CargoContainer( this, true );
-			cont.GetRootWidget().SetSort( m_AttachmentSlotsSorted.Find( slot_id ) + 50 );
+			cont.GetRootWidget().SetSort( m_AttachmentSlotsSorted.Find( slot_id ) + m_AttachmentCargos.Count() + 1 );
 			cont.SetEntity( item );
-			Insert( cont, m_Atts.GetAttachmentHeight() + 1 + m_AttachmentCargos.Count() );
+			Insert( cont, m_Atts.GetAttachmentHeight() + m_AttachmentCargos.Count() + 1 );
 			
 			m_AttachmentCargos.Insert( item, cont );
+			att_mod += m_AttachmentSlotsSorted.Find( slot_id ) + m_AttachmentCargos.Count() + 1;
 			RecomputeOpenedContainers();
 			if( m_Parent )
 				m_Parent.Refresh();
 			Inventory.GetInstance().UpdateConsoleToolbar();
-			return;
 		}
 		
 		if( item.GetInventory().GetAttachmentSlotsCount() > 0  )
 		{
 			ref Attachments att_cont = new Attachments( this, item );
-			att_cont.InitAttachmentGrid( m_AttachmentSlotsSorted.Find( slot_id ) + m_Atts.GetAttachmentHeight() + 1 );
+			att_cont.InitAttachmentGrid( m_AttachmentSlotsSorted.Find( slot_id ) + m_Atts.GetAttachmentHeight() + att_mod );
 			
 			m_AttachmentAttachments.Insert( item, att_cont );
 			m_AttachmentAttachmentsContainers.Insert( item, att_cont.GetWrapper() );
@@ -64,7 +64,6 @@ class ContainerWithCargoAndAttachments extends ClosableContainer
 			if( m_Parent )
 				m_Parent.Refresh();
 			Inventory.GetInstance().UpdateConsoleToolbar();
-			return;
 		}
 	}
 	

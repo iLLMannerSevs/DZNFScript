@@ -66,7 +66,7 @@ class PrepareCarp extends RecipeBase
 		//result1
 		AddResult("CarpFilletMeat");//add results here
 
-		m_ResultSetFullQuantity[0] = true;//true = set full quantity, false = do nothing
+		m_ResultSetFullQuantity[0] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[0] = -1;//-1 = do nothing
 		m_ResultSetHealth[0] = -1;//-1 = do nothing
 		m_ResultInheritsHealth[0] = 0;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
@@ -78,7 +78,7 @@ class PrepareCarp extends RecipeBase
 		//result2
 		AddResult("CarpFilletMeat");//add results here
 
-		m_ResultSetFullQuantity[1] = true;//true = set full quantity, false = do nothing
+		m_ResultSetFullQuantity[1] = false;//true = set full quantity, false = do nothing
 		m_ResultSetQuantity[1] = -1;//-1 = do nothing
 		m_ResultSetHealth[1] = -1;//-1 = do nothing
 		m_ResultInheritsHealth[1] = 0;// (value) == -1 means do nothing; a (value) >= 0 means this result will inherit health from ingredient number (value);(value) == -2 means this result will inherit health from all ingredients averaged(result_health = combined_health_of_ingredients / number_of_ingredients)
@@ -109,6 +109,23 @@ class PrepareCarp extends RecipeBase
 
 	override void Do(ItemBase ingredients[], PlayerBase player,array<ItemBase> results, float specialty_weight)//gets called upon recipe's completion
 	{
+		// Adjusts quantity of results to the quantity of the 1st ingredient
+		ItemBase item_ingredient;
+		Class.CastTo(item_ingredient, ingredients[0]);
+		
+		float MaxQuantity = item_ingredient.GetQuantityMax();
+		float CurrentQuantity = item_ingredient.GetQuantity();
+		float adjust = CurrentQuantity / MaxQuantity;
+		
+		for (int i=0; i < results.Count(); i++)
+		{
+			ItemBase item_result;
+			Class.CastTo(item_result, results.Get(i));
+			if (m_ResultSetFullQuantity[i] == false)
+			{
+				item_result.SetQuantity(item_result.GetQuantityMax() * adjust);
+			}
+		}
 		Debug.Log("Recipe Do method called","recipes");
 	}
 };

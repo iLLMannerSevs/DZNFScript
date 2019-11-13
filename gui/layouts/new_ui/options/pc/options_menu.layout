@@ -121,7 +121,7 @@ FrameWidgetClass settings_menu_root {
             TextWidgetClass Tab_Control_0_Title {
              ignorepointer 1
              position 0 0
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -178,7 +178,7 @@ FrameWidgetClass settings_menu_root {
             TextWidgetClass Tab_Control_1_Title {
              ignorepointer 1
              position 0 0
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -235,7 +235,7 @@ FrameWidgetClass settings_menu_root {
             TextWidgetClass Tab_Control_2_Title {
              ignorepointer 1
              position 0 0
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1
@@ -292,7 +292,7 @@ FrameWidgetClass settings_menu_root {
             TextWidgetClass Tab_Control_3_Title {
              ignorepointer 1
              position 0 0
-             size 1 0.48
+             size 1 0.42
              halign center_ref
              valign center_ref
              hexactpos 1

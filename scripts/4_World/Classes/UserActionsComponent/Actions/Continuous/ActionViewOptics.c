@@ -41,12 +41,8 @@ class ActionViewOptics : ActionContinuousBase
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{
 		ItemOptics optic;
-		if( Class.CastTo(optic, item) && !optic.IsInOptics() )
+		if( Class.CastTo(optic, item) && !optic.IsInOptics() && !player.IsNVGLowered() )
 		{
-			/*if ( !CanWork(optic) )
-			{
-				return false;
-			}*/
 			return true;
 		}
 		return false;

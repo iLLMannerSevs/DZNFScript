@@ -383,7 +383,6 @@ class InGameMenuXbox extends UIScriptedMenu
 	{
 		UpdateGUI();
 		
-		string uid;
 		if( GetGame().IsMultiplayer() && layoutRoot.FindAnyWidget( "OnlineInfo" ).IsVisible() )
 		{
 			PlayerListEntryScriptedWidget selected;
@@ -392,7 +391,7 @@ class InGameMenuXbox extends UIScriptedMenu
 			if( GetGame().GetInput().LocalPress( "UAUICtrlX", false ) )
 			{
 				if( selected )
-					m_ServerInfoPanel.ToggleMute( uid );
+					m_ServerInfoPanel.ToggleMute( selected.GetUID() );
 				Refresh();
 			}
 			

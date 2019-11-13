@@ -37,10 +37,10 @@ class HandActionDrop extends HandActionBase
 {
 	override void Action (HandEventBase e)
 	{
-		hndDebugPrint("[hndfsm] " + Object.GetDebugName(e.m_Player) + " STS=" + e.m_Player.GetSimulationTimeStamp() + " action=drop");
+		hndDebugPrint("[hndfsm] " + Object.GetDebugName(e.m_Player) + " STS=" + e.m_Player.GetSimulationTimeStamp() + " action=" + e.DumpToString());
 
 		GameInventory.LocationSyncMoveEntity(e.GetSrc(), e.GetDst());
-		e.m_Player.OnItemInHandsChanged();
+ 		e.m_Player.OnItemInHandsChanged();
 	}
 };
 
@@ -167,6 +167,19 @@ class HandActionSwap extends HandActionBase
 
 class HandActionForceSwap extends HandActionBase
 {
+	override void Action (HandEventBase e)
+	{
+		HandEventForceSwap es = HandEventForceSwap.Cast(e);
+		if (es)
+		{
+			hndDebugPrint("[hndfsm] " + Object.GetDebugName(e.m_Player) + " STS=" + e.m_Player.GetSimulationTimeStamp() + " FSwap src1=" + InventoryLocation.DumpToStringNullSafe(es.GetSrc()) + " src2=" + InventoryLocation.DumpToStringNullSafe(es.m_Src2) + " dst1=" + InventoryLocation.DumpToStringNullSafe(es.GetDst()) +  "dst2=" + InventoryLocation.DumpToStringNullSafe(es.m_Dst2));
+
+			GameInventory.LocationSwap(es.GetSrc(), es.m_Src2, es.GetDst(), es.m_Dst2);
+			e.m_Player.OnItemInHandsChanged();
+		}
+		else
+			Error("[hndfsm] HandActionForceSwap - this is no HandEventForceSwap");
+	}
 };
 
 ///@} actions

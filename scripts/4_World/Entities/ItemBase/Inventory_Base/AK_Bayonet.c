@@ -36,8 +36,8 @@ class AK_Bayonet extends Inventory_Base
 		AddAction(ActionMineBush);
 		AddAction(ActionMineTreeBark);
 		AddAction(ActionBurnSewSelf);
+		AddAction(ActionDigWorms);
 		AddAction(ActionShaveTarget);
 		AddAction(ActionShave);
-		AddAction(ActionDigWorms);
 	}
 }

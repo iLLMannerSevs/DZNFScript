@@ -66,7 +66,7 @@ class DayZPlayerImplementJumpClimb
 		m_Player.SetFallYDiff(m_Player.GetPosition()[1]);
 
 		m_Player.OnJumpStart();
-		m_Player.StartCommand_Fall(3.5);
+		m_Player.StartCommand_Fall(2.6);
 	}
 	
 	private int GetClimbType(float pHeight)
@@ -76,7 +76,7 @@ class DayZPlayerImplementJumpClimb
             climbType = 0;
         else if( pHeight >= 1.1 && pHeight < 1.7 )
             climbType = 1;
-        else if( pHeight >= 1.7 && pHeight < 2.5 )
+        else if( pHeight >= 1.7 && pHeight < 2.75 )
             climbType = 2;    
         
         return climbType;

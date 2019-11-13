@@ -2,7 +2,7 @@
 //DeRap: characters_shoes\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:20:30 2019 : 'file' last modified on Mon Sep 23 09:36:52 2019
+//'now' is Wed Nov 13 18:04:33 2019 : 'file' last modified on Thu Nov 07 10:11:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -658,6 +658,8 @@ class CfgVehicles
 		itemSize[] = {4,4};
 		weight = 700;
 		durability = 0.5;
+		repairableWithKits[] = {5};
+		repairCosts[] = {30.0};
 		absorbency = 0;
 		heatIsolation = 0.4;
 		soundAttType = "Boots";
@@ -1631,7 +1633,7 @@ class CfgVehicles
 		itemSize[] = {3,2};
 		weight = 300;
 		durability = 0.5;
-		absorbency = 0.45;
+		absorbency = 0.0;
 		heatIsolation = 0.7;
 		soundAttType = "Boots";
 		hiddenSelections[] = {"camoGround","camoMale","camoFemale"};

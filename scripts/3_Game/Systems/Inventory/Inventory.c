@@ -469,6 +469,8 @@ class GameInventory
 	 * @return    true if can be force swapped
 	 */
 	static proto native bool CanForceSwapEntities (notnull EntityAI item1, InventoryLocation item1_dst, notnull EntityAI item2, out InventoryLocation item2_dst);
+	
+	proto native bool CanAddSwappedEntity (notnull InventoryLocation src1, notnull InventoryLocation src2, notnull InventoryLocation dst1, notnull InventoryLocation dst2);
 
 	///@{ reservations
 	const int c_InventoryReservationTimeoutMS = 15000;
@@ -849,6 +851,8 @@ class GameInventory
 			dst1 = new InventoryLocation;
 		dst1.Copy(src1);
 		dst1.CopyLocationFrom(src2, false);
+		
+		src2.SetFlip(src2.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
 
 		if (dst2 == null)
 			dst2 = new InventoryLocation;

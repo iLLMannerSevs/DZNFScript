@@ -78,7 +78,7 @@ class OpenCan extends RecipeBase
 		InsertIngredient(1,"FirefighterAxe");
 		InsertIngredient(1,"Hatchet");
 		
-		m_IngredientAddHealth[1] = -10;// 0 = do nothing
+		m_IngredientAddHealth[1] = -0.5;// 0 = do nothing
 		m_IngredientSetHealth[1] = -1; // -1 = do nothing
 		m_IngredientAddQuantity[1] = 0;// 0 = do nothing
 		m_IngredientDestroy[1] = false;// false = do nothing
@@ -114,5 +114,16 @@ class OpenCan extends RecipeBase
 		PlayerBase playerPB;
 		Class.CastTo(playerPB, player);
 		OpenItem.OpenAndSwitch(tool, can, playerPB, specialty_weight);
+		//DamageTool(tool,player);
 	}
+	
+	/*void DamageTool(ItemBase tool,PlayerBase player)
+	{
+		float health_delta = -(tool.GetMaxHealth("","Health") / 40);
+		health_delta = Math.Clamp(health_delta,-10,-0.5);
+		
+		if(health_delta <0) health_delta = player.GetSoftSkillsManager().SubtractSpecialtyBonus(health_delta, m_Specialty);
+		else 				health_delta = player.GetSoftSkillsManager().AddSpecialtyBonus(health_delta, m_Specialty);
+		tool.AddHealth("","",health_delta);
+	}*/
 };

@@ -2,7 +2,7 @@
 //DeRap: weapons_explosives\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:24:41 2019 : 'file' last modified on Wed Sep 25 16:44:44 2019
+//'now' is Wed Nov 13 18:08:24 2019 : 'file' last modified on Mon Nov 11 12:51:21 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -175,7 +175,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_RGD5Grenade1";
 		model = "\dz\weapons\explosives\frag_RGD5.p3d";
 		weight = 350;
-		lootTag[] = {"Military_east"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\frag_RGD5_CO.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\frag_RGD5.rvmat"};
@@ -214,7 +213,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_M67Grenade1";
 		model = "\dz\weapons\explosives\grenade.p3d";
 		weight = 400;
-		lootTag[] = {"Military_west"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\grenade_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\grenade.rvmat"};
@@ -252,7 +250,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_M18SmokeGrenade_ColorBase1";
 		model = "\dz\weapons\explosives\smokegrenade.p3d";
 		rotationFlags = 17;
-		lootTag[] = {"Military_west"};
 		weight = 500;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\smokegrenade.rvmat"};
@@ -316,7 +313,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_RDG2SmokeGrenade_ColorBase1";
 		model = "\dz\weapons\explosives\smokegrenade_rdg2.p3d";
 		rotationFlags = 17;
-		lootTag[] = {"Military_east","Police"};
 		weight = 300;
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\smokegrenade_rdg2.rvmat"};
@@ -367,7 +363,6 @@ class CfgVehicles
 		model = "\dz\weapons\explosives\flashbang.p3d";
 		rotationFlags = 17;
 		weight = 300;
-		lootTag[] = {"Military_east","Military_west","Police"};
 		hiddenSelections[] = {"camo"};
 		hiddenSelectionsTextures[] = {"dz\weapons\explosives\data\flashbang_co.paa"};
 		hiddenSelectionsMaterials[] = {"dz\weapons\explosives\data\flashbang.rvmat"};

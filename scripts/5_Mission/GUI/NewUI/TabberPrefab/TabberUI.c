@@ -8,18 +8,24 @@ class TabberUI extends ScriptedWidgetEventHandler
 	protected ref map<int, Widget>	m_Tabs;
 	
 	protected int					m_SelectedIndex;
+	protected float					m_ResolutionMultiplier;
 	
 	ref ScriptInvoker				m_OnTabSwitch = new ScriptInvoker();
 	ref Timer						m_InitTimer;
 
 	void OnWidgetScriptInit( Widget w )
 	{
-		m_TabControls		= new map<int, Widget>;
-		m_Tabs				= new map<int, Widget>;
+		m_TabControls			= new map<int, Widget>;
+		m_Tabs					= new map<int, Widget>;
 		
-		m_Root				= w;
-		m_InitTimer			= new Timer();
-		m_TabControlsRoot	= m_Root.FindAnyWidget( "TabControls" );
+		m_Root					= w;
+		m_InitTimer				= new Timer();
+		m_TabControlsRoot		= m_Root.FindAnyWidget( "TabControls" );
+		
+		int x, y;
+		GetScreenSize( x, y );
+		m_ResolutionMultiplier	= y / 1080;
+		
 		
 		Widget tab_controls	= m_Root.FindAnyWidget( "Tab_Control_Container" );
 		if( tab_controls )
@@ -89,10 +95,10 @@ class TabberUI extends ScriptedWidgetEventHandler
 				int t_x, t_y;
 				tab_text.Update();
 				tab_text.GetTextSize( t_x, t_y );
-				tab_child.SetSize( t_x + 50, 1 );
+				tab_child.SetSize( t_x + 10 * m_ResolutionMultiplier, 1 );
 				tab_controls_container.Update();
 				
-				total_size += ( t_x + 50 );
+				total_size += ( t_x + 10 * m_ResolutionMultiplier );
 			}
 			
 			tab_child = tab_child.GetSibling();

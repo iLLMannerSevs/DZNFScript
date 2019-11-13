@@ -1,16 +1,12 @@
 class NVGoggles extends PoweredOptic_Base
 {
 	bool 		m_IsLowered;
-	bool 		m_InitOnSpawn;
-	ItemBase 	m_Strap;
+	Clothing 	m_Strap;
 	ref Timer 	m_WorkCheckTimer;
 	
 	void NVGoggles()
 	{
-		if (!m_InitOnSpawn)
-		{
-			m_InitOnSpawn = true;
-		}
+		RotateGoggles(true);
 		m_WorkCheckTimer = new Timer;
 	}
 	
@@ -43,7 +39,8 @@ class NVGoggles extends PoweredOptic_Base
 		super.OnWasAttached(parent, slot_id);
 		RotateGoggles(true);
 		
-		m_Strap = ItemBase.Cast(parent);
+		m_Strap = Clothing.Cast(parent);
+		SetPlayer(PlayerBase.Cast(m_Strap.GetHierarchyRootPlayer()));
 	}
 	
 	override void OnWasDetached ( EntityAI parent, int slot_id )
@@ -58,9 +55,11 @@ class NVGoggles extends PoweredOptic_Base
 		{
 			if ( parent && Clothing.Cast(parent) )
 			{
-				Clothing.Cast(parent).UpdateNVGStatus(player,false);
+				Clothing.Cast(parent).UpdateNVGStatus(player,false,true);
 			}
 		}
+		
+		SetPlayer(null);
 	}
 	
 	override void OnWorkStart()
@@ -72,8 +71,11 @@ class NVGoggles extends PoweredOptic_Base
 		{
 			headgear = player.FindAttachmentBySlotName("Headgear");
 			glasses = player.FindAttachmentBySlotName("Eyewear");
-			if (headgear == m_Strap || glasses == m_Strap)
+			if ((headgear == m_Strap || glasses == m_Strap) && m_IsLowered)
+			{
 				player.SetNVGWorking(true);
+				//m_Strap.UpdateNVGStatus(player,true);
+			}
 		}
 	}
 	
@@ -88,11 +90,14 @@ class NVGoggles extends PoweredOptic_Base
 	{
 		if ( !GetGame().IsServer()  ||  !GetGame().IsMultiplayer() ) // Client side
 		{
-			PlayerBase player;
-			if ( PlayerBase.CastTo(player, GetHierarchyRootPlayer()) && !player.IsNVGWorking() )
+			if (GetPlayer() && GetPlayer() == PlayerBase.Cast(GetHierarchyRootPlayer()) && m_IsLowered && !GetPlayer().IsNVGWorking())
 			{
-				player.SetNVGWorking(true);
+				GetPlayer().SetNVGWorking(true);
 			}
+		}
+		else
+		{
+			//GetCompEM().SwitchOff();
 		}
 	}
 	
@@ -110,6 +115,11 @@ class NVGoggles extends PoweredOptic_Base
 			SetAnimationPhase("rotate",!state);
 		m_IsLowered = !state;
 		
+		if (GetHierarchyRootPlayer())
+		{
+			PlayerBase.Cast(GetHierarchyRootPlayer()).SetNVGLowered(m_IsLowered);
+		}
+		
 		if ( GetCompEM() )
 		{
 			if ( !state && GetCompEM().CanWork() )
@@ -121,6 +131,7 @@ class NVGoggles extends PoweredOptic_Base
 	
 	void SwitchOnNVGCheck()
 	{
+		//Print("SwitchOnNVGCheck");
 		GetCompEM().SwitchOn();
 		if (GetCompEM().IsSwitchedOn())
 		{

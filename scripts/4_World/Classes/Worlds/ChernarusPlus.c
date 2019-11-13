@@ -1,7 +1,6 @@
 class ChernarusPlusData extends WorldData
 {
-	//-----
-	//new variables	
+	//----- weather vars
 	const float RAIN_THRESHOLD = 0.6;
 	const float STORM_THRESHOLD = 0.9;
 
@@ -29,6 +28,14 @@ class ChernarusPlusData extends WorldData
 	protected int m_choosenWeather = 1;
 	protected int m_lastWeather = 0;
 
+	override void Init()
+	{
+		super.Init();
+		
+		m_DayTemperature = 7;
+		m_NightTemperature = -6;
+	}
+	
 	override bool WeatherOnBeforeChange( EWeatherPhenomenon type, float actual, float change, float time )
 	{
 

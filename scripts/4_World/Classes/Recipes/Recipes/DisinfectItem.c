@@ -71,6 +71,6 @@ class DisinfectItem extends RecipeBase
 	{
 		ItemBase ingredient2;
 		Class.CastTo(ingredient2, ingredients[1]);
-		ingredient2.RemoveAllAgentsExcept(eAgents.BRAIN | eAgents.SALMONELLA);
+		ingredient2.RemoveAllAgentsExcept(eAgents.BRAIN | eAgents.SALMONELLA | eAgents.CHOLERA);
 	}
 };

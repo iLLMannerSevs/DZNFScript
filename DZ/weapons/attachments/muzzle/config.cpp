@@ -2,7 +2,7 @@
 //DeRap: weapon_muzzles\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:24:56 2019 : 'file' last modified on Thu Oct 24 14:44:01 2019
+//'now' is Wed Nov 13 18:08:42 2019 : 'file' last modified on Mon Nov 11 12:38:19 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -65,7 +65,7 @@ class cfgVehicles
 		itemModelLength = 0.346;
 		lootTag[] = {"Military_east"};
 		lootCategory = "Attachments";
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		inventorySlot = "weaponBayonetAK";
 		dispersionModifier = 0.0001;
 		dispersionCondition = "true";
@@ -130,7 +130,7 @@ class cfgVehicles
 		itemModelLength = 0.3;
 		lootTag[] = {"Military_west"};
 		lootCategory = "Attachments";
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		inventorySlot = "weaponBayonet";
 		dispersionModifier = 0.0001;
 		dispersionCondition = "true";
@@ -195,7 +195,7 @@ class cfgVehicles
 		itemModelLength = 0.476;
 		lootTag[] = {"Civilian"};
 		lootCategory = "Attachments";
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		inventorySlot = "weaponBayonetMosin";
 		dispersionModifier = 0.0001;
 		dispersionCondition = "true";
@@ -260,7 +260,7 @@ class cfgVehicles
 		itemModelLength = 0.372;
 		lootTag[] = {"Military_east"};
 		lootCategory = "Attachments";
-		openItemSpillRange[] = {0,20};
+		openItemSpillRange[] = {10,20};
 		inventorySlot = "weaponBayonetSKS";
 		dispersionModifier = 0.0001;
 		dispersionCondition = "true";

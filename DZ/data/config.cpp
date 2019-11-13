@@ -2,7 +2,7 @@
 //DeRap: dz\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:20:44 2019 : 'file' last modified on Tue Oct 29 11:03:07 2019
+//'now' is Wed Nov 13 18:04:45 2019 : 'file' last modified on Wed Nov 06 16:18:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -860,8 +860,6 @@ class CfgWorlds
 					swBrightness = 0;
 				};
 			};
-			dayTemperature = 10;
-			nightTemperature = 6;
 			class VolFog
 			{
 				CameraFog = 0.0;
@@ -975,6 +973,7 @@ class CfgWorlds
 		starsIntensity = 0.141;
 		hazeDistCoef = 0.0;
 		hazeFogCoef = 1.0;
+		volFogOffset = 0;
 		rainMaterial = "{AD76A616D0EF1ABC}Graphics/Materials/postprocess/rain.emat";
 		satelliteNormalBlendStart = 100;
 		satelliteNormalBlendEnd = 500;

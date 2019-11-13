@@ -2,7 +2,7 @@
 //DeRap: weapons_ammunition\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:24:39 2019 : 'file' last modified on Sat Jul 20 11:00:02 2019
+//'now' is Wed Nov 13 18:08:23 2019 : 'file' last modified on Mon Nov 11 12:30:08 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -34,7 +34,6 @@ class CfgMagazines
 	class Magazine_Base;
 	class Ammunition_Base: Magazine_Base
 	{
-		lootCategory = "Ammo";
 		rotationFlags = 2;
 		itemSize[] = {1,1};
 		iconCartridge = 0;
@@ -524,7 +523,6 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Ammo_SharpStick1";
 		model = "\dz\weapons\projectiles\arrow_crude_simple.p3d";
 		rotationFlags = 34;
-		lootCategory = "Crafted";
 		inventorySlot = "Firewood";
 		weight = 40;
 		itemSize[] = {2,1};
@@ -568,7 +566,6 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Ammo_ArrowPrimitive1";
 		model = "\dz\weapons\projectiles\arrow_crafted_simple.p3d";
 		rotationFlags = 34;
-		lootCategory = "Crafted";
 		weight = 50;
 		itemSize[] = {2,1};
 		count = 5;
@@ -593,7 +590,6 @@ class CfgMagazines
 		descriptionShort = "$STR_CfgMagazines_Ammo_ArrowBoned1";
 		model = "\dz\weapons\projectiles\arrow_crafted_advanced.p3d";
 		rotationFlags = 34;
-		lootCategory = "Crafted";
 		weight = 40;
 		itemSize[] = {2,1};
 		count = 5;
@@ -791,8 +787,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_556x45_20Rnd1";
 		model = "\dz\weapons\ammunition\556_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_west"};
 		weight = 85;
 		class DamageSystem
 		{
@@ -833,8 +827,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\556_20RoundBox.p3d";
 		iconType = 1;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_west"};
 		weight = 85;
 		class DamageSystem
 		{
@@ -876,8 +868,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_308Win_20Rnd1";
 		model = "\dz\weapons\ammunition\308Win_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Hunting","Military_west"};
 		weight = 195;
 		class DamageSystem
 		{
@@ -918,8 +908,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\308Win_20RoundBox.p3d";
 		iconType = 1;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Hunting","Military_west"};
 		weight = 195;
 		class Resources
 		{
@@ -961,8 +949,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_762x54_20Rnd1";
 		model = "\dz\weapons\ammunition\762_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Hunting","Military_east"};
 		weight = 185;
 		class DamageSystem
 		{
@@ -1003,8 +989,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\762_20RoundBox.p3d";
 		iconType = 1;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Hunting","Military_east"};
 		weight = 185;
 		class DamageSystem
 		{
@@ -1046,8 +1030,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_762x39_20Rnd1";
 		model = "\dz\weapons\ammunition\762x39_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east","Hunting"};
 		weight = 165;
 		class DamageSystem
 		{
@@ -1088,8 +1070,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\762x39_20RoundBox.p3d";
 		iconType = 1;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east","Hunting"};
 		weight = 165;
 		class DamageSystem
 		{
@@ -1131,8 +1111,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_22_50Rnd1";
 		model = "\dz\weapons\ammunition\22_50RoundBox.p3d";
 		rotationFlags = 12;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Hunting"};
 		weight = 45;
 		class DamageSystem
 		{
@@ -1172,8 +1150,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_357_20Rnd1";
 		model = "\dz\weapons\ammunition\357_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian"};
 		weight = 165;
 		class DamageSystem
 		{
@@ -1213,8 +1189,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_45ACP_25rnd1";
 		model = "\dz\weapons\ammunition\45acp_25rnd_box.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_west"};
 		weight = 305;
 		class DamageSystem
 		{
@@ -1254,8 +1228,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_9x19_25rnd1";
 		model = "\dz\weapons\ammunition\9mm_25rnd_box.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Police","Military_east"};
 		weight = 155;
 		class DamageSystem
 		{
@@ -1295,8 +1267,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_380_35rnd1";
 		model = "\dz\weapons\ammunition\380auto_35RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Police"};
 		weight = 155;
 		class DamageSystem
 		{
@@ -1336,8 +1306,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_00buck_10rnd1";
 		model = "\dz\weapons\ammunition\00Buck_10RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Military_east","Police","Military_west","Hunting"};
 		weight = 285;
 		class DamageSystem
 		{
@@ -1377,8 +1345,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_12gaSlug_10Rnd1";
 		model = "\dz\weapons\ammunition\12ga_rifledSlug_10RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Civilian","Military_east","Police","Military_west","Hunting"};
 		weight = 285;
 		class DamageSystem
 		{
@@ -1418,8 +1384,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_545x39_20Rnd1";
 		model = "\dz\weapons\ammunition\545x39_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east","Police"};
 		weight = 85;
 		class DamageSystem
 		{
@@ -1460,8 +1424,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\545x39_20RoundBox.p3d";
 		iconType = 1;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east","Police"};
 		weight = 85;
 		hiddenSelections[] = {"zbytek"};
 		hiddenSelectionsTextures[] = {"dz\weapons\ammunition\data\545x39box_tracer_co.paa"};
@@ -1504,8 +1466,6 @@ class CfgVehicles
 		model = "\dz\weapons\ammunition\9x39_20RoundBox.p3d";
 		iconType = 2;
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east_DEvent"};
 		weight = 200;
 		class DamageSystem
 		{
@@ -1545,8 +1505,6 @@ class CfgVehicles
 		descriptionShort = "$STR_CfgVehicles_AmmoBox_9x39_20Rnd1";
 		model = "\dz\weapons\ammunition\9x39_20RoundBox.p3d";
 		rotationFlags = 17;
-		lootCategory = "Ammo";
-		lootTag[] = {"Military_east_DEvent"};
 		weight = 200;
 		hiddenSelections[] = {"zbytek"};
 		hiddenSelectionsTextures[] = {"dz\weapons\ammunition\data\9x39_box_variant_co.paa"};

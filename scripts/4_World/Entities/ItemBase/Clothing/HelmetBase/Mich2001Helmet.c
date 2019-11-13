@@ -32,7 +32,7 @@ class Mich2001Helmet extends HelmetBase
 		AddAction(ActionToggleNVG);
 	}
 	
-	override void UpdateNVGStatus(PlayerBase player, bool attaching = false)
+	/*override void UpdateNVGStatus(PlayerBase player, bool attaching = false)
 	{
 		NVGoggles NVGAttachment;
 		NVGAttachment = NVGoggles.Cast(FindAttachmentBySlotName("NVG"));
@@ -45,10 +45,12 @@ class Mich2001Helmet extends HelmetBase
 				
 				if ( attaching && NVGAttachment.IsWorking() && NVGAttachment.m_Strap && NVGAttachment.m_IsLowered && !player.IsNVGWorking() )
 				{
+					NVGAttachment.SetPlayer(player);
 					player.SetNVGWorking(true);
 				}
 				else if ( player.IsNVGWorking() )
 				{
+					NVGAttachment.SetPlayer(null);
 					player.SetNVGWorking(false);
 				}
 			}
@@ -57,5 +59,5 @@ class Mich2001Helmet extends HelmetBase
 				player.SetNVGWorking(false);
 			}
 		}
-	}
+	}*/
 };

@@ -10,7 +10,7 @@ WindowWidgetClass TextInputDialogRoot {
  hexactsize 0
  vexactsize 0
  fixaspect outside
- priority 1001
+ priority 960
  {
   WindowWidgetClass TextInputDialogWindow {
    clipchildren 0

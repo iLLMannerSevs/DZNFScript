@@ -12,8 +12,8 @@ class WorldData
 	
 	void Init()
 	{
-		m_DayTemperature = GetDayTemperatureFromConfig();
-		m_NightTemperature = GetNightTemperatureFromConfig();
+		m_DayTemperature = 10;
+		m_NightTemperature = 6;
 		m_Weather = g_Game.GetWeather();
 	}
 	
@@ -25,30 +25,6 @@ class WorldData
 	float GetNightTemperature()
 	{
 		return m_NightTemperature;
-	}
-
-	protected float GetDayTemperatureFromConfig()
-	{
-		float dayTemp = 10;
-
-		if (g_Game.ConfigIsExisting("cfgWorlds CAWorld Weather dayTemperature"))
-		{
-			dayTemp = g_Game.ConfigGetFloat("cfgWorlds CAWorld Weather dayTemperature");
-		}
-		
-		return dayTemp;
-	}
-	
-	protected float GetNightTemperatureFromConfig()
-	{
-		float nightTemp = 6;
-
-		if (g_Game.ConfigIsExisting("cfgWorlds CAWorld Weather dayTemperature"))
-		{
-			nightTemp = g_Game.ConfigGetFloat("cfgWorlds CAWorld Weather nightTemperature");
-		}
-		
-		return nightTemp;
 	}
 
 	bool WeatherOnBeforeChange( EWeatherPhenomenon type, float actual, float change, float time )

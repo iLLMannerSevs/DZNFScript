@@ -8,39 +8,32 @@ class SeedPackBase extends Inventory_Base
 
 	void EmptySeedPack( PlayerBase player )
 	{
-		float damage = 100 - this.GetHealth("", "");
+
+		string pack_type = GetType();
+		string seeds_type = "";
 		
-		if ( damage < 1 )
+		GetGame().ConfigGetText( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsType", seeds_type );
+		
+		int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
+		int seeds_quantity = seeds_quantity_max;
+		
+		seeds_quantity = Math.Round( seeds_quantity_max * GetHealth01("","") );
+	
+		if ( seeds_quantity < 1 )
+		{ 
+			seeds_quantity = 1;
+		}
+		
+		if (player)
 		{
-			string pack_type = this.GetType();
-			string seeds_type = "";
-			
-			GetGame().ConfigGetText( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsType", seeds_type );
-			
-			int seeds_quantity_max = GetGame().ConfigGetInt( "cfgVehicles " + pack_type + " Horticulture ContainsSeedsQuantity" );
-			int seeds_quantity = seeds_quantity_max;
-			
-			if ( damage >= PACK_DAMAGE_TOLERANCE ) 
-			{
-				seeds_quantity = Math.Round( seeds_quantity_max * (1 - ((damage - PACK_DAMAGE_TOLERANCE) / PACK_DAMAGE_TOLERANCE)) );
-			}
-		
-			if ( seeds_quantity < 1 )
-			{ 
-				seeds_quantity = 1;
-			}
-			
-			if (player)
-			{
-				EmptySeedsPackLambda lambda = new EmptySeedsPackLambda(this, seeds_type, player, seeds_quantity);
-				player.ServerReplaceItemInHandsWithNew(lambda);
-			}
-			else
-			{
-				vector pos = GetPosition();
-				GetGame().CreateObject(seeds_type, pos);
-				GetGame().ObjectDelete( this );
-			}
+			EmptySeedsPackLambda lambda = new EmptySeedsPackLambda(this, seeds_type, player, seeds_quantity);
+			player.ServerReplaceItemInHandsWithNew(lambda);
+		}
+		else
+		{
+			vector pos = GetPosition();
+			GetGame().CreateObject(seeds_type, pos);
+			GetGame().ObjectDelete( this );
 		}
 	}
 	

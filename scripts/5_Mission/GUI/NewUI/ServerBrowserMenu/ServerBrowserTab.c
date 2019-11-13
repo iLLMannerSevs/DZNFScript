@@ -57,6 +57,8 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	protected Widget										m_PopulationSort;
 	protected Widget										m_SlotsSort;
 	protected Widget										m_PingSort;
+	protected Widget										m_FilterSearchText;
+	protected Widget										m_FilterSearchTextBox;
 	protected TextWidget									m_LoadingText;
 	protected ButtonWidget									m_BtnPagePrev;
 	protected ButtonWidget									m_BtnPageNext;
@@ -191,7 +193,15 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	{
 		if( IsFocusable( w ) )
 		{
-			ColorHighlight( w );
+			if ( w == m_FilterSearchTextBox )
+			{
+				ColorHighlight( m_FilterSearchText );
+				return false;
+			}
+			else
+			{
+				ColorHighlight( w );
+			}
 			return true;
 		}
 		return false;
@@ -199,6 +209,39 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	
 	override bool OnFocusLost( Widget w, int x, int y )
 	{
+		if( IsFocusable( w ) )
+		{
+			if ( w == m_FilterSearchTextBox )
+			{
+				ColorNormal( m_FilterSearchText );
+				return true;
+			}
+			else
+			{
+				ColorNormal( w );
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	override bool OnMouseEnter( Widget w, int x, int y )
+	{		
+		if( IsFocusable( w ) )
+		{
+			ColorHighlight( w );
+			if ( w == m_FilterSearchText )
+			{
+				SetFocus( m_FilterSearchTextBox );
+				return true;
+			}
+			return true;
+		}
+		return false;
+	}
+	
+	override bool OnMouseLeave( Widget w, Widget enterW, int x, int y )
+	{		
 		if( IsFocusable( w ) )
 		{
 			ColorNormal( w );
@@ -211,7 +254,7 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	{
 		if( w )
 		{
-			return ( w == m_ApplyFilter || w == m_RefreshList || w == m_ResetFilters );
+			return ( w == m_ApplyFilter || w == m_RefreshList || w == m_ResetFilters || w == m_FilterSearchText || w == m_FilterSearchTextBox );
 		}
 		return false;
 	}

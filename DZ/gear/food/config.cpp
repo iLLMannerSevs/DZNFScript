@@ -2,7 +2,7 @@
 //DeRap: gear_food\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:21:00 2019 : 'file' last modified on Fri Oct 04 13:49:13 2019
+//'now' is Wed Nov 13 18:04:57 2019 : 'file' last modified on Thu Nov 07 11:09:40 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -4922,9 +4922,9 @@ class CfgVehicles
 		weight = 0;
 		interactionWeight = 1;
 		quantityBar = 1;
-		varQuantityInit = 100;
+		varQuantityInit = 300;
 		varQuantityMin = 0;
-		varQuantityMax = 100;
+		varQuantityMax = 300;
 		itemSize[] = {2,3};
 		absorbency = 0.3;
 		inventorySlot = "Ingredient";
@@ -4969,37 +4969,37 @@ class CfgVehicles
 				class Raw
 				{
 					visual_properties[] = {0,0,0};
-					nutrition_properties[] = {1,800,360,184,1,4};
+					nutrition_properties[] = {1,266,120,184,1,4};
 					cooking_properties[] = {0,0};
 				};
 				class Rotten
 				{
 					visual_properties[] = {-1,-1,5};
-					nutrition_properties[] = {1,200,360,30,1,"4 + 		  16"};
+					nutrition_properties[] = {1,67,120,30,1,"4 + 		  16"};
 					cooking_properties[] = {0,0};
 				};
 				class Baked
 				{
 					visual_properties[] = {0,1,1};
-					nutrition_properties[] = {1,600,222,129,1};
+					nutrition_properties[] = {1,200,74,129,1};
 					cooking_properties[] = {70,45};
 				};
 				class Boiled
 				{
 					visual_properties[] = {0,2,2};
-					nutrition_properties[] = {1,560,160,150,1};
+					nutrition_properties[] = {1,187,53,150,1};
 					cooking_properties[] = {70,55};
 				};
 				class Dried
 				{
 					visual_properties[] = {0,3,3};
-					nutrition_properties[] = {1,390,130,180,1};
+					nutrition_properties[] = {1,130,43,180,1};
 					cooking_properties[] = {70,45,80};
 				};
 				class Burned
 				{
 					visual_properties[] = {0,4,4};
-					nutrition_properties[] = {1,180,40,50,1,16};
+					nutrition_properties[] = {1,60,13,50,1,16};
 					cooking_properties[] = {100,30};
 				};
 			};
@@ -5315,9 +5315,13 @@ class CfgVehicles
 		descriptionShort = "$STR_Carp1";
 		model = "\dz\gear\food\carp_live.p3d";
 		rotationFlags = 17;
-		weight = 1400;
+		weight = 800;
 		itemSize[] = {2,3};
 		stackedUnit = "g";
+		quantityBar = 1;
+		varQuantityInit = 600;
+		varQuantityMin = 0;
+		varQuantityMax = 600;
 		isMeleeWeapon = 1;
 		class MeleeModes
 		{

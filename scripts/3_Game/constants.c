@@ -532,7 +532,7 @@ class GameConstants
 	const float ENVIRO_TEMPERATURE_HEIGHT_REDUCTION 	= 0.0065;	//! amount of ?C reduced for each 100 meteres of height above water level
 	const float ENVIRO_TEMPERATURE_INSIDE_COEF 			= 1.25;		//! increases temp in interiors
 	const float ENVIRO_TEMPERATURE_UNDERROOF_COEF		= 1.1;
-	const float ENVIRO_WIND_EFFECT 						= 1;		//! amount of % wind affect drying/wetting
+	const float ENVIRO_WIND_EFFECT 						= 0.25;		//! amount of % wind affect drying/wetting
 	const float ENVIRO_HIGH_NOON 						= 12;		//! when is sun highest on sky
 	
 	const float ENVIRO_HEATCOMFORT_HEADPARTS_WEIGHT		= 0.3;		//! how much this head parts (clothing) affects final heatcomfort
@@ -540,7 +540,7 @@ class GameConstants
 	const float ENVIRO_HEATCOMFORT_FEETPARTS_WEIGHT		= 0.5;		//! how much this feet parts (clothing) affects final heatcomfort
 	const float ENVIRO_LOW_TEMP_LIMIT					= -40;		//! lowest temperature(deg Celsius) where the player gets lowest possible heat comfort (-1)
 	const float ENVIRO_HIGH_TEMP_LIMIT					= 50;		//! highest temperature(deg Celsius) where the player gets highest possible heat comfort (1)
-	const float ENVIRO_PLAYER_COMFORT_TEMP				= 18;		//! comfort temperature of environment for the player
+	const float ENVIRO_PLAYER_COMFORT_TEMP				= 23;		//! comfort temperature of environment for the player
 	
 	//! impact of item wetness to the heat isolation
 	const float ENVIRO_ISOLATION_WETFACTOR_DRY			= 1.0;

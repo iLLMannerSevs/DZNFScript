@@ -2,7 +2,7 @@
 //DeRap: structures_residential\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:23:39 2019 : 'file' last modified on Thu Oct 24 10:58:35 2019
+//'now' is Wed Nov 13 18:07:23 2019 : 'file' last modified on Wed Nov 06 14:28:06 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

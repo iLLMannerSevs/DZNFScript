@@ -2,7 +2,7 @@
 //DeRap: structures_specific\config.bin
 //Produced from mikero's Dos Tools Dll version 7.27
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Thu Oct 31 18:24:05 2019 : 'file' last modified on Wed Oct 02 13:36:42 2019
+//'now' is Wed Nov 13 18:07:52 2019 : 'file' last modified on Wed Nov 06 14:42:13 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -2266,6 +2266,141 @@ class CfgVehicles
 	{
 		scope = 1;
 		model = "\dz\structures\specific\churches\Church2_1.p3d";
+		class Doors
+		{
+			class Doors1
+			{
+				displayName = "door 1";
+				component = "Doors1";
+				soundPos = "doors1_action";
+				animPeriod = 1;
+				initPhase = 0;
+				initOpened = 0.2;
+				soundOpen = "doorWoodChurchOpen";
+				soundClose = "doorWoodChurchClose";
+				soundLocked = "doorWoodChurchRattle";
+				soundOpenABit = "doorWoodChurchOpenABit";
+			};
+		};
+		class DamageSystem
+		{
+			class GlobalHealth
+			{
+				class Health
+				{
+					hitpoints = 1000;
+				};
+			};
+			class GlobalArmor
+			{
+				class Projectile
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class Melee
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+				class FragGrenade
+				{
+					class Health
+					{
+						damage = 0;
+					};
+					class Blood
+					{
+						damage = 0;
+					};
+					class Shock
+					{
+						damage = 0;
+					};
+				};
+			};
+			class DamageZones
+			{
+				class door1
+				{
+					class Health
+					{
+						hitpoints = 1000;
+						transferToGlobalCoef = 0;
+					};
+					componentNames[] = {"doors1"};
+					fatalInjuryCoef = -1;
+					class ArmorType
+					{
+						class Projectile
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class Melee
+						{
+							class Health
+							{
+								damage = 5;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+						class FragGrenade
+						{
+							class Health
+							{
+								damage = 3;
+							};
+							class Blood
+							{
+								damage = 0;
+							};
+							class Shock
+							{
+								damage = 0;
+							};
+						};
+					};
+				};
+			};
+		};
 	};
 	class Land_Church2_2: HouseNoDestruct
 	{

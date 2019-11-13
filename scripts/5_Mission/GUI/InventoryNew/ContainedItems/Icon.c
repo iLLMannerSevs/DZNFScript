@@ -483,25 +483,25 @@ class Icon: LayoutHolder
 					}
 				}
 				else if( GameInventory.CanForceSwapEntities( w_entity, null, receiver_entity, null ) )
-				{
-					ColorManager.GetInstance().SetColor( w, ColorManager.FSWAP_COLOR );
-					if( m_Obj.GetHierarchyRootPlayer() == player )
 					{
-						ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+						ColorManager.GetInstance().SetColor( w, ColorManager.FSWAP_COLOR );
+						if( m_Obj.GetHierarchyRootPlayer() == player )
+						{
+							ItemManager.GetInstance().GetRightDropzone().SetAlpha( 1 );
+						}
+						else if( !m_HandsIcon )
+						{
+							ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+						}
 					}
-					else if( !m_HandsIcon )
+					else
 					{
-						ItemManager.GetInstance().GetLeftDropzone().SetAlpha( 1 );
+						ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
+						ItemManager.GetInstance().ShowSourceDropzone( w_entity );
 					}
-				}
-				else
-				{
-					ColorManager.GetInstance().SetColor( w, ColorManager.RED_COLOR );
-					ItemManager.GetInstance().ShowSourceDropzone( w_entity );
 				}
 			}
 		}
-	}
 
 	void OnPerformCombination( int combinationFlags )
 	{
@@ -1115,15 +1115,8 @@ class Icon: LayoutHolder
 		{
 			player.GetHumanInventory().GetUserReservedLocation( index, il_fswap);
 		}
-		
-		if( player.GetInventory().CanForceSwapEntities( w_entity, null, receiver_entity, il_fswap ))
-		{
-			if( m_HandsIcon && !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
-			{
-				GetGame().GetPlayer().PredictiveForceSwapEntities( w_entity, receiver_entity, il_fswap );
-			}
-		}
-		else if( GameInventory.CanSwapEntities( receiver_entity, w_entity ) )
+
+		if( GameInventory.CanSwapEntities( w_entity, receiver_entity  ) )
 		{
 			if( !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
 			{
@@ -1134,6 +1127,13 @@ class Icon: LayoutHolder
 				{
 					ToRefresh( this, icon );
 				}
+			}
+		}
+		else if( player.GetInventory().CanForceSwapEntities( w_entity, null, receiver_entity, il_fswap ))
+		{
+			if( m_HandsIcon && !player.GetInventory().HasInventoryReservation( item_in_hands, null ) )
+			{
+				GetGame().GetPlayer().PredictiveForceSwapEntities( w_entity, receiver_entity, il_fswap );
 			}
 		}
 	}

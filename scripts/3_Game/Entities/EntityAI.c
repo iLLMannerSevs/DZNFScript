@@ -321,6 +321,10 @@ class EntityAI extends Entity
 	{
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().ObjectDelete, this);
 	}
+	void DeleteOnClient()
+	{
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Call(GetGame().ObjectDeleteOnClient, this);
+	}
 	
 	//! Returns root of current hierarchy (for example: if this entity is in Backpack on gnd, returns Backpack)
 	proto native EntityAI GetHierarchyRoot();

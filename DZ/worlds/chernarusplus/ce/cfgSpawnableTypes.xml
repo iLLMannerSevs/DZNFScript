@@ -2035,6 +2035,37 @@
 			<item name="PSO11Optic" chance="0.30" />
 		</attachments>
 	</type>
+	<type name="Colt1911">
+		<attachments chance="0.05">
+			<item name="PistolSuppressor" chance="1.00" />
+		</attachments>
+		<attachments chance="0.15">
+			<item name="Mag_1911_7Rnd" chance="1.00" />
+		</attachments>
+	</type>
+	<type name="Engraved1911">
+		<attachments chance="0.15">
+			<item name="PistolSuppressor" chance="1.00" />
+		</attachments>
+		<attachments chance="0.15">
+			<item name="Mag_1911_7Rnd" chance="1.00" />
+		</attachments>
+	</type>
+	<type name="B95">
+		<attachments chance="0.18">
+			<item name="HuntingOptic" chance="1.00" />
+		</attachments>
+	</type>
+	<type name="Saiga">
+		<attachments chance="1.00">
+			<item name="Saiga_Bttstck" chance="1.00" />
+		</attachments>
+		<attachments chance="0.10">
+			<item name="Mag_Saiga_5Rnd" chance="0.60" />
+			<item name="Mag_Saiga_8Rnd" chance="0.40" />
+			<item name="Mag_Saiga_Drum20Rnd" chance="0.20" />
+		</attachments>
+	</type>
 <!-- FUTURE
 	<type name="AugSteyr">
 		<attachments chance="0.10">
@@ -2046,11 +2077,6 @@
 			<item name="Mag_CMAG_20Rnd" chance="0.20" />
 			<item name="Mag_CMAG_30Rnd" chance="0.20" />
 			<item name="Mag_CMAG_40Rnd" chance="0.20" />
-		</attachments>
-	</type>
-	<type name="B95">
-		<attachments chance="0.30">
-			<item name="HuntingOptic" chance="1.00" />
 		</attachments>
 	</type>
 	<type name="M249">
@@ -2104,22 +2130,6 @@
 			<item name="HuntingOptic" chance="1.00" />
 		</attachments>
 	</type>
-	<type name="Colt1911">
-		<attachments chance="0.20">
-			<item name="PistolSuppressor" chance="1.00" />
-		</attachments>
-		<attachments chance="0.20">
-			<item name="Mag_1911_7Rnd" chance="1.00" />
-		</attachments>
-	</type>
-	<type name="Engraved1911">
-		<attachments chance="0.20">
-			<item name="PistolSuppressor" chance="1.00" />
-		</attachments>
-		<attachments chance="0.20">
-			<item name="Mag_1911_7Rnd" chance="1.00" />
-		</attachments>
-	</type>
 	<type name="DE">
 		<attachments chance="0.10">
 			<item name="Mag_DE_9rnd" chance="1.00" />
@@ -2158,17 +2168,6 @@
 	<type name="Red9">
 		<attachments chance="0.10">
 			<item name="Red9Bttstck" chance="1.00" />
-		</attachments>
-	</type>
-	<type name="Saiga12KShotgun">
-		<attachments chance="0.10">
-			<item name="Red9Bttstck" chance="0.50" />
-			<item name="Red9Bttstck" chance="0.50" />
-		</attachments>
-		<attachments chance="0.10">
-			<item name="Mag_Saiga_5Rnd" chance="0.50" />
-			<item name="Mag_Saiga_8Rnd" chance="0.50" />
-			<item name="Mag_Saiga_Drum20Rnd" chance="0.30" />
 		</attachments>
 	</type>
 -->

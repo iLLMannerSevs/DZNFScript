@@ -1604,37 +1604,11 @@ class DayZPlayerImplement extends DayZPlayer
 		//! handle weapon mode switch
 		HandleADS();
 		
-		//! handle death with high priority
-		if (HandleDeath(pCurrentCommandID))
-		{
-			return;
-		}
-
-
 		HumanInputController hic = GetInputController();
-		GetMovementState(m_MovementState);
-		/*
-		// Unconscious test 
-		if (hic.IsUseButtonDown())
-		{
-			if (pCurrentCommandID == DayZPlayerConstants.COMMANDID_MOVE)
-			{
-				StartCommand_Unconscious();
-			}
-			else if (pCurrentCommandID == DayZPlayerConstants.COMMANDID_UNCONSCIOUS)
-			{
-				HumanCommandUnconscious	hcu = GetCommand_Unconscious();
-				hcu.WakeUp();
-			}
-		}
-		*/
-		
-		//! handle Camera switch + zoom
-		HandleView();	
-		
 		EntityAI entityInHands = GetHumanInventory().GetEntityInHands();
 		bool isWeapon		= entityInHands	&& entityInHands.IsInherited(Weapon);
 		
+		// handle weapons
 		if(hic)
 		{
 			bool isOptics		= entityInHands	&& entityInHands.IsInherited(ItemOptics);
@@ -1656,6 +1630,32 @@ class DayZPlayerImplement extends DayZPlayer
 					//return;		
 			}	
 		}
+		
+		//! handle death with high priority
+		if (HandleDeath(pCurrentCommandID))
+		{
+			return;
+		}
+
+		GetMovementState(m_MovementState);
+		/*
+		// Unconscious test 
+		if (hic.IsUseButtonDown())
+		{
+			if (pCurrentCommandID == DayZPlayerConstants.COMMANDID_MOVE)
+			{
+				StartCommand_Unconscious();
+			}
+			else if (pCurrentCommandID == DayZPlayerConstants.COMMANDID_UNCONSCIOUS)
+			{
+				HumanCommandUnconscious	hcu = GetCommand_Unconscious();
+				hcu.WakeUp();
+			}
+		}
+		*/
+		
+		//! handle Camera switch + zoom
+		HandleView();	
 	
 		//! handle finished commands
 		if (pCurrentCommandFinished)

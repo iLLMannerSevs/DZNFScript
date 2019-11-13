@@ -32,7 +32,7 @@ class ActionDigWorms: ActionContinuousBase
 	{
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
-			if ( !player.IsPlacingLocal() )
+			if ( !player.IsPlacingLocal() && player.IsCurrentCameraAimedAtGround() )
 			{
 				if ( target )
 				{
@@ -44,7 +44,6 @@ class ActionDigWorms: ActionContinuousBase
 					
 					if ( GetGame().IsSurfaceFertile(surface_type) )
 					{
-						//Print("surface_type: " + surface_type);
 						return true;
 					}
 				}
@@ -56,6 +55,11 @@ class ActionDigWorms: ActionContinuousBase
 		{
 			return true;
 		}
+	}
+	
+	override bool ActionConditionContinue( ActionData action_data )
+	{
+		return true;
 	}
 	
 	override bool SetupAction( PlayerBase player, ActionTarget target, ItemBase item, out ActionData action_data, Param extra_data = NULL )

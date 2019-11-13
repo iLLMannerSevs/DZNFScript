@@ -56,15 +56,15 @@ class PlayerConstants
 	//--------------------------------------------------------
 	static const float METABOLIC_SPEED_ENERGY_BASAL		= 0.01;		//energy loss per second while idle
 	
-	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.075; 		//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.2; 	//energy loss per second
-	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.4; 		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_WALK		= 0.08;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_JOG		= 0.3;		//energy loss per second
+	static const float METABOLIC_SPEED_ENERGY_SPRINT	= 0.6;		//energy loss per second
 	
-	static const float METABOLIC_SPEED_WATER_BASAL		= 0.02; 	//water loss per second while idle
+	static const float METABOLIC_SPEED_WATER_BASAL		= 0.02;		//water loss per second while idle
 	
-	static const float METABOLIC_SPEED_WATER_WALK		= 0.1; 		//water loss per second
-	static const float METABOLIC_SPEED_WATER_JOG		= 0.35; 		//water loss per second
-	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.8; 		//water loss per second
+	static const float METABOLIC_SPEED_WATER_WALK		= 0.08;		//water loss per second
+	static const float METABOLIC_SPEED_WATER_JOG		= 0.3;		//water loss per second
+	static const float METABOLIC_SPEED_WATER_SPRINT		= 0.5;		//water loss per second
 	//--------------------------------------------------------
 	
 	static const float	THRESHOLD_HEAT_COMFORT_PLUS_WARNING		= 0.2;	//missing comment
@@ -106,8 +106,8 @@ class PlayerConstants
 	static const float WATER_LOSS_HC_PLUS_LOW				= 0;
 	static const float WATER_LOSS_HC_PLUS_HIGH				= 0.4;
 
-	static const float ENERGY_LOSS_HC_MINUS_LOW				= 0;
-	static const float ENERGY_LOSS_HC_MINUS_HIGH			= 0.3;
+	static const float ENERGY_LOSS_HC_MINUS_LOW				= 0.35;
+	static const float ENERGY_LOSS_HC_MINUS_HIGH			= 0.45;
 	
 	static const float HEALTH_LOSS_HC_PLUS_LOW				= 0.05;
 	static const float HEALTH_LOSS_HC_PLUS_HIGH				= 0.15;		
@@ -181,4 +181,6 @@ class PlayerConstants
 	static const int 	CORPSE_STATE_FRESH = 0;
 	static const int 	CORPSE_STATE_MEDIUM = 1;
 	static const int 	CORPSE_STATE_DECAYED = 2;
+	//----------------------------------------------------------
+	static const float 	CAMERA_THRESHOLD_PITCH = -70.0;
 }
