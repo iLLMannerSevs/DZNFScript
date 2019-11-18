@@ -49,6 +49,7 @@ class GetServersResultRow
 	string	m_UpdatedAt;
 	bool	m_MouseAndKeyboardEnabled;
 	bool	m_WhitelistEnabled;
+	bool	m_IsDLC;
 	
 	//Scripted
 	bool		m_IsExpanded;
@@ -203,6 +204,7 @@ class GetServersInput
 	string		m_FavoriteServers;
 	bool		m_MouseAndKeyboardEnabled;
 	bool		m_WhitelistEnabled;
+	bool		m_IsDLC;
 
 	bool m_UseAntiCheat;
 	bool m_UseName;
@@ -225,6 +227,7 @@ class GetServersInput
 	bool m_UseHostIps;
 	bool m_UseMouseAndKeyboardEnabled;
 	bool m_UseWhitelistEnabled;
+	bool m_UseIsDLC;
 	
 	void SetAntiCheatFilter( bool anti_cheat )
 	{
@@ -434,6 +437,12 @@ class GetServersInput
 	{
 		m_WhitelistEnabled = whitelistEnabled;
 		m_UseWhitelistEnabled = true;
+	}
+	
+	void SetIsDLC(bool isDLC)
+	{
+		m_IsDLC = isDLC;
+		m_UseIsDLC = true;
 	}
 };
 

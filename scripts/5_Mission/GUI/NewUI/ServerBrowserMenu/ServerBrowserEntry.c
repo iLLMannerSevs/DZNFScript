@@ -390,7 +390,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	
 	void SetMapName( string mapName )
 	{
-		if( GetMapToRun() == "Livonia" )
+		if( m_ServerData.m_IsDLC )
 		{
 			bool own = GetGame().VerifyWorldOwnership( mapName );
 			m_ServerModIcon.Show( true );
@@ -399,7 +399,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		}
 		
 		#ifdef PLATFORM_WINDOWS
-		m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapToRun() );
+		m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapName() );
 		#endif
 	}
 	
@@ -468,6 +468,11 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 	
 	string GetMapToRun()
 	{
+		return m_ServerData.m_MapNameToRun;
+	}
+	
+	string GetMapName()
+	{
 		string map_name = m_ServerData.m_MapNameToRun;
 		map_name.ToLower();
 		if( map_name == "enoch" )
@@ -507,7 +512,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 		m_Mods = mods;
 		if( mods )
 		{
-			string mods_text = "#STR_USRACT_MAP" + ": " + GetMapToRun() + " | ";
+			string mods_text = "#STR_USRACT_MAP" + ": " + GetMapName() + " | ";
 			if( mods.Count() > 0 )
 			{
 				mods_text += "#main_menu_mods_lower" + ": " + mods[0];
@@ -573,7 +578,7 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 			if( m_ServerData.m_Modded )
 				OnlineServices.GetServerModList( m_ServerData.m_Id );
 			else
-				m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapToRun() );
+				m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapName() );
 			m_FirstExpand = false;
 		}
 		

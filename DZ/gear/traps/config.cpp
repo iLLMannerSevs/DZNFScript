@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: gear_traps\config.bin
-//Produced from mikero's Dos Tools Dll version 7.27
+//Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Wed Nov 13 18:05:05 2019 : 'file' last modified on Wed Sep 25 14:21:00 2019
+//'now' is Mon Nov 18 16:14:06 2019 : 'file' last modified on Wed Sep 25 14:21:00 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -46,8 +46,8 @@ class CfgAmmo
 		simulationStep = 0.05;
 		soundSetExplosion[] = {"Landmine_Explosion_SoundSet","Landmine_Explosion_Tail_SoundSet"};
 		soundHit[] = {"DZ\sounds\weapons\grenades\hand_grenade_1",10.0,1};
-		soundFly[] = {"dz\sounds\Weapons\explosions\noise",3.162277e-005,1};
-		soundEngine[] = {"",9.999998e-005,4};
+		soundFly[] = {"dz\sounds\Weapons\explosions\noise",3.162277e-05,1};
+		soundEngine[] = {"",9.999998e-05,4};
 		class DamageApplied
 		{
 			type = "Projectile";

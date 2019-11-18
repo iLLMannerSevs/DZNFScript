@@ -5955,6 +5955,8 @@ class PlayerBase extends ManBase
 			if (GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT)
 			{
 				clothingArray.Insert(InventorySlots.BACK);
+				clothingArray.Insert(InventorySlots.SHOULDER);
+				clothingArray.Insert(InventorySlots.MELEE);
 				if(optic.GetCurrentStepFOV() < GameConstants.DZPLAYER_CAMERA_FOV_IRONSIGHTS/*0.5*/ )
 				{
 					clothingArray.Insert(InventorySlots.BODY);
@@ -5969,7 +5971,13 @@ class PlayerBase extends ManBase
 		{
 			if (GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT)
 			{
-				clothingArray = {InventorySlots.BACK,InventorySlots.BODY,InventorySlots.VEST};
+				/*for(int i = 0; i < GetInventory().AttachmentCount(); i++)
+				{
+					Print("attachment slot ID: " + GetInventory().GetAttachmentSlotId(i));
+					clothingArray.Insert(GetInventory().GetAttachmentSlotId(i));
+				}*/
+				clothingArray = {InventorySlots.BACK,InventorySlots.BODY,InventorySlots.VEST,InventorySlots.SHOULDER,InventorySlots.MELEE};
+				
 				SetInvisibleRecursive(false,this,clothingArray);
 			}
 		}

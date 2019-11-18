@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: weapons_projectiles\config.bin
-//Produced from mikero's Dos Tools Dll version 7.27
+//Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Wed Nov 13 18:08:36 2019 : 'file' last modified on Mon Nov 11 13:21:15 2019
+//'now' is Mon Nov 18 16:17:47 2019 : 'file' last modified on Thu Nov 14 10:37:41 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -40,8 +40,8 @@ class CfgAmmo
 		hit = 8;
 		indirectHit = 0;
 		indirectHitRange = 0;
-		model = "";
-		soundFly[] = {"",9.999997e-009,1};
+		model = "\dz\weapons\projectiles\empty.p3d";
+		soundFly[] = {"",9.999997e-09,1};
 		soundDefault1[] = {"dz\sounds\weapons\hits\bullet\soft_ground_1",0.5,1,40};
 		soundDefault2[] = {"dz\sounds\weapons\hits\bullet\soft_ground_2",0.5,1,40};
 		soundDefault3[] = {"dz\sounds\weapons\hits\bullet\soft_ground_3",0.5,1,40};
@@ -298,6 +298,7 @@ class CfgAmmo
 	class Shotgun_Base: ShotgunCore
 	{
 		scope = 0;
+		model = "\dz\weapons\projectiles\empty.p3d";
 		waterEffectOffset = -0.8;
 		soundDefault1[] = {"dz\sounds\weapons\hits\bullet\soft_ground_1",0.5,1,40};
 		soundDefault2[] = {"dz\sounds\weapons\hits\bullet\soft_ground_2",0.5,1,40};
@@ -1297,7 +1298,7 @@ class CfgAmmo
 		initSpeed = 90;
 		weight = 0.025;
 		tracerScale = 1;
-		tracerStartTime = 1e-005;
+		tracerStartTime = 1e-05;
 		tracerEndTime = -1;
 		class DamageApplied
 		{
@@ -1339,7 +1340,7 @@ class CfgAmmo
 		initSpeed = 30;
 		weight = 0.025;
 		tracerScale = 1;
-		tracerStartTime = 1e-005;
+		tracerStartTime = 1e-05;
 		tracerEndTime = -1;
 		class DamageApplied
 		{
@@ -1381,7 +1382,7 @@ class CfgAmmo
 		initSpeed = 30;
 		weight = 0.025;
 		tracerScale = 1;
-		tracerStartTime = 1e-005;
+		tracerStartTime = 1e-05;
 		tracerEndTime = -1;
 		class DamageApplied
 		{
@@ -1424,7 +1425,7 @@ class CfgAmmo
 		initSpeed = 100;
 		weight = 0.025;
 		tracerScale = 1;
-		tracerStartTime = 1e-005;
+		tracerStartTime = 1e-05;
 		tracerEndTime = -1;
 		class DamageApplied
 		{
@@ -1673,7 +1674,7 @@ class CfgAmmo
 		scope = 2;
 		simulation = "shotShell";
 		simulationStep = 0.05;
-		soundFly[] = {"dz\sounds\weapons\effects\bullet_crack_mid",9.999997e-009,1};
+		soundFly[] = {"dz\sounds\weapons\effects\bullet_crack_mid",9.999997e-09,1};
 		model = "\dz\weapons\ammunition\rocket_rpg7_inflight.p3d";
 		proxyShape = "\dz\weapons\projectiles\rocket_rpg7_inflight.p3d";
 		spawnPileType = "Ammo_GrenadeM4";
@@ -1686,7 +1687,7 @@ class CfgAmmo
 		weight = 0.2;
 		fuseDistance = 5;
 		soundHit[] = {"",10.0,1};
-		soundEngine[] = {"",9.999998e-005,4};
+		soundEngine[] = {"",9.999998e-05,4};
 		timeToLive = 20;
 		deflecting = 60;
 		class DamageApplied

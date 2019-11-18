@@ -1060,7 +1060,7 @@ WindowWidgetClass server_browser_tab_root {
              vexactsize 0
              text "#STR_server_browser_tab_root_filters_root_filters_content_search_name_setting_container_search_name_setting_search_name_setting_panel_search_name_setting_label0"
              font "gui/fonts/sdf_MetronLight24"
-             "text offset" 15 0
+             "text offset" 10 0
              "exact text" 0
              "exact text size" 18
              "text valign" center
@@ -1092,7 +1092,7 @@ WindowWidgetClass server_browser_tab_root {
              {
               EditBoxWidgetClass search_name_setting_option {
                clipchildren 1
-               ignorepointer 1
+               ignorepointer 0
                position 0 0
                size 0.96 0.8
                halign center_ref
@@ -1106,7 +1106,7 @@ WindowWidgetClass server_browser_tab_root {
                "next left" "none"
                "next right" "none"
                "next down" ""
-               "limit visible" 1
+               "limit visible" 0
                "Use default text" 0
                "exact text" 0
                font "gui/fonts/sdf_MetronLight24"
@@ -1282,6 +1282,88 @@ WindowWidgetClass server_browser_tab_root {
          }
         }
         PanelWidgetClass region_button_disable {
+         visible 0
+         ignorepointer 1
+         color 0.1569 0.1569 0.1569 0.902
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         style rover_sim_colorable
+        }
+       }
+      }
+      ButtonWidgetClass dlc_button {
+       disabled 0
+       position 0 0
+       size 1 30
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 1
+       style Colorable
+       "no focus" 0
+       "next left" "none"
+       "next right" "none"
+       "next up" ""
+       "next down" ""
+       {
+        GridSpacerWidgetClass dlc_button_panel {
+         ignorepointer 1
+         position 0 0
+         size 1 30
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 1
+         "no focus" 1
+         Padding 0
+         Margin 0
+         "Size To Content H" 1
+         Columns 2
+         Rows 1
+         {
+          FrameWidgetClass dlc_setting_panel {
+           ignorepointer 1
+           position 0 0
+           size 0.5 0.6
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+           {
+            TextWidgetClass dlc_button_label {
+             ignorepointer 1
+             position 0 0
+             size 1 0.55
+             valign center_ref
+             hexactpos 1
+             vexactpos 1
+             hexactsize 0
+             vexactsize 0
+             text "#server_browser_dlc_livonia"
+             font "gui/fonts/sdf_MetronLight24"
+             "text offset" 10 0
+             "exact text" 0
+             "exact text size" 18
+             "text valign" center
+            }
+           }
+          }
+          FrameWidgetClass dlc_setting_option {
+           ignorepointer 1
+           position 0 0
+           size 0.5 1
+           hexactpos 1
+           vexactpos 1
+           hexactsize 0
+           vexactsize 0
+          }
+         }
+        }
+        PanelWidgetClass dlc_button_disable {
          visible 0
          ignorepointer 1
          color 0.1569 0.1569 0.1569 0.902

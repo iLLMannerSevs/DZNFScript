@@ -277,7 +277,7 @@ class OptionsMenuControls extends ScriptedWidgetEventHandler
 		{
 			m_KeyboardOption.Switch();
 			m_KeyboardSelector.Focus();
-			if( g_Game.ShouldShowControllerDisconnect() || ( GetGame().IsClient() && !GetGame().GetWorld().IsMouseAndKeyboardEnabledOnServer() )
+			if( g_Game.ShouldShowControllerDisconnect() || ( GetGame().IsClient() && !GetGame().GetWorld().IsMouseAndKeyboardEnabledOnServer() ) )
 			{
 				g_Game.CreateGamepadDisconnectMenu();
 			}

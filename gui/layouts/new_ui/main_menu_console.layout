@@ -239,7 +239,7 @@ FrameWidgetClass main_menu_root {
            vexactpos 0
            hexactsize 0
            vexactsize 0
-           text "LIVONIA DLC"
+           text "#server_browser_dlc_livonia"
            font "gui/fonts/sdf_MetronLight24"
            "text halign" center
            "text valign" center

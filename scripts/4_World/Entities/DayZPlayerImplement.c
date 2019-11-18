@@ -1682,7 +1682,7 @@ class DayZPlayerImplement extends DayZPlayer
 			// start moving
 
 			// start falling ? (could happen after climbing)
-			if (PhysicsIsFalling())
+			if (PhysicsIsFalling(true))
 			{
 				StartCommand_Fall(0);
 				m_FallYDiff = GetPosition()[1];
@@ -1823,7 +1823,7 @@ class DayZPlayerImplement extends DayZPlayer
 		}
 
 		// start falling ? 
-		if (PhysicsIsFalling())
+		if (PhysicsIsFalling(false))
 		{
 			StartCommand_Fall(0);
 			m_FallYDiff = GetPosition()[1];

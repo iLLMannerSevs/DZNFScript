@@ -1138,7 +1138,7 @@ class Human extends Man
 	// physic props
 	
 	//! returns true if physics controller is falling 
-	proto native 	bool		PhysicsIsFalling();
+	proto native 	bool		PhysicsIsFalling(bool pValidate);
 
 	//! outs pVelocity - linear velocity of PHYSICS CONTROLLER 
 	proto native 	void 		PhysicsGetVelocity(out vector pVelocity);

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: bin\config.bin
-//Produced from mikero's Dos Tools Dll version 7.27
+//Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Wed Nov 13 18:09:25 2019 : 'file' last modified on Wed Nov 13 14:55:22 2019
+//'now' is Mon Nov 18 16:18:41 2019 : 'file' last modified on Mon Nov 18 13:36:43 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1310,7 +1310,7 @@ class CfgVehicles
 		airFriction0[] = {0.01,0.01,0.01};
 		airRotation = 0;
 		gravityFactor = 1;
-		timeToLive = 1e+010;
+		timeToLive = 1e+10;
 		disappearAtContact = 0;
 		hasDriver = 0;
 		minHeight = 0.1;
@@ -3206,7 +3206,7 @@ class CfgEnvSounds
 	class Meadows
 	{
 		name = "";
-		sound[] = {"",5.6234134e-005,1};
+		sound[] = {"",5.6234134e-05,1};
 		volume = "meadow*(1-rain)*(1-night)";
 	};
 	class Trees
@@ -3218,7 +3218,7 @@ class CfgEnvSounds
 	class MeadowsNight
 	{
 		name = "";
-		sound[] = {"",5.6234134e-005,1};
+		sound[] = {"",5.6234134e-05,1};
 		volume = "meadow*(1-rain)*night";
 	};
 	class TreesNight
@@ -3548,7 +3548,7 @@ class CfgWorlds
 			};
 			class Zoom2
 			{
-				zoomMax = 1e+030;
+				zoomMax = 1e+30;
 				format = "XY";
 				formatX = "A";
 				formatY = "0";

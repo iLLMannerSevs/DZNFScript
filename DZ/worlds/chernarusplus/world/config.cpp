@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: worlds_chernarusplus\config.bin
-//Produced from mikero's Dos Tools Dll version 7.27
+//Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Wed Nov 13 18:08:46 2019 : 'file' last modified on Fri Nov 08 02:53:32 2019
+//'now' is Mon Nov 18 16:17:58 2019 : 'file' last modified on Fri Nov 08 02:53:32 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -214,7 +214,7 @@ class CfgWorlds
 			};
 			class Zoom3
 			{
-				zoomMax = 1e+030;
+				zoomMax = 1e+30;
 				format = "XY";
 				formatX = "0";
 				formatY = "0";

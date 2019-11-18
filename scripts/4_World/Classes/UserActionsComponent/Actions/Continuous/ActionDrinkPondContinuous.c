@@ -31,14 +31,11 @@ class ActionDrinkPondContinuous: ActionContinuousBase
 	override void CreateConditionComponents()  
 	{
 		m_ConditionItem = new CCINone;
-		m_ConditionTarget = new CCTNone;
+		m_ConditionTarget = new CCTNone;//CCTSurface(UAMaxDistances.DEFAULT);
 	}
 	
 	override bool ActionCondition( PlayerBase player, ActionTarget target, ItemBase item )
 	{	
-		if ( GetGame().IsMultiplayer() && GetGame().IsServer() )
-			return true;
-		
 		vector pos_cursor = target.GetCursorHitPos();
 		string surfType;
 		int liquidType;
@@ -47,12 +44,19 @@ class ActionDrinkPondContinuous: ActionContinuousBase
 
 		if ( liquidType == LIQUID_WATER )
 		{
-			pos_cursor[1] = g_Game.SurfaceY(pos_cursor[0],pos_cursor[2]);
-			// TODO: use some automatic way for setting of surface description (when it's possible)
-			//GetGame().SurfaceGetType(pos_cursor[0], pos_cursor[2], m_TargetDescription);
-			if ( vector.Distance(player.GetPosition(), pos_cursor) < UAMaxDistances.DEFAULT )
+			if ( GetGame().IsMultiplayer() && GetGame().IsServer() )
 			{
 				return true;
+			}
+			else
+			{
+				pos_cursor[1] = g_Game.SurfaceY(pos_cursor[0],pos_cursor[2]);
+				// TODO: use some automatic way for setting of surface description (when it's possible)
+				//GetGame().SurfaceGetType(pos_cursor[0], pos_cursor[2], m_TargetDescription);
+				if ( vector.Distance(player.GetPosition(), pos_cursor) < UAMaxDistances.DEFAULT )
+				{
+					return true;
+				}
 			}
 		}
 		return false;

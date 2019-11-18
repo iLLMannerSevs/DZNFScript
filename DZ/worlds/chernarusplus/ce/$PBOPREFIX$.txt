@@ -1,7 +1,6 @@
-﻿///<'worlds_chernarusplus_ce.pbo' properties via Mikero's dos tools, dll version 7.27>///
-product=dayz
-prefix=DZ\worlds\chernarusplus\ce
-version=82920
-//Pbo Type is: Arma Addon
-//Sha: 'A6108FDE52997322BBECDAA67B3001558EBA2827'
-//////</properties>//////
+﻿//<'worlds_chernarusplus_ce.pbo' properties via Mikero's dos tools, dll version 7.37>
+product=dayz;
+prefix=DZ\worlds\chernarusplus\ce;
+version=82987;
+PboType=Arma Addon;
+//</properties>

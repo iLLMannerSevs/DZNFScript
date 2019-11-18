@@ -477,9 +477,6 @@ class ServerBrowserMenuNew extends UIScriptedMenu
 			if( !g_Game.VerifyWorldOwnership(mapNM) )
 			{
 				GetGame().GetUIManager().ShowDialog( "#server_browser_connect_label", "#mod_detail_info_warning", 232, DBT_OK, DBB_NONE, DMT_INFO, GetGame().GetUIManager().GetMenu() );
-			
-				// todo: !!! HANDLE DLC properly here !!!
-				Print("Map not owned..." + mapNM);
 				g_Game.GoBuyWorldDLC(mapNM);
 				return;
 			}

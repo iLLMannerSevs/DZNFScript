@@ -214,12 +214,12 @@ class AttachmentCategoriesRow: ClosableContainer
 					if( stack_max == 0 || stack_max >= quantity || !selected_item.CanBeSplit() )
 					{
 						player.PredictiveTakeEntityToTargetAttachmentEx( m_Entity, selected_item, selected_slot );
-						return true;
+						return false;
 					}
 					else
 					{
 						selected_item.SplitIntoStackMaxClient( m_Entity, selected_slot );
-						return true;
+						return false;
 					}
 				}
 				else if( selected_slot != -1 )
@@ -233,19 +233,19 @@ class AttachmentCategoriesRow: ClosableContainer
 						if( prev_item.CanBeCombined( ItemBase.Cast( selected_item ) ) )
 						{
 							prev_item.CombineItemsClient( selected_item, true );
-							return true;
+							return false;
 						}
 						else if( stack_max == 0 && GameInventory.CanSwapEntities( prev_item, selected_item ) )
 						{
 							player.PredictiveSwapEntities( selected_item, prev_item );
-							return true;
+							return false;
 						}
 						else if( m_AttachmentCargos.Contains( prev_item ) )
 						{
 							if( prev_item.GetInventory().CanAddEntityInCargo( selected_item, selected_item.GetInventory().GetFlipCargo() ) )
 							{
 								SplitItemUtils.TakeOrSplitToInventory( PlayerBase.Cast( player ), prev_item, selected_item );
-								return true;
+								return false;
 							}
 						}
 					}
@@ -263,19 +263,19 @@ class AttachmentCategoriesRow: ClosableContainer
 							if( stack_max == 0 || stack_max >= quantity || !selected_item.CanBeSplit() )
 							{
 								GetGame().GetPlayer().PredictiveTakeEntityToTargetAttachmentEx( m_Entity, selected_item, inv_loc_dst.GetSlot() );
-								return true;
+								return false;
 							}
 							else if( stack_max >= 0 || !selected_item.CanBeSplit() )
 							{
 								selected_item.SplitIntoStackMaxClient( m_Entity, inv_loc_dst.GetSlot() );
-								return true;
+								return false;
 							}
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	override bool EquipItem()

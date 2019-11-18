@@ -8,6 +8,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			ref OptionSelectorMultistate	m_SortingFilter;
 			ref OptionSelectorMultistate	m_RegionFilter;
 			ref OptionSelectorMultistate	m_PingFilter;
+			ref OptionSelector				m_DLCFilter;
 			ref OptionSelector				m_FavoritedFilter;
 			ref OptionSelector				m_FriendsPlayingFilter;
 			ref OptionSelector				m_BattleyeFilter;
@@ -32,7 +33,6 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		ref array<string> region_options = { "#server_browser_all", "#server_browser_americas", "#server_browser_europe", "#server_browser_asia" };
 		ref array<string> sort_options = { "#server_browser_column_host A-Z", "#server_browser_column_host Z-A", "#server_browser_entry_empty - #server_details_popularity_full", "#server_details_popularity_full - #server_browser_entry_empty" };
 		ref array<string> ping_options = { "#server_browser_disabled", "<30", "<50", "<100", "<200", "<300", "<500" };
-		ref array<string> three_options = { "#server_browser_disabled", "#server_browser_show", "#server_browser_hide" };
 		ref array<string> two_options = { "#server_browser_disabled", "#server_browser_show" };
 		
 		m_SearchByName				= EditBoxWidget.Cast( root.FindAnyWidget( "search_name_setting_option" ) );
@@ -45,12 +45,15 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		#else
 		m_FavoritedFilter			= new OptionSelector( root.FindAnyWidget( "favorites_setting_option" ), 0, this, false );
 		#endif
+		
+		m_DLCFilter					= new OptionSelector( root.FindAnyWidget( "dlc_setting_option" ), 0, this, false );
 		m_FriendsPlayingFilter		= new OptionSelector( root.FindAnyWidget( "friends_setting_option" ), 0, this, false );
 		m_PreviouslyPlayedFilter	= new OptionSelector( root.FindAnyWidget( "prev_played_setting_option" ), 0, this, false );
 		m_FullServerFilter			= new OptionSelector( root.FindAnyWidget( "full_server_setting_option" ), 0, this, false );
 		m_PasswordFilter			= new OptionSelector( root.FindAnyWidget( "password_setting_option" ), 0, this, false  );
 		m_WhitelistFilter			= new OptionSelector( root.FindAnyWidget( "whitelist_setting_option" ), 0, this, false  );
 		
+		m_DLCFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_RegionFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_PingFilter.m_OptionChanged.Insert( OnFilterChanged );
 		m_FavoritedFilter.m_OptionChanged.Insert( OnFilterChanged );
@@ -62,7 +65,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		
 		#ifdef PLATFORM_CONSOLE
 			m_SortingFilter			= new OptionSelectorMultistate( root.FindAnyWidget( "sort_setting_option" ), 0, this, false, sort_options );
-			m_KeyboardFilter		= new OptionSelectorMultistate( root.FindAnyWidget( "keyboard_setting_option" ), 0, this, false, three_options );
+			m_KeyboardFilter		= new OptionSelector( root.FindAnyWidget( "keyboard_setting_option" ), 0, this, false );
 		
 			m_SortingFilter.m_OptionChanged.Insert( OnSortChanged );
 			m_SortingFilter.m_OptionChanged.Insert( OnFilterChanged );
@@ -116,6 +119,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		
 		if( m_Options && m_Options.Count() >= 6 )
 		{
+			m_DLCFilter.SetStringOption( m_Options.Get( "m_DLCFilter" ) );
 			m_RegionFilter.SetStringOption( m_Options.Get( "m_RegionFilter" ), false );
 			m_PingFilter.SetStringOption( m_Options.Get( "m_PingFilter" ), false );
 			m_FavoritedFilter.SetStringOption( m_Options.Get( "m_FavoritedFilter" ), false );
@@ -152,6 +156,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	{
 		m_Options.Clear();
 		
+		m_Options.Insert( "m_DLCFilter", m_DLCFilter.GetStringValue() );
 		m_Options.Insert( "m_RegionFilter", m_RegionFilter.GetStringValue() );
 		m_Options.Insert( "m_PingFilter", m_PingFilter.GetStringValue() );
 		m_Options.Insert( "m_FavoritedFilter", m_FavoritedFilter.GetStringValue() );
@@ -185,6 +190,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	void ResetFilters()
 	{
 		m_RegionFilter.Reset();
+		m_DLCFilter.Reset();
 		m_PingFilter.Reset();
 		m_FavoritedFilter.Reset();
 		m_FriendsPlayingFilter.Reset();
@@ -524,10 +530,16 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			input.SetPublic( m_PublicFilter.IsEnabled() );
 		}
 		
-		//13 Search by Accelerated Time
+		//14 Search by Accelerated Time
 		if( m_AcceleratedTimeFilter.IsSet() )
 		{
 			input.SetAcceleratedTime( m_AcceleratedTimeFilter.IsEnabled() );
+		}
+		
+		//15 Search by DLC Content
+		if( m_DLCFilter.IsSet() )
+		{
+			input.SetIsDLC( m_DLCFilter.IsEnabled() );
 		}
 		
 		return input;
@@ -606,6 +618,10 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		if( m_WhitelistFilter.IsSet() )
 		{
 			input.SetWhitelistEnabled( m_WhitelistFilter.IsEnabled() );
+		}
+		if( m_DLCFilter.IsSet() )
+		{
+			input.SetIsDLC( m_DLCFilter.IsEnabled() );
 		}
 		
 		#ifdef PLATFORM_WINDOWS

@@ -89,7 +89,7 @@ class Container extends LayoutHolder
 	{
 		if( GetFocusedContainer() )
 			return GetFocusedContainer().Combine();
-		return false;
+		return true;
 	}
 	
 	bool TransferItemToVicinity()
