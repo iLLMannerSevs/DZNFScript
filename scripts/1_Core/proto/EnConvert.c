@@ -439,12 +439,34 @@ class typename
 
 		for (int i = 0; i < cnt; i++)
 		{
-			if (e.GetVariableType(i) == int && e.GetVariableValue(NULL, i, val) && val == enumValue)
+			if (e.GetVariableType(i) == int && e.GetVariableValue(null, i, val) && val == enumValue)
 			{
 				return e.GetVariableName(i);
 			}
 		}
 				
 		return "unknown";
+	}
+	
+	/**
+	\brief Return enum value from string name
+	@code
+		Print( typename.StringToEnum(DialogPriority, "WARNING") );
+	@endcode
+	*/
+	static int StringToEnum(typename e, string enumName)
+	{
+	    int count = e.GetVariableCount();
+	    int value;
+	   
+	    for (int i = 0; i < count; i++)
+	    {
+	        if (e.GetVariableType(i) == int && e.GetVariableValue(null, i, value) && e.GetVariableName(i) == enumName)
+	        {
+	            return value;
+	        }
+	    }
+		
+	    return -1;
 	}
 };

@@ -1967,15 +1967,20 @@ class PlayerBase extends ManBase
 			}
 			return;
 		}
-		if( m_DebugMonitorValues ) m_DebugMonitorValues.OnScheduledTick(delta_time);
-		if( GetSymptomManager() ) GetSymptomManager().OnTick(delta_time, pCurrentCommandID, m_MovementState);//needs to stay in command handler tick as it's playing animations
+		if( m_DebugMonitorValues )
+			m_DebugMonitorValues.OnScheduledTick(delta_time);
+		if( GetSymptomManager() )
+			GetSymptomManager().OnTick(delta_time, pCurrentCommandID, m_MovementState);//needs to stay in command handler tick as it's playing animations
 		//if( GetBleedingManagerServer() ) GetBleedingManagerServer().OnTick(delta_time);
 		
-		if( GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_CLIENT || GetInstanceType() == DayZPlayerInstanceType.INSTANCETYPE_REMOTE )
+		DayZPlayerInstanceType instType = GetInstanceType();		
+		if( instType == DayZPlayerInstanceType.INSTANCETYPE_CLIENT || instType == DayZPlayerInstanceType.INSTANCETYPE_REMOTE )
 		{ 
-			if( GetPlayerSoundEventHandler() ) GetPlayerSoundEventHandler().OnTick(delta_time);
+			if( GetPlayerSoundEventHandler() )
+				GetPlayerSoundEventHandler().OnTick(delta_time);
+
 			//! is not equal to
-			if( GetInstanceType() != DayZPlayerInstanceType.INSTANCETYPE_REMOTE ) 
+			if( instType != DayZPlayerInstanceType.INSTANCETYPE_REMOTE ) 
 			{
 				#ifdef DEVELOPER
 				if( m_WeaponDebug )

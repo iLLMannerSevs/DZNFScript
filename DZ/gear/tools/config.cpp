@@ -2,7 +2,7 @@
 //DeRap: gear_tools\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:14:04 2019 : 'file' last modified on Thu Nov 07 11:12:21 2019
+//'now' is Fri Nov 22 16:10:05 2019 : 'file' last modified on Tue Nov 19 15:16:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1929,7 +1929,7 @@ class CfgVehicles
 		itemBehaviour = 2;
 		absorbency = 0.8;
 		lootCategory = "Crafted";
-		attachments[] = {"bait"};
+		attachments[] = {"Hook"};
 		energyResources[] = {{"power",0.1}};
 		inventorySlot[] = {"Shoulder","Melee"};
 		class DamageSystem
@@ -1991,7 +1991,7 @@ class CfgVehicles
 		itemBehaviour = 2;
 		absorbency = 0.8;
 		lootCategory = "Crafted";
-		attachments[] = {"bait"};
+		attachments[] = {"Hook"};
 		energyResources[] = {{"power",0.15}};
 		inventorySlot[] = {"Shoulder","Melee"};
 		class DamageSystem
@@ -2067,7 +2067,7 @@ class CfgVehicles
 		weight = 910;
 		itemSize[] = {2,5};
 		absorbency = 0;
-		attachments[] = {"bait"};
+		attachments[] = {"Hook"};
 		energyResources[] = {{"power",0.15}};
 		class DamageSystem
 		{

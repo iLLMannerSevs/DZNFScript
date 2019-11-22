@@ -33,7 +33,7 @@ class ChernarusPlusData extends WorldData
 		super.Init();
 		
 		m_DayTemperature = 7;
-		m_NightTemperature = -6;
+		m_NightTemperature = -2;
 	}
 	
 	override bool WeatherOnBeforeChange( EWeatherPhenomenon type, float actual, float change, float time )

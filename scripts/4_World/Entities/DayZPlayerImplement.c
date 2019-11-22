@@ -1964,7 +1964,7 @@ class DayZPlayerImplement extends DayZPlayer
 
 
 
-	void ExitSights ()
+	void ExitSights()
 	{
 //		Print("ExitSights");
 	
@@ -2011,7 +2011,8 @@ class DayZPlayerImplement extends DayZPlayer
 		}
 		
 		HumanCommandWeapons hcw = GetCommandModifier_Weapons();
-		if (hcw) hcw.SetADS(false);
+		if (hcw)
+			hcw.SetADS(false);
 	}
 	
 	void SwitchOptics(ItemOptics optic, bool state)

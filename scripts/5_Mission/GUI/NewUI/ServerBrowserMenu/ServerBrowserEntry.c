@@ -397,6 +397,11 @@ class ServerBrowserEntry extends ScriptedWidgetEventHandler
 			m_ServerModIcon.FindWidget( "Owned" ).Show( own );
 			m_ServerModIcon.FindWidget( "Unowned" ).Show( !own );
 		}
+		else
+		{
+			m_ServerModIcon.FindWidget( "Owned" ).Show( false );
+			m_ServerModIcon.FindWidget( "Unowned" ).Show( false );
+		}
 		
 		#ifdef PLATFORM_WINDOWS
 		m_ServerMods.SetText( "#STR_USRACT_MAP" + ": " + GetMapName() );

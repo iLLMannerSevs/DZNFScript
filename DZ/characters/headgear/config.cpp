@@ -2,7 +2,7 @@
 //DeRap: characters_headgear\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:13:09 2019 : 'file' last modified on Thu Nov 07 10:02:02 2019
+//'now' is Fri Nov 22 16:09:07 2019 : 'file' last modified on Tue Nov 19 14:58:23 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3708,7 +3708,7 @@ class CfgVehicles
 		weight = 1200;
 		itemSize[] = {4,3};
 		noMask = 0;
-		absorbency = 0.35;
+		absorbency = 0;
 		heatIsolation = 0.8;
 		visibilityModifier = 0.95;
 		headSelectionsToHide[] = {"Clipping_Mich2001"};

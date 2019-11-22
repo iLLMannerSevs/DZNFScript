@@ -519,7 +519,7 @@ class GameConstants
 	const float	ENVIRO_TICKS_TO_WETNESS_CALCULATION 	= 2;	  	//! each X (ticks) is processed wetness on items on player
 	const float ENVIRO_TICK_ROOF_RC_CHECK 				= 10;	  	//! in secs. how often we should check if player is under the roof (raycast)
 	const float ENVIRO_WET_INCREMENT 					= 0.01;	  	//! amount of wetness added to items wet value each tick if is raining
-	const float ENVIRO_DRY_INCREMENT 					= 0.0005; 	//! amount of wetness subtracted from items wet value each tick if is not raining due to player heat
+	const float ENVIRO_DRY_INCREMENT 					= 0.001; 	//! amount of wetness subtracted from items wet value each tick if is not raining due to player heat
 	const float ENVIRO_SUN_INCREMENT 					= 0.002;	//! amount of wetness subtracted from items wet value each tick if is not raining due to sun
 	const float ENVIRO_CLOUD_DRY_EFFECT 				= 0.1;		//! how many % of ENVIRO_SUN_INCREMENT is reduced by cloudy sky
 	const float ENVIRO_CLOUDS_TEMP_EFFECT 				= 0.1;		//! how many % of environment temperature can be lowered by clouds

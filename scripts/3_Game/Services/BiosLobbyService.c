@@ -437,12 +437,18 @@ class GetServersInput
 	{
 		m_WhitelistEnabled = whitelistEnabled;
 		m_UseWhitelistEnabled = true;
+		
+		m_SortBy += "W";
+		AddShow(whitelistEnabled);
 	}
 	
 	void SetIsDLC(bool isDLC)
 	{
 		m_IsDLC = isDLC;
 		m_UseIsDLC = true;
+		
+		m_SortBy += "D";
+		AddShow(isDLC);
 	}
 };
 

@@ -244,7 +244,13 @@ class ServerBrowserTab extends ScriptedWidgetEventHandler
 	{		
 		if( IsFocusable( w ) )
 		{
-			ColorNormal( w );
+			if( enterW == m_FilterSearchText || enterW == m_FilterSearchTextBox )
+			{
+			}
+			else
+			{
+				ColorNormal( w );
+			}
 			return true;
 		}
 		return false;

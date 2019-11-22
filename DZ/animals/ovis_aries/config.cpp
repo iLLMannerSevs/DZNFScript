@@ -2,7 +2,7 @@
 //DeRap: animals\ovis_aries\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:12:33 2019 : 'file' last modified on Thu Nov 07 12:39:10 2019
+//'now' is Fri Nov 22 16:08:26 2019 : 'file' last modified on Thu Nov 07 12:39:10 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

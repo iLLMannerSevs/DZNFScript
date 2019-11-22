@@ -119,6 +119,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		
 		if( m_Options && m_Options.Count() >= 6 )
 		{
+			m_SearchByName.SetText( m_Options.Get( "m_SearchByName" ) );
 			m_DLCFilter.SetStringOption( m_Options.Get( "m_DLCFilter" ) );
 			m_RegionFilter.SetStringOption( m_Options.Get( "m_RegionFilter" ), false );
 			m_PingFilter.SetStringOption( m_Options.Get( "m_PingFilter" ), false );
@@ -138,7 +139,6 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			{
 				#ifdef PLATFORM_WINDOWS
 					#ifndef PLATFORM_CONSOLE
-						m_SearchByName.SetText( m_Options.Get( "m_SearchByName" ) );
 						m_SearchByIP.SetText( m_Options.Get( "m_SearchByIP" ) );
 						m_CharacterAliveFilter.SetStringOption( m_Options.Get( "m_CharacterAliveFilter" ), false );
 						m_BattleyeFilter.SetStringOption( m_Options.Get( "m_BattleyeFilter" ), false );
@@ -156,6 +156,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	{
 		m_Options.Clear();
 		
+		m_Options.Insert( "m_SearchByName", m_SearchByName.GetText() );
 		m_Options.Insert( "m_DLCFilter", m_DLCFilter.GetStringValue() );
 		m_Options.Insert( "m_RegionFilter", m_RegionFilter.GetStringValue() );
 		m_Options.Insert( "m_PingFilter", m_PingFilter.GetStringValue() );
@@ -173,7 +174,6 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		
 		#ifdef PLATFORM_WINDOWS
 			#ifndef PLATFORM_CONSOLE
-				m_Options.Insert( "m_SearchByName", m_SearchByName.GetText() );
 				m_Options.Insert( "m_SearchByIP", m_SearchByIP.GetText() );
 				m_Options.Insert( "m_CharacterAliveFilter", m_CharacterAliveFilter.GetStringValue() );
 				m_Options.Insert( "m_BattleyeFilter", m_BattleyeFilter.GetStringValue() );
@@ -189,6 +189,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	
 	void ResetFilters()
 	{
+		m_SearchByName.SetText( "" );
 		m_RegionFilter.Reset();
 		m_DLCFilter.Reset();
 		m_PingFilter.Reset();
@@ -206,7 +207,6 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 		
 		#ifdef PLATFORM_WINDOWS
 			#ifndef PLATFORM_CONSOLE
-				m_SearchByName.SetText( "" );
 				m_SearchByIP.SetText( "" );
 				m_CharacterAliveFilter.Reset();
 				m_BattleyeFilter.Reset();
@@ -216,6 +216,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 				m_AcceleratedTimeFilter.Reset();
 			#endif
 		#endif
+		SaveFilters();
 	}
 	
 	bool PingIsSet()
@@ -378,6 +379,8 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 	
 	void Focus()
 	{
+		SetFocus( m_SearchByName );
+		/*
 		#ifdef PLATFORM_CONSOLE
 			m_SortingFilter.Focus();
 		#else
@@ -385,6 +388,7 @@ class ServerBrowserFilterContainer extends ScriptedWidgetEventHandler
 			SetFocus( m_SearchByName );
 		#endif
 		#endif
+		*/
 	}
 	
 	override bool OnChange( Widget w, int x, int y, bool finished )

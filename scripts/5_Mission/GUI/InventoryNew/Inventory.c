@@ -1236,7 +1236,7 @@ class Inventory: LayoutHolder
 		switch ( console_toolbar_type )
 		{
 			case ConsoleToolbarType.PLAYER_EQUIPMENT_SLOTS_ITEM:
-				return to_hands_swap + drop + micromanagment + quickslot;
+				return to_hands_swap + to_inventory + drop + micromanagment + quickslot;
 			case ConsoleToolbarType.PLAYER_EQUIPMENT_SLOTS_ITEM_WITH_CARGO:
 				return open_close_container + to_hands_swap + drop + micromanagment + quickslot;
 			case ConsoleToolbarType.PLAYER_EQUIPMENT_SLOTS_ITEM_WITH_ATTACHMENTS:

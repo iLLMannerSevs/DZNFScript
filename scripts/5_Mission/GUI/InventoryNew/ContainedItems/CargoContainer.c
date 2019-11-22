@@ -813,7 +813,6 @@ class CargoContainer extends Container
 			}
 			
 			int focused_row = m_FocusedItemPosition / ROWS_NUMBER_XBOX;
-			int max_rows = m_Rows.Count();
 			int row_min = focused_row * ROWS_NUMBER_XBOX;
 			int row_max = row_min + ROWS_NUMBER_XBOX - 1;
 			
@@ -841,14 +840,14 @@ class CargoContainer extends Container
 			{
 				m_FocusedItemPosition += ROWS_NUMBER_XBOX;
 				focused_row = m_FocusedItemPosition / ROWS_NUMBER_XBOX;
-				if( ( m_FocusedItemPosition > m_Icons.Count() - 1 && focused_row >= m_Rows.Count() ) || m_Icons.Count() == 0 )
+				if( ( m_FocusedItemPosition > m_Icons.Count() - 1 && focused_row >= m_Icons.Count() / ROWS_NUMBER_XBOX ) || m_Icons.Count() == 0 )
 				{
 					cnt = Container.Cast( GetParent() );
+					m_FocusedItemPosition = 0;
 					if( cnt )
 					{
 						cnt.SetNextActive();
 					}
-					m_FocusedItemPosition = 0;
 					return;
 				}
 				else if( m_FocusedItemPosition > m_Icons.Count() - 1 )

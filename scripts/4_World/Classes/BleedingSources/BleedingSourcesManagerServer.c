@@ -102,6 +102,7 @@ class BleedingSourcesManagerServer extends BleedingSourcesManagerBase
 			{
 				m_BleedingSources.GetElement(i).OnUpdateServer(delta_time, blood_scale, m_DisableBloodLoss);
 			}
+//			m_Tick = 0;
 		}
 	}
 	

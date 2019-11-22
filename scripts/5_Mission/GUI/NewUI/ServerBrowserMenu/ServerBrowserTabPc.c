@@ -1090,18 +1090,18 @@ class ServerBrowserTabPc extends ServerBrowserTab
 	{
 		if( w )
 		{
+			if( super.IsFocusable( w ) )
+			{
+				return true;
+			}
+			
 			if ( w == m_ServerListScroller )
 			{
 				return false;
 			}
 			
-			if ( w == m_HostSort || w == m_TimeSort || w == m_PopulationSort || w == m_SlotsSort || w == m_PingSort )
+			if ( w == m_HostSort || w == m_TimeSort || w == m_PopulationSort || w == m_SlotsSort || w == m_PingSort || w == m_FilterSearchIP )
 			{
-				return true;
-			}
-			
-			if ( w == m_ApplyFilter || w == m_RefreshList || w == m_ResetFilters || m_FilterSearchText || m_FilterSearchIP )
-			{				
 				return true;
 			}
 			

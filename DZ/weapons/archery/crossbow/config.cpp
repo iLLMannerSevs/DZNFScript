@@ -2,7 +2,7 @@
 //DeRap: weapons_archery\crossbow\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:17:38 2019 : 'file' last modified on Sat Jul 20 11:02:07 2019
+//'now' is Fri Nov 22 16:13:57 2019 : 'file' last modified on Sat Jul 20 11:02:07 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

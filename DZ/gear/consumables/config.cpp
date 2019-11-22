@@ -2,7 +2,7 @@
 //DeRap: gear_consumables\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:13:49 2019 : 'file' last modified on Fri Oct 25 09:07:09 2019
+//'now' is Fri Nov 22 16:09:49 2019 : 'file' last modified on Tue Nov 19 15:09:17 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -1354,7 +1354,7 @@ class CfgVehicles
 		weight = 15;
 		absorbency = 0.8;
 		itemSize[] = {1,1};
-		inventorySlot = "Bait";
+		inventorySlot = "Hook";
 		rotationFlags = 17;
 		hookType = "Hook";
 		class DamageSystem
@@ -1387,7 +1387,7 @@ class CfgVehicles
 		weight = 15;
 		absorbency = 0.8;
 		itemSize[] = {1,1};
-		inventorySlot = "Bait";
+		inventorySlot = "Hook";
 		rotationFlags = 17;
 		hookType = "BoneHook";
 		class DamageSystem

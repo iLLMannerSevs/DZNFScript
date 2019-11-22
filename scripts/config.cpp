@@ -2,7 +2,7 @@
 //DeRap: scripts\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:18:54 2019 : 'file' last modified on Mon Nov 18 11:52:49 2019
+//'now' is Fri Nov 22 16:15:17 2019 : 'file' last modified on Fri Nov 22 13:53:20 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

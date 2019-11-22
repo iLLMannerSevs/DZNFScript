@@ -2,7 +2,7 @@
 //DeRap: plants\config.bin
 //Produced from mikero's Dos Tools Dll version 7.37
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Mon Nov 18 16:14:10 2019 : 'file' last modified on Wed Oct 09 17:44:16 2019
+//'now' is Fri Nov 22 16:10:11 2019 : 'file' last modified on Tue Nov 19 13:58:55 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -23,6 +23,10 @@ class CfgVehicles
 	class ChristmasTree: HouseNoDestruct
 	{
 		model = "DZ\plants\tree\t_PiceaAbies_2s_xmas.p3d";
+	};
+	class ChristmasTree_Green: HouseNoDestruct
+	{
+		model = "DZ\plants\tree\t_PiceaAbies_2s_green_xmas.p3d";
 	};
 };
 class CfgNonAIVehicles

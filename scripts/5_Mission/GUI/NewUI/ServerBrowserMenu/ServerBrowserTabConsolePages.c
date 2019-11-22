@@ -49,6 +49,8 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		m_PopulationSort		= m_Root.FindAnyWidget( "server_list_content_header_population" );
 		m_SlotsSort				= m_Root.FindAnyWidget( "server_list_content_header_slots" );
 		m_PingSort				= m_Root.FindAnyWidget( "server_list_content_header_ping" );
+		m_FilterSearchText		= m_Root.FindAnyWidget( "search_name_button" );
+		m_FilterSearchTextBox	= m_Root.FindAnyWidget( "search_name_setting_option" );
 		m_LoadingText			= TextWidget.Cast( m_Root.FindAnyWidget( "loading_servers_info" ) );
 		m_WidgetNavFilters		= m_Root.FindAnyWidget( "filters_root_nav_wrapper" );
 		m_WidgetNavServers		= m_Root.FindAnyWidget( "server_list_root_nav_wrapper" );
@@ -83,6 +85,7 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		UpdatePageButtons();
 		
 		m_Root.SetHandler( this );
+		m_FilterSearchTextBox.SetHandler( this );
 	}
 	
 	void ShowHideConsoleWidgets()
@@ -576,7 +579,7 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 	
 	override void ColorNormal( Widget w )
 	{
-		if ( !w)
+		if ( !w )
 		{
 			return
 		}
@@ -590,6 +593,10 @@ class ServerBrowserTabConsolePages extends ServerBrowserTab
 		{
 			ButtonWidget button = ButtonWidget.Cast( w );
 			button.SetTextColor( ARGB( 255, 255, 255, 255 ) );
+		}
+		else if( !w.IsInherited( EditBoxWidget ) )
+		{
+			w.SetColor( ARGB( 0, 255, 255, 255 ) );
 		}
 		
 		TextWidget text1	= TextWidget.Cast(w.FindAnyWidget( w.GetName() + "_text" ) );

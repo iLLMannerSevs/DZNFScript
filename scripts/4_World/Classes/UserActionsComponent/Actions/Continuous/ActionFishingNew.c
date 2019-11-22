@@ -1,15 +1,27 @@
 class FishingActionData : ActionData
 {
 	const float FISHING_SUCCESS 		= 0.2;
-	const float FISHING_BAIT_LOSS 		= 0.05;
+	const float FISHING_BAIT_LOSS 		= 0.02;
 	const float FISHING_HOOK_LOSS 		= 0.015;
 	const float FISHING_DAMAGE 			= 5.0;
 	const float FISHING_GARBAGE_CHANCE 	= 0.2;
 	
 	bool 		m_IsSurfaceSea;
+	bool 		m_IsBaitAnEmptyHook;
 	int 		m_FishingResult = -1;
 	float 		m_RodQualityModifier = 0;
 	ItemBase 	m_Bait;
+	
+	void InitBait(ItemBase item)
+	{
+		m_Bait = item;
+		m_IsBaitAnEmptyHook = !m_Bait.ConfigIsExisting("hookType");
+	}
+	
+	bool IsBaitEmptyHook()
+	{
+		return m_IsBaitAnEmptyHook;
+	}
 }
 
 class ActionFishingNewCB : ActionContinuousBaseCB
@@ -66,23 +78,22 @@ class ActionFishingNewCB : ActionContinuousBaseCB
 	
 	void HandleFishingResultSuccess()
 	{
-		//Print("HandleFishingResultSuccess");
 		if (!GetGame().IsMultiplayer() || GetGame().IsServer())
 		{
 			ItemBase fish;
-			ItemBase hook;
-			
+
 			if (!m_ActionDataFishing.m_Bait)
-				m_ActionDataFishing.m_Bait = ItemBase.Cast(m_ActionDataFishing.m_MainItem.FindAttachmentBySlotName("Bait"));
+				m_ActionDataFishing.InitBait(ItemBase.Cast(m_ActionDataFishing.m_MainItem.FindAttachmentBySlotName("Hook")));
 			
-			hook = ItemBase.Cast(GetGame().CreateObject(m_ActionDataFishing.m_Bait.ConfigGetString("hookType"),m_ActionDataFishing.m_Player.GetPosition(), false));
-			
-			if (hook)
+			if (!m_ActionDataFishing.IsBaitEmptyHook())
 			{
-				MiscGameplayFunctions.TransferItemProperties(m_ActionDataFishing.m_Bait,hook);
-				hook.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
+				m_ActionDataFishing.m_Bait.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
+				MiscGameplayFunctions.TurnItemIntoItem(m_ActionDataFishing.m_Bait,m_ActionDataFishing.m_Bait.ConfigGetString("hookType"),m_ActionDataFishing.m_Player);
 			}
-			m_ActionDataFishing.m_Bait.Delete();
+			else
+			{
+				m_ActionDataFishing.m_Bait.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
+			}
 			
 			float rnd = Math.RandomFloatInclusive(0.0,1.0);
 			if (rnd > m_ActionDataFishing.FISHING_GARBAGE_CHANCE)
@@ -112,29 +123,31 @@ class ActionFishingNewCB : ActionContinuousBaseCB
 				}
 			}
 			
-			m_ActionDataFishing.m_MainItem.AddHealth(m_ActionDataFishing.FISHING_DAMAGE);
+			m_ActionDataFishing.m_MainItem.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
 		}
 	}
 	
 	void HandleFishingResultFailure()
 	{
-		//Print("HandleFishingResultFailure");
 		if (!GetGame().IsMultiplayer() || GetGame().IsServer())
 		{
-			if (Math.RandomFloatInclusive(0.0,1.0) > m_ActionDataFishing.FISHING_HOOK_LOSS)
-			{
-				ItemBase hook;
-				
-				if (!m_ActionDataFishing.m_Bait)
-					m_ActionDataFishing.m_Bait = ItemBase.Cast(m_ActionDataFishing.m_MainItem.FindAttachmentBySlotName("Bait"));
-				
-				hook = ItemBase.Cast(GetGame().CreateObject(m_ActionDataFishing.m_Bait.ConfigGetString("hookType"),m_ActionDataFishing.m_Player.GetPosition(), false));
-				if (hook)
-					MiscGameplayFunctions.TransferItemProperties(m_ActionDataFishing.m_Bait,hook);
-			}
-			m_ActionDataFishing.m_Bait.Delete();
+			if (!m_ActionDataFishing.m_Bait)
+				m_ActionDataFishing.InitBait(ItemBase.Cast(m_ActionDataFishing.m_MainItem.FindAttachmentBySlotName("Hook")));
 			
-			m_ActionDataFishing.m_MainItem.AddHealth(m_ActionDataFishing.FISHING_DAMAGE);
+			if (Math.RandomFloatInclusive(0.0,1.0) > m_ActionDataFishing.FISHING_HOOK_LOSS) //loss of worm only
+			{
+				if (!m_ActionDataFishing.IsBaitEmptyHook())
+				{
+					m_ActionDataFishing.m_Bait.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
+					MiscGameplayFunctions.TurnItemIntoItem(m_ActionDataFishing.m_Bait,m_ActionDataFishing.m_Bait.ConfigGetString("hookType"),m_ActionDataFishing.m_Player);
+				}
+			}
+			else //loss of the entire hook
+			{
+				m_ActionDataFishing.m_Bait.Delete();
+			}
+			
+			m_ActionDataFishing.m_MainItem.AddHealth(-m_ActionDataFishing.FISHING_DAMAGE);
 		}
 	}
 	
@@ -194,7 +207,7 @@ class ActionFishingNew: ActionContinuousBase
 		
 		if (rod)
 		{
-			bait = ItemBase.Cast(rod.FindAttachmentBySlotName("Bait"));
+			bait = ItemBase.Cast(rod.FindAttachmentBySlotName("Hook"));
 		}
 		
 		if (bait && !bait.IsRuined())
@@ -232,6 +245,7 @@ class ActionFishingNew: ActionContinuousBase
 			if (rod)
 			{
 				FishingActionData.Cast(action_data).m_RodQualityModifier = rod.GetFishingEffectivityBonus();
+				FishingActionData.Cast(action_data).InitBait(ItemBase.Cast(action_data.m_MainItem.FindAttachmentBySlotName("Hook")));
 			}
 			return true;
 		}
@@ -301,6 +315,7 @@ class ActionFishingNew: ActionContinuousBase
 		FishingActionData fad = FishingActionData.Cast(action_data);
 		float rnd = fad.m_Player.GetRandomGeneratorSyncManager().GetRandom01(RandomGeneratorSyncUsage.RGSGeneric);
 		float daytime_modifier = 1;
+		float hook_modifier = 1;
 		float chance;
 		
 		daytime_modifier = GetGame().GetDayTime();
@@ -312,17 +327,23 @@ class ActionFishingNew: ActionContinuousBase
 		{
 			daytime_modifier = 0.5;
 		}
-		chance = 1 - ((fad.FISHING_SUCCESS * daytime_modifier) + fad.m_RodQualityModifier);
+		
+		//fishing with an empty hook
+		if (fad.IsBaitEmptyHook())
+		{
+			hook_modifier = 0.05;
+		}
+		
+		chance = 1 - (((fad.FISHING_SUCCESS * daytime_modifier) + fad.m_RodQualityModifier)) * hook_modifier;
 		
 		if (rnd > chance)
-		{	
+		{
 			return 1;
 		}
-		else if (rnd < fad.FISHING_BAIT_LOSS)
+		else if (rnd < fad.FISHING_BAIT_LOSS && !fad.IsBaitEmptyHook()) // restricts the loss of an empty hook (low chance is enough)
 		{
 			return 0;
 		}
-		
 		return -1;
 	}
 };

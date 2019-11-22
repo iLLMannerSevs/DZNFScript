@@ -470,7 +470,7 @@ class Environment
 		{
 			//! player is drying
 			float sun_effect = ( GameConstants.ENVIRO_SUN_INCREMENT * m_DayOrNight * ( 1 - m_Fog ) ) * ( 1 - ( m_Clouds * GameConstants.ENVIRO_CLOUD_DRY_EFFECT ) );
-			float temp_effect = Math.Sqrt( m_PlayerHeat + GetEnvironmentTemperature() );
+			float temp_effect = m_PlayerHeat + Math.Max( GetEnvironmentTemperature(), 0.0 );
 			//! Coef should be higher than 0 (Sqrt is none for x < 0)
 			if ( temp_effect <= 0 ) { temp_effect = 1; }
 
