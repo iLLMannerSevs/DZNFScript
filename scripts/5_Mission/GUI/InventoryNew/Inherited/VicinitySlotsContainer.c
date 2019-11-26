@@ -416,7 +416,7 @@ class VicinitySlotsContainer: Container
 		{
 			item = items.Get( x );
 			
-			if (ExcludeFromContainer(item))
+			if (item == null || ExcludeFromContainer(item))
 				continue;
 
 			visible_items.Insert( item );

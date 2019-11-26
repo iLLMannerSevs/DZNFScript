@@ -22,6 +22,11 @@ class AttachmentsWrapper: Container
 		return m_Attachments.Select();
 	}
 	
+	override bool SelectItem()
+	{
+		return m_Attachments.SelectItem();
+	}
+	
 	override bool Combine()
 	{
 		return m_Attachments.Combine();

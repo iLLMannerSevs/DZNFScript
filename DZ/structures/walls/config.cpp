@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: structures_walls\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:13:24 2019 : 'file' last modified on Wed Nov 06 16:14:43 2019
+//'now' is Tue Nov 26 18:57:09 2019 : 'file' last modified on Wed Nov 06 16:14:43 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

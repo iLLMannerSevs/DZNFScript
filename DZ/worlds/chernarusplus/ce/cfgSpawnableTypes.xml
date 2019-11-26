@@ -2210,9 +2210,12 @@
 		</cargo>
 		<cargo chance="0.20">
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.35" />
+			<item name="Mag_1911_7Rnd" chance="0.35" />
 			<item name="Mag_CZ75_15Rnd" chance="0.35" />
 			<item name="Mag_IJ70_8Rnd" chance="0.35" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Small_2">
@@ -2247,9 +2250,12 @@
 		</cargo>
 		<cargo chance="0.20">
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.35" />
+			<item name="Mag_1911_7Rnd" chance="0.35" />
 			<item name="Mag_CZ75_15Rnd" chance="0.35" />
 			<item name="Mag_IJ70_8Rnd" chance="0.35" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Small_3">
@@ -2284,9 +2290,12 @@
 		</cargo>
 		<cargo chance="0.20">
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.35" />
+			<item name="Mag_1911_7Rnd" chance="0.35" />
 			<item name="Mag_CZ75_15Rnd" chance="0.35" />
 			<item name="Mag_IJ70_8Rnd" chance="0.35" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Small_4">
@@ -2321,9 +2330,12 @@
 		</cargo>
 		<cargo chance="0.20">
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.35" />
+			<item name="Mag_1911_7Rnd" chance="0.35" />
 			<item name="Mag_CZ75_15Rnd" chance="0.35" />
 			<item name="Mag_IJ70_8Rnd" chance="0.35" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Medium_1">
@@ -2374,9 +2386,12 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Medium_2">
@@ -2427,9 +2442,12 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Medium_3">
@@ -2480,9 +2498,12 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Medium_4">
@@ -2533,9 +2554,12 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Large_1">
@@ -2590,9 +2614,21 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_20Rnd" chance="0.15" />
+			<item name="Mag_CZ527_5rnd" chance="0.20" />
+			<item name="Mag_Saiga_5Rnd" chance="0.15" />
+		</cargo>
+		<cargo chance="0.03">
+			<item name="Mag_Saiga_Drum20Rnd" chance="0.10" />
+			<item name="Mag_STANAGCoupled_30Rnd" chance="0.10" />
+			<item name="Mag_AKM_Drum75Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Large_2">
@@ -2647,9 +2683,21 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_20Rnd" chance="0.15" />
+			<item name="Mag_CZ527_5rnd" chance="0.20" />
+			<item name="Mag_Saiga_5Rnd" chance="0.15" />
+		</cargo>
+		<cargo chance="0.03">
+			<item name="Mag_Saiga_Drum20Rnd" chance="0.10" />
+			<item name="Mag_STANAGCoupled_30Rnd" chance="0.10" />
+			<item name="Mag_AKM_Drum75Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Large_3">
@@ -2704,9 +2752,21 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_20Rnd" chance="0.15" />
+			<item name="Mag_CZ527_5rnd" chance="0.20" />
+			<item name="Mag_Saiga_5Rnd" chance="0.15" />
+		</cargo>
+		<cargo chance="0.03">
+			<item name="Mag_Saiga_Drum20Rnd" chance="0.10" />
+			<item name="Mag_STANAGCoupled_30Rnd" chance="0.10" />
+			<item name="Mag_AKM_Drum75Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<type name="GiftBox_Large_4">
@@ -2761,9 +2821,21 @@
 			<item name="Mag_CZ61_20Rnd" chance="0.20" />
 			<item name="Mag_MP5_30Rnd" chance="0.20" />
 			<item name="Mag_FNX45_15Rnd" chance="0.25" />
+			<item name="Mag_Glock_15Rnd" chance="0.25" />
+			<item name="Mag_MKII_10Rnd" chance="0.15" />
+			<item name="Mag_1911_7Rnd" chance="0.15" />
 			<item name="Mag_CZ75_15Rnd" chance="0.15" />
 			<item name="Mag_IJ70_8Rnd" chance="0.15" />
-			<item name="Mag_SVD_10Rnd" chance="0.05" />
+			<item name="Mag_SVD_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_10Rnd" chance="0.15" />
+			<item name="Mag_CMAG_20Rnd" chance="0.15" />
+			<item name="Mag_CZ527_5rnd" chance="0.20" />
+			<item name="Mag_Saiga_5Rnd" chance="0.15" />
+		</cargo>
+		<cargo chance="0.03">
+			<item name="Mag_Saiga_Drum20Rnd" chance="0.10" />
+			<item name="Mag_STANAGCoupled_30Rnd" chance="0.10" />
+			<item name="Mag_AKM_Drum75Rnd" chance="0.10" />
 		</cargo>
 	</type>
 	<!-- VEHICLES -->

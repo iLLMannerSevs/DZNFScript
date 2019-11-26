@@ -100,9 +100,9 @@ class BleedingSourcesManagerServer extends BleedingSourcesManagerBase
 
 			for(int i = 0; i < m_BleedingSources.Count(); i++)
 			{
-				m_BleedingSources.GetElement(i).OnUpdateServer(delta_time, blood_scale, m_DisableBloodLoss);
+				m_BleedingSources.GetElement(i).OnUpdateServer( TICK_INTERVAL_SEC, blood_scale, m_DisableBloodLoss );
 			}
-//			m_Tick = 0;
+			m_Tick = 0;
 		}
 	}
 	

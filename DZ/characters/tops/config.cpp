@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: characters_tops\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:09:23 2019 : 'file' last modified on Thu Nov 07 10:13:54 2019
+//'now' is Tue Nov 26 18:53:35 2019 : 'file' last modified on Mon Nov 25 08:18:11 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3157,6 +3157,8 @@ class CfgVehicles
 		itemSize[] = {4,3};
 		itemsCargoSize[] = {4,3};
 		quickBarBonus = 3;
+		repairableWithKits[] = {5};
+		repairCosts[] = {30.0};
 		heatIsolation = 0.8;
 		absorbency = 0.0;
 		soundAttType = "HeavyJacket";

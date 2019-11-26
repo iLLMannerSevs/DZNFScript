@@ -274,16 +274,16 @@ class HandsContainer: Container
 		m_ScrollWidget.GetScreenPos( x, y );
 		m_ScrollWidget.GetScreenSize( x, y_s );
 		float amount;
-		float next_pos	= active_container.GetFocusedContainerYScreenPos() + active_container.GetFocusedContainerHeight();
+		float next_pos	= active_container.GetFocusedContainerYScreenPos( true ) + active_container.GetFocusedContainerHeight( true );
 			
 		if( next_pos > ( y + y_s ) )
 		{
-			amount	= y + active_container.GetFocusedContainerYScreenPos();
-			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + active_container.GetFocusedContainerHeight() + 2 );
+			amount	= y + active_container.GetFocusedContainerYScreenPos( true );
+			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + active_container.GetFocusedContainerHeight( true ) + 2 );
 		}
-		else if( active_container.GetFocusedContainerYScreenPos() < y )
+		else if( active_container.GetFocusedContainerYScreenPos( true ) < y )
 		{
-			amount = active_container.GetFocusedContainerYScreenPos() - y;
+			amount = active_container.GetFocusedContainerYScreenPos( true ) - y;
 			m_ScrollWidget.VScrollToPos( m_ScrollWidget.GetVScrollPos() + amount - 2 );
 		}
 	}
@@ -796,6 +796,7 @@ class HandsContainer: Container
 			if( m_Atts )
 			{
 				m_Atts.Remove();
+				m_Body.RemoveItem( m_Atts.GetWrapper() );
 				delete m_Atts;
 			}
 			if( m_am_entity2.GetSlotsCountCorrect() > 0 )
@@ -855,6 +856,7 @@ class HandsContainer: Container
 			if( m_Atts )
 			{
 				m_Atts.Remove();
+				m_Body.RemoveItem( m_Atts.GetWrapper() );
 				delete m_Atts;
 			}
 
@@ -1538,6 +1540,7 @@ class HandsContainer: Container
 		{
 			m_CargoGrid = new CargoContainer( this );
 			m_CargoGrid.SetEntity( entity );
+			m_CargoGrid.GetRootWidget().SetSort( 1 );
 			Insert( m_CargoGrid );
 		}
 

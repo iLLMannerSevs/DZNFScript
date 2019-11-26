@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: ai\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:08:21 2019 : 'file' last modified on Thu Nov 21 11:53:16 2019
+//'now' is Tue Nov 26 18:52:37 2019 : 'file' last modified on Thu Nov 21 11:53:16 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

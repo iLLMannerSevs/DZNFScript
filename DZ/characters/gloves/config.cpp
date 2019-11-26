@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: characters_gloves\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:09:04 2019 : 'file' last modified on Thu Nov 07 10:01:02 2019
+//'now' is Tue Nov 26 18:53:18 2019 : 'file' last modified on Mon Nov 25 08:01:05 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -516,8 +516,8 @@ class CfgVehicles
 		itemSize[] = {2,3};
 		absorbency = 0.0;
 		heatIsolation = 0.25;
-		repairableWithKits[] = {5,2};
-		repairCosts[] = {30.0,25.0};
+		repairableWithKits[] = {5};
+		repairCosts[] = {30.0};
 		class ClothingTypes
 		{
 			male = "\DZ\characters\gloves\NBC_Gloves_m.p3d";

@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: characters_headgear\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:09:07 2019 : 'file' last modified on Tue Nov 19 14:58:23 2019
+//'now' is Tue Nov 26 18:53:19 2019 : 'file' last modified on Mon Nov 25 08:02:51 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_
@@ -3474,6 +3474,8 @@ class CfgVehicles
 		itemInfo[] = {"Clothing","Headgear"};
 		weight = 460;
 		itemSize[] = {3,2};
+		repairableWithKits[] = {5};
+		repairCosts[] = {30.0};
 		absorbency = 0;
 		heatIsolation = 0.5;
 		headSelectionsToHide[] = {"Clipping_NBC_Hood"};

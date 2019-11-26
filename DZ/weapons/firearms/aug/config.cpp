@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////
 //DeRap: weapons_firearms\aug\config.bin
-//Produced from mikero's Dos Tools Dll version 7.37
+//Produced from mikero's Dos Tools Dll version 7.39
 //https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Fri Nov 22 16:13:59 2019 : 'file' last modified on Fri Nov 15 09:59:51 2019
+//'now' is Tue Nov 26 18:57:43 2019 : 'file' last modified on Fri Nov 15 09:59:51 2019
 ////////////////////////////////////////////////////////////////////
 
 #define _ARMA_

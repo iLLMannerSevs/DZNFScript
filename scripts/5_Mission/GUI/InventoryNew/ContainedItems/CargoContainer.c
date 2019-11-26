@@ -21,6 +21,7 @@ class CargoContainer extends Container
 	protected Widget												m_ItemsContainer;
 	protected ref SizeToChild										m_Resizer1;
 	protected ref SizeToChild										m_Resizer2;
+	protected ref Timer												m_ResizeTimer;
 	
 	void CargoContainer( LayoutHolder parent, bool is_attachment = false )
 	{
@@ -94,8 +95,7 @@ class CargoContainer extends Container
 		
 		m_FocusedItemPosition = Math.Min( m_ShowedItemPositions.Count() - 1, m_FocusedItemPosition );
 		
-		UpdateRowVisibility( m_Cargo.GetItemCount() );
-		UpdateSelection();
+		Refresh();
 		#endif
 	}
 	
@@ -124,8 +124,7 @@ class CargoContainer extends Container
 		
 		m_FocusedItemPosition = Math.Min( m_ShowedItemPositions.Count() - 1, m_FocusedItemPosition );
 		
-		UpdateRowVisibility( m_Cargo.GetItemCount() );
-		UpdateSelection();
+		Refresh();
 		#endif
 	}
 	
@@ -230,7 +229,7 @@ class CargoContainer extends Container
 		{
 			m_Entity		= item;
 			m_Cargo			= item.GetInventory().GetCargoFromIndex(cargo_index);
-			m_CargoIndex = cargo_index;
+			m_CargoIndex	= cargo_index;
 			
 			m_Entity.GetOnItemAddedIntoCargo().Insert( AddedToCargo );
 			m_Entity.GetOnItemRemovedFromCargo().Insert( RemovedFromCargo );
@@ -258,8 +257,7 @@ class CargoContainer extends Container
 				}
 				
 				#ifdef PLATFORM_CONSOLE
-				UpdateRowVisibility( m_ShowedItemPositions.Count() );
-				UpdateSelection();
+				Refresh();
 				#endif
 			}
 		}
@@ -466,6 +464,23 @@ class CargoContainer extends Container
 		
 		m_Resizer2.ResizeParentToChild();
 		m_Resizer1.ResizeParentToChild();
+	}
+	
+	override void Refresh()
+	{
+		#ifdef PLATFORM_CONSOLE
+		if( !m_ResizeTimer )
+			m_ResizeTimer = new Timer();
+		if( m_ResizeTimer.IsRunning() )
+			m_ResizeTimer.Stop();
+		m_ResizeTimer.Run( 0.05, this, "RefreshImpl" );
+		#endif
+	}
+	
+	void RefreshImpl()
+	{
+		UpdateRowVisibility( m_ShowedItemPositions.Count() );
+		UpdateSelection();
 	}
 	
 	override void UpdateInterval()
@@ -686,7 +701,7 @@ class CargoContainer extends Container
 			ItemBase entity = ItemBase.Cast( GetFocusedItem().GetObject() );
 			if( entity )
 			{
-				if( entity.HasQuantity() )
+				if( entity.HasQuantity() && entity.CanBeSplit() )
 				{
 					entity.OnRightClick();
 					Icon icon = m_ShowedItemPositions.Get( entity ).param1;
