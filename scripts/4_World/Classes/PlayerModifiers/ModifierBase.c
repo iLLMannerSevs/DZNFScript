@@ -71,12 +71,12 @@ class ModifierBase
 
 	void Tick(float delta_time)
 	{
-		if( !IsActive() && m_ShouldBeActive )
+		if( !m_IsActive && m_ShouldBeActive )
 		{
 			Activate();
 		}
-		//PrintString(this.ToString() + " " +IsActive().ToString());
-		if( IsActive() )
+		//PrintString(this.ToString() + " " +m_IsActive.ToString());
+		if( m_IsActive )
 		{
 			m_AccumulatedTimeActive += delta_time;
 			if( m_AccumulatedTimeActive > m_TickIntervalActive )

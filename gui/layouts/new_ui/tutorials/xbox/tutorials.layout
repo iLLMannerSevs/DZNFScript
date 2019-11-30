@@ -5341,12 +5341,12 @@ FrameWidgetClass rootFrame {
   WrapSpacerWidgetClass play_panel_root {
    visible 0
    ignorepointer 1
-   position 100 130
+   position 0.05 0.05
    size 400 400
    halign right_ref
    valign bottom_ref
-   hexactpos 1
-   vexactpos 1
+   hexactpos 0
+   vexactpos 0
    hexactsize 1
    vexactsize 1
    priority 2

@@ -169,6 +169,7 @@ class MissionServer extends MissionBase
 			}
 			identity = newParams.param1;
 			InvokeOnConnect(player,identity );
+			SyncEvents.SendPlayerList();
 			ControlPersonalLight(player);
 			break;
 			

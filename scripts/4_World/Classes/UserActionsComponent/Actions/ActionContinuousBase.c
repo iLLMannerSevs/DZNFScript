@@ -43,7 +43,7 @@ class ActionContinuousBaseCB : ActionBaseCB
 		{
 			AnimatedActionBase action = AnimatedActionBase.Cast(m_ActionData.m_Action);
 #ifdef DEVELOPER
-			Print("ActionInteractBase.c | OnAnimationEvent | OnAnimationEvent called");
+			//Print("ActionInteractBase.c | OnAnimationEvent | OnAnimationEvent called");
 #endif
 			if ( !m_Interrupted && pEventID == UA_IN_START ) 
 			{
@@ -217,10 +217,12 @@ class ActionContinuousBase : AnimatedActionBase
 	
 	protected void OnStartAnimationLoopServer( ActionData action_data ) //method called on start main animation loop (after in animation part )
 	{
+		action_data.m_WasActionStarted  = true;
 	}
 	
 	protected void OnStartAnimationLoopClient( ActionData action_data ) //method called on start main animation loop (after in animation part )
 	{
+		action_data.m_WasActionStarted  = true;
 	}
 	
 	protected void OnEndAnimationLoopServer( ActionData action_data ) //method called on finish main animation loop (before out animation part )

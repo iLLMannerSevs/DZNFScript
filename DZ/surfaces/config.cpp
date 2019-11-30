@@ -1,10 +1,3 @@
-////////////////////////////////////////////////////////////////////
-//DeRap: surfaces\config.bin
-//Produced from mikero's Dos Tools Dll version 7.39
-//https://bytex.market/products/item/weodpphdknnzm70o0h8q/Mikero%27s%20Dos%20Tools
-//'now' is Tue Nov 26 18:57:22 2019 : 'file' last modified on Mon Sep 02 16:23:25 2019
-////////////////////////////////////////////////////////////////////
-
 #define _ARMA_
 
 //(8 Enums)

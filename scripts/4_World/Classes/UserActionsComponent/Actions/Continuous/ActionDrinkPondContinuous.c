@@ -23,6 +23,11 @@ class ActionDrinkPondContinuous: ActionContinuousBase
 		return "#drink";
 	}
 	
+	override bool IsDrink()
+	{
+		return true;
+	}
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;

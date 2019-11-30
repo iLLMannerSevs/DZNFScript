@@ -21,6 +21,11 @@ class ActionDrinkWellContinuous: ActionContinuousBase
 		return "#drink";
 	}
 	
+	override bool IsDrink()
+	{
+		return true;
+	}
+	
 	override typename GetInputType()
 	{
 		return ContinuousInteractActionInput;
@@ -74,7 +79,7 @@ class ActionDrinkWellContinuous: ActionContinuousBase
 			action_data.m_Player.InsertAgent(eAgents.CHOLERA, 1);
 		}
 	}
-
+	
 	override void OnEndServer( ActionData action_data )
 	{
 		OnFinishProgressServer(action_data);

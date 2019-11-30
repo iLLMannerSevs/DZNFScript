@@ -42,13 +42,9 @@ class NotifierBase
 	bool IsTimeToTick(int current_time)
 	{
 		if( current_time > m_TickIntervalLastTick + m_TickInterval )
-		{
 			return true;
-		}
-		else 
-		{
-			return false;
-		}
+
+		return false;
 	}
 	
 	
@@ -69,14 +65,7 @@ class NotifierBase
 
 	bool IsActive()
 	{
-		if ( m_Active )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		return m_Active;
 	}
 
 	void SetActive( bool state )
