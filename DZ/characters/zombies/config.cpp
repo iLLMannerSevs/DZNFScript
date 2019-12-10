@@ -138,6 +138,13 @@ class CfgVehicles
 					};
 					class ArmorType
 					{
+						class Projectile
+						{
+							class Health
+							{
+								damage = 1.5;
+							};
+						};
 						class FragGrenade
 						{
 							class Health

@@ -64,6 +64,7 @@ class GesturesMenu extends UIScriptedMenu
 	//selections
 	protected Widget 							m_SelectedItem;
 	protected bool 								m_IsCategorySelected;
+	protected bool 								m_IsMenuClosing;
 	
 	//instance
 	static GesturesMenu							instance;
@@ -137,6 +138,7 @@ class GesturesMenu extends UIScriptedMenu
 		super.OnShow();
 		
 		SetFocus( layoutRoot );
+		m_IsMenuClosing = false;
 	}
 	
 	override bool OnController( Widget w, int control, int value )
@@ -547,5 +549,15 @@ class GesturesMenu extends UIScriptedMenu
 				}
 			}
 		}
+	}
+	
+	bool IsMenuClosing()
+	{
+		return m_IsMenuClosing;
+	}
+	
+	void SetMenuClosing(bool state)
+	{
+		m_IsMenuClosing = state;
 	}
 }	

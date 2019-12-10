@@ -316,6 +316,7 @@ class Inventory: LayoutHolder
 
 	bool Controller( Widget w, int control, int value )
 	{
+		#ifdef PLATFORM_CONSOLE
 		//Right stick
 		if ( control == ControlID.CID_RADIALMENU )
 		{
@@ -396,6 +397,7 @@ class Inventory: LayoutHolder
 		}
 		
 		UpdateConsoleToolbar();
+		#endif
 		return false;
 	}
 
@@ -577,6 +579,7 @@ class Inventory: LayoutHolder
 			}
 		}
 		
+		#ifdef PLATFORM_CONSOLE
 		if( GetGame().GetInput().LocalPress( "UAUIExpandCollapseContainer", false ) )
 		{
 			if( m_RightArea.IsActive() )
@@ -774,9 +777,7 @@ class Inventory: LayoutHolder
 				m_HandsArea.SetPreviousActive();
 			}
 			
-#ifdef PLATFORM_CONSOLE
-				UpdateConsoleToolbar();
-#endif		
+			UpdateConsoleToolbar();
 		}
 
 		if( GetGame().GetInput().LocalPress( "UAUINextDown", false ) )
@@ -808,9 +809,7 @@ class Inventory: LayoutHolder
 				m_HandsArea.SetNextActive();
 			}
 			
-#ifdef PLATFORM_CONSOLE
-				UpdateConsoleToolbar();
-#endif
+			UpdateConsoleToolbar();
 		}
 
 		if( GetGame().GetInput().LocalPress( "UAUITabLeft", false ) )
@@ -836,9 +835,7 @@ class Inventory: LayoutHolder
 				m_LeftArea.SetActive( false );
 				m_RightArea.SetActive( true );
 				
-#ifdef PLATFORM_CONSOLE
-			UpdateConsoleToolbar();
-#endif
+				UpdateConsoleToolbar();
 			}
 			else if( m_RightArea.IsActive() )
 			{
@@ -851,9 +848,7 @@ class Inventory: LayoutHolder
 				EntityAI item_in_hands = player.GetItemInHands();
 				m_HandsArea.SetActive( true );
 
-#ifdef PLATFORM_CONSOLE
-			UpdateConsoleToolbar();
-#endif	
+				UpdateConsoleToolbar();
 			}
 			else if( m_HandsArea.IsActive() )
 			{
@@ -861,9 +856,7 @@ class Inventory: LayoutHolder
 				m_HandsArea.SetActive( false );
 				m_LeftArea.SetActive( true );
 				
-#ifdef PLATFORM_CONSOLE
 				UpdateConsoleToolbar();
-#endif		
 			}
 		}
 
@@ -892,9 +885,7 @@ class Inventory: LayoutHolder
 				item_in_hands = player.GetItemInHands();
 				m_HandsArea.SetActive( true );
 				
-#ifdef PLATFORM_CONSOLE
 				UpdateConsoleToolbar();
-#endif			
 			}
 			else if( m_RightArea.IsActive() )
 			{
@@ -905,9 +896,7 @@ class Inventory: LayoutHolder
 				m_RightArea.SetActive( false );
 				m_LeftArea.SetActive( true );
 				
-#ifdef PLATFORM_CONSOLE
 				UpdateConsoleToolbar();
-#endif	
 			}
 			else if( m_HandsArea.IsActive() )
 			{
@@ -915,15 +904,11 @@ class Inventory: LayoutHolder
 				m_HandsArea.SetActive( false );
 				m_RightArea.SetActive( true );
 				
-#ifdef PLATFORM_CONSOLE
 				UpdateConsoleToolbar();
-#endif
 	
 			}
 		}
-
-		MissionGameplay mission = MissionGameplay.Cast( GetGame().GetMission() );
-#ifdef PLATFORM_CONSOLE
+		
 		//Open Quickbar radial menu
 		if( GetGame().GetInput().LocalPress( "UAUIQuickbarRadialInventoryOpen", false ) )
 		{
@@ -951,7 +936,9 @@ class Inventory: LayoutHolder
 				}				
 			}
 		}
-#endif
+		#endif
+		
+		MissionGameplay mission = MissionGameplay.Cast( GetGame().GetMission() );
 		if( !m_HadInspected && GetGame().GetInput().LocalRelease( "UAUIBack", false ) )
 		{
 			if( GetMainWidget().IsVisible() )
@@ -1090,6 +1077,7 @@ class Inventory: LayoutHolder
 	
 	void ResetFocusedContainers()
 	{
+		#ifdef PLATFORM_CONSOLE
 		m_RightArea.UnfocusGrid();
 		m_LeftArea.UnfocusGrid();
 		m_HandsArea.UnfocusGrid();
@@ -1102,6 +1090,7 @@ class Inventory: LayoutHolder
 		m_LeftArea.ResetFocusedContainer();
 		
 		m_RightArea.SetActive( true );
+		#endif
 	}
 
 	override void OnShow()
@@ -1317,9 +1306,9 @@ class Inventory: LayoutHolder
 			case ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM:
 				return to_hands_swap + to_inventory + equip  + micromanagment;
 			case ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM_NO_EQUIP:
-				return to_hands_swap + to_inventory  + micromanagment;
+				return to_hands_swap + to_inventory + micromanagment;
 			case ConsoleToolbarType.VICINITY_CONTAINER_LIST_ITEM_WITH_QUANTITY:
-				return to_hands_swap + to_inventory  + micromanagment;
+				return to_hands_swap + to_inventory + micromanagment;
 			case ConsoleToolbarType.VICINITY_CONTAINER_LIST_HEADER:
 				return open_close_container ;
 			case ConsoleToolbarType.VICINITY_CONTAINER_LIST_EMPTY_ITEM:
@@ -1328,11 +1317,11 @@ class Inventory: LayoutHolder
 			case ConsoleToolbarType.VICINITY_CONTAINER_DETAILS_EMPTY:
 				return "";
 			case ConsoleToolbarType.VICINITY_CONTAINER_DETAILS_ITEM:
-				return to_hands_swap + to_inventory + equip + micromanagment;
+				return to_hands_swap + drop + to_inventory + equip + micromanagment;
 			case ConsoleToolbarType.VICINITY_CONTAINER_DETAILS_ITEM_NO_EQUIP:
-				return to_hands_swap + to_inventory + micromanagment;
+				return to_hands_swap + drop + to_inventory + micromanagment;
 			case ConsoleToolbarType.VICINITY_CONTAINER_DETAILS_ITEM_WITH_QUANTITY:
-				return to_hands_swap + to_inventory + split + micromanagment;
+				return to_hands_swap + drop + to_inventory + split + micromanagment;
 		}
 		return "";
 	}

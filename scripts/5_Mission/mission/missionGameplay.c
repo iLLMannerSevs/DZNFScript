@@ -276,10 +276,10 @@ class MissionGameplay extends MissionBase
 				m_Hud.ShowHudUI( false );
 			}
 			
-			if( !menu && m_ControlDisabled && !playerPB.GetCommand_Melee2() )
+			/*if( !menu && m_ControlDisabled && !playerPB.GetCommand_Melee2() )
 			{
 				PlayerControlEnable(true);
-			}
+			}*/
 		}
 
 #ifdef PLATFORM_CONSOLE
@@ -293,6 +293,11 @@ class MissionGameplay extends MissionBase
 				{
 					RadialQuickbarMenu.OpenMenu();
 					m_Hud.ShowHudUI( false );
+					/*if (!m_ControlDisabled)
+					{
+						PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
+						GetUApi().GetInputByName("UAUIQuickbarRadialOpen").Unlock();
+					}*/
 				}	
 			}
 		}
@@ -303,6 +308,8 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_RADIAL_QUICKBAR ) )
 			{
 				RadialQuickbarMenu.CloseMenu();
+				quickbar_menu.SetMenuClosing(true);
+				PlayerControlEnable(false);
 				m_Hud.ShowHudUI( true );
 			}
 		}
@@ -315,6 +322,7 @@ class MissionGameplay extends MissionBase
 			{
 				PlayerControlDisable( INPUT_EXCLUDE_ALL );
 				RadialQuickbarMenu.CloseMenu();
+				//PlayerControlEnable(false);
 				RadialQuickbarMenu.SetItemToAssign( NULL );
 			}
 		}
@@ -363,6 +371,11 @@ class MissionGameplay extends MissionBase
 				{
 					GesturesMenu.OpenMenu();
 					m_Hud.ShowHudUI( false );
+					/*if (!m_ControlDisabled)
+					{
+						PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
+						GetUApi().GetInputByName("UAUIGesturesOpen").Unlock();
+					}*/
 				}
 			}
 		}
@@ -373,6 +386,8 @@ class MissionGameplay extends MissionBase
 			if ( GetUIManager().IsMenuOpen( MENU_GESTURES ) )
 			{
 				GesturesMenu.CloseMenu();
+				gestures_menu.SetMenuClosing(true);
+				PlayerControlEnable(false);
 				m_Hud.ShowHudUI( true );
 			}
 		}
@@ -554,15 +569,15 @@ class MissionGameplay extends MissionBase
 				{
 					PlayerControlDisable(INPUT_EXCLUDE_INVENTORY);
 				}
-				else if(menu == gestures_menu && !m_ControlDisabled)
+				else if(menu == gestures_menu && !m_ControlDisabled && !gestures_menu.IsMenuClosing())
 				{
 					PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
-					//GetUApi().GetInputByName("UAUIGesturesOpen")->Unlock();
+					GetUApi().GetInputByName("UAUIGesturesOpen").Unlock();
 				}
-				else if(menu == quickbar_menu && !m_ControlDisabled)
+				else if(menu == quickbar_menu && !m_ControlDisabled && !quickbar_menu.IsMenuClosing())
 				{
 					PlayerControlDisable(INPUT_EXCLUDE_MOUSE_RADIAL);
-					//GetUApi().GetInputByName("UAUIGesturesOpen")->Unlock();
+					GetUApi().GetInputByName("UAUIQuickbarRadialOpen").Unlock();
 				}
 				else if( IsPaused() )
 				{
@@ -593,12 +608,14 @@ class MissionGameplay extends MissionBase
 				Pause();
 			}
 			
-			/*
-			else if (!menu && m_ControlDisabled)
+			//final controls check that suppresses inputs to avoid input collision. If anything needed to be handled without forced input suppression, it had been at this point.
+			if( playerPB )
 			{
-				PlayerControlEnable(true);
+				if( !menu && m_ControlDisabled && !playerPB.GetCommand_Melee2() )
+				{
+					PlayerControlEnable(true);
+				}
 			}
-			*/
 		}
 		
 		UpdateDebugMonitor();

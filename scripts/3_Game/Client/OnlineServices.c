@@ -399,20 +399,27 @@ class OnlineServices
 	
 	static bool IsPlayerMuted( string id )
 	{
-		BiosPrivacyPermissionResultArray perms = m_PermissionsList.Get( id );
-		if( perms )
+		if( m_MuteList.Contains( id ) )
 		{
-			for( int i = 0; i < perms.Count(); i++ )
+			return m_MuteList.Get( id );
+		}
+		else
+		{
+			BiosPrivacyPermissionResultArray perms = m_PermissionsList.Get( id );
+			if( perms )
 			{
-				BiosPrivacyPermissionResult result = perms.Get( i );
-				if( result.m_Permission == EBiosPrivacyPermission.COMMUNICATE_VOICE )
+				for( int i = 0; i < perms.Count(); i++ )
 				{
-					if( !result.m_IsAllowed )
-						return true;
+					BiosPrivacyPermissionResult result = perms.Get( i );
+					if( result.m_Permission == EBiosPrivacyPermission.COMMUNICATE_VOICE )
+					{
+						m_MuteList.Insert( id, !result.m_IsAllowed );
+						return !result.m_IsAllowed;
+					}
 				}
 			}
 		}
-		return m_MuteList.Get( id );
+		return false;
 	}
 	
 	static bool MutePlayer( string id, bool mute )

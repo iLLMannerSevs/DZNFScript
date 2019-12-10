@@ -90,6 +90,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 	protected Widget 								m_ItemCardPanel;
 	protected ref array<ref RadialQuickbarItem> 	m_Items;
 	
+	protected bool 									m_IsMenuClosing;
 	protected int 									m_CurrentCategory;
 	//
 	const string 									TEXT_ITEM_NAME	= "ItemName";
@@ -209,6 +210,7 @@ class RadialQuickbarMenu extends UIScriptedMenu
 		super.OnShow();
 		
 		SetFocus( layoutRoot );
+		m_IsMenuClosing = false;
 	}	
 	
 	override bool OnController( Widget w, int control, int value )
@@ -745,5 +747,15 @@ class RadialQuickbarMenu extends UIScriptedMenu
 		{
 			mngr_client.PerformActionStart(player.GetActionManager().GetAction(ActionToggleNVG),atrg,null);
 		}
+	}
+	
+	bool IsMenuClosing()
+	{
+		return m_IsMenuClosing;
+	}
+	
+	void SetMenuClosing(bool state)
+	{
+		m_IsMenuClosing = state;
 	}
 }

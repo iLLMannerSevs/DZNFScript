@@ -526,7 +526,7 @@
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
-        <flags count_in_cargo="1" count_in_hoarder="0" count_in_map="1" count_in_player="1" crafted="0" deloot="0"/>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
         <category name="weapons"/>
         <usage name="Military"/>
     </type>
@@ -664,10 +664,10 @@
         <usage name="Police"/>
     </type>
     <type name="AmmoBox_9x39AP_20Rnd">
-        <nominal>10</nominal>
-        <lifetime>7200</lifetime>
+        <nominal>8</nominal>
+        <lifetime>10800</lifetime>
         <restock>0</restock>
-        <min>5</min>
+        <min>3</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -677,10 +677,10 @@
         <value name="Tier4"/>
     </type>
     <type name="AmmoBox_9x39_20Rnd">
-        <nominal>20</nominal>
-        <lifetime>7200</lifetime>
+        <nominal>10</nominal>
+        <lifetime>10800</lifetime>
         <restock>0</restock>
-        <min>15</min>
+        <min>5</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -934,10 +934,10 @@
         <usage name="Village"/>
     </type>
     <type name="Ammo_9x39">
-        <nominal>30</nominal>
-        <lifetime>7200</lifetime>
+        <nominal>20</nominal>
+        <lifetime>10800</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>12</min>
         <quantmin>20</quantmin>
         <quantmax>80</quantmax>
         <cost>100</cost>
@@ -946,10 +946,10 @@
         <usage name="Military"/>
     </type>
     <type name="Ammo_9x39AP">
-        <nominal>15</nominal>
-        <lifetime>7200</lifetime>
-        <restock>1800</restock>
-        <min>10</min>
+        <nominal>14</nominal>
+        <lifetime>10800</lifetime>
+        <restock>0</restock>
+        <min>8</min>
         <quantmin>20</quantmin>
         <quantmax>80</quantmax>
         <cost>100</cost>
@@ -1753,7 +1753,6 @@
         <category name="tools"/>
         <tag name="shelves"/>
         <usage name="Medic"/>
-        <usage name="Town"/>
     </type>
     <type name="BandanaMask_BlackPattern">
         <nominal>0</nominal>
@@ -4704,10 +4703,10 @@
         <usage name="Industrial"/>
     </type>
     <type name="EngineOil">
-        <nominal>50</nominal>
+        <nominal>0</nominal>
         <lifetime>14400</lifetime>
         <restock>0</restock>
-        <min>30</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -4967,14 +4966,13 @@
     </type>
     <type name="Fireplace">
         <nominal>0</nominal>
-        <lifetime>7200</lifetime>
+        <lifetime>10800</lifetime>
         <restock>0</restock>
         <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-        <category name="clothes"/>
     </type>
     <type name="FireplaceIndoor">
         <nominal>0</nominal>
@@ -4985,7 +4983,6 @@
         <quantmax>-1</quantmax>
         <cost>100</cost>
         <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="1" deloot="0"/>
-        <category name="clothes"/>
     </type>
     <type name="Firewood">
         <nominal>0</nominal>
@@ -8708,7 +8705,7 @@
     </type>
     <type name="Mag_Saiga_Drum20Rnd">
         <nominal>5</nominal>
-        <lifetime>180</lifetime>
+        <lifetime>7200</lifetime>
         <restock>1800</restock>
         <min>2</min>
         <quantmin>15</quantmin>
@@ -13596,7 +13593,7 @@
         <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>
@@ -13622,7 +13619,7 @@
         <nominal>0</nominal>
         <lifetime>2700</lifetime>
         <restock>0</restock>
-        <min>20</min>
+        <min>0</min>
         <quantmin>-1</quantmin>
         <quantmax>-1</quantmax>
         <cost>100</cost>

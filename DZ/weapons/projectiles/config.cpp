@@ -1209,7 +1209,7 @@ class CfgAmmo
 			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
-				damage = 55;
+				damage = 95;
 				armorDamage = 3;
 			};
 			class Blood
@@ -1253,7 +1253,7 @@ class CfgAmmo
 			defaultDamageOverride[] = {{0.5,1.0}};
 			class Health
 			{
-				damage = 55;
+				damage = 95;
 			};
 			class Blood
 			{

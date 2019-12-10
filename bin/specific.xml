@@ -218,7 +218,7 @@
     <include name="hotkey" />  
     <include name="gestures" />  
     <include name="aiming" />  
-    <include name="movement" />
+    <!-- <include name="movement" /> -->
     <include name="stances" />  
     <include name="optics" />  
     <include name="actions" />  

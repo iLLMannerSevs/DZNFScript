@@ -2308,7 +2308,7 @@ class PlayerBase extends ManBase
 		if ( !GetGame().IsMultiplayer() || GetGame().IsClient() )
 		{
 			if ( !GetGame().GetUIManager().GetMenu() )
-				GetGame().GetMission().PlayerControlEnable(true);
+				GetGame().GetMission().PlayerControlEnable(false);
 			if (GetGame().GetUIManager().IsMenuOpen(MENU_MAP))
 				GetGame().GetUIManager().FindMenu(MENU_MAP).Close();
 		}
@@ -6029,7 +6029,7 @@ class PlayerBase extends ManBase
 	}
 	
 	//! ends surrender, originally intended for surrender->restrained transitioning
-	void EndSurrenderRequest(SurrenderData data)
+	void EndSurrenderRequest(SurrenderData data = null)
 	{
 		if (m_EmoteManager)
 			m_EmoteManager.EndSurrenderRequest(data);

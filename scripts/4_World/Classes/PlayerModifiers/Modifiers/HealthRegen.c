@@ -49,6 +49,7 @@ class HealthRegenMdfr: ModifierBase
 			player.AddHealth("LeftFoot","Health",regen_speed * PlayerConstants.DAMAGE_ZONE_BLOOD_REGEN_MODIFIER);
 			
 			player.AddHealth("Torso","Health",regen_speed * PlayerConstants.DAMAGE_ZONE_BLOOD_REGEN_MODIFIER);
+			player.AddHealth("Head","Health",regen_speed * PlayerConstants.DAMAGE_ZONE_BLOOD_REGEN_MODIFIER);
 		}
 	}
 };

@@ -845,19 +845,17 @@ class GameInventory
 	/// helper function for swap
 	static bool MakeDstForSwap (notnull ref InventoryLocation src1, notnull ref InventoryLocation src2, out ref InventoryLocation dst1, out ref InventoryLocation dst2)
 	{
-		src1.SetFlip(src1.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
-		
 		if (dst1 == null)
 			dst1 = new InventoryLocation;
 		dst1.Copy(src1);
 		dst1.CopyLocationFrom(src2, false);
+		dst1.SetFlip(src1.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
 		
-		src2.SetFlip(src2.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
-
 		if (dst2 == null)
 			dst2 = new InventoryLocation;
 		dst2.Copy(src2);
 		dst2.CopyLocationFrom(src1, false);
+		dst2.SetFlip(src2.GetItem().GetInventory().GetFlipCargo()); // update flip flag from inventory item
 		return true;
 	}
 

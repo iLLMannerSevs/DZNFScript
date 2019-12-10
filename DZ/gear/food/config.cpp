@@ -6264,7 +6264,6 @@ class CfgVehicles
 		varQuantityInit = 200;
 		varQuantityMin = 0;
 		varQuantityMax = 200;
-		rotationFlags = 1;
 		stackedUnit = "";
 		inventorySlot = "Ingredient";
 		hiddenSelections[] = {"cs_raw","cs_dried"};
